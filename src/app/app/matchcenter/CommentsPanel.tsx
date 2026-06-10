@@ -170,16 +170,24 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
   return (
     <>
       {/* Botón flotante con contador (abre la ventana). Abajo-izquierda para no
-          chocar con la IA Coach (abajo-derecha) ni el menú social (centro). */}
+          chocar con la IA Coach (abajo-derecha) ni el menú social (centro). En
+          móvil la barra de navegación de la app es fija (zIndex 950, ~64px):
+          el media query lo sube por encima, igual que el lanzador del Coach. */}
+      <style>{`
+        @media(max-width:768px){
+          .mc-comments-fab{ bottom: calc(74px + env(safe-area-inset-bottom)) !important; }
+        }
+      `}</style>
       <button
         type="button"
+        className="mc-comments-fab"
         onClick={() => setOpen(true)}
         aria-label="Abrir comentarios"
         style={{
           position: "fixed",
           left: 16,
           bottom: 20,
-          zIndex: 60,
+          zIndex: 960,
           width: 56,
           height: 56,
           borderRadius: "50%",
@@ -236,7 +244,9 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 70,
+            // Sobre la barra de navegación (950) y el lanzador del Coach (1200):
+            // antes, con 70, la bottom-nav se dibujaba ENCIMA del panel abierto.
+            zIndex: 1300,
             background: "rgba(3,7,14,0.62)",
             display: "flex",
             alignItems: "flex-end",

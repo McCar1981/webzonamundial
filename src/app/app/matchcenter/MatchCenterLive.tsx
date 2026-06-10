@@ -1130,6 +1130,12 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         .mc-live-dot{width:8px;height:8px;border-radius:50%;background:${RED};display:inline-block;animation:mcPulse 1.2s infinite}
         .mc-num{font-family:'Oswald','Outfit',sans-serif;font-feature-settings:"tnum"}
         .mc-condensed{font-family:'Rajdhani','Outfit',sans-serif;letter-spacing:.5px}
+        /* Tira de momentos clave: snap por tarjeta y desvanecido en el borde
+           derecho para que el corte de la última tarjeta se lea como "hay más,
+           desliza" en vez de parecer una tarjeta rota. El padding final deja
+           ver la última completa al llegar al tope del scroll. */
+        .mc-moments{scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 34px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 34px),transparent)}
+        .mc-moments>button{scroll-snap-align:start}
       `}</style>
 
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "16px 16px 80px" }}>
@@ -1521,7 +1527,7 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
       <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Minuto a minuto</h3>
 
       {keyMoments.length > 0 && (
-        <div style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 12, marginBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="mc-moments" style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 12, paddingRight: 30, marginBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           {keyMoments.map((e) => {
             const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
             const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";

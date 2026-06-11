@@ -8,7 +8,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Check, X, Sparkles } from "lucide-react";
-import { PRO_PRICES, type ProBillingInterval } from "@/lib/stripe/pricing";
+import { PRO_PRICES, type ProBillingInterval, type ProRegion } from "@/lib/stripe/pricing";
 import { FREE_LIMITS } from "@/lib/pro/limits";
 
 const GOLD = "#C9A84C";
@@ -17,7 +17,7 @@ interface Props {
   authenticated: boolean;
   isPro: boolean;
   source: "subscription" | "founder" | null;
-  currency: "eur" | "usd";
+  region: ProRegion;
 }
 
 // Filas de la comparativa. Los números de Free salen de FREE_LIMITS para que
@@ -80,7 +80,7 @@ const ROWS: { feature: string; free: string; pro: string }[] = [
   },
 ];
 
-export default function ProPanel({ authenticated, isPro, source, currency }: Props) {
+export default function ProPanel({ authenticated, isPro, source, region }: Props) {
   const searchParams = useSearchParams();
   const purchaseSuccess = searchParams.get("purchase") === "success";
   const canceled = searchParams.get("canceled") === "1";
@@ -89,9 +89,13 @@ export default function ProPanel({ authenticated, isPro, source, currency }: Pro
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const prices = PRO_PRICES[currency];
+  const prices = PRO_PRICES[region];
+  // Equivalente mensual del plan ANUAL (gancho "te sale a X/mes"), calculado.
+  const eqPerMonth = prices.yearly.amount / 12 / 100;
   const monthlyEquivalent =
-    currency === "eur" ? "1 €/mes" : "0,84 USD/mes";
+    prices.currency === "eur"
+      ? `${eqPerMonth.toFixed(eqPerMonth % 1 === 0 ? 0 : 2).replace(".", ",")} €/mes`
+      : `${eqPerMonth.toFixed(2).replace(".", ",")} USD/mes`;
 
   async function handleSubscribe() {
     if (!authenticated) {

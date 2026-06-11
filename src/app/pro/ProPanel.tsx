@@ -25,8 +25,8 @@ interface Props {
 const ROWS: { feature: string; free: string; pro: string }[] = [
   {
     feature: "Predicciones",
-    free: `Solo resultado exacto · máx. ${FREE_LIMITS.predictions.maxPerJornada} por jornada`,
-    pro: "8 tipos + multiplicadores de puntos",
+    free: `${FREE_LIMITS.predictions.maxMatchesPerJornada} partidos/jornada · 1 con los 8 tipos, el resto Ganador y Goleador`,
+    pro: "8 tipos en todos los partidos + multiplicadores de puntos",
   },
   {
     feature: "Fantasy",

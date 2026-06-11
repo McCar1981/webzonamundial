@@ -137,6 +137,25 @@ export async function getPredictionById(id: string): Promise<PredictionRow | nul
   return (data as PredictionRow | null) ?? null;
 }
 
+/**
+ * Predicciones (partido + tipo) del usuario en un conjunto de partidos.
+ * Para el límite Free por jornada: contar PARTIDOS distintos predichos y saber
+ * en cuáles se han usado tipos avanzados (el "partido destacado").
+ */
+export async function getUserPredictionTypesForMatches(
+  userId: string,
+  matchIds: string[],
+): Promise<{ match_id: string; prediction_type: PredictionType }[]> {
+  if (matchIds.length === 0) return [];
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("predictions")
+    .select("match_id,prediction_type")
+    .eq("user_id", userId)
+    .in("match_id", matchIds);
+  return (data ?? []) as { match_id: string; prediction_type: PredictionType }[];
+}
+
 /** Predicciones del usuario entre un conjunto de partidos (cupo Free por jornada). */
 export async function countPredictionsForMatches(userId: string, matchIds: string[]): Promise<number> {
   if (matchIds.length === 0) return 0;

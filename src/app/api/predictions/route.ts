@@ -15,7 +15,7 @@ import {
 import { validatePredictionData, checkOpen, isEarlyBird } from "@/lib/predictions/rules";
 import { getMatch, getMatchMeta, matchMultiplier, allMatchIdsOnDate } from "@/lib/predictions/match-data";
 import { potentialPoints } from "@/lib/predictions/scoring";
-import { findPrediction, createPrediction, countPredictionsForMatches } from "@/lib/predictions/store";
+import { findPrediction, createPrediction, getUserPredictionTypesForMatches } from "@/lib/predictions/store";
 import { bumpChallengeProgress, claimJornadaIfComplete, extendStreakWindow } from "@/lib/predictions/gamification-store";
 import { isPro } from "@/lib/pro/entitlement";
 import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
@@ -55,28 +55,46 @@ export async function POST(req: Request) {
   const premium = await isPro(user.id, user.email);
 
   // ── Límites del plan Free ──
+  // Modelo (por jornada = día natural): hasta 3 PARTIDOS distintos; en UN partido
+  // "destacado" se juegan los 8 tipos, y en el resto solo los básicos (Ganador con
+  // Confianza y Primer Goleador). Se cuentan PARTIDOS, no predicciones (el destacado
+  // tiene varias). Pro = todo en todos los partidos.
   if (!premium) {
-    // Solo "resultado exacto" en Free.
-    if (!FREE_LIMITS.predictions.allowedTypes.includes(prediction_type)) {
-      trackLimitHit("predictions_type");
+    const match = getMatch(match_id);
+    const jornadaIds = match ? allMatchIdsOnDate(match.d) : [match_id];
+    const mine = await getUserPredictionTypesForMatches(user.id, jornadaIds);
+    const predictedMatches = new Set(mine.map((p) => p.match_id));
+    const isNewMatch = !predictedMatches.has(match_id);
+
+    // (1) Tope de partidos por jornada.
+    if (isNewMatch && predictedMatches.size >= FREE_LIMITS.predictions.maxMatchesPerJornada) {
+      trackLimitHit("predictions_jornada");
       const payload: ProRequiredPayload = {
-        error: "En el plan gratuito solo puedes predecir el resultado exacto. Los 8 tipos son del plan Pro.",
+        error: `En el plan gratuito puedes jugar ${FREE_LIMITS.predictions.maxMatchesPerJornada} partidos por jornada. Con Pro, todos.`,
         code: PRO_REQUIRED_CODE,
-        feature: "predictions_type",
+        feature: "predictions_jornada",
+        limit: FREE_LIMITS.predictions.maxMatchesPerJornada,
       };
       return NextResponse.json(payload, { status: 403 });
     }
-    // Máximo N predicciones por jornada (todos los partidos del mismo día).
-    const match = getMatch(match_id);
-    if (match) {
-      const used = await countPredictionsForMatches(user.id, allMatchIdsOnDate(match.d));
-      if (used >= FREE_LIMITS.predictions.maxPerJornada) {
-        trackLimitHit("predictions_jornada");
+
+    // (2) Tipos avanzados: solo en el partido destacado (1/jornada). Los básicos
+    //     (ganador, goleador) se pueden jugar en cualquier partido.
+    const isAdvanced = FREE_LIMITS.predictions.advancedTypes.includes(prediction_type);
+    if (isAdvanced) {
+      const advancedMatches = new Set(
+        mine
+          .filter((p) => FREE_LIMITS.predictions.advancedTypes.includes(p.prediction_type))
+          .map((p) => p.match_id),
+      );
+      const showcaseTaken = advancedMatches.size >= FREE_LIMITS.predictions.advancedMatchesPerJornada;
+      if (showcaseTaken && !advancedMatches.has(match_id)) {
+        trackLimitHit("predictions_type");
         const payload: ProRequiredPayload = {
-          error: `Has usado tus ${FREE_LIMITS.predictions.maxPerJornada} predicciones de esta jornada. Con Pro no hay límite.`,
+          error:
+            "En el plan gratuito juegas todos los tipos en UN partido por jornada; en los demás, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos.",
           code: PRO_REQUIRED_CODE,
-          feature: "predictions_jornada",
-          limit: FREE_LIMITS.predictions.maxPerJornada,
+          feature: "predictions_type",
         };
         return NextResponse.json(payload, { status: 403 });
       }

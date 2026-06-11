@@ -23,6 +23,7 @@ import { MATCHES } from "@/data/matches";
 import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import { liveNarration } from "@/lib/match-center/narrator";
+import { maybePublishChronicle } from "@/lib/match-center/chronicle";
 import { processMatchPush } from "@/lib/match-center/push";
 import { processMicroGeneration } from "@/lib/micro/engine";
 import type { MatchMeta } from "@/lib/match-center/types";
@@ -57,6 +58,8 @@ function kvEnabled(): boolean {
 const POLL_INTERVAL_MS = 15_000;
 // Estados de api-football que indican partido en curso (no NS/FT/PST/CANC...).
 const LIVE_STATUSES = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT", "SUSP"]);
+// Estados terminales con partido jugado: disparan la crónica editorial IA.
+const CHRONICLE_TERMINAL = new Set(["FT", "AET", "PEN"]);
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -164,6 +167,16 @@ async function runPass(startMs: number): Promise<{
       await processMicroGeneration(snap);
     } catch (err) {
       console.error("[mc-poll] micro generation failed", snap.matchId, (err as Error).message);
+    }
+    // CRÓNICA IA al pitido final: con el partido en estado terminal se redacta
+    // y autopublica la crónica editorial (una sola vez: candado en KV dentro
+    // del propio módulo; reintenta en la siguiente pasada si falla).
+    if (CHRONICLE_TERMINAL.has(snap.status)) {
+      try {
+        await maybePublishChronicle(snap);
+      } catch (err) {
+        console.error("[mc-poll] chronicle failed", snap.matchId, (err as Error).message);
+      }
     }
     // Presupuesto DENTRO del bucle: con varios partidos simultáneos una pasada
     // lenta (fotos del push + IA) no debe estrellarse contra maxDuration — la

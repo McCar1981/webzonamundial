@@ -38,8 +38,8 @@ export const homeSections = {
           desc: "Entra en predicciones, fantasy, trivia y ligas privadas con tus amigos.",
         },
         {
-          title: "Vive y gana",
-          desc: "Sigue los partidos en streaming con creadores y gana premios reales.",
+          title: "Vive y compite",
+          desc: "Sigue los partidos en streaming con creadores y vive retos en directo con la comunidad.",
         },
       ],
       stepsA11y: "Pasos",
@@ -331,7 +331,8 @@ export const homeSections = {
         brand: "Sprintmarkt",
         suffix: " · Valencia, España",
       },
-      disclaimer: "Plataforma de predicciones gratuita. No implica apuesta monetaria.",
+      disclaimer:
+        "Juego 100% gratuito: no implica apuestas. Los Fútcoins no tienen valor monetario y no son canjeables por dinero ni premios.",
       securePayment: "Pago seguro con",
     },
 
@@ -404,7 +405,7 @@ export const homeSections = {
       pillars: {
         matches: { label1: "Partidos", label2: "en directo" },
         ai: { label1: "IA Coach", label2: "personal" },
-        prizes: { label1: "En premios", label2: "y exclusivos" },
+        prizes: { label1: "Juego", label2: "100% gratuito" },
       },
       ctaPrimary: "Pre-regístrate gratis",
       ctaGhost: "Ver cómo funciona",
@@ -426,7 +427,7 @@ export const homeSections = {
         pause: "Pausar slider",
       },
       stats: {
-        users: "Usuarios activos",
+        users: "Usuarios registrados",
         venues: "Sedes oficiales",
         teams: "Selecciones",
         groups: "Grupos",
@@ -446,6 +447,7 @@ export const homeSections = {
 
     /* ============ Countdown label shared with Hero ============ */
     countdownLabel: "Copa del Mundo · EE.UU · México · Canadá",
+    countdownLive: "EN JUEGO",
   },
 
   en: {
@@ -474,8 +476,8 @@ export const homeSections = {
           desc: "Enter predictions, fantasy, trivia and private leagues with your friends.",
         },
         {
-          title: "Live it and win",
-          desc: "Stream matches with creators and win real prizes.",
+          title: "Live it and compete",
+          desc: "Stream matches with creators and join live challenges with the community.",
         },
       ],
       stepsA11y: "Steps",
@@ -759,7 +761,8 @@ export const homeSections = {
         brand: "Sprintmarkt",
         suffix: " · Valencia, Spain",
       },
-      disclaimer: "Free prediction platform. Does not involve monetary betting.",
+      disclaimer:
+        "100% free game: no betting involved. Fútcoins have no monetary value and cannot be exchanged for money or prizes.",
       securePayment: "Secure payment with",
     },
 
@@ -830,7 +833,7 @@ export const homeSections = {
       pillars: {
         matches: { label1: "Live", label2: "matches" },
         ai: { label1: "Personal", label2: "AI Coach" },
-        prizes: { label1: "In prizes", label2: "and exclusives" },
+        prizes: { label1: "Free to play", label2: "no stakes" },
       },
       ctaPrimary: "Pre-register for free",
       ctaGhost: "See how it works",
@@ -852,7 +855,7 @@ export const homeSections = {
         pause: "Pause slider",
       },
       stats: {
-        users: "Active users",
+        users: "Registered users",
         venues: "Official venues",
         teams: "National teams",
         groups: "Groups",
@@ -871,6 +874,7 @@ export const homeSections = {
     },
 
     countdownLabel: "World Cup · USA · Mexico · Canada",
+    countdownLive: "UNDERWAY",
   },
 } as const;
 

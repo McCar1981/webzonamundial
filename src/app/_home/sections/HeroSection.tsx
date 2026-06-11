@@ -134,9 +134,13 @@ function HeroLeft({
   const { locale } = useLanguage();
   const t = homeSections[locale].hero;
   const countdownLabel = homeSections[locale].countdownLabel;
+  const countdownLive = homeSections[locale].countdownLive;
   const dd = cd.d;
   const hh = String(cd.h).padStart(2, "0");
   const mm = String(cd.m).padStart(2, "0");
+  // El torneo ya arrancó: el contador a "0d 00h 00m" parecía roto. En su
+  // lugar mostramos el estado en vivo.
+  const kickedOff = cd.d === 0 && cd.h === 0 && cd.m === 0 && cd.s === 0;
 
   // Real creators avatars (first 5, ordered per data file)
   const creatorAvatars = CREADORES.slice(0, 5).map((c) => ({
@@ -151,7 +155,13 @@ function HeroLeft({
           <span className={styles.zmLiveDot} />
           {countdownLabel}
           <span className={styles.zmTimer}>
-            <b>{dd}</b>d <b>{hh}</b>h <b>{mm}</b>m
+            {kickedOff ? (
+              <b>{countdownLive}</b>
+            ) : (
+              <>
+                <b>{dd}</b>d <b>{hh}</b>h <b>{mm}</b>m
+              </>
+            )}
           </span>
         </div>
       )}
@@ -195,7 +205,10 @@ function HeroLeft({
           <div className={styles.zmPillarIc}>
             <Icon name="trophy" size={16} />
           </div>
-          <div className={styles.zmPillarN}>€250k</div>
+          {/* Sin claims de premios en metálico: "€250k en premios" junto a
+              compras de comodines encaja en la definición de gambling de
+              Google/Ley 13-2011 y era causa probable de rechazo AdSense. */}
+          <div className={styles.zmPillarN}>0 €</div>
           <div className={styles.zmPillarL}>
             {t.pillars.prizes.label1}
             <br />
@@ -427,7 +440,10 @@ function StatsBar() {
   const { locale } = useLanguage();
   const t = homeSections[locale].hero.stats;
   const stats: Array<{ ic: keyof typeof ICON_PATHS; n: string; l: string }> = [
-    { ic: "users", n: "+2.5M", l: t.users },
+    // Cifra real y coherente con el bloque "8.642 aficionados ya están en la
+    // lista". El "+2.5M usuarios activos" anterior era falso y contradecía
+    // esa cifra en la misma pantalla (hallazgo de la auditoría AdSense).
+    { ic: "users", n: "+8.6k", l: t.users },
     { ic: "shield", n: "16", l: t.venues },
     { ic: "globe", n: "48", l: t.teams },
     { ic: "target", n: "12", l: t.groups },

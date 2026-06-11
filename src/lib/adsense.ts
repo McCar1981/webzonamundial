@@ -12,12 +12,15 @@
 //  4. Despliega y espera la aprobación de Google (puede tardar 1-3 días)
 
 /**
- * Flag maestro de activación. Por defecto está APAGADO para evitar que Google
- * vea anuncios durante la revisión de aprobación. Cuando AdSense apruebe el
- * sitio, activa esta variable de entorno para mostrar anuncios.
+ * Flag maestro de activación. ENCENDIDO por defecto: el checklist oficial de
+ * revisión de AdSense exige que el código de anuncios esté colocado en el
+ * sitio durante la solicitud (answer/12176698) — antes de la aprobación el
+ * script no pinta nada, así que no afecta a la UX. La creencia anterior de
+ * "apagar el flag durante la revisión" era errónea (auditoría 11-06-2026).
+ * Para apagarlo en emergencia: NEXT_PUBLIC_ADSENSE_ENABLED=false en Vercel.
  */
 export const isAdSenseEnabled =
-  process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
+  process.env.NEXT_PUBLIC_ADSENSE_ENABLED !== "false";
 
 /** Publisher ID de AdSense (público, aparece en ads.txt). */
 export const ADSENSE_ID =

@@ -191,6 +191,30 @@ export function ArticleView({
             )}
           </div>
         </div>
+
+        {/* Nota de transparencia para piezas del flujo automático (tienen
+            ingestedAt). Política IA de Google: la automatización es legítima
+            si se declara y aporta valor — la nota lo hace explícito. */}
+        {noticia.ingestedAt && (
+          <p className={styles.aiNote}>
+            {noticia.sourceUrl ? (
+              <>
+                Elaborado por la redacción de ZonaMundial con apoyo de IA a
+                partir de información de{" "}
+                <a href={noticia.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">
+                  {noticia.sourceName || "la fuente original"}
+                </a>
+                .
+              </>
+            ) : (
+              <>
+                Crónica elaborada automáticamente con los datos oficiales del
+                partido (marcador, eventos y estadísticas) y revisada por la
+                redacción de ZonaMundial.
+              </>
+            )}
+          </p>
+        )}
       </header>
 
       {/* HERO IMAGE */}

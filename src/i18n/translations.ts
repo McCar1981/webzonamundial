@@ -104,8 +104,8 @@ const translations = {
         step2Title: "Juega y predice",
         step2Desc: "Entra en predicciones, fantasy, trivia y ligas privadas con tus amigos.",
         step3Num: "03",
-        step3Title: "Vive y gana",
-        step3Desc: "Sigue los partidos en streaming con creadores y gana premios reales.",
+        step3Title: "Vive y compite",
+        step3Desc: "Sigue los partidos en streaming con creadores y vive retos en directo con la comunidad.",
       },
       platform: {
         badge: "Explora la Plataforma",
@@ -2022,8 +2022,8 @@ const translations = {
         step2Title: "Play and predict",
         step2Desc: "Join predictions, fantasy, trivia and private leagues with your friends.",
         step3Num: "03",
-        step3Title: "Live it and win",
-        step3Desc: "Watch matches via streaming with creators and win real prizes.",
+        step3Title: "Live it and compete",
+        step3Desc: "Watch matches via streaming with creators and join live challenges with the community.",
       },
       platform: {
         badge: "Explore the Platform",

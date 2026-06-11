@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SELECCIONES, getSeleccionesByGrupo } from '@/data/selecciones';
+import { getSeleccionesByGrupo } from '@/data/selecciones';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { MATCHES } from '@/data/matches';
 import { SvgIcon } from '@/components/icons';
@@ -17,7 +17,6 @@ import { isFinished, isLive, type LiveMap } from '@/lib/calendario/live';
 gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14";
-const BG3 = "#0B1825";
 
 const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> = {
   'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
@@ -98,150 +97,22 @@ function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string
   );
 }
 
-// Componente de tarjeta de grupo
-function GrupoCard({ letra, index }: { letra: string; index: number }) {
+// Tarjeta de grupo = tabla de clasificación en vivo (PJ, G, E, P, GF, GC, Pts)
+function GrupoCard({ letra, liveMap }: { letra: string; liveMap: LiveMap }) {
   const { t } = useLanguage();
   const gT = t.grupos;
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const tagRef = useRef<HTMLDivElement>(null);
-  const teamsRef = useRef<HTMLDivElement>(null);
+  const isEN = gT.allGroups === "All groups";
   const selecciones = getSeleccionesByGrupo(letra);
-  const tagStyle = TAG_STYLES[letra];
-  const tagText = gT.tags[letra as keyof typeof gT.tags];
-  const tag = tagStyle ? { ...tagStyle, text: tagText } : undefined;
-  const isHighlight = tagText?.includes('CAMPEÓN') || tagText?.includes('CHAMPION');
-
-  useEffect(() => {
-    const card = cardRef.current;
-    const tagEl = tagRef.current;
-    const teamsEl = teamsRef.current;
-
-    if (!card) return;
-
-    gsap.fromTo(card,
-      { opacity: 0, y: 50, scale: 0.95 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.6, delay: 0.2 + index * 0.08, ease: "power3.out" }
-    );
-
-    if (tagEl) {
-      gsap.fromTo(tagEl,
-        { opacity: 0, x: 20 },
-        { opacity: 1, x: 0, duration: 0.4, delay: 0.5 + index * 0.08, ease: "power2.out" }
-      );
-    }
-
-    if (teamsEl) {
-      const teams = teamsEl.querySelectorAll('.team-item');
-      gsap.fromTo(teams,
-        { opacity: 0, x: -20 },
-        { opacity: 1, x: 0, duration: 0.4, stagger: 0.1, delay: 0.6 + index * 0.08, ease: "power2.out" }
-      );
-    }
-  }, [index]);
+  const groupColor = TAG_STYLES[letra]?.color ?? '#c9a84c';
 
   return (
-    <Link
-      ref={cardRef}
+    <TablaClasificacion
+      selecciones={selecciones}
+      groupColor={groupColor}
+      liveMap={liveMap}
+      caption={`${isEN ? 'Group' : 'Grupo'} ${letra}`}
       href={`/grupos/grupo-${letra.toLowerCase()}`}
-      className={`group relative block rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
-        isHighlight
-          ? 'border-2 border-red-500/50 hover:shadow-[0_8px_32px_rgba(239,68,68,0.25)]'
-          : 'border border-white/5 hover:shadow-[0_8px_32px_rgba(201,168,76,0.15)]'
-      }`}
-      style={{
-        background: isHighlight
-          ? 'linear-gradient(135deg, rgba(239,68,68,0.1), rgba(15,23,42,0.8))'
-          : BG3
-      }}
-    >
-      {/* Tag */}
-      {tag && (
-        <div
-          ref={tagRef}
-          className="absolute top-0 right-0 px-3 py-1.5 rounded-bl-xl text-[10px] font-black tracking-wider z-10 flex items-center gap-1"
-          style={{
-            background: tag.bg,
-            color: tag.color,
-            borderLeft: `1px solid ${tag.color}30`,
-            borderBottom: `1px solid ${tag.color}30`
-          }}
-        >
-          {tag.icon && (tag.icon.startsWith('/') ? <img src={tag.icon} alt="" className="w-3 h-3 object-contain" /> : <SvgIcon name={tag.icon} size={12} />)}
-          {tag.text}
-        </div>
-      )}
-
-      <div className="p-5">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-5">
-          <div
-            className={`w-14 h-14 rounded-xl flex items-center justify-center font-black text-2xl ${
-              isHighlight ? 'bg-red-500/20 text-red-400 border border-red-500/30' : ''
-            }`}
-            style={!isHighlight ? {
-              background: 'linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))',
-              color: '#c9a84c',
-              border: '1px solid rgba(201,168,76,0.3)'
-            } : {}}
-          >
-            {letra}
-          </div>
-          <div>
-            <h2 className={`text-lg font-bold group-hover:text-[#c9a84c] transition-colors ${isHighlight ? 'text-white' : 'text-white'}`}>
-              {gT.allGroups === "All groups" ? "Group" : "Grupo"} {letra}
-            </h2>
-            <p className="text-xs text-[#6a7a9a]">{gT.teamsMatch}</p>
-          </div>
-        </div>
-
-        {/* Equipos */}
-        <div ref={teamsRef} className="space-y-2.5">
-          {selecciones.map((team, idx) => (
-            <Link
-              key={team.slug}
-              href={`/selecciones/${team.slug}`}
-              className="team-item flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
-            >
-              <img
-                src={`https://flagcdn.com/w40/${team.flagCode}.png`}
-                alt={team.nombre}
-                className="w-7 h-5 object-cover rounded shadow-md"
-              />
-              <span className={`text-sm font-medium truncate flex-1 ${idx === 0 ? 'text-[#c9a84c]' : 'text-[#CBD5E1]'} group-hover:text-[#c9a84c] transition-colors`}>
-                {team.nombre}
-              </span>
-              {idx === 0 && (
-                <span className="text-[10px] font-bold text-[#c9a84c] bg-[#c9a84c]/10 px-2 py-0.5 rounded-full">
-                  {t.ui.cabeza}
-                </span>
-              )}
-              {team.mejorResultado?.includes('Campeón') && (
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15"><title>{team.mejorResultado}</title><path d="M5 3h14l-1.5 6H20l-8 12v-8H7l2-10z"/></svg>
-              )}
-              {team.esAnfitrion && (
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#4ade80"><path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 3.5L18 12h-1.5v6h-9v-6H6L12 5.5z"/></svg>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        {/* Ver más */}
-        <div className="mt-4 pt-3 border-t border-white/5">
-          <span className="text-xs text-[#6a7a9a] group-hover:text-[#c9a84c] transition-colors flex items-center gap-1">
-            {gT.verGrupoCompleto}
-            <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </span>
-        </div>
-      </div>
-
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#c9a84c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-      {/* Highlight pulse effect */}
-      {isHighlight && (
-        <div className="absolute inset-0 border-2 border-red-500/30 rounded-2xl animate-pulse pointer-events-none" />
-      )}
-    </Link>
+    />
   );
 }
 
@@ -250,7 +121,6 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
   const { t, locale } = useLanguage();
   const gT = t.grupos;
   const selecciones = getSeleccionesByGrupo(letra);
-  const groupColor = TAG_STYLES[letra]?.color ?? '#c9a84c';
   const descripcion = gT.descriptions[letra as keyof typeof gT.descriptions];
   const isHighlight = ['C', 'I'].includes(letra);
   const analysis = gT.detailedAnalysis ? gT.detailedAnalysis[letra as keyof typeof gT.detailedAnalysis] : null;
@@ -323,11 +193,6 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
         </div>
       </div>
 
-      {/* Tabla de clasificación en vivo */}
-      <div className="mt-6">
-        <TablaClasificacion selecciones={selecciones} groupColor={groupColor} liveMap={liveMap} />
-      </div>
-
       <MiniFixture letra={letra} locale={locale} liveMap={liveMap} />
     </div>
   );
@@ -343,7 +208,6 @@ export default function GruposIndex() {
   const heroRef = useRef<HTMLDivElement>(null);
   const breadcrumbRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const sectionTitleRef = useRef<HTMLDivElement>(null);
   const formatRef = useRef<HTMLDivElement>(null);
@@ -363,13 +227,6 @@ export default function GruposIndex() {
         gsap.fromTo(titleRef.current,
           { opacity: 0, y: 30, scale: 0.95 },
           { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
-        );
-      }
-
-      if (subtitleRef.current) {
-        gsap.fromTo(subtitleRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.4 }
         );
       }
 
@@ -459,12 +316,9 @@ export default function GruposIndex() {
             <span className="inline-block px-3 py-1 rounded-full bg-[#c9a84c]/10 text-[#c9a84c] text-xs font-bold tracking-wider uppercase mb-4 border border-[#c9a84c]/20">
               {gT.badge}
             </span>
-            <h1 ref={titleRef} className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
+            <h1 ref={titleRef} className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
               {gT.title.split('12')[0]}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#e8d48b]">12</span>{gT.title.split('12')[1]}
             </h1>
-            <p ref={subtitleRef} className="text-lg text-[#8a94b0] mb-8">
-              {gT.subtitle}
-            </p>
 
             {/* Stats */}
             <div ref={statsRef} className="flex flex-wrap justify-center gap-4">
@@ -507,9 +361,9 @@ export default function GruposIndex() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {gruposLetras.map((letra, index) => (
-            <GrupoCard key={letra} letra={letra} index={index} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {gruposLetras.map((letra) => (
+            <GrupoCard key={letra} letra={letra} liveMap={liveMap} />
           ))}
         </div>
       </section>

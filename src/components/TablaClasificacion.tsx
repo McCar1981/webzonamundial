@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Seleccion } from "@/data/selecciones";
 import { useLanguage } from "@/i18n/LanguageContext";
 import FlagImage from "@/components/FlagImage";
@@ -12,17 +13,21 @@ interface TablaClasificacionProps {
   /** Estado en vivo (matchId → marcador/estado). Vacío fuera del torneo: la
    *  tabla queda a cero y ordenada por ranking FIFA, como antes. */
   liveMap?: LiveMap;
+  /** Título del encabezado. Por defecto "Tabla de clasificación". */
+  caption?: string;
+  /** Si se pasa, añade un pie "Ver grupo completo →" que enlaza ahí. */
+  href?: string;
 }
 
-export default function TablaClasificacion({ selecciones, groupColor, liveMap = {} }: TablaClasificacionProps) {
+export default function TablaClasificacion({ selecciones, groupColor, liveMap = {}, caption, href }: TablaClasificacionProps) {
   const { t } = useLanguage();
   const isEN = t.nav.selecciones === "48 Teams";
 
   const labels = isEN
     ? { title: "Standings", team: "Team", pj: "MP", g: "W", e: "D", p: "L", gf: "GF", ga: "GA", gd: "GD", pts: "Pts",
-        live: "LIVE", updated: "Live table", qualify: "Advance", third: "Best 3rd in contention", out: "Eliminated", pending: "Updates as matches finish" }
+        live: "LIVE", updated: "Live table", qualify: "Advance", third: "Best 3rd in contention", out: "Eliminated", pending: "Updates as matches finish", seeGroup: "Full group" }
     : { title: "Tabla de clasificación", team: "Equipo", pj: "PJ", g: "G", e: "E", p: "P", gf: "GF", ga: "GA", gd: "GD", pts: "Pts",
-        live: "EN VIVO", updated: "Tabla en vivo", qualify: "Clasifican", third: "En lucha por mejor tercero", out: "Eliminado", pending: "Se actualiza al terminar cada partido" };
+        live: "EN VIVO", updated: "Tabla en vivo", qualify: "Clasifican", third: "En lucha por mejor tercero", out: "Eliminado", pending: "Se actualiza al terminar cada partido", seeGroup: "Ver grupo completo" };
 
   const grupo = selecciones[0]?.grupo ?? "";
   const teams: TeamMeta[] = selecciones.map((s) => ({
@@ -48,7 +53,7 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
         <svg className="w-5 h-5 shrink-0" style={{ color: groupColor }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 6h18M3 14h18M3 18h18" />
         </svg>
-        <h3 className="text-white font-semibold text-base">{labels.title}</h3>
+        <h3 className="text-white font-semibold text-base">{caption ?? labels.title}</h3>
         {anyLive ? (
           <span className="ml-auto flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wide" style={{ color: "#ff6b57" }}>
             <span className="relative flex h-1.5 w-1.5">
@@ -62,20 +67,20 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
         ) : null}
       </div>
 
-      {/* Table wrapper — scrollable on mobile */}
+      {/* Table wrapper — scroll horizontal solo si la pantalla es muy estrecha */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[540px] text-sm">
+        <table className="w-full min-w-[420px] text-sm">
           <thead>
             <tr className="text-[#c9a84c] uppercase text-[11px] tracking-wider border-b border-white/5">
-              <th className="py-2 px-3 text-center w-8">#</th>
-              <th className="py-2 px-3 text-left">{labels.team}</th>
-              <th className="py-2 px-2 text-center">{labels.pj}</th>
-              <th className="py-2 px-2 text-center">{labels.g}</th>
-              <th className="py-2 px-2 text-center">{labels.e}</th>
-              <th className="py-2 px-2 text-center">{labels.p}</th>
-              <th className="py-2 px-2 text-center">{labels.gf}</th>
-              <th className="py-2 px-2 text-center">{labels.ga}</th>
-              <th className="py-2 px-2 text-center">{labels.gd}</th>
+              <th className="py-2 px-2 text-center w-7">#</th>
+              <th className="py-2 px-2 text-left">{labels.team}</th>
+              <th className="py-2 px-1.5 text-center">{labels.pj}</th>
+              <th className="py-2 px-1.5 text-center">{labels.g}</th>
+              <th className="py-2 px-1.5 text-center">{labels.e}</th>
+              <th className="py-2 px-1.5 text-center">{labels.p}</th>
+              <th className="py-2 px-1.5 text-center">{labels.gf}</th>
+              <th className="py-2 px-1.5 text-center">{labels.ga}</th>
+              <th className="py-2 px-1.5 text-center">{labels.gd}</th>
               <th className="py-2 px-2 text-center font-bold">{labels.pts}</th>
             </tr>
           </thead>
@@ -89,20 +94,20 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
                   key={team.flagCode}
                   className={`border-b border-white/5 last:border-b-0 hover:bg-white/[0.03] transition-colors border-l-4 ${positionBorderColor(pos)}`}
                 >
-                  <td className="py-2.5 px-3 text-center text-white/50 text-xs font-medium">{pos}</td>
-                  <td className="py-2.5 px-3">
+                  <td className="py-2.5 px-2 text-center text-white/50 text-xs font-medium">{pos}</td>
+                  <td className="py-2.5 px-2">
                     <div className="flex items-center gap-2">
-                      <FlagImage code={team.flagCode} alt={team.nombre} width={24} className="rounded-sm shadow-sm" />
-                      <span className="text-white text-sm font-medium truncate">{sel?.nombre ?? team.nombre}</span>
+                      <FlagImage code={team.flagCode} alt={team.nombre} width={22} className="rounded-sm shadow-sm shrink-0" />
+                      <span className="text-white text-[13px] font-medium truncate">{sel?.nombre ?? team.nombre}</span>
                     </div>
                   </td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.pj}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.g}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.e}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.p}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.gf}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.ga}</td>
-                  <td className="py-2.5 px-2 text-center text-white/60">{r.gd > 0 ? `+${r.gd}` : r.gd}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.pj}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.g}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.e}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.p}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.gf}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.ga}</td>
+                  <td className="py-2.5 px-1.5 text-center text-white/60">{r.gd > 0 ? `+${r.gd}` : r.gd}</td>
                   <td className="py-2.5 px-2 text-center text-white font-bold">{r.pts}</td>
                 </tr>
               );
@@ -118,6 +123,17 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
         <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-1 rounded-sm bg-red-800" />{labels.out}</span>
         {!anyPlayed && <span className="ml-auto italic">{labels.pending}</span>}
       </div>
+
+      {/* Pie: enlace al grupo */}
+      {href && (
+        <Link
+          href={href}
+          className="flex items-center justify-end gap-1 px-4 py-2.5 border-t border-white/5 text-xs font-medium text-[#c9a84c] hover:bg-[#c9a84c]/5 transition-colors"
+        >
+          {labels.seeGroup}
+          <span aria-hidden>→</span>
+        </Link>
+      )}
     </div>
   );
 }

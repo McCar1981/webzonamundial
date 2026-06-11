@@ -165,7 +165,7 @@ function BuyCard() {
         className="inline-block rounded-xl px-6 py-3 text-sm font-black"
         style={{ background: "linear-gradient(135deg,#C9A84C,#e8d48b)", color: "#060B14", textDecoration: "none" }}
       >
-        Ver el plan Pro — desde 12 €/año
+        Ver el plan Pro — desde 15 €/año
       </Link>
     </div>
   );

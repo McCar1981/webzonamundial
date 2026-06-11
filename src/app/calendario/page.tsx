@@ -301,14 +301,16 @@ export default function CalendarioPage() {
     <div className="min-h-screen text-white" style={{ background: BG }}>
       {/* ── Hero compacto ── */}
       <div className="relative overflow-hidden px-6 pb-5 pt-4">
-        {/* Imagen opcional de fondo (public/images/calendario/hero.webp).
-            Si no existe, onError la oculta y queda el degradado. */}
+        {/* Imagen de fondo (public/images/calendario/hero.webp). Si faltara,
+            onError la oculta y queda el degradado. Opacidad 60: la imagen es
+            muy oscura y bajo el overlay navy a 30 apenas se percibía
+            (comparado con composite sharp a 30/45/60). */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/calendario/hero.webp"
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-30"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-60"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}

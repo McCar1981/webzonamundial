@@ -24,7 +24,7 @@ import type { CoinModule } from "@/lib/economy/wallet";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODULES: CoinModule[] = ["predicciones", "trivia", "fantasy", "modo-carrera", "micro"];
+const MODULES: CoinModule[] = ["predicciones", "trivia", "fantasy", "modo-carrera", "micro", "draft-mundial"];
 function parseModule(v: string | null): CoinModule | null {
   return v && (MODULES as string[]).includes(v) ? (v as CoinModule) : null;
 }

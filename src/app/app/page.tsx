@@ -124,6 +124,7 @@ const CATS: Cat[] = [
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible" },
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible" },
       { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo" },
+      { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
       // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Abrir", estado: "Disponible" },

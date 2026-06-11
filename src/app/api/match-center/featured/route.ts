@@ -31,6 +31,11 @@ export const maxDuration = 30;
 // 210 min: cubre prórroga + tanda de penaltis (con 150 el destacado saltaba al
 // siguiente partido en plena tanda).
 const POSTMATCH_MS = 210 * 60_000;
+// Margen ANTES del saque a partir del cual consultamos el estado real (KV): un
+// partido no aparece "en vivo" en api-football más de ~media hora antes. Antes
+// de esa franja un partido futuro no puede estar jugándose, así que lo damos por
+// "próximo" sin leer KV (clave para no hacer 100+ lecturas con el cuadro lleno).
+const PREKICK_MS = 30 * 60_000;
 const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
@@ -65,39 +70,39 @@ async function pickFeaturedId(now: number): Promise<number> {
     .filter((m): m is NonNullable<typeof m> => !!m)
     .sort((a, b) => kickoffMs(a.d, a.t) - kickoffMs(b.d, b.t));
 
+  // Los partidos van ordenados por saque ascendente. Recorremos saltando los ya
+  // jugados (por reloj, SIN leer KV) hasta el primero vigente, y solo ahí
+  // consultamos el estado real. Con el cuadro lleno (100+ ids) esto mantiene las
+  // lecturas de KV en ~1 por petición en vez de una por cada partido pasado.
   for (const m of programmed) {
     const ko = kickoffMs(m.d, m.t);
-    const last = await getLastSnapshot(m.i);
+    if (Number.isNaN(ko)) continue;
 
     // ── Slot de PRUEBA (amistoso real montado sobre KV) ──
-    // Se da por ACABADO (→ inaugural) si ya pasó la ventana por reloj (aunque se
-    // perdiera el pitido final) o si su snapshot REAL del día dice FINISHED. Solo
-    // creemos un snapshot cuyo saque coincide con la config actual: así un
-    // amistoso anterior (otra fecha) no lo marca como terminado por error.
+    // ACABADO (→ siguiente) si pasó la ventana por reloj o si su snapshot REAL
+    // del día dice FINISHED. Solo creemos un snapshot cuyo saque coincide con la
+    // fila actual: un amistoso anterior (otra fecha) no lo marca terminado mal.
     if (m.i >= TEST_SLOT_MIN) {
-      if (Number.isNaN(ko)) continue;
-      if (now > ko + POSTMATCH_MS) continue; // terminó por reloj -> inaugural
+      if (now > ko + POSTMATCH_MS) continue;
+      const last = await getLastSnapshot(m.i);
       if (snapshotMatchesConfig(last, ko)) {
-        if (FINISHED.has(last!.status)) continue; // terminó de verdad -> inaugural
-        if (IN_PLAY.has(last!.status)) return m.i; // en vivo -> amistoso
+        if (FINISHED.has(last!.status)) continue;
+        if (IN_PLAY.has(last!.status)) return m.i;
       }
-      return m.i; // próximo / en vivo dentro de ventana -> amistoso
+      return m.i;
     }
 
-    // ── Partidos reales del Mundial: el estado REAL conocido (KV) manda sobre
-    // la ventana temporal. ──
-    if (last) {
-      if (FINISHED.has(last.status)) continue; // terminó -> siguiente
-      if (IN_PLAY.has(last.status)) return m.i; // en juego -> este
-      // NS (por comenzar): cae a la lógica de ventana de abajo.
-    }
-    if (Number.isNaN(ko)) {
-      if (last) return m.i;
-      continue;
-    }
-    // Por venir o dentro de la ventana de partido -> este.
-    if (now <= ko + POSTMATCH_MS) return m.i;
-    // Pasó la ventana sin datos en vivo: se considera terminado -> siguiente.
+    // ── Partidos reales del Mundial ──
+    // Ya pasó por reloj (>3,5 h tras el saque = imposible que siga en juego):
+    // terminado, al siguiente SIN leer KV.
+    if (now > ko + POSTMATCH_MS) continue;
+    // Aún lejos del saque: es el próximo a destacar; no puede estar jugándose.
+    if (now < ko - PREKICK_MS) return m.i;
+    // En ventana (cerca del saque o jugándose): el estado REAL manda, así el
+    // banner avanza al SIGUIENTE en el pitido final real (no a +3,5 h).
+    const last = await getLastSnapshot(m.i);
+    if (last && FINISHED.has(last.status)) continue; // terminó -> siguiente
+    return m.i; // en juego o por empezar -> este
   }
 
   return firstWorldCupMatchId();

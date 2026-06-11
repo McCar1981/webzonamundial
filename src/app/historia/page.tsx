@@ -20,9 +20,11 @@ import {
 } from '@/lib/content/ediciones';
 
 export const metadata: Metadata = {
-  title: 'Historia del Mundial de Fútbol (1930–2026) — La base de datos más completa | ZonaMundial',
+  // Corto y sin sufijo: el template del layout raíz añade " | ZonaMundial".
+  // El anterior (90 chars + sufijo duplicado por el template) salía truncado en la SERP.
+  title: 'Historia del Mundial de Fútbol (1930–2026)',
   description:
-    'La base de datos hispanohablante más completa sobre la historia del Mundial: 23 ediciones, 100+ curiosidades, 15 jugadores legendarios, 8 selecciones campeonas, 19 estadios míticos, 23 balones, polémicas, goles legendarios, árbitros, trofeos y récords absolutos. Todo verificado con RSSSF, FIFA y prensa hispana.',
+    'La base de datos hispanohablante más completa sobre los Mundiales: 23 ediciones, campeones, goleadores, récords, 100+ curiosidades y 15 leyendas. Verificada con RSSSF y FIFA.',
   keywords: [
     'historia mundial futbol',
     'todos los mundiales',

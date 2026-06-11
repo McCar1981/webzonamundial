@@ -11,15 +11,19 @@
 // El enforcement REAL ocurre siempre en las rutas API (server-side) usando
 // isPro() de entitlement.ts + consumeDailyQuota() de quota.ts.
 
-export const PRO_PRICE_DISPLAY = { monthly: "3 €/mes", yearly: "12 €/año" } as const;
+export const PRO_PRICE_DISPLAY = { monthly: "8 €/mes", yearly: "15 €/año" } as const;
 
 export const FREE_LIMITS = {
   predictions: {
-    /** Tipos de predicción permitidos en Free (de los 8 existentes). */
-    allowedTypes: ["exact_score"] as readonly string[],
-    /** Máximo de predicciones por jornada. */
-    maxPerJornada: 3,
-    /** Multiplicadores (underdog, racha, early-bird, confianza) solo Pro. */
+    /** Tipos "básicos": Free los juega en CUALQUIER partido de la jornada. */
+    basicTypes: ["exact_score", "winner", "first_scorer"] as readonly string[],
+    /** Tipos "avanzados": Free los juega SOLO en el partido destacado (1/jornada). */
+    advancedTypes: ["chain", "duel", "over_under", "minute_drama", "social"] as readonly string[],
+    /** Máximo de PARTIDOS distintos predecibles por jornada (no de predicciones). */
+    maxMatchesPerJornada: 3,
+    /** Partidos por jornada con acceso a los tipos avanzados (el "destacado"). */
+    advancedMatchesPerJornada: 1,
+    /** Multiplicadores (underdog, racha, early-bird) solo Pro. */
     multipliers: false,
   },
   fantasy: {
@@ -78,17 +82,16 @@ export const FREE_LIMITS = {
 
 export const PRO_LIMITS = {
   predictions: {
-    allowedTypes: [
-      "exact_score",
-      "winner",
-      "first_scorer",
-      "chain",
-      "duel",
-      "over_under",
-      "minute_drama",
-      "social",
+    basicTypes: [
+      "exact_score", "winner", "first_scorer", "chain",
+      "duel", "over_under", "minute_drama", "social",
     ] as readonly string[],
-    maxPerJornada: Infinity,
+    advancedTypes: [
+      "exact_score", "winner", "first_scorer", "chain",
+      "duel", "over_under", "minute_drama", "social",
+    ] as readonly string[],
+    maxMatchesPerJornada: Infinity,
+    advancedMatchesPerJornada: Infinity,
     multipliers: true,
   },
   fantasy: {

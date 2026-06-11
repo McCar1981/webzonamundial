@@ -6,13 +6,18 @@ import FlagImage from "@/components/FlagImage";
 import { getPartidosByGrupo } from "@/data/calendario";
 import { getSeleccionBySlug } from "@/data/selecciones";
 import type { Partido } from "@/data/calendario";
+import { isFinished, isLive, type LiveMap } from "@/lib/calendario/live";
 
 interface Props {
   grupo: string;
   groupColor: string;
+  /** Estado en vivo (matchId → marcador/estado). Vacío fuera del torneo. */
+  liveMap?: LiveMap;
 }
 
-export default function CalendarioGrupo({ grupo, groupColor }: Props) {
+const LIVE_RED = "#ff6b57";
+
+export default function CalendarioGrupo({ grupo, groupColor, liveMap = {} }: Props) {
   const { locale, t } = useLanguage();
   const [timezone, setTimezone] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -30,6 +35,10 @@ export default function CalendarioGrupo({ grupo, groupColor }: Props) {
         matchday: "Matchday",
         vs: "vs",
         yourTz: "Your timezone",
+        finished: "FT",
+        live: "LIVE",
+        ht: "HT",
+        pen: "PENS",
       }
     : {
         title: "Calendario de partidos",
@@ -37,6 +46,10 @@ export default function CalendarioGrupo({ grupo, groupColor }: Props) {
         matchday: "Jornada",
         vs: "vs",
         yourTz: "Tu zona horaria",
+        finished: "Final",
+        live: "En vivo",
+        ht: "Descanso",
+        pen: "Penales",
       };
 
   const partidos = useMemo(() => getPartidosByGrupo(grupo), [grupo]);
@@ -145,14 +158,36 @@ export default function CalendarioGrupo({ grupo, groupColor }: Props) {
                 const homeFlag = getTeamFlag(partido.homeSlug);
                 const awayFlag = getTeamFlag(partido.awaySlug);
 
+                const live = liveMap[partido.matchId];
+                const playing = isLive(live);
+                const ended = isFinished(live);
+
                 return (
                   <div
                     key={partido.id}
                     className="rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 p-4"
+                    style={
+                      playing
+                        ? { background: "linear-gradient(90deg, rgba(255,107,87,0.08), transparent 60%)" }
+                        : undefined
+                    }
                   >
-                    {/* Date and time row */}
+                    {/* Date and time / status row */}
                     <div className="flex items-center justify-center gap-3 mb-3">
-                      {mounted ? (
+                      {playing ? (
+                        <span className="flex items-center gap-1.5 text-sm font-black" style={{ color: LIVE_RED }}>
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="absolute h-full w-full animate-ping rounded-full opacity-75" style={{ background: LIVE_RED }} />
+                            <span className="relative h-1.5 w-1.5 rounded-full" style={{ background: LIVE_RED }} />
+                          </span>
+                          {live!.s === "HT" ? labels.ht : `${live!.el}'`}
+                          <span className="text-[10px] font-bold uppercase tracking-wide">· {labels.live}</span>
+                        </span>
+                      ) : ended ? (
+                        <span className="text-sm font-black uppercase tracking-wide" style={{ color: "#6a7a9a" }}>
+                          {live!.s === "PEN" ? labels.pen : labels.finished}
+                        </span>
+                      ) : mounted ? (
                         <>
                           <span className="text-xs text-gray-400">
                             {formatDate(partido.fecha, timezone)}
@@ -189,10 +224,22 @@ export default function CalendarioGrupo({ grupo, groupColor }: Props) {
                         )}
                       </div>
 
-                      {/* VS */}
-                      <span className="text-xs font-medium text-gray-500 flex-shrink-0 px-1">
-                        {labels.vs}
-                      </span>
+                      {/* Marcador / VS */}
+                      {playing || ended ? (
+                        <span
+                          className="flex-shrink-0 rounded-lg px-2.5 py-0.5 text-base font-black tabular-nums"
+                          style={{
+                            color: playing ? LIVE_RED : "#e8d48b",
+                            background: playing ? "rgba(255,107,87,0.10)" : "rgba(201,168,76,0.10)",
+                          }}
+                        >
+                          {live!.sc[0]} – {live!.sc[1]}
+                        </span>
+                      ) : (
+                        <span className="text-xs font-medium text-gray-500 flex-shrink-0 px-1">
+                          {labels.vs}
+                        </span>
+                      )}
 
                       {/* Away team */}
                       <div className="flex items-center gap-2 sm:gap-3 flex-1 justify-start min-w-0">

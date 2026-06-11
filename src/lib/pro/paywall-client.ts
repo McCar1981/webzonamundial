@@ -24,12 +24,12 @@ export interface PaywallDetail {
 /** Copy por feature para el modal (título + qué desbloquea Pro). */
 export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; perk: string }> = {
   predictions_type: {
-    title: "Este tipo de predicción es Pro",
-    perk: "Con Pro juegas los 8 tipos (ganador, goleador, cadenas, duelos…) y con multiplicadores de puntos.",
+    title: "Este partido ya no admite más tipos en Free",
+    perk: "En Free juegas los 8 tipos en UN partido por jornada; en los demás, Marcador, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos y con multiplicadores.",
   },
   predictions_jornada: {
-    title: "Has agotado tus predicciones de la jornada",
-    perk: "Con Pro predices sin límite en todas las jornadas, con multiplicadores de puntos.",
+    title: "Has jugado tus partidos de la jornada",
+    perk: "Con Pro predices todos los partidos de cada jornada, con multiplicadores de puntos.",
   },
   fantasy_live: {
     title: "Los puntos en vivo son Pro",
@@ -85,7 +85,7 @@ export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; per
   },
   generic: {
     title: "Esta función es del plan Pro",
-    perk: "Desbloquea todo ZonaMundial sin límites desde 12 €/año.",
+    perk: "Desbloquea todo ZonaMundial sin límites desde 15 €/año.",
   },
 };
 
@@ -95,15 +95,44 @@ export function openProPaywall(detail: PaywallDetail): void {
   window.dispatchEvent(new CustomEvent<PaywallDetail>(PRO_PAYWALL_EVENT, { detail }));
 }
 
+// ── Antirrepetición ──────────────────────────────────────────────────────────
+// Cuándo se mostró el modal por última vez para cada feature. En sessionStorage
+// para que un refresh no resetee la cuenta pero una visita nueva sí vuelva a
+// mostrarlo. Fail-open: sin storage (modo privado) el modal se muestra normal.
+const SHOWN_KEY = "zm:paywall-shown:";
+
+function lastShownAt(feature: string): number {
+  try {
+    return Number(window.sessionStorage.getItem(SHOWN_KEY + feature)) || 0;
+  } catch {
+    return 0;
+  }
+}
+function markShown(feature: string): void {
+  try {
+    window.sessionStorage.setItem(SHOWN_KEY + feature, String(Date.now()));
+  } catch {
+    /* ignore */
+  }
+}
+
 /**
  * Detecta el payload `pro_required` en una respuesta de error y abre el
  * paywall. Devuelve true si lo era (el call-site corta ahí su manejo de error).
  * Acepta tanto el payload estándar ({ code, feature }) como el formato de las
  * rutas de IA Coach ({ ok: false, error: "pro_required" }).
+ *
+ * `opts.throttleMs`: para llamadas AUTOMÁTICAS (p. ej. el autoguardado del
+ * Fantasy, que se dispara con cada cambio del equipo): si el modal de esa
+ * feature ya se mostró hace menos de ese tiempo, NO se reabre — repetirlo en
+ * cada acción espanta al usuario. Sigue devolviendo true: el call-site decide
+ * cómo informar de forma pasiva (banner, toast). Las llamadas explícitas del
+ * usuario (botón de una función Pro) no pasan throttle y abren siempre.
  */
 export function handleProRequired(
   json: unknown,
   fallbackFeature: PaywallDetail["feature"] = "generic",
+  opts?: { throttleMs?: number },
 ): boolean {
   if (!json || typeof json !== "object") return false;
   const o = json as Record<string, unknown>;
@@ -112,6 +141,8 @@ export function handleProRequired(
   const feature = (typeof o.feature === "string" && o.feature in PAYWALL_COPY
     ? o.feature
     : fallbackFeature) as PaywallDetail["feature"];
+  if (opts?.throttleMs && Date.now() - lastShownAt(feature) < opts.throttleMs) return true;
+  markShown(feature);
   openProPaywall({
     feature,
     message: typeof o.error === "string" && o.error !== "pro_required" ? o.error : undefined,

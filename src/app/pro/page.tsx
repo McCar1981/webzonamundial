@@ -5,14 +5,15 @@
 import type { Metadata } from "next";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getEntitlements } from "@/lib/pro/entitlement";
-import { currencyForCountry } from "@/lib/founders/currency-by-country";
+import { proRegionForCountry } from "@/lib/founders/currency-by-country";
+import type { ProRegion } from "@/lib/stripe/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import ProPanel from "./ProPanel";
 
 export const metadata: Metadata = {
   title: "Plan Pro: juega sin límites | ZonaMundial",
   description:
-    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 12 €/año.",
+    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 15 €/año.",
 };
 
 export const dynamic = "force-dynamic";
@@ -24,7 +25,7 @@ export default async function ProPage() {
 
   let isProUser = false;
   let source: "subscription" | "founder" | null = null;
-  let currency: "eur" | "usd" = "eur";
+  let region: ProRegion = "eu";
 
   if (user) {
     const ent = await getEntitlements(user.id, user.email);
@@ -37,7 +38,7 @@ export default async function ProPage() {
       .select("country")
       .eq("id", user.id)
       .maybeSingle();
-    currency = currencyForCountry(profile?.country ?? null);
+    region = proRegionForCountry(profile?.country ?? null);
   }
 
   return (
@@ -45,7 +46,7 @@ export default async function ProPage() {
       authenticated={!!user}
       isPro={isProUser}
       source={source}
-      currency={currency}
+      region={region}
     />
   );
 }

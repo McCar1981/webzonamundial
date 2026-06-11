@@ -234,6 +234,15 @@ export default function PrediccionesGame() {
     supa.auth.getUser().then(({ data }) => setAuthed(!!data.user));
   }, []);
 
+  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
+  // enlazan directo a la predicción de UN partido concreto. Client-only vía
+  // window.location para no meter useSearchParams/Suspense en el prerender.
+  // Solo ids que existen en el selector; el resto cae al selector normal.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("match");
+    if (id && MATCHES.some((m) => String(m.i) === id)) setMatchId(id);
+  }, []);
+
   useEffect(() => {
     if (toast) {
       const id = setTimeout(() => setToast(null), 3500);
@@ -621,11 +630,16 @@ function Shell({ children }: { children: React.ReactNode }) {
 const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color: TEXT, margin: "0 0 14px", letterSpacing: 0.2 };
 const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "5px 11px", display: "inline-flex", alignItems: "center", gap: 5 };
 
+interface RecentResult { match_id: string; points: number; correct: number; total: number; resolved_at: string }
+
 function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
   const [filter, setFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [pulse, setPulse] = useState<ActivityPulse | null>(null);
-  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number } | null>(null);
+  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null>(null);
+  // Marcadores reales (feed durable del Match Center): para marcar las cards ya
+  // jugadas como "Finalizado" con su resultado. Endpoint público y cacheado.
+  const [live, setLive] = useState<Record<string, { s: string; sc: [number, number] }>>({});
 
   useEffect(() => {
     let alive = true;
@@ -637,10 +651,33 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => { if (alive && j) setMine(j); })
       .catch(() => {});
+    fetch("/api/calendario/live")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setLive(j); })
+      .catch(() => {});
     return () => { alive = false; };
   }, []);
 
-  const featured = matches[0] ?? null;
+  // "Próximo partido para predecir": el primero que AÚN NO ha empezado (kickoff
+  // futuro), no el primero del array. Antes se cogía matches[0] fijo, así que un
+  // partido ya jugado seguía saliendo como destacado con "Predecir ahora". Se
+  // calcula tras montar (depende de la hora) para no romper la hidratación; se
+  // refresca cada minuto para que avance solo al arrancar un partido.
+  const [nowMs, setNowMs] = useState<number | null>(null);
+  useEffect(() => {
+    setNowMs(Date.now());
+    const t = setInterval(() => setNowMs(Date.now()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+  const featured = useMemo(() => {
+    if (nowMs == null) return null;
+    return (
+      matches
+        .map((m) => ({ m, k: etToDate(m.d, m.t)?.getTime() ?? Infinity }))
+        .filter((x) => x.k > nowMs)
+        .sort((a, b) => a.k - b.k)[0]?.m ?? null
+    );
+  }, [matches, nowMs]);
 
   const groupLetters = useMemo(() => {
     const set = new Set(matches.map((m) => m.g));
@@ -676,6 +713,10 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
         <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} predicted={featuredDone} typesTotal={typesTotal} />
       )}
 
+      {mine?.recent_results && mine.recent_results.length > 0 && (
+        <RecentResults results={mine.recent_results} onPick={onPick} />
+      )}
+
       {/* Nivel 3 — resumen compacto del usuario (una sola barra) */}
       <section className="pj-wrap" style={{ paddingTop: 14 }}>
         <UserSummaryBar />
@@ -686,7 +727,7 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
 
       {/* Nivel 2 — más partidos para predecir */}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
-      <GroupGrid matches={filtered} onPick={onPick} mine={mine} />
+      <GroupGrid matches={filtered} onPick={onPick} mine={mine} live={live} />
 
       {/* Pulso de comunidad (prueba social) bajo los partidos */}
       <LiveActivityBand pulse={pulse} />
@@ -921,6 +962,42 @@ function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
   );
 }
 
+// ─── Tus resultados recientes: acceso directo al podio de un partido jugado ───
+function RecentResults({ results, onPick }: { results: RecentResult[]; onPick: (id: string) => void }) {
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 4 }}>
+      <h2 style={sectionTitle}>Tus resultados recientes</h2>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {results.map((r) => {
+          const m = MATCHES.find((x) => String(x.i) === r.match_id);
+          if (!m) return null;
+          const pos = r.points >= 0;
+          return (
+            <button
+              key={r.match_id}
+              onClick={() => onPick(r.match_id)}
+              aria-label={`Ver tu resultado y el podio de ${m.h} contra ${m.a}`}
+              style={{
+                display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left",
+                background: BG3, border: CARD_BORDER, borderRadius: 12, padding: "10px 12px", cursor: "pointer", color: TEXT,
+              }}
+            >
+              <span style={{ fontWeight: 700, fontSize: 13.5, color: TEXT, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0, flex: 1 }}>
+                {m.h} <span style={{ color: DIM, fontWeight: 600 }}>vs</span> {m.a}
+              </span>
+              <span style={{ fontSize: 11.5, color: MID, flexShrink: 0 }}>{r.correct}/{r.total}</span>
+              <span style={{ fontWeight: 800, fontSize: 13.5, color: pos ? GREEN : RED, flexShrink: 0, minWidth: 52, textAlign: "right" }}>
+                {pos ? "+" : ""}{r.points} pts
+              </span>
+              <ChevronRight size={16} color={DIM} />
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
   m: Match; onPick: (id: string) => void; pulse: ActivityPulse | null; predicted: number; typesTotal: number;
 }) {
@@ -1093,21 +1170,28 @@ function TeamLine({ flag, name }: { flag: string; name: string }) {
 
 const AMBER = "#f59e0b";
 
-function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number }) {
+function MatchCard({ m, onPick, predicted, typesTotal, live, result }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number; live?: { s: string; sc: [number, number] }; result?: RecentResult }) {
   const t = tierOf(m);
   const tierColor = TIER_COLOR[t.label];
   const barCtx = useBarContext();
 
+  // ¿El partido ya terminó? (feed real del Match Center). Cuando termina, la card
+  // deja de ser "pre-partido" (Sorpresa posible / Ya predicho) y muestra el
+  // marcador, "Finalizado" y la puntuación del usuario.
+  const finished = !!live && ["FT", "AET", "PEN"].includes(live.s);
+
   // Estado del usuario en este partido.
   const state: "play" | "partial" | "done" =
     predicted >= typesTotal && typesTotal > 0 ? "done" : predicted > 0 ? "partial" : "play";
-  const stateLabel = state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
+  const stateLabel = finished ? "Finalizado" : state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
 
   return (
     <button
       className="match-row"
       onClick={() => onPick(String(m.i))}
-      aria-label={`${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
+      aria-label={finished
+        ? `Finalizado. ${m.h} ${live!.sc[0]}, ${m.a} ${live!.sc[1]}${result ? `. Tu puntuación: ${result.points} puntos` : ""}. Ver resultado y podio`
+        : `${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
       style={{
         display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: TEXT,
         background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
@@ -1128,31 +1212,56 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
       <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
       <TeamLine flag={m.af} name={m.a} />
 
-      {/* Fila inferior: mood (recompensa) + estado/acción */}
+      {/* Fila inferior: finalizado → marcador + tu puntuación; si no, mood + estado */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 12 }}>
-        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
-          {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
-        </span>
-        {state === "done" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Check size={13} /> Ya predicho
-          </span>
-        ) : state === "partial" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
-          </span>
+        {finished ? (
+          <>
+            <span style={{ fontSize: 11.5, fontWeight: 700, color: DIM, display: "inline-flex", alignItems: "center", gap: 7 }}>
+              Finalizado
+              <span style={{ color: TEXT, fontWeight: 900, fontSize: 15 }}>{live!.sc[0]}–{live!.sc[1]}</span>
+            </span>
+            {result ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: result.points >= 0 ? GREEN : RED, border: `1px solid ${result.points >= 0 ? GREEN : RED}66`, background: result.points >= 0 ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                {result.points >= 0 ? "+" : ""}{result.points} pts · {result.correct}/{result.total}
+              </span>
+            ) : (
+              <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GOLD2 }}>
+                Ver resultado <ChevronRight size={15} />
+              </span>
+            )}
+          </>
         ) : (
-          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
-            Jugar <ChevronRight size={15} />
-          </span>
+          <>
+            <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
+              {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
+            </span>
+            {state === "done" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Check size={13} /> Ya predicho
+              </span>
+            ) : state === "partial" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
+              </span>
+            ) : (
+              <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
+                Jugar <ChevronRight size={15} />
+              </span>
+            )}
+          </>
         )}
       </div>
     </button>
   );
 }
 
-function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number } | null }) {
+function GroupGrid({ matches, onPick, mine, live }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null; live: Record<string, { s: string; sc: [number, number] }> }) {
   const typesTotal = mine?.types_total ?? PREDICTION_TYPES.length;
+  const resultByMatch = useMemo(() => {
+    const map = new Map<string, RecentResult>();
+    for (const r of mine?.recent_results ?? []) map.set(r.match_id, r);
+    return map;
+  }, [mine]);
   const groups = useMemo(() => {
     const map = new Map<string, Match[]>();
     for (const m of matches) {
@@ -1187,7 +1296,7 @@ function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: s
               <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} />)}
+              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} live={live[String(m.i)]} result={resultByMatch.get(String(m.i))} />)}
             </div>
           </div>
         ))}
@@ -1455,6 +1564,7 @@ function MatchDetailView({
   return (
     <section className="pj-detail">
       <MatchSummaryCard match={match} state={state} completed={completedCount} total={total} onBack={onBack} live={live} />
+      <MatchPodium matchId={String(match.i)} />
       <UserMiniStatsBar />
       <PredictionProgressBar completed={completedCount} total={total} />
       <LiveMicroPicks matchId={String(match.i)} />
@@ -1865,6 +1975,87 @@ function TeamTag({ flag, name, right }: { flag: string; name: string; right?: bo
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span style={{ fontSize: 11, fontWeight: 600, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 4 }}>{children}</span>;
+}
+
+// ─── Podio del partido: los 5 que más acertaron ─────────────────────────────
+interface PodiumPredictor {
+  position: number;
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean };
+  points: number;
+  correct: number;
+}
+/** Se muestra solo cuando el partido ya resolvió (el endpoint /results devuelve
+ *  top_predictors no vacío). Resalta la fila del usuario si está en el top. */
+function MatchPodium({ matchId }: { matchId: string }) {
+  const [top, setTop] = useState<PodiumPredictor[] | null>(null);
+  const [myPos, setMyPos] = useState<number | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch(`/api/predictions/match/${matchId}/results`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { top_predictors?: PodiumPredictor[]; my_podium_position?: number | null } | null) => {
+        if (!alive || !j) return;
+        setTop(Array.isArray(j.top_predictors) ? j.top_predictors : []);
+        setMyPos(j.my_podium_position ?? null);
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [matchId]);
+
+  if (!top || top.length === 0) return null;
+
+  const rankColor = (pos: number) => (pos === 1 ? "#f5d142" : pos === 2 ? "#c8cdd6" : pos === 3 ? "#cd7f32" : DIM);
+
+  return (
+    <div style={{ background: BG3, border: CARD_BORDER, borderRadius: 14, padding: "14px 16px", margin: "12px 0" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        <Trophy size={16} color={GOLD2} />
+        <span style={{ fontWeight: 800, fontSize: 14, color: GOLD2 }}>Podio del partido</span>
+        <span style={{ marginLeft: "auto", fontSize: 11.5, color: DIM }}>Quién la clavó</span>
+      </div>
+      <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+        {top.map((t) => {
+          const isMe = myPos != null && t.position === myPos;
+          return (
+            <li
+              key={t.user.id}
+              style={{
+                display: "flex", alignItems: "center", gap: 10, padding: "6px 8px", borderRadius: 10,
+                background: isMe ? "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)" : "transparent",
+                border: isMe ? `1px solid color-mix(in srgb, ${GOLD} 45%, transparent)` : "1px solid transparent",
+              }}
+            >
+              <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: rankColor(t.position), fontSize: 14 }}>{t.position}</span>
+              <div
+                aria-hidden
+                style={{
+                  width: 30, height: 30, borderRadius: "50%", flexShrink: 0, border: CARD_BORDER,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: t.user.avatar_url ? `center/cover no-repeat url("${t.user.avatar_url}")` : BG2,
+                }}
+              >
+                {!t.user.avatar_url && (
+                  <span style={{ fontWeight: 800, fontSize: 13, color: MID }}>{(t.user.display_name || "?").charAt(0).toUpperCase()}</span>
+                )}
+              </div>
+              <span style={{ fontWeight: 700, fontSize: 13.5, color: TEXT, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
+                {t.user.display_name}{isMe ? " · tú" : ""}
+              </span>
+              {t.user.is_premium && <Gem size={12} color={GOLD} />}
+              <span style={{ marginLeft: "auto", fontWeight: 800, fontSize: 13.5, color: GREEN, flexShrink: 0 }}>+{t.points}</span>
+              <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{t.correct}/8</span>
+            </li>
+          );
+        })}
+      </ol>
+      {myPos == null && (
+        <p style={{ margin: "10px 0 0", fontSize: 11.5, color: DIM, textAlign: "center" }}>
+          No entraste en el top 5 de este partido. ¡A por el próximo!
+        </p>
+      )}
+    </div>
+  );
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────

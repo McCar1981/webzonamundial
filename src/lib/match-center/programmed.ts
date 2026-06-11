@@ -10,13 +10,21 @@
 
 import { MATCHES } from "@/data/matches";
 
-// Ids de partidos programados para el Match Center (datos reales). El selector
-// los ordena por fecha de saque, así que el orden de esta lista es indiferente.
-export const PROGRAMMED_MATCH_IDS: number[] = [9002];
-
 // Los slots de prueba/amistosos usan ids >= 9000 para no chocar con el cuadro
 // oficial (1..104).
 const TEST_SLOT_MIN = 9000;
+
+// Ids de partidos programados para el Match Center (datos reales). El selector
+// los ordena por fecha de saque y AVANZA solo al siguiente cuando uno termina.
+// Incluimos TODOS los partidos con equipos ya conocidos (toda la fase de grupos
+// + cualquier amistoso de prueba con banderas reales). Los de eliminatorias
+// arrancan con equipos "tbd" (W73, ganador de…) y se EXCLUYEN hasta que se
+// rellenan en matches.ts conforme avanzan los clasificados — así el hero nunca
+// muestra "W73 vs W75". Cuando un partido KO recibe sus dos banderas reales,
+// entra automáticamente en la rotación.
+export const PROGRAMMED_MATCH_IDS: number[] = MATCHES
+  .filter((m) => m.hf !== "tbd" && m.af !== "tbd")
+  .map((m) => m.i);
 
 /**
  * Primer partido del Mundial (fallback final): el de fecha de saque más

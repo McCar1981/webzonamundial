@@ -18,6 +18,7 @@
 // caemos en EUR por defecto (Europa es nuestro mercado prioritario).
 
 import type { FoundersCurrency } from "@/lib/stripe/client";
+import type { ProRegion } from "@/lib/stripe/pricing";
 
 // Países que reciben precio en USD (ISO-3166 alpha-2, lowercase).
 // América Latina + USA. Incluye territorios de habla hispana y portuguesa.
@@ -74,4 +75,19 @@ export function regionForCurrency(currency: FoundersCurrency): string {
   return currency === "usd"
     ? "LATAM y USA"
     : "Europa y resto del mundo";
+}
+
+/**
+ * Región de PRECIO del plan Pro (3 tiers): EEUU se separa de LATAM aunque
+ * ambos paguen en USD, porque el pase mensual difiere (10 USD vs 6 USD). El
+ * Founders Pass sigue usando currencyForCountry (solo 2 monedas).
+ *
+ * @returns "us" (Estados Unidos), "latam" (resto de América Latina) o "eu"
+ *          (Europa y resto del mundo; también el fallback sin país).
+ */
+export function proRegionForCountry(country: string | null | undefined): ProRegion {
+  if (!country) return "eu";
+  const normalized = country.trim().toLowerCase();
+  if (normalized === "us") return "us";
+  return USD_COUNTRIES.has(normalized) ? "latam" : "eu";
 }

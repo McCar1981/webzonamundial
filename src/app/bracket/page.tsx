@@ -8,9 +8,18 @@ import BracketAccountSync from "@/components/bracket/BracketAccountSync";
 import BracketEditorialIntro from "@/components/bracket/BracketEditorialIntro";
 
 export const metadata: Metadata = {
-  title: "Bracket Challenge Mundial 2026 — Predice los 104 partidos",
+  // "Simulador" delante: es la keyword con SERP más débil (auditoría 11-jun);
+  // "bracket" se mantiene en title y description.
+  title: "Simulador Mundial 2026: arma tu bracket",
   description:
-    "Construye tu Bracket Mundial 2026: predice los 104 partidos del torneo, desde fase de grupos hasta la Final. Vista clásica o cósmica. Anónimo, sin registro.",
+    "Simulador del Mundial 2026 gratis: predice los 104 partidos, arma las llaves de las eliminatorias y elige a tu campeón. Bracket interactivo, sin registro.",
+  keywords: [
+    "simulador mundial 2026",
+    "bracket mundial 2026",
+    "llaves mundial 2026",
+    "eliminatorias mundial 2026",
+    "simulador copa del mundo 2026",
+  ],
   alternates: { canonical: "/bracket" },
   openGraph: {
     title: "Bracket Challenge Mundial 2026 · ZonaMundial",

@@ -73,7 +73,7 @@ for (const g of groups) {
       lines.push(`  // Jornada ${m.j}`);
     }
     lines.push(
-      `  { id: "${g}${n}", grupo: "${g}", jornada: ${m.j}, fecha: "${toUtcIso(m.d, m.t)}", estadio: ${JSON.stringify(m.vn)}, ciudad: ${JSON.stringify(m.vc)}, homeSlug: "${flagToSlug.get(m.hf)}", awaySlug: "${flagToSlug.get(m.af)}" },`,
+      `  { id: "${g}${n}", matchId: ${m.i}, grupo: "${g}", jornada: ${m.j}, fecha: "${toUtcIso(m.d, m.t)}", estadio: ${JSON.stringify(m.vn)}, ciudad: ${JSON.stringify(m.vc)}, homeSlug: "${flagToSlug.get(m.hf)}", awaySlug: "${flagToSlug.get(m.af)}" },`,
     );
   }
   lines.push("");
@@ -89,6 +89,7 @@ const out = `// src/data/calendario.ts
 
 export interface Partido {
   id: string;
+  matchId: number; // = Match.i de matches.ts; clave del LiveMap (/api/calendario/live)
   grupo: string;
   jornada: number;
   fecha: string; // ISO 8601 UTC

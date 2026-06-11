@@ -137,6 +137,25 @@ export async function getPredictionById(id: string): Promise<PredictionRow | nul
   return (data as PredictionRow | null) ?? null;
 }
 
+/**
+ * Predicciones (partido + tipo) del usuario en un conjunto de partidos.
+ * Para el límite Free por jornada: contar PARTIDOS distintos predichos y saber
+ * en cuáles se han usado tipos avanzados (el "partido destacado").
+ */
+export async function getUserPredictionTypesForMatches(
+  userId: string,
+  matchIds: string[],
+): Promise<{ match_id: string; prediction_type: PredictionType }[]> {
+  if (matchIds.length === 0) return [];
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("predictions")
+    .select("match_id,prediction_type")
+    .eq("user_id", userId)
+    .in("match_id", matchIds);
+  return (data ?? []) as { match_id: string; prediction_type: PredictionType }[];
+}
+
 /** Predicciones del usuario entre un conjunto de partidos (cupo Free por jornada). */
 export async function countPredictionsForMatches(userId: string, matchIds: string[]): Promise<number> {
   if (matchIds.length === 0) return 0;
@@ -223,6 +242,43 @@ export async function predictedCountsByUser(userId: string): Promise<Record<stri
     counts[r.match_id] = (counts[r.match_id] ?? 0) + 1;
   }
   return counts;
+}
+
+// ─── Resultados recientes del usuario (para el lobby) ────────────────────────
+export interface MyMatchResult {
+  match_id: string;
+  points: number;
+  correct: number;
+  total: number;
+  resolved_at: string;
+}
+/**
+ * Partidos del usuario ya RESUELTOS, agregados por partido (puntos, aciertos,
+ * total, cuándo resolvió), del más reciente al más antiguo. Alimenta el acceso
+ * directo "Tus resultados recientes" del lobby. Acotado a las predicciones del
+ * propio usuario → barato.
+ */
+export async function getMyRecentResolvedMatches(userId: string, limit = 5): Promise<MyMatchResult[]> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("predictions")
+    .select("match_id,points_earned,is_correct,resolved_at")
+    .eq("user_id", userId)
+    .not("resolved_at", "is", null);
+  const rows = (data ?? []) as { match_id: string; points_earned: number | null; is_correct: boolean | null; resolved_at: string }[];
+  const agg = new Map<string, { points: number; correct: number; total: number; resolvedAt: string }>();
+  for (const r of rows) {
+    const a = agg.get(r.match_id) ?? { points: 0, correct: 0, total: 0, resolvedAt: r.resolved_at };
+    a.points += r.points_earned ?? 0;
+    a.total += 1;
+    if (r.is_correct) a.correct += 1;
+    if (r.resolved_at > a.resolvedAt) a.resolvedAt = r.resolved_at;
+    agg.set(r.match_id, a);
+  }
+  return [...agg.entries()]
+    .map(([match_id, a]) => ({ match_id, points: a.points, correct: a.correct, total: a.total, resolved_at: a.resolvedAt }))
+    .sort((x, y) => (x.resolved_at < y.resolved_at ? 1 : -1))
+    .slice(0, Math.max(0, limit));
 }
 
 // ─── Estadísticas sociales (tipo 8) ──────────────────────────────────────────
@@ -724,6 +780,65 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
       total_points: a.pts,
       predictions_count: a.count,
       accuracy_pct: a.count ? Math.round((a.correct / a.count) * 1000) / 10 : 0,
+    };
+  });
+}
+
+// ─── Podio del partido: top-N predictores de UN partido resuelto ─────────────
+export interface MatchTopPredictor {
+  position: number;
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean; cosmetics: CosmeticDisplay | null };
+  points: number;
+  correct: number;
+}
+/**
+ * "Los primeros que acertaron" un partido: el podio del partido ya resuelto.
+ * Ordena por puntos del partido desc, desempata por nº de aciertos y por quién
+ * predijo ANTES (created_at). Solo entran usuarios que acertaron algo. Lectura
+ * acotada a UN partido (no a toda la tabla) → barata y escalable.
+ */
+export async function getMatchTopPredictors(matchId: string, limit = 5): Promise<MatchTopPredictor[]> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("predictions")
+    .select("user_id,points_earned,is_correct,created_at")
+    .eq("match_id", matchId)
+    .not("resolved_at", "is", null);
+  const rows = (data ?? []) as { user_id: string; points_earned: number | null; is_correct: boolean | null; created_at: string }[];
+
+  const agg = new Map<string, { pts: number; correct: number; firstAt: string }>();
+  for (const r of rows) {
+    const a = agg.get(r.user_id) ?? { pts: 0, correct: 0, firstAt: r.created_at };
+    a.pts += r.points_earned ?? 0;
+    if (r.is_correct) a.correct++;
+    if (r.created_at < a.firstAt) a.firstAt = r.created_at;
+    agg.set(r.user_id, a);
+  }
+  const sorted = [...agg.entries()]
+    .filter(([, a]) => a.correct > 0) // solo quienes acertaron algo en el partido
+    .sort((x, y) => y[1].pts - x[1].pts || y[1].correct - x[1].correct || (x[1].firstAt < y[1].firstAt ? -1 : 1))
+    .slice(0, Math.max(0, limit));
+
+  const ids = sorted.map(([id]) => id);
+  const { data: profs } = ids.length
+    ? await admin.from("profiles").select("id,username,avatar_url,is_premium").in("id", ids)
+    : { data: [] };
+  const pmap = new Map((profs ?? []).map((p) => [(p as { id: string }).id, p as { username: string | null; avatar_url: string | null; is_premium: boolean }]));
+  const cmap = await cosmeticsByUser(ids);
+
+  return sorted.map(([id, a], i) => {
+    const pr = pmap.get(id);
+    return {
+      position: i + 1,
+      user: {
+        id,
+        display_name: pr?.username ?? "Anónimo",
+        avatar_url: pr?.avatar_url ?? null,
+        is_premium: Boolean(pr?.is_premium),
+        cosmetics: cmap.get(id) ?? null,
+      },
+      points: a.pts,
+      correct: a.correct,
     };
   });
 }

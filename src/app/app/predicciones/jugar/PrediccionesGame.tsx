@@ -649,7 +649,26 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
     return () => { alive = false; };
   }, []);
 
-  const featured = matches[0] ?? null;
+  // "Próximo partido para predecir": el primero que AÚN NO ha empezado (kickoff
+  // futuro), no el primero del array. Antes se cogía matches[0] fijo, así que un
+  // partido ya jugado seguía saliendo como destacado con "Predecir ahora". Se
+  // calcula tras montar (depende de la hora) para no romper la hidratación; se
+  // refresca cada minuto para que avance solo al arrancar un partido.
+  const [nowMs, setNowMs] = useState<number | null>(null);
+  useEffect(() => {
+    setNowMs(Date.now());
+    const t = setInterval(() => setNowMs(Date.now()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+  const featured = useMemo(() => {
+    if (nowMs == null) return null;
+    return (
+      matches
+        .map((m) => ({ m, k: etToDate(m.d, m.t)?.getTime() ?? Infinity }))
+        .filter((x) => x.k > nowMs)
+        .sort((a, b) => a.k - b.k)[0]?.m ?? null
+    );
+  }, [matches, nowMs]);
 
   const groupLetters = useMemo(() => {
     const set = new Set(matches.map((m) => m.g));

@@ -249,6 +249,33 @@ export async function listSubscriptionsForKind(kind: string): Promise<
 }
 
 /**
+ * Desglose de audiencia para el panel de push manual: cuántos dispositivos
+ * recibirían cada categoría y cuántos hay en total con push activado. Usa el
+ * MISMO cálculo que el envío real (listSubscriptionsForKind por kind), así el
+ * número mostrado coincide exactamente con el de "Comprobar destinatarios".
+ * Con la base actual (decenas de subs) es de sobra eficiente.
+ */
+export async function getPushAudienceBreakdown(
+  kinds: string[],
+): Promise<{ total: number; byKind: Record<string, number> }> {
+  const byKind: Record<string, number> = {};
+  try {
+    const admin = getAdmin();
+    const { count } = await admin
+      .from("push_subscriptions")
+      .select("id", { count: "exact", head: true });
+    const counts = await Promise.all(
+      kinds.map((k) => listSubscriptionsForKind(k).then((s) => s.length)),
+    );
+    kinds.forEach((k, i) => (byKind[k] = counts[i]));
+    return { total: count ?? 0, byKind };
+  } catch {
+    kinds.forEach((k) => (byKind[k] = 0));
+    return { total: 0, byKind };
+  }
+}
+
+/**
  * Envía un push a UNA subscription. Maneja errores 410/4xx.
  * Retorna { ok, gone, errorCode }. Si gone = true, el caller debe
  * borrar la subscription.

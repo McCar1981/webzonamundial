@@ -98,6 +98,26 @@ export function matchForFlag(flag: string, gw: number): { match: Match; side: "h
   return null;
 }
 
+/** Horas antes del saque en que un jugador queda CERRADO (ni entra ni sale). */
+export const MATCH_LOCK_HOURS = 3;
+
+/**
+ * Cierre por partido: ¿está cerrado el jugador de la selección `flag` en la
+ * jornada `gw`? Un jugador queda CONGELADO desde MATCH_LOCK_HOURS horas antes
+ * del saque de SU partido y ya no se libera en esa jornada (durante el partido
+ * y tras el pitido final sigue cerrado): ni entra, ni sale, ni se mueve entre
+ * campo y banquillo. Al confirmar la jornada el equipo avanza y el candado se
+ * abre solo (los partidos de la siguiente aún no llegaron). Sin partido
+ * resoluble (KO con "tbd" o selección ya eliminada) no hay candado.
+ */
+export function playerMatchLocked(flag: string, gw: number, ref: Date = new Date()): boolean {
+  const fix = matchForFlag(flag, gw);
+  if (!fix) return false;
+  const k = etToDate(fix.match.d, fix.match.t);
+  if (!k) return false;
+  return ref.getTime() >= k.getTime() - MATCH_LOCK_HOURS * 3_600_000;
+}
+
 const RANK_BY_FLAG: Map<string, number> = new Map(
   SELECCIONES.map((s) => [s.flagCode, s.rankingFIFA ?? 90]),
 );

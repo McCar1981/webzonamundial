@@ -10,6 +10,7 @@ import { getPlayerById, applyRealStats } from "@/lib/fantasy/players";
 import { remapFormation, validateTeam, transferCost, refundForElimination } from "@/lib/fantasy/rules";
 import { isEliminated } from "@/lib/fantasy/tournament";
 import { isFantasyLive } from "@/lib/fantasy/season";
+import { playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -205,6 +206,11 @@ export default function FantasyGame() {
         flash("Ya tienes a ese jugador.");
         return;
       }
+      // Cierre por partido: no entra nadie cuyo partido esté a <3h o en juego.
+      if (playerMatchLocked(p.flag, team.gameweek)) {
+        flash(`🔒 ${p.name} está cerrado: su partido empieza en menos de ${MATCH_LOCK_HOURS} h o ya se juega.`);
+        return;
+      }
       // Hueco destino: el indicado o el primero compatible vacío.
       const target = slotId
         ? team.slots.find((s) => s.slot === slotId)
@@ -219,6 +225,11 @@ export default function FantasyGame() {
       }
       const prevId = target.playerId;
       const prev = prevId ? getPlayerById(prevId) : null;
+      // El que sale también respeta el cierre: cerrado = intocable hasta confirmar.
+      if (prev && playerMatchLocked(prev.flag, team.gameweek)) {
+        flash(`🔒 ${prev.name} está cerrado hasta confirmar la jornada (su partido ya llegó).`);
+        return;
+      }
       // Límite por selección (sin contar al que se reemplaza si es del mismo país).
       const sameNation = (nationCounts[p.teamSlug] ?? 0) - (prev?.teamSlug === p.teamSlug ? 1 : 0);
       if (sameNation >= 3) {
@@ -242,11 +253,18 @@ export default function FantasyGame() {
       flash(`Fichado: ${p.name} (${money(p.price)}).`);
       setSelectingSlot(null);
     },
-    [team.slots, ownedIds, nationCounts, spent, update, flash],
+    [team.slots, team.gameweek, ownedIds, nationCounts, spent, update, flash],
   );
 
   const removePlayer = useCallback(
     (slotId: string) => {
+      const sx = team.slots.find((x) => x.slot === slotId);
+      const px = sx?.playerId ? getPlayerById(sx.playerId) : null;
+      // Cierre por partido: con el saque a <3h (o jugado) nadie sale del equipo.
+      if (px && playerMatchLocked(px.flag, team.gameweek)) {
+        flash(`🔒 ${px.name} está cerrado: su partido empieza en menos de ${MATCH_LOCK_HOURS} h o ya se disputó.`);
+        return;
+      }
       update((t) => {
         const s = t.slots.find((x) => x.slot === slotId);
         const pid = s?.playerId ?? null;
@@ -258,7 +276,7 @@ export default function FantasyGame() {
         };
       });
     },
-    [update],
+    [team.slots, team.gameweek, update, flash],
   );
 
   // Reembolso por eliminación: da de baja a un jugador cuya selección ya quedó
@@ -312,13 +330,23 @@ export default function FantasyGame() {
         flash("Ese intercambio no respeta las posiciones.");
         return;
       }
+      // Cierre por partido: entrar/salir del once cambia la puntuación, así que
+      // un jugador cerrado no cruza entre campo y banquillo (reordenar dentro
+      // del banquillo sí se permite).
+      if (sa.bench !== sb.bench) {
+        const lockedP = [pa, pb].find((p) => p && playerMatchLocked(p.flag, team.gameweek));
+        if (lockedP) {
+          flash(`🔒 ${lockedP.name} está cerrado: no puede entrar ni salir del once con su partido a menos de ${MATCH_LOCK_HOURS} h o ya jugado.`);
+          return;
+        }
+      }
       update((t) => {
         const slots = t.slots.map((s) => (s.slot === a ? { ...s, playerId: sb.playerId } : s.slot === b ? { ...s, playerId: sa.playerId } : s));
         const starterIds = new Set(slots.filter((s) => !s.bench && s.playerId).map((s) => s.playerId!));
         return { ...t, slots, captainId: t.captainId && starterIds.has(t.captainId) ? t.captainId : null, viceId: t.viceId && starterIds.has(t.viceId) ? t.viceId : null };
       });
     },
-    [team.slots, update, flash],
+    [team.slots, team.gameweek, update, flash],
   );
 
   const setCaptain = useCallback(

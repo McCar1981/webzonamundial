@@ -208,9 +208,9 @@ export function ArticleView({
               </>
             ) : (
               <>
-                Crónica elaborada automáticamente con los datos oficiales del
-                partido (marcador, eventos y estadísticas) y revisada por la
-                redacción de ZonaMundial.
+                Pieza elaborada automáticamente con los datos oficiales del
+                torneo (calendario, marcadores, eventos y estadísticas) y
+                revisada por la redacción de ZonaMundial.
               </>
             )}
           </p>

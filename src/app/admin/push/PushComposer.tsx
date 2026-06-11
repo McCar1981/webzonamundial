@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-const KINDS: { value: string; label: string }[] = [
+export const PUSH_KINDS: { value: string; label: string }[] = [
   { value: "news", label: "Noticias (general)" },
   { value: "tournament-key-events", label: "Eventos clave del torneo" },
   { value: "fav-team", label: "Selección favorita" },
@@ -13,12 +13,17 @@ const KINDS: { value: string; label: string }[] = [
   { value: "amistosos", label: "Amistosos" },
 ];
 
+interface Audience {
+  total: number;
+  byKind: Record<string, number>;
+}
+
 const INPUT =
   "w-full rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm px-4 py-2.5 " +
   "focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 placeholder:text-gray-600";
 const LABEL = "block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1.5";
 
-export default function PushComposer() {
+export default function PushComposer({ audience }: { audience: Audience | null }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [url, setUrl] = useState("/app");
@@ -127,7 +132,15 @@ export default function PushComposer() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="space-y-6">
+      {audience && (
+        <div className="rounded-2xl border border-[#C9A84C]/25 bg-[#C9A84C]/5 px-5 py-3 text-sm text-gray-200">
+          📱 <strong className="text-[#C9A84C]">{audience.total}</strong> dispositivo(s) con notificaciones
+          push activadas en total. Cada categoría llega solo a quien la tenga puesta — el número junto a cada
+          una (abajo) es a cuántos llegaría.
+        </div>
+      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Formulario */}
       <div className="space-y-4">
         <div>
@@ -207,13 +220,25 @@ export default function PushComposer() {
         <div>
           <label className={LABEL}>Categoría (define quién lo recibe)</label>
           <select className={INPUT} value={kind} onChange={(e) => { setKind(e.target.value); setRecipients(null); }}>
-            {KINDS.map((k) => (
-              <option key={k.value} value={k.value}>{k.label}</option>
+            {PUSH_KINDS.map((k) => (
+              <option key={k.value} value={k.value}>
+                {k.label}
+                {audience ? ` — ${audience.byKind[k.value] ?? 0} 📱` : ""}
+              </option>
             ))}
           </select>
-          <p className="text-[11px] text-gray-500 mt-1.5">
-            Solo lo reciben quienes han activado esa categoría en sus notificaciones. «Noticias» es la más amplia.
-          </p>
+          {audience ? (
+            <p className="text-[11px] text-gray-400 mt-1.5">
+              Esta categoría llega a <strong className="text-[#C9A84C]">{audience.byKind[kind] ?? 0}</strong>{" "}
+              de los <strong className="text-gray-200">{audience.total}</strong> dispositivos con push activado.
+              Cada cifra es a cuántos llegaría. <strong className="text-gray-300">«Noticias»</strong> es la
+              más amplia: casi todos la tienen por defecto. Las demás solo las recibe quien las activó a mano.
+            </p>
+          ) : (
+            <p className="text-[11px] text-gray-500 mt-1.5">
+              Solo lo reciben quienes han activado esa categoría en sus notificaciones. «Noticias» es la más amplia.
+            </p>
+          )}
         </div>
 
         <div className="flex items-center gap-3 flex-wrap pt-2">
@@ -280,6 +305,7 @@ export default function PushComposer() {
           El envío es <strong className="text-gray-300">real e inmediato</strong> a los dispositivos que
           tengan las notificaciones activadas. Pulsa «Comprobar destinatarios» antes para ver a cuántos llega.
         </p>
+      </div>
       </div>
     </div>
   );

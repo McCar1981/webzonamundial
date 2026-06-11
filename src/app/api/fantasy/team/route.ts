@@ -10,9 +10,10 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
 import { scoreGameweekFromState } from "@/lib/fantasy/scoring.server";
-import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff } from "@/lib/fantasy/fixtures";
+import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff, playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
 import { isFantasyLive } from "@/lib/fantasy/season";
-import type { FantasyTeamState, GameweekLock } from "@/lib/fantasy/types";
+import { getPlayerById } from "@/lib/fantasy/players";
+import type { FantasyTeamState, GameweekLock, SquadSlot } from "@/lib/fantasy/types";
 import { isPro } from "@/lib/pro/entitlement";
 import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
 import { trackLimitHit } from "@/lib/pro/metrics";
@@ -36,6 +37,29 @@ function computeGameweekLock(prev: FantasyTeamState | null, gw: number): Gamewee
   if (!first || Date.now() < first.getTime()) return null; // la jornada aún no ha empezado
   if (!prev) return null; // sin estado previo no hay nada que congelar todavía
   return { gw, captainId: prev.captainId, viceId: prev.viceId, powerUp: prev.powerUp };
+}
+
+/**
+ * Cierre por partido (3h): nombre del primer jugador CERRADO cuyo estado en
+ * plantilla cambia entre `before` y `after` — entra, sale o se mueve entre
+ * campo y banquillo (todo eso altera su puntuación). null si el guardado no
+ * toca a ningún jugador cerrado. El orden del banquillo entre cerrados se
+ * permite; entrar/salir del once, no.
+ */
+function lockedChangeBetween(before: SquadSlot[], after: SquadSlot[], gw: number): string | null {
+  const statusOf = (slots: SquadSlot[]) => {
+    const m = new Map<string, "field" | "bench">();
+    for (const s of slots) if (s.playerId) m.set(s.playerId, s.bench ? "bench" : "field");
+    return m;
+  };
+  const a = statusOf(before);
+  const b = statusOf(after);
+  for (const id of new Set([...a.keys(), ...b.keys()])) {
+    if ((a.get(id) ?? "out") === (b.get(id) ?? "out")) continue;
+    const p = getPlayerById(id);
+    if (p && playerMatchLocked(p.flag, gw)) return p.name;
+  }
+  return null;
 }
 
 export async function GET() {
@@ -84,6 +108,26 @@ export async function PUT(req: Request) {
         limit: FREE_LIMITS.fantasy.lockHoursBeforeGameweek,
       };
       return NextResponse.json(payload, { status: 403 });
+    }
+  }
+
+  // ── Cierre por partido (3h) — autoritativo para TODOS los planes ──
+  // Un jugador queda cerrado desde MATCH_LOCK_HOURS antes del saque de SU
+  // partido hasta confirmar la jornada: ni entra, ni sale, ni se mueve entre
+  // campo y banquillo. Solo aplica a guardados de la MISMA jornada: al
+  // confirmar (gw avanza) los slots pasan a ser la base de la siguiente, cuyos
+  // partidos aún no llegaron. Cierra el hueco de las sustituciones en vivo Pro
+  // (sacar a alguien tras verlo fallar / meterlo con la alineación filtrada).
+  if (prev && state.gameweek === prev.gameweek && isFantasyLive()) {
+    const lockedName = lockedChangeBetween(prev.slots, state.slots, state.gameweek);
+    if (lockedName) {
+      return NextResponse.json(
+        {
+          error: `${lockedName} está cerrado: su partido empieza en menos de ${MATCH_LOCK_HOURS} h o ya se disputó. Podrás moverlo al confirmar la jornada.`,
+          code: "MATCH_LOCKED",
+        },
+        { status: 409 },
+      );
     }
   }
 

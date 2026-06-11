@@ -24,12 +24,12 @@ export interface PaywallDetail {
 /** Copy por feature para el modal (título + qué desbloquea Pro). */
 export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; perk: string }> = {
   predictions_type: {
-    title: "Este tipo de predicción es Pro",
-    perk: "Con Pro juegas los 8 tipos (ganador, goleador, cadenas, duelos…) y con multiplicadores de puntos.",
+    title: "Este partido ya no admite más tipos en Free",
+    perk: "En Free juegas los 8 tipos en UN partido por jornada; en los demás, Marcador, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos y con multiplicadores.",
   },
   predictions_jornada: {
-    title: "Has agotado tus predicciones de la jornada",
-    perk: "Con Pro predices sin límite en todas las jornadas, con multiplicadores de puntos.",
+    title: "Has jugado tus partidos de la jornada",
+    perk: "Con Pro predices todos los partidos de cada jornada, con multiplicadores de puntos.",
   },
   fantasy_live: {
     title: "Los puntos en vivo son Pro",

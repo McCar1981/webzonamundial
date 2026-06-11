@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { completeOnboardingAction, skipOnboardingAction } from "./actions";
+import { subscribeToPush, claimPushReward } from "@/lib/push-client";
+
+const PUSH_REWARD_COINS = 25;
 
 interface CountryOption {
   code: string;
@@ -53,7 +56,7 @@ export default function OnboardingWizard({
     nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
       ? nextParam
       : "/";
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
 
@@ -115,7 +118,7 @@ export default function OnboardingWizard({
     <div>
       {/* Progress indicator */}
       <div className="flex items-center justify-center gap-2 mb-10">
-        {[1, 2, 3].map((n) => {
+        {[1, 2, 3, 4].map((n) => {
           const active = step === n;
           const done = step > n;
           return (
@@ -189,10 +192,12 @@ export default function OnboardingWizard({
             creadores={creadores}
             onChange={set}
             onBack={() => setStep(2)}
-            onFinish={finish}
+            onFinish={() => setStep(4)}
             pending={pending}
           />
         )}
+
+        {step === 4 && <Step4 onFinish={finish} pending={pending} />}
       </div>
 
       <div className="text-center mt-6">
@@ -555,14 +560,105 @@ function Step3({
           className="flex-1 px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
-          {pending ? "Guardando…" : "Empezar a jugar"}
-          {!pending && (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          )}
+          Continuar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
         </button>
       </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   STEP 4 — Activar notificaciones (con recompensa de Fútcoins)
+─────────────────────────────────────────────────────────────────── */
+function Step4({ onFinish, pending }: { onFinish: () => void; pending: boolean }) {
+  const [pushState, setPushState] = useState<"idle" | "loading" | "done" | "denied">("idle");
+  const [earned, setEarned] = useState(0);
+  const [supported, setSupported] = useState(true);
+
+  useEffect(() => {
+    // Si el navegador no soporta push o ya está concedido/bloqueado, no tiene
+    // sentido el paso: completamos directamente.
+    if (typeof window === "undefined") return;
+    const ok = "Notification" in window && "serviceWorker" in navigator;
+    if (!ok || Notification.permission !== "default") setSupported(false);
+  }, []);
+
+  async function activate() {
+    setPushState("loading");
+    try {
+      const sub = await subscribeToPush({ kinds: ["news", "tournament-key-events"] });
+      if (sub) {
+        const reward = await claimPushReward();
+        setEarned(reward && !reward.alreadyClaimed ? reward.coins : 0);
+        setPushState("done");
+        setTimeout(onFinish, 1300);
+      } else {
+        setPushState("denied");
+      }
+    } catch {
+      setPushState("denied");
+    }
+  }
+
+  const busy = pushState === "loading" || pending;
+
+  return (
+    <div>
+      <div className="text-center mb-6">
+        <div className="text-5xl mb-3">🔔</div>
+        <h2 className="text-2xl font-black text-white mb-2">Una última cosa</h2>
+        {pushState === "done" ? (
+          <p className="text-[#E8D48B] font-bold">
+            {earned > 0 ? `¡+${earned} Fútcoins! Entrando…` : "¡Listo! Entrando…"}
+          </p>
+        ) : pushState === "denied" ? (
+          <p className="text-gray-400 text-sm max-w-sm mx-auto">
+            No pasa nada: puedes activarlas cuando quieras desde tu perfil. Entrando…
+          </p>
+        ) : (
+          <p className="text-gray-300 text-sm max-w-sm mx-auto">
+            Activa las notificaciones y entérate al instante de cada gol, las alineaciones y cuando se
+            resuelven tus predicciones.{" "}
+            {supported && (
+              <span className="text-[#E8D48B] font-semibold">
+                Te llevas {PUSH_REWARD_COINS} Fútcoins por activarlas.
+              </span>
+            )}
+          </p>
+        )}
+      </div>
+
+      {supported && pushState !== "done" && pushState !== "denied" ? (
+        <div className="space-y-3">
+          <button
+            onClick={activate}
+            disabled={busy}
+            className="w-full px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+            style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
+          >
+            {pushState === "loading" ? "Activando…" : `Activar notificaciones · +${PUSH_REWARD_COINS} 🪙`}
+          </button>
+          <button
+            onClick={onFinish}
+            disabled={busy}
+            className="w-full text-xs text-gray-500 hover:text-gray-300 transition-colors disabled:opacity-50"
+          >
+            Ahora no, empezar a jugar
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={onFinish}
+          disabled={pending && pushState !== "done"}
+          className="w-full px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all disabled:opacity-60"
+          style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
+        >
+          {pending ? "Entrando…" : "Empezar a jugar"}
+        </button>
+      )}
     </div>
   );
 }

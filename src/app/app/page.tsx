@@ -940,8 +940,12 @@ export default function AppHubPage() {
         </div>
 
         {/* Activador de notificaciones: solo aparece a quien NO las tiene aún.
-            El lobby es donde está la gente logueada → mejor sitio para pedirlas. */}
-        <PushPromptCard />
+            El lobby es donde está la gente logueada → mejor sitio para pedirlas.
+            Si hay partido próximo, el copy se vuelve contextual ("⚽ X vs Y — faltan…"). */}
+        <PushPromptCard
+          matchLabel={match ? `${match.meta.home.name} vs ${match.meta.away.name}` : null}
+          matchCountdown={openingCountdown || null}
+        />
 
         {/* ═══ 2. HERO DINÁMICO · LIVE HUB ═══
             No repite "Hacer predicción": en base invita a explorar/ver partido; en

@@ -180,6 +180,29 @@ export async function getCurrentSubscription(): Promise<PushSubscription | null>
   return await reg.pushManager.getSubscription();
 }
 
+export interface PushReward {
+  /** true si el usuario ya había reclamado antes (no se abona de nuevo). */
+  alreadyClaimed: boolean;
+  /** Fútcoins abonados ahora (0 si ya estaba reclamado o es anónimo). */
+  coins: number;
+}
+
+/**
+ * Reclama la recompensa de Fútcoins por activar notificaciones. Idempotente en
+ * el servidor (una vez por usuario). Llamar tras suscribir con éxito. Best-effort:
+ * devuelve null si falla la red — nunca debe bloquear la activación.
+ */
+export async function claimPushReward(): Promise<PushReward | null> {
+  try {
+    const res = await fetch("/api/notifications/push/claim-reward", { method: "POST" });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return { alreadyClaimed: !!data.alreadyClaimed, coins: Number(data.coins ?? 0) };
+  } catch {
+    return null;
+  }
+}
+
 /**
  * "Seguir partido" (efecto pin de Google). Asegura permiso + suscripción y
  * registra/quita este browser como seguidor del partido en el backend. El cron

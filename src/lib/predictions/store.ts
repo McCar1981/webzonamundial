@@ -746,3 +746,62 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
     };
   });
 }
+
+// ─── Podio del partido: top-N predictores de UN partido resuelto ─────────────
+export interface MatchTopPredictor {
+  position: number;
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean; cosmetics: CosmeticDisplay | null };
+  points: number;
+  correct: number;
+}
+/**
+ * "Los primeros que acertaron" un partido: el podio del partido ya resuelto.
+ * Ordena por puntos del partido desc, desempata por nº de aciertos y por quién
+ * predijo ANTES (created_at). Solo entran usuarios que acertaron algo. Lectura
+ * acotada a UN partido (no a toda la tabla) → barata y escalable.
+ */
+export async function getMatchTopPredictors(matchId: string, limit = 5): Promise<MatchTopPredictor[]> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("predictions")
+    .select("user_id,points_earned,is_correct,created_at")
+    .eq("match_id", matchId)
+    .not("resolved_at", "is", null);
+  const rows = (data ?? []) as { user_id: string; points_earned: number | null; is_correct: boolean | null; created_at: string }[];
+
+  const agg = new Map<string, { pts: number; correct: number; firstAt: string }>();
+  for (const r of rows) {
+    const a = agg.get(r.user_id) ?? { pts: 0, correct: 0, firstAt: r.created_at };
+    a.pts += r.points_earned ?? 0;
+    if (r.is_correct) a.correct++;
+    if (r.created_at < a.firstAt) a.firstAt = r.created_at;
+    agg.set(r.user_id, a);
+  }
+  const sorted = [...agg.entries()]
+    .filter(([, a]) => a.correct > 0) // solo quienes acertaron algo en el partido
+    .sort((x, y) => y[1].pts - x[1].pts || y[1].correct - x[1].correct || (x[1].firstAt < y[1].firstAt ? -1 : 1))
+    .slice(0, Math.max(0, limit));
+
+  const ids = sorted.map(([id]) => id);
+  const { data: profs } = ids.length
+    ? await admin.from("profiles").select("id,username,avatar_url,is_premium").in("id", ids)
+    : { data: [] };
+  const pmap = new Map((profs ?? []).map((p) => [(p as { id: string }).id, p as { username: string | null; avatar_url: string | null; is_premium: boolean }]));
+  const cmap = await cosmeticsByUser(ids);
+
+  return sorted.map(([id, a], i) => {
+    const pr = pmap.get(id);
+    return {
+      position: i + 1,
+      user: {
+        id,
+        display_name: pr?.username ?? "Anónimo",
+        avatar_url: pr?.avatar_url ?? null,
+        is_premium: Boolean(pr?.is_premium),
+        cosmetics: cmap.get(id) ?? null,
+      },
+      points: a.pts,
+      correct: a.correct,
+    };
+  });
+}

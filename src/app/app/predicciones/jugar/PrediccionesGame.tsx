@@ -1464,6 +1464,7 @@ function MatchDetailView({
   return (
     <section className="pj-detail">
       <MatchSummaryCard match={match} state={state} completed={completedCount} total={total} onBack={onBack} live={live} />
+      <MatchPodium matchId={String(match.i)} />
       <UserMiniStatsBar />
       <PredictionProgressBar completed={completedCount} total={total} />
       <LiveMicroPicks matchId={String(match.i)} />
@@ -1874,6 +1875,87 @@ function TeamTag({ flag, name, right }: { flag: string; name: string; right?: bo
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span style={{ fontSize: 11, fontWeight: 600, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 4 }}>{children}</span>;
+}
+
+// ─── Podio del partido: los 5 que más acertaron ─────────────────────────────
+interface PodiumPredictor {
+  position: number;
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean };
+  points: number;
+  correct: number;
+}
+/** Se muestra solo cuando el partido ya resolvió (el endpoint /results devuelve
+ *  top_predictors no vacío). Resalta la fila del usuario si está en el top. */
+function MatchPodium({ matchId }: { matchId: string }) {
+  const [top, setTop] = useState<PodiumPredictor[] | null>(null);
+  const [myPos, setMyPos] = useState<number | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch(`/api/predictions/match/${matchId}/results`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { top_predictors?: PodiumPredictor[]; my_podium_position?: number | null } | null) => {
+        if (!alive || !j) return;
+        setTop(Array.isArray(j.top_predictors) ? j.top_predictors : []);
+        setMyPos(j.my_podium_position ?? null);
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [matchId]);
+
+  if (!top || top.length === 0) return null;
+
+  const rankColor = (pos: number) => (pos === 1 ? "#f5d142" : pos === 2 ? "#c8cdd6" : pos === 3 ? "#cd7f32" : DIM);
+
+  return (
+    <div style={{ background: BG3, border: CARD_BORDER, borderRadius: 14, padding: "14px 16px", margin: "12px 0" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        <Trophy size={16} color={GOLD2} />
+        <span style={{ fontWeight: 800, fontSize: 14, color: GOLD2 }}>Podio del partido</span>
+        <span style={{ marginLeft: "auto", fontSize: 11.5, color: DIM }}>Quién la clavó</span>
+      </div>
+      <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+        {top.map((t) => {
+          const isMe = myPos != null && t.position === myPos;
+          return (
+            <li
+              key={t.user.id}
+              style={{
+                display: "flex", alignItems: "center", gap: 10, padding: "6px 8px", borderRadius: 10,
+                background: isMe ? "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)" : "transparent",
+                border: isMe ? `1px solid color-mix(in srgb, ${GOLD} 45%, transparent)` : "1px solid transparent",
+              }}
+            >
+              <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: rankColor(t.position), fontSize: 14 }}>{t.position}</span>
+              <div
+                aria-hidden
+                style={{
+                  width: 30, height: 30, borderRadius: "50%", flexShrink: 0, border: CARD_BORDER,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: t.user.avatar_url ? `center/cover no-repeat url("${t.user.avatar_url}")` : BG2,
+                }}
+              >
+                {!t.user.avatar_url && (
+                  <span style={{ fontWeight: 800, fontSize: 13, color: MID }}>{(t.user.display_name || "?").charAt(0).toUpperCase()}</span>
+                )}
+              </div>
+              <span style={{ fontWeight: 700, fontSize: 13.5, color: TEXT, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
+                {t.user.display_name}{isMe ? " · tú" : ""}
+              </span>
+              {t.user.is_premium && <Gem size={12} color={GOLD} />}
+              <span style={{ marginLeft: "auto", fontWeight: 800, fontSize: 13.5, color: GREEN, flexShrink: 0 }}>+{t.points}</span>
+              <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{t.correct}/8</span>
+            </li>
+          );
+        })}
+      </ol>
+      {myPos == null && (
+        <p style={{ margin: "10px 0 0", fontSize: 11.5, color: DIM, textAlign: "center" }}>
+          No entraste en el top 5 de este partido. ¡A por el próximo!
+        </p>
+      )}
+    </div>
+  );
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────

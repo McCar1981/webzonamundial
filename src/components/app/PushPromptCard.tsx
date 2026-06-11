@@ -20,10 +20,12 @@ import {
   getNotificationPermission,
   getCurrentSubscription,
   subscribeToPush,
+  claimPushReward,
 } from "@/lib/push-client";
 
 const DISMISS_KEY = "zm.app.pushcard.dismissedAt";
 const REASK_DAYS = 10;
+const REWARD_COINS = 25; // gancho mostrado; el abono real (idempotente) lo decide el servidor
 
 type Status = "hidden" | "idle" | "loading" | "done" | "denied";
 
@@ -37,8 +39,17 @@ function dismissedRecently(): boolean {
   }
 }
 
-export default function PushPromptCard() {
+export default function PushPromptCard({
+  matchLabel,
+  matchCountdown,
+}: {
+  /** "México vs Sudáfrica" si hay partido próximo; null si no. */
+  matchLabel?: string | null;
+  /** "⏱ Faltan 2h 15m" o similar; null si no aplica. */
+  matchCountdown?: string | null;
+}) {
   const [status, setStatus] = useState<Status>("hidden");
+  const [earned, setEarned] = useState(0);
 
   useEffect(() => {
     let on = true;
@@ -59,8 +70,11 @@ export default function PushPromptCard() {
     try {
       const sub = await subscribeToPush({ kinds: ["news", "tournament-key-events"] });
       if (sub) {
+        // Recompensa Fútcoins (idempotente en el servidor: solo la primera vez).
+        const reward = await claimPushReward();
+        setEarned(reward && !reward.alreadyClaimed ? reward.coins : 0);
         setStatus("done");
-        setTimeout(() => setStatus("hidden"), 3500);
+        setTimeout(() => setStatus("hidden"), 4500);
       } else {
         // El usuario denegó en el pop-up del navegador.
         setStatus("denied");
@@ -69,6 +83,8 @@ export default function PushPromptCard() {
       setStatus("denied");
     }
   }
+
+  const hasMatch = !!(matchLabel && matchCountdown);
 
   function dismiss() {
     try {
@@ -110,7 +126,9 @@ export default function PushPromptCard() {
         <div className="min-w-0 flex-1">
           {status === "done" ? (
             <>
-              <div className="font-black text-white">¡Listo! Te avisaremos 🎉</div>
+              <div className="font-black text-white">
+                {earned > 0 ? `¡Listo! +${earned} Fútcoins 🎉` : "¡Listo! Te avisaremos 🎉"}
+              </div>
               <p className="text-sm text-gray-300 mt-0.5">
                 Ya no te perderás ningún gol ni la resolución de tus predicciones.
               </p>
@@ -125,10 +143,15 @@ export default function PushPromptCard() {
             </>
           ) : (
             <>
-              <div className="font-black text-white">No te pierdas ningún gol</div>
+              <div className="font-black text-white">
+                {hasMatch ? `⚽ ${matchLabel} — ${matchCountdown}` : "No te pierdas ningún gol"}
+              </div>
               <p className="text-sm text-gray-300 mt-0.5">
-                Activa las alertas y entérate al instante de goles, alineaciones y cuando se resuelven tus
-                predicciones.
+                {hasMatch
+                  ? "Activa el aviso para que te avisemos de cada gol en directo"
+                  : "Activa las alertas y entérate al instante de goles, alineaciones y resultados"}
+                {" "}
+                <span className="text-[#E8D48B] font-semibold">y llévate {REWARD_COINS} Fútcoins.</span>
               </p>
             </>
           )}
@@ -142,7 +165,7 @@ export default function PushPromptCard() {
             className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-[#060B14] disabled:opacity-60 transition-all"
             style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
           >
-            {status === "loading" ? "Activando…" : "Activar"}
+            {status === "loading" ? "Activando…" : `Activar +${REWARD_COINS}`}
           </button>
         )}
       </div>

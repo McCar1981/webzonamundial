@@ -292,7 +292,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
           {/* Acciones */}
           <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
             <Link
-              href="/app/predicciones"
+              href={`/app/predicciones/jugar?match=${m.i}`}
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/15 to-[#c9a84c]/5 p-4 text-center transition-all hover:opacity-90"
             >
               <SvgIcon name="predicciones" size={28} />

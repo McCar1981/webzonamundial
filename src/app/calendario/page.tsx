@@ -302,15 +302,17 @@ export default function CalendarioPage() {
       {/* ── Hero compacto ── */}
       <div className="relative overflow-hidden px-6 pb-5 pt-4">
         {/* Imagen de fondo (public/images/calendario/hero.webp). Si faltara,
-            onError la oculta y queda el degradado. Opacidad 60: la imagen es
-            muy oscura y bajo el overlay navy a 30 apenas se percibía
-            (comparado con composite sharp a 30/45/60). */}
+            onError la oculta y queda el degradado. A plena opacidad: la
+            imagen ya es nocturna y con el velo anterior (img 60 + navy 55-82)
+            no se veía nada en pantallas reales. La legibilidad la garantiza
+            el scrim lateral izquierdo (zona del título) + el fundido inferior
+            hacia el fondo de la página. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/calendario/hero.webp"
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-60"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
@@ -319,13 +321,13 @@ export default function CalendarioPage() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.82) 55%, #060B14 100%)",
+              "linear-gradient(90deg, rgba(6,11,20,0.72) 0%, rgba(6,11,20,0.25) 42%, transparent 65%), linear-gradient(180deg, rgba(6,11,20,0.18) 0%, rgba(6,11,20,0.38) 55%, #060B14 100%)",
           }}
         />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: "linear-gradient(180deg, rgba(201,168,76,0.07), transparent 60%)",
+            background: "linear-gradient(180deg, rgba(201,168,76,0.05), transparent 60%)",
           }}
         />
 

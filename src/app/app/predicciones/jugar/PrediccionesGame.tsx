@@ -234,6 +234,15 @@ export default function PrediccionesGame() {
     supa.auth.getUser().then(({ data }) => setAuthed(!!data.user));
   }, []);
 
+  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
+  // enlazan directo a la predicción de UN partido concreto. Client-only vía
+  // window.location para no meter useSearchParams/Suspense en el prerender.
+  // Solo ids que existen en el selector; el resto cae al selector normal.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("match");
+    if (id && MATCHES.some((m) => String(m.i) === id)) setMatchId(id);
+  }, []);
+
   useEffect(() => {
     if (toast) {
       const id = setTimeout(() => setToast(null), 3500);

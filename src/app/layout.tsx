@@ -5,6 +5,7 @@ import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
+import GoogleAnalyticsRouteTracker from "@/components/analytics/GoogleAnalyticsRouteTracker";
 import NativeAppGuard from "@/components/NativeAppGuard";
 import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
 import PaywallModal from "@/components/pro/PaywallModal";
@@ -337,6 +338,9 @@ export default async function RootLayout({
         <Script id="ga4-config" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-J9NWM9GNRK');`}
         </Script>
+        {/* Emite page_view en cada navegación SPA (App Router no recarga la
+            página, así que sin esto solo se contaba la primera vista). */}
+        <GoogleAnalyticsRouteTracker />
         <NativeAppGuard />
         <LanguageProvider>
           <EntitlementsProvider>

@@ -11,6 +11,7 @@ import {
   bonusForMonth,
   formatEur,
   getAllCreators,
+  getAllManagers,
   getMonthlySeries,
   getPayments,
   getProgramStats,
@@ -24,15 +25,18 @@ import {
   type CreatorProgramRow,
   type CreatorSponsorRow,
   type CreatorStats,
+  type CreatorManagerRow,
   type MonthlyPoint,
 } from "@/lib/creators/program";
 import AdminForm from "./AdminForm";
 import AdminHeader from "@/components/admin/AdminHeader";
 import {
+  addManager,
   addSponsor,
   createCreator,
   deletePayment,
   recordPayment,
+  removeManager,
   updateCreator,
   updateSponsor,
 } from "./actions";
@@ -82,6 +86,14 @@ export default async function AdminCreadoresPage() {
     monthsBySlug = new Map(creators.map((c, i) => [c.slug, monthly[i]]));
   } catch (e) {
     return <SetupNotice message={(e as Error).message} />;
+  }
+
+  // Managers (aislado: si la tabla aún no está migrada, lista vacía sin romper).
+  let managers: CreatorManagerRow[] = [];
+  try {
+    managers = await getAllManagers();
+  } catch {
+    managers = [];
   }
 
   const mesActual = currentMadridMonth();
@@ -197,9 +209,53 @@ export default async function AdminCreadoresPage() {
           </AdminForm>
         </section>
 
+        {/* Managers */}
+        <section className="rounded-2xl border border-white/10 bg-white/5 p-5 mb-10">
+          <h2 className="font-bold mb-1">Managers (agencia)</h2>
+          <p className="text-xs text-gray-400 mb-4">
+            Un manager ve la <strong>remuneración de TODOS los creadores</strong> (solo lectura) entrando en{" "}
+            <code>/admin</code> con su cuenta de ZonaMundial. <strong>No</strong> accede a esta gestión ni al
+            resto del admin. Vincula el email de su cuenta (igual que con los creadores: debe registrarse con
+            ese email).
+          </p>
+          {managers.length > 0 && (
+            <ul className="space-y-2 mb-4">
+              {managers.map((m) => (
+                <li
+                  key={m.email}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-white/[0.03] px-4 py-2.5 text-sm"
+                >
+                  <span className="min-w-0 truncate">
+                    <strong>{m.name ?? "(sin nombre)"}</strong>{" "}
+                    <span className="font-mono text-gray-400">· {m.email}</span>
+                  </span>
+                  <AdminForm
+                    action={removeManager}
+                    submitLabel="Quitar"
+                    danger
+                    confirmText={`¿Quitar a ${m.email} como manager?`}
+                    className="inline"
+                  >
+                    <input type="hidden" name="email" value={m.email} />
+                  </AdminForm>
+                </li>
+              ))}
+            </ul>
+          )}
+          <AdminForm action={addManager} submitLabel="Añadir manager" resetOnSuccess className="flex items-end gap-3 flex-wrap">
+            <Field label="Nombre">
+              <input name="name" placeholder="Agencia Sportfield" className={INPUT} />
+            </Field>
+            <Field label="Email de acceso *">
+              <input name="email" type="email" required placeholder="manager@agencia.com" className={INPUT} />
+            </Field>
+          </AdminForm>
+        </section>
+
         <footer className="text-center text-xs text-gray-600 pb-8">
           Tip: el panel del creador vive en <code>/admin</code> — entra él con su cuenta (email vinculado
-          arriba). Tu acceso de gestión sigue en <code>/admin/login</code>.
+          arriba). El manager entra igual (en <code>/admin</code>) y ve la remuneración de todos. Tu acceso de
+          gestión sigue en <code>/admin/login</code>.
         </footer>
       </div>
     </div>

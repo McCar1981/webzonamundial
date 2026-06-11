@@ -155,6 +155,50 @@ export async function getCreatorByEmail(email: string): Promise<CreatorProgramRo
   return data ? mapCreator(data) : null;
 }
 
+// ---------------------------------------------------------------------------
+// Managers — rol que ve la remuneración de TODOS los creadores (read-only).
+// ---------------------------------------------------------------------------
+
+export interface CreatorManagerRow {
+  email: string;
+  name: string | null;
+  active: boolean;
+  notes: string | null;
+  created_at: string;
+}
+
+function mapManager(row: Record<string, unknown>): CreatorManagerRow {
+  return {
+    email: String(row.email),
+    name: (row.name as string | null) ?? null,
+    active: Boolean(row.active),
+    notes: (row.notes as string | null) ?? null,
+    created_at: String(row.created_at),
+  };
+}
+
+export async function getManagerByEmail(email: string): Promise<CreatorManagerRow | null> {
+  const admin = creatorsAdminClient();
+  const { data, error } = await admin
+    .from("creator_managers")
+    .select("*")
+    .eq("email", email.trim().toLowerCase())
+    .eq("active", true)
+    .maybeSingle();
+  if (error) throw new Error(`creator_managers by email: ${error.message}`);
+  return data ? mapManager(data) : null;
+}
+
+export async function getAllManagers(): Promise<CreatorManagerRow[]> {
+  const admin = creatorsAdminClient();
+  const { data, error } = await admin
+    .from("creator_managers")
+    .select("*")
+    .order("created_at", { ascending: true });
+  if (error) throw new Error(`creator_managers select: ${error.message}`);
+  return (data ?? []).map(mapManager);
+}
+
 export async function getProgramStats(): Promise<Map<string, CreatorStats>> {
   const admin = creatorsAdminClient();
   const { data, error } = await admin.rpc("creator_program_stats");

@@ -630,11 +630,13 @@ function Shell({ children }: { children: React.ReactNode }) {
 const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color: TEXT, margin: "0 0 14px", letterSpacing: 0.2 };
 const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "5px 11px", display: "inline-flex", alignItems: "center", gap: 5 };
 
+interface RecentResult { match_id: string; points: number; correct: number; total: number; resolved_at: string }
+
 function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
   const [filter, setFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [pulse, setPulse] = useState<ActivityPulse | null>(null);
-  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number } | null>(null);
+  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -702,6 +704,10 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
       <CompactHero count={matches.length} pending={featuredPending} />
       {featured && (
         <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} predicted={featuredDone} typesTotal={typesTotal} />
+      )}
+
+      {mine?.recent_results && mine.recent_results.length > 0 && (
+        <RecentResults results={mine.recent_results} onPick={onPick} />
       )}
 
       {/* Nivel 3 — resumen compacto del usuario (una sola barra) */}
@@ -946,6 +952,42 @@ function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
       <img src={flagUrlLg(flag)} alt="" style={{ width: 56, height: 38, borderRadius: 6, objectFit: "cover", boxShadow: "0 4px 14px rgba(0,0,0,0.45)" }} />
       <span style={{ fontSize: 16, fontWeight: 800, textAlign: "center", lineHeight: 1.15 }}>{name}</span>
     </div>
+  );
+}
+
+// ─── Tus resultados recientes: acceso directo al podio de un partido jugado ───
+function RecentResults({ results, onPick }: { results: RecentResult[]; onPick: (id: string) => void }) {
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 4 }}>
+      <h2 style={sectionTitle}>Tus resultados recientes</h2>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {results.map((r) => {
+          const m = MATCHES.find((x) => String(x.i) === r.match_id);
+          if (!m) return null;
+          const pos = r.points >= 0;
+          return (
+            <button
+              key={r.match_id}
+              onClick={() => onPick(r.match_id)}
+              aria-label={`Ver tu resultado y el podio de ${m.h} contra ${m.a}`}
+              style={{
+                display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left",
+                background: BG3, border: CARD_BORDER, borderRadius: 12, padding: "10px 12px", cursor: "pointer", color: TEXT,
+              }}
+            >
+              <span style={{ fontWeight: 700, fontSize: 13.5, color: TEXT, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0, flex: 1 }}>
+                {m.h} <span style={{ color: DIM, fontWeight: 600 }}>vs</span> {m.a}
+              </span>
+              <span style={{ fontSize: 11.5, color: MID, flexShrink: 0 }}>{r.correct}/{r.total}</span>
+              <span style={{ fontWeight: 800, fontSize: 13.5, color: pos ? GREEN : RED, flexShrink: 0, minWidth: 52, textAlign: "right" }}>
+                {pos ? "+" : ""}{r.points} pts
+              </span>
+              <ChevronRight size={16} color={DIM} />
+            </button>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 

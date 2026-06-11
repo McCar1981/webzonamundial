@@ -16,7 +16,7 @@ import BarPhoto from "./BarPhoto";
 
 const BARES_TITLE = "Porra Digital para Bares · ZonaMundial";
 const BARES_DESCRIPTION =
-  "Crea la porra digital de tu bar para el Mundial 2026: QR en la barra, predicciones, ranking del local y premios que defines tú. Pago único, sin suscripción.";
+  "Crea la porra digital de tu bar para el Mundial 2026: QR en la barra, predicciones, ranking del local e incentivos que defines tú. Pago único, sin suscripción.";
 
 export const metadata: Metadata = {
   title: BARES_TITLE,
@@ -147,7 +147,7 @@ function TvMockup() {
 /* ─── Datos ───────────────────────────────────────────────────────────────── */
 
 const STEPS = [
-  { n: 1, icon: Palette, title: "Configura tu porra", text: "Crea la página de tu bar, añade tu logo, define premios y personaliza el mensaje de bienvenida." },
+  { n: 1, icon: Palette, title: "Configura tu porra", text: "Crea la página de tu bar, añade tu logo, define los incentivos y personaliza el mensaje de bienvenida." },
   { n: 2, icon: QrCode, title: "Comparte el QR", text: "Imprime el cartel o muéstralo en pantalla. Tus clientes escanean y entran a la porra del bar." },
   { n: 3, icon: Repeat, title: "Compiten en tu ranking", text: "Predicen partidos, suman puntos y siguen la clasificación de tu bar durante el Mundial." },
 ];
@@ -163,8 +163,8 @@ const FEATURES = [
   { icon: Smartphone, title: "Landing personalizada", text: "Tu bar con su propia página del Mundial.", big: false },
   { icon: QrCode, title: "QR dinámico", text: "Tus clientes entran sin descargar nada.", big: false },
   { icon: BarChart3, title: "Ranking en vivo", text: "Mantiene la competición de tu bar activa jornada a jornada.", big: true },
-  { icon: Tv, title: "Pantalla TV", text: "Muestra el QR, el top 10 y el premio en el local.", big: false },
-  { icon: Gift, title: "Premios", text: "Tú decides qué incentivo ofrecer a tus clientes.", big: false },
+  { icon: Tv, title: "Pantalla TV", text: "Muestra el QR, el top 10 y el incentivo en el local.", big: false },
+  { icon: Gift, title: "Incentivos", text: "Tú decides qué incentivo ofrecer a tus clientes.", big: false },
 ];
 
 /* ─── Página ──────────────────────────────────────────────────────────────── */
@@ -198,7 +198,7 @@ export default function BaresLandingPage() {
             </h1>
             <p className="mt-5 max-w-xl mx-auto lg:mx-0 text-lg text-zm-text-muted leading-relaxed">
               Crea una competición digital para tus clientes con QR, predicciones, clasificación
-              y premios definidos por tu local.
+              e incentivos definidos por tu local.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <Link
@@ -333,7 +333,7 @@ export default function BaresLandingPage() {
               <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-bold" style={{ color: GOLD }}>
                 <Medal size={14} /> Tu bar en acción
               </div>
-              <h2 className="mt-3 text-3xl font-black leading-tight" style={{ color: "#F4F1E9" }}>Tu bar, tu ranking, tus premios</h2>
+              <h2 className="mt-3 text-3xl font-black leading-tight" style={{ color: "#F4F1E9" }}>Tu bar, tu ranking, tus incentivos</h2>
               <p className="mt-4 max-w-md mx-auto lg:mx-0 text-zm-text-muted leading-relaxed">
                 Cada local tiene su propia porra, su QR y su clasificación para activar una dinámica propia durante el Mundial.
               </p>

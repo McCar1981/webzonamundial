@@ -444,7 +444,7 @@ export async function sendBarPlanConfirmationEmail(opts: {
         <p>Ya tienes activo el plan <strong>${escapeHtml(opts.planName)}</strong>. Desde tu panel puedes:</p>
         <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
           <li>Publicar la página de tu bar y compartir el QR.</li>
-          <li>Configurar premios y personalizar el aspecto.</li>
+          <li>Configurar incentivos y personalizar el aspecto.</li>
           <li>Abrir la pantalla TV para el local.</li>
           <li>Ver el ranking y las estadísticas de tu peña.</li>
         </ul>
@@ -493,7 +493,7 @@ export async function sendBarPorraWelcomeEmail(opts: {
   const prizeBlock = opts.prizeTitle
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:18px 0 0;">
          <tr><td style="background:#FFFBF0;border:1px solid #F0E2BF;border-radius:12px;padding:14px 18px;">
-           <div style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#8C7437;">Premio principal</div>
+           <div style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#8C7437;">Incentivo del local</div>
            <div style="font-size:16px;font-weight:700;color:#111827;margin-top:4px;">${escapeHtml(opts.prizeTitle)}</div>
          </td></tr>
        </table>`
@@ -510,7 +510,7 @@ export async function sendBarPorraWelcomeEmail(opts: {
 <html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#0B1825;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Ya estás dentro de la porra de ${barName}. Predice los partidos del Mundial y compite por los premios del local.</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Ya estás dentro de la porra de ${barName}. Predice los partidos del Mundial y compite por los incentivos del local.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0B1825;padding:24px 12px;">
   <tr><td align="center">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#1f2937;">

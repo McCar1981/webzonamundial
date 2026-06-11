@@ -118,7 +118,7 @@ export default async function OGImage() {
                 display: "flex",
               }}
             >
-              QR en la barra · Ranking del local · Premios que pones tú
+              QR en la barra · Ranking del local · Incentivos que pones tú
             </div>
             <div
               style={{

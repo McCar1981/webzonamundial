@@ -298,7 +298,7 @@ const TUTORIALS: Tutorial[] = [
     tips: [
       "Completa el perfil al 100% desbloquea la insignia 'Fan Completo' que da +50 puntos de bienvenida.",
       "Conecta tus redes sociales para importar amigos y unirte a ligas privadas de tu entorno.",
-      "Revisa el ranking semanal cada lunes; hay premios sorpresa para los top 100 de la semana.",
+      "Revisa el ranking semanal cada lunes y defiende tu puesto en el top 100 de la semana.",
     ],
     stepDetails: [
       { title: "Configura tu avatar y selección favorita", description: "En 'Mi perfil' personaliza tu avatar (foto o avatar animado), nombre de usuario, selección favorita y el eslogan de tu perfil público. El avatar anima con cada logro." },

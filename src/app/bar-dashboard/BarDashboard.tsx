@@ -97,7 +97,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   const hasBarData = !!(bar.city || bar.logo_url || bar.description || bar.welcome_message);
   const checklist = [
     { label: "Datos del bar", done: hasBarData },
-    { label: "Premio", done: hasPrize },
+    { label: "Incentivo", done: hasPrize },
     { label: "Plan activo", done: hasActivePlan },
     { label: "Publicación", done: isPublished },
     { label: "QR", done: !!qr },
@@ -292,8 +292,8 @@ function ChecklistCard({ items }: { items: { label: string; done: boolean }[] })
 function NextStepCard({ state, hasPrize, publishing, onPublish, onPlans, onPrizes, bar }: { state: CardState; hasPrize: boolean; publishing: boolean; onPublish: () => void; onPlans: () => void; onPrizes: () => void; bar: BarRow }) {
   let text: string; let action: ActionCfg;
   if (!hasPrize) {
-    text = "Añade un premio para motivar a tus clientes a participar.";
-    action = { label: "Añadir premio", icon: <Gift size={15} />, onClick: onPrizes };
+    text = "Añade un incentivo para motivar a tus clientes a participar.";
+    action = { label: "Añadir incentivo", icon: <Gift size={15} />, onClick: onPrizes };
   } else if (state === "draft" || state === "suspended") {
     text = "Activa un plan para publicar tu peña.";
     action = { label: "Activar plan", icon: <CreditCard size={15} />, onClick: onPlans };
@@ -704,7 +704,7 @@ function MaterialsSection({ bar, plan, onFlash }: { bar: BarRow; plan: BarPlan; 
         <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 220px" }}>
             <div style={{ fontWeight: 800, fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}><Printer size={15} color={GOLD2} /> Cartel A4 para imprimir</div>
-            <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>QR grande, premio y claim listos para colgar en el local.</div>
+            <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>QR grande, incentivo y claim listos para colgar en el local.</div>
           </div>
           {plan.premiumMaterials ? (
             <a href={`/b/${bar.slug}/cartel`} target="_blank" rel="noopener noreferrer" style={{ ...btn(), textDecoration: "none" }}><Printer size={15} /> Abrir cartel</a>
@@ -745,21 +745,21 @@ function Prizes({ bar, prizes, setPrizes, onFlash }: { bar: BarRow; prizes: BarP
     try {
       const res = await fetch("/api/bars/prizes", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, description: desc, prizeType: "principal" }) });
       const j = await res.json();
-      if (res.ok && j.prize) { setPrizes([...prizes, j.prize]); setTitle(""); setDesc(""); onFlash("Premio creado"); }
-      else onFlash("No se pudo crear el premio");
+      if (res.ok && j.prize) { setPrizes([...prizes, j.prize]); setTitle(""); setDesc(""); onFlash("Incentivo creado"); }
+      else onFlash("No se pudo crear el incentivo");
     } finally { setBusy(false); }
   }, [title, desc, prizes, setPrizes, onFlash]);
 
   const remove = useCallback(async (id: string) => {
     const res = await fetch(`/api/bars/prizes?id=${encodeURIComponent(id)}`, { method: "DELETE" });
-    if (res.ok) { setPrizes(prizes.filter((p) => p.id !== id)); onFlash("Premio eliminado"); }
+    if (res.ok) { setPrizes(prizes.filter((p) => p.id !== id)); onFlash("Incentivo eliminado"); }
   }, [prizes, setPrizes, onFlash]);
 
   return (
-    <Section icon={<Gift size={17} color={GOLD} />} title="Premios">
+    <Section icon={<Gift size={17} color={GOLD} />} title="Incentivos">
       {prizes.length === 0 ? (
         <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, color: MID, fontSize: 14, marginBottom: 12 }}>
-          Añade un premio para motivar a tus clientes.
+          Añade un incentivo para motivar a tus clientes.
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
@@ -777,10 +777,10 @@ function Prizes({ bar, prizes, setPrizes, onFlash }: { bar: BarRow; prizes: BarP
         </div>
       )}
       <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 14, display: "flex", flexDirection: "column", gap: 8 }}>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Título del premio (p. ej. Cena para 2)" style={inp()} />
+        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Título del incentivo (p. ej. Cena para 2)" style={inp()} />
         <input value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Descripción (opcional)" style={inp()} />
         <button onClick={() => void add()} disabled={busy || !title.trim()} style={{ ...btn(), opacity: busy || !title.trim() ? 0.6 : 1 }}>
-          <Plus size={15} /> Añadir premio
+          <Plus size={15} /> Añadir incentivo
         </button>
       </div>
     </Section>
@@ -826,7 +826,7 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
             value={form.entry_fee_note}
             onChange={(e) => set("entry_fee_note", e.target.value)}
             rows={2}
-            placeholder="Ej.: Participación 3 € que se abonan en barra. El premio: jamón + camiseta."
+            placeholder="Ej.: El líder del ranking al acabar el Mundial se lleva una cena para 2."
             style={{ ...inp(), resize: "vertical" }}
           />
           <p style={{ fontSize: 11.5, color: DIM, margin: "6px 2px 0", lineHeight: 1.5 }}>

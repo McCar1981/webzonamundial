@@ -171,7 +171,7 @@ export default function KitPanel({
                 <Tv size={16} color={GOLD} /> Modo televisión
               </div>
               <div style={{ marginTop: 4, fontSize: 13, color: MID, lineHeight: 1.5, maxWidth: 460 }}>
-                Abre la pantalla a tamaño completo con el QR, el top y el premio del día para mostrarla en el local.
+                Abre la pantalla a tamaño completo con el QR, el top y el incentivo del día para mostrarla en el local.
               </div>
             </div>
             <Link href={`/b/${barSlug}/tv`} target="_blank" style={{ ...btn(), background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", border: "none" }}>
@@ -183,7 +183,7 @@ export default function KitPanel({
         {/* Resumen de lo que muestran los materiales */}
         <p style={{ marginTop: 28, fontSize: 12, color: DIM, lineHeight: 1.6 }}>
           Todos los materiales incluyen el logo y nombre de <strong style={{ color: MID }}>{barName}</strong>, el QR
-          dinámico, el enlace corto{prizeTitle ? <>, el premio «{prizeTitle}»</> : null}, la llamada a la acción y
+          dinámico, el enlace corto{prizeTitle ? <>, el incentivo «{prizeTitle}»</> : null}, la llamada a la acción y
           el sello «Powered by ZonaMundial». Estilo base: <strong style={{ color: MID }}>Premium Mundial</strong>.
         </p>
       </div>

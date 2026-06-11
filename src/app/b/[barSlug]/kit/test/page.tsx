@@ -73,7 +73,7 @@ export default async function KitTestPage({
   });
 
   const mainPrize = prizes.find((p) => p.prize_type === "principal") ?? prizes[0] ?? null;
-  const prizeText = mainPrize?.title ?? (bar.kind === "empresa" ? "Premio de la empresa" : "Premio del bar");
+  const prizeText = mainPrize?.title ?? (bar.kind === "empresa" ? "Incentivo de la empresa" : "Incentivo del bar");
 
   const debug = searchParams.debug === "1";
   const logoTest = searchParams.logoTest;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
+import sharp from "sharp";
 import { ADMIN_COOKIE_NAME, isValidAdminCookie } from "@/lib/admin-auth";
 
 export const runtime = "nodejs";
@@ -24,11 +25,11 @@ export const dynamic = "force-dynamic";
 const BUCKET = "push-images";
 const MAX_BYTES = 5 * 1024 * 1024; // 5 MB (las imágenes de push pueden ser grandes)
 const ALLOWED_MIME = new Set(["image/jpeg", "image/png", "image/webp"]);
-const MIME_TO_EXT: Record<string, string> = {
-  "image/jpeg": "jpg",
-  "image/png": "png",
-  "image/webp": "webp",
-};
+
+// Optimización de salida: ancho máx pensado para la "big picture" del push
+// (Android la muestra ~2:1; 1280 de ancho sobra y pesa poco en JPEG).
+const MAX_WIDTH = 1280;
+const JPEG_QUALITY = 82;
 
 function adminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -104,14 +105,31 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // 6. Subir
-  const ext = MIME_TO_EXT[file.type];
-  const path = `manual/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
+  // 6. Optimizar antes de subir: redimensionar a un ancho razonable y comprimir
+  //    a JPEG. Así el peso NUNCA es un problema (Carlos sube lo que sea —incluso
+  //    un PNG de varios MB— y sale una imagen ligera que carga al instante en
+  //    datos móviles). No recortamos: respetamos la proporción original; el
+  //    recorte a 2:1 lo hace el propio Android al mostrar la notificación.
+  const original = Buffer.from(await file.arrayBuffer());
+  let optimized: Buffer;
+  try {
+    optimized = await sharp(original)
+      .rotate() // respeta la orientación EXIF (fotos hechas con el móvil)
+      .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+      .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+      .toBuffer();
+  } catch (err) {
+    return NextResponse.json(
+      { error: `No se pudo procesar la imagen: ${(err as Error).message}` },
+      { status: 500 }
+    );
+  }
 
-  const { error: uploadError } = await admin.storage.from(BUCKET).upload(path, buffer, {
-    contentType: file.type,
-    cacheControl: "604800", // 7 días: la imagen es inmutable (nombre único)
+  // 7. Subir (siempre JPEG optimizado)
+  const path = `manual/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
+  const { error: uploadError } = await admin.storage.from(BUCKET).upload(path, optimized, {
+    contentType: "image/jpeg",
+    cacheControl: "604800", // 7 días: inmutable (nombre único)
   });
   if (uploadError) {
     return NextResponse.json(
@@ -120,7 +138,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // 7. URL pública
+  // 8. URL pública + peso final (para informar en el panel)
   const { data: pub } = admin.storage.from(BUCKET).getPublicUrl(path);
-  return NextResponse.json({ ok: true, url: pub.publicUrl });
+  return NextResponse.json({ ok: true, url: pub.publicUrl, bytes: optimized.length });
 }

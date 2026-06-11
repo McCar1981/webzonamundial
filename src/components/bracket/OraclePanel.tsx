@@ -137,13 +137,29 @@ export default function OraclePanel({ state }: { state: BracketState }) {
         body: JSON.stringify({ champion: state.champion ?? null, messages: nextChat }),
         signal: controller.signal,
       });
+      if (res.status === 401) {
+        setChat(chat);
+        setDraft(q);
+        setChatError("Inicia sesión para preguntar al Oráculo.");
+        return;
+      }
       const data = (await res.json()) as OracleFollowupResponse | OracleErrorResponse;
       if (data.ok) {
         setChat((c) => [...c, { role: "assistant", content: data.reply }]);
       } else {
-        setChatError(oracleError("error" in data ? data.error : "unknown"));
+        // Revierte el mensaje optimista y restaura el texto: no quema un turno ni
+        // deja dos mensajes 'user' consecutivos en el historial.
+        setChat(chat);
+        setDraft(q);
+        if (handleProRequired(data, "ia_coach_daily")) {
+          setChatError("Has usado tu consulta IA gratuita de hoy.");
+        } else {
+          setChatError(oracleError("error" in data ? data.error : "unknown"));
+        }
       }
     } catch (err) {
+      setChat(chat);
+      setDraft(q);
       setChatError(
         (err as Error).name === "AbortError"
           ? "El Oráculo tardó demasiado. Inténtalo de nuevo."

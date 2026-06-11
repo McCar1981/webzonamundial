@@ -2,7 +2,8 @@
 //
 // 100 curiosidades del Mundial de Fútbol — rotan en el loading del Coach IA.
 // Mix de historia (1930-2026), récords, anécdotas, sedes 2026 y jugadores.
-// Verificadas (mayo 2026). Cada entrada incluye el prefijo natural "¿Sabías
+// Verificadas y depuradas (jun 2026: corregidos 11 datos falsos/contradictorios).
+// Cada entrada incluye el prefijo natural "¿Sabías
 // que…" eliminado en runtime para evitar repetición visual.
 
 export const FUN_FACTS: string[] = [
@@ -15,7 +16,7 @@ export const FUN_FACTS: string[] = [
   "Hasta 1970, el trofeo fue la Copa Jules Rimet. Brasil se la quedó tras ganar tres veces.",
   "Italia y Uruguay fueron los únicos campeones antes de la Segunda Guerra Mundial.",
   "El Mundial se suspendió en 1942 y 1946 por la Segunda Guerra Mundial.",
-  "Hasta 1998 el Mundial tuvo 24 selecciones; desde 1998 hasta 2022 fueron 32.",
+  "De 1982 a 1994 el Mundial tuvo 24 selecciones; desde 1998 hasta 2022 fueron 32.",
   "El sistema de 48 selecciones repartirá 12 grupos de 4 equipos cada uno.",
 
   // ─── Campeones ───
@@ -51,8 +52,8 @@ export const FUN_FACTS: string[] = [
   "Oleg Salenko anotó 5 goles en un solo partido: Rusia 6 - Camerún 1 (1994).",
   "Hungría tiene el récord de goles en un Mundial: 27 en 1954 (perdieron la final con Alemania).",
   "Alemania humilló a Brasil 7-1 en la semifinal del Mundial 2014.",
-  "Sólo dos jugadores han marcado en cuatro Mundiales distintos: Pelé y Uwe Seeler.",
-  "El Mundial 1962 tuvo la media goleadora más baja: 2.78 goles por partido.",
+  "Cuatro jugadores han marcado en cuatro Mundiales distintos: Pelé, Uwe Seeler, Klose y Cristiano Ronaldo.",
+  "Italia 1990 tuvo la media goleadora más baja de la historia: 2,21 goles por partido.",
 
   // ─── Finales y partidos legendarios ───
   "La final de 1950 (Brasil-Uruguay) tuvo 173.850 espectadores: récord absoluto.",
@@ -61,14 +62,13 @@ export const FUN_FACTS: string[] = [
   "Alemania vs Italia 1970 ('partido del siglo') terminó 4-3 con cinco goles en la prórroga.",
   "El cabezazo de Zidane a Materazzi en la final 2006 fue su última acción como profesional.",
   "Argentina vs Holanda en la final de 1978 se jugó con dictadura militar en Buenos Aires.",
-  "Brasil vs Italia 1994 fue la única final del Mundial decidida desde los penaltis.",
+  "Brasil vs Italia 1994 fue la primera final del Mundial decidida desde los penaltis.",
   "Holanda perdió tres finales del Mundial (1974, 1978 y 2010) sin ganar ninguna.",
   "Maradona protagonizó dos goles legendarios contra Inglaterra el mismo partido: 1986.",
   "La final 2022 Argentina-Francia es considerada por muchos la mejor de la historia.",
 
   // ─── Sedes Mundial 2026 ───
   "Mundial 2026: 16 sedes — 11 en EE.UU., 3 en México, 2 en Canadá.",
-  "Estadio Azteca albergará su 3ª Final Mundial: 1970, 1986 y 2026.",
   "MetLife Stadium, Nueva York/NJ, albergará la Final del Mundial 2026.",
   "El Mundial 2026 inaugura en Estadio Azteca, Ciudad de México el 11 de junio.",
   "BMO Field en Toronto es el estadio más pequeño del Mundial 2026 con 45 mil aforo.",
@@ -85,8 +85,8 @@ export const FUN_FACTS: string[] = [
   "Vittorio Pozzo es el único DT que ha ganado dos Mundiales (Italia 1934 y 1938).",
   "Luiz Felipe Scolari ganó el Mundial con Brasil 2002 y dirigió a Portugal en 2006.",
   "Marcelo Bielsa es conocido como 'El Loco' por su intensidad táctica y rutinas extremas.",
-  "Lionel Scaloni, DT de Argentina, era preparador físico antes de tomar la selección en 2018.",
-  "Mario Zagallo es el único en ser campeón del Mundial como jugador (1958, 62) y DT (1970).",
+  "Lionel Scaloni, DT de Argentina, era ayudante de campo antes de tomar la selección en 2018.",
+  "Mario Zagallo fue campeón del Mundial como jugador (1958, 62) y como DT (1970); también lo lograron Beckenbauer y Deschamps.",
   "Franz Beckenbauer ganó el Mundial como capitán (1974) y como DT (1990) con Alemania.",
   "Cesare y Paolo Maldini son padre e hijo y los dos disputaron Mundiales con Italia.",
 
@@ -94,7 +94,7 @@ export const FUN_FACTS: string[] = [
   "Cabo Verde y Curazao debutan en Mundial en 2026, son los países más pequeños jamás clasificados.",
   "Estados Unidos jugará su 12º Mundial en 2026, su mejor resultado fue 3º en 1930.",
   "Marruecos hizo historia en Qatar 2022: primer país africano semifinalista.",
-  "Croacia ha jugado dos finales consecutivas: subcampeón 2018, 3º en 2022.",
+  "Croacia brilló en dos Mundiales seguidos: subcampeona en 2018 y tercera en 2022.",
   "México fue anfitrión por tercera vez (1970, 1986 y 2026): único país con ese récord.",
   "Arabia Saudí derrotó 2-1 a Argentina en Qatar 2022 — la mayor sorpresa del Mundial.",
   "Senegal disputará su 4º Mundial en 2026; debutó en 2002 llegando a cuartos.",
@@ -120,12 +120,12 @@ export const FUN_FACTS: string[] = [
   "La 'Selfie Final' de Qatar 2022 entre Messi y la copa fue la foto más likeada en Instagram.",
   "El himno oficial del Mundial 2026 incluye a artistas de los tres países anfitriones.",
   "El primer árbitro mujer en un Mundial fue Stéphanie Frappart (Francia) en Qatar 2022.",
-  "El Mundial 2022 fue el primero con calefacción en estadios al aire libre.",
+  "El Mundial 2022 fue el primero con sistemas de refrigeración en estadios al aire libre.",
   "El Mundial 1990 introdujo la tarjeta roja indirecta tras dos amarillas.",
   "Hasta 1970 los porteros no usaban un color distinto al resto del equipo en sus uniformes.",
-  "El estadio más grande del Mundial 2026 será SoFi en Los Ángeles con 70.240 aforo.",
+  "El estadio más grande del Mundial 2026 será el Azteca de Ciudad de México (~83.000).",
   "Solo ocho jugadores han marcado en tres Mundiales consecutivos: incluyendo Cristiano y Messi.",
   "El árbitro español Mateu Lahoz arbitró Argentina-Holanda 2022, partido de 18 amarillas.",
-  "El Mundial 1986 tuvo a Diego Maradona como mejor jugador y goleador con 5 goles.",
+  "El Mundial 1986 tuvo a Diego Maradona como mejor jugador, con 5 goles y 5 asistencias.",
   "La FIFA registró su primer 'Joven Promesa' en 2006: ganó Lukas Podolski (Alemania).",
 ];

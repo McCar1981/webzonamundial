@@ -11,7 +11,7 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { TEAM_BY_ID, type ConfedId } from "@/lib/bracket/teams";
+import { TEAM_BY_ID, BRACKET_TEAMS, type ConfedId } from "@/lib/bracket/teams";
 import { PHASE_BY_ID, type PhaseId } from "@/lib/bracket/types";
 import type {
   BracketMatchInput,
@@ -95,6 +95,33 @@ function confedTally(ids: Array<string | null | undefined>): string {
     .sort((a, b) => b[1] - a[1])
     .map(([c, n]) => `${c} ${n}`)
     .join(", ");
+}
+
+// Tabla compacta de ranking FIFA de las 48 selecciones, como referencia para que
+// el Coach juzgue la dificultad de los cruces R32/R16 SIN inventar rankings (antes
+// solo conocía a campeón+subcampeón+semis y juzgaba el resto del cuadro a ciegas).
+// Estática → se computa una vez y se cachea a nivel de módulo.
+let _rankingTableCache: string | null = null;
+
+async function buildRankingTable(): Promise<string> {
+  if (_rankingTableCache) return _rankingTableCache;
+  const rows = await Promise.all(
+    BRACKET_TEAMS.map(async (t) => {
+      const deep = await loadDeep(t.id);
+      return { name: t.name, rank: deep?.fifa_ranking?.current ?? null };
+    }),
+  );
+  const ranked = rows
+    .filter((r): r is { name: string; rank: number } => typeof r.rank === "number")
+    .sort((a, b) => a.rank - b.rank);
+  if (ranked.length === 0) {
+    _rankingTableCache = "";
+    return _rankingTableCache;
+  }
+  _rankingTableCache =
+    "## RANKING FIFA — LAS 48 (referencia para calibrar la dificultad de los cruces)\n" +
+    ranked.map((r) => `${r.name} #${r.rank}`).join(" · ");
+  return _rankingTableCache;
 }
 
 export interface BuiltCoachContext {
@@ -217,6 +244,14 @@ export async function buildCoachContext(
     parts.push("");
   }
 
+  // Ranking FIFA de las 48: referencia para juzgar qué cruces son arriesgados sin
+  // que el modelo invente rankings de equipos fuera del top (F-18).
+  const rankingTable = await buildRankingTable();
+  if (rankingTable) {
+    parts.push(rankingTable);
+    parts.push("");
+  }
+
   // Lista de cruces de eliminatorias (R32 → FINAL) para que el modelo juzgue riesgo.
   parts.push("## CRUCES DE ELIMINATORIAS (ganador elegido)");
   let anyKnockout = false;
@@ -271,9 +306,11 @@ export async function buildCoachContext(
   parts.push(
     "**Tarea:** Coachea al usuario sobre SU quiniela. Evalúa su campeón, la coherencia " +
       "del cuadro, los cruces más arriesgados, sus sesgos (confederación, goleadas, " +
-      "anfitriones) y su estilo. Devuelve el JSON con coachTitle, profile, predictionStyle, " +
+      "anfitriones) y su estilo. Usa el RANKING FIFA de las 48 para calibrar la dificultad " +
+      "de cada cruce (que un top-5 caiga ante un #40 es una sorpresa que debes señalar). " +
+      "Devuelve el JSON con coachTitle, profile, predictionStyle, " +
       "riskScore, championVerdict, strengths, risks, biases, suggestions, grade y confidence. " +
-      "NO inventes cruces ni datos que no estén arriba.",
+      "NO inventes cruces ni datos que no estén arriba (rankings incluidos).",
   );
 
   // bracketVersion: huella de campeón + ganadores de eliminatorias + nº picks grupos + goles.

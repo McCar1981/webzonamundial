@@ -108,6 +108,14 @@ function minuteLabel(e: LiveEventInput): string {
   return `${e.minute}${e.extra ? `+${e.extra}` : ""}'`;
 }
 
+/** Limpia texto libre del cliente (player/detail de eventos) antes de interpolarlo
+ *  en el prompt: colapsa saltos de línea, quita backticks y acota la longitud para
+ *  reducir el vector de prompt-injection. */
+function sanitizeEventText(s: string | undefined, max: number): string {
+  if (!s) return "";
+  return s.replace(/[`\r\n]+/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
+}
+
 function teamProfileBlock(
   label: string,
   name: string,
@@ -221,8 +229,10 @@ export async function buildLiveContext(
       const who =
         e.side === "home" ? homeName : e.side === "away" ? awayName : "neutral";
       const label = EVENT_LABEL[e.type] || e.type;
-      const player = e.player ? ` — ${e.player}` : "";
-      const detail = e.detail ? ` (${e.detail})` : "";
+      const playerTxt = sanitizeEventText(e.player, 40);
+      const detailTxt = sanitizeEventText(e.detail, 60);
+      const player = playerTxt ? ` — ${playerTxt}` : "";
+      const detail = detailTxt ? ` (${detailTxt})` : "";
       parts.push(`- ${minuteLabel(e)} ${label} [${who}]${player}${detail}`);
     }
   }
@@ -245,17 +255,29 @@ export async function buildLiveContext(
       `y watchNext. NO inventes datos que no estén arriba.`,
   );
 
-  // stateVersion: cambia con marcador, minuto (bucket de 5'), nº de eventos y rojas.
-  const minuteBucket = Math.floor(state.minute / 5);
-  const reds = state.stats.red[0] + state.stats.red[1];
+  // stateVersion: refleja TODO el estado que influye en el análisis (marcador,
+  // minuto, STATS y EVENTOS), no solo el marcador. Incluir stats y contenido de
+  // eventos evita el cache-poisoning a terceros: los usuarios legítimos del mismo
+  // partido comparten el feed (misma clave), mientras que un estado manipulado
+  // obtiene su propia clave y solo se "envenena" a sí mismo.
+  const s = state.stats;
+  const statsSig = [
+    s.possession[0], s.possession[1], s.shots[0], s.shots[1],
+    s.shotsOn[0], s.shotsOn[1], s.xg[0], s.xg[1], s.corners[0], s.corners[1],
+    s.fouls[0], s.fouls[1], s.saves[0], s.saves[1], s.yellow[0], s.yellow[1],
+    s.red[0], s.red[1],
+  ].join(",");
+  const eventsSig = events
+    .map((e) => `${e.minute}+${e.extra ?? 0}:${e.type}:${e.side}:${e.player ?? ""}:${e.detail ?? ""}`)
+    .join(";");
   const stateVersion = simpleHash(
     [
       meta.id,
       state.score[0],
       state.score[1],
-      minuteBucket,
-      events.length,
-      reds,
+      Math.floor(state.minute / 5),
+      statsSig,
+      eventsSig,
       state.finished ? "F" : "L",
     ].join("|"),
   );

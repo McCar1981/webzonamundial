@@ -19,7 +19,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { BRACKET_TEAMS, GROUPS, type BracketTeam } from "@/lib/bracket/teams";
 
-export const ORACLE_SIM_VERSION = "v1";
+export const ORACLE_SIM_VERSION = "v2"; // v2: KO con prórroga/penaltis (~50/50)
 const DEFAULT_ITERATIONS = 20000;
 const SEED = 0x9e3779b1;
 
@@ -240,14 +240,25 @@ export function runOracleSim(iterations = DEFAULT_ITERATIONS): OracleSimResult {
   return { version: ORACLE_SIM_VERSION, iterations, teams };
 }
 
-/** Decide el ganador de un cruce de eliminatoria directa (sin empate). */
+/** Decide el ganador de un cruce de eliminatoria directa.
+ *  Modela que una fracción de los cruces se empata en los 90' y se decide en
+ *  prórroga/penaltis (~50/50): así el favorito NO avanza tan a menudo como con la
+ *  probabilidad logística pura, que inflaba sus semifinales y finales. */
 function koWinner(
   a: string,
   b: string,
   rating: Record<string, number>,
   rng: () => number,
 ): string {
-  return rng() < pAWin(rating[a], rating[b]) ? a : b;
+  const ra = rating[a];
+  const rb = rating[b];
+  const pAreg = pAWin(ra, rb); // P(A gana dentro de los 90')
+  // P(llegar empatados al 90' → prórroga/penaltis); decae con la diferencia de nivel.
+  const drawP = 0.27 * Math.exp(-Math.abs(ra - rb) * 0.6);
+  // En la tanda el favorito conserva solo una ventaja mínima (los penaltis igualan).
+  const pAtie = 0.5 + (pAreg - 0.5) * 0.35;
+  const pA = (1 - drawP) * pAreg + drawP * pAtie;
+  return rng() < pA ? a : b;
 }
 
 /** Toma una ronda de N ganadores y devuelve N/2 ganadores del cruce i, i+1. */

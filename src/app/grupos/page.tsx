@@ -10,6 +10,9 @@ import { SELECCIONES, getSeleccionesByGrupo } from '@/data/selecciones';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { MATCHES } from '@/data/matches';
 import { SvgIcon } from '@/components/icons';
+import TablaClasificacion from '@/components/TablaClasificacion';
+import { useTournamentLive } from '@/lib/grupos/useTournamentLive';
+import { isFinished, isLive, type LiveMap } from '@/lib/calendario/live';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +40,7 @@ function formatDate(dateStr: string, locale: string) {
 }
 
 // Mini fixture de 6 partidos para cada grupo
-function MiniFixture({ letra, locale }: { letra: string; locale: string }) {
+function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string; liveMap: LiveMap }) {
   const matches = MATCHES.filter((m) => m.g === letra);
   if (matches.length === 0) return null;
 
@@ -45,28 +48,51 @@ function MiniFixture({ letra, locale }: { letra: string; locale: string }) {
     <div className="mt-6">
       <h4 className="text-sm font-bold uppercase tracking-wider text-[#c9a84c] mb-3">{locale === 'en' ? 'Group fixtures' : 'Fixture del grupo'}</h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {matches.map((m) => (
+        {matches.map((m) => {
+          const live = liveMap[m.i];
+          const playing = isLive(live);
+          const ended = isFinished(live);
+          return (
           <div
             key={m.i}
             className="rounded-xl border border-white/5 bg-[#060B14] p-3 transition hover:border-[#c9a84c]/20"
+            style={playing ? { borderColor: 'rgba(255,107,87,0.30)' } : undefined}
           >
             <div className="flex items-center justify-between gap-2 mb-2">
               <div className="flex items-center gap-2 min-w-0">
                 <img src={`https://flagcdn.com/w20/${m.hf}.png`} alt={m.h} className="w-5 h-3.5 object-cover rounded" />
                 <span className="text-sm font-semibold text-white truncate">{m.h}</span>
               </div>
-              <span className="text-[10px] text-[#6a7a9a]">VS</span>
+              {playing || ended ? (
+                <span
+                  className="text-sm font-black tabular-nums flex-shrink-0 px-1.5 rounded"
+                  style={{ color: playing ? '#ff6b57' : '#e8d48b', background: playing ? 'rgba(255,107,87,0.12)' : 'rgba(201,168,76,0.12)' }}
+                >
+                  {live!.sc[0]}–{live!.sc[1]}
+                </span>
+              ) : (
+                <span className="text-[10px] text-[#6a7a9a]">VS</span>
+              )}
               <div className="flex items-center gap-2 min-w-0 justify-end">
                 <span className="text-sm font-semibold text-white truncate">{m.a}</span>
                 <img src={`https://flagcdn.com/w20/${m.af}.png`} alt={m.a} className="w-5 h-3.5 object-cover rounded" />
               </div>
             </div>
             <div className="flex items-center justify-between text-[10px] text-[#6a7a9a]">
-              <span>{formatDate(m.d, locale)} · {m.t}</span>
+              <span>
+                {playing ? (
+                  <span className="font-bold" style={{ color: '#ff6b57' }}>{live!.s === 'HT' ? (locale === 'en' ? 'HT' : 'Descanso') : `${live!.el}'`} · {locale === 'en' ? 'LIVE' : 'En vivo'}</span>
+                ) : ended ? (
+                  <span className="font-bold uppercase">{live!.s === 'PEN' ? (locale === 'en' ? 'Pens' : 'Penales') : (locale === 'en' ? 'FT' : 'Final')}</span>
+                ) : (
+                  <>{formatDate(m.d, locale)} · {m.t}</>
+                )}
+              </span>
               <span className="truncate max-w-[60%]">{m.vc}</span>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -220,10 +246,11 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
 }
 
 // Componente de contenido de tab de grupo
-function GrupoTabContent({ letra }: { letra: string }) {
+function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }) {
   const { t, locale } = useLanguage();
   const gT = t.grupos;
   const selecciones = getSeleccionesByGrupo(letra);
+  const groupColor = TAG_STYLES[letra]?.color ?? '#c9a84c';
   const descripcion = gT.descriptions[letra as keyof typeof gT.descriptions];
   const isHighlight = ['C', 'I'].includes(letra);
   const analysis = gT.detailedAnalysis ? gT.detailedAnalysis[letra as keyof typeof gT.detailedAnalysis] : null;
@@ -296,7 +323,12 @@ function GrupoTabContent({ letra }: { letra: string }) {
         </div>
       </div>
 
-      <MiniFixture letra={letra} locale={locale} />
+      {/* Tabla de clasificación en vivo */}
+      <div className="mt-6">
+        <TablaClasificacion selecciones={selecciones} groupColor={groupColor} liveMap={liveMap} />
+      </div>
+
+      <MiniFixture letra={letra} locale={locale} liveMap={liveMap} />
     </div>
   );
 }
@@ -306,6 +338,7 @@ export default function GruposIndex() {
   const gT = t.grupos;
   const gruposLetras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   const [activeTab, setActiveTab] = useState('A');
+  const liveMap = useTournamentLive();
 
   const heroRef = useRef<HTMLDivElement>(null);
   const breadcrumbRef = useRef<HTMLElement>(null);
@@ -514,7 +547,7 @@ export default function GruposIndex() {
         </div>
 
         {/* Contenido activo */}
-        <GrupoTabContent letra={activeTab} />
+        <GrupoTabContent letra={activeTab} liveMap={liveMap} />
       </section>
 
       {/* Cómo funciona el formato */}

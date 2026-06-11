@@ -287,9 +287,11 @@ export default async function RootLayout({
   } catch {
     isProUser = false;
   }
-  // AdSense SOLO cuando está habilitado (NEXT_PUBLIC_ADSENSE_ENABLED=true)
-  // y el usuario no es Pro. Durante la revisión de aprobación de Google,
-  // el flag debe estar en false para no mostrar anuncios.
+  // AdSense cuando está habilitado y el usuario no es Pro. OJO: durante la
+  // revisión de aprobación el script SÍ debe estar presente (checklist oficial
+  // de AdSense: "código de anuncios colocado"); antes de aprobar no se sirve
+  // ningún anuncio, así que no afecta a la UX. Para apagarlo en emergencia:
+  // NEXT_PUBLIC_ADSENSE_ENABLED=false en Vercel.
   const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isProUser;
 
   return (
@@ -307,21 +309,23 @@ export default async function RootLayout({
           (en module-eval, antes de hidratar) y React avisaría en dev de
           "Prop `style` did not match" en todas las rutas. */}
       <body>
+        {/* Google Consent Mode v2: por defecto todo denied. CookieConsent lo
+            actualiza al elegir el usuario. SIEMPRE presente (no solo con ads):
+            GA4 carga en todas las visitas y el RGPD exige el default denied y
+            el banner aunque AdSense esté apagado. (Antes ambos colgaban de
+            showAds y producción quedó sin gestión de consentimiento — hallazgo
+            crítico de la auditoría AdSense 11-06-2026.) */}
+        <Script id="consent-mode-v2" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`}
+        </Script>
         {showAds ? (
-          <>
-            {/* Google Consent Mode v2: por defecto todo denied. CookieConsent
-                lo actualiza al elegir el usuario. */}
-            <Script id="consent-mode-v2" strategy="beforeInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`}
-            </Script>
-            <Script
-              id="adsbygoogle-init"
-              async
-              strategy="afterInteractive"
-              crossOrigin="anonymous"
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-            />
-          </>
+          <Script
+            id="adsbygoogle-init"
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+          />
         ) : null}
         {/* Google Analytics 4 */}
         <Script
@@ -342,7 +346,7 @@ export default async function RootLayout({
             <PaywallModal />
           </EntitlementsProvider>
         </LanguageProvider>
-        {showAds ? <CookieConsent /> : null}
+        <CookieConsent />
       </body>
     </html>
   );

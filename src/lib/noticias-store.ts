@@ -22,6 +22,7 @@ import {
   type Noticia,
   type NoticiaCategory,
 } from "@/data/noticias";
+import { isAllowedNoticiaImage } from "./noticias-image-policy";
 import type { DraftNoticia } from "./noticias-ingest";
 
 interface IngestStore {
@@ -192,6 +193,23 @@ export async function getAllPublicNoticias(): Promise<Noticia[]> {
     if (seen.has(n.slug)) continue;
     seen.add(n.slug);
     merged.push(n);
+  }
+
+  // Política de copyright: las imágenes que no vengan de una fuente con
+  // licencia conocida (propias, Commons, flagcdn, api-sports) se descartan
+  // aquí, en el ÚNICO punto de lectura pública — cubre artículo, listado,
+  // relacionados, JSON-LD y RSS, incluidas las piezas ya almacenadas en KV
+  // con hotlinks a CDNs de otros medios.
+  for (let i = 0; i < merged.length; i++) {
+    const n = merged[i];
+    if (n.realImage && !isAllowedNoticiaImage(n.realImage)) {
+      merged[i] = {
+        ...n,
+        realImage: undefined,
+        imageCaption: undefined,
+        imageSource: undefined,
+      };
+    }
   }
 
   // Sort por "freshness desde el punto de vista del lector":

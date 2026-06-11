@@ -28,6 +28,11 @@ Allow: /favicon.ico
 Allow: /og-image.jpg
 Allow: /manifest.json
 
+# Rastreador de AdSense: acceso total para evaluar el contenido de las
+# páginas donde se servirán anuncios.
+User-agent: Mediapartners-Google
+Allow: /
+
 # Bots agresivos / scrapers AI sin valor SEO (opcional, descomentar si se desea bloquear)
 # User-agent: GPTBot
 # Disallow: /

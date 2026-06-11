@@ -63,15 +63,21 @@ const nextConfig = {
     //    https://*.com / https://*.net que ya se asumió en script-src.
     //    Riesgo de malvertising asumido por el dueño (handoff-adsterra.md §6).
     //    Para endurecer en el futuro: quitar comodines y dejar explícitos.
+    // AdSense/CMP en EXPLÍCITO (pagead2/tpc/googlesyndication, doubleclick,
+    // adtrafficquality, fundingchoices y gtm con subdominio www): hoy los
+    // comodines *.com/*.net ya los permiten, pero cuando se retiren los
+    // comodines (limpieza Adsterra pendiente post-revisión AdSense) los
+    // anuncios deben seguir funcionando sin tocar nada más. OJO:
+    // "googlesyndication.com" pelado NO cubre pagead2.googlesyndication.com.
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com https://*.com https://*.net",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://googletagmanager.com https://www.googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com https://*.com https://*.net",
       "style-src 'self' 'unsafe-inline' https://cdn-apple.com",
       "font-src 'self' data: https://cdn-apple.com",
       "img-src 'self' data: blob: https:",
       "media-src 'self' https:",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
-      "frame-src 'self' https://googleads.g.doubleclick.net https://appleid.apple.com https://accounts.google.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
+      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://appleid.apple.com https://accounts.google.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
       "base-uri 'self'",
       "form-action 'self' https://appleid.apple.com https://accounts.google.com",
       "frame-ancestors 'none'",

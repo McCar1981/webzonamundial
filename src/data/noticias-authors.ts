@@ -1,9 +1,15 @@
 /**
  * Authors registry for noticias.
  *
- * Fase 2 constraint: every article must be signed by Carlos Zamudio or
- * Gabriel Venegas. The auto-ingest pipeline picks one based on the
- * article's category + a round-robin seed so the byline stays balanced.
+ * Honestidad editorial (auditoría AdSense 11-06-2026): solo hay dos firmas y
+ * las dos son veraces — Carlos (persona real, titular del medio) y la
+ * "Redacción ZonaMundial" (firma de equipo para las piezas elaboradas con
+ * apoyo de IA a partir de fuentes verificadas). PROHIBIDO añadir personas
+ * ficticias con biografías inventadas: es una violación E-E-A-T directa.
+ *
+ * El id histórico "gabriel-venegas" se conserva porque las noticias ya
+ * almacenadas en KV lo referencian como authorId; su ficha visible es ahora
+ * la firma de redacción.
  */
 
 export interface NoticiaAuthor {
@@ -15,6 +21,8 @@ export interface NoticiaAuthor {
   twitter?: string;
   /** Initial color theme used by the avatar gradient */
   accent: string;
+  /** "person" → JSON-LD Person; "team" → JSON-LD Organization */
+  kind: "person" | "team";
 }
 
 export type AuthorId = "carlos-zamudio" | "gabriel-venegas";
@@ -23,18 +31,18 @@ export const AUTHORS = {
   "carlos-zamudio": {
     id: "carlos-zamudio",
     name: "Carlos Zamudio",
-    role: "Editor jefe · Mundial 2026",
-    bio: "Periodista deportivo con 15 años cubriendo selecciones latinoamericanas y Mundiales. Especializado en análisis táctico, mercado de fichajes y el día a día de las concentraciones.",
-    twitter: "@carloszamudio",
+    role: "Editor jefe · Fundador de ZonaMundial",
+    bio: "Fundador y editor jefe de ZonaMundial. Dirige la cobertura del Mundial 2026: datos en vivo, predicciones, fantasy y análisis de las 48 selecciones.",
     accent: "#c9a84c",
+    kind: "person",
   },
   "gabriel-venegas": {
     id: "gabriel-venegas",
-    name: "Gabriel Venegas",
-    role: "Redactor · Selecciones europeas",
-    bio: "Sigue de cerca la actualidad de las grandes ligas europeas y la previa del Mundial 2026. Ex-corresponsal en LaLiga, Premier y Bundesliga, especialista en lectura táctica.",
-    twitter: "@gvenegas",
+    name: "Redacción ZonaMundial",
+    role: "Equipo editorial",
+    bio: "Piezas elaboradas por el equipo editorial de ZonaMundial con apoyo de herramientas de IA, a partir de fuentes verificadas y de los datos oficiales del torneo, bajo la supervisión del editor jefe.",
     accent: "#5b21b6",
+    kind: "team",
   },
 } as const satisfies Record<AuthorId, NoticiaAuthor>;
 
@@ -44,9 +52,8 @@ export function getAuthor(id: AuthorId): NoticiaAuthor {
 
 /**
  * Pick an author for an article based on its category and a numeric seed.
- * - Carlos covers Latam selecciones, datos and historia.
- * - Gabriel covers European selecciones, análisis, sedes and plataforma.
- * - For "selecciones" we alternate by seed so the byline mix is healthy.
+ * - Carlos firma lo que cubre directamente (Latam, datos, historia).
+ * - La Redacción firma el resto del flujo auto-asistido.
  */
 export function pickAuthorForArticle(opts: {
   cat: string;

@@ -32,7 +32,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = n.seoDescription || n.excerpt;
 
   return {
-    title: `${n.title} | ZonaMundial`,
+    // Sin sufijo de marca: el template del layout raíz ("%s | ZonaMundial")
+    // ya lo añade — con el sufijo manual salía "… | ZonaMundial | ZonaMundial".
+    title: n.title,
     description,
     keywords: n.tags,
     authors: [{ name: getAuthor(n.authorId).name }],
@@ -81,12 +83,18 @@ export default async function NoticiaPage({ params }: Props) {
     image: noticia.realImage ? [noticia.realImage] : undefined,
     datePublished: `${noticia.date}T08:00:00.000Z`,
     dateModified: `${noticia.updatedAt || noticia.date}T08:00:00.000Z`,
-    author: {
-      "@type": "Person",
-      name: author.name,
-      jobTitle: author.role,
-      sameAs: author.twitter ? [`https://twitter.com/${author.twitter.replace(/^@/, "")}`] : undefined,
-    },
+    // Atribución honesta: las piezas reescritas de un medio declaran su
+    // fuente original (isBasedOn) en lugar de presentarse como primicia.
+    isBasedOn: noticia.sourceUrl || undefined,
+    author:
+      author.kind === "team"
+        ? { "@type": "Organization", name: author.name }
+        : {
+            "@type": "Person",
+            name: author.name,
+            jobTitle: author.role,
+            sameAs: author.twitter ? [`https://twitter.com/${author.twitter.replace(/^@/, "")}`] : undefined,
+          },
     publisher: {
       "@type": "Organization",
       name: "ZonaMundial",

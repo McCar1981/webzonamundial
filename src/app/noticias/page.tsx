@@ -7,7 +7,8 @@ import PushOptInBanner from "@/components/PushOptInBanner";
 const SITE_URL = "https://zonamundial.app";
 
 export const metadata: Metadata = {
-  title: "Noticias del Mundial 2026 | ZonaMundial",
+  // Sin sufijo de marca: lo añade el template del layout raíz.
+  title: "Noticias del Mundial 2026",
   description:
     "Última hora, análisis, datos y guías sobre el Mundial 2026. Cobertura editorial diaria de selecciones, sedes, jugadores y la actualidad de la Copa del Mundo.",
   alternates: {

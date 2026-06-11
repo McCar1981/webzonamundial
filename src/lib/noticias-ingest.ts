@@ -9,13 +9,16 @@
  *   5. (Future) call LLM to rewrite headline + body
  *   6. Append to data/noticias-ingested.json (PR-able diff)
  *
- * The current implementation does steps 1-4 + 6 with a *stub* rewrite that
- * just composes excerpt from the source description (clearly marked as draft
- * and never auto-published until human review).
+ * Los drafts pasan por el rewriter (LLM) y el crítico de calidad; los que
+ * superan el corte se publican automáticamente. Cada pieza publicada conserva
+ * sourceUrl/sourceName y muestra una nota de transparencia en ArticleView
+ * (elaboración con apoyo de IA a partir de la fuente). Las imágenes del medio
+ * original NUNCA se almacenan: política de copyright en noticias-image-policy.
  */
 
 import { createHash } from "node:crypto";
 import { gnewsSearch, WORLD_CUP_QUERIES, isNonFootballArticle, type GNewsArticle } from "./gnews";
+import { allowedNoticiaImageOrUndefined } from "./noticias-image-policy";
 import { pickAuthorForArticle } from "@/data/noticias-authors";
 import type { Noticia, NoticiaBlock, NoticiaCategory } from "@/data/noticias";
 import type { CriticVerdict } from "./noticias-critic";
@@ -151,9 +154,12 @@ export function buildDraftFromGNews(
     flags,
     tags: [],
     featured: false,
-    realImage: article.image || undefined,
-    imageCaption: article.title,
-    imageSource: article.source.name,
+    // Política de copyright: la imagen del medio (article.image) es material
+    // con derechos servido desde su CDN — no se almacena. Solo pasaría una
+    // URL de fuente licenciada (ver noticias-image-policy), que GNews no da.
+    realImage: allowedNoticiaImageOrUndefined(article.image),
+    imageCaption: allowedNoticiaImageOrUndefined(article.image) ? article.title : undefined,
+    imageSource: allowedNoticiaImageOrUndefined(article.image) ? article.source.name : undefined,
     authorId: author.id,
     body,
     sourceUrl: article.url,

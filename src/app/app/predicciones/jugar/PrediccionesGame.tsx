@@ -9,6 +9,8 @@ import { useBarContext } from "@/components/bars/BarContextProvider";
 import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
 import { etToDate } from "@/lib/bracket/match-time";
+import { useTournamentLive } from "@/lib/grupos/useTournamentLive";
+import { isFinished, isLive, type LiveLite, type LiveMap } from "@/lib/calendario/live";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { GamificationSummary } from "@/lib/predictions/gamification-store";
 import GamificationHUD from "./GamificationHUD";
@@ -631,12 +633,15 @@ const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color
 const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "5px 11px", display: "inline-flex", alignItems: "center", gap: 5 };
 
 interface RecentResult { match_id: string; points: number; correct: number; total: number; resolved_at: string }
+interface MatchScore { points: number; resolved: number; total: number }
+type MineData = { counts: Record<string, number>; types_total: number; recent_results?: RecentResult[]; scores?: Record<string, MatchScore> };
 
 function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
   const [filter, setFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [pulse, setPulse] = useState<ActivityPulse | null>(null);
-  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null>(null);
+  const [mine, setMine] = useState<MineData | null>(null);
+  const liveMap = useTournamentLive();
 
   useEffect(() => {
     let alive = true;
@@ -720,7 +725,7 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
 
       {/* Nivel 2 — más partidos para predecir */}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
-      <GroupGrid matches={filtered} onPick={onPick} mine={mine} />
+      <GroupGrid matches={filtered} onPick={onPick} mine={mine} liveMap={liveMap} />
 
       {/* Pulso de comunidad (prueba social) bajo los partidos */}
       <LiveActivityBand pulse={pulse} />
@@ -1151,41 +1156,64 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
   );
 }
 
-function TeamLine({ flag, name }: { flag: string; name: string }) {
+function TeamLine({ flag, name, goals, win, lose }: { flag: string; name: string; goals?: number; win?: boolean; lose?: boolean }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 0 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={flagUrl(flag)} alt="" style={{ width: 26, height: 17, borderRadius: 3, objectFit: "cover", flexShrink: 0 }} />
-      <span style={{ fontSize: 14.5, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>
+      <span style={{ flex: 1, minWidth: 0, fontSize: 14.5, fontWeight: win ? 900 : 700, color: lose ? DIM : TEXT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>
+      {goals !== undefined && (
+        <span style={{ flexShrink: 0, marginLeft: 8, fontSize: 17, fontWeight: 900, color: lose ? DIM : TEXT, fontVariantNumeric: "tabular-nums" }}>{goals}</span>
+      )}
     </div>
   );
 }
 
 const AMBER = "#f59e0b";
 
-function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number }) {
+function MatchCard({ m, onPick, predicted, typesTotal, live, result }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number; live?: LiveLite; result?: MatchScore | null }) {
   const t = tierOf(m);
   const tierColor = TIER_COLOR[t.label];
   const barCtx = useBarContext();
 
-  // Estado del usuario en este partido.
+  // Estado en vivo del partido (resultado durable del Match Center).
+  const finished = isFinished(live);
+  const playing = isLive(live);
+  const showScore = finished || playing;
+  const [hg, ag] = live?.sc ?? [0, 0];
+
+  // Estado del usuario en este partido (solo relevante antes / durante).
   const state: "play" | "partial" | "done" =
     predicted >= typesTotal && typesTotal > 0 ? "done" : predicted > 0 ? "partial" : "play";
   const stateLabel = state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
+
+  // ¿Hay puntuación ya calculada para este partido terminado?
+  const scored = !!(finished && result && result.resolved > 0);
+  const aria = finished
+    ? `Finalizado. ${m.h} ${hg}, ${m.a} ${ag}.${result && result.total > 0 ? (scored ? ` Tu puntuación ${result.points} puntos.` : " Puntuación en cálculo.") : " No participaste."} Toca para ver el detalle.`
+    : `${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`;
 
   return (
     <button
       className="match-row"
       onClick={() => onPick(String(m.i))}
-      aria-label={`${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
+      aria-label={aria}
       style={{
         display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: TEXT,
         background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
       }}
     >
-      {/* Fila superior: hora + multiplicador como recompensa */}
+      {/* Fila superior: estado del partido (izda) + multiplicador (dcha) */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 11 }}>
-        <span style={{ fontSize: 10.5, color: DIM, display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={11} /> {fmtKickoff(m)}</span>
+        {finished ? (
+          <span style={{ fontSize: 10.5, fontWeight: 800, color: MID, letterSpacing: 0.3, display: "inline-flex", alignItems: "center", gap: 4 }}><Check size={12} /> FINALIZADO</span>
+        ) : playing ? (
+          <span style={{ fontSize: 10.5, fontWeight: 800, color: GREEN, display: "inline-flex", alignItems: "center", gap: 5 }}>
+            <span style={{ width: 7, height: 7, borderRadius: 99, background: GREEN, display: "inline-block" }} /> EN VIVO · {live?.el ?? 0}&apos;
+          </span>
+        ) : (
+          <span style={{ fontSize: 10.5, color: DIM, display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={11} /> {fmtKickoff(m)}</span>
+        )}
         <span style={{
           fontSize: 12, fontWeight: 900, color: tierColor, display: "inline-flex", alignItems: "center", gap: 4,
           background: `${tierColor}1f`, border: `1px solid ${tierColor}55`, borderRadius: 99, padding: "3px 9px",
@@ -1194,34 +1222,53 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
         </span>
       </div>
 
-      <TeamLine flag={m.hf} name={m.h} />
+      <TeamLine flag={m.hf} name={m.h} goals={showScore ? hg : undefined} win={finished && hg > ag} lose={finished && hg < ag} />
       <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
-      <TeamLine flag={m.af} name={m.a} />
+      <TeamLine flag={m.af} name={m.a} goals={showScore ? ag : undefined} win={finished && ag > hg} lose={finished && ag < hg} />
 
-      {/* Fila inferior: mood (recompensa) + estado/acción */}
+      {/* Fila inferior: terminado → ver detalle + tu puntuación; si no → mood + estado */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 12 }}>
-        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
-          {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
-        </span>
-        {state === "done" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Check size={13} /> Ya predicho
-          </span>
-        ) : state === "partial" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
-          </span>
+        {finished ? (
+          <>
+            <span style={{ fontSize: 11, color: DIM, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 3 }}>Ver detalle <ChevronRight size={13} /></span>
+            {scored ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: result!.points > 0 ? GREEN : MID, border: `1px solid ${result!.points > 0 ? `${GREEN}66` : "rgba(255,255,255,0.18)"}`, background: result!.points > 0 ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.05)", borderRadius: 99, padding: "5px 11px" }}>
+                <Trophy size={12} /> {result!.points > 0 ? `+${result!.points}` : "0"} pts
+              </span>
+            ) : result && result.total > 0 ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Clock size={12} /> Calculando…
+              </span>
+            ) : (
+              <span style={{ fontSize: 11, color: DIM, fontWeight: 700 }}>No participaste</span>
+            )}
+          </>
         ) : (
-          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
-            Jugar <ChevronRight size={15} />
-          </span>
+          <>
+            <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
+              {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
+            </span>
+            {state === "done" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Check size={13} /> Ya predicho
+              </span>
+            ) : state === "partial" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
+              </span>
+            ) : (
+              <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
+                Jugar <ChevronRight size={15} />
+              </span>
+            )}
+          </>
         )}
       </div>
     </button>
   );
 }
 
-function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number } | null }) {
+function GroupGrid({ matches, onPick, mine, liveMap }: { matches: Match[]; onPick: (id: string) => void; mine: MineData | null; liveMap: LiveMap }) {
   const typesTotal = mine?.types_total ?? PREDICTION_TYPES.length;
   const groups = useMemo(() => {
     const map = new Map<string, Match[]>();
@@ -1257,7 +1304,7 @@ function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: s
               <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} />)}
+              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} live={liveMap[m.i]} result={mine?.scores?.[String(m.i)] ?? null} />)}
             </div>
           </div>
         ))}

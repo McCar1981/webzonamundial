@@ -244,6 +244,27 @@ export async function predictedCountsByUser(userId: string): Promise<Record<stri
   return counts;
 }
 
+/**
+ * Puntuación del usuario por partido (TODOS, sin tope): nº de tipos jugados,
+ * cuántos ya resueltos y los puntos sumados. Para que el tablero pinte cada
+ * partido terminado con "Finalizado" + la puntuación. Un tipo cuenta como
+ * resuelto cuando points_earned deja de ser null (lo fija el cron de
+ * resolución). Lectura propia (RLS), una sola consulta.
+ */
+export interface MyMatchScore { points: number; resolved: number; total: number }
+export async function myMatchScores(userId: string): Promise<Record<string, MyMatchScore>> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa.from("predictions").select("match_id,points_earned").eq("user_id", userId);
+  const out: Record<string, MyMatchScore> = {};
+  for (const r of (data ?? []) as { match_id: string; points_earned: number | null }[]) {
+    const e = out[r.match_id] ?? { points: 0, resolved: 0, total: 0 };
+    e.total += 1;
+    if (r.points_earned != null) { e.resolved += 1; e.points += r.points_earned; }
+    out[r.match_id] = e;
+  }
+  return out;
+}
+
 // ─── Resultados recientes del usuario (para el lobby) ────────────────────────
 export interface MyMatchResult {
   match_id: string;

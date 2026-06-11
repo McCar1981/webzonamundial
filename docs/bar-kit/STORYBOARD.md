@@ -17,7 +17,7 @@ Bloques comunes (todos los formatos):
 
 ## WhatsApp — 1080 × 1350 (4:5) ✅ implementado
 
-Reusa la imagen piloto `porra-digital-template-4x5.png`. Zonas (sobre 1080×1350):
+Reusa la imagen piloto `porra-digital-template-4x5.webp`. Zonas (sobre 1080×1350):
 
 | Zona | x | y | w | h |
 |---|---|---|---|---|

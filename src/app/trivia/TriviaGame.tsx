@@ -513,12 +513,12 @@ export default function TriviaGame() {
         .zm-opt:hover:not(:disabled){border-color:${GOLD}88;transform:translateY(-2px)}
         .zm-result-bg{
           background-color:${BG};
-          background-image:linear-gradient(to bottom,rgba(5,11,20,.92),rgba(5,11,20,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.png');
+          background-image:linear-gradient(to bottom,rgba(5,11,20,.92),rgba(5,11,20,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.webp');
           background-size:cover;background-position:center top;background-repeat:no-repeat;
         }
         @media(min-width:1024px){
           .zm-result-bg{
-            background-image:linear-gradient(to bottom,rgba(5,11,20,.9),rgba(5,11,20,.98)),url('/assets/trivia/results/trivia-result-bg-desktop.png');
+            background-image:linear-gradient(to bottom,rgba(5,11,20,.9),rgba(5,11,20,.98)),url('/assets/trivia/results/trivia-result-bg-desktop.webp');
             background-attachment:fixed;
           }
         }
@@ -1047,7 +1047,7 @@ function Result({
       <style>{`
         .zm-r{max-width:760px;margin:0 auto;animation:pop .3s ease}
         .zm-r-eyebrow{text-align:center;color:#E6C85C;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px}
-        .zm-r-card{position:relative;background-image:linear-gradient(180deg,rgba(7,20,38,.35),rgba(7,20,38,.55)),url('${R}/result-main-panel.png');background-size:100% 100%;background-repeat:no-repeat;padding:42px 22px 30px;text-align:center;margin-bottom:16px}
+        .zm-r-card{position:relative;background-image:linear-gradient(180deg,rgba(7,20,38,.35),rgba(7,20,38,.55)),url('${R}/result-main-panel.webp');background-size:100% 100%;background-repeat:no-repeat;padding:42px 22px 30px;text-align:center;margin-bottom:16px}
         .zm-r-medal{width:88px;height:88px;margin:0 auto 8px;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
         .zm-r-score{font-weight:900;line-height:.95;font-size:clamp(46px,13vw,66px);color:#F4F6FA;text-shadow:0 2px 18px rgba(0,0,0,.4)}
         .zm-r-score b{color:#E6C85C}
@@ -1082,7 +1082,7 @@ function Result({
 
       {/* Card principal */}
       <div className="zm-r-card">
-        <img className="zm-r-medal" src={`${R}/rank-medal.png`} alt="" />
+        <img className="zm-r-medal" src={`${R}/rank-medal.webp`} alt="" />
         <div className="zm-r-score">
           <b>{result.points.toLocaleString()}</b>
           <em>puntos</em>

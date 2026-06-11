@@ -5,7 +5,7 @@
 // (no la rediseña) y colocando encima logo, premio, QR y URL en zonas
 // controladas (ver BarKitPosterTemplate).
 //
-// Imagen base: public/assets/bar-kit/porra-digital-template-4x5.png (1122×1402).
+// Imagen base: public/assets/bar-kit/porra-digital-template-4x5.webp (1122×1402).
 //
 // Parámetros de prueba:
 //   ?debug=1                → dibuja bordes/etiquetas en cada zona dinámica

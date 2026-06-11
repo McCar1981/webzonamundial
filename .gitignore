@@ -1,6 +1,7 @@
 node_modules/
 .next/
 dist/
+_png-backup/
 data/registros.json
 data/waitlist.json
 data/noticias-ingested.json

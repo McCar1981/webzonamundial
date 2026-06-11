@@ -15,7 +15,7 @@ import type { CSSProperties } from "react";
 // el escalado a preview/impresión se hace en el WRAPPER, nunca aquí.
 export const POSTER_SIZE = { width: 1122, height: 1402 } as const;
 
-export const POSTER_TEMPLATE_URL = "/assets/bar-kit/porra-digital-template-4x5.png";
+export const POSTER_TEMPLATE_URL = "/assets/bar-kit/porra-digital-template-4x5.webp";
 
 // Forma de una zona y del conjunto de zonas, para reutilizar en otros formatos.
 export interface PosterZone { x: number; y: number; w: number; h: number }

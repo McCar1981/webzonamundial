@@ -14,6 +14,7 @@ import { SEDES } from '@/data/sedes';
 import { MATCHES } from '@/data/matches';
 import { getExtendedSeleccion } from '@/data/selecciones-extended';
 import type { SeleccionExtended } from '@/data/selecciones-extended';
+import { useTournamentLive } from '@/lib/grupos/useTournamentLive';
 
 const BG = "#030712";
 
@@ -370,6 +371,9 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
   const desc = gT.descriptions[letter as keyof typeof gT.descriptions] || '';
   const subtitle = gT.tags[letter as keyof typeof gT.tags] || '';
 
+  // Marcadores y clasificación en vivo: misma fuente que el calendario.
+  const liveMap = useTournamentLive();
+
   // Generate all pairings for head-to-head
   const pairings: Array<[Seleccion, Seleccion]> = [];
   for (let i = 0; i < selecciones.length; i++) {
@@ -461,7 +465,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
           <div className="lg:col-span-8 space-y-6">
             {/* Fixture */}
             <AnimatedSection y={20}>
-              <CalendarioGrupo grupo={letter} groupColor={groupColor} />
+              <CalendarioGrupo grupo={letter} groupColor={groupColor} liveMap={liveMap} />
             </AnimatedSection>
 
             {/* Group Analysis */}
@@ -522,7 +526,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
           <div className="lg:col-span-4 space-y-6">
             {/* Standings */}
             <AnimatedSection y={20}>
-              <TablaClasificacion selecciones={selecciones} groupColor={groupColor} />
+              <TablaClasificacion selecciones={selecciones} groupColor={groupColor} liveMap={liveMap} />
             </AnimatedSection>
 
             {/* Group Stats */}

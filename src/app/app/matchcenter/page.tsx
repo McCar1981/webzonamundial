@@ -9,6 +9,7 @@ import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 import { MATCHES } from "@/data/matches";
 import { matchSlug } from "@/lib/match-center/slug";
 import FootballScoreboard from "@/components/FootballScoreboard";
+import TodayLiveBoard from "./TodayLiveBoard";
 
 const J1 = MATCHES.filter((m) => m.j === 1).slice(0, 12);
 
@@ -135,6 +136,9 @@ export default function MatchCenterPage() {
           </div>
         </div>
       </section>
+
+      {/* MODO JORNADA: los partidos de hoy con su estado real, en vivo. */}
+      <TodayLiveBoard />
 
       {/* Hub de partidos */}
       <section style={{ padding: "20px 20px 60px", background: BG }}>

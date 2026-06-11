@@ -310,14 +310,21 @@ export default async function RootLayout({
           (en module-eval, antes de hidratar) y React avisaría en dev de
           "Prop `style` did not match" en todas las rutas. */}
       <body>
-        {/* Google Consent Mode v2: por defecto todo denied. CookieConsent lo
-            actualiza al elegir el usuario. SIEMPRE presente (no solo con ads):
-            GA4 carga en todas las visitas y el RGPD exige el default denied y
-            el banner aunque AdSense esté apagado. (Antes ambos colgaban de
-            showAds y producción quedó sin gestión de consentimiento — hallazgo
-            crítico de la auditoría AdSense 11-06-2026.) */}
+        {/* Google Consent Mode v2 — default POR REGIÓN.
+            - EU/EEA + Reino Unido + Suiza: todo denied por defecto (lo exige el
+              RGPD); CookieConsent lo concede si el usuario pulsa "Aceptar todas".
+            - Resto del mundo (LATAM, EEUU, etc.): granted por defecto. La mayor
+              parte de la audiencia es LATAM (ul=es-419) y NO está bajo RGPD, así
+              que meterla en denied la hacía invisible en GA4 Tiempo real sin
+              necesidad legal (un usuario "denegado" usa client_id temporal y GA4
+              apenas lo cuenta como activo). Google aplica el bloque `region` según
+              la IP, así que no hace falta geolocalizar en el server.
+            SIEMPRE presente (no solo con ads): GA4 carga en todas las visitas.
+            (Hallazgo: auditoría AdSense 11-06 dejó la gestión de consentimiento;
+            el split por región se añadió el 11-06 al ver 8 usuarios reales en la
+            app salir como 1 en Tiempo real por estar denied por defecto.) */}
         <Script id="consent-mode-v2" strategy="beforeInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`}
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],wait_for_update:500});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});`}
         </Script>
         {showAds ? (
           <Script

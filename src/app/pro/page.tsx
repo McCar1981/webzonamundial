@@ -13,7 +13,7 @@ import ProPanel from "./ProPanel";
 export const metadata: Metadata = {
   title: "Plan Pro: juega sin límites | ZonaMundial",
   description:
-    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 12 €/año.",
+    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 15 €/año.",
 };
 
 export const dynamic = "force-dynamic";

@@ -21,7 +21,7 @@ export interface KitImageTemplate {
 // reutiliza la imagen validada. Las zonas son las del piloto escaladas a 1080×1350.
 // Imagen base del cartel por tipo de porra. Misma proporción 4:5 y MISMAS zonas;
 // solo cambia el diseño de fondo ("EN TU BAR" vs "EN TU EMPRESA").
-export const POSTER_TEMPLATE_BAR = "/assets/bar-kit/porra-digital-template-4x5.png";
+export const POSTER_TEMPLATE_BAR = "/assets/bar-kit/porra-digital-template-4x5.webp";
 export const POSTER_TEMPLATE_EMPRESA = "/assets/empresas-kit/porra-digital-template-empresa-4x5.png";
 
 /** URL del cartel base según el tipo de porra (bar | empresa). */

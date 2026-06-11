@@ -15,7 +15,7 @@ dinámicos (logo del bar, premio, QR, URL) en ZONAS controladas.
 
 - Carpeta: `public/assets/bar-kit/`
 - Nombre: `porra-digital-template-<formato>.png` (PNG, fondo opaco)
-- Ejemplo ya en uso: `porra-digital-template-4x5.png` (piloto, usado por WhatsApp)
+- Ejemplo ya en uso: `porra-digital-template-4x5.webp` (piloto, usado por WhatsApp)
 
 ## Tabla de formatos
 

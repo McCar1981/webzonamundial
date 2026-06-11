@@ -12,14 +12,14 @@ import TrophyReveal from "./TrophyReveal";
 import { SELECCIONES } from "@/data/selecciones";
 import type { CareerState, Trophy } from "@/lib/modo-carrera/types";
 
-const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.png";
+const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.webp";
 
 // Elegimos la imagen del trofeo por palabras clave del nombre (no hay subtipo
 // en los datos). Por defecto, la copa del Mundial.
 function trophyImg(name: string): string {
   const t = name.toLowerCase();
-  if (/grupo|fase de grupos/.test(t)) return "/img/modo-carrera/trofeos/trofeo-grupos.png";
-  if (/octavo|cuarto|eliminator|fase final/.test(t)) return "/img/modo-carrera/trofeos/trofeo-octavos.png";
+  if (/grupo|fase de grupos/.test(t)) return "/img/modo-carrera/trofeos/trofeo-grupos.webp";
+  if (/octavo|cuarto|eliminator|fase final/.test(t)) return "/img/modo-carrera/trofeos/trofeo-octavos.webp";
   return TROPHY_IMG;
 }
 
@@ -88,12 +88,12 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
     <div style={{ maxWidth: 1100, margin: "0 auto" }}>
       <style>{`
         .mc-vitrina {
-          background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.png');
+          background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.webp');
           background-size: cover; background-position: center;
         }
         @media (max-width: 640px) {
           .mc-vitrina {
-            background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg-mobile.png');
+            background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg-mobile.webp');
           }
         }
       `}</style>

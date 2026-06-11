@@ -445,14 +445,14 @@ const PJ_CSS = `
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
     linear-gradient(90deg, rgba(6,11,20,0.94) 0%, rgba(6,11,20,0.72) 45%, rgba(6,11,20,0.42) 100%),
-    url('/img/predicciones/hero-mobile.png');
+    url('/img/predicciones/hero-mobile.webp');
   background-size: cover; background-position: center;
 }
 @media (min-width: 768px) {
   .predictions-hero .pj-hero-bg {
     background-image:
       linear-gradient(90deg, rgba(6,11,20,0.92) 0%, rgba(6,11,20,0.62) 50%, rgba(6,11,20,0.34) 100%),
-      url('/img/predicciones/hero-desktop.png');
+      url('/img/predicciones/hero-desktop.webp');
   }
 }
 

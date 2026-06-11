@@ -82,9 +82,9 @@ export default function PremiumPage() {
       <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 px-5">
         {/* Cinematic background — desktop & mobile variants */}
         <picture>
-          <source media="(min-width: 768px)" srcSet="/img/premium/bg-desktop.png" />
+          <source media="(min-width: 768px)" srcSet="/img/premium/bg-desktop.webp" />
           <img
-            src="/img/premium/bg-mobile.png"
+            src="/img/premium/bg-mobile.webp"
             alt=""
             role="presentation"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"

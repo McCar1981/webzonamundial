@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
+import PushPromptCard from "@/components/app/PushPromptCard";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
 
@@ -937,6 +938,10 @@ export default function AppHubPage() {
         <div style={{ margin: "4px 0 18px" }}>
           <StoryViewer hideWhenEmpty />
         </div>
+
+        {/* Activador de notificaciones: solo aparece a quien NO las tiene aún.
+            El lobby es donde está la gente logueada → mejor sitio para pedirlas. */}
+        <PushPromptCard />
 
         {/* ═══ 2. HERO DINÁMICO · LIVE HUB ═══
             No repite "Hacer predicción": en base invita a explorar/ver partido; en

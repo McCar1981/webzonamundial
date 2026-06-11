@@ -2,6 +2,9 @@ node_modules/
 .next/
 dist/
 _png-backup/
+
+# VS Code "Local History" snapshots (never commit)
+.history/
 data/registros.json
 data/waitlist.json
 data/noticias-ingested.json

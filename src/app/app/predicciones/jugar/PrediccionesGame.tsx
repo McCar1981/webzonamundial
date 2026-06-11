@@ -637,6 +637,9 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
   const [query, setQuery] = useState("");
   const [pulse, setPulse] = useState<ActivityPulse | null>(null);
   const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null>(null);
+  // Marcadores reales (feed durable del Match Center): para marcar las cards ya
+  // jugadas como "Finalizado" con su resultado. Endpoint público y cacheado.
+  const [live, setLive] = useState<Record<string, { s: string; sc: [number, number] }>>({});
 
   useEffect(() => {
     let alive = true;
@@ -647,6 +650,10 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
     fetch("/api/predictions/mine")
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => { if (alive && j) setMine(j); })
+      .catch(() => {});
+    fetch("/api/calendario/live")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setLive(j); })
       .catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -720,7 +727,7 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
 
       {/* Nivel 2 — más partidos para predecir */}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
-      <GroupGrid matches={filtered} onPick={onPick} mine={mine} />
+      <GroupGrid matches={filtered} onPick={onPick} mine={mine} live={live} />
 
       {/* Pulso de comunidad (prueba social) bajo los partidos */}
       <LiveActivityBand pulse={pulse} />
@@ -1163,21 +1170,28 @@ function TeamLine({ flag, name }: { flag: string; name: string }) {
 
 const AMBER = "#f59e0b";
 
-function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number }) {
+function MatchCard({ m, onPick, predicted, typesTotal, live, result }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number; live?: { s: string; sc: [number, number] }; result?: RecentResult }) {
   const t = tierOf(m);
   const tierColor = TIER_COLOR[t.label];
   const barCtx = useBarContext();
 
+  // ¿El partido ya terminó? (feed real del Match Center). Cuando termina, la card
+  // deja de ser "pre-partido" (Sorpresa posible / Ya predicho) y muestra el
+  // marcador, "Finalizado" y la puntuación del usuario.
+  const finished = !!live && ["FT", "AET", "PEN"].includes(live.s);
+
   // Estado del usuario en este partido.
   const state: "play" | "partial" | "done" =
     predicted >= typesTotal && typesTotal > 0 ? "done" : predicted > 0 ? "partial" : "play";
-  const stateLabel = state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
+  const stateLabel = finished ? "Finalizado" : state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
 
   return (
     <button
       className="match-row"
       onClick={() => onPick(String(m.i))}
-      aria-label={`${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
+      aria-label={finished
+        ? `Finalizado. ${m.h} ${live!.sc[0]}, ${m.a} ${live!.sc[1]}${result ? `. Tu puntuación: ${result.points} puntos` : ""}. Ver resultado y podio`
+        : `${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
       style={{
         display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: TEXT,
         background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
@@ -1198,31 +1212,56 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
       <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
       <TeamLine flag={m.af} name={m.a} />
 
-      {/* Fila inferior: mood (recompensa) + estado/acción */}
+      {/* Fila inferior: finalizado → marcador + tu puntuación; si no, mood + estado */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 12 }}>
-        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
-          {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
-        </span>
-        {state === "done" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Check size={13} /> Ya predicho
-          </span>
-        ) : state === "partial" ? (
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
-            <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
-          </span>
+        {finished ? (
+          <>
+            <span style={{ fontSize: 11.5, fontWeight: 700, color: DIM, display: "inline-flex", alignItems: "center", gap: 7 }}>
+              Finalizado
+              <span style={{ color: TEXT, fontWeight: 900, fontSize: 15 }}>{live!.sc[0]}–{live!.sc[1]}</span>
+            </span>
+            {result ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: result.points >= 0 ? GREEN : RED, border: `1px solid ${result.points >= 0 ? GREEN : RED}66`, background: result.points >= 0 ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                {result.points >= 0 ? "+" : ""}{result.points} pts · {result.correct}/{result.total}
+              </span>
+            ) : (
+              <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GOLD2 }}>
+                Ver resultado <ChevronRight size={15} />
+              </span>
+            )}
+          </>
         ) : (
-          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
-            Jugar <ChevronRight size={15} />
-          </span>
+          <>
+            <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
+              {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
+            </span>
+            {state === "done" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Check size={13} /> Ya predicho
+              </span>
+            ) : state === "partial" ? (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+                <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
+              </span>
+            ) : (
+              <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
+                Jugar <ChevronRight size={15} />
+              </span>
+            )}
+          </>
         )}
       </div>
     </button>
   );
 }
 
-function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number } | null }) {
+function GroupGrid({ matches, onPick, mine, live }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number; recent_results?: RecentResult[] } | null; live: Record<string, { s: string; sc: [number, number] }> }) {
   const typesTotal = mine?.types_total ?? PREDICTION_TYPES.length;
+  const resultByMatch = useMemo(() => {
+    const map = new Map<string, RecentResult>();
+    for (const r of mine?.recent_results ?? []) map.set(r.match_id, r);
+    return map;
+  }, [mine]);
   const groups = useMemo(() => {
     const map = new Map<string, Match[]>();
     for (const m of matches) {
@@ -1257,7 +1296,7 @@ function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: s
               <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} />)}
+              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} live={live[String(m.i)]} result={resultByMatch.get(String(m.i))} />)}
             </div>
           </div>
         ))}

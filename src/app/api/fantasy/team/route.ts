@@ -62,6 +62,18 @@ function lockedChangeBetween(before: SquadSlot[], after: SquadSlot[], gw: number
   return null;
 }
 
+/** Primer equipo (sin estado previo): nombre del primer jugador CERRADO que se
+ * intenta alinear, o null. Evita el "retrovisor" de las altas nuevas a mitad de
+ * jornada (fichar a quien ya jugó hoy sabiendo sus puntos). */
+function firstLockedIn(slots: SquadSlot[], gw: number): string | null {
+  for (const s of slots) {
+    if (!s.playerId) continue;
+    const p = getPlayerById(s.playerId);
+    if (p && playerMatchLocked(p.flag, gw)) return p.name;
+  }
+  return null;
+}
+
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
@@ -94,11 +106,15 @@ export async function PUT(req: Request) {
   // La plantilla se congela 24h antes del primer partido de la jornada y
   // durante la jornada (Pro = sustituciones en vivo). Las escrituras que NO
   // tocan la alineación (confirmar puntos de jornada, metadatos) pasan igual.
+  // El PRIMER equipo (sin estado previo) NO cuenta como cambio: un alta nueva a
+  // mitad de jornada no es una sustitución en vivo, y bloquearla dejaba a los
+  // registros de días de partido sin poder crear equipo. La equidad la pone el
+  // cierre por partido de abajo (no pueden alinear a quien ya jugó).
   if (gameweekLockedForFree(state.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) &&
       !(await isPro(user.id, user.email))) {
     const lineup = (s: FantasyTeamState) =>
       JSON.stringify({ slots: s.slots, captain: s.captainId, vice: s.viceId, formation: s.formation });
-    const lineupChanged = !prev || lineup(prev) !== lineup(state);
+    const lineupChanged = prev ? lineup(prev) !== lineup(state) : false;
     if (lineupChanged) {
       trackLimitHit("fantasy_lock");
       const payload: ProRequiredPayload = {
@@ -118,8 +134,13 @@ export async function PUT(req: Request) {
   // confirmar (gw avanza) los slots pasan a ser la base de la siguiente, cuyos
   // partidos aún no llegaron. Cierra el hueco de las sustituciones en vivo Pro
   // (sacar a alguien tras verlo fallar / meterlo con la alineación filtrada).
-  if (prev && state.gameweek === prev.gameweek && isFantasyLive()) {
-    const lockedName = lockedChangeBetween(prev.slots, state.slots, state.gameweek);
+  if ((!prev || state.gameweek === prev.gameweek) && isFantasyLive()) {
+    // Con estado previo: solo los CAMBIOS de jugadores cerrados. Primer equipo
+    // (sin previo): ningún jugador cerrado puede entrar — si no, un alta nueva
+    // alinearía con retrovisor a quien ya jugó hoy y cobraría sus puntos.
+    const lockedName = prev
+      ? lockedChangeBetween(prev.slots, state.slots, state.gameweek)
+      : firstLockedIn(state.slots, state.gameweek);
     if (lockedName) {
       return NextResponse.json(
         {

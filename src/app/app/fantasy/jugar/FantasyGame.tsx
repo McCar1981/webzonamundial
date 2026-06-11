@@ -10,7 +10,9 @@ import { getPlayerById, applyRealStats } from "@/lib/fantasy/players";
 import { remapFormation, validateTeam, transferCost, refundForElimination } from "@/lib/fantasy/rules";
 import { isEliminated } from "@/lib/fantasy/tournament";
 import { isFantasyLive } from "@/lib/fantasy/season";
-import { playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
+import { playerMatchLocked, MATCH_LOCK_HOURS, gameweekLockedForFree } from "@/lib/fantasy/fixtures";
+import { FREE_LIMITS } from "@/lib/pro/limits";
+import { openProPaywall } from "@/lib/pro/paywall-client";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -61,6 +63,10 @@ export default function FantasyGame() {
   const [showCreatorPicker, setShowCreatorPicker] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
   const [authed, setAuthed] = useState<boolean | null>(null);
+  // El servidor rechazó un guardado por el lock Free (plantilla cerrada). En vez
+  // de reabrir el modal Pro en cada cambio, se muestra UN banner fijo y se pausa
+  // el autoguardado mientras dure el cierre de la jornada.
+  const [freeLocked, setFreeLocked] = useState(false);
   // syncReady evita que el autoguardado pise el equipo del servidor con el
   // estado por defecto durante el breve instante previo a la carga inicial.
   const syncReady = useRef(false);
@@ -149,11 +155,19 @@ export default function FantasyGame() {
 
   // Autoguardado en el servidor (debounce) cuando hay sesión. No se dispara
   // hasta que la carga inicial terminó (syncReady) para no pisar lo del backend.
+  // Si el servidor rechaza por el lock Free, se enciende el banner y se PAUSA el
+  // autoguardado mientras dure el cierre (sin 403 en bucle ni paywall en cada
+  // fichaje); al terminar la jornada se reactiva solo.
   useEffect(() => {
     if (!loaded || !authed || !syncReady.current) return;
-    const id = window.setTimeout(() => { saveServerTeam(team).catch(() => {}); }, 1200);
+    if (freeLocked && gameweekLockedForFree(team.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek)) return;
+    const id = window.setTimeout(() => {
+      saveServerTeam(team)
+        .then((r) => { if (r.proRequired) setFreeLocked(true); })
+        .catch(() => {});
+    }, 1200);
     return () => window.clearTimeout(id);
-  }, [team, loaded, authed]);
+  }, [team, loaded, authed, freeLocked]);
 
   // Al cambiar de pestaña, vuelve arriba. Sin esto, si venías scrolleado abajo
   // en una vista larga (p.ej. Mercado) la siguiente se quedaba "cargada desde
@@ -527,6 +541,20 @@ export default function FantasyGame() {
           </div>
         </div>
       </div>
+
+      {/* Lock Free: UN banner fijo en vez del modal en cada cambio. El enlace a
+          Pro es acción explícita del usuario, así que abre el paywall normal. */}
+      {freeLocked && gameweekLockedForFree(team.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) && (
+        <div style={{ background: "rgba(201,168,76,0.10)", borderBottom: "1px solid rgba(201,168,76,0.35)", padding: "8px 16px", fontSize: 12.5, fontWeight: 700, textAlign: "center", color: GOLD2 }}>
+          🔒 Jornada en curso: tu alineación está cerrada y los cambios no se guardarán.{" "}
+          <button
+            onClick={() => openProPaywall({ feature: "fantasy_lock" })}
+            style={{ background: "none", border: "none", color: "#fff", fontWeight: 800, cursor: "pointer", textDecoration: "underline", padding: 0, fontSize: 12.5 }}
+          >
+            Con Pro haces cambios en vivo
+          </button>
+        </div>
+      )}
 
       {/* Selecting banner */}
       {selectingSlot && tab === "mercado" && (

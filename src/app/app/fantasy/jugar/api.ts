@@ -68,6 +68,8 @@ export interface SaveTeamResult {
   confirmed: boolean;
   /** Puntos netos AUTORITATIVOS de la jornada (calculados en servidor), o null. */
   gameweekPoints: number | null;
+  /** true si el guardado se rechazó por el lock Free (plantilla cerrada → banner). */
+  proRequired: boolean;
 }
 
 /** Guarda el equipo en el servidor. gameweekScore se envía al confirmar jornada. */
@@ -82,11 +84,14 @@ export async function saveServerTeam(
       body: JSON.stringify({ state, gameweekScore }),
     });
     if (!res.ok) {
-      // Plantilla cerrada para Free (lock 24h / jornada en juego): abre el
-      // paywall global con el copy del límite.
+      // Plantilla cerrada para Free (lock 24h / jornada en juego). El modal se
+      // abre COMO MUCHO una vez cada 15 min: el autoguardado se dispara con
+      // cada cambio del equipo y sin throttle el paywall salía en cada fichaje
+      // (espantaba a la gente). proRequired permite a la UI mostrar un banner
+      // fijo en su lugar.
       const err = await res.json().catch(() => ({}));
-      handleProRequired(err);
-      return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
+      const proRequired = handleProRequired(err, "generic", { throttleMs: 15 * 60_000 });
+      return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null, proRequired };
     }
     const data = (await res.json()) as { futcoins?: number; xpAwarded?: number; confirmed?: boolean; gameweekPoints?: number | null };
     return {
@@ -95,9 +100,10 @@ export async function saveServerTeam(
       xpAwarded: data.xpAwarded ?? 0,
       confirmed: data.confirmed ?? false,
       gameweekPoints: data.gameweekPoints ?? null,
+      proRequired: false,
     };
   } catch {
-    return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
+    return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null, proRequired: false };
   }
 }
 

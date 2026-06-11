@@ -15,8 +15,9 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ADMIN_COOKIE_NAME, isValidAdminCookie } from "@/lib/admin-auth";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getCreatorByEmail } from "@/lib/creators/program";
+import { getCreatorByEmail, getManagerByEmail } from "@/lib/creators/program";
 import CreatorPanel from "./CreatorPanel";
+import ManagerPanel from "./ManagerPanel";
 
 export const metadata: Metadata = {
   title: "Panel de creadores · ZonaMundial",
@@ -45,6 +46,20 @@ export default async function AdminRootPage() {
   }
 
   if (email) {
+    // 2) Manager (agencia): ve la remuneración de TODOS los creadores, solo
+    //    lectura. Tiene prioridad sobre el panel de creador. NO recibe cookie
+    //    admin, así que NO puede entrar a /admin/creadores ni al resto del admin.
+    let manager = null;
+    try {
+      manager = await getManagerByEmail(email);
+    } catch {
+      manager = null;
+    }
+    if (manager) {
+      return <ManagerPanel manager={manager} />;
+    }
+
+    // 3) Creador con su cuenta normal de la web → solo SU información.
     let creator = null;
     try {
       creator = await getCreatorByEmail(email);

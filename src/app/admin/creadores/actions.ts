@@ -224,3 +224,36 @@ export async function addSponsor(formData: FormData): Promise<ActionResult> {
   revalidate();
   return { ok: true };
 }
+
+// ── Managers (rol que ve la remuneración de todos los creadores, read-only) ──
+
+export async function addManager(formData: FormData): Promise<ActionResult> {
+  if (!(await requireAdmin())) return { ok: false, error: "No autorizado." };
+
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  if (!EMAIL_RE.test(email)) return { ok: false, error: "Email no válido." };
+  const name = String(formData.get("name") ?? "").trim().slice(0, 80) || null;
+
+  const admin = creatorsAdminClient();
+  const { error } = await admin
+    .from("creator_managers")
+    .upsert({ email, name, active: true }, { onConflict: "email" });
+  if (error) return dbError(error.message);
+
+  revalidate();
+  return { ok: true };
+}
+
+export async function removeManager(formData: FormData): Promise<ActionResult> {
+  if (!(await requireAdmin())) return { ok: false, error: "No autorizado." };
+
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  if (!email) return { ok: false, error: "Falta el email." };
+
+  const admin = creatorsAdminClient();
+  const { error } = await admin.from("creator_managers").delete().eq("email", email);
+  if (error) return dbError(error.message);
+
+  revalidate();
+  return { ok: true };
+}

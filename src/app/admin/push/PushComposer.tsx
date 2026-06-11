@@ -51,7 +51,8 @@ export default function PushComposer() {
       const data = await res.json();
       if (data.ok) {
         setImage(data.url);
-        setMsg({ ok: true, text: "Imagen subida ✓" });
+        const kb = data.bytes ? ` y optimizada (${Math.round(data.bytes / 1024)} KB)` : "";
+        setMsg({ ok: true, text: `Imagen subida${kb} ✓` });
       } else {
         setMsg({ ok: false, text: data.error ?? "No se pudo subir la imagen." });
       }
@@ -197,10 +198,10 @@ export default function PushComposer() {
             className="hidden"
           />
           <p className="text-[11px] text-gray-500 mt-1.5">
-            JPG, PNG o WEBP, máx 5 MB. Se sube a ZonaMundial y se usa su enlace automáticamente.
-            <strong className="text-gray-400"> Tamaño ideal: 1024×512 px (proporción 2:1)</strong> y
-            menos de 1 MB. Deja el texto y los logos en el centro: algunos móviles recortan los bordes
-            de arriba y abajo.
+            JPG, PNG o WEBP. <strong className="text-gray-400">La ligeramos sola al subirla</strong>, así
+            que no te preocupes del peso (sube lo que tengas, aunque pese varios MB). Encaje ideal
+            apaisado <strong className="text-gray-400">2:1</strong> (p.ej. 1024×512). Deja el texto y los
+            logos hacia el centro: algunos móviles recortan los bordes de arriba y abajo.
           </p>
         </div>
         <div>
@@ -265,8 +266,14 @@ export default function PushComposer() {
             </div>
           </div>
           {image && (
+            // object-contain: mostramos la imagen ENTERA (sin recortar) para que
+            // se vea tal cual se subió; el letterbox simula el marco del push.
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={image} alt="" className="mt-3 w-full rounded-lg object-cover max-h-40" />
+            <img
+              src={image}
+              alt=""
+              className="mt-3 w-full rounded-lg object-contain max-h-48 bg-black/30"
+            />
           )}
         </div>
         <p className="text-xs text-gray-500 mt-3 leading-relaxed">

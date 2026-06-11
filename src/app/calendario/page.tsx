@@ -1,10 +1,19 @@
 // src/app/calendario/page.tsx
-// ZonaMundial.app — Calendario del Mundial 2026 (Diseño ESPECTACULAR)
+// ZonaMundial.app — Calendario del Mundial 2026 (UX "modo torneo")
 //
 // Horarios: matches.ts guarda las horas en ET; aquí TODO se muestra en la
 // zona horaria del usuario (detectada vía Intl tras hidratar) y los partidos
 // se agrupan por el día LOCAL del usuario — un sábado 22:00 de América es
 // domingo de madrugada en Europa y se lista en el domingo del usuario.
+//
+// UX: la página es una HERRAMIENTA, no una landing — hero compacto (el
+// primer partido se ve sin scroll en móvil), barra sticky única de días con
+// HOY + Filtros (bottom-sheet), filas de agenda en escritorio y auto-salto
+// al día actual durante el torneo.
+//
+// Imagen de hero (opcional): public/images/calendario/hero.webp — 1920×800,
+// muy oscura o tolerante al overlay navy que se pinta encima. Si el archivo
+// no existe, el degradado actual hace de fondo (onError oculta el <img>).
 
 "use client";
 
@@ -12,10 +21,9 @@ import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { AnimatedSection } from "@/components/AnimatedSection";
 import { SvgIcon } from "@/components/icons";
 import { SELECCIONES } from "@/data/selecciones";
-import { PHASES, GROUPS, flagUrl, GOLD, MID } from "@/data/matches";
+import { flagUrl } from "@/data/matches";
 import type { Match } from "@/data/matches";
 import {
   WC_MATCHES,
@@ -27,17 +35,20 @@ import {
   POSTMATCH_MS,
   getUserTimezone,
   groupByLocalDay,
+  localDayKey,
+  matchInstant,
+  fmtTime,
   tzCityLabel,
-  currentPhaseAt,
 } from "@/lib/calendario/time";
+import { isLive } from "@/lib/calendario/live";
 import {
-  CountdownBanner,
   DateHeader,
-  Dropdown,
-  FilterBtn,
-  MatchCard,
+  DayChips,
+  FilterSheet,
   MatchModal,
+  MatchRow,
   MobileTimeline,
+  TournamentStrip,
 } from "./_components";
 import { useLiveScores } from "./_components/useLiveScores";
 import CalendarExportButton from "@/components/CalendarExportButton";
@@ -56,13 +67,14 @@ export default function CalendarioPage() {
   const cT = t.calendario;
   const nav = t.nav;
 
-  const [phase, setPhase] = useState("Fase de grupos");
+  const [phase, setPhase] = useState("all");
   const [group, setGroup] = useState("all");
   const [selected, setSelected] = useState<Match | null>(null);
   const [teamFilter, setTeamFilter] = useState<string>("all");
   const [venueFilter, setVenueFilter] = useState<string>("all");
   const [favoritesOnly, setFavoritesOnly] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [activeDay, setActiveDay] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // TZ del usuario. Arranca en ET (mismo render en servidor y cliente, sin
@@ -70,9 +82,21 @@ export default function CalendarioPage() {
   const [tz, setTz] = useState(SOURCE_TZ);
   const [mounted, setMounted] = useState(false);
   const [liveActive, setLiveActive] = useState(false);
+  const [tournamentOver, setTournamentOver] = useState(false);
+  const [todayKey, setTodayKey] = useState<string | null>(null);
+
+  const scrollToDay = useCallback((key: string) => {
+    const desktop = window.matchMedia("(min-width: 640px)").matches;
+    const el =
+      document.getElementById(`day-${desktop ? "d" : "m"}-${key}`) ||
+      document.getElementById(`day-${desktop ? "m" : "d"}-${key}`);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveDay(key);
+  }, []);
 
   useEffect(() => {
-    setTz(getUserTimezone());
+    const userTz = getUserTimezone();
+    setTz(userTz);
     setMounted(true);
 
     const now = Date.now();
@@ -82,13 +106,21 @@ export default function CalendarioPage() {
       now >= OPENING_INSTANT.getTime() - 3_600_000 &&
         now <= FINAL_INSTANT.getTime() + POSTMATCH_MS
     );
+    setTournamentOver(now > FINAL_INSTANT.getTime() + POSTMATCH_MS);
 
-    // Fase por defecto según el momento del torneo (en eliminatorias no tiene
-    // sentido aterrizar en la fase de grupos ya jugada).
-    const current = currentPhaseAt(now);
-    if (current === null) setPhase("all");
-    else if (current !== "Fase de grupos") setPhase(current);
-  }, []);
+    // ¿Hoy (en el reloj del usuario) hay jornada? → chip HOY + auto-salto.
+    const k = localDayKey(new Date(now), userTz);
+    const hasToday = groupByLocalDay(WC_MATCHES, userTz).some((d) => d.key === k);
+    if (hasToday) {
+      setTodayKey(k);
+      // Con el torneo en marcha y sin deep-link, aterriza directamente en HOY
+      // (la pregunta del 90% de las visitas es "¿qué hay hoy?").
+      const started = now >= OPENING_INSTANT.getTime() - 6 * 3_600_000;
+      if (started && !window.location.hash) {
+        window.setTimeout(() => scrollToDay(k), 250);
+      }
+    }
+  }, [scrollToDay]);
 
   const liveMap = useLiveScores(liveActive);
 
@@ -177,69 +209,144 @@ export default function CalendarioPage() {
   );
 
   // Agrupación por día LOCAL del usuario, con días y partidos ordenados por
-  // instante real de saque (antes se agrupaba por fecha ET y en orden de id,
-  // con horas descolocadas dentro del día).
+  // instante real de saque.
   const grouped = useMemo(() => groupByLocalDay(filtered, tz), [filtered, tz]);
+
+  // Datos del strip "HOY": del calendario COMPLETO (no del filtrado) — el
+  // resumen del día refleja la realidad aunque haya filtros puestos.
+  const todayStats = useMemo(() => {
+    if (!todayKey) return { count: 0, nextKickoff: null as string | null };
+    const day = groupByLocalDay(WC_MATCHES, tz).find((d) => d.key === todayKey);
+    if (!day) return { count: 0, nextKickoff: null as string | null };
+    const now = Date.now();
+    const next = day.matches
+      .map((m) => matchInstant(m))
+      .find((at) => at !== null && at.getTime() > now);
+    return {
+      count: day.matches.length,
+      nextKickoff: next ? fmtTime(next, tz) : null,
+    };
+  }, [todayKey, tz, liveMap]);
+
+  const liveCount = useMemo(
+    () => Object.values(liveMap).filter((l) => isLive(l)).length,
+    [liveMap]
+  );
+
+  const activeFilterCount =
+    (phase !== "all" ? 1 : 0) +
+    (group !== "all" ? 1 : 0) +
+    (teamFilter !== "all" ? 1 : 0) +
+    (venueFilter !== "all" ? 1 : 0) +
+    (favoritesOnly ? 1 : 0);
+
+  const clearFilters = useCallback(() => {
+    setPhase("all");
+    setGroup("all");
+    setTeamFilter("all");
+    setVenueFilter("all");
+    setFavoritesOnly(false);
+  }, []);
 
   const handleNav = (id: number) => {
     const m = WC_MATCHES.find((x) => x.i === id);
     if (m) openMatch(m);
   };
 
-  // Animación de contenido al cambiar filtros
+  // Día activo en la barra: sigue al scroll (IntersectionObserver sobre las
+  // secciones de día visibles, tanto móvil como escritorio). Se mantiene un
+  // set de secciones dentro de la franja superior y manda la PRIMERA en orden
+  // de calendario (con días cortos puede haber dos a la vez en la franja y la
+  // última entrada del observer no es necesariamente la que se está viendo).
+  useEffect(() => {
+    if (!mounted) return;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-daykey]"));
+    if (sections.length === 0) return;
+    const visible = new Set<string>();
+    const order = grouped.map((d) => d.key);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const key = (e.target as HTMLElement).dataset.daykey;
+          if (!key) continue;
+          if (e.isIntersecting) visible.add(key);
+          else visible.delete(key);
+        }
+        const first = order.find((k) => visible.has(k));
+        if (first) setActiveDay(first);
+      },
+      { rootMargin: "-64px 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [mounted, grouped]);
+
+  // Animación de contenido al cambiar filtros (corta: la página es una
+  // herramienta, no un escaparate).
   useEffect(() => {
     if (!contentRef.current) return;
     gsap.fromTo(
       contentRef.current.children,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out" }
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.25, stagger: 0.03, ease: "power2.out" }
     );
   }, [phase, group, teamFilter, venueFilter, favoritesOnly]);
 
+  const dayChipData = useMemo(
+    () => grouped.map((d) => ({ key: d.key, instant: d.instant })),
+    [grouped]
+  );
+
   return (
-    <div
-      ref={scrollRef}
-      className="min-h-screen text-white"
-      style={{ background: BG }}
-    >
-      {/* Hero Section */}
-      <div
-        className="relative overflow-hidden px-6 pb-10 pt-5"
-        style={{
-          background: "linear-gradient(180deg, rgba(201,168,76,0.08), transparent)",
-        }}
-      >
+    <div className="min-h-screen text-white" style={{ background: BG }}>
+      {/* ── Hero compacto ── */}
+      <div className="relative overflow-hidden px-6 pb-5 pt-4">
+        {/* Imagen opcional de fondo (public/images/calendario/hero.webp).
+            Si no existe, onError la oculta y queda el degradado. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/calendario/hero.webp"
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-30"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+          }}
+        />
         <div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2"
+          className="pointer-events-none absolute inset-0"
           style={{
-            background: "radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%)",
+            background:
+              "linear-gradient(180deg, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.82) 55%, #060B14 100%)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: "linear-gradient(180deg, rgba(201,168,76,0.07), transparent 60%)",
           }}
         />
 
         <div className="relative z-10 mx-auto max-w-6xl">
-          <AnimatedSection>
-            {/* Breadcrumb */}
-            <div className="mb-5 flex items-center gap-2">
-              <Link
-                href="/"
-                className="text-sm text-[#6a7a9a] no-underline transition-colors hover:text-white"
-              >
-                {nav.inicio}
-              </Link>
-              <span className="text-[#6a7a9a]">/</span>
-              <span className="text-sm font-semibold text-[#c9a84c]">
-                {nav.calendario}
-              </span>
-            </div>
+          {/* Breadcrumb */}
+          <div className="mb-3 flex items-center gap-2">
+            <Link
+              href="/"
+              className="text-[13px] text-[#8a94b0] no-underline transition-colors hover:text-white"
+            >
+              {nav.inicio}
+            </Link>
+            <span className="text-[#6a7a9a]">/</span>
+            <span className="text-[13px] font-semibold text-[#c9a84c]">
+              {nav.calendario}
+            </span>
+          </div>
 
-            <div className="flex flex-col items-center gap-8 text-center">
-              <div className="max-w-2xl">
-                <span className="inline-block rounded-lg border border-[#c9a84c]/20 bg-[#c9a84c]/10 px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-[0.2em] text-[#c9a84c]">
-                  {cT.badge}
-                </span>
-
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-3">
                 <h1
-                  className="mb-4 mt-5 text-4xl font-black leading-none sm:text-6xl md:text-7xl"
+                  className="text-3xl font-black leading-none sm:text-5xl"
                   style={{
                     background: "linear-gradient(135deg, #fff 0%, #c9a84c 100%)",
                     WebkitBackgroundClip: "text",
@@ -248,200 +355,89 @@ export default function CalendarioPage() {
                 >
                   {cT.title}
                 </h1>
-
-                <p className="mx-auto mb-6 max-w-xl text-lg leading-relaxed text-[#8a94b0]">
-                  {cT.subtitle}
-                </p>
-
-                <div className="flex flex-wrap justify-center gap-4">
-                  <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
-                    <p className="text-2xl font-black text-[#c9a84c] sm:text-[28px]">
-                      {WC_MATCHES.length}
-                    </p>
-                    <p className="text-[13px] text-[#6a7a9a]">{cT.partidos}</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
-                    <p className="text-2xl font-black text-white sm:text-[28px]">
-                      {WC_VENUES.length}
-                    </p>
-                    <p className="text-[13px] text-[#6a7a9a]">{cT.sedes}</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
-                    <p className="text-2xl font-black text-white sm:text-[28px]">
-                      {TOURNAMENT_DAYS}
-                    </p>
-                    <p className="text-[13px] text-[#6a7a9a]">{cT.dias}</p>
-                  </div>
-                </div>
+                <span className="rounded-lg border border-[#c9a84c]/20 bg-[#c9a84c]/10 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#c9a84c]">
+                  {cT.badge}
+                </span>
               </div>
-
-              <div className="w-full max-w-3xl">
-                <CountdownBanner />
-              </div>
-
-              {/* Calendario descargable / suscripción */}
-              <div className="mt-8 flex justify-center">
-                <CalendarExportButton variant="panel" label={cT.addCalendar} />
-              </div>
+              <p className="mt-2 text-[13px] text-[#8a94b0]">
+                <strong className="font-bold text-[#e6e9f2]">{WC_MATCHES.length}</strong>{" "}
+                {cT.partidos.toLowerCase()} ·{" "}
+                <strong className="font-bold text-[#e6e9f2]">{WC_VENUES.length}</strong>{" "}
+                {cT.sedes.toLowerCase()} ·{" "}
+                <strong className="font-bold text-[#e6e9f2]">{TOURNAMENT_DAYS}</strong>{" "}
+                {cT.dias.toLowerCase()}
+                {mounted && (
+                  <>
+                    {" "}
+                    · 🌍 {cT.horariosEnTuZona}:{" "}
+                    <strong className="font-bold text-[#e8d48b]">{tzCityLabel(tz)}</strong>
+                  </>
+                )}
+              </p>
             </div>
-          </AnimatedSection>
+            <div className="flex-shrink-0">
+              <CalendarExportButton variant="hero" label={cT.addCalendar} />
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <TournamentStrip
+              tournamentOver={tournamentOver}
+              todayCount={todayStats.count}
+              nextKickoff={todayStats.nextKickoff}
+              liveCount={liveCount}
+              canJumpToToday={!!todayKey && grouped.some((d) => d.key === todayKey)}
+              onVerHoy={() => todayKey && scrollToDay(todayKey)}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Contenido principal */}
+      {/* ── Contenido principal ── */}
       <div className="mx-auto max-w-6xl px-6 pb-20">
-        {/* Tabs de Fase */}
-        <div className="mb-4 flex gap-1 overflow-x-auto rounded-[20px] border border-white/5 bg-[#0F1D32] p-1.5">
-          <FilterBtn
-            label={cT.todas}
-            active={phase === "all"}
-            onClick={() => {
-              setPhase("all");
-              setGroup("all");
-            }}
-          />
-          {PHASES.map((p) => (
-            <FilterBtn
-              key={p}
-              label={cT.phases[p] ?? p}
-              active={phase === p}
-              onClick={() => {
-                setPhase(p);
-                setGroup("all");
-              }}
-            />
-          ))}
-        </div>
+        {/* Barra sticky única: HOY + días + Filtros */}
+        <DayChips
+          days={dayChipData}
+          activeKey={activeDay}
+          todayKey={todayKey && grouped.some((d) => d.key === todayKey) ? todayKey : null}
+          tz={tz}
+          onDay={scrollToDay}
+          onOpenFilters={() => setSheetOpen(true)}
+          filterCount={activeFilterCount}
+        />
 
-        {/* Filtros avanzados sticky */}
-        <div
-          className="sticky top-0 z-30 -mx-2 mb-4 border-y border-white/5 px-2 py-3 backdrop-blur-sm sm:-mx-3 sm:px-3"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(6,11,20,0.95) 0%, rgba(6,11,20,0.85) 100%)",
-          }}
-        >
-          <div className="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <Dropdown
-              label={cT.seleccion}
-              value={teamFilter}
-              options={teamOptions}
-              onChange={setTeamFilter}
-            />
-            <Dropdown
-              label={cT.sede}
-              value={venueFilter}
-              options={venueOptions}
-              onChange={(v) => {
-                if (!v.startsWith("__header_")) setVenueFilter(v);
-              }}
-            />
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setFavoritesOnly(!favoritesOnly)}
-                className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${
-                  favoritesOnly
-                    ? "border-[#c9a84c]/40 bg-[#c9a84c]/15 text-[#c9a84c]"
-                    : "border-white/8 bg-[#0B1825] text-[#8a94b0] hover:border-white/15"
-                }`}
-              >
-                <svg
-                  className="h-4 w-4"
-                  fill={favoritesOnly ? "currentColor" : "none"}
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-                {cT.soloFavoritos}
-              </button>
-            </div>
-            <div className="flex items-center justify-between gap-3 sm:justify-end">
-              <span className="text-sm text-[#6a7a9a]">
-                <strong className="text-white">{filtered.length}</strong>{" "}
-                {cT.encontrados}
-              </span>
-              {(phase !== "all" ||
-                group !== "all" ||
-                teamFilter !== "all" ||
-                venueFilter !== "all" ||
-                favoritesOnly) && (
-                <button
-                  onClick={() => {
-                    setPhase("all");
-                    setGroup("all");
-                    setTeamFilter("all");
-                    setVenueFilter("all");
-                    setFavoritesOnly(false);
-                  }}
-                  className="text-sm font-semibold text-[#c9a84c] hover:underline"
-                >
-                  {cT.limpiar}
-                </button>
-              )}
-            </div>
-          </div>
-          {/* Aviso de zona horaria: todas las horas van en el reloj del usuario */}
-          {mounted && (
-            <p className="mt-2 text-[11px] text-[#6a7a9a]">
-              🌍 {cT.horariosEnTuZona}:{" "}
-              <strong className="font-semibold text-[#8a94b0]">{tzCityLabel(tz)}</strong>
-            </p>
-          )}
-        </div>
-
-        {/* Tabs de Grupo (solo en fase de grupos) */}
-        {(phase === "all" || phase === "Fase de grupos") && (
-          <div className="mb-6 flex flex-wrap justify-center gap-1.5">
-            <FilterBtn
-              label={cT.todos}
-              active={group === "all"}
-              onClick={() => setGroup("all")}
-            />
-            {GROUPS.map((g) => (
-              <button
-                key={g}
-                onClick={() => setGroup(g)}
-                className="min-w-[44px] rounded-xl px-4 py-2 text-sm transition-all"
-                style={{
-                  border:
-                    group === g
-                      ? `2px solid ${GOLD}`
-                      : "1px solid rgba(255,255,255,0.08)",
-                  background:
-                    group === g ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.03)",
-                  color: group === g ? GOLD : MID,
-                  fontWeight: group === g ? 800 : 500,
-                }}
-              >
-                {g}
-              </button>
-            ))}
+        {/* Resumen de filtros activos */}
+        {activeFilterCount > 0 && (
+          <div className="mb-4 flex items-center gap-3 text-[13px] text-[#6a7a9a]">
+            <span>
+              <strong className="text-white">{filtered.length}</strong> {cT.encontrados}
+            </span>
+            <button
+              onClick={clearFilters}
+              className="font-semibold text-[#c9a84c] hover:underline"
+            >
+              {cT.limpiar}
+            </button>
           </div>
         )}
 
-        {/* Vista móvil: timeline */}
+        {/* Vista móvil: filas densas por día */}
         <MobileTimeline matches={filtered} onClick={openMatch} tz={tz} live={liveMap} />
 
-        {/* Vista desktop: lista de partidos por fecha (día LOCAL del usuario) */}
+        {/* Vista escritorio: agenda por día (día LOCAL del usuario) */}
         <div ref={contentRef} className="hidden sm:block">
           {grouped.map((day) => (
-            <div key={day.key} className="mb-8">
+            <section
+              key={day.key}
+              id={`day-d-${day.key}`}
+              data-daykey={day.key}
+              className="mb-7"
+              style={{ scrollMarginTop: 64 }}
+            >
               <DateHeader instant={day.instant} tz={tz} count={day.matches.length} />
-
-              <div
-                className="grid gap-4"
-                style={{
-                  gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-                }}
-              >
+              <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0c1626]/60">
                 {day.matches.map((m) => (
-                  <MatchCard
+                  <MatchRow
                     key={m.i}
                     m={m}
                     tz={tz}
@@ -450,7 +446,7 @@ export default function CalendarioPage() {
                   />
                 ))}
               </div>
-            </div>
+            </section>
           ))}
         </div>
 
@@ -473,7 +469,13 @@ export default function CalendarioPage() {
               </svg>
             </div>
             <h3 className="mb-2 text-xl font-bold text-white">{cT.noPartidos}</h3>
-            <p className="text-[#6a7a9a]">{cT.ajustaFiltros}</p>
+            <p className="mb-4 text-[#6a7a9a]">{cT.ajustaFiltros}</p>
+            <button
+              onClick={clearFilters}
+              className="text-sm font-semibold text-[#c9a84c] hover:underline"
+            >
+              {cT.limpiar}
+            </button>
           </div>
         )}
 
@@ -497,6 +499,27 @@ export default function CalendarioPage() {
           </Link>
         </div>
       </div>
+
+      {/* Panel de filtros */}
+      <FilterSheet
+        open={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        phase={phase}
+        setPhase={setPhase}
+        group={group}
+        setGroup={setGroup}
+        teamFilter={teamFilter}
+        setTeamFilter={setTeamFilter}
+        venueFilter={venueFilter}
+        setVenueFilter={setVenueFilter}
+        favoritesOnly={favoritesOnly}
+        setFavoritesOnly={setFavoritesOnly}
+        teamOptions={teamOptions}
+        venueOptions={venueOptions}
+        resultCount={filtered.length}
+        hasActiveFilters={activeFilterCount > 0}
+        onClear={clearFilters}
+      />
 
       {/* Modal de partido */}
       {selected && (

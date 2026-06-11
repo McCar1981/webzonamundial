@@ -12,11 +12,17 @@
 
 import { kv } from "@vercel/kv";
 import { MATCHES, type Match } from "@/data/matches";
-import { etToDate, SOURCE_TZ } from "@/lib/bracket/match-time";
+import { etToDate } from "@/lib/bracket/match-time";
 import { broadcastPush } from "@/lib/push-notifications";
+import { stadiumPhoto, favoriteTeamPhoto } from "@/lib/friendlies/teamInfo";
 
-/** Categoría de notificación (ya existe en notification-preferences). */
-const CATEGORY = "predictions-reminder";
+/**
+ * Canal de envío: "news" es hoy el ÚNICO con audiencia real (las demás
+ * categorías están "próximamente" en el panel y nadie las puede activar). Los
+ * recordatorios de partido son contenido principal durante el Mundial → van a
+ * toda la base de suscriptores, no a una categoría vacía.
+ */
+const CATEGORY = "news";
 
 /** Antelación objetivo del aviso, en minutos antes del saque. */
 export const LEAD_MINUTES = 90;
@@ -30,10 +36,14 @@ export const WINDOW_MINUTES = 8;
 /** TTL del marcador de dedup: suficiente para que el partido ya haya empezado. */
 const DEDUP_TTL_SEC = 6 * 60 * 60;
 
-/** Hora de saque "HH:MM" en ET, para el cuerpo del push (fuente única: ET). */
-function kickoffEtLabel(d: Date): string {
+/**
+ * Hora de saque "HH:MM" en horario de España (Europe/Madrid), el mercado
+ * principal. "ET" no lo entiende nadie en España; al ser un broadcast único no
+ * se puede personalizar por usuario, así que damos la referencia más útil.
+ */
+function kickoffEsLabel(d: Date): string {
   return new Intl.DateTimeFormat("es-ES", {
-    timeZone: SOURCE_TZ,
+    timeZone: "Europe/Madrid",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -86,13 +96,20 @@ export async function runMatchReminders(now: Date = new Date()): Promise<MatchRe
       continue;
     }
 
-    const hora = kickoffEtLabel(kickoff);
+    const hora = kickoffEsLabel(kickoff);
+    // Imagen: el estadio (ambiente del partido); si no resuelve, foto de la
+    // selección favorita del cruce. Best-effort: undefined si nada resuelve.
+    const image =
+      (await stadiumPhoto(m.vn, `rem-${m.i}`)) ||
+      (await favoriteTeamPhoto(m.h, m.a, `rem-${m.i}`)) ||
+      undefined;
     await broadcastPush({
       kind: CATEGORY,
       payload: {
-        title: `Falta poco: ${m.h} vs ${m.a}`,
-        body: `Arranca a las ${hora} ET · ${m.p}. ${m.vn}, ${m.vc}.`,
+        title: `⏰ Falta poco: ${m.h} vs ${m.a}`,
+        body: `Empieza a las ${hora}h en España · ${m.vn}, ${m.vc}. ¡Entra y haz tu predicción!`,
         url: "/calendario",
+        image,
         tag: `match-reminder-${m.i}`,
         pushId: `match-reminder-${m.i}`,
       },

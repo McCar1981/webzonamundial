@@ -85,7 +85,7 @@ export default async function BarTvPage({ params }: { params: { barSlug: string 
           </div>
           {mainPrize && (
             <div style={{ textAlign: "center", background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: "1.5vh 1.5vw", width: "100%", boxSizing: "border-box" }}>
-              <div style={{ color: t.secondary, fontWeight: 800, fontSize: "1vw", textTransform: "uppercase", letterSpacing: 1 }}>Premio de hoy</div>
+              <div style={{ color: t.secondary, fontWeight: 800, fontSize: "1vw", textTransform: "uppercase", letterSpacing: 1 }}>Incentivo de hoy</div>
               <div style={{ fontWeight: 900, fontSize: "1.6vw", marginTop: "0.5vh" }}>{mainPrize.title}</div>
             </div>
           )}

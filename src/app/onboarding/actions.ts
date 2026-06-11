@@ -58,7 +58,7 @@ export async function completeOnboardingAction(
     return { ok: false, error: "Fecha de nacimiento inválida" };
   }
   if (birth_date && !isAdult(birth_date)) {
-    return { ok: false, error: "Debes ser mayor de edad (18+) para participar en premios" };
+    return { ok: false, error: "Debes ser mayor de edad (18+) para registrar la fecha de nacimiento" };
   }
 
   // Validar contra catálogo — valores no encontrados se descartan (null)

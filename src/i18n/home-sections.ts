@@ -157,7 +157,7 @@ export const homeSections = {
           { user: "FutbolTotal", msg: "Golazo 🔥🔥🔥" },
           { user: "ZonaMundial", msg: "Increíble partido!" },
         ],
-        footer: "CHAT · REACCIONES · PREMIOS",
+        footer: "CHAT · REACCIONES · RETOS",
       },
     },
 
@@ -592,7 +592,7 @@ export const homeSections = {
           { user: "FutbolTotal", msg: "What a goal 🔥🔥🔥" },
           { user: "ZonaMundial", msg: "Incredible match!" },
         ],
-        footer: "CHAT · REACTIONS · PRIZES",
+        footer: "CHAT · REACTIONS · CHALLENGES",
       },
     },
 

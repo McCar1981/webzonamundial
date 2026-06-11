@@ -150,7 +150,7 @@ function PrizePanel({ data, u, full }: { data: KitData; u: number; full?: boolea
       alignSelf: full ? "stretch" : "center",
     }}>
       <div style={{ color: GOLD2, fontWeight: 800, fontSize: u * 1.6, textTransform: "uppercase", letterSpacing: u * 0.15 }}>
-        Premio principal
+        Incentivo principal
       </div>
       <div style={{ fontWeight: 900, fontSize: u * 3, marginTop: u * 0.6 }}>{data.prizeTitle}</div>
       {data.prizeDescription && (
@@ -176,14 +176,14 @@ function Claim({ u, oneLine }: { u: number; oneLine?: boolean }) {
   if (oneLine) {
     return (
       <div style={{ fontWeight: 900, fontSize: u * 5, lineHeight: 1.05, textAlign: "center" }}>
-        Juega gratis. <span style={{ color: GOLD2 }}>Gana premios.</span>
+        Juega gratis. <span style={{ color: GOLD2 }}>Llévate el incentivo.</span>
       </div>
     );
   }
   return (
     <div style={{ textAlign: "center" }}>
       <div style={{ fontWeight: 900, fontSize: u * 7, lineHeight: 1.02 }}>Juega gratis.</div>
-      <div style={{ fontWeight: 900, fontSize: u * 7, lineHeight: 1.02, color: GOLD2 }}>Gana premios.</div>
+      <div style={{ fontWeight: 900, fontSize: u * 7, lineHeight: 1.02, color: GOLD2 }}>Llévate el incentivo.</div>
     </div>
   );
 }
@@ -261,7 +261,7 @@ function Square({ data, u }: { data: KitData; u: number }) {
           <div style={{ fontWeight: 800, fontSize: u * 2, color: GOLD2, marginTop: u * 0.5 }}>{data.shortUrl}</div>
           {data.prizeTitle && (
             <div style={{ marginTop: u * 1.4, color: MUTED, fontSize: u * 1.9 }}>
-              <span style={{ color: GOLD2, fontWeight: 800 }}>Premio: </span>{data.prizeTitle}
+              <span style={{ color: GOLD2, fontWeight: 800 }}>Incentivo: </span>{data.prizeTitle}
             </div>
           )}
         </div>
@@ -293,7 +293,7 @@ function Card({ data, u }: { data: KitData; u: number }) {
         <div style={{ fontWeight: 800, fontSize: u * 2.6, color: GOLD2, marginTop: u * 0.5 }}>{data.shortUrl}</div>
         {data.prizeTitle && (
           <div style={{ marginTop: u * 1.2, color: MUTED, fontSize: u * 2.4 }}>
-            <span style={{ color: GOLD2, fontWeight: 800 }}>Premio: </span>{data.prizeTitle}
+            <span style={{ color: GOLD2, fontWeight: 800 }}>Incentivo: </span>{data.prizeTitle}
           </div>
         )}
       </div>
@@ -321,7 +321,7 @@ function Horizontal({ data, u }: { data: KitData; u: number }) {
           </div>
           <div>
             <div style={{ fontWeight: 900, fontSize: u * 7.5, lineHeight: 1.02 }}>Juega gratis.</div>
-            <div style={{ fontWeight: 900, fontSize: u * 7.5, lineHeight: 1.02, color: GOLD2 }}>Gana premios.</div>
+            <div style={{ fontWeight: 900, fontSize: u * 7.5, lineHeight: 1.02, color: GOLD2 }}>Llévate el incentivo.</div>
           </div>
           {data.prizeTitle && <PrizePanel data={data} u={u} />}
           <div><CtaPill data={data} u={u} /></div>

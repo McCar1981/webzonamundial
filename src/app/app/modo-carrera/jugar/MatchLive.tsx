@@ -731,7 +731,7 @@ export default function MatchLive({
                   }}
                 >
                   <div style={{ fontSize: 26, fontWeight: 900, color: setPieceResult.scored ? GREEN : RED }}>
-                    {setPieceResult.scored ? "¡GOL!" : "Sin premio"}
+                    {setPieceResult.scored ? "¡GOL!" : "Sin gol"}
                   </div>
                   <div style={{ fontSize: 12.5, color: MID, marginTop: 4 }}>
                     {setPieceResult.scored

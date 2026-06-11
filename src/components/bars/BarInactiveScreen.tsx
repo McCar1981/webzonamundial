@@ -32,7 +32,7 @@ export default function BarInactiveScreen({ bar }: { bar: BarRow }) {
           <h1 style={{ fontSize: 21, fontWeight: 900, margin: "12px 0 6px" }}>Esta peña todavía no está activa</h1>
           <p style={{ color: t.textMuted, fontSize: 14.5, lineHeight: 1.55, margin: 0 }}>
             {bar.name} aún está preparando su peña del Mundial. Vuelve a escanear el QR en un rato:
-            cuando esté lista, podrás predecir los partidos y competir por los premios del local.
+            cuando esté lista, podrás predecir los partidos y competir por los incentivos del local.
           </p>
         </div>
 

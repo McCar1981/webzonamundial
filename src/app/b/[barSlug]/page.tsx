@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { barSlug: string }
   if (!bar) return { title: "Peña no encontrada · ZonaMundial" };
   return {
     title: `Peña Mundialista · ${bar.name}`,
-    description: bar.description || `Únete a la peña mundialista de ${bar.name}. Predice, compite y gana premios.`,
+    description: bar.description || `Únete a la peña mundialista de ${bar.name}. Predice, compite y llévate los incentivos del local.`,
     robots: { index: false, follow: true },
   };
 }
@@ -77,7 +77,7 @@ export default async function BarPublicPage({
             <Trophy size={14} /> Peña Mundialista 2026
           </div>
           <p style={{ color: t.textMuted, fontSize: 15, lineHeight: 1.5, margin: "8px 0 0" }}>
-            {bar.welcome_message || `Predice los partidos del Mundial, compite con la peña de ${bar.name} y gana premios.`}
+            {bar.welcome_message || `Predice los partidos del Mundial, compite con la peña de ${bar.name} y llévate los incentivos del local.`}
           </p>
         </section>
 
@@ -85,7 +85,7 @@ export default async function BarPublicPage({
         {mainPrize && (
           <section style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: 16, marginBottom: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 7, color: t.secondary, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>
-              <Gift size={15} /> Premio principal
+              <Gift size={15} /> Incentivo principal
             </div>
             <div style={{ fontWeight: 900, fontSize: 19, marginTop: 6 }}>{mainPrize.title}</div>
             {mainPrize.description && <div style={{ color: t.textMuted, fontSize: 14, marginTop: 4 }}>{mainPrize.description}</div>}
@@ -145,7 +145,7 @@ export default async function BarPublicPage({
             <li>Únete a la peña con tu cuenta de ZonaMundial.</li>
             <li>Predice los partidos del Mundial desde tu móvil.</li>
             <li>Suma puntos y sube en la clasificación del bar.</li>
-            <li>El premio lo entrega {bar.name} según sus reglas.</li>
+            <li>El incentivo lo entrega {bar.name} según sus reglas.</li>
           </ol>
         </section>
 

@@ -30,7 +30,7 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
     priceEur: 49, priceUsd: 55,
     features: [
       "1 peña del bar", "1 QR dinámico", "Landing personalizada", "Ranking del bar",
-      "Pantalla TV básica", "Premio principal", "Materiales descargables básicos", "Estadísticas básicas",
+      "Pantalla TV básica", "Incentivo principal", "Materiales descargables básicos", "Estadísticas básicas",
     ],
     maxQrSources: 1, weeklyPrizes: false, exportParticipants: false, premiumMaterials: false, barVsBar: false,
   },

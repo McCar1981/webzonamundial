@@ -276,7 +276,7 @@ export default function GuideView() {
         </div>
         <Card>
           <p style={{ fontSize: 12, lineHeight: 1.7, color: MID, margin: 0 }}>
-            💰 <b style={{ color: GOLD2 }}>¿Y las Fútcoins?</b> El premio de la jornada se abona cuando la jornada
+            💰 <b style={{ color: GOLD2 }}>¿Y las Fútcoins?</b> Las Fútcoins de la jornada se abonan cuando la jornada
             completa termina (su último partido). Si confirmaste antes, tranquilo: se acreditan <b>solas</b> en tu
             próxima visita. Y el banquillo trabaja por ti: si un titular no juega, entra el suplente automáticamente.
           </p>

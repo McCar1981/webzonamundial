@@ -193,7 +193,7 @@ export const MODULE_CONTENT: Record<string, ModuleContent> = {
       { feature: "Crear liga privada", free: "Hasta 1 liga", founders: "Hasta 10 ligas" },
       { feature: "Miembros por liga", free: "20", founders: "Ilimitado" },
       { feature: "Mezclar puntos de Predicciones + Fantasy + Trivia", free: true, founders: true },
-      { feature: "Premios personalizables", free: false, founders: true },
+      { feature: "Retos personalizables", free: false, founders: true },
       { feature: "Compartir progreso por WhatsApp", free: true, founders: true },
     ],
     faq: [
@@ -232,7 +232,7 @@ export const MODULE_CONTENT: Record<string, ModuleContent> = {
       },
       {
         q: "¿Hay premios para los primeros del ranking?",
-        a: "Sí, anunciaremos premios oficiales del top 100 antes del Mundial. Los miembros del Founders Pass tienen acceso a un ranking exclusivo aparte.",
+        a: "No. ZonaMundial es un juego 100% gratuito y sin premios en metálico ni de ningún tipo: se compite por puntos, insignias y el pique sano del ranking. Los miembros del Founders Pass tienen acceso a un ranking exclusivo aparte.",
       },
     ],
     keywords: ["ranking mundial 2026", "clasificacion predicciones mundial", "tabla aciertos mundial"],

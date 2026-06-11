@@ -302,7 +302,7 @@ export default function RankingsPage() {
             <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800 }}>
               Rankings por <span style={{ color: GOLD }}>fase del torneo</span>
             </h2>
-            <p style={{ color: MID, marginTop: 12, fontSize: 16 }}>Cada fase tiene su propia clasificación y premios</p>
+            <p style={{ color: MID, marginTop: 12, fontSize: 16 }}>Cada fase tiene su propia clasificación</p>
           </div>
           <div data-seasons-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 16 }}>
             {SEASONS.map((s, i) => (

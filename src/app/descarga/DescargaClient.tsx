@@ -40,7 +40,7 @@ const FEATURES: Array<{ icon: ReactNode; title: string; desc: string }> = [
       </Icon>
     ),
     title: "Predicciones",
-    desc: "Acierta resultados y compite por premios.",
+    desc: "Acierta resultados y escala en el ranking.",
   },
   {
     // Star — Fantasy

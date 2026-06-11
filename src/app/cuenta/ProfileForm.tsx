@@ -176,7 +176,7 @@ export default function ProfileForm({
             className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
           />
           <p className="text-[11px] text-gray-500 mt-1">
-            Solo se usa para premios con restricción de edad.
+            Opcional. Solo se usa para verificar la mayoría de edad cuando una función lo requiere.
           </p>
         </div>
 

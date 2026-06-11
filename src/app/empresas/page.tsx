@@ -21,7 +21,7 @@ import BarPhoto from "../bares/BarPhoto";
 
 const EMPRESAS_TITLE = "Porra Corporativa para Empresas · ZonaMundial";
 const EMPRESAS_DESCRIPTION =
-  "Crea la liga del Mundial 2026 para tu empresa: liga privada solo para empleados, ranking por departamentos, kit de comunicación interna y premios que define tu equipo. Pago único, sin suscripción.";
+  "Crea la liga del Mundial 2026 para tu empresa: liga privada solo para empleados, ranking por departamentos, kit de comunicación interna e incentivos que define tu equipo. Pago único, sin suscripción.";
 
 export const metadata: Metadata = {
   title: EMPRESAS_TITLE,
@@ -139,7 +139,7 @@ function RankingMockup({
 /* ─── Datos ───────────────────────────────────────────────────────────────── */
 
 const STEPS = [
-  { n: 1, icon: Palette, title: "Configura la liga de tu empresa", text: "Crea la página de tu empresa, añade el logo, define los premios internos y los equipos por departamento." },
+  { n: 1, icon: Palette, title: "Configura la liga de tu empresa", text: "Crea la página de tu empresa, añade el logo, define los incentivos internos y los equipos por departamento." },
   { n: 2, icon: Mail, title: "Invita a tu equipo", text: "Comparte el enlace o código privado por email, Slack o Teams. Solo entra tu gente: la liga es cerrada." },
   { n: 3, icon: Repeat, title: "Compiten durante todo el Mundial", text: "Cada empleado predice los partidos, suma puntos para su departamento y sigue el ranking jornada a jornada." },
 ];
@@ -155,7 +155,7 @@ const FEATURES = [
   { icon: BarChart3, title: "Ranking por departamentos", text: "Clasificación individual y por equipos. Tú defines los grupos.", big: true },
   { icon: Palette, title: "Landing con tu marca", text: "Tu empresa con su propia página del Mundial, con logo y colores.", big: false },
   { icon: Megaphone, title: "Kit de comunicación interna", text: "Email de lanzamiento listo para reenviar, banner para Slack/Teams y cartel para la oficina.", big: false },
-  { icon: Monitor, title: "Pantalla para la oficina", text: "Muestra el ranking y el premio en la TV de la oficina o en la cocina.", big: false },
+  { icon: Monitor, title: "Pantalla para la oficina", text: "Muestra el ranking y el incentivo en la TV de la oficina o en la cocina.", big: false },
   { icon: FileText, title: "Informe final de participación", text: "Resumen en PDF con ganadores, participación y estadísticas. Listo para enseñar a dirección.", big: false },
 ];
 

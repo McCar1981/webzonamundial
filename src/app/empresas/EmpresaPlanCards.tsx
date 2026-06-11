@@ -38,7 +38,7 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
       "Ranking individual",
       "Landing personalizada",
       "Kit de comunicación básico",
-      "Premio principal",
+      "Incentivo principal",
       "Estadísticas básicas",
     ],
     cta: { label: "Empezar", href: "/bar-dashboard?tipo=empresa" },

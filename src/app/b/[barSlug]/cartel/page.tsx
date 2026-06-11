@@ -106,7 +106,7 @@ export default async function BarCartelPage({
           {/* Claim grande */}
           <div style={{ textAlign: "center", marginTop: 40 }}>
             <div style={{ fontSize: 54, fontWeight: 900, lineHeight: 1.05 }}>Juega gratis.</div>
-            <div style={{ fontSize: 54, fontWeight: 900, lineHeight: 1.05, color: t.secondary }}>Gana premios.</div>
+            <div style={{ fontSize: 54, fontWeight: 900, lineHeight: 1.05, color: t.secondary }}>Llévate el incentivo.</div>
             <p style={{ fontSize: 20, color: t.textMuted, margin: "16px auto 0", maxWidth: 540, lineHeight: 1.5 }}>
               Predice los partidos del Mundial desde tu móvil y compite con la clientela de {bar.name}.
             </p>
@@ -130,7 +130,7 @@ export default async function BarCartelPage({
           {/* Premio principal */}
           {mainPrize && (
             <div style={{ marginTop: 36, alignSelf: "stretch", background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: "20px 24px", textAlign: "center" }}>
-              <div style={{ color: t.secondary, fontWeight: 800, fontSize: 14, textTransform: "uppercase", letterSpacing: 1 }}>Premio principal</div>
+              <div style={{ color: t.secondary, fontWeight: 800, fontSize: 14, textTransform: "uppercase", letterSpacing: 1 }}>Incentivo principal</div>
               <div style={{ fontWeight: 900, fontSize: 28, marginTop: 8 }}>{mainPrize.title}</div>
               {mainPrize.description && <div style={{ color: t.textMuted, fontSize: 16, marginTop: 6 }}>{mainPrize.description}</div>}
             </div>

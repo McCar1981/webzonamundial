@@ -71,7 +71,7 @@ export default function BarKitPosterTemplate({
   templateUrl = POSTER_TEMPLATE_URL, debug = false,
   size = POSTER_SIZE, zones = ZONES,
 }: BarKitPosterTemplateProps) {
-  const prizeText = (prizeTitle && prizeTitle.trim()) || "Premio del bar";
+  const prizeText = (prizeTitle && prizeTitle.trim()) || "Incentivo del bar";
   const prizeFont = getPrizeFontSize(prizeText);
   const urlFont = shortUrl.length > 32 ? 18 : 22;
 

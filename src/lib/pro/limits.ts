@@ -11,7 +11,7 @@
 // El enforcement REAL ocurre siempre en las rutas API (server-side) usando
 // isPro() de entitlement.ts + consumeDailyQuota() de quota.ts.
 
-export const PRO_PRICE_DISPLAY = { monthly: "3 €/mes", yearly: "12 €/año" } as const;
+export const PRO_PRICE_DISPLAY = { monthly: "8 €/mes", yearly: "12 €/año" } as const;
 
 export const FREE_LIMITS = {
   predictions: {

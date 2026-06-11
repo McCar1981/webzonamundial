@@ -42,27 +42,43 @@ export const PRODUCT_DESCRIPTION =
 
 /**
  * Precios del plan PRO (suscripción). Misma política que el Founders Pass:
- * la moneda la asigna el servidor según profiles.country (anti-arbitraje) y
- * los importes viven en código. A diferencia del pago único, Stripe Checkout
- * en mode:"subscription" acepta price_data inline con `recurring`, así que
- * tampoco necesitamos Price IDs del Dashboard.
+ * la región/moneda la asigna el servidor según profiles.country
+ * (anti-arbitraje) y los importes viven en código. Stripe Checkout en
+ * mode:"subscription" acepta price_data inline con `recurring`, así que no
+ * necesitamos Price IDs del Dashboard.
  *
- * Céntimos: 300 = 3.00 EUR/mes · 1200 = 12.00 EUR/año.
+ * TRES regiones de precio (no dos): EEUU paga distinto que LATAM aunque ambos
+ * sean USD. El MENSUAL ("pase del Mundial") difiere por región; el ANUAL
+ * ("todas las ligas", post-Mundial) es 12 € en Europa y 10 USD en América.
+ *
+ * Céntimos: 800 = 8.00 EUR · 600 = 6.00 USD · 1000 = 10.00 USD · 1200 = 12.00 EUR.
  */
 export const PRO_PRICES = {
-  eur: {
-    monthly: { amount: 300, display: "3 €/mes" },
-    yearly: { amount: 1200, display: "12 €/año" },
+  eu: {
     currency: "eur" as const,
     region: "Europa y resto del mundo",
+    monthly: { amount: 800, display: "8 €/mes" },
+    yearly: { amount: 1200, display: "12 €/año" },
   },
-  usd: {
-    monthly: { amount: 250, display: "2,50 USD/mes" },
-    yearly: { amount: 1000, display: "10 USD/año" },
+  latam: {
     currency: "usd" as const,
-    region: "LATAM y USA",
+    region: "Latinoamérica",
+    monthly: { amount: 600, display: "6 USD/mes" },
+    yearly: { amount: 1000, display: "10 USD/año" },
+  },
+  us: {
+    currency: "usd" as const,
+    region: "Estados Unidos",
+    monthly: { amount: 1000, display: "10 USD/mes" },
+    yearly: { amount: 1000, display: "10 USD/año" },
   },
 } as const;
+
+export type ProRegion = keyof typeof PRO_PRICES;
+
+export function isValidProRegion(r: string): r is ProRegion {
+  return r === "eu" || r === "latam" || r === "us";
+}
 
 export type ProBillingInterval = "monthly" | "yearly";
 

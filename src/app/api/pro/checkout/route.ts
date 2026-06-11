@@ -16,10 +16,10 @@ import {
   isValidProInterval,
   PRO_PRODUCT_NAME,
   PRO_PRODUCT_DESCRIPTION,
-  type FoundersCurrency,
   type ProBillingInterval,
 } from "@/lib/stripe/client";
-import { currencyForCountry } from "@/lib/founders/currency-by-country";
+import { proRegionForCountry } from "@/lib/founders/currency-by-country";
+import type { ProRegion } from "@/lib/stripe/pricing";
 import { getEntitlements } from "@/lib/pro/entitlement";
 import { trackProEvent } from "@/lib/pro/metrics";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -72,9 +72,9 @@ export async function POST(request: NextRequest) {
     .select("country")
     .eq("id", user.id)
     .maybeSingle();
-  const currency: FoundersCurrency = currencyForCountry(profile?.country ?? null);
+  const region: ProRegion = proRegionForCountry(profile?.country ?? null);
 
-  const priceTable = PRO_PRICES[currency];
+  const priceTable = PRO_PRICES[region];
   const price = priceTable[interval];
   const origin = getOrigin(request);
 
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
       success_url: `${origin}/pro?purchase=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/pro?canceled=1`,
       allow_promotion_codes: false,
-      locale: currency === "usd" ? "es-419" : "es",
+      locale: priceTable.currency === "usd" ? "es-419" : "es",
     });
 
     trackProEvent("checkout_started");
@@ -133,7 +133,7 @@ export async function POST(request: NextRequest) {
       type: e.type,
       code: e.code,
       statusCode: e.statusCode,
-      currency,
+      region,
       interval,
       userEmail,
       hasSecretKey: !!process.env.STRIPE_SECRET_KEY,

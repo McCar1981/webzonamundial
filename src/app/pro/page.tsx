@@ -5,7 +5,8 @@
 import type { Metadata } from "next";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getEntitlements } from "@/lib/pro/entitlement";
-import { currencyForCountry } from "@/lib/founders/currency-by-country";
+import { proRegionForCountry } from "@/lib/founders/currency-by-country";
+import type { ProRegion } from "@/lib/stripe/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import ProPanel from "./ProPanel";
 
@@ -24,7 +25,7 @@ export default async function ProPage() {
 
   let isProUser = false;
   let source: "subscription" | "founder" | null = null;
-  let currency: "eur" | "usd" = "eur";
+  let region: ProRegion = "eu";
 
   if (user) {
     const ent = await getEntitlements(user.id, user.email);
@@ -37,7 +38,7 @@ export default async function ProPage() {
       .select("country")
       .eq("id", user.id)
       .maybeSingle();
-    currency = currencyForCountry(profile?.country ?? null);
+    region = proRegionForCountry(profile?.country ?? null);
   }
 
   return (
@@ -45,7 +46,7 @@ export default async function ProPage() {
       authenticated={!!user}
       isPro={isProUser}
       source={source}
-      currency={currency}
+      region={region}
     />
   );
 }

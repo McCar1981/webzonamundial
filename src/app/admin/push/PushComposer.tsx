@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const KINDS: { value: string; label: string }[] = [
   { value: "news", label: "Noticias (general)" },
@@ -25,8 +25,41 @@ export default function PushComposer() {
   const [image, setImage] = useState("");
   const [kind, setKind] = useState("news");
   const [busy, setBusy] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [recipients, setRecipients] = useState<number | null>(null);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  async function uploadImage(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // permite re-subir el mismo archivo
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setMsg({ ok: false, text: "Formato no soportado. Usa JPG, PNG o WEBP." });
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setMsg({ ok: false, text: "Imagen demasiado grande. Máximo 5 MB." });
+      return;
+    }
+    setUploading(true);
+    setMsg(null);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/push/image", { method: "POST", body: fd });
+      const data = await res.json();
+      if (data.ok) {
+        setImage(data.url);
+        setMsg({ ok: true, text: "Imagen subida ✓" });
+      } else {
+        setMsg({ ok: false, text: data.error ?? "No se pudo subir la imagen." });
+      }
+    } catch {
+      setMsg({ ok: false, text: "Error de red al subir la imagen." });
+    }
+    setUploading(false);
+  }
 
   async function post(dryRun: boolean) {
     const res = await fetch("/api/admin/push/send", {
@@ -130,12 +163,43 @@ export default function PushComposer() {
         </div>
         <div>
           <label className={LABEL}>Imagen grande (opcional)</label>
+          <div className="flex gap-2">
+            <input
+              className={INPUT}
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              placeholder="Sube una imagen o pega una URL https://…"
+            />
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={uploading}
+              className="shrink-0 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-gray-200 hover:border-[#C9A84C]/40 disabled:opacity-50 transition-all"
+            >
+              {uploading ? "Subiendo…" : "Subir imagen"}
+            </button>
+            {image && (
+              <button
+                type="button"
+                onClick={() => setImage("")}
+                className="shrink-0 rounded-xl border border-white/10 px-3 py-2.5 text-sm text-gray-400 hover:text-red-400 hover:border-red-400/40 transition-all"
+                title="Quitar imagen"
+              >
+                ✕
+              </button>
+            )}
+          </div>
           <input
-            className={INPUT}
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            placeholder="https://...  (Android la muestra bajo el texto)"
+            ref={fileRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={uploadImage}
+            className="hidden"
           />
+          <p className="text-[11px] text-gray-500 mt-1.5">
+            JPG, PNG o WEBP, máx 5 MB. Se sube a ZonaMundial y se usa su enlace automáticamente.
+            Horizontal (16:9) se ve mejor en Android.
+          </p>
         </div>
         <div>
           <label className={LABEL}>Categoría (define quién lo recibe)</label>

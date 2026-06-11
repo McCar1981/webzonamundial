@@ -92,7 +92,7 @@ export async function POST(req: Request) {
         trackLimitHit("predictions_type");
         const payload: ProRequiredPayload = {
           error:
-            "En el plan gratuito juegas todos los tipos en UN partido por jornada; en los demás, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos.",
+            "En el plan gratuito juegas todos los tipos en UN partido por jornada; en los demás, Marcador, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos.",
           code: PRO_REQUIRED_CODE,
           feature: "predictions_type",
         };

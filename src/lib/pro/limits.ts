@@ -16,9 +16,9 @@ export const PRO_PRICE_DISPLAY = { monthly: "3 €/mes", yearly: "12 €/año" }
 export const FREE_LIMITS = {
   predictions: {
     /** Tipos "básicos": Free los juega en CUALQUIER partido de la jornada. */
-    basicTypes: ["winner", "first_scorer"] as readonly string[],
+    basicTypes: ["exact_score", "winner", "first_scorer"] as readonly string[],
     /** Tipos "avanzados": Free los juega SOLO en el partido destacado (1/jornada). */
-    advancedTypes: ["exact_score", "chain", "duel", "over_under", "minute_drama", "social"] as readonly string[],
+    advancedTypes: ["chain", "duel", "over_under", "minute_drama", "social"] as readonly string[],
     /** Máximo de PARTIDOS distintos predecibles por jornada (no de predicciones). */
     maxMatchesPerJornada: 3,
     /** Partidos por jornada con acceso a los tipos avanzados (el "destacado"). */

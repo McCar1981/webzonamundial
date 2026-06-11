@@ -25,7 +25,7 @@ export interface PaywallDetail {
 export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; perk: string }> = {
   predictions_type: {
     title: "Este partido ya no admite más tipos en Free",
-    perk: "En Free juegas los 8 tipos en UN partido por jornada; en los demás, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos y con multiplicadores.",
+    perk: "En Free juegas los 8 tipos en UN partido por jornada; en los demás, Marcador, Ganador y Primer Goleador. Con Pro, todos los tipos en todos los partidos y con multiplicadores.",
   },
   predictions_jornada: {
     title: "Has jugado tus partidos de la jornada",

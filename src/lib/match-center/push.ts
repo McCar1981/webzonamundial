@@ -36,6 +36,10 @@ import { clearFollowers, getFollowers } from "./followers";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
 
 const PUSH_KIND = "tournament-key-events";
+// Hitos de partido que van a TODA la base (canal "news" — hoy el único con
+// audiencia real): alineaciones y resultado final. El minuto a minuto (inicio,
+// goles, descanso) se queda en PUSH_KIND, para quien sigue el partido de cerca.
+const WIDE_KIND = "news";
 const PUSH_ICON = "/img/email/logo-zonamundial.png";
 
 /** Estado persistido por partido para detectar novedades entre polls. */
@@ -254,10 +258,10 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
   let sentThisPass = false;
   const send = async (
     payload: Omit<PushPayload, "url" | "tag">,
-    opts: { pin?: boolean } = {},
+    opts: { pin?: boolean; kind?: string } = {},
   ) => {
     const common = { ...payload, url, tag, badge: "/icons/badge-72.png" };
-    await broadcastPush({ kind: PUSH_KIND, payload: common });
+    await broadcastPush({ kind: opts.kind ?? PUSH_KIND, payload: common });
     if (followers.length > 0) {
       await sendPushToEndpoints({
         endpoints: followers,
@@ -272,12 +276,19 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
   if (!prev.lineupsSent && lineupsConfirmed(snap)) {
     const lineupImage =
       (await favoriteTeamPhoto(meta.home.name, meta.away.name, `xi-${matchId}`)) || contextImage;
-    await send({
-      title: `Alineaciones — ${vs}`,
-      body: `XI confirmado. ${snap.homeLineup?.formation ?? ""} vs ${snap.awayLineup?.formation ?? ""}`.trim(),
-      icon: PUSH_ICON,
-      image: lineupImage,
-    });
+    const forms =
+      snap.homeLineup?.formation && snap.awayLineup?.formation
+        ? `${snap.homeLineup.formation} vs ${snap.awayLineup.formation}. `
+        : "";
+    await send(
+      {
+        title: `📋 Alineaciones · ${vs}`,
+        body: `¡Onces confirmados! ${forms}A punto de empezar.`,
+        icon: PUSH_ICON,
+        image: lineupImage,
+      },
+      { kind: WIDE_KIND },
+    );
     next.lineupsSent = true;
   }
 
@@ -348,12 +359,12 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     // El final NO se fija (pin: false): así el seguidor puede descartarlo.
     await send(
       {
-        title: `Final — ${vs} ${scoreText(snap.score)}`,
-        body: winner ? `Victoria de ${winner}.` : `Empate.`,
+        title: `🏁 Final · ${vs} ${scoreText(snap.score)}`,
+        body: winner ? `¡Gana ${winner}! 🎉` : "¡Empate! Reparto de puntos.",
         icon: PUSH_ICON,
         image: ftImage,
       },
-      { pin: false },
+      { pin: false, kind: WIDE_KIND },
     );
     next.ftSent = true;
     // El partido acabó: libera el set de seguidores (limpia KV y permite que el

@@ -198,7 +198,9 @@ export default function PushComposer() {
           />
           <p className="text-[11px] text-gray-500 mt-1.5">
             JPG, PNG o WEBP, máx 5 MB. Se sube a ZonaMundial y se usa su enlace automáticamente.
-            Horizontal (16:9) se ve mejor en Android.
+            <strong className="text-gray-400"> Tamaño ideal: 1024×512 px (proporción 2:1)</strong> y
+            menos de 1 MB. Deja el texto y los logos en el centro: algunos móviles recortan los bordes
+            de arriba y abajo.
           </p>
         </div>
         <div>

@@ -244,6 +244,43 @@ export async function predictedCountsByUser(userId: string): Promise<Record<stri
   return counts;
 }
 
+// ─── Resultados recientes del usuario (para el lobby) ────────────────────────
+export interface MyMatchResult {
+  match_id: string;
+  points: number;
+  correct: number;
+  total: number;
+  resolved_at: string;
+}
+/**
+ * Partidos del usuario ya RESUELTOS, agregados por partido (puntos, aciertos,
+ * total, cuándo resolvió), del más reciente al más antiguo. Alimenta el acceso
+ * directo "Tus resultados recientes" del lobby. Acotado a las predicciones del
+ * propio usuario → barato.
+ */
+export async function getMyRecentResolvedMatches(userId: string, limit = 5): Promise<MyMatchResult[]> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("predictions")
+    .select("match_id,points_earned,is_correct,resolved_at")
+    .eq("user_id", userId)
+    .not("resolved_at", "is", null);
+  const rows = (data ?? []) as { match_id: string; points_earned: number | null; is_correct: boolean | null; resolved_at: string }[];
+  const agg = new Map<string, { points: number; correct: number; total: number; resolvedAt: string }>();
+  for (const r of rows) {
+    const a = agg.get(r.match_id) ?? { points: 0, correct: 0, total: 0, resolvedAt: r.resolved_at };
+    a.points += r.points_earned ?? 0;
+    a.total += 1;
+    if (r.is_correct) a.correct += 1;
+    if (r.resolved_at > a.resolvedAt) a.resolvedAt = r.resolved_at;
+    agg.set(r.match_id, a);
+  }
+  return [...agg.entries()]
+    .map(([match_id, a]) => ({ match_id, points: a.points, correct: a.correct, total: a.total, resolved_at: a.resolvedAt }))
+    .sort((x, y) => (x.resolved_at < y.resolved_at ? 1 : -1))
+    .slice(0, Math.max(0, limit));
+}
+
 // ─── Estadísticas sociales (tipo 8) ──────────────────────────────────────────
 export function optionKeyForStats(type: PredictionType, data: PredictionData): string {
   switch (type) {

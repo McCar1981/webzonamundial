@@ -6,7 +6,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { predictedCountsByUser } from "@/lib/predictions/store";
+import { predictedCountsByUser, getMyRecentResolvedMatches } from "@/lib/predictions/store";
 import { PREDICTION_TYPES } from "@/lib/predictions/types";
 
 export const runtime = "nodejs";
@@ -15,7 +15,13 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const counts = await predictedCountsByUser(user.id);
+  const [counts, recentResults] = await Promise.all([
+    predictedCountsByUser(user.id),
+    getMyRecentResolvedMatches(user.id, 5),
+  ]);
   // FIX 5: conteo de predicciones del usuario → no cachear en el navegador.
-  return NextResponse.json({ counts, types_total: PREDICTION_TYPES.length }, { headers: { "Cache-Control": "private, no-store" } });
+  return NextResponse.json(
+    { counts, types_total: PREDICTION_TYPES.length, recent_results: recentResults },
+    { headers: { "Cache-Control": "private, no-store" } },
+  );
 }

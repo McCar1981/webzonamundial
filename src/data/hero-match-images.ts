@@ -28,6 +28,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/juego-inaugural-wide.webp",
     mobile: "/images/hero/juego-inaugural-mobile.webp",
   },
+  // Corea del Sur vs Rep. Checa (11 jun, 2º del calendario).
+  "corea-del-sur-rep-checa": {
+    wide: "/images/hero/corea-del-sur-rep-checa-wide.webp",
+    mobile: "/images/hero/corea-del-sur-rep-checa-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

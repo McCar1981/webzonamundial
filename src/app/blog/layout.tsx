@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Editorial ZonaMundial — Análisis y datos del Mundial 2026",
+  // Corto: el template del layout raíz añade " | ZonaMundial" (≤60 chars total).
+  title: "Blog del Mundial 2026: análisis y datos",
   description:
     "Investigación editorial diaria sobre el Mundial 2026: selecciones, sedes, jugadores, análisis tácticos y guías. Firmado por la redacción de ZonaMundial.",
   keywords: [

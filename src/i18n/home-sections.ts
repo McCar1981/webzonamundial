@@ -281,8 +281,11 @@ export const homeSections = {
           links: [
             { label: "48 Selecciones", href: "/selecciones" },
             { label: "12 Grupos", href: "/grupos" },
+            { label: "Mejores terceros", href: "/grupos/mejores-terceros" },
             { label: "16 Sedes", href: "/sedes" },
             { label: "Calendario", href: "/calendario" },
+            { label: "Quiniela 2026", href: "/quiniela-mundial-2026" },
+            { label: "Simulador (Bracket)", href: "/bracket" },
             { label: "Historia", href: "/historia" },
           ],
         },
@@ -711,8 +714,11 @@ export const homeSections = {
           links: [
             { label: "48 Teams", href: "/selecciones" },
             { label: "12 Groups", href: "/grupos" },
+            { label: "Best third places", href: "/grupos/mejores-terceros" },
             { label: "16 Venues", href: "/sedes" },
             { label: "Schedule", href: "/calendario" },
+            { label: "World Cup Pool", href: "/quiniela-mundial-2026" },
+            { label: "Bracket Simulator", href: "/bracket" },
             { label: "History", href: "/historia" },
           ],
         },

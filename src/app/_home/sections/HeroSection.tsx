@@ -57,10 +57,14 @@ function Icon({ name, size = 18 }: { name: keyof typeof ICON_PATHS; size?: numbe
 type HeroT = (typeof homeSections)["es"]["hero"] | (typeof homeSections)["en"]["hero"];
 
 /* ---------- Variants for headlines (single variant renderer) ---------- */
-function HeadlineVariant({ variant, t }: { variant: Variant; t: HeroT }) {
+function HeadlineVariant({ variant, t, active }: { variant: Variant; t: HeroT; active: boolean }) {
+  // Las tres variantes se renderizan a la vez (el wrapper mide la más alta),
+  // pero solo la activa debe ser <h1>: con tres, Google veía 3 H1 en la home.
+  // Las inactivas pasan a <div> con la misma clase — sin cambio visual.
+  const Tag = (active ? "h1" : "div") as "h1" | "div";
   if (variant === "ia") {
     return (
-      <h1 className={styles.zmH1}>
+      <Tag className={styles.zmH1}>
         <span className={styles.zmH1Line}>{t.headlines.ia.l1}</span>
         <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.ia.l2}</span>
         <span
@@ -75,26 +79,26 @@ function HeadlineVariant({ variant, t }: { variant: Variant; t: HeroT }) {
           {t.headlines.ia.l3a} <em className={styles.zmH1Em}>{t.headlines.ia.em}</em>{" "}
           {t.headlines.ia.l3b}
         </span>
-      </h1>
+      </Tag>
     );
   }
   if (variant === "fantasy") {
     return (
-      <h1 className={styles.zmH1}>
+      <Tag className={styles.zmH1}>
         <span className={styles.zmH1Line}>{t.headlines.fantasy.l1}</span>
         <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.fantasy.l2}</span>
         <span className={styles.zmH1Line}>{t.headlines.fantasy.l3}</span>
-      </h1>
+      </Tag>
     );
   }
   return (
-    <h1 className={styles.zmH1}>
+    <Tag className={styles.zmH1}>
       <span className={styles.zmH1Line}>{t.headlines.juega.l1}</span>
       <span className={styles.zmH1Line}>
         <span className={styles.zmH1Strike}>{t.headlines.juega.l2}</span>
       </span>
       <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.juega.l3}</span>
-    </h1>
+    </Tag>
   );
 }
 
@@ -113,7 +117,7 @@ function Headline({ variant, t }: { variant: Variant; t: HeroT }) {
             className={active ? styles.zmH1VariantActive : styles.zmH1VariantInactive}
             aria-hidden={active ? undefined : true}
           >
-            <HeadlineVariant variant={v} t={t} />
+            <HeadlineVariant variant={v} t={t} active={active} />
           </div>
         );
       })}

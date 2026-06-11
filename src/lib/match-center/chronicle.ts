@@ -183,6 +183,29 @@ async function publishDraft(snap: LiveSnapshot, content: ChronicleDraftContent):
   }
 
   const body: NoticiaBlock[] = content.paragraphs.map((p) => ({ type: "p", text: p }));
+
+  // Ficha del partido: bloques 100% DETERMINISTAS construidos desde el
+  // snapshot real (cero LLM, cero invención). Suman datos verificables que
+  // ningún medio tiene publicados a los 2 minutos del pitido final.
+  const goles = snap.events
+    .filter((e) => e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal")
+    .map((e) => {
+      const equipo = e.side === "home" ? m.home.name : e.side === "away" ? m.away.name : "";
+      const tipo = e.type === "penalty_goal" ? " (p.)" : e.type === "own_goal" ? " (p.p.)" : "";
+      return `${e.minute}${e.extra ? `+${e.extra}` : ""}' ${e.player ?? "Gol"}${tipo}${equipo ? ` — ${equipo}` : ""}`;
+    });
+  const ficha: string[] = [
+    `Resultado: ${m.home.name} ${snap.score[0] ?? 0}-${snap.score[1] ?? 0} ${m.away.name}${snap.status !== "FT" ? ` (${snap.status})` : ""}`,
+  ];
+  if (goles.length > 0) ficha.push(`Goles: ${goles.join(" · ")}`);
+  if (Array.isArray(snap.stats.possession) && snap.stats.possession.length === 2)
+    ficha.push(`Posesión: ${snap.stats.possession[0]}% - ${snap.stats.possession[1]}%`);
+  if (Array.isArray(snap.stats.shotsOn) && snap.stats.shotsOn.length === 2)
+    ficha.push(`Tiros a puerta: ${snap.stats.shotsOn[0]} - ${snap.stats.shotsOn[1]}`);
+  if (m.venue) ficha.push(`Estadio: ${m.venue}${m.city ? ` (${m.city})` : ""}`);
+  ficha.push(`Fase: ${m.phase}${m.group ? ` · Grupo ${m.group}` : ""}`);
+  body.push({ type: "h2", text: "Ficha del partido" });
+  body.push({ type: "list", items: ficha });
   const draft: DraftNoticia = {
     slug,
     title: content.title,

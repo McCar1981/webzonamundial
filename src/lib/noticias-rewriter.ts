@@ -16,6 +16,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { DraftNoticia } from "./noticias-ingest";
 import { makeSlug } from "./noticias-ingest";
 import { evaluateArticle, shouldPublish } from "./noticias-critic";
+import { listBibliaTeamsBrief, loadTeam } from "./biblia";
+import { getPartidosByEquipo } from "@/data/calendario";
 import type { NoticiaBlock, NoticiaCategory } from "@/data/noticias";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
@@ -61,6 +63,11 @@ PROFUNDIDAD HONESTA (sin inventar):
 - Puedes contextualizar con conocimiento general verificable (rol/posición de un jugador, su selección, el grupo) SOLO si es relevante y aporta, no como relleno.
 - Implicaciones: qué pasa después, qué se puede esperar, sin afirmar fechas o cifras que no estén en la fuente.
 
+CONTEXTO VERIFICADO ZONAMUNDIAL (si el mensaje lo incluye):
+- El mensaje puede traer un bloque "CONTEXTO VERIFICADO" con datos oficiales de las selecciones implicadas (grupo del Mundial, ranking FIFA, jugador estrella, seleccionador, próximo partido con fecha y estadio). Esos datos SÍ son fuente fiable: úsalos.
+- Cuando exista contexto, cierra la pieza con una sección "h2" titulada "Qué significa para el Mundial" (1-2 párrafos) que conecte la noticia con el torneo usando SOLO ese contexto (próximo rival, el grupo, qué se juega).
+- Con fuente sustanciosa + contexto, el punto dulce son 500-800 palabras. La regla anti-inflado sigue vigente: el contexto sirve para análisis real, nunca para rellenar.
+
 Categorías permitidas (campo "cat"): "selecciones" | "analisis" | "datos" | "sedes" | "historia" | "plataforma".
 
 ESTRUCTURA DEL JSON DE SALIDA (la longitud del body es flexible: usa solo los bloques que aporten):
@@ -82,7 +89,7 @@ ESTRUCTURA DEL JSON DE SALIDA (la longitud del body es flexible: usa solo los bl
 
 Usa h2/list/callout solo cuando aporten estructura real. Body mínimo: lede + al menos 2 párrafos de desarrollo. Sin techo de bloques, pero cada bloque debe ganarse su sitio.`;
 
-function buildUserMessage(draft: DraftNoticia): string {
+function buildUserMessage(draft: DraftNoticia, verifiedContext: string): string {
   const sourceText = draft.body
     .filter((b) => b.type === "p")
     .map((b) => (b as { text: string }).text)
@@ -96,13 +103,65 @@ ${sourceText}
 
 CATEGORÍA SUGERIDA POR HEURÍSTICA: ${draft.cat}
 PAÍSES DETECTADOS: ${draft.flags.join(", ") || "ninguno"}
-
+${verifiedContext ? `\nCONTEXTO VERIFICADO (datos oficiales de ZonaMundial — puedes usarlos):\n${verifiedContext}\n` : ""}
 Reescribe esta noticia en estilo editorial ZonaMundial. Devuelve SOLO el JSON.`;
+}
+
+/**
+ * Contexto verificado para las selecciones detectadas en el draft (máx. 2):
+ * grupo, ranking FIFA, estrella, seleccionador y próximo partido. Sale de la
+ * BIBLIA y del calendario oficial — el rewriter gana profundidad REAL sin
+ * inventar nada. Fail-soft: cualquier error devuelve cadena vacía.
+ */
+async function buildVerifiedContext(draft: DraftNoticia): Promise<string> {
+  try {
+    const isos = draft.flags.slice(0, 2);
+    if (isos.length === 0) return "";
+    const brief = await listBibliaTeamsBrief();
+    const lines: string[] = [];
+    const fmtFecha = new Intl.DateTimeFormat("es-ES", {
+      timeZone: "Europe/Madrid",
+      day: "numeric",
+      month: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    for (const iso of isos) {
+      const slug = brief.find((b) => b.iso.toLowerCase() === iso.toLowerCase())?.slug;
+      if (!slug) continue;
+      const team = await loadTeam(slug);
+      if (!team) continue;
+      const parts: string[] = [`${team.name_es}:`];
+      if (team.wc_2026?.group_2026?.letter) parts.push(`Grupo ${team.wc_2026.group_2026.letter} del Mundial 2026.`);
+      if (team.fifa_ranking?.current) parts.push(`Ranking FIFA: ${team.fifa_ranking.current}º.`);
+      if (team.wc_2026?.star_player?.name)
+        parts.push(
+          `Estrella: ${team.wc_2026.star_player.name}${team.wc_2026.star_player.reason ? ` (${team.wc_2026.star_player.reason})` : ""}.`,
+        );
+      if (team.wc_2026?.coach?.name) parts.push(`Seleccionador: ${team.wc_2026.coach.name}.`);
+      const next = getPartidosByEquipo(slug)
+        .filter((p) => new Date(p.fecha).getTime() > Date.now())
+        .sort((a, b) => a.fecha.localeCompare(b.fecha))[0];
+      if (next) {
+        const rivalSlug = next.homeSlug === slug ? next.awaySlug : next.homeSlug;
+        const rival = brief.find((b) => b.slug === rivalSlug);
+        parts.push(
+          `Próximo partido: contra ${rival?.name ?? rivalSlug}, ${fmtFecha.format(new Date(next.fecha))} (hora española), ${next.estadio} de ${next.ciudad}.`,
+        );
+      }
+      lines.push(`- ${parts.join(" ")}`);
+    }
+    return lines.join("\n");
+  } catch {
+    return "";
+  }
 }
 
 export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput | null> {
   const client = getClient();
   const model = process.env.ANTHROPIC_MODEL || DEFAULT_MODEL;
+  const verifiedContext = await buildVerifiedContext(draft);
 
   let resp;
   try {
@@ -111,7 +170,7 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
       max_tokens: 6000, // articles 800-1100 words = ~1800-2200 tokens; 6k gives margin
       temperature: 0.4,
       system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: buildUserMessage(draft) }],
+      messages: [{ role: "user", content: buildUserMessage(draft, verifiedContext) }],
     });
   } catch (err) {
     console.error("[rewriter] API error", (err as Error).message);

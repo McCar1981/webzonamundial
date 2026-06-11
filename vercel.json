@@ -10,6 +10,14 @@
       "schedule": "0 7,13,19 * * *"
     },
     {
+      "path": "/api/cron/daily-previa",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/daily-resumen",
+      "schedule": "30 7 * * *"
+    },
+    {
       "path": "/api/cron/daily-stats",
       "schedule": "0 9 * * *"
     },

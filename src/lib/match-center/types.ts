@@ -60,9 +60,20 @@ export interface LineupPlayer {
   y: number;
 }
 
+/** Jugador del banquillo (sin coordenadas: no se pinta en el campo). */
+export interface BenchPlayer {
+  num: number;
+  pos: string; // GK | DF | MF | FW
+  name?: string;
+}
+
 export interface TeamLineup {
   formation: string; // "4-3-3"
   starters: LineupPlayer[];
+  /** Suplentes reales de api-football (si la API los publicó). */
+  substitutes?: BenchPlayer[];
+  /** Seleccionador (api-football lineups[].coach.name). */
+  coach?: string;
 }
 
 /** Pares [home, away]. */

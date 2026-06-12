@@ -12,6 +12,7 @@ import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
 import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
+import PreviaAccordion from "./PreviaAccordion";
 import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -1403,6 +1404,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
             {tab === "general" && (
             <>
+            {/* Previa editorial del partido (acordeón, con fotos reales de las
+                dos selecciones). Solo en partidos reales del torneo. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
+            )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>

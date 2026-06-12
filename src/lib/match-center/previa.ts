@@ -82,6 +82,12 @@ function slugify(s: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/** Slug determinista de la previa de un partido. Lo usan el generador y el
+ *  endpoint que la sirve dentro del Match Center, para que SIEMPRE coincidan. */
+export function previaSlugFor(homeName: string, awayName: string, kickoff: Date): string {
+  return `previa-mundial-${slugify(homeName)}-${slugify(awayName)}-${madridDateISO(kickoff)}`;
+}
+
 /* ───────────────────────── Resolución de slug BIBLIA ─────────────────────── */
 // El partido (matches.ts) trae el código de bandera (m.hf/m.af, p.ej. "mx",
 // "gb-eng"), que coincide con el `iso` de la ficha BIBLIA. Construimos el índice
@@ -333,7 +339,7 @@ export async function maybePublishPrevia(matchId: number, kickoffISO: string): P
   const ko = new Date(kickoffISO);
   const hora = madridTime(ko);
   const dateISO = madridDateISO(ko);
-  const slug = `previa-mundial-${slugify(meta.home.name)}-${slugify(meta.away.name)}-${dateISO}`;
+  const slug = previaSlugFor(meta.home.name, meta.away.name, ko);
 
   const caraACara =
     h2h && h2h.matches.length > 0

@@ -19,10 +19,9 @@ import {
   calcularBalance,
   calcularCoherencia,
   aplicarBonusEstilo,
-  puntosPorCalificacion,
-  monedasPorCalificacion,
 } from "@/lib/draft/simulacion";
 import { Campana, calcularBonusCampana } from "@/lib/draft/campana";
+import { calcularRecompensaDraft, RecompensaDraft } from "@/lib/draft/recompensa";
 import {
   DraftLogro,
   checkLogros,
@@ -54,6 +53,7 @@ export interface UseDraftGameReturn {
   posicionesOcupadas: DraftPosicion[];
   rerollsRestantes: number;
   campanaBonus: number;
+  recompensa: RecompensaDraft | null;
   puntajeParcial: number | null;
   coherenciaHint: string | null;
 
@@ -86,6 +86,7 @@ export function useDraftGame(): UseDraftGameReturn {
   const [logrosNuevos, setLogrosNuevos] = useState<DraftLogro[]>([]);
   const [rerollsRestantes, setRerollsRestantes] = useState(REROLLS_INICIALES);
   const [campanaBonus, setCampanaBonus] = useState(0);
+  const [recompensa, setRecompensa] = useState<RecompensaDraft | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -108,6 +109,7 @@ export function useDraftGame(): UseDraftGameReturn {
     setGuardando(false);
     setRerollsRestantes(REROLLS_INICIALES);
     setCampanaBonus(0);
+    setRecompensa(null);
   }, [formacion]);
 
   const otraSeleccion = useCallback(() => {
@@ -151,7 +153,7 @@ export function useDraftGame(): UseDraftGameReturn {
   const guardarResultado = useCallback(async (
     res: DraftResultado,
     eq: JugadorSeleccionado[],
-    extraCoins = 0,
+    rec: RecompensaDraft,
   ) => {
     setGuardando(true);
     try {
@@ -177,8 +179,8 @@ export function useDraftGame(): UseDraftGameReturn {
           coherencia: res.coherencia,
           bonusEstilo: res.bonusEstilo,
           equipo: equipoJson,
-          coins: monedasPorCalificacion(res.calificacion) + extraCoins,
-          xp: puntosPorCalificacion(res.calificacion),
+          coins: rec.coins,
+          xp: rec.xp,
         }),
       });
     } catch (e) {
@@ -250,8 +252,10 @@ export function useDraftGame(): UseDraftGameReturn {
     setCampanaBonus(bonus);
 
     if (resultado) {
+      const rec = calcularRecompensaDraft(resultado.calificacion, campana);
+      setRecompensa(rec);
       const eq = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
-      await guardarResultado(resultado, eq, bonus);
+      await guardarResultado(resultado, eq, rec);
     }
 
     setPhase("resultado");
@@ -268,6 +272,7 @@ export function useDraftGame(): UseDraftGameReturn {
     setLogrosNuevos([]);
     setRerollsRestantes(REROLLS_INICIALES);
     setCampanaBonus(0);
+    setRecompensa(null);
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -350,6 +355,7 @@ export function useDraftGame(): UseDraftGameReturn {
     posicionesOcupadas,
     rerollsRestantes,
     campanaBonus,
+    recompensa,
     puntajeParcial,
     coherenciaHint,
     setFormacion,

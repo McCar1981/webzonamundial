@@ -4,8 +4,9 @@
 // src/app/app/draft-mundial/jugar/page.tsx
 // Juego Draft Mundial — Nueva mecánica: elegí cualquier jugador de la selección
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import { FREE_LIMITS, PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
 import {
   DraftPosicion,
   FormacionKey,
@@ -17,12 +18,11 @@ import {
 import { FORMACIONES } from "@/lib/draft/formaciones";
 import {
   getColorCalificacion,
-  puntosPorCalificacion,
-  monedasPorCalificacion,
   getNearMiss,
 } from "@/lib/draft/simulacion";
 import { DraftLogro } from "@/lib/draft/logros";
 import { generarCampana, Campana, CampanaPartido, calcularBonusCampana } from "@/lib/draft/campana";
+import { RecompensaDraft } from "@/lib/draft/recompensa";
 import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
 import { useDraftGame } from "../hooks/useDraftGame";
 import SoccerField from "../components/SoccerField";
@@ -511,12 +511,17 @@ function RankingMini() {
 }
 
 /* ─────────── ResultadoScreen ─────────── */
-function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { resultado: DraftResultado; equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; campanaBonus?: number; onReiniciar: () => void }) {
+function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resultado: DraftResultado; equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; recompensa: RecompensaDraft | null; onReiniciar: () => void }) {
   const color = getColorCalificacion(resultado.calificacion);
-  const puntos = puntosPorCalificacion(resultado.calificacion);
-  const monedas = monedasPorCalificacion(resultado.calificacion);
   const nearMiss = getNearMiss(resultado.puntaje);
-  const bonusCamp = campanaBonus ?? 0;
+  // Recompensa NETA ya calculada por el hook (base ÷2 + bonus campaña − castigo
+  // por eliminación). Fallback defensivo si aún no llegó.
+  const puntos = recompensa?.xp ?? 0;
+  const monedas = recompensa?.coins ?? 0;
+  const bonusCamp = recompensa?.bonusCoins ?? 0;
+  const penalCoins = recompensa?.penalCoins ?? 0;
+  const penalXp = recompensa?.penalXp ?? 0;
+  const eliminado = recompensa?.eliminado ?? false;
 
   const compartir = useCallback(() => {
     const nombres = Object.values(equipo).filter(Boolean).map((j) => j!.nombre).slice(0, 3).join(", ");
@@ -568,17 +573,35 @@ function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { res
         <div className="rounded-xl p-4 mb-6 text-center" style={{ background: `${GOLD}15`, border: `1px solid ${GOLD}44` }}>
           <div className="text-sm mb-1" style={{ color: TXT_MUT }}>Recompensas</div>
           <div className="flex justify-center gap-6">
-            <div><div className="text-2xl font-bold" style={{ color: GOLD }}>+{puntos}</div><div className="text-xs" style={{ color: TXT_MUT }}>puntos XP</div></div>
             <div>
-              <div className="text-2xl font-bold" style={{ color: GOLD }}>+{monedas + bonusCamp}</div>
+              <div className="text-2xl font-bold" style={{ color: GOLD }}>+{puntos}</div>
+              <div className="text-xs" style={{ color: TXT_MUT }}>puntos XP</div>
+              {penalXp > 0 && (
+                <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: RED }}>
+                  (−{penalXp} eliminación)
+                </div>
+              )}
+            </div>
+            <div>
+              <div className="text-2xl font-bold" style={{ color: GOLD }}>+{monedas}</div>
               <div className="text-xs" style={{ color: TXT_MUT }}>monedas</div>
-              {bonusCamp > 0 && (
+              {bonusCamp > 0 && penalCoins === 0 && (
                 <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: "#22c55e" }}>
-                  ({monedas} base +{bonusCamp} campaña)
+                  (+{bonusCamp} campaña)
+                </div>
+              )}
+              {penalCoins > 0 && (
+                <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: RED }}>
+                  (−{penalCoins} eliminación)
                 </div>
               )}
             </div>
           </div>
+          {eliminado && (
+            <div className="text-[11px] mt-2 animate-fade-in" style={{ color: TXT_MUT }}>
+              Tu once cayó: ganás menos. Llegá a la final para no perder puntos.
+            </div>
+          )}
         </div>
       </FadeIn>
 
@@ -831,9 +854,143 @@ function CampanaScreen({ equipo, onTerminar }: {
   );
 }
 
+/* ─────────── Tope diario Free ─────────── */
+const FREE_DRAFT_LIMIT = FREE_LIMITS.draft.dailyGames;
+
+// Conteo anónimo en localStorage (tope blando que empuja al registro; el
+// usuario logueado se cuenta en servidor vía cuota KV).
+function localDayKey(): string {
+  return "draft:plays:" + new Date().toISOString().slice(0, 10);
+}
+function readAnonPlays(): number {
+  if (typeof window === "undefined") return 0;
+  return Number(window.localStorage.getItem(localDayKey()) || "0") || 0;
+}
+function bumpAnonPlays(): void {
+  if (typeof window === "undefined") return;
+  try { window.localStorage.setItem(localDayKey(), String(readAnonPlays() + 1)); } catch { /* storage lleno/denegado */ }
+}
+
+interface GateState {
+  loading: boolean;
+  isPro: boolean;
+  anon: boolean;
+  limite: number;
+  restantes: number;
+  agotado: boolean;
+}
+
+function LimiteScreen({ anon }: { anon: boolean }) {
+  return (
+    <div className="max-w-lg mx-auto px-4 py-10">
+      <FadeIn>
+        <div className="rounded-2xl p-7 text-center" style={{ background: CARD, border: `1px solid ${GOLD}44` }}>
+          <div className="flex justify-center mb-4">
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: `${GOLD}18` }}>
+              <IconTrophy size={28} color={GOLD} />
+            </div>
+          </div>
+          <h1 className="text-2xl font-black mb-2" style={{ color: TXT }}>
+            Llegaste al límite de hoy
+          </h1>
+          <p className="text-sm mb-1" style={{ color: TXT_MUT }}>
+            Con el plan gratis podés jugar <b style={{ color: TXT }}>{FREE_DRAFT_LIMIT} drafts al día</b>.
+          </p>
+          <p className="text-sm mb-6" style={{ color: TXT_MUT }}>
+            {anon
+              ? "Registrate gratis y hacete Pro para tirar sin tope."
+              : "Pasate a Pro y armá todos los onces que quieras."}
+          </p>
+
+          <Link
+            href="/pro"
+            className="inline-block w-full py-3.5 rounded-xl text-base font-black transition-transform hover:scale-[1.02] active:scale-95"
+            style={{ background: GOLD, color: NAVY, boxShadow: `0 8px 24px ${GOLD}40` }}
+          >
+            Hazte Pro — {PRO_PRICE_DISPLAY.yearly}
+          </Link>
+
+          {anon && (
+            <Link href="/registro" className="block mt-3 text-sm font-bold" style={{ color: GOLD }}>
+              Crear cuenta gratis
+            </Link>
+          )}
+
+          <Link href="/app/draft-mundial" className="flex items-center justify-center gap-1 mt-5 text-sm" style={{ color: TXT_MUT }}>
+            <IconArrowLeft size={14} color={TXT_MUT} />Volver
+          </Link>
+
+          <p className="text-xs mt-5" style={{ color: TXT_MUT }}>
+            Tu cupo se renueva mañana.
+          </p>
+        </div>
+      </FadeIn>
+    </div>
+  );
+}
+
+function CupoBanner({ restantes }: { restantes: number }) {
+  const sinCupo = restantes <= 1;
+  return (
+    <div className="max-w-lg mx-auto px-4 -mb-4">
+      <div className="text-center text-xs font-semibold px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 mx-auto"
+        style={{ background: sinCupo ? `${RED}18` : `${GOLD}14`, color: sinCupo ? RED : GOLD, border: `1px solid ${sinCupo ? RED : GOLD}33` }}>
+        <IconDice size={13} color={sinCupo ? RED : GOLD} />
+        Te {restantes === 1 ? "queda" : "quedan"} {restantes} de {FREE_DRAFT_LIMIT} partidas gratis hoy
+      </div>
+    </div>
+  );
+}
+
 /* ─────────── Página Principal ─────────── */
 export default function DraftMundialJugarPage() {
   const game = useDraftGame();
+
+  // ── Gating del tope diario ───────────────────────────────────────────
+  const [gate, setGate] = useState<GateState>({
+    loading: true, isPro: false, anon: false,
+    limite: FREE_DRAFT_LIMIT, restantes: FREE_DRAFT_LIMIT, agotado: false,
+  });
+
+  const refrescarGate = useCallback(async () => {
+    try {
+      const r = await fetch("/api/draft/estado", { cache: "no-store" });
+      const d = await r.json();
+      if (d.isPro) {
+        setGate({ loading: false, isPro: true, anon: false, limite: Infinity, restantes: Infinity, agotado: false });
+        return;
+      }
+      if (d.anon) {
+        const restantes = Math.max(0, (d.limite ?? FREE_DRAFT_LIMIT) - readAnonPlays());
+        setGate({ loading: false, isPro: false, anon: true, limite: d.limite ?? FREE_DRAFT_LIMIT, restantes, agotado: restantes <= 0 });
+        return;
+      }
+      setGate({
+        loading: false, isPro: false, anon: false,
+        limite: d.limite ?? FREE_DRAFT_LIMIT,
+        restantes: d.restantes ?? 0,
+        agotado: !!d.agotado,
+      });
+    } catch {
+      // Fail-open: ante fallo de red no bloqueamos el juego.
+      setGate((g) => ({ ...g, loading: false }));
+    }
+  }, []);
+
+  useEffect(() => { refrescarGate(); }, [refrescarGate]);
+
+  // Al COMPLETAR una partida: el anónimo suma en localStorage; en ambos casos
+  // refrescamos el cupo para que el siguiente "setup" quede bien gateado.
+  const prevPhase = useRef(game.phase);
+  useEffect(() => {
+    if (game.phase === "resultado" && prevPhase.current !== "resultado") {
+      if (gate.anon) bumpAnonPlays();
+      refrescarGate();
+    }
+    prevPhase.current = game.phase;
+  }, [game.phase, gate.anon, refrescarGate]);
+
+  const bloqueado = !gate.loading && !gate.isPro && gate.agotado;
   // Posiciones reales a cubrir (el juego guarda una por tipo).
   const totalSlots = new Set(FORMACIONES.find((f) => f.key === game.formacion)?.posiciones ?? []).size;
   const [showConfetti, setShowConfetti] = useState(false);
@@ -866,13 +1023,19 @@ export default function DraftMundialJugarPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 pt-4">
-        {game.phase === "setup" && (
-          <SetupScreen
-            formacion={game.formacion} setFormacion={game.setFormacion}
-            estilo={game.estilo} setEstilo={game.setEstilo}
-            modo={game.modo} setModo={game.setModo}
-            onStart={game.iniciarJuego}
-          />
+        {game.phase === "setup" && bloqueado && <LimiteScreen anon={gate.anon} />}
+        {game.phase === "setup" && !bloqueado && (
+          <>
+            {!gate.isPro && !gate.loading && Number.isFinite(gate.restantes) && (
+              <CupoBanner restantes={gate.restantes} />
+            )}
+            <SetupScreen
+              formacion={game.formacion} setFormacion={game.setFormacion}
+              estilo={game.estilo} setEstilo={game.setEstilo}
+              modo={game.modo} setModo={game.setModo}
+              onStart={game.iniciarJuego}
+            />
+          </>
         )}
 
         {game.phase !== "setup" && game.phase !== "resultado" && game.phase !== "campana" && (
@@ -929,7 +1092,7 @@ export default function DraftMundialJugarPage() {
         )}
 
         {game.phase === "resultado" && game.resultado && (
-          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} campanaBonus={game.campanaBonus} onReiniciar={game.reiniciar} />
+          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} recompensa={game.recompensa} onReiniciar={game.reiniciar} />
         )}
       </div>
     </div>

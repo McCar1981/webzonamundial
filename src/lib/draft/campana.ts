@@ -267,3 +267,29 @@ export function calcularBonusCampana(campana: Campana): number {
   const faseIdx = fasesKO.indexOf(lastFase);
   return ([5, 7, 10, 15, 20] as const)[faseIdx] ?? 5;
 }
+
+// ¿Quedó eliminado? Verdadero salvo que sea campeón o subcampeón (perdió la
+// Final). Llegar a la Final no penaliza; caer antes, sí.
+export function quedoEliminado(campana: Campana): boolean {
+  if (campana.campeon) return false;
+  const llegoFinal = campana.partidos.some((p) => p.fase === "Final");
+  return !llegoFinal;
+}
+
+// Penalización por quedar eliminado (decisión 12-jun: el Draft debe RESTAR
+// puntos cuando tu once cae). Cuanto antes te eliminan, más caro:
+//   · Fase de grupos → el castigo mayor.
+//   · Rondas KO → menos castigo según avanzas; la Final (subcampeón) = 0.
+// Se aplica a puntos XP y a monedas; el neto nunca baja de 0 (no drena la
+// billetera, solo recorta lo ganado en esta partida).
+export function penalizacionCampana(campana: Campana): { coins: number; xp: number } {
+  if (!quedoEliminado(campana)) return { coins: 0, xp: 0 };
+  if (!campana.clasificado) return { coins: 10, xp: 20 }; // eliminado en grupos
+  const fasesKO: Fase[] = ["16avos", "Octavos", "Cuartos", "Semifinal", "Final"];
+  const koPartidos = campana.partidos.filter((p) => fasesKO.includes(p.fase));
+  const lastFase = koPartidos[koPartidos.length - 1]?.fase;
+  const faseIdx = lastFase ? fasesKO.indexOf(lastFase) : 0;
+  const coins = ([8, 6, 4, 2, 0] as const)[faseIdx] ?? 8;
+  const xp = ([15, 10, 6, 3, 0] as const)[faseIdx] ?? 15;
+  return { coins, xp };
+}

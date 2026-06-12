@@ -72,6 +72,10 @@ export const FREE_LIMITS = {
     /** Crear ligas privadas (unirse con código es libre para todos). */
     canCreatePrivate: false,
   },
+  draft: {
+    /** Drafts (partidas completadas) que se pueden jugar al día. */
+    dailyGames: 5,
+  },
   stats: {
     /** xG, xA, mapas de calor, comparativas históricas. */
     advanced: false,
@@ -124,6 +128,9 @@ export const PRO_LIMITS = {
   leagues: {
     canCreatePrivate: true,
   },
+  draft: {
+    dailyGames: Infinity,
+  },
   stats: {
     advanced: true,
   },
@@ -159,6 +166,7 @@ export type ProFeature =
   | "match_center_alerts"
   | "bars_create"
   | "leagues_create"
+  | "draft_daily"
   | "stats_advanced";
 
 /** Respuesta estándar de un gate: la UI la convierte en paywall. */

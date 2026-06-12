@@ -191,18 +191,21 @@ export function getNearMiss(puntaje: number): { faltaron: number; siguiente: str
   return faltaron <= 10 ? { faltaron, siguiente } : null;
 }
 
+// Recompensas REDUCIDAS A LA MITAD respecto al lanzamiento (decisión de
+// economía 12-jun): el Draft daba demasiados puntos/monedas por partida.
+// Junto con el tope de 5 partidas/día para Free, deja el grindeo bajo control.
 export function puntosPorCalificacion(cal: DraftResultado["calificacion"]): number {
   switch (cal) {
     case "Leyenda":
-      return 200;
-    case "Platino":
       return 100;
-    case "Oro":
+    case "Platino":
       return 50;
-    case "Plata":
+    case "Oro":
       return 25;
+    case "Plata":
+      return 13;
     case "Bronce":
-      return 10;
+      return 5;
     default:
       return 0;
   }
@@ -211,15 +214,15 @@ export function puntosPorCalificacion(cal: DraftResultado["calificacion"]): numb
 export function monedasPorCalificacion(cal: DraftResultado["calificacion"]): number {
   switch (cal) {
     case "Leyenda":
-      return 50;
+      return 25;
     case "Platino":
-      return 35;
+      return 18;
     case "Oro":
-      return 20;
-    case "Plata":
       return 10;
-    case "Bronce":
+    case "Plata":
       return 5;
+    case "Bronce":
+      return 3;
     default:
       return 0;
   }

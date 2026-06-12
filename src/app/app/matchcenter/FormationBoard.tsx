@@ -68,6 +68,13 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
   const kit = useMemo(() => teamKit(team.flag, team.color), [team.flag, team.color]);
   const confirmed = lineup.starters.some((p) => !!p.name);
 
+  // Camiseta REAL diseñada (PNG en /public). Si falta, se cae a la silueta de
+  // color. El dorsal va superpuesto sobre el pecho con contraste automático.
+  const kc = kitColors(team.flag);
+  const jersey = kc?.image ?? null;
+  const numInk = kc && lum(kc.primary) > 0.6 ? "#0b1825" : "#ffffff";
+  const numStroke = numInk === "#ffffff" ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.7)";
+
   // viewBox vertical; la selección ataca hacia ARRIBA (portero abajo).
   const W = 320;
   const H = 380;
@@ -131,16 +138,25 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
             return (
               <g key={`${p.num}-${i}`} transform={`translate(${X},${Y})`}>
                 {/* sombra */}
-                <ellipse cx="0" cy="20" rx="11" ry="3.2" fill="rgba(0,0,0,0.28)" />
-                <g transform="scale(0.92)">
-                  <path d={SHIRT} fill={fill} stroke="#0b1825" strokeWidth="1.2" />
-                  {/* detalle de cuello/mangas con el color secundario */}
-                  <path d="M-3,-8 Q0,-6 3,-8 L2,-5 Q0,-3.6 -2,-5 Z" fill={kit.trim} opacity="0.95" />
-                  <text x="0" y="7" textAnchor="middle" fontSize="11.5" fontWeight="900" fill={ink} fontFamily="'Oswald','Outfit',sans-serif">{p.num}</text>
-                </g>
+                <ellipse cx="0" cy="16" rx="12" ry="3.2" fill="rgba(0,0,0,0.30)" />
+                {jersey ? (
+                  // Camiseta REAL diseñada del repo (PNG). El portero, sin kit
+                  // propio diseñado, viste también la titular.
+                  <image href={jersey} x={-15} y={-15} width={30} height={30} preserveAspectRatio="xMidYMid meet" />
+                ) : (
+                  // Respaldo (no debería ocurrir: las 48 tienen PNG).
+                  <g transform="scale(0.92)">
+                    <path d={SHIRT} fill={fill} stroke="#0b1825" strokeWidth="1.2" />
+                    <path d="M-3,-8 Q0,-6 3,-8 L2,-5 Q0,-3.6 -2,-5 Z" fill={kit.trim} opacity="0.95" />
+                  </g>
+                )}
+                {/* dorsal sobre el pecho, con contorno para legibilidad */}
+                <text x="0" y="3" textAnchor="middle" fontSize="10.5" fontWeight="900"
+                  fill={jersey ? numInk : ink} stroke={jersey ? numStroke : "none"} strokeWidth="0.5"
+                  paintOrder="stroke" fontFamily="'Oswald','Outfit',sans-serif">{p.num}</text>
                 {/* nombre */}
-                <g transform="translate(0,30)">
-                  <rect x="-30" y="-9" width="60" height="16" rx="4" fill="rgba(6,15,24,0.72)" />
+                <g transform="translate(0,28)">
+                  <rect x="-31" y="-9" width="62" height="16" rx="4" fill="rgba(6,15,24,0.78)" />
                   <text x="0" y="2.5" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#eef2f9">{label.length > 11 ? label.slice(0, 10) + "…" : label}</text>
                 </g>
               </g>

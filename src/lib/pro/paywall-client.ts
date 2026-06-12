@@ -79,6 +79,10 @@ export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; per
     title: "Crear ligas privadas es Pro",
     perk: "Con Pro creas ligas privadas ilimitadas e invitas a tus amigos (unirse es gratis).",
   },
+  draft_daily: {
+    title: "Has jugado tus drafts de hoy",
+    perk: "En Free juegas 5 drafts al día. Con Pro armás todos los onces que quieras, sin tope.",
+  },
   stats_advanced: {
     title: "Las estadísticas avanzadas son Pro",
     perk: "Con Pro desbloqueas mapas de calor y comparativas históricas.",

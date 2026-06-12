@@ -23,6 +23,9 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
+import { isPro } from "@/lib/pro/entitlement";
+import { consumeDailyQuota } from "@/lib/pro/quota";
+import { FREE_LIMITS } from "@/lib/pro/limits";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -85,10 +88,24 @@ export async function POST(req: Request) {
 
   const resultId = resultRow.id;
 
-  // ── 2) Acreditar monedas (solo usuarios autenticados) ──────────────────
+  // ── 1b) Tope diario Free (5 partidas/día). Pro: ilimitado. ─────────────
+  // Consumimos una unidad por partida COMPLETADA. Si el Free ya agotó su cupo,
+  // el resultado se guarda igual (estadística/ranking) pero NO se acreditan
+  // monedas. La UI ya debería haber bloqueado el inicio; esto es la red de
+  // seguridad server-side.
+  let limiteAgotado = false;
+  if (user) {
+    const pro = await isPro(user.id, user.email);
+    if (!pro) {
+      const q = await consumeDailyQuota(user.id, "draft", FREE_LIMITS.draft.dailyGames);
+      limiteAgotado = !q.allowed;
+    }
+  }
+
+  // ── 2) Acreditar monedas (solo usuarios autenticados y dentro del tope) ─
   let grant: { coinsAwarded: number; xpAwarded: number } | null = null;
 
-  if (user && coins > 0) {
+  if (user && !limiteAgotado && coins > 0) {
     // Idempotencia: un solo claim por resultado
     const { data: existingClaim } = await admin
       .from("draft_claims")
@@ -118,6 +135,7 @@ export async function POST(req: Request) {
     ok: true,
     resultId,
     anónimo: !user,
+    limiteAgotado,
     grant: grant
       ? { coins: grant.coinsAwarded, xp: grant.xpAwarded }
       : null,

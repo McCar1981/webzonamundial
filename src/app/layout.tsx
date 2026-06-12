@@ -9,6 +9,7 @@ import GoogleAnalyticsRouteTracker from "@/components/analytics/GoogleAnalyticsR
 import NativeAppGuard from "@/components/NativeAppGuard";
 import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
 import PaywallModal from "@/components/pro/PaywallModal";
+import FreeWeekendCampaign from "@/components/pro/FreeWeekendCampaign";
 import { isAdSenseEnabled } from "@/lib/adsense";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
@@ -355,6 +356,7 @@ export default async function RootLayout({
             {/* Paywall contextual global: lo abre cualquier juego al recibir
                 un error pro_required de la API (handleProRequired). */}
             <PaywallModal />
+            <FreeWeekendCampaign />
           </EntitlementsProvider>
         </LanguageProvider>
         <CookieConsent />

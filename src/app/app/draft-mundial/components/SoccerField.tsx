@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 // src/app/app/draft-mundial/components/SoccerField.tsx
 // Campo de fútbol visual con jugadores posicionados
@@ -197,5 +198,3 @@ export default function SoccerField({ equipo, highlightPos }: SoccerFieldProps) 
   );
 }
 
-const NAVY = "#0a1729";
-const GOLD2 = "#e8d48b";

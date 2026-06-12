@@ -120,7 +120,7 @@ function SetupScreen({
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3"><IconTrophy size={48} color={GOLD} className="animate-bounce" /></div>
           <h1 className="text-2xl font-bold" style={{ color: TXT }}>Draft Mundial</h1>
-          <p className="text-sm mt-2" style={{ color: TXT_MUT }}>Armá tu once ideal con leyendas de todas las Copas del Mundo</p>
+          <p className="text-sm mt-2" style={{ color: TXT_MUT }}>Arma tu once ideal con leyendas de todas las Copas del Mundo</p>
         </div>
       </FadeIn>
 
@@ -209,12 +209,12 @@ function TiradaPanel({
               <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={48} className="rounded shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
             </div>
             <div className="text-xl font-bold mb-1" style={{ color: TXT }}>{plantilla.seleccion} {plantilla.year}</div>
-            <div className="text-sm mb-4" style={{ color: GOLD }}>Elegí un jugador para tu equipo</div>
+            <div className="text-sm mb-4" style={{ color: GOLD }}>Elige un jugador para tu equipo</div>
           </>
         ) : (
           <>
             <div className="flex justify-center mb-4"><IconDice size={56} color={GOLD} className="animate-pulse" /></div>
-            <div className="text-lg font-bold mb-2" style={{ color: TXT }}>¡Tirá el dado!</div>
+            <div className="text-lg font-bold mb-2" style={{ color: TXT }}>¡Tira el dado!</div>
             <div className="text-sm mb-4" style={{ color: TXT_MUT }}>Se sorteará una selección histórica con sus jugadores</div>
             <button onClick={onTirar}
               className="px-8 py-3 rounded-xl text-lg font-bold transition-all hover:scale-105 active:scale-95 animate-pulse flex items-center gap-2 mx-auto"
@@ -286,7 +286,7 @@ function SeleccionPanel({
       <div className={`rounded-xl p-4 transition-all duration-200${tiempoRestante !== null && tiempoRestante <= 3 ? " animate-panic-shake" : ""}`}
         style={{ background: tiempoRestante !== null && tiempoRestante <= 3 ? `color-mix(in srgb, ${RED} 12%, ${CARD})` : CARD }}>
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm font-bold" style={{ color: GOLD }}>Elegí un jugador</span>
+          <span className="text-sm font-bold" style={{ color: GOLD }}>Elige un jugador</span>
           {tiempoRestante !== null && (
             <span className="text-sm font-bold px-2 py-1 rounded-lg animate-pulse flex items-center gap-1"
               style={{ background: tiempoRestante <= 3 ? `${RED}55` : tiempoRestante <= 5 ? `${RED}33` : `${GOLD}33`, color: tiempoRestante <= 3 ? "#fff" : tiempoRestante <= 5 ? RED : GOLD }}>
@@ -418,7 +418,7 @@ function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { res
 
   const compartir = useCallback(() => {
     const nombres = Object.values(equipo).filter(Boolean).map((j) => j!.nombre).slice(0, 3).join(", ");
-    const texto = `Armé un equipo ${resultado.calificacion} (${resultado.puntaje}/100) en Draft Mundial de @ZonaMundial\n\n${nombres}...\n\n¿Me superás? → webzonamundial.com/app/draft-mundial`;
+    const texto = `Armé un equipo ${resultado.calificacion} (${resultado.puntaje}/100) en Draft Mundial de @ZonaMundial\n\n${nombres}...\n\n¿Puedes superarme? → webzonamundial.com/app/draft-mundial`;
     navigator.clipboard.writeText(texto).then(() => alert("¡Texto copiado al portapapeles!"));
   }, [resultado, equipo]);
 
@@ -668,7 +668,7 @@ function CampanaScreen({ equipo, onTerminar }: {
         {revelados === 0 && (
           <div className="text-center py-10 rounded-xl" style={{ background: CARD, color: TXT_MUT }}>
             <IconTrophy size={36} color={GOLD} className="inline-block mb-2" />
-            <div className="text-sm font-semibold">Tu once está listo. ¿Cómo jugás la campaña?</div>
+            <div className="text-sm font-semibold">Tu once está listo. ¿Cómo juegas la campaña?</div>
           </div>
         )}
       </div>

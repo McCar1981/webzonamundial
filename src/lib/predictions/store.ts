@@ -6,6 +6,7 @@
 // cliente admin (service role) que bypassa RLS.
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isRankingExcluded } from "@/lib/ranking-exclusions";
 import {
   type PredictionData,
   type PredictionRow,
@@ -752,6 +753,7 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
 
   const agg = new Map<string, { pts: number; count: number; correct: number }>();
   for (const r of rows) {
+    if (isRankingExcluded(r.user_id)) continue; // el staff no compite
     const a = agg.get(r.user_id) ?? { pts: 0, count: 0, correct: 0 };
     a.pts += r.points_earned ?? 0; a.count++; if (r.is_correct) a.correct++;
     agg.set(r.user_id, a);

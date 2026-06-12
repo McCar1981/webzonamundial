@@ -13,6 +13,7 @@
 import { adminClient } from "@/lib/predictions/admin";
 import { levelForXp } from "@/lib/predictions/gamification";
 import type { CoinModule } from "@/lib/economy/wallet";
+import { excludedInClause, isRankingExcluded } from "@/lib/ranking-exclusions";
 
 export interface RankingEntry {
   /** Posición global (1 = líder). */
@@ -61,10 +62,14 @@ interface ProfRow {
  */
 export async function getGlobalCoinRanking(limit = 50): Promise<RankingEntry[]> {
   const admin = adminClient();
-  const { data } = await admin
+  let q = admin
     .from("profiles")
     .select("id,username,avatar_url,country,coins,xp")
-    .gt("coins", 0)
+    .gt("coins", 0);
+  // Excluir al staff/propietario del ranking ANTES del limit (top sin huecos).
+  const excl = excludedInClause();
+  if (excl) q = q.not("id", "in", excl);
+  const { data } = await q
     .order("coins", { ascending: false })
     .order("xp", { ascending: false })
     // Tercer criterio ESTABLE: sin él, los empates coins+xp salen en orden
@@ -92,6 +97,8 @@ export async function getGlobalCoinRanking(limit = 50): Promise<RankingEntry[]> 
  * orden del top: entre saldos iguales, va por delante quien tiene más XP.
  */
 export async function getUserRank(uid: string): Promise<MyRank | null> {
+  // El staff/propietario no compite: no tiene posición en el ranking.
+  if (isRankingExcluded(uid)) return null;
   const admin = adminClient();
   const { data } = await admin
     .from("profiles")
@@ -103,26 +110,20 @@ export async function getUserRank(uid: string): Promise<MyRank | null> {
   const xp = (data as { xp?: number }).xp ?? 0;
   const country = (data as { country?: string | null }).country ?? null;
 
-  // Los tres counts son independientes entre sí: en paralelo la latencia es
-  // 1×RTT en vez de 3×RTT (este cálculo está en el camino del header del lobby).
+  // Los counts excluyen al staff (excl) para que NADIE cuente al propietario
+  // por encima suyo. En paralelo: 1×RTT en vez de 3×RTT (camino del header).
+  const excl = excludedInClause();
+  const aboveQ = admin.from("profiles").select("id", { count: "exact", head: true }).gt("coins", coins);
+  const tiedQ = admin.from("profiles").select("id", { count: "exact", head: true }).eq("coins", coins).gt("xp", xp);
+  const totalQ = admin.from("profiles").select("id", { count: "exact", head: true }).gt("coins", 0);
   const [
     { count: above },   // estrictamente por encima en saldo
     { count: tiedAhead }, // empatados en saldo pero con MÁS XP (desempate)
     { count: total },   // total de jugadores que ya compiten (saldo > 0)
   ] = await Promise.all([
-    admin
-      .from("profiles")
-      .select("id", { count: "exact", head: true })
-      .gt("coins", coins),
-    admin
-      .from("profiles")
-      .select("id", { count: "exact", head: true })
-      .eq("coins", coins)
-      .gt("xp", xp),
-    admin
-      .from("profiles")
-      .select("id", { count: "exact", head: true })
-      .gt("coins", 0),
+    excl ? aboveQ.not("id", "in", excl) : aboveQ,
+    excl ? tiedQ.not("id", "in", excl) : tiedQ,
+    excl ? totalQ.not("id", "in", excl) : totalQ,
   ]);
 
   return {
@@ -160,7 +161,7 @@ export async function getModuleCoinRanking(module: CoinModule, limit = 50): Prom
     p_module: module,
     p_limit: Math.max(1, Math.min(200, limit)),
   });
-  const agg = (data ?? []) as ModuleAggRow[];
+  const agg = ((data ?? []) as ModuleAggRow[]).filter((a) => !isRankingExcluded(a.user_id));
   if (!agg.length) return [];
 
   // Hidratar perfiles de los usuarios del top en una sola consulta.
@@ -196,6 +197,7 @@ export async function getModuleCoinRanking(module: CoinModule, limit = 50): Prom
  * null si el módulo no es válido o el usuario aún no ha generado nada ahí.
  */
 export async function getModuleUserRank(module: CoinModule, uid: string): Promise<MyRank | null> {
+  if (isRankingExcluded(uid)) return null; // el staff no compite
   const admin = adminClient();
   const { data } = await admin.rpc("module_coin_user_rank", { p_module: module, p_uid: uid });
   const row = Array.isArray(data) ? (data[0] as { rank?: number; coins?: number; xp?: number; total?: number } | undefined) : null;

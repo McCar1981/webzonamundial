@@ -10,6 +10,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { careerMissionReward } from "@/lib/economy/earn";
 import { normalizeCareer } from "./store";
+import { excludedInClause } from "@/lib/ranking-exclusions";
 import { rankForOverall, MISSION_TEMPLATES, xpRequired } from "./constants";
 import { missionKey, legitMissionIds } from "./missions";
 import type { CareerState, CareerRankEntry } from "./types";
@@ -148,9 +149,12 @@ export async function settleCareerMissionRewards(
 /** Ranking global de DTs por reputación (desempate por overall). */
 export async function getCareerLeaderboard(limit = 50): Promise<CareerRankEntry[]> {
   const admin = adminClient();
-  const { data } = await admin
+  let q = admin
     .from("modo_carrera_saves")
-    .select("user_id,dt_name,nation_slug,overall,reputation")
+    .select("user_id,dt_name,nation_slug,overall,reputation");
+  const excl = excludedInClause();
+  if (excl) q = q.not("user_id", "in", excl);
+  const { data } = await q
     .order("reputation", { ascending: false })
     .order("overall", { ascending: false })
     .limit(limit);

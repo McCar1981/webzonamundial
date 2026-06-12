@@ -33,6 +33,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/corea-del-sur-rep-checa-wide.webp",
     mobile: "/images/hero/corea-del-sur-rep-checa-mobile.webp",
   },
+  // Canadá vs Bosnia (12 jun).
+  "canada-bosnia": {
+    wide: "/images/hero/canada-bosnia-wide.webp",
+    mobile: "/images/hero/canada-bosnia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

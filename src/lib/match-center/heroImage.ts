@@ -8,6 +8,8 @@
 //      genérica empaquetada en /public.
 // Server-only: lee las fichas BIBLIA de data/teams via fs.
 
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { loadTeam, listBibliaSlugs } from "@/lib/biblia";
 import type { NationalTeam } from "@/types/team";
 import type { MatchMeta } from "./types";
@@ -15,6 +17,19 @@ import type { MatchMeta } from "./types";
 // Imagen de respaldo: garantiza que SIEMPRE haya una foto aunque no haya estrella.
 // Estadio real con balón en el césped (neutral, sirve para cualquier partido).
 const FALLBACK_IMAGE = "/img/heroes/ball-stadium-pitch.jpg";
+
+// Override MANUAL de la foto del hero por imagen LOCAL en /public. Permite
+// corregir un partido cuya foto automática (estrella en kit de club) no
+// corresponde. Prioridad: por partido > por selección. Extensiones admitidas.
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+const HERO_EXTS = ["webp", "jpg", "jpeg", "png"];
+function localHero(relNoExt: string): string | null {
+  for (const ext of HERO_EXTS) {
+    const rel = `${relNoExt}.${ext}`;
+    if (existsSync(path.join(PUBLIC_DIR, rel))) return `/${rel}`;
+  }
+  return null;
+}
 
 function norm(s: string): string {
   return s
@@ -73,9 +88,20 @@ async function teamStarPhotoByFlag(flag: string): Promise<string | null> {
  * estrella resoluble en ninguna selección, devuelve la imagen de respaldo.
  */
 export async function matchHeroImage(meta: MatchMeta): Promise<string> {
+  // 1. Override MANUAL por partido: /public/img/heroes/partidos/{matchId}.{ext}
+  const byMatch = localHero(`img/heroes/partidos/${meta.id}`);
+  if (byMatch) return byMatch;
+  // 2. Override MANUAL por selección: /public/img/heroes/seleccion/{flag}.{ext}
+  //    (vale para TODOS los partidos de esa selección; flag = código de bandera).
+  const homeLocal = localHero(`img/heroes/seleccion/${meta.home.flag}`);
+  if (homeLocal) return homeLocal;
+  const awayLocal = localHero(`img/heroes/seleccion/${meta.away.flag}`);
+  if (awayLocal) return awayLocal;
+  // 3. Automático: foto del jugador estrella (BIBLIA), local y luego visitante.
   const home = await teamStarPhotoByFlag(meta.home.flag);
   if (home) return home;
   const away = await teamStarPhotoByFlag(meta.away.flag);
   if (away) return away;
+  // 4. Respaldo neutral.
   return FALLBACK_IMAGE;
 }

@@ -12,6 +12,7 @@ import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
 import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
+import PreviaAccordion from "./PreviaAccordion";
 import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -247,6 +248,13 @@ function restoreClock(matchId: number, status: string): number {
 // real NUNCA emite un evento "half_time", así que la 2ª parte se deriva del
 // STATUS del snapshot, no del log de eventos.
 const SECOND_HALF = new Set(["HT", "2H", "ET", "BT", "P", "PEN", "FT", "AET"]);
+
+// Eventos que se anuncian con un banner GLOBAL (visible en cualquier pestaña:
+// si el usuario está en Estadísticas o Clasificación y cae un gol/cambio/roja,
+// se entera igual).
+const TOAST_TYPES = new Set<MatchEvent["type"]>([
+  "goal", "penalty_goal", "own_goal", "red", "second_yellow", "yellow", "sub",
+]);
 
 /** Formatea el saque (ISO) a fecha y hora en la zona horaria del usuario. */
 function fmtKickoff(iso?: string): { date: string; time: string } | null {
@@ -543,6 +551,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   // Pestaña activa (estructura estilo Google). El marcador y la previa quedan
   // como cabecera fija encima; cada pestaña muestra su panel.
   const [tab, setTab] = useState<MCTab>("general");
+  // Anuncio global del último evento clave (gol/cambio/tarjeta), visible en
+  // todas las pestañas. `key` re-dispara la animación en cada evento nuevo.
+  const [eventToast, setEventToast] = useState<{ e: MatchEvent; key: number } | null>(null);
   const [hoverPlayer, setHoverPlayer] = useState<{ num: number; label: string; side: "home" | "away"; pos: string } | null>(null);
   const [showHighlights, setShowHighlights] = useState(false);
   const [voiceOn, setVoiceOn] = useState(false);
@@ -699,10 +710,21 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       }
       if (e.type === "half_time") setSecondHalf(true);
       if (e.type === "full_time") setFinished(true);
+      // Anuncio GLOBAL: gol/cambio/tarjeta se ven en cualquier pestaña.
+      if (animate && e.side !== "neutral" && TOAST_TYPES.has(e.type)) {
+        setEventToast({ e, key: Date.now() });
+      }
       setLog((l) => [e, ...l].slice(0, 60));
     },
     [narrationFor, speak],
   );
+
+  // El anuncio global se oculta solo a los ~6 s (cada evento nuevo lo reinicia).
+  useEffect(() => {
+    if (!eventToast) return;
+    const t = setTimeout(() => setEventToast(null), 6000);
+    return () => clearTimeout(t);
+  }, [eventToast]);
 
   // Crea y dispara un evento SINTÉTICO (hito de estado o actividad derivada de
   // stats). No inventa jugadas: cada uno nace de un dato real del snapshot
@@ -1344,8 +1366,49 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
             <MCTabBar tab={tab} onTab={setTab} />
 
+            {/* Anuncio GLOBAL de evento clave (visible en TODAS las pestañas) */}
+            {eventToast && (() => {
+              const e = eventToast.e;
+              const teamName = e.side === "home" ? meta.home.name : e.side === "away" ? meta.away.name : "";
+              const min = `${e.minute}${e.extra ? `+${e.extra}` : ""}'`;
+              let kind = ""; let color = GOLD2; let detail = e.player ?? "";
+              if (e.type === "goal" || e.type === "penalty_goal") { kind = "GOL"; color = "#16c772"; detail = `${e.player ?? "Gol"}${e.type === "penalty_goal" ? " · de penalti" : ""}${e.assist ? ` · asist. ${e.assist}` : ""}`; }
+              else if (e.type === "own_goal") { kind = "GOL EN PROPIA"; color = "#16c772"; detail = e.player ?? ""; }
+              else if (e.type === "red") { kind = "TARJETA ROJA"; color = "#ef4444"; }
+              else if (e.type === "second_yellow") { kind = "ROJA · 2ª AMARILLA"; color = "#ef4444"; }
+              else if (e.type === "yellow") { kind = "TARJETA AMARILLA"; color = "#eab308"; }
+              else if (e.type === "sub") { kind = "CAMBIO"; color = "#3b82f6"; detail = `Entra ${e.playerIn ?? "?"}, sale ${e.player ?? "?"}`; }
+              const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+              return (
+                <div
+                  key={eventToast.key}
+                  onClick={() => setTab("cronologia")}
+                  role="status"
+                  style={{
+                    display: "flex", alignItems: "center", gap: 12, cursor: "pointer",
+                    background: `linear-gradient(90deg, ${color}26, ${BG2})`,
+                    border: `1px solid ${color}80`, borderLeft: `4px solid ${color}`,
+                    borderRadius: 12, padding: "10px 14px", marginBottom: 14,
+                    animation: "mcSlide .3s ease",
+                  }}
+                >
+                  <span className="mc-condensed" style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color, whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                    {isGoal && <BallIcon size={14} />}{kind} <span className="mc-num" style={{ color: MID }}>{min}</span>
+                  </span>
+                  <span style={{ fontSize: 14, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
+                    {detail}{teamName ? <span style={{ color: MID }}> · {teamName}</span> : null}
+                  </span>
+                </div>
+              );
+            })()}
+
             {tab === "general" && (
             <>
+            {/* Previa editorial del partido (acordeón, con fotos reales de las
+                dos selecciones). Solo en partidos reales del torneo. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
+            )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
@@ -1494,14 +1557,14 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               </div>
             )}
 
-            {/* Alineaciones: campo vertical con camisetas reales (Google-style) */}
+            {/* Alineaciones: campo vertical con camisetas reales (Google-style).
+                El XI ya está en el campo, así que NO repetimos la lista de
+                titulares (Lineups); cada FormationBoard muestra debajo sus
+                SUPLENTES y el entrenador. */}
             {tab === "alineaciones" && (
-              <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 14 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
-                  <FormationBoard team={meta.home} lineup={lineups.home} allowPending={feed.mode === "live"} />
-                  <FormationBoard team={meta.away} lineup={lineups.away} allowPending={feed.mode === "live"} />
-                </div>
-                <Lineups lineups={lineups} meta={meta} allowPending={feed.mode === "live"} />
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+                <FormationBoard team={meta.home} lineup={lineups.home} allowPending={feed.mode === "live"} />
+                <FormationBoard team={meta.away} lineup={lineups.away} allowPending={feed.mode === "live"} />
               </div>
             )}
 

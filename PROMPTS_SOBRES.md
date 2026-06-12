@@ -22,7 +22,7 @@ python scripts/generar-sobres-gemini.py --variants 5 --force
 **Tema:** Sobre bronce metalico, tonos cobrizos y tierra.
 
 ```text
-Premium sealed sticker pack for FIFA World Cup 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, bronze copper metallic foil with earthy brown tones, ornate geometric patterns, centered, front text "2026" at the top, "FIFA WORLD CUP" below it, large bold "3 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, World Cup trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
+Premium sealed sticker pack for Mundial 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, bronze copper metallic foil with earthy brown tones, ornate geometric patterns, centered, front text "2026" at the top, "MUNDIAL" below it, large bold "3 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
 ```
 
 ---
@@ -32,7 +32,7 @@ Premium sealed sticker pack for FIFA World Cup 2026, official collectible album,
 **Tema:** Sobre plateado cromado, tonos grises helados.
 
 ```text
-Premium sealed sticker pack for FIFA World Cup 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, silver chrome metallic foil with icy grey tones, elegant geometric patterns, centered, front text "2026" at the top, "FIFA WORLD CUP" below it, large bold "5 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, World Cup trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
+Premium sealed sticker pack for Mundial 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, silver chrome metallic foil with icy grey tones, elegant geometric patterns, centered, front text "2026" at the top, "MUNDIAL" below it, large bold "5 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
 ```
 
 ---
@@ -42,7 +42,7 @@ Premium sealed sticker pack for FIFA World Cup 2026, official collectible album,
 **Tema:** Sobre holografico dorado, tonos ambar calidos.
 
 ```text
-Premium sealed sticker pack for FIFA World Cup 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, gold holographic metallic foil with warm amber tones, rich geometric patterns, centered, front text "2026" at the top, "FIFA WORLD CUP" below it, large bold "7 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, World Cup trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
+Premium sealed sticker pack for Mundial 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, gold holographic metallic foil with warm amber tones, rich geometric patterns, centered, front text "2026" at the top, "MUNDIAL" below it, large bold "7 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
 ```
 
 ---
@@ -52,7 +52,7 @@ Premium sealed sticker pack for FIFA World Cup 2026, official collectible album,
 **Tema:** Sobre verde esmeralda, tonos tropicales.
 
 ```text
-Premium sealed sticker pack for FIFA World Cup 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, emerald green metallic foil with tropical green tones, geometric patterns, centered, front text "2026" at the top, "FIFA WORLD CUP" below it, large bold "10 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, World Cup trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
+Premium sealed sticker pack for Mundial 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, emerald green metallic foil with tropical green tones, geometric patterns, centered, front text "2026" at the top, "MUNDIAL" below it, large bold "10 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
 ```
 
 ---
@@ -62,7 +62,7 @@ Premium sealed sticker pack for FIFA World Cup 2026, official collectible album,
 **Tema:** Sobre legendario negro y oro, detalles ornamentales.
 
 ```text
-Premium sealed sticker pack for FIFA World Cup 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, black and gold legendary metallic foil, obsidian with ornate gold details and intricate patterns, centered, front text "2026" at the top, "FIFA WORLD CUP" below it, large bold "15 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, World Cup trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
+Premium sealed sticker pack for Mundial 2026, official collectible album, vertical rectangular foil pack isolated on pure white background, black and gold legendary metallic foil, obsidian with ornate gold details and intricate patterns, centered, front text "2026" at the top, "MUNDIAL" below it, large bold "15 CROMOS" in the center, small "COLECCION OFICIAL" at the bottom, soccer ball icon, trophy motif, product photography, soft studio lighting, no shadows on background, no extra text, clean edges, ultra detailed, realistic, ready for web use.
 ```
 
 ---

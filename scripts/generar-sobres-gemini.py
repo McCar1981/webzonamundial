@@ -50,12 +50,12 @@ def build_prompt(variant: dict) -> str:
     count = variant["cromos"]
     theme = variant["theme"]
     return (
-        f"Premium sealed sticker pack for FIFA World Cup 2026, "
+        f"Premium sealed sticker pack for Mundial 2026, "
         f"official collectible album, vertical rectangular foil pack "
         f"isolated on pure white background, {theme}, geometric patterns, "
-        f"centered, front text '2026' at the top, 'FIFA WORLD CUP' below it, "
+        f"centered, front text '2026' at the top, 'MUNDIAL' below it, "
         f"large bold '{count} CROMOS' in the center, small 'COLECCION OFICIAL' "
-        f"at the bottom, soccer ball icon, World Cup trophy motif, "
+        f"at the bottom, soccer ball icon, trophy motif, "
         f"product photography, soft studio lighting, no shadows on background, "
         f"no extra text, clean edges, ultra detailed, realistic, ready for web use."
     )

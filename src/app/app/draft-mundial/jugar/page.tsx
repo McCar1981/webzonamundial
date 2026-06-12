@@ -16,6 +16,7 @@ import {
   JugadorSeleccionado,
 } from "@/lib/draft/types";
 import { FORMACIONES } from "@/lib/draft/formaciones";
+import { SlotLayout } from "@/lib/draft/layout";
 import {
   getColorCalificacion,
   getNearMiss,
@@ -415,7 +416,7 @@ function SeleccionPanel({
               }}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold" style={{ color: posicionColor(j.posicion) }}>{posicionLabel(j.posicion)}</span>
-                {posicionesOcupadas.includes(j.posicion) && <span className="text-[10px] font-bold" style={{ color: RED }}>YA TOMADO</span>}
+                {posicionesOcupadas.includes(j.posicion) && <span className="text-[10px] font-bold" style={{ color: RED }}>SIN HUECO</span>}
               </div>
               <div className="text-sm font-bold truncate" style={{ color: TXT }}>{j.nombre}</div>
               <div className="text-xs mt-1" style={{ color: TXT_MUT }}>{j.seleccion} {j.year}</div>
@@ -511,7 +512,7 @@ function RankingMini() {
 }
 
 /* ─────────── ResultadoScreen ─────────── */
-function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resultado: DraftResultado; equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; recompensa: RecompensaDraft | null; onReiniciar: () => void }) {
+function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resultado: DraftResultado; equipo: Record<number, JugadorSeleccionado>; recompensa: RecompensaDraft | null; onReiniciar: () => void }) {
   const color = getColorCalificacion(resultado.calificacion);
   const nearMiss = getNearMiss(resultado.puntaje);
   // Recompensa NETA ya calculada por el hook (base ÷2 + bonus campaña − castigo
@@ -611,12 +612,12 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
         <div className="rounded-xl p-4 mb-6" style={{ background: CARD }}>
           <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: GOLD }}>Tu equipo</div>
           <div className="space-y-1">
-            {Object.entries(equipo).map(([pos, jug]) => {
+            {Object.entries(equipo).map(([slotId, jug]) => {
               if (!jug) return null;
               return (
-                <div key={pos} className="flex items-center gap-2 py-1.5 px-2 rounded-lg" style={{ background: `${posicionColor(pos as DraftPosicion)}11` }}>
+                <div key={slotId} className="flex items-center gap-2 py-1.5 px-2 rounded-lg" style={{ background: `${posicionColor(jug.posicion)}11` }}>
                   <KitAvatar seleccion={jug.seleccion} size={22} />
-                  <span className="text-xs font-bold w-8" style={{ color: posicionColor(pos as DraftPosicion) }}>{posicionLabel(pos as DraftPosicion)}</span>
+                  <span className="text-xs font-bold w-8" style={{ color: posicionColor(jug.posicion) }}>{posicionLabel(jug.posicion)}</span>
                   <span className="text-sm flex-1 truncate" style={{ color: TXT }}>{jug.nombre}</span>
                   <span className="text-xs flex items-center gap-1" style={{ color: TXT_MUT }}>
                     <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={14} className="rounded-sm" fallback={jug.seleccion.slice(0, 2).toUpperCase()} />
@@ -668,10 +669,7 @@ function BarraMarcador({ value, color }: { value: number; color: string }) {
   );
 }
 
-function Marcador({ equipo, formacion, puntajeParcial }: { equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; formacion: FormacionKey; puntajeParcial?: number | null }) {
-  const posiciones = FORMACIONES.find((f) => f.key === formacion)?.posiciones ?? [];
-  // El juego guarda una posición por tipo → posiciones únicas en orden.
-  const unicas = posiciones.filter((p, i) => posiciones.indexOf(p) === i);
+function Marcador({ slots, equipo, puntajeParcial }: { slots: SlotLayout[]; equipo: Record<number, JugadorSeleccionado>; puntajeParcial?: number | null }) {
   const colocados = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   const overall = promedioFuerza(colocados);
   const ataque = promedioFuerza(colocados.filter((j) => ATA_POS.includes(j.posicion)));
@@ -684,7 +682,7 @@ function Marcador({ equipo, formacion, puntajeParcial }: { equipo: Partial<Recor
       <div className="flex items-center justify-between mb-2">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>
-            Marcador · {colocados.length}/{unicas.length}
+            Marcador · {colocados.length}/{slots.length}
           </span>
           {puntajeParcial !== null && puntajeParcial !== undefined && (
             <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: puntajeParcial >= 85 ? GOLD : puntajeParcial >= 75 ? "#22c55e" : TXT_MUT }}>
@@ -714,13 +712,13 @@ function Marcador({ equipo, formacion, puntajeParcial }: { equipo: Partial<Recor
         </div>
       </div>
 
-      {/* Once por posición */}
+      {/* Once por casilla (respeta la formación: dos centrales salen dos veces) */}
       <div className="mt-4">
-        {unicas.map((pos) => {
-          const j = equipo[pos];
+        {slots.map((slot) => {
+          const j = equipo[slot.id];
           return (
-            <div key={pos} className="flex items-center gap-3 py-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-              <span className="text-xs font-bold w-9 flex-shrink-0" style={{ color: j ? posicionColor(pos) : TXT_MUT, opacity: j ? 1 : 0.55 }}>{posicionLabel(pos)}</span>
+            <div key={slot.id} className="flex items-center gap-3 py-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <span className="text-xs font-bold w-9 flex-shrink-0" style={{ color: j ? posicionColor(slot.pos) : TXT_MUT, opacity: j ? 1 : 0.55 }}>{posicionLabel(slot.pos)}</span>
               <span className="text-sm flex-1 truncate" style={{ color: j ? TXT : TXT_MUT }}>{j ? j.nombre : "—"}</span>
               {j && <span className="text-sm font-bold flex-shrink-0" style={{ color: j.fuerza >= 90 ? GREEN : j.fuerza >= 80 ? GOLD : TXT }}>{j.fuerza}</span>}
             </div>
@@ -759,7 +757,7 @@ function ResumenStat({ n, label, color = TXT }: { n: number; label: string; colo
 }
 
 function CampanaScreen({ equipo, onTerminar }: {
-  equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>;
+  equipo: Record<number, JugadorSeleccionado>;
   onTerminar: (campana: Campana) => void;
 }) {
   const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
@@ -991,8 +989,8 @@ export default function DraftMundialJugarPage() {
   }, [game.phase, gate.anon, refrescarGate]);
 
   const bloqueado = !gate.loading && !gate.isPro && gate.agotado;
-  // Posiciones reales a cubrir (el juego guarda una por tipo).
-  const totalSlots = new Set(FORMACIONES.find((f) => f.key === game.formacion)?.posiciones ?? []).size;
+  // Total de casillas reales de la formación elegida.
+  const totalSlots = game.slots.length;
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
@@ -1002,6 +1000,16 @@ export default function DraftMundialJugarPage() {
       return () => clearTimeout(t);
     }
   }, [game.phase, game.resultado]);
+
+  // Tras girar el dado, la selección aparece en la columna de ACCIÓN (arriba en
+  // mobile). Si el usuario estaba mirando el campo (abajo), llevamos la vista a
+  // la acción para que no se quede "en el dado".
+  const accionRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (game.phase === "seleccion") {
+      accionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [game.phase, game.tiradaActual]);
 
   return (
     <div className="min-h-screen pb-24" style={{ background: NAVY }}>
@@ -1044,20 +1052,20 @@ export default function DraftMundialJugarPage() {
             <div className="order-2 lg:order-1">
               <FadeIn>
                 <SoccerField
+                  slots={game.slots}
                   equipo={game.equipo}
-                  formacion={game.formacion}
-                  highlightPos={game.posicionesPendientes[0] || null}
+                  highlightSlot={game.slotActivo}
                 />
               </FadeIn>
               <FadeIn delay={0.1}>
                 <div className="mt-3">
-                  <Marcador equipo={game.equipo} formacion={game.formacion} puntajeParcial={game.puntajeParcial} />
+                  <Marcador slots={game.slots} equipo={game.equipo} puntajeParcial={game.puntajeParcial} />
                 </div>
               </FadeIn>
             </div>
 
             {/* Columna acción — en mobile va PRIMERO (order-1) */}
-            <div className="order-1 lg:order-2">
+            <div ref={accionRef} className="order-1 lg:order-2 scroll-mt-20">
               {game.phase === "tirada" && (
                 <TiradaPanel
                   plantilla={

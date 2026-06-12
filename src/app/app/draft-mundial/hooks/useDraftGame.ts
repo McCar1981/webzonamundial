@@ -1,5 +1,10 @@
 // src/app/app/draft-mundial/hooks/useDraftGame.ts
 // Hook principal de lógica del juego Draft Mundial
+//
+// MODELO POR CASILLA: el equipo se guarda como un mapa { idCasilla → jugador }
+// en vez de { posición → jugador }. Así una formación con dos centrales o dos
+// interiores (4-3-3, 5-3-2…) se respeta de verdad: cada casilla es un hueco
+// independiente con su coordenada en el campo (ver lib/draft/layout.ts).
 
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import {
@@ -12,7 +17,8 @@ import {
   DraftResultado,
   JugadorSeleccionado,
 } from "@/lib/draft/types";
-import { getFormacion } from "@/lib/draft/formaciones";
+import { posicionesCompatibles } from "@/lib/draft/formaciones";
+import { layoutFormacion, SlotLayout } from "@/lib/draft/layout";
 import { getPlantillaAleatoria, getOtraSeleccion, getOtroMundial } from "@/lib/draft/plantillas";
 import {
   calcularResultado,
@@ -35,13 +41,33 @@ const CONTRARRELOJ_SEGUNDOS = 10;
 // "Otro mundial"). Limitadas para que la elección sea estratégica.
 const REROLLS_INICIALES = 3;
 
+const TODAS_POSICIONES: DraftPosicion[] = [
+  "GOL", "LD", "ZAG", "LE", "VOL", "MEI", "MCD", "EXT", "CA", "PD", "PI",
+];
+
+type Equipo = Record<number, JugadorSeleccionado>;
+
+/**
+ * Busca el primer hueco libre para un jugador de posición `pos`: primero una
+ * casilla de su MISMA posición; si no, una COMPATIBLE (un EXT puede cubrir un
+ * hueco de PD, etc.). Devuelve el id de la casilla o null si no cabe.
+ */
+function buscarSlotLibre(slots: SlotLayout[], equipo: Equipo, pos: DraftPosicion): number | null {
+  const libres = slots.filter((s) => !(s.id in equipo));
+  const exacto = libres.find((s) => s.pos === pos);
+  if (exacto) return exacto.id;
+  const compat = libres.find((s) => posicionesCompatibles(s.pos, pos));
+  return compat ? compat.id : null;
+}
+
 export interface UseDraftGameReturn {
   phase: GamePhase;
   formacion: FormacionKey;
   estilo: Estilo;
   modo: Modo;
-  posicionesPendientes: DraftPosicion[];
-  equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>;
+  slots: SlotLayout[];
+  slotActivo: number | null;
+  equipo: Equipo;
   tiradaActual: DraftPlantilla | null;
   resultado: DraftResultado | null;
   tiempoRestante: number | null;
@@ -76,8 +102,7 @@ export function useDraftGame(): UseDraftGameReturn {
   const [formacion, setFormacion] = useState<FormacionKey>("4-3-3");
   const [estilo, setEstilo] = useState<Estilo>("equilibrado");
   const [modo, setModo] = useState<Modo>("clasico");
-  const [posicionesPendientes, setPosicionesPendientes] = useState<DraftPosicion[]>([]);
-  const [equipo, setEquipo] = useState<Partial<Record<DraftPosicion, JugadorSeleccionado>>>({});
+  const [equipo, setEquipo] = useState<Equipo>({});
   const [tiradaActual, setTiradaActual] = useState<DraftPlantilla | null>(null);
   const [resultado, setResultado] = useState<DraftResultado | null>(null);
   const [tiempoRestante, setTiempoRestante] = useState<number | null>(null);
@@ -90,6 +115,17 @@ export function useDraftGame(): UseDraftGameReturn {
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Casillas de la formación elegida (con coordenadas).
+  const slots = useMemo(() => layoutFormacion(formacion), [formacion]);
+
+  // Primera casilla libre (la que el campo resalta como "siguiente").
+  const slotActivo = useMemo(() => {
+    const libre = slots.find((s) => !(s.id in equipo));
+    return libre ? libre.id : null;
+  }, [slots, equipo]);
+
+  const completo = Object.keys(equipo).length >= slots.length;
+
   // Limpiar timer al desmontar
   useEffect(() => {
     return () => {
@@ -98,8 +134,6 @@ export function useDraftGame(): UseDraftGameReturn {
   }, []);
 
   const iniciarJuego = useCallback(() => {
-    const form = getFormacion(formacion);
-    setPosicionesPendientes([...form.posiciones]);
     setEquipo({});
     setResultado(null);
     setTiradaActual(null);
@@ -110,7 +144,7 @@ export function useDraftGame(): UseDraftGameReturn {
     setRerollsRestantes(REROLLS_INICIALES);
     setCampanaBonus(0);
     setRecompensa(null);
-  }, [formacion]);
+  }, []);
 
   const otraSeleccion = useCallback(() => {
     if (phase !== "seleccion" || !tiradaActual || rerollsRestantes <= 0) return;
@@ -125,7 +159,7 @@ export function useDraftGame(): UseDraftGameReturn {
   }, [phase, tiradaActual, rerollsRestantes]);
 
   const tirar = useCallback(() => {
-    if (posicionesPendientes.length === 0) return;
+    if (completo) return;
 
     const plantilla = getPlantillaAleatoria();
     setTiradaActual(plantilla);
@@ -146,7 +180,7 @@ export function useDraftGame(): UseDraftGameReturn {
         });
       }, 1000);
     }
-  }, [posicionesPendientes, modo]);
+  }, [completo, modo]);
 
   // Guarda el resultado en BD y acredita monedas. Se llama desde finalizarConCampana
   // DESPUÉS de que el usuario ve la campaña (incluye bonus por desempeño).
@@ -197,7 +231,9 @@ export function useDraftGame(): UseDraftGameReturn {
       const jugador = tiradaActual.jugadores.find((j) => j.id === jugadorId);
       if (!jugador) return;
 
-      if (equipo[jugador.posicion]) return;
+      // ¿Hay un hueco para este jugador en la formación? Si no, no se puede.
+      const slotId = buscarSlotLibre(slots, equipo, jugador.posicion);
+      if (slotId === null) return;
 
       if (timerRef.current) {
         clearInterval(timerRef.current);
@@ -212,13 +248,10 @@ export function useDraftGame(): UseDraftGameReturn {
         bandera: tiradaActual.bandera,
       };
 
-      const nuevoEquipo = { ...equipo, [jugador.posicion]: seleccionado };
+      const nuevoEquipo: Equipo = { ...equipo, [slotId]: seleccionado };
       setEquipo(nuevoEquipo);
 
-      const nuevasPosiciones = posicionesPendientes.filter((p) => p !== jugador.posicion);
-      setPosicionesPendientes(nuevasPosiciones);
-
-      if (nuevasPosiciones.length === 0) {
+      if (Object.keys(nuevoEquipo).length >= slots.length) {
         setPhase("simulacion");
         setTimeout(() => {
           const eq = Object.values(nuevoEquipo).filter(Boolean) as JugadorSeleccionado[];
@@ -242,7 +275,7 @@ export function useDraftGame(): UseDraftGameReturn {
         setTiradaActual(null);
       }
     },
-    [tiradaActual, phase, estilo, equipo, logrosEstado, posicionesPendientes]
+    [tiradaActual, phase, estilo, equipo, slots, modo, logrosEstado]
   );
 
   // Llamado desde CampanaScreen cuando el usuario termina de ver la campaña.
@@ -263,7 +296,6 @@ export function useDraftGame(): UseDraftGameReturn {
 
   const reiniciar = useCallback(() => {
     setPhase("setup");
-    setPosicionesPendientes([]);
     setEquipo({});
     setResultado(null);
     setTiradaActual(null);
@@ -286,30 +318,36 @@ export function useDraftGame(): UseDraftGameReturn {
   // Auto-seleccionar cuando el tiempo se acaba en contrarreloj
   useEffect(() => {
     if (modo === "contrarreloj" && tiempoRestante === 0 && tiradaActual) {
-      const jugadoresValidos = tiradaActual.jugadores.filter((j) => !equipo[j.posicion]);
+      const jugadoresValidos = tiradaActual.jugadores.filter(
+        (j) => buscarSlotLibre(slots, equipo, j.posicion) !== null
+      );
       if (jugadoresValidos.length > 0) {
         const elegido = jugadoresValidos[Math.floor(Math.random() * jugadoresValidos.length)];
         seleccionarJugador(elegido.id);
       }
     }
-  }, [tiempoRestante, modo, tiradaActual, equipo, seleccionarJugador]);
+  }, [tiempoRestante, modo, tiradaActual, equipo, slots, seleccionarJugador]);
 
+  // Jugadores de la tirada: se muestran todos; el panel atenúa los que no
+  // tienen hueco en la formación (posicionesOcupadas).
   const jugadoresDisponibles = tiradaActual
-    ? tiradaActual.jugadores
-        .filter((j) => !equipo[j.posicion])
-        .map((j) => ({
-          ...j,
-          seleccion: tiradaActual.seleccion,
-          year: tiradaActual.year,
-          bandera: tiradaActual.bandera,
-        }))
+    ? tiradaActual.jugadores.map((j) => ({
+        ...j,
+        seleccion: tiradaActual.seleccion,
+        year: tiradaActual.year,
+        bandera: tiradaActual.bandera,
+      }))
     : [];
 
-  const form = getFormacion(formacion);
-  const totalPosiciones = form.posiciones.length;
-  const completadas = totalPosiciones - posicionesPendientes.length;
-  const progreso = totalPosiciones > 0 ? Math.round((completadas / totalPosiciones) * 100) : 0;
-  const posicionesOcupadas = Object.keys(equipo).map((p) => p as DraftPosicion);
+  const total = slots.length;
+  const completadas = Object.keys(equipo).length;
+  const progreso = total > 0 ? Math.round((completadas / total) * 100) : 0;
+
+  // Posiciones SIN hueco disponible (el panel las atenúa y bloquea).
+  const posicionesOcupadas = useMemo(
+    () => TODAS_POSICIONES.filter((p) => buscarSlotLibre(slots, equipo, p) === null),
+    [slots, equipo]
+  );
 
   const logrosDesbloqueados = LOGROS.filter((l) => logrosEstado[l.id]);
 
@@ -342,7 +380,8 @@ export function useDraftGame(): UseDraftGameReturn {
     formacion,
     estilo,
     modo,
-    posicionesPendientes,
+    slots,
+    slotActivo,
     equipo,
     tiradaActual,
     resultado,

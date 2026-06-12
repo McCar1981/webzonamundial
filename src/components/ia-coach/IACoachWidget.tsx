@@ -104,26 +104,26 @@ export default function IACoachWidget() {
             aria-label="Abrir IA Coach"
             title="IA Coach"
             style={{
-              width: 54,
-              height: 54,
+              width: 46,
+              height: 46,
               borderRadius: "50%",
               border: "none",
               cursor: "pointer",
               background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
               color: "#0C0F14",
-              fontSize: 26,
-              boxShadow: "0 10px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.4)",
+              fontSize: 22,
+              boxShadow: "0 6px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.28)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
             }}
           >
-            <IconRobot size={26} />
+            <IconRobot size={22} />
           </button>
           <style>{`
             @media(max-width:768px){
-              .zm-coach-launcher--inapp{ bottom: calc(74px + env(safe-area-inset-bottom)) !important; }
+              .zm-coach-launcher--inapp{ bottom: calc(96px + env(safe-area-inset-bottom)) !important; }
             }
           `}</style>
         </div>

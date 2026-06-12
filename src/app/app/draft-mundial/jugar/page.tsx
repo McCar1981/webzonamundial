@@ -31,7 +31,7 @@ import {
   IconTrophy, IconDice, IconShield, IconScale, IconSwords,
   IconChart, IconBook, IconTimer, IconLink, IconTarget,
   IconShare, IconRefresh, IconBolt, IconArrowLeft,
-  IconCalificacion, IconLogro, IconGlobe,
+  IconCalificacion, IconLogro, IconGlobe, IconFlame,
 } from "../components/DraftIcons";
 import FlagImage from "@/components/FlagImage";
 
@@ -187,6 +187,66 @@ function Confetti() {
 }
 
 /* ─────────── SetupScreen ─────────── */
+const SETUP_BG_DEEP = "#060B14";
+const SETUP_CARD = "#0F1D32";
+const SETUP_CARD_HI = "#16294a";
+
+// Microcopy táctico por formación (sensación de panel de juego).
+const FORM_MICRO: Record<FormacionKey, string> = {
+  "4-3-3": "Bandas rápidas",
+  "4-4-2": "Doble 9",
+  "4-2-3-1": "Media punta",
+  "4-2-4": "Ataque total",
+  "3-5-2": "Control medio",
+  "5-3-2": "Bloque bajo",
+  "4-5-1": "Compacto",
+  "3-4-3": "Presión alta",
+};
+
+const ESTILO_LABEL: Record<Estilo, string> = {
+  defensivo: "Defensivo", equilibrado: "Equilibrado", ofensivo: "Ofensivo",
+};
+const MODO_LABEL: Record<Modo, string> = {
+  clasico: "Clásico", almanaque: "Almanaque", contrarreloj: "Contrarreloj",
+};
+
+const ESTILOS: { key: Estilo; label: string; icon: typeof IconShield; desc: string; accent: string }[] = [
+  { key: "defensivo", label: "Defensivo", icon: IconShield, desc: "Bonus por defensa", accent: "#7aa0d6" },
+  { key: "equilibrado", label: "Equilibrado", icon: IconScale, desc: "Sin bonus ni penal", accent: GOLD2 },
+  { key: "ofensivo", label: "Ofensivo", icon: IconFlame, desc: "Bonus por ataque", accent: "#ef7a5c" },
+];
+
+const MODOS: { key: Modo; label: string; icon: typeof IconChart; desc: string; badge: string; badgeColor: string }[] = [
+  { key: "clasico", label: "Clásico", icon: IconChart, desc: "Con stats", badge: "Recomendado", badgeColor: GOLD },
+  { key: "almanaque", label: "Almanaque", icon: IconBook, desc: "Sin stats", badge: "Experto", badgeColor: "#a78bfa" },
+  { key: "contrarreloj", label: "Contrarreloj", icon: IconTimer, desc: "10 seg", badge: "Rápido", badgeColor: "#5ec8c8" },
+];
+
+// Marca de selección (check dorado sobre disco navy).
+function CheckBadge() {
+  return (
+    <span style={{
+      position: "absolute", top: 6, right: 6, width: 17, height: 17, borderRadius: "50%",
+      background: NAVY, display: "flex", alignItems: "center", justifyContent: "center",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.4)",
+    }}>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={GOLD2} strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </span>
+  );
+}
+
+function SectionLabel({ children, paso }: { children: React.ReactNode; paso?: number }) {
+  return (
+    <div className="flex items-center gap-2 mb-3">
+      <span style={{ width: 3, height: 14, borderRadius: 2, background: `linear-gradient(${GOLD},${GOLD2})` }} />
+      <span className="text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color: GOLD }}>{children}</span>
+      {paso && <span className="text-[10px] font-bold ml-auto" style={{ color: TXT_MUT }}>Paso {paso}/3</span>}
+    </div>
+  );
+}
+
 function SetupScreen({
   formacion, setFormacion, estilo, setEstilo, modo, setModo, onStart,
 }: {
@@ -195,80 +255,177 @@ function SetupScreen({
   modo: Modo; setModo: (m: Modo) => void;
   onStart: () => void;
 }) {
+  const resumen = `Formación ${formacion} · ${ESTILO_LABEL[estilo]} · ${MODO_LABEL[modo]}`;
+
   return (
-    <div className="max-w-lg mx-auto px-4 py-8">
+    <div className="relative max-w-lg mx-auto px-4 pt-4">
+      <style jsx global>{`
+        @keyframes dm-glow-pulse { 0%,100% { opacity:.5 } 50% { opacity:.85 } }
+        .dm-cta-wrap { position: sticky; bottom: 14px; z-index: 30; }
+        @media (max-width: 768px) {
+          .dm-cta-wrap { bottom: calc(60px + env(safe-area-inset-bottom)); }
+        }
+      `}</style>
+
+      {/* Capas de fondo: glow dorado radial + líneas tácticas tenues */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-2 h-72 -z-10"
+        style={{ background: `radial-gradient(60% 70% at 50% 0%, ${GOLD}22, transparent 70%)`, animation: "dm-glow-pulse 6s ease-in-out infinite" }} />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-[0.05]"
+        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 .5H40M.5 0V40' stroke='%23c9a84c' stroke-width='.5'/%3E%3C/svg%3E\")" }} />
+
+      {/* ── HERO CARD ── */}
       <FadeIn>
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-3"><IconTrophy size={48} color={GOLD} className="animate-bounce" /></div>
-          <h1 className="text-2xl font-bold" style={{ color: TXT }}>Draft Mundial</h1>
-          <p className="text-sm mt-2" style={{ color: TXT_MUT }}>Arma tu once ideal con leyendas de todas las Copas del Mundo</p>
+        <div className="relative overflow-hidden rounded-2xl px-5 py-6 mb-6 text-center"
+          style={{
+            background: `linear-gradient(160deg, ${SETUP_CARD} 0%, ${SETUP_BG_DEEP} 100%)`,
+            border: `1px solid ${GOLD}33`,
+            boxShadow: `0 12px 34px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)`,
+          }}>
+          {/* Líneas tácticas casi invisibles dentro del hero */}
+          <svg aria-hidden className="absolute left-1/2 -translate-x-1/2 -top-6 opacity-[0.12]" width="320" height="200" viewBox="0 0 320 200" fill="none" stroke={GOLD} strokeWidth="1">
+            <circle cx="160" cy="100" r="46" />
+            <line x1="0" y1="100" x2="320" y2="100" />
+            <rect x="120" y="0" width="80" height="34" />
+          </svg>
+          {/* Brillo superior dorado */}
+          <div aria-hidden className="absolute inset-x-10 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${GOLD2}, transparent)` }} />
+
+          <div className="relative flex justify-center mb-2">
+            <div className="flex items-center justify-center rounded-2xl" style={{ width: 64, height: 64, background: `radial-gradient(circle, ${GOLD}33, transparent 70%)` }}>
+              <IconTrophy size={42} color={GOLD2} />
+            </div>
+          </div>
+          <h1 className="relative text-2xl font-black tracking-tight" style={{ color: TXT }}>Draft Mundial</h1>
+          <p className="relative text-sm mt-1.5 leading-snug" style={{ color: TXT_MUT }}>
+            Arma tu once ideal con leyendas de todas las Copas del Mundo
+          </p>
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.1}>
+      {/* ── FORMACIÓN ── */}
+      <FadeIn delay={0.08}>
         <div className="mb-6">
-          <label className="block text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: GOLD }}>Formación</label>
+          <SectionLabel paso={1}>Formación</SectionLabel>
           <div className="grid grid-cols-4 gap-2">
-            {FORMACIONES.map((f) => (
-              <button key={f.key} onClick={() => setFormacion(f.key)}
-                className="px-3 py-2 rounded-lg text-sm font-medium transition-all border hover:scale-105"
-                style={{ background: formacion === f.key ? GOLD : CARD, color: formacion === f.key ? NAVY : TXT, borderColor: formacion === f.key ? GOLD : "rgba(255,255,255,0.1)" }}>
-                {f.label}
-              </button>
-            ))}
+            {FORMACIONES.map((f) => {
+              const sel = formacion === f.key;
+              return (
+                <button key={f.key} onClick={() => setFormacion(f.key)}
+                  className="relative rounded-xl px-1.5 py-2.5 transition-all duration-150 active:scale-[0.96] hover:-translate-y-0.5 border text-center"
+                  style={{
+                    background: sel ? `linear-gradient(150deg, ${GOLD2}, ${GOLD})` : SETUP_CARD,
+                    borderColor: sel ? GOLD2 : "rgba(255,255,255,0.09)",
+                    boxShadow: sel
+                      ? `0 6px 18px ${GOLD}55, inset 0 1px 0 rgba(255,255,255,0.35)`
+                      : "0 2px 8px rgba(0,0,0,0.3)",
+                  }}>
+                  {sel && <CheckBadge />}
+                  <div className="text-[15px] font-black leading-none tabular-nums" style={{ color: sel ? NAVY : TXT }}>{f.label}</div>
+                  <div className="text-[8.5px] font-bold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>
+                    {FORM_MICRO[f.key]}
+                  </div>
+                </button>
+              );
+            })}
           </div>
-          <p className="text-xs mt-2" style={{ color: TXT_MUT }}>{FORMACIONES.find((f) => f.key === formacion)?.descripcion}</p>
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.2}>
+      {/* ── ESTILO DE JUEGO ── */}
+      <FadeIn delay={0.16}>
         <div className="mb-6">
-          <label className="block text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: GOLD }}>Estilo de juego</label>
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              { key: "defensivo" as Estilo, label: "Defensivo", icon: IconShield, desc: "Bonus por defensa" },
-              { key: "equilibrado" as Estilo, label: "Equilibrado", icon: IconScale, desc: "Sin bonus ni penal" },
-              { key: "ofensivo" as Estilo, label: "Ofensivo", icon: IconSwords, desc: "Bonus por ataque" },
-            ].map((s) => (
-              <button key={s.key} onClick={() => setEstilo(s.key)}
-                className="px-3 py-3 rounded-lg text-sm font-medium transition-all border text-center hover:scale-105"
-                style={{ background: estilo === s.key ? GOLD : CARD, color: estilo === s.key ? NAVY : TXT, borderColor: estilo === s.key ? GOLD : "rgba(255,255,255,0.1)" }}>
-                <div className="flex items-center justify-center gap-1.5"><s.icon size={16} color={estilo === s.key ? NAVY : TXT} />{s.label}</div>
-                <div className="text-xs opacity-70 mt-1">{s.desc}</div>
-              </button>
-            ))}
+          <SectionLabel paso={2}>Estilo de juego</SectionLabel>
+          <div className="grid grid-cols-3 gap-2.5">
+            {ESTILOS.map((s) => {
+              const sel = estilo === s.key;
+              return (
+                <button key={s.key} onClick={() => setEstilo(s.key)}
+                  className="relative rounded-xl px-2 py-3.5 transition-all duration-150 active:scale-[0.97] hover:-translate-y-0.5 border text-center"
+                  style={{
+                    background: sel ? `linear-gradient(160deg, ${GOLD2}, ${GOLD})` : SETUP_CARD,
+                    borderColor: sel ? GOLD2 : `${s.accent}44`,
+                    boxShadow: sel ? `0 8px 22px ${GOLD}55` : "0 2px 10px rgba(0,0,0,0.3)",
+                  }}>
+                  {sel && <CheckBadge />}
+                  <div className="flex justify-center mb-1.5">
+                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,23,41,0.14)" : `${s.accent}1f` }}>
+                      <s.icon size={18} color={sel ? NAVY : s.accent} />
+                    </div>
+                  </div>
+                  <div className="text-[13px] font-extrabold leading-none" style={{ color: sel ? NAVY : TXT }}>{s.label}</div>
+                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>{s.desc}</div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </FadeIn>
 
+      {/* ── MODO DE DIFICULTAD ── */}
+      <FadeIn delay={0.24}>
+        <div className="mb-6">
+          <SectionLabel paso={3}>Modo de dificultad</SectionLabel>
+          <div className="grid grid-cols-3 gap-2.5">
+            {MODOS.map((m) => {
+              const sel = modo === m.key;
+              return (
+                <button key={m.key} onClick={() => setModo(m.key)}
+                  className="relative rounded-xl px-2 pt-5 pb-3.5 transition-all duration-150 active:scale-[0.97] hover:-translate-y-0.5 border text-center"
+                  style={{
+                    background: sel ? `linear-gradient(160deg, ${GOLD2}, ${GOLD})` : SETUP_CARD,
+                    borderColor: sel ? GOLD2 : "rgba(255,255,255,0.09)",
+                    boxShadow: sel ? `0 8px 22px ${GOLD}55` : "0 2px 10px rgba(0,0,0,0.3)",
+                  }}>
+                  {/* Badge del modo */}
+                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full whitespace-nowrap"
+                    style={{ background: sel ? NAVY : `${m.badgeColor}22`, color: sel ? GOLD2 : m.badgeColor, border: `1px solid ${sel ? "transparent" : `${m.badgeColor}55`}` }}>
+                    {m.badge}
+                  </span>
+                  {sel && <CheckBadge />}
+                  <div className="flex justify-center mb-1.5 mt-0.5">
+                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,23,41,0.14)" : "rgba(255,255,255,0.06)" }}>
+                      <m.icon size={18} color={sel ? NAVY : GOLD} />
+                    </div>
+                  </div>
+                  <div className="text-[13px] font-extrabold leading-none" style={{ color: sel ? NAVY : TXT }}>{m.label}</div>
+                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>{m.desc}</div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </FadeIn>
+
+      {/* ── PASOS ── */}
       <FadeIn delay={0.3}>
-        <div className="mb-8">
-          <label className="block text-xs font-semibold mb-2 uppercase tracking-wider" style={{ color: GOLD }}>Modo de dificultad</label>
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              { key: "clasico" as Modo, label: "Clásico", icon: IconChart, desc: "Con stats" },
-              { key: "almanaque" as Modo, label: "Almanaque", icon: IconBook, desc: "Sin stats" },
-              { key: "contrarreloj" as Modo, label: "Contrarreloj", icon: IconTimer, desc: "10 seg" },
-            ].map((m) => (
-              <button key={m.key} onClick={() => setModo(m.key)}
-                className="px-3 py-3 rounded-lg text-sm font-medium transition-all border text-center hover:scale-105"
-                style={{ background: modo === m.key ? GOLD : CARD, color: modo === m.key ? NAVY : TXT, borderColor: modo === m.key ? GOLD : "rgba(255,255,255,0.1)" }}>
-                <div className="flex items-center justify-center gap-1.5"><m.icon size={16} color={modo === m.key ? NAVY : TXT} />{m.label}</div>
-                <div className="text-xs opacity-70 mt-1">{m.desc}</div>
-              </button>
-            ))}
-          </div>
+        <div className="flex items-center justify-center gap-1.5 mb-5 text-[10px] font-bold">
+          {[
+            { n: 1, t: "Configura", on: true },
+            { n: 2, t: "Elige jugadores", on: false },
+            { n: 3, t: "Finaliza", on: false },
+          ].map((p, i) => (
+            <div key={p.n} className="flex items-center gap-1.5">
+              {i > 0 && <span style={{ width: 14, height: 1, background: "rgba(255,255,255,0.15)" }} />}
+              <span className="inline-flex items-center justify-center rounded-full" style={{ width: 16, height: 16, background: p.on ? GOLD : "rgba(255,255,255,0.08)", color: p.on ? NAVY : TXT_MUT, fontSize: 9, fontWeight: 900 }}>{p.n}</span>
+              <span style={{ color: p.on ? GOLD2 : TXT_MUT }}>{p.t}</span>
+            </div>
+          ))}
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.4}>
+      {/* ── CTA semifijo ── */}
+      <div className="dm-cta-wrap">
         <button onClick={onStart}
-          className="w-full py-4 rounded-xl text-lg font-bold transition-all hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg flex items-center justify-center gap-2"
-          style={{ background: GOLD, color: NAVY, boxShadow: `0 4px 20px ${GOLD}44` }}>
-          <IconDice size={22} color={NAVY} /><span>¡Jugar ahora!</span>
+          className="w-full rounded-2xl transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] flex flex-col items-center justify-center gap-0.5"
+          style={{ minHeight: 60, padding: "10px 16px", background: `linear-gradient(135deg, ${GOLD2}, ${GOLD})`, color: NAVY, boxShadow: `0 10px 30px ${GOLD}66, inset 0 1px 0 rgba(255,255,255,0.4)` }}>
+          <span className="flex items-center gap-2 text-lg font-black"><IconDice size={20} color={NAVY} />Comenzar Draft</span>
+          <span className="text-[11px] font-bold" style={{ color: "rgba(10,23,41,0.72)" }}>{resumen}</span>
         </button>
-        <Link href="/app" className="flex items-center justify-center gap-1 mt-4 text-sm" style={{ color: TXT_MUT }}><IconArrowLeft size={14} color={TXT_MUT} />Volver al lobby</Link>
-      </FadeIn>
+      </div>
+
+      <Link href="/app" className="flex items-center justify-center gap-1 mt-3 mb-2 text-sm" style={{ color: TXT_MUT }}>
+        <IconArrowLeft size={14} color={TXT_MUT} />Volver al lobby
+      </Link>
     </div>
   );
 }

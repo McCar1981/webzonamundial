@@ -25,6 +25,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { kv } from "@/lib/kv";
 import { MATCHES, type Match } from "@/data/matches";
 import { etToDate } from "@/lib/bracket/match-time";
+import { broadcastPush } from "@/lib/push-notifications";
 import { buildMeta } from "@/lib/match-center/store";
 import { matchHeroImage } from "@/lib/match-center/heroImage";
 import { loadTeam, listBibliaTeamsBrief } from "@/lib/biblia";
@@ -446,6 +447,26 @@ export async function maybePublishPrevia(matchId: number, kickoffISO: string): P
   };
 
   const res = await publishDraft(draft);
+  if (res === "published") {
+    // Push best-effort al canal "news" (el único con audiencia real). Solo en
+    // publicación FRESCA (no en "exists"), así que el SETNX de runMatchPrevias
+    // garantiza un único push por partido. No bloquea ni revierte si falla.
+    try {
+      await broadcastPush({
+        kind: "news",
+        payload: {
+          title: `Previa: ${meta.home.name} vs ${meta.away.name}`,
+          body: `Análisis y claves antes del partido de las ${hora}h en España. Toca para leer la previa completa.`,
+          url: `/noticias/${slug}`,
+          image: hero,
+          tag: `previa-${matchId}`,
+          pushId: `previa-${matchId}`,
+        },
+      });
+    } catch (err) {
+      console.error("[mc-previa] push failed", matchId, (err as Error).message);
+    }
+  }
   return { published: res === "published", slug, reason: res === "published" ? undefined : res, llm: !!article };
 }
 

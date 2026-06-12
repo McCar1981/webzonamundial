@@ -1297,8 +1297,10 @@ export default function DraftMundialJugarPage() {
     }
   }, [game.phase, game.tiradaActual]);
 
+  // pb generoso: deja sitio a la barra inferior + el pill flotante "Pro gratis
+  // este finde" (fixed ~92px) para que no tape los botones del juego.
   return (
-    <div className="min-h-screen pb-24" style={{ background: NAVY }}>
+    <div className="min-h-screen" style={{ background: NAVY, paddingBottom: "calc(150px + env(safe-area-inset-bottom))" }}>
       <style jsx global>{`@keyframes fade-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} } .animate-fade-in{animation:fade-in .4s ease-out forwards} @keyframes panic-shake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-4px)}30%,60%,90%{transform:translateX(4px)}} .animate-panic-shake{animation:panic-shake 0.25s ease-in-out infinite} @keyframes dice-roll{0%{transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg)}20%{transform:rotateX(230deg) rotateY(115deg) rotateZ(50deg)}45%{transform:rotateX(460deg) rotateY(290deg) rotateZ(135deg)}65%{transform:rotateX(630deg) rotateY(450deg) rotateZ(200deg)}80%{transform:rotateX(750deg) rotateY(560deg) rotateZ(256deg)}93%{transform:rotateX(800deg) rotateY(610deg) rotateZ(282deg)}97%{transform:rotateX(811deg) rotateY(622deg) rotateZ(291deg)}100%{transform:rotateX(810deg) rotateY(621deg) rotateZ(290deg)}} .animate-dice-roll{animation:dice-roll 1.1s ease-out forwards}`}</style>
       {showConfetti && <Confetti />}
       {game.phase === "resultado" && game.logrosNuevos.length > 0 && <LogrosPopup logros={game.logrosNuevos} onClose={game.marcarLogrosVistos} />}

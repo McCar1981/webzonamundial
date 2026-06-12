@@ -6,7 +6,7 @@
 // cliente admin (service role) que bypassa RLS.
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { isRankingExcluded } from "@/lib/ranking-exclusions";
+import { aggregateResolvedPoints, aggregateMatchPodium } from "./leaderboard-agg";
 import {
   type PredictionData,
   type PredictionRow,
@@ -745,39 +745,28 @@ export interface LeaderboardEntry {
 }
 export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
   const admin = adminClient();
-  const { data } = await admin
-    .from("predictions")
-    .select("user_id,points_earned,is_correct")
-    .not("resolved_at", "is", null);
-  const rows = (data ?? []) as { user_id: string; points_earned: number | null; is_correct: boolean | null }[];
-
-  const agg = new Map<string, { pts: number; count: number; correct: number }>();
-  for (const r of rows) {
-    if (isRankingExcluded(r.user_id)) continue; // el staff no compite
-    const a = agg.get(r.user_id) ?? { pts: 0, count: 0, correct: 0 };
-    a.pts += r.points_earned ?? 0; a.count++; if (r.is_correct) a.correct++;
-    agg.set(r.user_id, a);
-  }
-  const sorted = [...agg.entries()].sort((a, b) => b[1].pts - a[1].pts).slice(0, limit);
+  // Agregación sin el tope de ~1000 filas de PostgREST (RPC o paginado);
+  // llega ya ordenada, recortada al top y con el staff excluido.
+  const sorted = await aggregateResolvedPoints(null, limit);
 
   // Perfiles para mostrar nombre/avatar.
-  const ids = sorted.map(([id]) => id);
+  const ids = sorted.map((a) => a.user_id);
   const { data: profs } = ids.length
     ? await admin.from("profiles").select("id,username,avatar_url,is_premium").in("id", ids)
     : { data: [] };
   const pmap = new Map((profs ?? []).map((p) => [(p as { id: string }).id, p as { username: string | null; avatar_url: string | null; is_premium: boolean }]));
   const cmap = await cosmeticsByUser(ids);
 
-  return sorted.map(([id, a], i) => {
-    const pr = pmap.get(id);
+  return sorted.map((a, i) => {
+    const pr = pmap.get(a.user_id);
     return {
       position: i + 1,
       user: {
-        id,
+        id: a.user_id,
         display_name: pr?.username ?? "Anónimo",
         avatar_url: pr?.avatar_url ?? null,
         is_premium: Boolean(pr?.is_premium),
-        cosmetics: cmap.get(id) ?? null,
+        cosmetics: cmap.get(a.user_id) ?? null,
       },
       total_points: a.pts,
       predictions_count: a.count,
@@ -796,48 +785,31 @@ export interface MatchTopPredictor {
 /**
  * "Los primeros que acertaron" un partido: el podio del partido ya resuelto.
  * Ordena por puntos del partido desc, desempata por nº de aciertos y por quién
- * predijo ANTES (created_at). Solo entran usuarios que acertaron algo. Lectura
- * acotada a UN partido (no a toda la tabla) → barata y escalable.
+ * predijo ANTES (created_at). Solo entran usuarios que acertaron algo. Un
+ * partido popular supera las ~1000 filas que PostgREST devuelve por respuesta,
+ * así que la agregación va por RPC/paginado (leaderboard-agg), nunca plana.
  */
 export async function getMatchTopPredictors(matchId: string, limit = 5): Promise<MatchTopPredictor[]> {
   const admin = adminClient();
-  const { data } = await admin
-    .from("predictions")
-    .select("user_id,points_earned,is_correct,created_at")
-    .eq("match_id", matchId)
-    .not("resolved_at", "is", null);
-  const rows = (data ?? []) as { user_id: string; points_earned: number | null; is_correct: boolean | null; created_at: string }[];
+  const sorted = await aggregateMatchPodium(matchId, limit);
 
-  const agg = new Map<string, { pts: number; correct: number; firstAt: string }>();
-  for (const r of rows) {
-    const a = agg.get(r.user_id) ?? { pts: 0, correct: 0, firstAt: r.created_at };
-    a.pts += r.points_earned ?? 0;
-    if (r.is_correct) a.correct++;
-    if (r.created_at < a.firstAt) a.firstAt = r.created_at;
-    agg.set(r.user_id, a);
-  }
-  const sorted = [...agg.entries()]
-    .filter(([, a]) => a.correct > 0) // solo quienes acertaron algo en el partido
-    .sort((x, y) => y[1].pts - x[1].pts || y[1].correct - x[1].correct || (x[1].firstAt < y[1].firstAt ? -1 : 1))
-    .slice(0, Math.max(0, limit));
-
-  const ids = sorted.map(([id]) => id);
+  const ids = sorted.map((a) => a.user_id);
   const { data: profs } = ids.length
     ? await admin.from("profiles").select("id,username,avatar_url,is_premium").in("id", ids)
     : { data: [] };
   const pmap = new Map((profs ?? []).map((p) => [(p as { id: string }).id, p as { username: string | null; avatar_url: string | null; is_premium: boolean }]));
   const cmap = await cosmeticsByUser(ids);
 
-  return sorted.map(([id, a], i) => {
-    const pr = pmap.get(id);
+  return sorted.map((a, i) => {
+    const pr = pmap.get(a.user_id);
     return {
       position: i + 1,
       user: {
-        id,
+        id: a.user_id,
         display_name: pr?.username ?? "Anónimo",
         avatar_url: pr?.avatar_url ?? null,
         is_premium: Boolean(pr?.is_premium),
-        cosmetics: cmap.get(id) ?? null,
+        cosmetics: cmap.get(a.user_id) ?? null,
       },
       points: a.pts,
       correct: a.correct,

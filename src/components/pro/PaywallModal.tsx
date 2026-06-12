@@ -17,6 +17,7 @@ import {
   type PaywallDetail,
 } from "@/lib/pro/paywall-client";
 import { PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 const BG2 = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
 
@@ -35,7 +36,12 @@ export default function PaywallModal() {
 
   useEffect(() => {
     setMounted(true);
-    const onOpen = (e: Event) => setDetail((e as CustomEvent<PaywallDetail>).detail);
+    const onOpen = (e: Event) => {
+      const d = (e as CustomEvent<PaywallDetail>).detail;
+      setDetail(d);
+      // EMBUDO: el usuario ve la oferta Pro (capa AWARENESS/INTENT).
+      trackEvent("paywall_view", { feature: d?.feature ?? "generic" });
+    };
     window.addEventListener(PRO_PAYWALL_EVENT, onOpen);
     return () => window.removeEventListener(PRO_PAYWALL_EVENT, onOpen);
   }, []);

@@ -152,7 +152,7 @@ export default function RealWorldCupCard({ nationSlug, paseDT = false }: { natio
         </div>
       ) : (
         <Link
-          href="/premium"
+          href="/pro"
           style={{
             marginTop: 16,
             display: "block",

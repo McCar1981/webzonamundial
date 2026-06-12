@@ -204,7 +204,7 @@ export default function NarrativeView({
               </button>
             )}
             <Link
-              href="/premium"
+              href="/pro"
               style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: GOLD, color: "#1a1407", fontSize: 13, fontWeight: 800, textDecoration: "none" }}
             >
               Conseguir Pase DT
@@ -215,7 +215,7 @@ export default function NarrativeView({
       ) : remaining !== null ? (
         <div style={{ marginBottom: 20, fontSize: 12.5, color: MID }}>
           Te quedan <strong style={{ color: GOLD2 }}>{remaining}</strong> generaciones con IA hoy ·{" "}
-          <Link href="/premium" style={{ color: GOLD, textDecoration: "none", fontWeight: 700 }}>
+          <Link href="/pro" style={{ color: GOLD, textDecoration: "none", fontWeight: 700 }}>
             Pase DT = ilimitada
           </Link>
         </div>

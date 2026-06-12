@@ -45,7 +45,7 @@ function buildNav(t: Translations) {
     { id: "tutoriales", label: t.nav.tutoriales,  href: "/tutoriales" },
     { id: "creadores",  label: t.nav.creadores,   href: "/creadores" },
     { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
-    { id: "premium",    label: t.nav.premium,     href: "/premium" },
+    { id: "premium",    label: t.nav.premium,     href: "/pro" },
     { id: "bares",      label: t.nav.bares,       href: "/bares" },
   ];
 }
@@ -65,7 +65,7 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.iaCoach,       href: "/app/ia-coach" },
       { label: t.footer.trivia,        href: "/app/trivia" },
       { label: t.footer.modoCarrera,   href: "/app/modo-carrera" },
-      { label: t.footer.premium,       href: "/premium" },
+      { label: t.footer.premium,       href: "/pro" },
       { label: t.footer.bares,         href: "/bares" },
     ],
     [t.footer.comunidad]: [

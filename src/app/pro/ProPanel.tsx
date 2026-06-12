@@ -4,12 +4,13 @@
 // y botón hacia Stripe Checkout (suscripción). Mismo patrón de checkout que
 // /cuenta/comprar (ComprarPanel).
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Check, X, Sparkles } from "lucide-react";
 import { PRO_PRICES, type ProBillingInterval, type ProRegion } from "@/lib/stripe/pricing";
 import { FREE_LIMITS } from "@/lib/pro/limits";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 const GOLD = "#C9A84C";
 
@@ -97,6 +98,17 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
       ? `${eqPerMonth.toFixed(eqPerMonth % 1 === 0 ? 0 : 2).replace(".", ",")} €/mes`
       : `${eqPerMonth.toFixed(2).replace(".", ",")} USD/mes`;
 
+  // EMBUDO: compra completada (capa EXECUTION). Se dispara al volver de Stripe
+  // con ?purchase=success. transaction_id = session_id evita duplicados en GA4.
+  useEffect(() => {
+    if (!purchaseSuccess) return;
+    trackEvent("purchase", {
+      transaction_id: searchParams.get("session_id") ?? undefined,
+      currency: prices.currency.toUpperCase(),
+      items: [{ item_id: "pro", item_name: "Plan Pro" }],
+    });
+  }, [purchaseSuccess, searchParams, prices.currency]);
+
   async function handleSubscribe() {
     if (!authenticated) {
       window.location.href = "/login?next=/pro";
@@ -104,6 +116,13 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
     }
     setLoading(true);
     setError(null);
+    // EMBUDO: el usuario inicia el pago (capa EXECUTION). value en unidades de
+    // la divisa local; la compra se confirma luego con el evento purchase.
+    trackEvent("begin_checkout", {
+      currency: prices.currency.toUpperCase(),
+      value: (interval === "yearly" ? prices.yearly.amount : prices.monthly.amount) / 100,
+      items: [{ item_id: "pro", item_name: "Plan Pro", item_variant: interval }],
+    });
     try {
       const r = await fetch("/api/pro/checkout", {
         method: "POST",

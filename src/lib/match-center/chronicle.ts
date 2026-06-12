@@ -29,7 +29,7 @@ import {
 import type { DraftNoticia } from "@/lib/noticias-ingest";
 import type { NoticiaBlock } from "@/data/noticias";
 import { matchHeroImage } from "./heroImage";
-import type { LiveSnapshot, MatchEvent } from "./types";
+import type { LiveSnapshot, MatchEvent, Pair } from "./types";
 
 const DEFAULT_MODEL = "claude-sonnet-4-6";
 const FLAG_PREFIX = "mc:chronicle:v1:";
@@ -93,6 +93,8 @@ function compactFacts(snap: LiveSnapshot) {
       tiros_a_puerta: snap.stats.shotsOn,
       corneres: snap.stats.corners,
       faltas: snap.stats.fouls,
+      pases: snap.stats.passes,
+      paradas: snap.stats.saves,
       amarillas: snap.stats.yellow,
       rojas: snap.stats.red,
       xg: snap.stats.xg,
@@ -107,8 +109,7 @@ Recibes un JSON con TODOS los hechos verificados del partido (resultado, eventos
 REGLAS INNEGOCIABLES:
 - No inventes NADA que no esté en el JSON: ni declaraciones, ni historia previa, ni clasificaciones, ni datos de contexto. Si un dato no está, no lo menciones.
 - Español neutro, tono de crónica profesional con ritmo (estilo agencia con chispa), sin emojis ni signos raros.
-- 5 a 7 párrafos, 300-420 palabras en total.
-- El primer párrafo cuenta el qué y el cómo del resultado. El desarrollo sigue la cronología de los goles y momentos clave (usa los minutos). Cierra con una lectura apoyada en las estadísticas (posesión, tiros, xG).
+- ANÁLISIS COMPLETO de 6 a 8 párrafos, 380-520 palabras: (1) el qué y el cómo del resultado; (2-3) la cronología de los goles y momentos clave por minuto; (4) una lectura del partido por equipos (quién dominó, cómo se decidió) apoyada en TODAS las estadísticas del JSON (posesión, tiros y tiros a puerta, xG, córners, faltas, pases, paradas, tarjetas); (5) cierre con la valoración del rendimiento. Usa cifras concretas del JSON cuando aporten.
 - Titular de máximo 95 caracteres que INCLUYA el resultado (ej. "Portugal remonta y tumba 2-1 a Nigeria en Leiria").
 - Entradilla (excerpt) de máximo 220 caracteres.
 
@@ -130,7 +131,10 @@ async function generateChronicle(
 
   const resp = await client.messages.create({
     model,
-    max_tokens: 1600,
+    // Holgura para el análisis completo (6-8 párrafos, 380-520 palabras) + el
+    // JSON: con 1600 el español largo de una goleada podía truncar la respuesta
+    // y romper JSON.parse → la crónica nunca se publicaba.
+    max_tokens: 3000,
     temperature: 0.6,
     system: SYSTEM_PROMPT,
     messages: [
@@ -198,14 +202,39 @@ async function publishDraft(snap: LiveSnapshot, content: ChronicleDraftContent):
     `Resultado: ${m.home.name} ${snap.score[0] ?? 0}-${snap.score[1] ?? 0} ${m.away.name}${snap.status !== "FT" ? ` (${snap.status})` : ""}`,
   ];
   if (goles.length > 0) ficha.push(`Goles: ${goles.join(" · ")}`);
-  if (Array.isArray(snap.stats.possession) && snap.stats.possession.length === 2)
-    ficha.push(`Posesión: ${snap.stats.possession[0]}% - ${snap.stats.possession[1]}%`);
-  if (Array.isArray(snap.stats.shotsOn) && snap.stats.shotsOn.length === 2)
-    ficha.push(`Tiros a puerta: ${snap.stats.shotsOn[0]} - ${snap.stats.shotsOn[1]}`);
   if (m.venue) ficha.push(`Estadio: ${m.venue}${m.city ? ` (${m.city})` : ""}`);
   ficha.push(`Fase: ${m.phase}${m.group ? ` · Grupo ${m.group}` : ""}`);
   body.push({ type: "h2", text: "Ficha del partido" });
   body.push({ type: "list", items: ficha });
+
+  // Tabla comparativa de estadísticas (local - visitante), 100% del snapshot
+  // real. NoticiaBlock no tiene tipo "table", así que se renderiza como lista
+  // "Etiqueta: A - B"; solo se incluye cada métrica si la API la trajo.
+  const st = snap.stats;
+  const pair = (v: Pair | undefined): [number, number] | null =>
+    Array.isArray(v) && v.length === 2 ? [v[0] ?? 0, v[1] ?? 0] : null;
+  const statLine = (label: string, v: Pair | undefined, suf = ""): string | null => {
+    const p = pair(v);
+    if (!p) return null;
+    if (p[0] === 0 && p[1] === 0 && label !== "Posesión") return null;
+    return `${label}: ${p[0]}${suf} - ${p[1]}${suf}`;
+  };
+  const tabla = [
+    statLine("Posesión", st.possession, "%"),
+    statLine("Tiros", st.shots),
+    statLine("Tiros a puerta", st.shotsOn),
+    statLine("Goles esperados (xG)", st.xg),
+    statLine("Córners", st.corners),
+    statLine("Faltas", st.fouls),
+    statLine("Pases", st.passes),
+    statLine("Paradas", st.saves),
+    statLine("Tarjetas amarillas", st.yellow),
+    statLine("Tarjetas rojas", st.red),
+  ].filter((x): x is string => !!x);
+  if (tabla.length > 1) {
+    body.push({ type: "h2", text: `Estadísticas: ${m.home.name} - ${m.away.name}` });
+    body.push({ type: "list", items: tabla });
+  }
   const draft: DraftNoticia = {
     slug,
     title: content.title,

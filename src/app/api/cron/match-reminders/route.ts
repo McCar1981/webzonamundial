@@ -11,6 +11,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
 import { runMatchReminders } from "@/lib/match-reminders";
+import { runMatchPrevias } from "@/lib/match-center/previa";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -22,9 +23,19 @@ export async function GET(req: NextRequest) {
   if (denied) return denied;
 
   try {
+    // Push de recordatorio (~90 min) y PREVIA editorial (~60 min) comparten esta
+    // cadencia de 10 min: ambos seleccionan por ventana de saque y deduplican en
+    // KV, así que cada partido recibe su aviso y su previa una sola vez. La
+    // previa no bloquea el recordatorio si falla.
     const reminders = await runMatchReminders();
-    await recordHeartbeat("match-reminders", true, { reminders });
-    return NextResponse.json({ ok: true, reminders });
+    let previas: Awaited<ReturnType<typeof runMatchPrevias>> | { error: string };
+    try {
+      previas = await runMatchPrevias();
+    } catch (err) {
+      previas = { error: (err as Error).message };
+    }
+    await recordHeartbeat("match-reminders", true, { reminders, previas });
+    return NextResponse.json({ ok: true, reminders, previas });
   } catch (err) {
     console.error("[match-reminders] failed:", (err as Error).message);
     return NextResponse.json({ error: "internal" }, { status: 500 });

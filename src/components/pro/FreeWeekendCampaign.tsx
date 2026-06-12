@@ -21,7 +21,7 @@ import { isFreeWeekendActive, freeWeekendEnd } from "@/lib/pro/free-weekend";
 import { featureForPath } from "@/lib/pro/free-weekend-usage";
 
 const BG = "#060B14", NAVY = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#8a94b0";
-const SHOWN_KEY = "zm:free-weekend-popup-shown";
+const SHOWN_KEY = "zm:fw-popup-day"; // guarda el día (YYYY-MM-DD): máx. 1 popup/día
 
 const UNLOCKED: { Icon: LucideIcon; t: string }[] = [
   { Icon: Target, t: "Predicciones ilimitadas" },
@@ -60,13 +60,16 @@ export default function FreeWeekendCampaign() {
     if (!isFreeWeekendActive()) return;
     setActive(true);
 
-    let shown = false;
+    // Máximo 1 popup por día natural: recuerda al visitante que vuelve cada día
+    // sin repetírselo en cada visita de la misma jornada.
+    const today = new Date().toISOString().slice(0, 10);
+    let lastShownDay: string | null = null;
     try {
-      shown = sessionStorage.getItem(SHOWN_KEY) === "1";
+      lastShownDay = localStorage.getItem(SHOWN_KEY);
     } catch {
       /* modo privado: lo mostramos igual */
     }
-    if (!shown) setOpen(true);
+    if (lastShownDay !== today) setOpen(true);
 
     const tick = () => {
       const ms = freeWeekendEnd().getTime() - Date.now();
@@ -98,7 +101,7 @@ export default function FreeWeekendCampaign() {
       setOpen(false);
       setClosing(false);
       try {
-        sessionStorage.setItem(SHOWN_KEY, "1");
+        localStorage.setItem(SHOWN_KEY, new Date().toISOString().slice(0, 10));
       } catch {
         /* ignore */
       }

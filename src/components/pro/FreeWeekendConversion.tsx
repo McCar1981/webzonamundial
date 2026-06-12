@@ -71,7 +71,7 @@ export default function FreeWeekendConversion() {
       if (!isFreeWeekendUrgency()) return;
       let shown = false;
       try {
-        shown = sessionStorage.getItem(URGENCY_KEY) === "1";
+        shown = localStorage.getItem(URGENCY_KEY) === "1";
       } catch {
         /* ignore */
       }
@@ -95,7 +95,7 @@ export default function FreeWeekendConversion() {
   const closeUrgency = () => {
     setShowUrgency(false);
     try {
-      sessionStorage.setItem(URGENCY_KEY, "1");
+      localStorage.setItem(URGENCY_KEY, "1");
     } catch {
       /* ignore */
     }

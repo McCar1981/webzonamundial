@@ -11,6 +11,8 @@ import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
 import CommentsPanel from "./CommentsPanel";
+import FormationBoard from "./FormationBoard";
+import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
@@ -38,6 +40,62 @@ import type {
 } from "@/lib/ia-coach/live-types";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef4444";
+
+// Pestañas estilo Google. "general" lleva el campo animado en vivo; las demás
+// reparten cronología, alineaciones (campo vertical con camisetas), stats y la
+// tabla del grupo.
+type MCTab = "general" | "cronologia" | "alineaciones" | "estadisticas" | "clasificacion";
+const MC_TABS: { key: MCTab; label: string }[] = [
+  { key: "general", label: "General" },
+  { key: "cronologia", label: "Cronología" },
+  { key: "alineaciones", label: "Alineaciones" },
+  { key: "estadisticas", label: "Estadísticas" },
+  { key: "clasificacion", label: "Clasificación" },
+];
+
+function MCTabBar({ tab, onTab }: { tab: MCTab; onTab: (t: MCTab) => void }) {
+  return (
+    <div
+      role="tablist"
+      style={{
+        display: "flex",
+        gap: 4,
+        overflowX: "auto",
+        marginBottom: 16,
+        paddingBottom: 6,
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        scrollbarWidth: "none",
+      }}
+    >
+      {MC_TABS.map((t) => {
+        const active = t.key === tab;
+        return (
+          <button
+            key={t.key}
+            role="tab"
+            aria-selected={active}
+            onClick={() => onTab(t.key)}
+            style={{
+              flex: "0 0 auto",
+              padding: "8px 16px",
+              borderRadius: 999,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 14,
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+              background: active ? "#fff" : "rgba(255,255,255,0.06)",
+              color: active ? "#0B1825" : MID,
+              transition: "background .2s, color .2s",
+            }}
+          >
+            {t.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 const SPEAK_TYPES = new Set([
   "kickoff", "goal", "penalty_goal", "own_goal", "penalty_miss",
@@ -482,6 +540,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   // Estado Pro del usuario (gating de UI de stats avanzadas: mapa de calor).
   const entitlements = useEntitlements();
   const [tactical, setTactical] = useState(false);
+  // Pestaña activa (estructura estilo Google). El marcador y la previa quedan
+  // como cabecera fija encima; cada pestaña muestra su panel.
+  const [tab, setTab] = useState<MCTab>("general");
   const [hoverPlayer, setHoverPlayer] = useState<{ num: number; label: string; side: "home" | "away"; pos: string } | null>(null);
   const [showHighlights, setShowHighlights] = useState(false);
   const [voiceOn, setVoiceOn] = useState(false);
@@ -1281,6 +1342,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
             </div>
             )}
 
+            <MCTabBar tab={tab} onTab={setTab} />
+
+            {tab === "general" && (
+            <>
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
@@ -1404,23 +1469,47 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               />
             </div>
 
-            {/* Stats + Timeline. OJO minmax(0,1fr): con "1fr" a secas los grid
-                items no encogen por debajo de su contenido (min-width:auto) y
-                la tira scrolleable de momentos (~50px por chip) ensanchaba el
-                track ENTERO — todos los paneles desbordaban la pantalla en
-                móvil en cuanto el partido acumulaba eventos. */}
-            <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 14, marginTop: 14 }}>
-              <StatsPanel stats={stats} meta={meta} />
-              <Timeline log={log} meta={meta} onRelive={relive} />
-              <MatchSummary log={log} meta={meta} />
-              <Lineups lineups={lineups} meta={meta} allowPending={feed.mode === "live"} />
-              {h2h && <H2HPanel h2h={h2h} meta={meta} />}
+            {/* General: contexto del partido (historial, ficha) + comentarios */}
+            {h2h && (
+              <div style={{ marginTop: 14 }}>
+                <H2HPanel h2h={h2h} meta={meta} />
+              </div>
+            )}
+            <div style={{ marginTop: 14 }}>
               <MatchInfo meta={meta} lineups={lineups} kickoff={kickoff} referee={feed.mode === "live" ? feed.referee : undefined} />
             </div>
+            {feed.mode === "live" && (
+              <div style={{ marginTop: 14 }}>
+                <CommentsPanel matchId={matchId} meta={meta} />
+              </div>
+            )}
+            </>
+            )}
 
-            {/* Comentarios en vivo + compartir (leer es público; comentar exige
-                registro). Solo en partidos reales (no en la simulación). */}
-            {feed.mode === "live" && <CommentsPanel matchId={matchId} meta={meta} />}
+            {/* Cronología */}
+            {tab === "cronologia" && (
+              <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 14 }}>
+                <Timeline log={log} meta={meta} onRelive={relive} />
+                <MatchSummary log={log} meta={meta} />
+              </div>
+            )}
+
+            {/* Alineaciones: campo vertical con camisetas reales (Google-style) */}
+            {tab === "alineaciones" && (
+              <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 14 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+                  <FormationBoard team={meta.home} lineup={lineups.home} allowPending={feed.mode === "live"} />
+                  <FormationBoard team={meta.away} lineup={lineups.away} allowPending={feed.mode === "live"} />
+                </div>
+                <Lineups lineups={lineups} meta={meta} allowPending={feed.mode === "live"} />
+              </div>
+            )}
+
+            {/* Estadísticas */}
+            {tab === "estadisticas" && <StatsPanel stats={stats} meta={meta} />}
+
+            {/* Clasificación del grupo */}
+            {tab === "clasificacion" && <GroupStandingsTab group={meta.group} />}
 
             {/* Modo destacados al final */}
             {showHighlights && (

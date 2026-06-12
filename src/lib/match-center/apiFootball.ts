@@ -89,6 +89,8 @@ interface RawLineup {
   team: { id: number };
   formation: string | null;
   startXI: RawLineupPlayer[];
+  substitutes?: RawLineupPlayer[];
+  coach?: { name: string | null } | null;
 }
 
 function mapEventType(type: string, detail: string): MatchEventType {
@@ -139,7 +141,23 @@ function lineupFromRaw(raw: RawLineup | undefined): TeamLineup {
       y: p.y,
     };
   });
-  return { formation: base.formation, starters };
+  // Suplentes y entrenador REALES (api-football los publica con el once; antes
+  // se descartaban). Sin coordenadas: la ficha de alineaciones los lista bajo el
+  // campo, como Google.
+  const substitutes = (raw?.substitutes ?? [])
+    .map((s) => ({
+      num: s.player.number ?? 0,
+      pos: s.player.pos ?? "",
+      name: s.player.name ?? undefined,
+    }))
+    .filter((s) => s.name);
+  const coach = raw?.coach?.name ?? undefined;
+  return {
+    formation: base.formation,
+    starters,
+    ...(substitutes.length ? { substitutes } : {}),
+    ...(coach ? { coach } : {}),
+  };
 }
 
 /** Descarga y mapea un partido en vivo a LiveSnapshot. */

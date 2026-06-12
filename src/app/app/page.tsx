@@ -1118,11 +1118,16 @@ export default function AppHubPage() {
                 ) : (
                   <div className="zm-vs" style={{ fontSize: 38, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textShadow: "0 2px 16px rgba(201,168,76,0.25)", filter: "drop-shadow(0 2px 10px rgba(201,168,76,0.3))" }}>VS</div>
                 )}
-                <div style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2, marginTop: 6 }}>
-                  {live ? `${match.elapsed}'` : finished ? "Final" : (match.meta.time || "")}
-                </div>
+                {/* En "próximo" NO mostramos la hora cruda en ET (confundía: salía
+                    15:00 ET junto a la hora local correcta de abajo). Solo minuto
+                    en vivo o "Final"; la fecha+hora LOCAL ya va en la línea inferior. */}
+                {(live || finished) && (
+                  <div style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2, marginTop: 6 }}>
+                    {live ? `${match.elapsed}'` : "Final"}
+                  </div>
+                )}
                 {!live && !finished && (
-                  <div style={{ fontSize: 10, color: TXT_MUT, marginTop: 1 }}>{fmtDate(match.meta.date, match.meta.time)}</div>
+                  <div style={{ fontSize: 11, color: TXT_MUT, marginTop: 8 }}>{fmtDate(match.meta.date, match.meta.time)}</div>
                 )}
               </div>
               <McTeam name={match.meta.away.name} flag={match.meta.away.flag} />

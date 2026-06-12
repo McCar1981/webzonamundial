@@ -114,8 +114,12 @@ export default function PaywallModal() {
             boxShadow: "0 6px 24px rgba(201,168,76,0.25)",
           }}
         >
-          Hazte Pro — {PRO_PRICE_DISPLAY.yearly}
+          Empezar 3 días gratis
         </Link>
+        <div style={{ marginTop: 8, fontSize: 11.5, color: MID, lineHeight: 1.45 }}>
+          Luego {PRO_PRICE_DISPLAY.yearly} · cancela cuando quieras.{" "}
+          <strong style={{ color: GOLD2 }}>Precio fundador durante el Mundial.</strong>
+        </div>
         <button
           onClick={close}
           style={{

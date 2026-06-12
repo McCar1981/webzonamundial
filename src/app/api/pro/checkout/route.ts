@@ -110,6 +110,11 @@ export async function POST(request: NextRequest) {
         product: "pro",
       },
       subscription_data: {
+        // Prueba gratis de 3 días: la suscripción arranca en `trialing` (acceso
+        // Pro inmediato) y Stripe cobra al 4º día si no se cancela. El webhook
+        // ya mapea trialing → activo y el cobro/impago posterior llega por
+        // customer.subscription.updated.
+        trial_period_days: 3,
         metadata: {
           email: userEmail,
           user_id: user.id,

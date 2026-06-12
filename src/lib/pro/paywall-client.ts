@@ -89,7 +89,7 @@ export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; per
   },
   generic: {
     title: "Esta función es del plan Pro",
-    perk: "Desbloquea todo ZonaMundial sin límites desde 15 €/año.",
+    perk: "Desbloquea todo ZonaMundial sin límites — y no solo el Mundial: todo el año de fútbol.",
   },
 };
 

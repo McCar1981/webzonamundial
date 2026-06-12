@@ -7,7 +7,7 @@
 // NO importa store.ts (evita ciclo): store.ts → gamification-store.ts → admin/.
 
 import { adminClient } from "./admin";
-import { isRankingExcluded } from "@/lib/ranking-exclusions";
+import { aggregateResolvedPoints } from "./leaderboard-agg";
 import {
   ACHIEVEMENT_MAP,
   BOOST_CATALOG,
@@ -876,18 +876,10 @@ export interface WeeklyEntry {
 }
 export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
   const admin = adminClient();
-  const since = weekStart().toISOString();
-  const { data } = await admin.from("predictions")
-    .select("user_id,points_earned,resolved_at").gte("resolved_at", since).not("resolved_at", "is", null);
-  const agg = new Map<string, { pts: number; n: number }>();
-  for (const r of (data ?? []) as { user_id: string; points_earned: number | null }[]) {
-    if (isRankingExcluded(r.user_id)) continue; // el staff no compite
-    const a = agg.get(r.user_id) ?? { pts: 0, n: 0 };
-    a.pts += r.points_earned ?? 0; a.n++;
-    agg.set(r.user_id, a);
-  }
-  const sorted = [...agg.entries()].sort((a, b) => b[1].pts - a[1].pts).slice(0, limit);
-  const ids = sorted.map(([id]) => id);
+  // Agregación sin el tope de ~1000 filas de PostgREST (RPC o paginado);
+  // llega ya ordenada, recortada al top y con el staff excluido.
+  const sorted = await aggregateResolvedPoints(weekStart().toISOString(), limit);
+  const ids = sorted.map((a) => a.user_id);
   const { data: profs } = ids.length
     ? await admin.from("profiles").select("id,username,avatar_url").in("id", ids)
     : { data: [] };
@@ -896,12 +888,12 @@ export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
     return [r.id, r];
   }));
   const cmap = await cosmeticsByUser(ids);
-  return sorted.map(([id, a], i) => ({
-    position: i + 1, user_id: id,
-    display_name: pmap.get(id)?.username ?? "Anónimo",
-    avatar_url: pmap.get(id)?.avatar_url ?? null,
-    points: a.pts, predictions: a.n,
-    cosmetics: cmap.get(id) ?? null,
+  return sorted.map((a, i) => ({
+    position: i + 1, user_id: a.user_id,
+    display_name: pmap.get(a.user_id)?.username ?? "Anónimo",
+    avatar_url: pmap.get(a.user_id)?.avatar_url ?? null,
+    points: a.pts, predictions: a.count,
+    cosmetics: cmap.get(a.user_id) ?? null,
   }));
 }
 

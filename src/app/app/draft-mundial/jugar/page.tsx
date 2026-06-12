@@ -31,7 +31,7 @@ import {
   IconTrophy, IconDice, IconShield, IconScale, IconSwords,
   IconChart, IconBook, IconTimer, IconLink, IconTarget,
   IconShare, IconRefresh, IconBolt, IconArrowLeft,
-  IconCalificacion, IconLogro, IconGlobe, IconFlame,
+  IconCalificacion, IconLogro, IconGlobe, IconFlame, IconBall,
 } from "../components/DraftIcons";
 import FlagImage from "@/components/FlagImage";
 
@@ -920,38 +920,165 @@ function CampanaScreen({ equipo, onTerminar }: {
   const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   const [campana, setCampana] = useState<Campana>(() => generarCampana(jugadores));
   const [revelados, setRevelados] = useState(0);
+  const [modoCampana, setModoCampana] = useState<"manual" | "auto">("auto");
   const total = campana.partidos.length;
   const completo = revelados >= total;
+  const jugCount = jugadores.length;
 
   const repetir = () => { setCampana(generarCampana(jugadores)); setRevelados(0); };
+  const iniciar = () => setRevelados(modoCampana === "auto" ? total : 1);
+
+  const MODOS_CAMP: { key: "manual" | "auto"; icon: typeof IconBolt; title: string; desc: string; badge: string }[] = [
+    { key: "manual", icon: IconBall, title: "Partido a partido", desc: "Juega cada duelo, toma decisiones y vive la campaña completa.", badge: "Recomendado" },
+    { key: "auto", icon: IconBolt, title: "Automático", desc: "Simula la campaña y descubre hasta dónde llega tu once.", badge: "Rápido" },
+  ];
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-6">
+    <div className="relative max-w-lg mx-auto px-4 py-6">
+      <style jsx global>{`
+        @keyframes dm-camp-glow { 0%,100% { opacity:.5 } 50% { opacity:.85 } }
+        .dm-camp-cta { position: sticky; bottom: 14px; z-index: 30; }
+        @media (max-width: 768px) { .dm-camp-cta { bottom: calc(60px + env(safe-area-inset-bottom)); } }
+      `}</style>
       {completo && campana.campeon && <Confetti />}
 
+      {/* Glow radial dorado de fondo (solo en la selección de modo) */}
+      {revelados === 0 && (
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-10 h-80 -z-10"
+          style={{ background: `radial-gradient(60% 60% at 50% 0%, ${GOLD}1f, transparent 70%)`, animation: "dm-camp-glow 6s ease-in-out infinite" }} />
+      )}
+
+      {/* ── Cabecera ── */}
       <FadeIn>
-        <div className="mb-5">
-          <div className="text-[10px] font-bold uppercase tracking-[0.25em]" style={{ color: TXT_MUT }}>
-            La Campaña · Seed #{campana.seed}
+        <div className="relative mb-5">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em]" style={{ color: TXT_MUT }}>La Campaña</span>
+            <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full"
+              style={{ background: SETUP_BG_DEEP, color: GOLD2, border: `1px solid ${GOLD}44` }}>
+              SEED #{campana.seed}
+            </span>
           </div>
-          <h1 className="text-3xl font-black leading-none mt-1" style={{ color: TXT }}>La Campaña</h1>
-          <p className="text-xs mt-2" style={{ color: TXT_MUT }}>
+          <h1 className="relative text-3xl font-black leading-none" style={{ color: TXT, textShadow: `0 0 24px ${GOLD}33` }}>La Campaña</h1>
+          <div className="mt-2 h-[3px] w-14 rounded-full" style={{ background: `linear-gradient(90deg, ${GOLD2}, ${GOLD}, transparent)` }} />
+          <p className="text-xs mt-2.5 leading-snug" style={{ color: TXT_MUT }}>
             Fase de grupos + eliminatorias del Mundial 2026 contra selecciones históricas.
           </p>
         </div>
       </FadeIn>
 
+      {/* ════ PRE-INICIO: once listo + elegir modo ════ */}
+      {revelados === 0 ? (
+        <>
+          {/* Hero · once listo */}
+          <FadeIn delay={0.05}>
+            <div className="relative overflow-hidden rounded-2xl px-5 py-6 mb-5 text-center"
+              style={{
+                background: `linear-gradient(165deg, ${SETUP_CARD} 0%, ${SETUP_BG_DEEP} 100%)`,
+                border: `1px solid ${GOLD}33`,
+                boxShadow: "0 14px 38px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
+              }}>
+              <svg aria-hidden className="absolute left-1/2 -translate-x-1/2 -top-4 opacity-[0.10]" width="300" height="180" viewBox="0 0 300 180" fill="none" stroke={GOLD} strokeWidth="1">
+                <circle cx="150" cy="90" r="42" />
+                <line x1="0" y1="90" x2="300" y2="90" />
+                <rect x="112" y="0" width="76" height="30" />
+              </svg>
+              <div aria-hidden className="absolute inset-x-10 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${GOLD2}, transparent)` }} />
+
+              <div className="relative flex justify-center mb-2">
+                <div className="flex items-center justify-center rounded-2xl" style={{ width: 60, height: 60, background: `radial-gradient(circle, ${GOLD}33, transparent 70%)` }}>
+                  <IconTrophy size={40} color={GOLD2} />
+                </div>
+              </div>
+              <div className="relative text-xl font-black" style={{ color: TXT }}>Tu once está listo</div>
+              <p className="relative text-sm mt-1.5 leading-snug" style={{ color: TXT_MUT }}>
+                Elige cómo quieres disputar la campaña mundialista.
+              </p>
+              <div className="relative flex items-center justify-center gap-2 mt-3 text-[11px] font-bold flex-wrap" style={{ color: GOLD2 }}>
+                <span>{jugCount} jugadores</span>
+                <span style={{ color: TXT_MUT }}>·</span>
+                <span>Draft Mundial</span>
+                <span style={{ color: TXT_MUT }}>·</span>
+                <span>Campaña activa</span>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Cards de modo */}
+          <FadeIn delay={0.12}>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              {MODOS_CAMP.map((m) => {
+                const sel = modoCampana === m.key;
+                return (
+                  <button key={m.key} onClick={() => setModoCampana(m.key)}
+                    className="relative rounded-2xl p-4 text-left border transition-all duration-200 active:scale-[0.98] hover:-translate-y-0.5 flex flex-col"
+                    style={{
+                      minHeight: 168,
+                      background: sel ? `linear-gradient(160deg, ${GOLD2}, ${GOLD})` : SETUP_CARD,
+                      borderColor: sel ? GOLD2 : "rgba(122,160,214,0.28)",
+                      boxShadow: sel ? `0 10px 26px ${GOLD}55` : "0 3px 12px rgba(0,0,0,0.35)",
+                    }}>
+                    {sel && <CheckBadge />}
+                    <div className="flex items-center justify-center rounded-xl mb-3" style={{ width: 40, height: 40, background: sel ? "rgba(10,23,41,0.14)" : `${GOLD}1a` }}>
+                      <m.icon size={22} color={sel ? NAVY : GOLD} />
+                    </div>
+                    <div className="text-[15px] font-black leading-tight" style={{ color: sel ? NAVY : TXT }}>{m.title}</div>
+                    <div className="text-[11px] mt-1 leading-snug flex-1" style={{ color: sel ? "rgba(10,23,41,0.75)" : TXT_MUT }}>{m.desc}</div>
+                    <span className="inline-block mt-2 text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full self-start"
+                      style={{ background: sel ? NAVY : `${GOLD}22`, color: sel ? GOLD2 : GOLD, border: `1px solid ${sel ? "transparent" : `${GOLD}55`}` }}>
+                      {m.badge}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </FadeIn>
+
+          {/* Resumen de campaña */}
+          <FadeIn delay={0.18}>
+            <div className="rounded-2xl p-4 mb-4" style={{ background: SETUP_BG_DEEP, border: "1px solid rgba(255,255,255,0.07)" }}>
+              <div className="text-[10px] font-bold uppercase tracking-[0.18em] mb-2.5" style={{ color: TXT_MUT }}>Resumen de campaña</div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { t: "Draft Mundial", gold: false },
+                  { t: "Fase de grupos + eliminatorias", gold: false },
+                  { t: `Seed #${campana.seed}`, gold: false },
+                  { t: "Once confirmado", gold: true },
+                ].map((c) => (
+                  <span key={c.t} className="text-[11px] font-bold px-2.5 py-1 rounded-full"
+                    style={{
+                      background: c.gold ? `${GOLD}1c` : "#13243f",
+                      color: c.gold ? GOLD2 : "#c2cde2",
+                      border: `1px solid ${c.gold ? `${GOLD}55` : "rgba(255,255,255,0.06)"}`,
+                    }}>
+                    {c.t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* CTA semifijo */}
+          <div className="dm-camp-cta">
+            <button onClick={iniciar}
+              className="w-full rounded-2xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex flex-col items-center justify-center gap-0.5"
+              style={{ minHeight: 58, padding: "10px 16px", background: `linear-gradient(135deg, ${GOLD2}, ${GOLD})`, color: NAVY, boxShadow: `0 10px 30px ${GOLD}66, inset 0 1px 0 rgba(255,255,255,0.4)` }}>
+              <span className="flex items-center gap-2 text-lg font-black">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill={NAVY}><path d="M8 5v14l11-7z" /></svg>
+                Iniciar campaña
+              </span>
+              <span className="text-[11px] font-bold" style={{ color: "rgba(10,23,41,0.72)" }}>
+                Modo {modoCampana === "auto" ? "automático" : "partido a partido"} seleccionado
+              </span>
+            </button>
+          </div>
+        </>
+      ) : (
+      <>
       {/* Partidos revelados */}
       <div className="space-y-2 mb-4">
         {campana.partidos.slice(0, revelados).map((p, i) => (
           <PartidoRow key={`${i}-${campana.seed}`} p={p} delay={Math.min(i, 2) * 0.06} />
         ))}
-        {revelados === 0 && (
-          <div className="text-center py-10 rounded-xl" style={{ background: CARD, color: TXT_MUT }}>
-            <IconTrophy size={36} color={GOLD} className="inline-block mb-2" />
-            <div className="text-sm font-semibold">Tu once está listo. ¿Cómo juegas la campaña?</div>
-          </div>
-        )}
       </div>
 
       {/* Controles */}
@@ -961,12 +1088,12 @@ function CampanaScreen({ equipo, onTerminar }: {
             <button onClick={() => setRevelados((r) => Math.min(total, r + 1))}
               className="py-3 rounded-xl text-sm font-bold border transition-all hover:scale-[1.02] active:scale-[0.98]"
               style={{ borderColor: "rgba(255,255,255,0.15)", color: TXT, background: CARD }}>
-              {revelados === 0 ? "Partido a partido" : `Siguiente (${revelados}/${total})`}
+              {`Siguiente (${revelados}/${total})`}
             </button>
             <button onClick={() => setRevelados(total)}
               className="flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
               style={{ background: GOLD, color: NAVY }}>
-              <IconBolt size={16} color={NAVY} />Automático
+              <IconBolt size={16} color={NAVY} />Saltar al final
             </button>
           </div>
         </FadeIn>
@@ -1004,6 +1131,8 @@ function CampanaScreen({ equipo, onTerminar }: {
             </button>
           </div>
         </FadeIn>
+      )}
+      </>
       )}
     </div>
   );

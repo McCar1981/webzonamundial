@@ -18,9 +18,10 @@ import {
   getColorCalificacion,
   puntosPorCalificacion,
   monedasPorCalificacion,
+  getNearMiss,
 } from "@/lib/draft/simulacion";
 import { DraftLogro } from "@/lib/draft/logros";
-import { generarCampana, Campana, CampanaPartido } from "@/lib/draft/campana";
+import { generarCampana, Campana, CampanaPartido, calcularBonusCampana } from "@/lib/draft/campana";
 import { useDraftGame } from "../hooks/useDraftGame";
 import SoccerField from "../components/SoccerField";
 import {
@@ -166,7 +167,7 @@ function SetupScreen({
             {[
               { key: "clasico" as Modo, label: "Clásico", icon: IconChart, desc: "Con stats" },
               { key: "almanaque" as Modo, label: "Almanaque", icon: IconBook, desc: "Sin stats" },
-              { key: "contrarreloj" as Modo, label: "Contrarreloj", icon: IconTimer, desc: "15 seg" },
+              { key: "contrarreloj" as Modo, label: "Contrarreloj", icon: IconTimer, desc: "10 seg" },
             ].map((m) => (
               <button key={m.key} onClick={() => setModo(m.key)}
                 className="px-3 py-3 rounded-lg text-sm font-medium transition-all border text-center hover:scale-105"
@@ -230,7 +231,7 @@ function TiradaPanel({
 /* ─────────── SeleccionPanel ─────────── */
 function SeleccionPanel({
   plantilla, jugadores, modo, tiempoRestante, onSeleccionar, posicionesOcupadas,
-  rerollsRestantes, onOtraSeleccion, onOtroMundial,
+  rerollsRestantes, onOtraSeleccion, onOtroMundial, coherenciaHint,
 }: {
   plantilla: { seleccion: string; year: number };
   jugadores: JugadorSeleccionado[];
@@ -241,6 +242,7 @@ function SeleccionPanel({
   rerollsRestantes: number;
   onOtraSeleccion: () => void;
   onOtroMundial: () => void;
+  coherenciaHint?: string | null;
 }) {
   const sinRerolls = rerollsRestantes <= 0;
   return (
@@ -281,17 +283,24 @@ function SeleccionPanel({
         )}
       </div>
 
-      <div className="rounded-xl p-4" style={{ background: CARD }}>
-        <div className="flex items-center justify-between mb-3">
+      <div className={`rounded-xl p-4 transition-all duration-200${tiempoRestante !== null && tiempoRestante <= 3 ? " animate-panic-shake" : ""}`}
+        style={{ background: tiempoRestante !== null && tiempoRestante <= 3 ? `color-mix(in srgb, ${RED} 12%, ${CARD})` : CARD }}>
+        <div className="flex items-center justify-between mb-1">
           <span className="text-sm font-bold" style={{ color: GOLD }}>Elegí un jugador</span>
           {tiempoRestante !== null && (
             <span className="text-sm font-bold px-2 py-1 rounded-lg animate-pulse flex items-center gap-1"
-              style={{ background: tiempoRestante <= 5 ? `${RED}33` : `${GOLD}33`, color: tiempoRestante <= 5 ? RED : GOLD }}>
-              <IconTimer size={16} color={tiempoRestante <= 5 ? RED : GOLD} />{tiempoRestante}s
+              style={{ background: tiempoRestante <= 3 ? `${RED}55` : tiempoRestante <= 5 ? `${RED}33` : `${GOLD}33`, color: tiempoRestante <= 3 ? "#fff" : tiempoRestante <= 5 ? RED : GOLD }}>
+              <IconTimer size={16} color={tiempoRestante <= 3 ? "#fff" : tiempoRestante <= 5 ? RED : GOLD} />{tiempoRestante}s
             </span>
           )}
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        {coherenciaHint && (
+          <div className="mb-3 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 animate-fade-in"
+            style={{ background: `#f59e0b22`, color: "#f59e0b", border: `1px solid #f59e0b44` }}>
+            <span>⬆</span>{coherenciaHint}
+          </div>
+        )}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">
           {jugadores.map((j, i) => (
             <button key={j.id} onClick={() => onSeleccionar(j.id)}
               className="p-3 rounded-lg text-left transition-all hover:scale-[1.03] active:scale-[0.97] border animate-fade-in"
@@ -400,10 +409,12 @@ function RankingMini() {
 }
 
 /* ─────────── ResultadoScreen ─────────── */
-function ResultadoScreen({ resultado, equipo, onReiniciar }: { resultado: DraftResultado; equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; onReiniciar: () => void }) {
+function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { resultado: DraftResultado; equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; campanaBonus?: number; onReiniciar: () => void }) {
   const color = getColorCalificacion(resultado.calificacion);
   const puntos = puntosPorCalificacion(resultado.calificacion);
   const monedas = monedasPorCalificacion(resultado.calificacion);
+  const nearMiss = getNearMiss(resultado.puntaje);
+  const bonusCamp = campanaBonus ?? 0;
 
   const compartir = useCallback(() => {
     const nombres = Object.values(equipo).filter(Boolean).map((j) => j!.nombre).slice(0, 3).join(", ");
@@ -422,6 +433,11 @@ function ResultadoScreen({ resultado, equipo, onReiniciar }: { resultado: DraftR
           <div className="text-5xl font-black mt-2" style={{ color: TXT }}>
             {resultado.puntaje}<span className="text-xl font-normal" style={{ color: TXT_MUT }}>/100</span>
           </div>
+          {nearMiss && (
+            <div className="mt-2 text-sm animate-fade-in" style={{ color: TXT_MUT }}>
+              Solo te faltaron <span className="font-bold" style={{ color: GOLD }}>{nearMiss.faltaron} punto{nearMiss.faltaron !== 1 ? "s" : ""}</span> para {nearMiss.siguiente}
+            </div>
+          )}
         </div>
       </FadeIn>
 
@@ -450,8 +466,16 @@ function ResultadoScreen({ resultado, equipo, onReiniciar }: { resultado: DraftR
         <div className="rounded-xl p-4 mb-6 text-center" style={{ background: `${GOLD}15`, border: `1px solid ${GOLD}44` }}>
           <div className="text-sm mb-1" style={{ color: TXT_MUT }}>Recompensas</div>
           <div className="flex justify-center gap-6">
-            <div><div className="text-2xl font-bold" style={{ color: GOLD }}>+{puntos}</div><div className="text-xs" style={{ color: TXT_MUT }}>puntos</div></div>
-            <div><div className="text-2xl font-bold" style={{ color: GOLD }}>+{monedas}</div><div className="text-xs" style={{ color: TXT_MUT }}>monedas</div></div>
+            <div><div className="text-2xl font-bold" style={{ color: GOLD }}>+{puntos}</div><div className="text-xs" style={{ color: TXT_MUT }}>puntos XP</div></div>
+            <div>
+              <div className="text-2xl font-bold" style={{ color: GOLD }}>+{monedas + bonusCamp}</div>
+              <div className="text-xs" style={{ color: TXT_MUT }}>monedas</div>
+              {bonusCamp > 0 && (
+                <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: "#22c55e" }}>
+                  ({monedas} base +{bonusCamp} campaña)
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </FadeIn>
@@ -518,7 +542,7 @@ function BarraMarcador({ value, color }: { value: number; color: string }) {
   );
 }
 
-function Marcador({ equipo, formacion }: { equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; formacion: FormacionKey }) {
+function Marcador({ equipo, formacion, puntajeParcial }: { equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>; formacion: FormacionKey; puntajeParcial?: number | null }) {
   const posiciones = FORMACIONES.find((f) => f.key === formacion)?.posiciones ?? [];
   // El juego guarda una posición por tipo → posiciones únicas en orden.
   const unicas = posiciones.filter((p, i) => posiciones.indexOf(p) === i);
@@ -532,9 +556,16 @@ function Marcador({ equipo, formacion }: { equipo: Partial<Record<DraftPosicion,
     <div className="rounded-xl p-4" style={{ background: CARD }}>
       {/* Cabecera + valoración global */}
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>
-          Marcador · {colocados.length}/{unicas.length}
-        </span>
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>
+            Marcador · {colocados.length}/{unicas.length}
+          </span>
+          {puntajeParcial !== null && puntajeParcial !== undefined && (
+            <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: puntajeParcial >= 85 ? GOLD : puntajeParcial >= 75 ? "#22c55e" : TXT_MUT }}>
+              Proyectado ~{puntajeParcial}
+            </div>
+          )}
+        </div>
         <span className="text-4xl font-black leading-none" style={{ color: overallColor }}>
           {colocados.length ? overall : "—"}
         </span>
@@ -603,7 +634,7 @@ function ResumenStat({ n, label, color = TXT }: { n: number; label: string; colo
 
 function CampanaScreen({ equipo, onTerminar }: {
   equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>;
-  onTerminar: () => void;
+  onTerminar: (campana: Campana) => void;
 }) {
   const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   const [campana, setCampana] = useState<Campana>(() => generarCampana(jugadores));
@@ -664,7 +695,12 @@ function CampanaScreen({ equipo, onTerminar }: {
           <div className="rounded-2xl p-5 mb-4 text-center"
             style={{ background: campana.campeon ? `${GOLD}18` : CARD, border: `1px solid ${campana.campeon ? `${GOLD}66` : "rgba(255,255,255,0.08)"}` }}>
             {campana.campeon && <div className="flex justify-center mb-2"><IconTrophy size={34} color={GOLD} /></div>}
-            <div className="text-2xl font-black mb-4" style={{ color: campana.campeon ? GOLD2 : TXT }}>{campana.outcome}</div>
+            <div className="text-2xl font-black mb-1" style={{ color: campana.campeon ? GOLD2 : TXT }}>{campana.outcome}</div>
+            {calcularBonusCampana(campana) > 0 && (
+              <div className="text-sm font-bold mb-3 animate-fade-in" style={{ color: "#22c55e" }}>
+                +{calcularBonusCampana(campana)} monedas extra
+              </div>
+            )}
             <div className="flex justify-center gap-4">
               <ResumenStat n={campana.resumen.v} label="Ganados" color={GREEN} />
               <ResumenStat n={campana.resumen.e} label="Empates" color={GOLD} />
@@ -680,7 +716,7 @@ function CampanaScreen({ equipo, onTerminar }: {
               style={{ borderColor: "rgba(255,255,255,0.15)", color: TXT, background: CARD }}>
               <IconRefresh size={16} color={TXT} />Repetir
             </button>
-            <button onClick={onTerminar}
+            <button onClick={() => onTerminar(campana)}
               className="flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
               style={{ background: GOLD, color: NAVY }}>
               <IconTrophy size={16} color={NAVY} />Ver mi carta
@@ -709,7 +745,7 @@ export default function DraftMundialJugarPage() {
 
   return (
     <div className="min-h-screen pb-8" style={{ background: NAVY }}>
-      <style jsx global>{`@keyframes fade-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} } .animate-fade-in{animation:fade-in .4s ease-out forwards}`}</style>
+      <style jsx global>{`@keyframes fade-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} } .animate-fade-in{animation:fade-in .4s ease-out forwards} @keyframes panic-shake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-4px)}30%,60%,90%{transform:translateX(4px)}} .animate-panic-shake{animation:panic-shake 0.25s ease-in-out infinite}`}</style>
       {showConfetti && <Confetti />}
       {game.phase === "resultado" && game.logrosNuevos.length > 0 && <LogrosPopup logros={game.logrosNuevos} onClose={game.marcarLogrosVistos} />}
 
@@ -749,7 +785,7 @@ export default function DraftMundialJugarPage() {
               </FadeIn>
               <FadeIn delay={0.1}>
                 <div className="mt-3">
-                  <Marcador equipo={game.equipo} formacion={game.formacion} />
+                  <Marcador equipo={game.equipo} formacion={game.formacion} puntajeParcial={game.puntajeParcial} />
                 </div>
               </FadeIn>
             </div>
@@ -777,6 +813,7 @@ export default function DraftMundialJugarPage() {
                   rerollsRestantes={game.rerollsRestantes}
                   onOtraSeleccion={game.otraSeleccion}
                   onOtroMundial={game.otroMundial}
+                  coherenciaHint={game.coherenciaHint}
                 />
               )}
               {game.phase === "simulacion" && <SimulacionScreen />}
@@ -785,11 +822,11 @@ export default function DraftMundialJugarPage() {
         )}
 
         {game.phase === "campana" && (
-          <CampanaScreen equipo={game.equipo} onTerminar={game.verCarta} />
+          <CampanaScreen equipo={game.equipo} onTerminar={game.finalizarConCampana} />
         )}
 
         {game.phase === "resultado" && game.resultado && (
-          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} onReiniciar={game.reiniciar} />
+          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} campanaBonus={game.campanaBonus} onReiniciar={game.reiniciar} />
         )}
       </div>
     </div>

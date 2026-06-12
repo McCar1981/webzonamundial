@@ -8,6 +8,7 @@ import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 import { MATCHES } from "@/data/matches";
 import { matchSlug } from "@/lib/match-center/slug";
+import MatchTimeLabel from "./MatchTimeLabel";
 import FootballScoreboard from "@/components/FootballScoreboard";
 import TodayLiveBoard from "./TodayLiveBoard";
 
@@ -155,7 +156,7 @@ export default function MatchCenterPage() {
                 display: "block", padding: 14, borderRadius: 14, background: BG2,
                 border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none", color: "#fff",
               }}>
-                <div style={{ fontSize: 11, color: DIM, marginBottom: 8 }}>{m.d} · {m.t} ET · Grupo {m.g}</div>
+                <div style={{ fontSize: 11, color: DIM, marginBottom: 8 }}><MatchTimeLabel date={m.d} time={m.t} group={m.g} /></div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
                     <img src={`https://flagcdn.com/w40/${m.hf}.png`} alt="" style={{ width: 24, height: 16, borderRadius: 3, objectFit: "cover" }} />

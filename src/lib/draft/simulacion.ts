@@ -131,7 +131,7 @@ export function calcularResultado(
 
   const puntaje = Math.min(
     100,
-    Math.round(fuerza * 0.5 + balance * 0.25 + coherencia * 0.15 + bonusEstilo * 0.1)
+    Math.round(fuerza * 0.35 + balance * 0.30 + coherencia * 0.25 + bonusEstilo * 0.10)
   );
 
   const calificacion =
@@ -180,6 +180,15 @@ export function getEmojiCalificacion(cal: DraftResultado["calificacion"]): strin
     default:
       return "⭐";
   }
+}
+
+// Devuelve cuántos puntos faltaron para subir de nivel (solo si ≤ 10).
+export function getNearMiss(puntaje: number): { faltaron: number; siguiente: string } | null {
+  if (puntaje >= 95) return null;
+  const siguiente = puntaje >= 85 ? "Leyenda" : puntaje >= 75 ? "Platino" : puntaje >= 60 ? "Oro" : "Plata";
+  const umbral = puntaje >= 85 ? 95 : puntaje >= 75 ? 85 : puntaje >= 60 ? 75 : 60;
+  const faltaron = umbral - puntaje;
+  return faltaron <= 10 ? { faltaron, siguiente } : null;
 }
 
 export function puntosPorCalificacion(cal: DraftResultado["calificacion"]): number {

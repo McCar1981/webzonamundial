@@ -254,3 +254,16 @@ export function generarCampana(jugadores: JugadorSimple[]): Campana {
     resumen: { v, e, d, gf, gc },
   };
 }
+
+// Fútcoins extra según el desempeño en la campaña.
+// Clasificado en grupos → +5 mín; Campeón → +30.
+export function calcularBonusCampana(campana: Campana): number {
+  if (!campana.clasificado) return 0;
+  if (campana.campeon) return 30;
+  const fasesKO: Fase[] = ["16avos", "Octavos", "Cuartos", "Semifinal", "Final"];
+  const koPartidos = campana.partidos.filter((p) => fasesKO.includes(p.fase));
+  if (koPartidos.length === 0) return 5;
+  const lastFase = koPartidos[koPartidos.length - 1].fase;
+  const faseIdx = fasesKO.indexOf(lastFase);
+  return ([5, 7, 10, 15, 20] as const)[faseIdx] ?? 5;
+}

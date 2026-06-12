@@ -1,7 +1,7 @@
 // src/app/app/draft-mundial/hooks/useDraftGame.ts
 // Hook principal de lógica del juego Draft Mundial
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import {
   DraftPosicion,
   DraftPlantilla,
@@ -14,7 +14,15 @@ import {
 } from "@/lib/draft/types";
 import { getFormacion } from "@/lib/draft/formaciones";
 import { getPlantillaAleatoria, getOtraSeleccion, getOtroMundial } from "@/lib/draft/plantillas";
-import { calcularResultado, puntosPorCalificacion, monedasPorCalificacion } from "@/lib/draft/simulacion";
+import {
+  calcularResultado,
+  calcularBalance,
+  calcularCoherencia,
+  aplicarBonusEstilo,
+  puntosPorCalificacion,
+  monedasPorCalificacion,
+} from "@/lib/draft/simulacion";
+import { Campana, calcularBonusCampana } from "@/lib/draft/campana";
 import {
   DraftLogro,
   checkLogros,
@@ -23,7 +31,7 @@ import {
   LOGROS,
 } from "@/lib/draft/logros";
 
-const CONTRARRELOJ_SEGUNDOS = 15;
+const CONTRARRELOJ_SEGUNDOS = 10;
 // Re-tiradas disponibles por partida (compartidas entre "Otra selección" y
 // "Otro mundial"). Limitadas para que la elección sea estratégica.
 const REROLLS_INICIALES = 3;
@@ -45,6 +53,9 @@ export interface UseDraftGameReturn {
   logrosNuevos: DraftLogro[];
   posicionesOcupadas: DraftPosicion[];
   rerollsRestantes: number;
+  campanaBonus: number;
+  puntajeParcial: number | null;
+  coherenciaHint: string | null;
 
   // Acciones
   setFormacion: (f: FormacionKey) => void;
@@ -55,7 +66,7 @@ export interface UseDraftGameReturn {
   otraSeleccion: () => void;
   otroMundial: () => void;
   seleccionarJugador: (jugadorId: string) => void;
-  verCarta: () => void;
+  finalizarConCampana: (campana: Campana) => Promise<void>;
   reiniciar: () => void;
   marcarLogrosVistos: () => void;
 }
@@ -74,6 +85,7 @@ export function useDraftGame(): UseDraftGameReturn {
   const [logrosEstado, setLogrosEstado] = useState<Record<string, boolean>>(() => loadLogros());
   const [logrosNuevos, setLogrosNuevos] = useState<DraftLogro[]>([]);
   const [rerollsRestantes, setRerollsRestantes] = useState(REROLLS_INICIALES);
+  const [campanaBonus, setCampanaBonus] = useState(0);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -95,10 +107,9 @@ export function useDraftGame(): UseDraftGameReturn {
     setLogrosNuevos([]);
     setGuardando(false);
     setRerollsRestantes(REROLLS_INICIALES);
+    setCampanaBonus(0);
   }, [formacion]);
 
-  // Re-tirar la plantilla actual sin gastar una posición: cambia la selección
-  // ofrecida (consume una re-tirada del presupuesto de la partida).
   const otraSeleccion = useCallback(() => {
     if (phase !== "seleccion" || !tiradaActual || rerollsRestantes <= 0) return;
     setTiradaActual(getOtraSeleccion(tiradaActual));
@@ -135,9 +146,12 @@ export function useDraftGame(): UseDraftGameReturn {
     }
   }, [posicionesPendientes, modo]);
 
+  // Guarda el resultado en BD y acredita monedas. Se llama desde finalizarConCampana
+  // DESPUÉS de que el usuario ve la campaña (incluye bonus por desempeño).
   const guardarResultado = useCallback(async (
     res: DraftResultado,
-    eq: JugadorSeleccionado[]
+    eq: JugadorSeleccionado[],
+    extraCoins = 0,
   ) => {
     setGuardando(true);
     try {
@@ -163,7 +177,7 @@ export function useDraftGame(): UseDraftGameReturn {
           coherencia: res.coherencia,
           bonusEstilo: res.bonusEstilo,
           equipo: equipoJson,
-          coins: monedasPorCalificacion(res.calificacion),
+          coins: monedasPorCalificacion(res.calificacion) + extraCoins,
           xp: puntosPorCalificacion(res.calificacion),
         }),
       });
@@ -181,10 +195,8 @@ export function useDraftGame(): UseDraftGameReturn {
       const jugador = tiradaActual.jugadores.find((j) => j.id === jugadorId);
       if (!jugador) return;
 
-      // Validar que la posición no esté ocupada
       if (equipo[jugador.posicion]) return;
 
-      // Limpiar timer si existe
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -201,21 +213,16 @@ export function useDraftGame(): UseDraftGameReturn {
       const nuevoEquipo = { ...equipo, [jugador.posicion]: seleccionado };
       setEquipo(nuevoEquipo);
 
-      // Remover la posición de las pendientes
       const nuevasPosiciones = posicionesPendientes.filter((p) => p !== jugador.posicion);
       setPosicionesPendientes(nuevasPosiciones);
 
       if (nuevasPosiciones.length === 0) {
-        // Juego terminado
         setPhase("simulacion");
         setTimeout(() => {
-          const eq = Object.values(nuevoEquipo).filter(
-            Boolean
-          ) as JugadorSeleccionado[];
+          const eq = Object.values(nuevoEquipo).filter(Boolean) as JugadorSeleccionado[];
           const res = calcularResultado(eq, estilo);
           setResultado(res);
 
-          // Check logros
           const nuevos = checkLogros(res, eq, modo, logrosEstado);
           if (nuevos.length > 0) {
             const updated = { ...logrosEstado };
@@ -225,11 +232,7 @@ export function useDraftGame(): UseDraftGameReturn {
             setLogrosNuevos(nuevos);
           }
 
-          // Guardar resultado
-          guardarResultado(res, eq);
-
-          // Tras calcular la carta, se juega "La Campaña" (Mundial simulado);
-          // desde ahí el jugador pasa a ver su carta/resultado.
+          // guardarResultado se llama en finalizarConCampana (incluye bonus campaña).
           setPhase("campana");
         }, 1500);
       } else {
@@ -237,8 +240,22 @@ export function useDraftGame(): UseDraftGameReturn {
         setTiradaActual(null);
       }
     },
-    [tiradaActual, phase, estilo, equipo, logrosEstado, guardarResultado, posicionesPendientes]
+    [tiradaActual, phase, estilo, equipo, logrosEstado, posicionesPendientes]
   );
+
+  // Llamado desde CampanaScreen cuando el usuario termina de ver la campaña.
+  // Calcula el bonus según el resultado, guarda todo y pasa a "resultado".
+  const finalizarConCampana = useCallback(async (campana: Campana) => {
+    const bonus = calcularBonusCampana(campana);
+    setCampanaBonus(bonus);
+
+    if (resultado) {
+      const eq = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
+      await guardarResultado(resultado, eq, bonus);
+    }
+
+    setPhase("resultado");
+  }, [resultado, equipo, guardarResultado]);
 
   const reiniciar = useCallback(() => {
     setPhase("setup");
@@ -250,14 +267,11 @@ export function useDraftGame(): UseDraftGameReturn {
     setGuardando(false);
     setLogrosNuevos([]);
     setRerollsRestantes(REROLLS_INICIALES);
+    setCampanaBonus(0);
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-  }, []);
-
-  const verCarta = useCallback(() => {
-    setPhase("resultado");
   }, []);
 
   const marcarLogrosVistos = useCallback(() => {
@@ -275,7 +289,6 @@ export function useDraftGame(): UseDraftGameReturn {
     }
   }, [tiempoRestante, modo, tiradaActual, equipo, seleccionarJugador]);
 
-  // Todos los jugadores de la plantilla sorteada (que no estén en posiciones ocupadas)
   const jugadoresDisponibles = tiradaActual
     ? tiradaActual.jugadores
         .filter((j) => !equipo[j.posicion])
@@ -295,6 +308,30 @@ export function useDraftGame(): UseDraftGameReturn {
 
   const logrosDesbloqueados = LOGROS.filter((l) => logrosEstado[l.id]);
 
+  // Puntaje proyectado: se activa solo con ≥ 5 jugadores colocados.
+  const puntajeParcial = useMemo((): number | null => {
+    const placed = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
+    if (placed.length < 5) return null;
+    const jugadores = placed.map((j) => ({ posicion: j.posicion, fuerza: j.fuerza }));
+    const fuerza = Math.round(placed.reduce((s, j) => s + j.fuerza, 0) / placed.length);
+    const balance = calcularBalance(jugadores);
+    const coherencia = calcularCoherencia(placed);
+    const bonusEst = aplicarBonusEstilo(jugadores, estilo);
+    return Math.min(100, Math.round(fuerza * 0.35 + balance * 0.30 + coherencia * 0.25 + bonusEst * 0.10));
+  }, [equipo, estilo]);
+
+  // Hint de coherencia: avisa cuando la selección activa un bonus por repetición.
+  const coherenciaHint = useMemo((): string | null => {
+    if (!tiradaActual || phase !== "seleccion") return null;
+    const placed = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
+    const countSel = placed.filter((j) => j.seleccion === tiradaActual.seleccion).length;
+    const countYear = placed.filter((j) => j.year === tiradaActual.year).length;
+    if (countSel === 2) return `3er jugador de ${tiradaActual.seleccion} → +coherencia`;
+    if (countSel >= 3) return `Más de ${tiradaActual.seleccion} → +coherencia`;
+    if (countYear === 1) return `2do jugador del ${tiradaActual.year} → +coherencia`;
+    return null;
+  }, [tiradaActual, equipo, phase]);
+
   return {
     phase,
     formacion,
@@ -312,6 +349,9 @@ export function useDraftGame(): UseDraftGameReturn {
     logrosNuevos,
     posicionesOcupadas,
     rerollsRestantes,
+    campanaBonus,
+    puntajeParcial,
+    coherenciaHint,
     setFormacion,
     setEstilo,
     setModo,
@@ -320,7 +360,7 @@ export function useDraftGame(): UseDraftGameReturn {
     otraSeleccion,
     otroMundial,
     seleccionarJugador,
-    verCarta,
+    finalizarConCampana,
     reiniciar,
     marcarLogrosVistos,
   };

@@ -18,6 +18,8 @@ import {
 } from "@/lib/pro/paywall-client";
 import { PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
 import { trackEvent } from "@/lib/analytics/track-event";
+import { isPostFreeWeekendWindow } from "@/lib/pro/free-weekend";
+import { hasUsedAnyPro } from "@/lib/pro/free-weekend-usage";
 
 const BG2 = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
 
@@ -51,6 +53,15 @@ export default function PaywallModal() {
   const copy = PAYWALL_COPY[detail.feature] ?? PAYWALL_COPY.generic;
   const countdown = retryCountdown(detail.retryAt);
   const close = () => setDetail(null);
+
+  // Lunes tras el finde gratis: si el usuario probó Pro durante la campaña, el
+  // paywall lo recuerda ("la probaste gratis") en vez del copy genérico.
+  const postWeekend = isPostFreeWeekendWindow() && hasUsedAnyPro();
+  const title = postWeekend ? "Esta función volvió a ser Pro" : copy.title;
+  const perk = postWeekend
+    ? "La probaste gratis durante el fin de semana. Actívala de nuevo con el precio fundador."
+    : copy.perk;
+  const ctaLabel = postWeekend ? "Activar Pro" : "Empezar 3 días gratis";
 
   return createPortal(
     <div
@@ -94,9 +105,9 @@ export default function PaywallModal() {
         </div>
 
         <div style={{ fontWeight: 900, fontSize: 19, color: "#fff", marginBottom: 8, lineHeight: 1.25 }}>
-          {copy.title}
+          {title}
         </div>
-        <p style={{ fontSize: 14, color: MID, lineHeight: 1.5, margin: "0 0 6px" }}>{copy.perk}</p>
+        <p style={{ fontSize: 14, color: MID, lineHeight: 1.5, margin: "0 0 6px" }}>{perk}</p>
         {countdown && (
           <p style={{ fontSize: 12.5, color: MID, margin: "0 0 6px" }}>
             O continúa gratis en <strong style={{ color: "#fff" }}>{countdown}</strong>.
@@ -114,7 +125,7 @@ export default function PaywallModal() {
             boxShadow: "0 6px 24px rgba(201,168,76,0.25)",
           }}
         >
-          Empezar 3 días gratis
+          {ctaLabel}
         </Link>
         <div style={{ marginTop: 8, fontSize: 11.5, color: MID, lineHeight: 1.45 }}>
           Luego {PRO_PRICE_DISPLAY.yearly} · cancela cuando quieras.{" "}

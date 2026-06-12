@@ -15,8 +15,10 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X, Target, Sparkles, Zap, Trophy, Gamepad2, Users, type LucideIcon } from "lucide-react";
 import { isFreeWeekendActive, freeWeekendEnd } from "@/lib/pro/free-weekend";
+import { featureForPath } from "@/lib/pro/free-weekend-usage";
 
 const BG = "#060B14", NAVY = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#8a94b0";
 const SHOWN_KEY = "zm:free-weekend-popup-shown";
@@ -50,6 +52,8 @@ export default function FreeWeekendCampaign() {
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
+  const pathname = usePathname();
+  const onProRoute = !!featureForPath(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -129,9 +133,18 @@ export default function FreeWeekendCampaign() {
               animation: "zmFwPill .3s ease both",
             }}
           >
-            <span style={{ fontSize: 15 }}>🔥</span>
-            <span>Pro gratis este finde</span>
-            <span style={{ color: GOLD, fontWeight: 900 }}>· Ver funciones</span>
+            {onProRoute ? (
+              <>
+                <span style={{ fontSize: 15 }}>🔓</span>
+                <span>PRO desbloqueado este finde</span>
+              </>
+            ) : (
+              <>
+                <span style={{ fontSize: 15 }}>🔥</span>
+                <span>Pro gratis este finde</span>
+                <span style={{ color: GOLD, fontWeight: 900 }}>· Ver funciones</span>
+              </>
+            )}
           </button>,
           document.body,
         )}

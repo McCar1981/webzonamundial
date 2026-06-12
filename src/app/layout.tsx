@@ -10,6 +10,7 @@ import NativeAppGuard from "@/components/NativeAppGuard";
 import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
 import PaywallModal from "@/components/pro/PaywallModal";
 import FreeWeekendCampaign from "@/components/pro/FreeWeekendCampaign";
+import FreeWeekendConversion from "@/components/pro/FreeWeekendConversion";
 import { isAdSenseEnabled } from "@/lib/adsense";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
@@ -357,6 +358,7 @@ export default async function RootLayout({
                 un error pro_required de la API (handleProRequired). */}
             <PaywallModal />
             <FreeWeekendCampaign />
+            <FreeWeekendConversion />
           </EntitlementsProvider>
         </LanguageProvider>
         <CookieConsent />

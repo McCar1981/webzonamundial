@@ -32,3 +32,27 @@ export function freeWeekendEnd(): Date {
 export function isFreeWeekendActive(now: number = Date.now()): boolean {
   return now >= freeWeekendStart().getTime() && now < freeWeekendEnd().getTime();
 }
+
+/** Milisegundos que quedan hasta el cierre (0 si ya cerró). */
+export function freeWeekendMsLeft(now: number = Date.now()): number {
+  return Math.max(0, freeWeekendEnd().getTime() - now);
+}
+
+/**
+ * Recta final: la ventana sigue abierta pero quedan menos de `hours` horas
+ * (por defecto 20 → desde el domingo por la tarde). Para el aviso de urgencia.
+ */
+export function isFreeWeekendUrgency(hours = 20, now: number = Date.now()): boolean {
+  if (!isFreeWeekendActive(now)) return false;
+  return freeWeekendMsLeft(now) <= hours * 3_600_000;
+}
+
+/**
+ * Ventana POSTERIOR al finde (cerrado hace < `days` días). Durante ella, el
+ * paywall del lunes recuerda "lo probaste gratis este finde". Acota el mensaje
+ * para que no se quede colgado para siempre.
+ */
+export function isPostFreeWeekendWindow(days = 5, now: number = Date.now()): boolean {
+  const end = freeWeekendEnd().getTime();
+  return now >= end && now < end + days * 86_400_000;
+}

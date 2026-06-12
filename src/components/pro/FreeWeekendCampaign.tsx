@@ -22,6 +22,10 @@ import { featureForPath } from "@/lib/pro/free-weekend-usage";
 
 const BG = "#060B14", NAVY = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#8a94b0";
 const SHOWN_KEY = "zm:fw-popup-day"; // guarda el día (YYYY-MM-DD): máx. 1 popup/día
+// sessionStorage: si el usuario cierra la píldora con la ×, se mantiene cerrada
+// al minimizar/volver de segundo plano (misma sesión) y solo reaparece cuando
+// se cierra y se reabre la app de verdad (sessionStorage se borra al cerrar).
+const PILL_DISMISS_KEY = "zm:fw-pill-dismissed";
 
 const UNLOCKED: { Icon: LucideIcon; t: string }[] = [
   { Icon: Target, t: "Predicciones ilimitadas" },
@@ -51,6 +55,7 @@ export default function FreeWeekendCampaign() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
   const pathname = usePathname();
   const onProRoute = !!featureForPath(pathname);
@@ -59,6 +64,15 @@ export default function FreeWeekendCampaign() {
     setMounted(true);
     if (!isFreeWeekendActive()) return;
     setActive(true);
+
+    // ¿Cerró el usuario la píldora en esta sesión? sessionStorage persiste al
+    // minimizar/reabrir pero se borra al cerrar la app → la píldora vuelve a
+    // salir solo tras un cierre real, no al volver de segundo plano.
+    try {
+      if (sessionStorage.getItem(PILL_DISMISS_KEY) === "1") setDismissed(true);
+    } catch {
+      /* modo privado: se comporta como no-cerrada */
+    }
 
     // Máximo 1 popup por día natural: recuerda al visitante que vuelve cada día
     // sin repetírselo en cada visita de la misma jornada.
@@ -108,6 +122,17 @@ export default function FreeWeekendCampaign() {
     }, 180);
   };
 
+  // Cerrar la píldora: oculta solo la píldora (no el resto de la campaña) durante
+  // esta sesión. No toca el popup ni su cap diario.
+  const dismissPill = () => {
+    setDismissed(true);
+    try {
+      sessionStorage.setItem(PILL_DISMISS_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+  };
+
   const Chip = ({ v, l }: { v: number; l: string }) => (
     <div style={{ minWidth: 52, borderRadius: 12, padding: "7px 4px", background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.28)" }}>
       <div style={{ fontSize: 24, fontWeight: 900, color: "#fff", fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>{pad(v)}</div>
@@ -119,12 +144,13 @@ export default function FreeWeekendCampaign() {
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
-      {/* Píldora flotante (sobre la barra inferior) */}
-      {!open &&
+      {/* Píldora flotante (sobre la barra inferior). Cerrable con la ×: se oculta
+          en esta sesión (sessionStorage) → sobrevive al minimizar y solo vuelve a
+          aparecer al cerrar y reabrir la app. */}
+      {!open && !dismissed &&
         createPortal(
-          <button
+          <div
             className="zm-fw-pill"
-            onClick={() => setOpen(true)}
             style={{
               position: "fixed", left: "50%", transform: "translateX(-50%)",
               // Fila propia, despejada de la franja inferior compartida: barra de
@@ -133,27 +159,49 @@ export default function FreeWeekendCampaign() {
               // derecha, sube a ~150px). A 152px la píldora no solapa con ninguno;
               // a 92px tapaba el UpdateToast y rozaba el robot del coach.
               bottom: "calc(152px + env(safe-area-inset-bottom, 0px))", zIndex: 9990,
-              display: "flex", alignItems: "center", gap: 8, maxWidth: "calc(100vw - 24px)",
-              padding: "10px 16px", borderRadius: 999, border: "1px solid rgba(201,168,76,0.5)",
-              background: "linear-gradient(135deg, #11233a, #0A1422)", cursor: "pointer",
+              display: "flex", alignItems: "center", gap: 6, maxWidth: "calc(100vw - 24px)",
+              padding: "8px 8px 8px 16px", borderRadius: 999, border: "1px solid rgba(201,168,76,0.5)",
+              background: "linear-gradient(135deg, #11233a, #0A1422)",
               color: "#fff", fontSize: 13, fontWeight: 800, fontFamily: "inherit", whiteSpace: "nowrap",
               boxShadow: "0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.15)",
               animation: "zmFwPill .3s ease both",
             }}
           >
-            {onProRoute ? (
-              <>
-                <span style={{ fontSize: 15 }}>🔓</span>
-                <span>PRO desbloqueado este finde</span>
-              </>
-            ) : (
-              <>
-                <span style={{ fontSize: 15 }}>🔥</span>
-                <span>Pro gratis este finde</span>
-                <span style={{ color: GOLD, fontWeight: 900 }}>· Ver funciones</span>
-              </>
-            )}
-          </button>,
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Ver funciones Pro del fin de semana"
+              style={{
+                display: "flex", alignItems: "center", gap: 8, padding: 0,
+                background: "none", border: "none", cursor: "pointer",
+                color: "#fff", fontSize: 13, fontWeight: 800, fontFamily: "inherit", whiteSpace: "nowrap",
+              }}
+            >
+              {onProRoute ? (
+                <>
+                  <span style={{ fontSize: 15 }}>🔓</span>
+                  <span>PRO desbloqueado este finde</span>
+                </>
+              ) : (
+                <>
+                  <span style={{ fontSize: 15 }}>🔥</span>
+                  <span>Pro gratis este finde</span>
+                  <span style={{ color: GOLD, fontWeight: 900 }}>· Ver funciones</span>
+                </>
+              )}
+            </button>
+            <button
+              onClick={dismissPill}
+              aria-label="Cerrar"
+              title="Cerrar"
+              style={{
+                flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center",
+                width: 24, height: 24, borderRadius: 999, border: "none", cursor: "pointer",
+                background: "rgba(255,255,255,0.08)", color: MID, padding: 0,
+              }}
+            >
+              <X size={14} />
+            </button>
+          </div>,
           document.body,
         )}
 

@@ -22,7 +22,7 @@ import { liveNarration } from "@/lib/match-center/narrator";
 // partidos programados para el Match Center.
 import { PROGRAMMED_MATCH_IDS } from "@/lib/match-center/programmed";
 const REAL_ONLY_IDS = new Set<number>(PROGRAMMED_MATCH_IDS);
-import { aiNarrateBatch } from "@/lib/match-center/narrator";
+import { aiNarrateBatch, numericalContext } from "@/lib/match-center/narrator";
 import { etToDate } from "@/lib/bracket/match-time";
 
 // Los partidos de FASE DE GRUPOS tampoco simulan: se quedan "preparados para el
@@ -131,7 +131,7 @@ export async function GET(
     }
     if (!aiNarr) {
       try {
-        aiNarr = await aiNarrateBatch(script.events, meta);
+        aiNarr = await aiNarrateBatch(script.events, meta, numericalContext(script.events, meta));
         if (kvEnabled() && aiNarr && Object.keys(aiNarr).length > 0) {
           await kv.set(cacheKey, aiNarr, { ex: SIMNARR_TTL });
         }

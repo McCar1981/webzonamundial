@@ -6,7 +6,7 @@
 
 import { NextResponse } from "next/server";
 import { narrateAll } from "@/lib/match-center/narrator";
-import { buildMeta } from "@/lib/match-center/store";
+import { buildMeta, getLastSnapshot } from "@/lib/match-center/store";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { isPro } from "@/lib/pro/entitlement";
 import type { MatchEvent } from "@/lib/match-center/types";
@@ -39,9 +39,16 @@ export async function POST(req: Request) {
   const meta = buildMeta(matchId);
   if (!meta) return NextResponse.json({ lines: {} });
 
+  // Conteo numérico de expulsiones desde el HISTORIAL COMPLETO del partido (el
+  // último snapshot en KV), NO desde el lote parcial que envía el cliente: si
+  // una roja previa quedara fuera del lote, la situación volvería a leerse mal
+  // ("el rival juega con un hombre más" cuando en realidad hay igualdad).
+  const snap = await getLastSnapshot(matchId);
+  const fullEvents = snap?.events?.length ? snap.events : events;
+
   // Narración AVANZADA (Claude) = beneficio Pro. Free recibe siempre la
   // narración por plantilla — nunca se queda sin relato, solo sin IA.
   const useAI = !!process.env.ANTHROPIC_API_KEY && (await isPro(user.id, user.email));
-  const lines = await narrateAll(events, meta, useAI);
+  const lines = await narrateAll(events, meta, useAI, fullEvents);
   return NextResponse.json({ lines });
 }

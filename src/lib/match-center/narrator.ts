@@ -11,7 +11,12 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import { kv } from "@/lib/kv";
-import { teamName, templateNarration } from "./templates";
+import {
+  teamName,
+  templateNarration,
+  playersOnPitchByEvent,
+  numericalSituation,
+} from "./templates";
 import type { MatchEvent, MatchMeta } from "./types";
 
 // Las plantillas viven en ./templates (módulo sin deps de servidor, importable
@@ -47,6 +52,7 @@ REGLAS:
 - En los goles, sube la emoción ("¡GOOOL!"). En faltas/tarjetas, tono informativo.
 - No inventes nombres ni estadísticas que no estén en el evento.
 - Usa los nombres de equipo y jugador EXACTAMENTE como vienen.
+- EXPULSIONES (type "red" o "second_yellow"): si el evento trae el campo "situacion", DEBES reflejar ESA situación numérica exacta (p. ej. "se quedan diez contra diez, igualdad" si ambos van con uno menos). NUNCA digas que un equipo juega "con un hombre más" salvo que la "situacion" lo indique: el rival puede llevar ya sus propias expulsiones.
 - Devuelve SOLO un JSON: { "lines": { "<eventId>": "<frase>", ... } }`;
 
 interface RawNarration {
@@ -61,6 +67,7 @@ interface RawNarration {
 export async function aiNarrateBatch(
   events: MatchEvent[],
   meta: MatchMeta,
+  context?: Record<string, string>,
 ): Promise<Record<string, string>> {
   const client = getClient();
   if (!client || events.length === 0) return {};
@@ -75,6 +82,9 @@ export async function aiNarrateBatch(
     assist: e.assist || null,
     in: e.playerIn || null,
     detail: e.detail || null,
+    // Situación numérica REAL tras una expulsión (cuando aplica), para que la
+    // IA no asuma superioridad del rival si este ya iba con expulsados.
+    situacion: context?.[e.id] || null,
   }));
 
   const userMessage = `Partido: ${meta.home.name} vs ${meta.away.name} (${meta.phase}, ${meta.venue}).
@@ -117,16 +127,44 @@ Devuelve SOLO el JSON con "lines".`;
   return out;
 }
 
-/** Construye narración completa: IA donde se pueda, plantilla en el resto. */
+/** Contexto de situación numérica por evento (solo expulsiones). DEBE computarse
+ *  desde la lista COMPLETA de eventos del partido para que la cuenta de
+ *  jugadores sea real, aunque luego solo se narre un subconjunto: contar sobre
+ *  un lote parcial haría que una expulsión previa "invisible" volviera a leerse
+ *  como superioridad del rival. */
+export function numericalContext(
+  events: MatchEvent[],
+  meta: MatchMeta,
+): Record<string, string> {
+  const counts = playersOnPitchByEvent(events);
+  const ctx: Record<string, string> = {};
+  for (const e of events) {
+    const c = counts[e.id];
+    if (c) ctx[e.id] = numericalSituation(meta, c.home, c.away);
+  }
+  return ctx;
+}
+
+/**
+ * Construye narración completa: IA donde se pueda, plantilla en el resto.
+ * `contextEvents` (opcional) es el HISTORIAL COMPLETO del partido para el
+ * conteo numérico de expulsiones; si no se pasa, se usa `events` (válido solo
+ * cuando `events` ya es el partido entero).
+ */
 export async function narrateAll(
   events: MatchEvent[],
   meta: MatchMeta,
   useAI: boolean,
+  contextEvents?: MatchEvent[],
 ): Promise<Record<string, string>> {
   const base: Record<string, string> = {};
   for (const e of events) base[e.id] = templateNarration(e, meta);
   if (!useAI) return base;
-  const ai = await aiNarrateBatch(events, meta);
+  const ai = await aiNarrateBatch(
+    events,
+    meta,
+    numericalContext(contextEvents ?? events, meta),
+  );
   return { ...base, ...ai };
 }
 
@@ -166,7 +204,9 @@ export async function liveNarration(
   const pending = events.filter((e) => !cached[e.id]);
   if (pending.length === 0) return lines;
   try {
-    const ai = await aiNarrateBatch(pending, meta);
+    // Contexto numérico desde TODOS los eventos (no solo los pendientes), para
+    // que la cuenta de expulsados/jugadores sea correcta.
+    const ai = await aiNarrateBatch(pending, meta, numericalContext(events, meta));
     if (Object.keys(ai).length > 0) {
       Object.assign(lines, ai);
       if (kvEnabled()) {

@@ -22,6 +22,7 @@ import {
 } from "@/lib/draft/simulacion";
 import { DraftLogro } from "@/lib/draft/logros";
 import { generarCampana, Campana, CampanaPartido, calcularBonusCampana } from "@/lib/draft/campana";
+import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
 import { useDraftGame } from "../hooks/useDraftGame";
 import SoccerField from "../components/SoccerField";
 import {
@@ -69,6 +70,26 @@ function posicionColor(p: DraftPosicion): string {
   if (["LD", "ZAG", "LE"].includes(p)) return "#22c55e";
   if (["VOL", "MEI", "MCD"].includes(p)) return "#f59e0b";
   return "#ef4444";
+}
+
+function KitAvatar({ seleccion, size = 40 }: { seleccion: string; size?: number }) {
+  const src = draftKitUrl(seleccion);
+  const fb = KIT_FALLBACK[seleccion];
+  return (
+    <div style={{ width: size, height: size, borderRadius: "50%", overflow: "hidden", flexShrink: 0,
+      background: fb?.bg ?? "#e2e8f0", border: `2px solid ${GOLD}55`,
+      boxShadow: "0 2px 8px rgba(0,0,0,0.35)" }}>
+      {src ? (
+        <img src={src} alt={seleccion} style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+      ) : (
+        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center",
+          justifyContent: "center", fontSize: size * 0.28, fontWeight: 700, color: fb?.text ?? "#fff" }}>
+          {seleccion.slice(0, 2).toUpperCase()}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -274,9 +295,10 @@ function TiradaPanel({
       <div className="rounded-xl p-6 text-center" style={{ background: CARD }}>
         {plantilla ? (
           <>
-            <div className="text-sm mb-2" style={{ color: TXT_MUT }}>Te tocó</div>
-            <div className="flex justify-center mb-2 animate-bounce">
-              <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={48} className="rounded shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
+            <div className="text-sm mb-3" style={{ color: TXT_MUT }}>Te tocó</div>
+            <div className="flex justify-center items-center gap-3 mb-3 animate-bounce">
+              <KitAvatar seleccion={plantilla.seleccion} size={72} />
+              <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={40} className="rounded-lg shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
             </div>
             <div className="text-xl font-bold mb-1" style={{ color: TXT }}>{plantilla.seleccion} {plantilla.year}</div>
             <div className="text-sm mb-4" style={{ color: GOLD }}>Elige un jugador para tu equipo</div>
@@ -568,10 +590,11 @@ function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { res
               if (!jug) return null;
               return (
                 <div key={pos} className="flex items-center gap-2 py-1.5 px-2 rounded-lg" style={{ background: `${posicionColor(pos as DraftPosicion)}11` }}>
+                  <KitAvatar seleccion={jug.seleccion} size={22} />
                   <span className="text-xs font-bold w-8" style={{ color: posicionColor(pos as DraftPosicion) }}>{posicionLabel(pos as DraftPosicion)}</span>
                   <span className="text-sm flex-1 truncate" style={{ color: TXT }}>{jug.nombre}</span>
                   <span className="text-xs flex items-center gap-1" style={{ color: TXT_MUT }}>
-                    <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={16} className="rounded-sm" fallback={jug.seleccion.slice(0, 3).toUpperCase()} />
+                    <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={14} className="rounded-sm" fallback={jug.seleccion.slice(0, 2).toUpperCase()} />
                     {jug.seleccion} {jug.year}
                   </span>
                   <span className="text-xs font-bold w-6 text-right" style={{ color: jug.fuerza >= 90 ? GREEN : TXT }}>{jug.fuerza}</span>

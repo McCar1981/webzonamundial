@@ -503,7 +503,10 @@ function SeleccionPanel({
   onOtroMundial: () => void;
   coherenciaHint?: string | null;
 }) {
-  const sinRerolls = rerollsRestantes <= 0;
+  const vacio = jugadores.length === 0;
+  // Cuando la selección no aporta NINGÚN jugador fichable, la re-tirada es
+  // gratis (el hook no descuenta cambios), así nunca se bloquea la partida.
+  const rerollBloqueado = rerollsRestantes <= 0 && !vacio;
   return (
     <FadeIn>
       {/* Cabecera: qué selección salió + re-tiradas */}
@@ -522,20 +525,22 @@ function SeleccionPanel({
         {modo !== "contrarreloj" && (
           <div className="mt-3 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: TXT_MUT }}>¿No te convence?</span>
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: sinRerolls ? `${RED}22` : `${GOLD}22`, color: sinRerolls ? RED : GOLD }}>
-                {rerollsRestantes} {rerollsRestantes === 1 ? "cambio" : "cambios"}
+              <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: TXT_MUT }}>
+                {vacio ? "No encaja en tu táctica" : "¿No te convence?"}
+              </span>
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: rerollBloqueado ? `${RED}22` : `${GOLD}22`, color: rerollBloqueado ? RED : GOLD }}>
+                {vacio ? "tirada gratis" : `${rerollsRestantes} ${rerollsRestantes === 1 ? "cambio" : "cambios"}`}
               </span>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <button onClick={onOtraSeleccion} disabled={sinRerolls}
+              <button onClick={onOtraSeleccion} disabled={rerollBloqueado}
                 className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold border transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:hover:scale-100"
-                style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: sinRerolls ? "not-allowed" : "pointer" }}>
+                style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: rerollBloqueado ? "not-allowed" : "pointer" }}>
                 <IconRefresh size={15} color={GOLD} />Otra selección
               </button>
-              <button onClick={onOtroMundial} disabled={sinRerolls}
+              <button onClick={onOtroMundial} disabled={rerollBloqueado}
                 className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold border transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:hover:scale-100"
-                style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: sinRerolls ? "not-allowed" : "pointer" }}>
+                style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: rerollBloqueado ? "not-allowed" : "pointer" }}>
                 <IconGlobe size={15} color={GOLD} />Otro mundial
               </button>
             </div>
@@ -558,6 +563,17 @@ function SeleccionPanel({
           <div className="mb-3 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 animate-fade-in"
             style={{ background: `#f59e0b22`, color: "#f59e0b", border: `1px solid #f59e0b44` }}>
             <span>⬆</span>{coherenciaHint}
+          </div>
+        )}
+        {vacio && (
+          <div className="text-center py-8 px-4 rounded-lg" style={{ background: CARD_HOV, color: TXT_MUT }}>
+            <div className="text-3xl mb-2">🤷</div>
+            <div className="text-sm font-bold" style={{ color: TXT }}>Ningún jugador encaja</div>
+            <div className="text-xs mt-1">
+              {modo === "contrarreloj"
+                ? "Redibujando otra selección…"
+                : "Esta selección no tiene jugadores para tus huecos libres. Probá otra selección u otro mundial (gratis)."}
+            </div>
           </div>
         )}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">

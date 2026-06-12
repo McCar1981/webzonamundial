@@ -350,7 +350,8 @@ function SeleccionPanel({
       {/* Cabecera: qué selección salió + re-tiradas */}
       <div className="rounded-xl p-4 mb-3" style={{ background: CARD, border: `1px solid ${GOLD}33` }}>
         <div className="flex items-center gap-3">
-          <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={46} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
+          <KitAvatar seleccion={plantilla.seleccion} size={48} />
+          <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={28} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 2).toUpperCase()} />
           <div className="min-w-0">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>Salió</div>
             <div className="text-xl font-black leading-tight truncate" style={{ color: TXT }}>{plantilla.seleccion}</div>
@@ -875,8 +876,8 @@ export default function DraftMundialJugarPage() {
 
         {game.phase !== "setup" && game.phase !== "resultado" && game.phase !== "campana" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Columna izquierda: Campo + Info */}
-            <div>
+            {/* Columna campo — en mobile va DEBAJO de la acción (order-2) */}
+            <div className="order-2 lg:order-1">
               <FadeIn>
                 <SoccerField
                   equipo={game.equipo}
@@ -891,8 +892,8 @@ export default function DraftMundialJugarPage() {
               </FadeIn>
             </div>
 
-            {/* Columna derecha: Tirada / Selección */}
-            <div>
+            {/* Columna acción — en mobile va PRIMERO (order-1) */}
+            <div className="order-1 lg:order-2">
               {game.phase === "tirada" && (
                 <TiradaPanel
                   plantilla={

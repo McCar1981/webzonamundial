@@ -1,12 +1,17 @@
+"use client";
+
 // src/app/app/draft-mundial/components/SoccerField.tsx
 // Campo de fútbol visual con jugadores posicionados
 
 import { DraftPosicion, JugadorSeleccionado } from "@/lib/draft/types";
+import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
 
 const FIELD = "#1a5c3a";
 const FIELD_DARK = "#164d30";
 const LINE = "rgba(255,255,255,0.25)";
 const GOLD = "#c9a84c";
+const GOLD2 = "#e8d48b";
+const NAVY = "#0a1729";
 
 interface SoccerFieldProps {
   equipo: Partial<Record<DraftPosicion, JugadorSeleccionado>>;
@@ -101,6 +106,8 @@ export default function SoccerField({ equipo, highlightPos }: SoccerFieldProps) 
       {entries.map(([pos, jug]) => {
         const { x, y } = posicionCoords(pos);
         const isHighlighted = pos === highlightPos;
+        const kitSrc = draftKitUrl(jug.seleccion);
+        const fb = KIT_FALLBACK[jug.seleccion];
 
         return (
           <div
@@ -109,23 +116,46 @@ export default function SoccerField({ equipo, highlightPos }: SoccerFieldProps) 
             style={{ left: `${x}%`, top: `${y}%` }}
           >
             <div className="flex flex-col items-center gap-0.5">
-              <div
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-black border-2"
-                style={{
-                  background: isHighlighted ? GOLD : "#fff",
-                  color: isHighlighted ? NAVY : FIELD,
-                  borderColor: isHighlighted ? GOLD2 : "#fff",
-                  boxShadow: isHighlighted ? `0 0 12px ${GOLD}` : "0 2px 8px rgba(0,0,0,0.4)",
-                }}
-              >
-                {jug.fuerza}
+              <div className="relative">
+                {/* Círculo con camiseta */}
+                <div
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2"
+                  style={{
+                    background: fb?.bg ?? "#e2e8f0",
+                    borderColor: isHighlighted ? GOLD2 : "#fff",
+                    boxShadow: isHighlighted ? `0 0 12px ${GOLD}` : "0 2px 8px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  {kitSrc ? (
+                    <img
+                      src={kitSrc}
+                      alt={jug.seleccion}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-[8px] font-bold"
+                      style={{ color: fb?.text ?? "#fff" }}>
+                      {jug.seleccion.slice(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+                {/* Badge fuerza */}
+                <div
+                  className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black border"
+                  style={{
+                    background: isHighlighted ? GOLD : NAVY,
+                    color: isHighlighted ? NAVY : "#fff",
+                    borderColor: "rgba(255,255,255,0.3)",
+                  }}
+                >
+                  {jug.fuerza}
+                </div>
               </div>
+              {/* Nombre */}
               <div
                 className="px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-bold whitespace-nowrap"
-                style={{
-                  background: "rgba(0,0,0,0.6)",
-                  color: "#fff",
-                }}
+                style={{ background: "rgba(0,0,0,0.6)", color: "#fff" }}
               >
                 {jug.nombre.length > 8 ? jug.nombre.slice(0, 8) + "..." : jug.nombre}
               </div>

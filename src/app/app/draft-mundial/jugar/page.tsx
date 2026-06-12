@@ -22,6 +22,7 @@ import {
 } from "@/lib/draft/simulacion";
 import { DraftLogro } from "@/lib/draft/logros";
 import { generarCampana, Campana, CampanaPartido, calcularBonusCampana } from "@/lib/draft/campana";
+import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
 import { useDraftGame } from "../hooks/useDraftGame";
 import SoccerField from "../components/SoccerField";
 import {
@@ -71,10 +72,88 @@ function posicionColor(p: DraftPosicion): string {
   return "#ef4444";
 }
 
+function KitAvatar({ seleccion, size = 40 }: { seleccion: string; size?: number }) {
+  const src = draftKitUrl(seleccion);
+  const fb = KIT_FALLBACK[seleccion];
+  return (
+    <div style={{ width: size, height: size, borderRadius: "50%", overflow: "hidden", flexShrink: 0,
+      background: fb?.bg ?? "#e2e8f0", border: `2px solid ${GOLD}55`,
+      boxShadow: "0 2px 8px rgba(0,0,0,0.35)" }}>
+      {src ? (
+        <img src={src} alt={seleccion} style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+      ) : (
+        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center",
+          justifyContent: "center", fontSize: size * 0.28, fontWeight: 700, color: fb?.text ?? "#fff" }}>
+          {seleccion.slice(0, 2).toUpperCase()}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <div className={`animate-fade-in ${className}`} style={{ animationDelay: `${delay}s`, animationFillMode: "both" }}>
       {children}
+    </div>
+  );
+}
+
+/* ─────────── Dado 3D ─────────── */
+const PIP_STYLE: Record<string, React.CSSProperties> = {
+  tl: { top: "15%", left: "15%" },
+  tr: { top: "15%", right: "15%" },
+  ml: { top: "50%", left: "15%", transform: "translateY(-50%)" },
+  c:  { top: "50%", left: "50%", transform: "translate(-50%,-50%)" },
+  mr: { top: "50%", right: "15%", transform: "translateY(-50%)" },
+  bl: { bottom: "15%", left: "15%" },
+  br: { bottom: "15%", right: "15%" },
+};
+const FACE_PIPS: Record<number, string[]> = {
+  1: ["c"],
+  2: ["tr", "bl"],
+  3: ["tr", "c", "bl"],
+  4: ["tl", "tr", "bl", "br"],
+  5: ["tl", "tr", "c", "bl", "br"],
+  6: ["tl", "tr", "ml", "mr", "bl", "br"],
+};
+
+function DieFace({ face, transform }: { face: number; transform: string }) {
+  return (
+    <div style={{
+      position: "absolute", width: "100%", height: "100%",
+      background: CARD, border: `1.5px solid ${GOLD}55`,
+      borderRadius: 10, backfaceVisibility: "hidden",
+      transform,
+    }}>
+      {FACE_PIPS[face].map((pos, i) => (
+        <div key={i} style={{
+          position: "absolute", width: 11, height: 11,
+          borderRadius: "50%", background: GOLD, ...PIP_STYLE[pos],
+        }} />
+      ))}
+    </div>
+  );
+}
+
+function Dice3D({ rolling, onRollEnd }: { rolling: boolean; onRollEnd: () => void }) {
+  const S = 72;
+  const H = S / 2;
+  return (
+    <div style={{ perspective: 260, width: S, height: S }}>
+      <div
+        className={rolling ? "animate-dice-roll" : ""}
+        style={{ width: S, height: S, position: "relative", transformStyle: "preserve-3d" }}
+        onAnimationEnd={onRollEnd}
+      >
+        <DieFace face={1} transform={`translateZ(${H}px)`} />
+        <DieFace face={6} transform={`rotateY(180deg) translateZ(${H}px)`} />
+        <DieFace face={3} transform={`rotateY(90deg) translateZ(${H}px)`} />
+        <DieFace face={4} transform={`rotateY(-90deg) translateZ(${H}px)`} />
+        <DieFace face={2} transform={`rotateX(90deg) translateZ(${H}px)`} />
+        <DieFace face={5} transform={`rotateX(-90deg) translateZ(${H}px)`} />
+      </div>
     </div>
   );
 }
@@ -199,27 +278,48 @@ function TiradaPanel({
   plantilla: { seleccion: string; year: number; bandera: string } | null;
   onTirar: () => void;
 }) {
+  const [rolling, setRolling] = useState(false);
+
+  const handleClick = () => {
+    if (rolling) return;
+    setRolling(true);
+  };
+
+  const handleRollEnd = () => {
+    setRolling(false);
+    onTirar();
+  };
+
   return (
     <FadeIn>
       <div className="rounded-xl p-6 text-center" style={{ background: CARD }}>
         {plantilla ? (
           <>
-            <div className="text-sm mb-2" style={{ color: TXT_MUT }}>Te tocó</div>
-            <div className="flex justify-center mb-2 animate-bounce">
-              <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={48} className="rounded shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
+            <div className="text-sm mb-3" style={{ color: TXT_MUT }}>Te tocó</div>
+            <div className="flex justify-center items-center gap-3 mb-3 animate-bounce">
+              <KitAvatar seleccion={plantilla.seleccion} size={72} />
+              <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={40} className="rounded-lg shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
             </div>
             <div className="text-xl font-bold mb-1" style={{ color: TXT }}>{plantilla.seleccion} {plantilla.year}</div>
             <div className="text-sm mb-4" style={{ color: GOLD }}>Elige un jugador para tu equipo</div>
           </>
         ) : (
           <>
-            <div className="flex justify-center mb-4"><IconDice size={56} color={GOLD} className="animate-pulse" /></div>
+            <div className="flex justify-center mb-5">
+              <Dice3D rolling={rolling} onRollEnd={handleRollEnd} />
+            </div>
             <div className="text-lg font-bold mb-2" style={{ color: TXT }}>¡Tira el dado!</div>
-            <div className="text-sm mb-4" style={{ color: TXT_MUT }}>Se sorteará una selección histórica con sus jugadores</div>
-            <button onClick={onTirar}
-              className="px-8 py-3 rounded-xl text-lg font-bold transition-all hover:scale-105 active:scale-95 animate-pulse flex items-center gap-2 mx-auto"
-              style={{ background: GOLD, color: NAVY }}>
-              <IconDice size={20} color={NAVY} />Tirar dado
+            <div className="text-sm mb-5" style={{ color: TXT_MUT }}>
+              {rolling ? "Sorteando selección…" : "Se sorteará una selección histórica con sus jugadores"}
+            </div>
+            <button
+              onClick={handleClick}
+              disabled={rolling}
+              className="px-8 py-3 rounded-xl text-lg font-bold transition-all active:scale-95 flex items-center gap-2 mx-auto"
+              style={{ background: rolling ? `${GOLD}88` : GOLD, color: NAVY, cursor: rolling ? "wait" : "pointer" }}
+            >
+              <IconDice size={20} color={NAVY} />
+              {rolling ? "Tirando…" : "Tirar dado"}
             </button>
           </>
         )}
@@ -250,7 +350,8 @@ function SeleccionPanel({
       {/* Cabecera: qué selección salió + re-tiradas */}
       <div className="rounded-xl p-4 mb-3" style={{ background: CARD, border: `1px solid ${GOLD}33` }}>
         <div className="flex items-center gap-3">
-          <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={46} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
+          <KitAvatar seleccion={plantilla.seleccion} size={48} />
+          <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={28} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 2).toUpperCase()} />
           <div className="min-w-0">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>Salió</div>
             <div className="text-xl font-black leading-tight truncate" style={{ color: TXT }}>{plantilla.seleccion}</div>
@@ -490,10 +591,11 @@ function ResultadoScreen({ resultado, equipo, campanaBonus, onReiniciar }: { res
               if (!jug) return null;
               return (
                 <div key={pos} className="flex items-center gap-2 py-1.5 px-2 rounded-lg" style={{ background: `${posicionColor(pos as DraftPosicion)}11` }}>
+                  <KitAvatar seleccion={jug.seleccion} size={22} />
                   <span className="text-xs font-bold w-8" style={{ color: posicionColor(pos as DraftPosicion) }}>{posicionLabel(pos as DraftPosicion)}</span>
                   <span className="text-sm flex-1 truncate" style={{ color: TXT }}>{jug.nombre}</span>
                   <span className="text-xs flex items-center gap-1" style={{ color: TXT_MUT }}>
-                    <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={16} className="rounded-sm" fallback={jug.seleccion.slice(0, 3).toUpperCase()} />
+                    <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={14} className="rounded-sm" fallback={jug.seleccion.slice(0, 2).toUpperCase()} />
                     {jug.seleccion} {jug.year}
                   </span>
                   <span className="text-xs font-bold w-6 text-right" style={{ color: jug.fuerza >= 90 ? GREEN : TXT }}>{jug.fuerza}</span>
@@ -744,8 +846,8 @@ export default function DraftMundialJugarPage() {
   }, [game.phase, game.resultado]);
 
   return (
-    <div className="min-h-screen pb-8" style={{ background: NAVY }}>
-      <style jsx global>{`@keyframes fade-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} } .animate-fade-in{animation:fade-in .4s ease-out forwards} @keyframes panic-shake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-4px)}30%,60%,90%{transform:translateX(4px)}} .animate-panic-shake{animation:panic-shake 0.25s ease-in-out infinite}`}</style>
+    <div className="min-h-screen pb-24" style={{ background: NAVY }}>
+      <style jsx global>{`@keyframes fade-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} } .animate-fade-in{animation:fade-in .4s ease-out forwards} @keyframes panic-shake{0%,100%{transform:translateX(0)}15%,45%,75%{transform:translateX(-4px)}30%,60%,90%{transform:translateX(4px)}} .animate-panic-shake{animation:panic-shake 0.25s ease-in-out infinite} @keyframes dice-roll{0%{transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg)}20%{transform:rotateX(230deg) rotateY(115deg) rotateZ(50deg)}45%{transform:rotateX(460deg) rotateY(290deg) rotateZ(135deg)}65%{transform:rotateX(630deg) rotateY(450deg) rotateZ(200deg)}80%{transform:rotateX(750deg) rotateY(560deg) rotateZ(256deg)}93%{transform:rotateX(800deg) rotateY(610deg) rotateZ(282deg)}97%{transform:rotateX(811deg) rotateY(622deg) rotateZ(291deg)}100%{transform:rotateX(810deg) rotateY(621deg) rotateZ(290deg)}} .animate-dice-roll{animation:dice-roll 1.1s ease-out forwards}`}</style>
       {showConfetti && <Confetti />}
       {game.phase === "resultado" && game.logrosNuevos.length > 0 && <LogrosPopup logros={game.logrosNuevos} onClose={game.marcarLogrosVistos} />}
 
@@ -774,8 +876,8 @@ export default function DraftMundialJugarPage() {
 
         {game.phase !== "setup" && game.phase !== "resultado" && game.phase !== "campana" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Columna izquierda: Campo + Info */}
-            <div>
+            {/* Columna campo — en mobile va DEBAJO de la acción (order-2) */}
+            <div className="order-2 lg:order-1">
               <FadeIn>
                 <SoccerField
                   equipo={game.equipo}
@@ -790,8 +892,8 @@ export default function DraftMundialJugarPage() {
               </FadeIn>
             </div>
 
-            {/* Columna derecha: Tirada / Selección */}
-            <div>
+            {/* Columna acción — en mobile va PRIMERO (order-1) */}
+            <div className="order-1 lg:order-2">
               {game.phase === "tirada" && (
                 <TiradaPanel
                   plantilla={

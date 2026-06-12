@@ -18,6 +18,47 @@ function who(e: MatchEvent): string {
   return e.player ? e.player : "el equipo";
 }
 
+// Expulsión = roja directa o segunda amarilla. Para narrar la situación
+// numérica REAL (no asumir que el rival "tiene un hombre más" cuando ya iba con
+// expulsados), contamos los jugadores en el campo por lado DESPUÉS de cada
+// expulsión, recorriendo los eventos en orden cronológico.
+const RED_TYPES = new Set<MatchEvent["type"]>(["red", "second_yellow"]);
+
+/** Mapa eventId -> jugadores en el campo {home, away} tras esa expulsión. */
+export function playersOnPitchByEvent(
+  events: MatchEvent[],
+): Record<string, { home: number; away: number }> {
+  const ordered = [...events].sort(
+    (a, b) => a.minute - b.minute || (a.extra ?? 0) - (b.extra ?? 0),
+  );
+  let home = 11;
+  let away = 11;
+  const out: Record<string, { home: number; away: number }> = {};
+  for (const e of ordered) {
+    if (!RED_TYPES.has(e.type)) continue;
+    if (e.side === "home") home = Math.max(0, home - 1);
+    else if (e.side === "away") away = Math.max(0, away - 1);
+    else continue;
+    out[e.id] = { home, away };
+  }
+  return out;
+}
+
+/** Frase neutra de la situación numérica tras una expulsión. */
+export function numericalSituation(
+  meta: MatchMeta,
+  home: number,
+  away: number,
+): string {
+  if (home === away) return `Quedan ${home} contra ${away}: igualdad numérica`;
+  const moreName = home > away ? meta.home.name : meta.away.name;
+  const lessName = home > away ? meta.away.name : meta.home.name;
+  const hi = Math.max(home, away);
+  const lo = Math.min(home, away);
+  const diff = hi - lo;
+  return `${moreName} con ${hi}, ${lessName} con ${lo}: ${moreName} en superioridad${diff > 1 ? ` de ${diff}` : ""}`;
+}
+
 /** Narración por plantilla. Siempre devuelve algo. */
 export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
   const team = teamName(meta, e.side);
@@ -42,9 +83,9 @@ export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
     case "yellow":
       return `Tarjeta amarilla para ${who(e)} de ${team}. ${e.detail || "Falta táctica"}. ${min}.`;
     case "second_yellow":
-      return `¡Segunda amarilla! ${who(e)} se va a la ducha, ${team} con uno menos. ${min}.`;
+      return `¡Segunda amarilla! ${who(e)} se marcha y ${team} se queda con uno menos. ${min}.`;
     case "red":
-      return `¡Roja directa! ${who(e)} deja a ${team} en inferioridad. ${min}.`;
+      return `¡Tarjeta roja directa! ${who(e)} deja a ${team} con uno menos. ${min}.`;
     case "sub":
       return `Cambio en ${team}: entra ${e.playerIn || "un refresco"} por ${who(e)}. ${min}.`;
     case "var":

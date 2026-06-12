@@ -117,13 +117,19 @@ function ambientLine(
 
 // Reloj de juego en MINUTO:SEGUNDO. El feed da el minuto entero (elapsed) y el
 // tick local de 1 s rellena los segundos entre polls (aproximación honesta, el
-// reloj nunca retrocede — ver applySnapshot). Más allá del 90 se mantiene la
-// convención de añadido "90+X".
-function clockLabel(sec: number, finished: boolean): string {
+// reloj nunca retrocede — ver applySnapshot). El añadido se rotula por PERIODO
+// según el status real (45+X en el 1T, 90+X en el 2T, 120+X en la prórroga):
+// api-football capa el elapsed (45/90/120) durante el descuento, así que sin
+// esto el reloj se "congelaba" en el tope del periodo.
+function clockLabel(sec: number, finished: boolean, status: string): string {
   if (finished) return "FINAL";
+  // Tanda de penaltis en curso: no es minuto de juego, no mostramos cronómetro.
+  if (status === "P" || status === "PEN") return "PEN";
   const mm = Math.floor(sec / 60);
   const ss = String(Math.floor(sec % 60)).padStart(2, "0");
-  if (mm > 90) return `90+${mm - 90}:${ss}`;
+  if (status === "1H" && mm > 45) return `45+${mm - 45}:${ss}`;
+  if (status === "2H" && mm > 90) return `90+${mm - 90}:${ss}`;
+  if (status === "ET" && mm > 120) return `120+${mm - 120}:${ss}`;
   return `${mm}:${ss}`;
 }
 
@@ -131,6 +137,52 @@ function clockLabel(sec: number, finished: boolean): string {
 const IN_PLAY = new Set(["1H", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 function isInPlay(status: string): boolean {
   return IN_PLAY.has(status);
+}
+
+// SUELO del reloj en vivo. api-football capa `status.elapsed` en el tope del
+// periodo (45/90/120) durante el descuento, de modo que el añadido NO viaja a
+// nivel de partido: solo vive en el minuto+extra de cada evento. Tomamos el
+// máximo entre elapsed*60 y el último evento, para no "perder" el 90+X al
+// recargar a mitad del descuento (bug: al reentrar el reloj volvía a 90:00).
+function liveClockFloorSec(data: Extract<MatchFeed, { mode: "live" }>): number {
+  const elapsedSec = (data.elapsed || 0) * 60;
+  let base = elapsedSec;
+  for (const e of data.events) {
+    const s = (e.minute + (e.extra || 0)) * 60;
+    if (s > base) base = s;
+  }
+  // Cota anti-glitch: un evento con minuto anómalo (corrección/VAR mal sellado)
+  // no puede empujar el reloj más de 15 min por encima del elapsed del servidor.
+  return Math.min(base, elapsedSec + 15 * 60);
+}
+
+// Persistencia del reloj por partido en sessionStorage: al salir y volver al
+// Match Center (navegación SPA, misma pestaña) el descuento sin eventos (p.ej.
+// 90+3 sin que haya tarjeta/gol) tampoco debe reiniciarse al tope del periodo.
+const CLOCK_SS_PREFIX = "mc:clock:v1:";
+function persistClock(matchId: number, status: string, sec: number): void {
+  try {
+    sessionStorage.setItem(
+      `${CLOCK_SS_PREFIX}${matchId}`,
+      JSON.stringify({ sec, status, ts: Date.now() }),
+    );
+  } catch {
+    /* sin persistencia */
+  }
+}
+// Devuelve el reloj guardado (avanzado por el tiempo real transcurrido) SOLO si
+// es del mismo periodo, está fresco (<3 min) y el partido sigue en juego. 0 si no.
+function restoreClock(matchId: number, status: string): number {
+  try {
+    const raw = sessionStorage.getItem(`${CLOCK_SS_PREFIX}${matchId}`);
+    if (!raw) return 0;
+    const st = JSON.parse(raw) as { sec: number; status: string; ts: number };
+    const ageMs = Date.now() - st.ts;
+    if (st.status !== status || ageMs < 0 || ageMs > 180_000) return 0;
+    return st.sec + Math.floor(ageMs / 1000);
+  } catch {
+    return 0;
+  }
 }
 
 // Estados en los que los equipos ya cambiaron de lado (flip del campo). El feed
@@ -437,16 +489,6 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   const [soundOn, setSoundOn] = useState(false);
   const [soundAvailable, setSoundAvailable] = useState(false);
 
-  // MODO TV (anti-spoiler): los datos llegan ~30 s después del gol real, pero
-  // las emisiones de TV/streaming van 30-90 s por detrás del directo — sin
-  // esto la app "canta" el gol antes de que el usuario lo vea en su tele. Con
-  // tvOffset > 0, los snapshots se encolan y solo se APLICAN cuando su edad
-  // alcanza el offset: marcador, cronología, animaciones y locución van
-  // sincronizados con la emisión del usuario. 0 = directo. Persistido.
-  const [tvOffset, setTvOffset] = useState(0);
-  const tvOffsetRef = useRef(0);
-  const tvBufferRef = useRef<Extract<MatchFeed, { mode: "live" }>[]>([]);
-
   // Coach IA en vivo (Modo 2)
   const [coachOpen, setCoachOpen] = useState(false);
   const [coachLoading, setCoachLoading] = useState(false);
@@ -653,8 +695,13 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       } else {
         // live: marcar lo ya ocurrido sin animar
         for (const e of data.events) firedRef.current.add(e.id);
-        secRef.current = data.elapsed * 60;
-        setSec(data.elapsed * 60);
+        // Reloj: suelo del servidor (elapsed + último evento del descuento) y,
+        // si hay un reloj persistido más avanzado del mismo periodo, ese — sin
+        // pasarse de 10 min sobre el suelo (cota de seguridad).
+        const floor = liveClockFloorSec(data);
+        const restored = isInPlay(data.status) ? restoreClock(matchId, data.status) : 0;
+        secRef.current = Math.min(Math.max(floor, restored), floor + 600);
+        setSec(secRef.current);
         setScore(data.score);
         setStats(data.stats);
         setLog([...data.events].reverse().slice(0, 60));
@@ -722,9 +769,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     const interval = setInterval(() => {
       secRef.current += 1;
       setSec(secRef.current);
+      persistClock(matchId, status, secRef.current);
     }, 1000);
     return () => clearInterval(interval);
-  }, [feed, finished, status]);
+  }, [feed, finished, status, matchId]);
 
   // --- Polling de datos reales (modo live) ---
   // Cadencia según estado (en juego 8 s; previa/descanso 15 s), refetch
@@ -746,14 +794,18 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       const prevStatus = statusRef.current;
       const prevStats = statsRef.current;
       feedRef.current = data;
-      // Reloj sin retrocesos: avanza al minuto de la API; solo rebobina si la
-      // deriva es grande (corrección real), no en cada poll (elapsed es entero
-      // de minutos y reseteaba el reloj al inicio del minuto: 24' → 23').
-      const target = data.elapsed * 60;
-      if (target > secRef.current || secRef.current - target > 120) {
+      // Reloj sin retrocesos. Realineamos a la baja SOLO en cambio de periodo
+      // (el reloj se recoloca al nuevo tramo). Dentro del MISMO periodo el reloj
+      // solo avanza: api-football capa `elapsed` en el tope del periodo (90/45/
+      // 120) durante el añadido, así que en un descuento largo sin eventos el
+      // suelo del servidor queda muy por detrás del reloj real — retroceder ahí
+      // reintroducía el bug (90+4 → 90:00 al primer poll).
+      const target = liveClockFloorSec(data);
+      if (prevStatus !== data.status || target > secRef.current) {
         secRef.current = target;
       }
       setSec(secRef.current);
+      persistClock(matchId, data.status, secRef.current);
       setStats(data.stats);
       const mm = Math.max(1, Math.floor(data.elapsed || 0));
       // HITOS reales por transición de estado: el feed nunca emite eventos de
@@ -809,39 +861,6 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     [fireEvent, pushSynthetic],
   );
 
-  // Aplica del buffer el snapshot más reciente cuya edad ya alcanzó el offset
-  // del modo TV (los demás siguen esperando "su momento de emisión").
-  const drainTvBuffer = useCallback(() => {
-    const off = tvOffsetRef.current;
-    if (off <= 0) return;
-    const cutoff = Date.now() - off * 1000;
-    const buf = tvBufferRef.current;
-    let pick: Extract<MatchFeed, { mode: "live" }> | null = null;
-    for (const s of buf) {
-      if ((s.updatedAt ?? 0) <= cutoff) pick = s;
-      else break;
-    }
-    if (pick) applySnapshot(pick);
-    tvBufferRef.current = buf.filter((s) => (s.updatedAt ?? 0) > cutoff);
-  }, [applySnapshot]);
-
-  // Entrada única de snapshots del poll: directo (offset 0) o vía buffer TV.
-  const enqueueSnapshot = useCallback(
-    (data: MatchFeed) => {
-      if (data.mode !== "live") return;
-      if (tvOffsetRef.current <= 0) {
-        tvBufferRef.current = [];
-        applySnapshot(data);
-        return;
-      }
-      const buf = tvBufferRef.current;
-      buf.push(data);
-      if (buf.length > 40) buf.splice(0, buf.length - 40);
-      drainTvBuffer();
-    },
-    [applySnapshot, drainTvBuffer],
-  );
-
   const liveMode = feed?.mode === "live";
   useEffect(() => {
     if (!liveMode || finished) return;
@@ -862,7 +881,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         });
         if (r.ok) {
           const data = (await r.json()) as MatchFeed;
-          if (alive && data.mode === "live") enqueueSnapshot(data);
+          if (alive && data.mode === "live") applySnapshot(data);
         }
       } catch {
         /* reintenta al siguiente tick */
@@ -888,49 +907,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       ctrl?.abort();
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [liveMode, finished, matchId, enqueueSnapshot]);
-
-  // Modo TV: drenaje fino entre polls (un snapshot puede "alcanzar su momento"
-  // antes del siguiente fetch) + offset recordado por dispositivo.
-  useEffect(() => {
-    try {
-      const v = parseInt(localStorage.getItem("mc:tvOffset") || "0", 10);
-      if (Number.isFinite(v) && v > 0) {
-        setTvOffset(v);
-        tvOffsetRef.current = v;
-      }
-    } catch {
-      /* sin persistencia */
-    }
-  }, []);
-  useEffect(() => {
-    if (!liveMode || finished || tvOffset <= 0) return;
-    const id = setInterval(drainTvBuffer, 2000);
-    return () => clearInterval(id);
-  }, [liveMode, finished, tvOffset, drainTvBuffer]);
-
-  // Cicla el offset del modo TV (0 → 15 → 30 → 45 → 60 → 90 → 0). Al volver a
-  // "directo" se aplica al instante lo más fresco del buffer.
-  const cycleTvOffset = useCallback(() => {
-    const STEPS = [0, 15, 30, 45, 60, 90];
-    const idx = STEPS.indexOf(tvOffsetRef.current);
-    const next = STEPS[(idx + 1) % STEPS.length];
-    setTvOffset(next);
-    tvOffsetRef.current = next;
-    try {
-      localStorage.setItem("mc:tvOffset", String(next));
-    } catch {
-      /* sin persistencia */
-    }
-    if (next === 0) {
-      const buf = tvBufferRef.current;
-      const last = buf[buf.length - 1];
-      tvBufferRef.current = [];
-      if (last) applySnapshot(last);
-    } else {
-      drainTvBuffer();
-    }
-  }, [applySnapshot, drainTvBuffer]);
+  }, [liveMode, finished, matchId, applySnapshot]);
 
   // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
   // su intervalo en cada actualización de stats).
@@ -1257,11 +1234,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 {feed.mode === "live" && isInPlay(status) && <span className="mc-live-dot" />}
                 <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.5, color: finished ? MID : "#fff", textTransform: "uppercase" }}>
-                  {feed.mode === "sim"
-                    ? phase
-                    : feed.mode === "live" && !finished && !isInPlay(status)
-                      ? `${status === "HT" ? "Descanso" : "Previa"} · ${phase}`
-                      : phase}
+                  {/* `phase` ya resuelve el estado del reloj (Previa / Descanso /
+                      1º tiempo / Final…). Mostrarlo tal cual evita el duplicado
+                      "Descanso · Descanso" que salía al prefijarlo. */}
+                  {phase}
                 </span>
               </div>
               {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" ? (
@@ -1296,7 +1272,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                     awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
                     homeScore={score[0]}
                     awayScore={score[1]}
-                    matchTime={finished ? "FINAL" : status === "HT" ? "HT" : clockLabel(sec, finished)}
+                    matchTime={finished ? "FINAL" : status === "HT" ? "HT" : clockLabel(sec, finished, status)}
                     homeFlag={flagUrl(meta.home.flag)}
                     awayFlag={flagUrl(meta.away.flag)}
                   />
@@ -1313,22 +1289,6 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               <button onClick={toggleSound} disabled={!soundAvailable} style={soundOn ? btnGold : btnGhost}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><SoundIcon size={15} off={!soundOn} /> {soundOn ? "Sonido ON" : "Sonido OFF"}</span>
               </button>
-              {feed.mode === "live" && !finished && (
-                <button
-                  onClick={cycleTvOffset}
-                  style={tvOffset > 0 ? btnGold : btnGhost}
-                  title="Modo TV anti-spoiler: retrasa marcador, cronología y locución para ir sincronizado con tu emisión (la TV va 30-90 s por detrás del directo). Toca para cambiar el retardo."
-                  aria-label={tvOffset > 0 ? `Modo TV: retardo de ${tvOffset} segundos` : "Modo TV anti-spoiler desactivado"}
-                >
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
-                      <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
-                      <path d="M9 21h6M8 3l4 3 4-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    {tvOffset > 0 ? `TV +${tvOffset}s` : "TV Directo"}
-                  </span>
-                </button>
-              )}
               {feed.mode === "sim" && (
                 <>
                   <button onClick={() => setPaused((p) => !p)} disabled={finished} style={btnGhost}>

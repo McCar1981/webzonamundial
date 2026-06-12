@@ -7,6 +7,7 @@
 // NO importa store.ts (evita ciclo): store.ts → gamification-store.ts → admin/.
 
 import { adminClient } from "./admin";
+import { isRankingExcluded } from "@/lib/ranking-exclusions";
 import {
   ACHIEVEMENT_MAP,
   BOOST_CATALOG,
@@ -880,6 +881,7 @@ export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
     .select("user_id,points_earned,resolved_at").gte("resolved_at", since).not("resolved_at", "is", null);
   const agg = new Map<string, { pts: number; n: number }>();
   for (const r of (data ?? []) as { user_id: string; points_earned: number | null }[]) {
+    if (isRankingExcluded(r.user_id)) continue; // el staff no compite
     const a = agg.get(r.user_id) ?? { pts: 0, n: 0 };
     a.pts += r.points_earned ?? 0; a.n++;
     agg.set(r.user_id, a);

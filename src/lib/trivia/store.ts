@@ -8,6 +8,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { kv } from "@/lib/kv";
+import { isRankingExcluded, RANKING_EXCLUDED_IDS } from "@/lib/ranking-exclusions";
 import type {
   DailyTriviaSet,
   LeaderboardEntry,
@@ -360,8 +361,9 @@ export async function getLeaderboard(
   if (isKvEnabled()) {
     const key =
       period === "global" ? LB_GLOBAL_KEY : LB_DAILY_KEY(date || todayUTC());
-    // zrange rev con scores → [member, score, member, score, ...]
-    const raw = (await kv.zrange(key, 0, limit - 1, {
+    // Pedimos algunos extra para compensar a los excluidos (staff) y mantener
+    // el top completo tras filtrarlos. zrange rev con scores → [m, s, m, s, …].
+    const raw = (await kv.zrange(key, 0, limit - 1 + RANKING_EXCLUDED_IDS.length, {
       rev: true,
       withScores: true,
     })) as (string | number)[];
@@ -370,6 +372,8 @@ export async function getLeaderboard(
     const entries: LeaderboardEntry[] = [];
     for (let i = 0; i < raw.length; i += 2) {
       const userId = String(raw[i]);
+      if (isRankingExcluded(userId)) continue; // el staff no compite
+      if (entries.length >= limit) break;
       const points = Number(raw[i + 1]);
       entries.push({ userId, name: names[userId] || "Anónimo", points });
     }
@@ -380,6 +384,7 @@ export async function getLeaderboard(
   const map =
     period === "global" ? store.lbGlobal : store.lbDaily[date || todayUTC()] || {};
   return Object.entries(map)
+    .filter(([userId]) => !isRankingExcluded(userId)) // el staff no compite
     .map(([userId, points]) => ({
       userId,
       name: store.names[userId] || "Anónimo",

@@ -10,6 +10,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { fantasyGameweekReward } from "@/lib/economy/earn";
 import { isValidGameweek, gameweekIsOver } from "./fixtures";
+import { excludedInClause } from "@/lib/ranking-exclusions";
 import { normalizeTeam } from "./store";
 import type { FantasyTeamState } from "./types";
 
@@ -174,11 +175,12 @@ export interface FantasyRankEntry {
 
 export async function getGlobalLeaderboard(limit = 50): Promise<FantasyRankEntry[]> {
   const admin = adminClient();
-  const { data } = await admin
+  let q = admin
     .from("fantasy_teams")
-    .select("user_id,team_name,total_points,gameweek")
-    .order("total_points", { ascending: false })
-    .limit(limit);
+    .select("user_id,team_name,total_points,gameweek");
+  const excl = excludedInClause();
+  if (excl) q = q.not("user_id", "in", excl);
+  const { data } = await q.order("total_points", { ascending: false }).limit(limit);
   const rows = (data ?? []) as { user_id: string; team_name: string; total_points: number; gameweek: number }[];
   return withProfiles(rows.map((r) => ({
     user_id: r.user_id, team_name: r.team_name, points: r.total_points ?? 0, gameweek: r.gameweek ?? 1,
@@ -188,12 +190,13 @@ export async function getGlobalLeaderboard(limit = 50): Promise<FantasyRankEntry
 /** Ranking de UNA jornada concreta (semanal). */
 export async function getGameweekLeaderboard(gameweek: number, limit = 50): Promise<FantasyRankEntry[]> {
   const admin = adminClient();
-  const { data } = await admin
+  let q = admin
     .from("fantasy_gameweek_scores")
     .select("user_id,points")
-    .eq("gameweek", gameweek)
-    .order("points", { ascending: false })
-    .limit(limit);
+    .eq("gameweek", gameweek);
+  const excl = excludedInClause();
+  if (excl) q = q.not("user_id", "in", excl);
+  const { data } = await q.order("points", { ascending: false }).limit(limit);
   const rows = (data ?? []) as { user_id: string; points: number }[];
   return withProfiles(rows.map((r) => ({
     user_id: r.user_id, team_name: "", points: r.points ?? 0, gameweek,

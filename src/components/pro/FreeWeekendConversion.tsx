@@ -112,7 +112,9 @@ export default function FreeWeekendConversion() {
           <div
             style={{
               position: "fixed", left: "50%", transform: "translateX(-50%)",
-              bottom: "calc(140px + env(safe-area-inset-bottom, 0px))", zIndex: 9991,
+              // Por encima de la píldora del finde (ahora a 152px) para mantener el
+              // orden visual: hito de valor arriba, píldora debajo, sin solaparse.
+              bottom: "calc(216px + env(safe-area-inset-bottom, 0px))", zIndex: 9991,
               width: "min(420px, calc(100vw - 24px))",
               borderRadius: 16, border: "1px solid rgba(201,168,76,0.35)",
               background: `linear-gradient(180deg, ${NAVY}, ${BG})`,

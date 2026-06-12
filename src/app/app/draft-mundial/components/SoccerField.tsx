@@ -198,5 +198,3 @@ export default function SoccerField({ equipo, highlightPos }: SoccerFieldProps) 
   );
 }
 
-const NAVY = "#0a1729";
-const GOLD2 = "#e8d48b";

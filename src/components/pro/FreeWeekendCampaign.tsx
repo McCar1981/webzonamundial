@@ -127,7 +127,7 @@ export default function FreeWeekendCampaign() {
             onClick={() => setOpen(true)}
             style={{
               position: "fixed", left: "50%", transform: "translateX(-50%)",
-              bottom: "calc(78px + env(safe-area-inset-bottom, 0px))", zIndex: 9990,
+              bottom: "calc(92px + env(safe-area-inset-bottom, 0px))", zIndex: 9990,
               display: "flex", alignItems: "center", gap: 8, maxWidth: "calc(100vw - 24px)",
               padding: "10px 16px", borderRadius: 999, border: "1px solid rgba(201,168,76,0.5)",
               background: "linear-gradient(135deg, #11233a, #0A1422)", cursor: "pointer",

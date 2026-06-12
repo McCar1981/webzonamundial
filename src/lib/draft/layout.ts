@@ -31,9 +31,39 @@ const X_MIN = 13;   // margen lateral para la dispersión horizontal
 const X_MAX = 87;
 
 /**
+ * Ordena las posiciones de una LÍNEA de izquierda a derecha de forma realista,
+ * para que el campo no salga reflejado: los laterales y extremos a su banda
+ * (LE/PI a la izquierda, LD/PD a la derecha) y los centrales en medio. Si una
+ * línea tiene dos extremos (EXT), se reparten uno a cada banda.
+ */
+function ordenarBanda(posiciones: DraftPosicion[]): DraftPosicion[] {
+  const izq: DraftPosicion[] = [];
+  const centro: DraftPosicion[] = [];
+  const der: DraftPosicion[] = [];
+  const nExt = posiciones.filter((p) => p === "EXT").length;
+  let extTurno = 0;
+
+  for (const p of posiciones) {
+    if (p === "LE" || p === "PI") {
+      izq.push(p);
+    } else if (p === "LD" || p === "PD") {
+      der.push(p);
+    } else if (p === "EXT" && nExt >= 2) {
+      // Dos (o más) extremos = bandas: alterna izquierda / derecha.
+      (extTurno % 2 === 0 ? izq : der).push(p);
+      extTurno++;
+    } else {
+      centro.push(p);
+    }
+  }
+
+  return [...izq, ...centro, ...der];
+}
+
+/**
  * Devuelve las casillas de una formación con sus coordenadas. La primera
  * (portero) siempre va abajo-centro; el resto se reparte por líneas según los
- * dígitos de la clave.
+ * dígitos de la clave, cada línea ordenada izquierda→derecha.
  */
 export function layoutFormacion(key: FormacionKey): SlotLayout[] {
   const form = getFormacion(key);
@@ -44,16 +74,17 @@ export function layoutFormacion(key: FormacionKey): SlotLayout[] {
 
   const fueraDelArco = posiciones.slice(1); // 10 jugadores de campo
   const nBandas = bandas.length;
-  let idx = 0;
+  let cursor = 0;
+  let id = 1;
 
   bandas.forEach((cuenta, b) => {
     const y = nBandas <= 1 ? 50 : Y_DEF - (b / (nBandas - 1)) * (Y_DEF - Y_ATT);
-    for (let k = 0; k < cuenta; k++) {
-      const x = cuenta === 1 ? 50 : X_MIN + (k / (cuenta - 1)) * (X_MAX - X_MIN);
-      const pos = fueraDelArco[idx];
-      if (pos) slots.push({ id: idx + 1, pos, x, y });
-      idx++;
+    const banda = ordenarBanda(fueraDelArco.slice(cursor, cursor + cuenta));
+    for (let k = 0; k < banda.length; k++) {
+      const x = banda.length === 1 ? 50 : X_MIN + (k / (banda.length - 1)) * (X_MAX - X_MIN);
+      slots.push({ id: id++, pos: banda[k], x, y });
     }
+    cursor += cuenta;
   });
 
   return slots;

@@ -130,8 +130,8 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
 
     parser = argparse.ArgumentParser(description="Genera sobres de cromos con Gemini")
-    parser.add_argument("--variants", type=int, choices=[7, 8], default=8,
-                        help="Numero de variantes de sobres (7 u 8)")
+    parser.add_argument("--variants", type=int, choices=[5, 7, 8], default=5,
+                        help="Numero de variantes de sobres (5, 7 u 8)")
     parser.add_argument("--copies", type=int, default=1,
                         help="Copias a generar de cada variante")
     parser.add_argument("--dry-run", action="store_true", help="Solo muestra lo que generaria")
@@ -144,7 +144,13 @@ def main():
         print("ERROR: Define la variable de entorno GEMINI_API_KEY")
         sys.exit(1)
 
-    variants = SOBRE_VARIANTS[:args.variants]
+    # Para 5 variantes se usan las mas iconicas: Bronce, Plata, Oro, Esmeralda, Legendario.
+    variant_indices = {
+        5: [0, 1, 2, 3, 7],
+        7: [0, 1, 2, 3, 4, 5, 6],
+        8: list(range(8)),
+    }
+    variants = [SOBRE_VARIANTS[i] for i in variant_indices[args.variants]]
     total = len(variants) * args.copies
 
     print(f"Variantes a generar: {len(variants)}")

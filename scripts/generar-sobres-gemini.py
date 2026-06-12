@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
 Generador de sobres/cromos del Mundial usando Gemini 3.1 Flash Image.
-Basado en generar-cromos-gemini.py, pero genera imagenes de sobres
-fisicos de 7 u 8 cromos en vez de cromos individuales.
+Basado en generar-cromos-gemini.py, pero genera N variantes de sobres
+sellados. Cada variante tiene un numero distinto de cromos y un tema
+visual propio (bronce, plata, oro, esmeralda, zafiro, rubi, diamante...).
 
 Uso:
-    python generar-sobres-gemini.py --count 20 [--variant 7|8|random] [--dry-run]
+    python generar-sobres-gemini.py --variants 8 [--copies 1] [--dry-run]
 """
 
 import argparse
-import random
+import os
 import sys
 import time
 from pathlib import Path
@@ -25,21 +26,33 @@ BASE_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:gen
 
 OUT_DIR = Path(__file__).parent.parent / "public" / "sobres"
 
-# Variantes de contenido por sobre
-VARIANT_SIZES = [7, 8]
 DELAY_SECONDS = 4
 
+# Variantes de sobres: nombre, cantidad de cromos, tema visual
+# Se pueden generar 7 o 8 variantes; se trunca/ajusta segun --variants.
+SOBRE_VARIANTS = [
+    {"name": "Bronce",     "cromos": 3,  "theme": "bronze copper foil, earthy tones"},
+    {"name": "Plata",      "cromos": 5,  "theme": "silver chrome foil, icy grey tones"},
+    {"name": "Oro",        "cromos": 7,  "theme": "gold holographic foil, warm amber tones"},
+    {"name": "Esmeralda",  "cromos": 10, "theme": "emerald green foil, tropical green tones"},
+    {"name": "Zafiro",     "cromos": 15, "theme": "sapphire blue foil, deep ocean blue tones"},
+    {"name": "Rubi",       "cromos": 20, "theme": "ruby red foil, intense crimson tones"},
+    {"name": "Diamante",   "cromos": 25, "theme": "diamond platinum foil, prismatic white and cyan tones"},
+    {"name": "Legendario", "cromos": 30, "theme": "black gold legendary foil, obsidian and gold ornate details"},
+]
 
-def build_prompt(count: int) -> str:
+
+def build_prompt(variant: dict) -> str:
     """
     Construye el prompt para generar un sobre de cromos del Mundial.
-    count: 7 u 8 cromos.
+    variant: dict con name, cromos, theme.
     """
+    count = variant["cromos"]
+    theme = variant["theme"]
     return (
-        f"Premium foil sticker pack for the FIFA World Cup 2026, "
-        f"official collectible album style, sealed rectangular pack, "
-        f"vibrant holographic wrapper in gold, green and navy blue, "
-        f"soccer ball, World Cup trophy and stadium motifs, "
+        f"Premium sealed sticker pack for the FIFA World Cup 2026, "
+        f"official collectible album style, rectangular sealed foil pack, "
+        f"{theme}, soccer ball and World Cup trophy motifs, "
         f"front text '{count} CROMOS' in bold uppercase typography, "
         f"product photography, soft studio lighting, centered, "
         f"clean background, ultra detailed, realistic."
@@ -117,9 +130,10 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
 
     parser = argparse.ArgumentParser(description="Genera sobres de cromos con Gemini")
-    parser.add_argument("--count", type=int, default=10, help="Numero de sobres a generar")
-    parser.add_argument("--variant", choices=["7", "8", "random"], default="random",
-                        help="Cromos por sobre: 7, 8 o aleatorio")
+    parser.add_argument("--variants", type=int, choices=[7, 8], default=8,
+                        help="Numero de variantes de sobres (7 u 8)")
+    parser.add_argument("--copies", type=int, default=1,
+                        help="Copias a generar de cada variante")
     parser.add_argument("--dry-run", action="store_true", help="Solo muestra lo que generaria")
     parser.add_argument("--force", action="store_true", help="Regenerar aunque existan")
     args = parser.parse_args()
@@ -130,44 +144,52 @@ def main():
         print("ERROR: Define la variable de entorno GEMINI_API_KEY")
         sys.exit(1)
 
-    variant_pref = None if args.variant == "random" else int(args.variant)
+    variants = SOBRE_VARIANTS[:args.variants]
+    total = len(variants) * args.copies
 
-    print(f"Sobres a generar: {args.count}")
-    print(f"Variante: {args.variant}")
+    print(f"Variantes a generar: {len(variants)}")
+    for v in variants:
+        print(f"  - {v['name']}: {v['cromos']} cromos")
+    print(f"Copias por variante: {args.copies}")
+    print(f"Total de imagenes: {total}")
     print(f"Salida: {OUT_DIR}")
     print("-" * 60)
 
     ok_count = 0
     fail_count = 0
     skip_count = 0
+    idx = 0
 
-    for idx in range(1, args.count + 1):
-        count = variant_pref if variant_pref else random.choice(VARIANT_SIZES)
-        fname = f"sobre_{idx:03d}_{count}cromos.png"
-        fpath = OUT_DIR / fname
+    for variant in variants:
+        for copy in range(1, args.copies + 1):
+            idx += 1
+            count = variant["cromos"]
+            suffix = f"_copy{copy}" if args.copies > 1 else ""
+            fname = f"sobre_{variant['name'].lower()}{suffix}_{count}cromos.png"
+            fpath = OUT_DIR / fname
 
-        print(f"[{idx}/{args.count}] Sobre {idx:03d} — {count} cromos")
+            print(f"[{idx}/{total}] {variant['name']} ({copy}/{args.copies}) — {count} cromos")
 
-        if fpath.exists() and not args.force:
-            print(f"  YA EXISTE (skip)")
-            skip_count += 1
-            continue
+            if fpath.exists() and not args.force:
+                print(f"  YA EXISTE (skip)")
+                skip_count += 1
+                continue
 
-        prompt = build_prompt(count)
+            prompt = build_prompt(variant)
 
-        if args.dry_run:
-            print(f"  -> {fpath}")
-            print(f"  Prompt: {prompt[:100]}...")
-            continue
+            if args.dry_run:
+                print(f"  -> {fpath}")
+                print(f"  Prompt: {prompt[:100]}...")
+                continue
 
-        success = generate_image(prompt, API_KEY, str(fpath))
-        if success:
-            ok_count += 1
-        else:
-            fail_count += 1
+            success = generate_image(prompt, API_KEY, str(fpath))
+            if success:
+                ok_count += 1
+            else:
+                fail_count += 1
 
-        if idx < args.count:
-            time.sleep(DELAY_SECONDS)
+            if idx < total:
+                time.sleep(DELAY_SECONDS)
 
     print("-" * 60)
     print(f"Resumen: {ok_count} OK | {fail_count} FALLIDOS | {skip_count} SKIPPED")

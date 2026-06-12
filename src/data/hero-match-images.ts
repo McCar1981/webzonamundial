@@ -38,6 +38,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/canada-bosnia-wide.webp",
     mobile: "/images/hero/canada-bosnia-mobile.webp",
   },
+  // EE.UU. vs Paraguay (12 jun, 4º del calendario).
+  "ee-uu-paraguay": {
+    wide: "/images/hero/ee-uu-paraguay-wide.webp",
+    mobile: "/images/hero/ee-uu-paraguay-mobile.webp",
+  },
+  // Qatar vs Suiza (13 jun, 5º del calendario).
+  "qatar-suiza": {
+    wide: "/images/hero/qatar-suiza-wide.webp",
+    mobile: "/images/hero/qatar-suiza-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

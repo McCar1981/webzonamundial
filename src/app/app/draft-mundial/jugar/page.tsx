@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 // src/app/app/draft-mundial/jugar/page.tsx
 // Juego Draft Mundial — Nueva mecánica: elegí cualquier jugador de la selección

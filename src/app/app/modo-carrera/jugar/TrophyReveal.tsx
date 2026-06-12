@@ -121,7 +121,7 @@ export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trop
               Inmortaliza esta gesta: con el Pase DT desbloqueas narrativa con IA sin límite y tu legado completo.
             </div>
             <Link
-              href="/premium"
+              href="/pro"
               onClick={(e) => e.stopPropagation()}
               style={{
                 display: "inline-block",

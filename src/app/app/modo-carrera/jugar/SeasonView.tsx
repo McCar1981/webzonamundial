@@ -505,7 +505,7 @@ export default function SeasonView({
               </button>
             ) : canLive ? (
               <Link
-                href="/premium"
+                href="/pro"
                 style={{
                   marginTop: 18,
                   padding: "13px 24px",

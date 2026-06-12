@@ -16,6 +16,7 @@
 import { isFounder, isFounderByUserId } from "@/lib/founders/store";
 import { getSubscription, subscriptionIsActive } from "./subscriptions";
 import { readEntitlementsCache, writeEntitlementsCache } from "./cache";
+import { isFreeWeekendActive } from "./free-weekend";
 
 export type ProSource = "subscription" | "founder" | null;
 
@@ -102,6 +103,10 @@ async function resolveEntitlements(userId: string | null, email: string | null):
  * Acepta (userId, email) en cualquier combinación, como isPaseDT.
  */
 export async function isPro(userId?: string | null, email?: string | null): Promise<boolean> {
+  // Campaña "Fin de semana abierto": durante la ventana, TODAS las funciones
+  // Pro quedan desbloqueadas para todo el mundo. No tocamos getEntitlements()
+  // (la landing /pro sigue vendiendo y los anuncios no cambian).
+  if (isFreeWeekendActive()) return true;
   const ent = await getEntitlements(userId ?? null, email ?? null);
   return ent.isPro;
 }

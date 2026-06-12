@@ -4,12 +4,14 @@
 // y botón hacia Stripe Checkout (suscripción). Mismo patrón de checkout que
 // /cuenta/comprar (ComprarPanel).
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Check, X, Sparkles } from "lucide-react";
+import { Check, X, Sparkles, Clock } from "lucide-react";
 import { PRO_PRICES, type ProBillingInterval, type ProRegion } from "@/lib/stripe/pricing";
 import { FREE_LIMITS } from "@/lib/pro/limits";
+import { trackEvent } from "@/lib/analytics/track-event";
+import { founderDeadline } from "@/lib/pro/founder-offer";
 
 const GOLD = "#C9A84C";
 
@@ -97,6 +99,43 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
       ? `${eqPerMonth.toFixed(eqPerMonth % 1 === 0 ? 0 : 2).replace(".", ",")} €/mes`
       : `${eqPerMonth.toFixed(2).replace(".", ",")} USD/mes`;
 
+  // Anclaje de precio: lo que costaría pagar el año mes a mes vs. el anual.
+  const curLabel = prices.currency === "eur" ? "€" : "USD";
+  const money = (cents: number) => {
+    const v = cents / 100;
+    return `${v.toFixed(v % 1 === 0 ? 0 : 2).replace(".", ",")} ${curLabel}`;
+  };
+  const yearlyFull = prices.monthly.amount * 12; // pagando mes a mes un año
+  const yearlySavingsPct = Math.round((1 - prices.yearly.amount / yearlyFull) * 100);
+
+  // Cuenta atrás de la oferta fundador (cliente: evita mismatch de hidratación).
+  const [founderLeft, setFounderLeft] = useState<string | null>(null);
+  useEffect(() => {
+    const tick = () => {
+      const ms = founderDeadline().getTime() - Date.now();
+      if (ms <= 0) return setFounderLeft(null);
+      const d = Math.floor(ms / 86_400_000);
+      const h = Math.floor((ms % 86_400_000) / 3_600_000);
+      const m = Math.floor((ms % 3_600_000) / 60_000);
+      const s = Math.floor((ms % 60_000) / 1000);
+      setFounderLeft(`${d}d ${h}h ${m}m ${s}s`);
+    };
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  // EMBUDO: compra completada (capa EXECUTION). Se dispara al volver de Stripe
+  // con ?purchase=success. transaction_id = session_id evita duplicados en GA4.
+  useEffect(() => {
+    if (!purchaseSuccess) return;
+    trackEvent("purchase", {
+      transaction_id: searchParams.get("session_id") ?? undefined,
+      currency: prices.currency.toUpperCase(),
+      items: [{ item_id: "pro", item_name: "Plan Pro" }],
+    });
+  }, [purchaseSuccess, searchParams, prices.currency]);
+
   async function handleSubscribe() {
     if (!authenticated) {
       window.location.href = "/login?next=/pro";
@@ -104,6 +143,13 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
     }
     setLoading(true);
     setError(null);
+    // EMBUDO: el usuario inicia el pago (capa EXECUTION). value en unidades de
+    // la divisa local; la compra se confirma luego con el evento purchase.
+    trackEvent("begin_checkout", {
+      currency: prices.currency.toUpperCase(),
+      value: (interval === "yearly" ? prices.yearly.amount : prices.monthly.amount) / 100,
+      items: [{ item_id: "pro", item_name: "Plan Pro", item_variant: interval }],
+    });
     try {
       const r = await fetch("/api/pro/checkout", {
         method: "POST",
@@ -142,9 +188,13 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3 text-center">
           Juega el Mundial <span style={{ color: GOLD }}>sin límites</span>
         </h1>
-        <p className="text-gray-400 text-center max-w-xl mx-auto mb-8">
+        <p className="text-gray-400 text-center max-w-xl mx-auto mb-2">
           Todos los tipos de predicción, IA Coach ilimitada, fantasy en vivo, Modo
           Carrera infinito, ligas privadas y cero anuncios.
+        </p>
+        <p className="text-center max-w-xl mx-auto mb-8 text-sm font-semibold" style={{ color: GOLD }}>
+          Y no acaba con el Mundial: tu Pro sigue todo el año con la Champions, la
+          Copa Libertadores y las grandes ligas del mundo.
         </p>
 
         {purchaseSuccess && (
@@ -184,6 +234,20 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
           </div>
         ) : (
           <>
+            {founderLeft && (
+              <div
+                className="mb-6 rounded-2xl border px-4 py-3 text-center"
+                style={{ borderColor: "rgba(201,168,76,0.4)", background: "rgba(201,168,76,0.08)" }}
+              >
+                <div className="flex items-center justify-center gap-2 text-sm font-bold" style={{ color: "#e8d48b" }}>
+                  <Clock size={15} /> Precio fundador — bloquéalo de por vida
+                </div>
+                <div className="mt-1 text-xs text-gray-400">
+                  Suscríbete antes del fin del Mundial y conservas este precio para siempre. Termina en{" "}
+                  <span className="font-mono font-bold text-white">{founderLeft}</span>
+                </div>
+              </div>
+            )}
             {/* Toggle mensual / anual */}
             <div className="flex items-center justify-center gap-2 mb-6">
               <button
@@ -216,24 +280,40 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
               </button>
             </div>
 
+            {/* Anclaje de precio */}
+            <div className="text-center mb-5">
+              {interval === "yearly" ? (
+                <>
+                  <div className="text-sm text-gray-500">
+                    <span className="line-through">{money(yearlyFull)}</span> pagando mes a mes
+                  </div>
+                  <div className="text-4xl sm:text-5xl font-black text-white mt-1">{prices.yearly.display}</div>
+                  <div className="mt-1 text-sm font-bold" style={{ color: "#22c55e" }}>
+                    Ahorras {yearlySavingsPct}% · sale a {monthlyEquivalent}
+                  </div>
+                </>
+              ) : (
+                <div className="text-4xl sm:text-5xl font-black text-white">{prices.monthly.display}</div>
+              )}
+            </div>
+
             <div className="text-center mb-10">
               <button
                 onClick={handleSubscribe}
                 disabled={loading}
-                className="rounded-2xl px-10 py-4 text-base font-black transition-all disabled:opacity-60"
+                className="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-black transition-all disabled:opacity-60"
                 style={{
                   background: `linear-gradient(135deg,${GOLD},#e8d48b)`,
                   color: "#060B14",
                   boxShadow: "0 8px 30px rgba(201,168,76,0.25)",
                 }}
               >
-                {loading
-                  ? "Abriendo pago seguro…"
-                  : `Hazte Pro — ${interval === "yearly" ? prices.yearly.display : prices.monthly.display}`}
+                {loading ? "Abriendo pago seguro…" : "Empezar 3 días gratis"}
               </button>
               {error && <div className="mt-3 text-sm text-red-400">{error}</div>}
               <div className="mt-3 text-xs text-gray-500">
-                Pago seguro con Stripe · Cancela cuando quieras desde tu cuenta
+                3 días gratis, luego {interval === "yearly" ? prices.yearly.display : prices.monthly.display} · cancela
+                cuando quieras · pago seguro con Stripe
               </div>
             </div>
           </>
@@ -265,6 +345,21 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                 {row.pro}
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* FAQ — mata objeciones */}
+        <div className="mt-8 space-y-3">
+          {[
+            { q: "¿Y después del Mundial?", a: "Tu Pro sigue todo el año: Champions, Copa Libertadores, Eurocopa y las grandes ligas del mundo. No es solo el Mundial." },
+            { q: "¿Me cobran durante la prueba?", a: "No. Tienes 3 días gratis para probarlo todo. Si cancelas antes de que terminen, no se te cobra nada." },
+            { q: "¿Puedo cancelar?", a: "Cuando quieras, en dos clics desde tu cuenta. Sin permanencia ni llamadas." },
+            { q: "¿El precio sube luego?", a: "Si te suscribes durante el Mundial, bloqueas el precio fundador de por vida. Más adelante subirá para las nuevas altas." },
+          ].map((f) => (
+            <details key={f.q} className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3">
+              <summary className="cursor-pointer text-sm font-bold text-white">{f.q}</summary>
+              <p className="mt-2 text-sm text-gray-400 leading-relaxed">{f.a}</p>
+            </details>
           ))}
         </div>
 

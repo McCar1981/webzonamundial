@@ -49,28 +49,29 @@ export const PRODUCT_DESCRIPTION =
  *
  * TRES regiones de precio (no dos): EEUU paga distinto que LATAM aunque ambos
  * sean USD. El MENSUAL ("pase del Mundial") difiere por región; el ANUAL
- * ("todas las ligas", post-Mundial) es 15 € en Europa y 15 USD en América.
+ * ("todo el año de fútbol": tras el Mundial sigue con Champions, Libertadores
+ * y las grandes ligas) es 20 € en Europa y 20 USD en América.
  *
- * Céntimos: 800 = 8.00 EUR · 600 = 6.00 USD · 1000 = 10.00 USD · 1500 = 15.00.
+ * Céntimos: 800 = 8.00 EUR · 600 = 6.00 USD · 1000 = 10.00 USD · 2000 = 20.00.
  */
 export const PRO_PRICES = {
   eu: {
     currency: "eur" as const,
     region: "Europa y resto del mundo",
     monthly: { amount: 800, display: "8 €/mes" },
-    yearly: { amount: 1500, display: "15 €/año" },
+    yearly: { amount: 2000, display: "20 €/año" },
   },
   latam: {
     currency: "usd" as const,
     region: "Latinoamérica",
     monthly: { amount: 600, display: "6 USD/mes" },
-    yearly: { amount: 1500, display: "15 USD/año" },
+    yearly: { amount: 2000, display: "20 USD/año" },
   },
   us: {
     currency: "usd" as const,
     region: "Estados Unidos",
     monthly: { amount: 1000, display: "10 USD/mes" },
-    yearly: { amount: 1500, display: "15 USD/año" },
+    yearly: { amount: 2000, display: "20 USD/año" },
   },
 } as const;
 

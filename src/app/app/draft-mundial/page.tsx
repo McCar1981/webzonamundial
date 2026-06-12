@@ -194,8 +194,8 @@ export default function DraftMundialPage() {
             Draft<br /><span className="dm-shimmer">Mundial</span>
           </h1>
           <p className="dm-hero-h text-lg mt-5 leading-snug" style={{ color: TXT_MUT, animationDelay: ".16s" }}>
-            El dado saca una selección legendaria. Vos te quedás con un nombre.
-            Repetilo <span style={{ color: TXT, fontWeight: 700 }}>once veces</span> y armá el mejor equipo que pisó un Mundial —
+            El dado saca una selección legendaria. Tú eliges un nombre.
+            Repite <span style={{ color: TXT, fontWeight: 700 }}>once veces</span> y arma el mejor equipo que pisó un Mundial —
             aunque mezcles a Pelé del 70 con Maradona del 86.
           </p>
 
@@ -228,9 +228,9 @@ export default function DraftMundialPage() {
         </Reveal>
         <ol className="space-y-5">
           {[
-            { k: "Tirás.", v: <>Sale <b style={{ color: TXT }}>Argentina 86</b>. Te muestra los once de esa plantilla.</> },
-            { k: "Elegís uno.", v: <>De todos ellos, te quedás con <b style={{ color: TXT }}>Maradona</b> para la mediapunta. El resto vuelve al sorteo.</> },
-            { k: "Repetís.", v: <>Sale <b style={{ color: TXT }}>Alemania 74</b>, buscás un central y aparece <b style={{ color: TXT }}>Beckenbauer</b>. Y así hasta completar tu once.</> },
+            { k: "Tiras.", v: <>Sale <b style={{ color: TXT }}>Argentina 86</b>. Te muestra los once de esa plantilla.</> },
+            { k: "Eliges uno.", v: <>De todos ellos, te quedas con <b style={{ color: TXT }}>Maradona</b> para la mediapunta. El resto vuelve al sorteo.</> },
+            { k: "Repites.", v: <>Sale <b style={{ color: TXT }}>Alemania 74</b>, buscas un central y aparece <b style={{ color: TXT }}>Beckenbauer</b>. Y así hasta completar tu once.</> },
             { k: "Se juega.", v: <>Se calcula la fuerza, el balance y la coherencia del equipo. Después disputa una campaña entera del Mundial.</> },
           ].map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>

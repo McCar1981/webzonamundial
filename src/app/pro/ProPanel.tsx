@@ -161,9 +161,13 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3 text-center">
           Juega el Mundial <span style={{ color: GOLD }}>sin límites</span>
         </h1>
-        <p className="text-gray-400 text-center max-w-xl mx-auto mb-8">
+        <p className="text-gray-400 text-center max-w-xl mx-auto mb-2">
           Todos los tipos de predicción, IA Coach ilimitada, fantasy en vivo, Modo
           Carrera infinito, ligas privadas y cero anuncios.
+        </p>
+        <p className="text-center max-w-xl mx-auto mb-8 text-sm font-semibold" style={{ color: GOLD }}>
+          Y no acaba con el Mundial: tu Pro sigue todo el año con la Champions, la
+          Copa Libertadores y las grandes ligas del mundo.
         </p>
 
         {purchaseSuccess && (

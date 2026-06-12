@@ -120,7 +120,9 @@ export async function POST(request: NextRequest) {
       automatic_tax: { enabled: false },
       success_url: `${origin}/pro?purchase=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/pro?canceled=1`,
-      allow_promotion_codes: false,
+      // Códigos de creador (30-40% lanzamiento): el usuario los introduce en
+      // el propio Checkout de Stripe. Sin esto, la campaña de creadores muere.
+      allow_promotion_codes: true,
       locale: priceTable.currency === "usd" ? "es-419" : "es",
     });
 

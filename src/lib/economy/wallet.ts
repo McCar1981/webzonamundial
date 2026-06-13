@@ -24,6 +24,7 @@ export type CoinModule =
   | "modo-carrera"
   | "micro"
   | "draft-mundial"
+  | "album"
   | "otros";
 
 export interface WalletGrant {

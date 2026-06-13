@@ -21,6 +21,7 @@ import type { SessionResult } from "@/lib/trivia/types";
 import { grantCoins } from "@/lib/economy/wallet";
 import { triviaSessionReward } from "@/lib/economy/earn";
 import { utcDayKey } from "@/lib/predictions/gamification";
+import { rewardDailyTrivia, evaluateAchievements } from "@/lib/cromos/rewards";
 
 /** Quita el sufijo "-rN" que añade repeatToLength para volver al id base. */
 function baseId(id: string): string {
@@ -173,6 +174,17 @@ export async function POST(req: Request) {
     }
   }
 
+  // ── Recompensas de cromos del álbum (best-effort) ─────────────────────────
+  let cromoReward = null;
+  if (authUserId && rewardClaimed) {
+    try {
+      cromoReward = await rewardDailyTrivia(authUserId, utcDayKey());
+      await evaluateAchievements(authUserId);
+    } catch {
+      /* no debe bloquear la trivia */
+    }
+  }
+
   return NextResponse.json({
     recorded: true,
     points: finalPoints,
@@ -191,5 +203,6 @@ export async function POST(req: Request) {
     coinsBalance,
     rewardClaimed,
     authed: Boolean(authUserId),
+    cromoReward,
   });
 }

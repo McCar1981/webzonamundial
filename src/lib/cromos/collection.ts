@@ -186,6 +186,36 @@ export async function openPack(userId: string): Promise<PackResult> {
   };
 }
 
+/** Devuelve el set de cromos favoritos de un usuario. */
+export async function getUserFavorites(userId: string): Promise<Set<number>> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("user_cromo_favorites")
+    .select("cromo_id")
+    .eq("user_id", userId);
+
+  return new Set((data ?? []).map((r) => (r as { cromo_id: number }).cromo_id));
+}
+
+/** Hace toggle de favorito para un cromo. Devuelve true si ahora es favorito. */
+export async function toggleFavorite(userId: string, cromoId: number): Promise<boolean> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("user_cromo_favorites")
+    .select("cromo_id")
+    .eq("user_id", userId)
+    .eq("cromo_id", cromoId)
+    .maybeSingle();
+
+  if (data) {
+    await admin.from("user_cromo_favorites").delete().eq("user_id", userId).eq("cromo_id", cromoId);
+    return false;
+  }
+
+  await admin.from("user_cromo_favorites").insert({ user_id: userId, cromo_id: cromoId });
+  return true;
+}
+
 /** Abreviatura: devuelve solo los IDs de cromos de un usuario. */
 export async function getUserCromoIds(userId: string): Promise<Set<number>> {
   const admin = adminClient();

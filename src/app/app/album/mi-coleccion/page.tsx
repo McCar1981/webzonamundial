@@ -18,13 +18,18 @@ import {
   type TabKey,
   ProgressBar,
   RarityStats,
+  CategoryStats,
+  CollectionMilestones,
   OpenPackCard,
   FilterTabs,
+  FilterBar,
   CromoGrid,
   AchievementsSection,
   TradesSection,
   EmptyAlbumView,
   PackResultModal,
+  PackOpeningAnimation,
+  CromoDetailModal,
   CreateTradeModal,
 } from "./components";
 import { useRevealOnScroll } from "./useRevealOnScroll";
@@ -42,8 +47,14 @@ export default function MiColeccionPage() {
   const [loading, setLoading] = useState(true);
   const [opening, setOpening] = useState(false);
   const [packResult, setPackResult] = useState<Cromo[] | null>(null);
+  const [showPackAnimation, setShowPackAnimation] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [rarityFilter, setRarityFilter] = useState<string[]>([]);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [selectedCromo, setSelectedCromo] = useState<Cromo | null>(null);
+  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [collection, setCollection] = useState<Collection | null>(null);
   const [packStatus, setPackStatus] = useState({ canOpen: true, nextPackAt: null as string | null, secondsLeft: 0 });
   const [achievements, setAchievements] = useState<AchievementView[]>(
@@ -79,7 +90,9 @@ export default function MiColeccionPage() {
         return;
       }
 
-      setCollection(await colRes.json());
+      const colData = await colRes.json();
+      setCollection(colData);
+      setFavoriteIds(colData.favoriteIds ?? []);
 
       const packData = await packRes.json();
       setPackStatus({
@@ -134,6 +147,7 @@ export default function MiColeccionPage() {
         });
         setError(isES ? "Espera antes de abrir otro sobre" : "Wait before opening another pack");
       } else {
+        setShowPackAnimation(true);
         setPackResult(data.cromos);
         const nextAt = data.nextPackAt ? new Date(data.nextPackAt).getTime() : 0;
         const secondsLeft = nextAt > 0 ? Math.max(0, Math.ceil((nextAt - Date.now()) / 1000)) : 14400;
@@ -142,7 +156,7 @@ export default function MiColeccionPage() {
           nextPackAt: data.nextPackAt ?? null,
           secondsLeft,
         });
-        setTimeout(() => load(), 1500);
+        setTimeout(() => load(), 2500);
       }
     } catch {
       setError(isES ? "No se pudo abrir el sobre" : "Could not open pack");
@@ -153,10 +167,37 @@ export default function MiColeccionPage() {
 
   const visibleCromos = (() => {
     const owned = new Set(collection?.ownedIds ?? []);
-    if (activeTab === "owned") return CROMOS.filter((c) => owned.has(c.id));
-    if (activeTab === "missing") return CROMOS.filter((c) => !owned.has(c.id));
-    return CROMOS;
+    const q = searchQuery.trim().toLowerCase();
+    return CROMOS.filter((c) => {
+      if (activeTab === "owned" && !owned.has(c.id)) return false;
+      if (activeTab === "missing" && owned.has(c.id)) return false;
+      if (rarityFilter.length > 0 && !rarityFilter.includes(c.rarity)) return false;
+      if (categoryFilter && c.category !== categoryFilter) return false;
+      if (q) {
+        const byName = c.name.toLowerCase().includes(q);
+        const byNumber = String(c.number).includes(q);
+        if (!byName && !byNumber) return false;
+      }
+      return true;
+    });
   })();
+
+  const toggleFavorite = async (cromoId: number) => {
+    try {
+      const res = await fetch("/api/cromos/favorites", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cromoId }),
+      });
+      if (!res.ok) return;
+      const { favorited } = await res.json();
+      setFavoriteIds((prev) =>
+        favorited ? [...prev, cromoId] : prev.filter((id) => id !== cromoId)
+      );
+    } catch {
+      // ignore
+    }
+  };
 
   const progressPct = Math.round((collection?.progress ?? 0) * 100);
 
@@ -175,6 +216,16 @@ export default function MiColeccionPage() {
     emptyOwned: isES ? "Aún no tienes cromos aquí" : "You don't have any stickers here yet",
     emptyMissing: isES ? "¡Colección completa! No te falta ningún cromo." : "Collection complete! No stickers missing.",
     openHint: isES ? "Nuevo sobre disponible cada 4 horas" : "New pack available every 4 hours",
+    searchPlaceholder: isES ? "Buscar por nombre o número..." : "Search by name or number...",
+    filterRarity: isES ? "Rareza" : "Rarity",
+    filterCategory: isES ? "Categoría" : "Category",
+    clearFilters: isES ? "Limpiar filtros" : "Clear filters",
+    detailTitle: isES ? "Detalle del cromo" : "Sticker detail",
+    ownedLabel: isES ? "En tu colección" : "In your collection",
+    missingLabel: isES ? "Te falta" : "You're missing",
+    favorites: isES ? "Favoritos" : "Favorites",
+    milestones: isES ? "Hitos" : "Milestones",
+    byCategory: isES ? "Por categoría" : "By category",
     close: isES ? "¡Genial!" : "Awesome",
     newCromos: isES ? "¡Nuevos cromos!" : "New stickers!",
     achievements: isES ? "Logros desbloqueados" : "Unlocked achievements",
@@ -251,8 +302,11 @@ export default function MiColeccionPage() {
             <>
               <ProgressBar collection={collection} progressPct={progressPct} t={t} />
 
+              <CollectionMilestones progress={collection?.progress ?? 0} isES={isES} />
+
               <div className={styles.statsGrid}>
                 <RarityStats collection={collection} isES={isES} />
+                <CategoryStats collection={collection} isES={isES} />
                 <OpenPackCard
                   canOpen={packStatus.canOpen}
                   opening={opening}
@@ -266,10 +320,23 @@ export default function MiColeccionPage() {
 
               <FilterTabs activeTab={activeTab} onChange={setActiveTab} collection={collection} t={t} isES={isES} />
 
+              <FilterBar
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                rarityFilter={rarityFilter}
+                onRarityToggle={(r) => setRarityFilter((prev) => prev.includes(r) ? prev.filter((x) => x !== r) : [...prev, r])}
+                categoryFilter={categoryFilter}
+                onCategoryChange={setCategoryFilter}
+                isES={isES}
+              />
+
               <CromoGrid
                 cromos={visibleCromos}
                 ownedIds={collection?.ownedIds ?? []}
+                favoriteIds={favoriteIds}
                 emptyMessage={activeTab === "missing" ? t.emptyMissing : t.emptyOwned}
+                onCromoClick={setSelectedCromo}
+                onToggleFavorite={toggleFavorite}
               />
 
               <AchievementsSection achievements={achievements} isES={isES} />
@@ -294,7 +361,28 @@ export default function MiColeccionPage() {
         </div>
       </div>
 
-      {packResult && <PackResultModal cromos={packResult} onClose={() => setPackResult(null)} t={t} isES={isES} />}
+      {showPackAnimation && packResult && (
+        <PackOpeningAnimation
+          cromos={packResult}
+          onDone={() => setShowPackAnimation(false)}
+          isES={isES}
+        />
+      )}
+
+      {packResult && !showPackAnimation && (
+        <PackResultModal cromos={packResult} onClose={() => setPackResult(null)} t={t} isES={isES} />
+      )}
+
+      {selectedCromo && collection && (
+        <CromoDetailModal
+          cromo={selectedCromo}
+          owned={collection.ownedIds.includes(selectedCromo.id)}
+          isFavorite={favoriteIds.includes(selectedCromo.id)}
+          onClose={() => setSelectedCromo(null)}
+          onToggleFavorite={() => toggleFavorite(selectedCromo.id)}
+          isES={isES}
+        />
+      )}
 
       {showCreateTrade && collection && (
         <CreateTradeModal

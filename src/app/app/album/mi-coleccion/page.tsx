@@ -293,8 +293,17 @@ export default function MiColeccionPage() {
               opening={opening}
               canOpen={packStatus.canOpen}
               secondsLeft={packStatus.secondsLeft}
-              cromos={CROMOS}
+              cromos={visibleCromos}
               ownedIds={collection?.ownedIds ?? []}
+              favoriteIds={favoriteIds}
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              rarityFilter={rarityFilter}
+              onRarityToggle={(r) => setRarityFilter((prev) => prev.includes(r) ? prev.filter((x) => x !== r) : [...prev, r])}
+              categoryFilter={categoryFilter}
+              onCategoryChange={setCategoryFilter}
+              onCromoClick={setSelectedCromo}
+              onToggleFavorite={toggleFavorite}
               t={t}
               isES={isES}
             />

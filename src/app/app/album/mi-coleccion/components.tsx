@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Head from "next/head";
-import Link from "next/link";
 import { CROMOS, TOTAL_CROMOS, type Cromo, RARITIES, CATEGORIES } from "@/lib/cromos/catalog";
 import type { AchievementView } from "@/lib/cromos/achievements";
 import {
@@ -15,6 +13,11 @@ import {
   IconArrowLeft,
   IconTrophy,
   IconSwap,
+  IconSearch,
+  IconFilter,
+  IconX,
+  IconHeart,
+  IconHeartFilled,
 } from "./icons";
 import styles from "./page.module.css";
 
@@ -28,6 +31,11 @@ export const rarityGlow = (rarity: string) => {
   if (rarity === "Legendario") return "rgba(245,158,11,0.45)";
   if (rarity === "Oro") return "rgba(234,179,8,0.35)";
   return "rgba(148,163,184,0.25)";
+};
+
+export const categoryLabel = (category: string, isES: boolean) => {
+  const cat = CATEGORIES.find((c) => c.key === category);
+  return cat ? (isES ? cat.label.es : cat.label.en) : category;
 };
 
 export function formatCountdown(seconds: number): string {
@@ -170,12 +178,37 @@ export function FilterTabs({ activeTab, onChange, collection, t, isES }: {
   );
 }
 
-export function CromoMiniCard({ cromo, owned }: { cromo: Cromo; owned: boolean }) {
+export function CromoMiniCard({
+  cromo,
+  owned,
+  isFavorite,
+  onClick,
+  onToggleFavorite,
+  animateIndex,
+}: {
+  cromo: Cromo;
+  owned: boolean;
+  isFavorite?: boolean;
+  onClick?: () => void;
+  onToggleFavorite?: (e: React.MouseEvent) => void;
+  animateIndex?: number;
+}) {
   const color = rarityColor(cromo.rarity);
   const glow = rarityGlow(cromo.rarity);
+  const detailRarityStyle: React.CSSProperties = {
+    color,
+    borderColor: `${color}55`,
+    boxShadow: `0 0 20px ${glow}`,
+  };
 
   return (
-    <div className={`${styles.cromoCard} ${owned ? styles.cromoOwned : ""}`}>
+    <div
+      className={`${styles.cromoCard} ${owned ? styles.cromoOwned : ""}`}
+      style={{ animationDelay: `${(animateIndex ?? 0) * 40}ms` }}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+    >
       <div className={styles.cromoImgWrap}>
         <img src={cromo.path} alt={cromo.name} loading="lazy" className={styles.cromoImg} style={{ filter: owned ? "none" : "grayscale(100%)" }} />
         {!owned && (
@@ -188,6 +221,15 @@ export function CromoMiniCard({ cromo, owned }: { cromo: Cromo; owned: boolean }
             <IconCheck />
           </div>
         )}
+        {onToggleFavorite && (
+          <button
+            className={`${styles.favoriteHeart} ${isFavorite ? styles.favoriteActive : ""}`}
+            onClick={onToggleFavorite}
+            aria-label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
+          >
+            {isFavorite ? <IconHeartFilled /> : <IconHeart />}
+          </button>
+        )}
       </div>
       <div className={styles.cromoInfo}>
         <div className={styles.cromoRarity} style={{ color: owned ? color : "var(--album-muted)" }}>{cromo.rarity}</div>
@@ -197,17 +239,276 @@ export function CromoMiniCard({ cromo, owned }: { cromo: Cromo; owned: boolean }
   );
 }
 
-export function CromoGrid({ cromos, ownedIds, emptyMessage }: { cromos: Cromo[]; ownedIds: number[]; emptyMessage: string }) {
+export function CromoGrid({
+  cromos,
+  ownedIds,
+  favoriteIds,
+  emptyMessage,
+  onCromoClick,
+  onToggleFavorite,
+}: {
+  cromos: Cromo[];
+  ownedIds: number[];
+  favoriteIds?: number[];
+  emptyMessage: string;
+  onCromoClick?: (cromo: Cromo) => void;
+  onToggleFavorite?: (id: number) => Promise<void>;
+}) {
   if (cromos.length === 0) {
     return <div className={styles.empty}>{emptyMessage}</div>;
   }
 
   const ownedSet = new Set(ownedIds);
+  const favoriteSet = new Set(favoriteIds ?? []);
   return (
     <div className={styles.grid}>
-      {cromos.map((cromo) => (
-        <CromoMiniCard key={cromo.id} cromo={cromo} owned={ownedSet.has(cromo.id)} />
+      {cromos.map((cromo, i) => (
+        <CromoMiniCard
+          key={cromo.id}
+          cromo={cromo}
+          owned={ownedSet.has(cromo.id)}
+          isFavorite={favoriteSet.has(cromo.id)}
+          onClick={onCromoClick ? () => onCromoClick(cromo) : undefined}
+          onToggleFavorite={onToggleFavorite ? (e) => { e.stopPropagation(); onToggleFavorite(cromo.id); } : undefined}
+          animateIndex={i}
+        />
       ))}
+    </div>
+  );
+}
+
+export function FilterBar({
+  searchQuery,
+  onSearchChange,
+  rarityFilter,
+  onRarityToggle,
+  categoryFilter,
+  onCategoryChange,
+  isES,
+}: {
+  searchQuery: string;
+  onSearchChange: (q: string) => void;
+  rarityFilter: string[];
+  onRarityToggle: (rarity: string) => void;
+  categoryFilter: string;
+  onCategoryChange: (category: string) => void;
+  isES: boolean;
+}) {
+  const clearAll = () => {
+    onSearchChange("");
+    rarityFilter.forEach((r) => onRarityToggle(r));
+    onCategoryChange("");
+  };
+  const hasFilters = searchQuery || rarityFilter.length > 0 || categoryFilter;
+
+  return (
+    <div className={styles.filterBar} data-reveal>
+      <div className={styles.searchBox}>
+        <IconSearch />
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
+          placeholder={isES ? "Buscar por nombre o número..." : "Search by name or number..."}
+          className={styles.searchInput}
+        />
+        {searchQuery && (
+          <button className={styles.searchClear} onClick={() => onSearchChange("")} aria-label="Clear search">
+            <IconX />
+          </button>
+        )}
+      </div>
+
+      <div className={styles.filterPills}>
+        {RARITIES.map((r) => {
+          const active = rarityFilter.includes(r.key);
+          return (
+            <button
+              key={r.key}
+              onClick={() => onRarityToggle(r.key)}
+              className={`${styles.filterPill} ${active ? styles.filterPillActive : ""}`}
+              style={{ "--rarity-color": r.color } as React.CSSProperties}
+            >
+              {active && <span className={styles.filterCheck}>✓</span>}
+              {isES ? r.label.es : r.label.en}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className={styles.filterRow}>
+        <div className={styles.categorySelectWrap}>
+          <IconFilter />
+          <select
+            value={categoryFilter}
+            onChange={(e) => onCategoryChange(e.target.value)}
+            className={styles.categorySelect}
+          >
+            <option value="">{isES ? "Todas las categorías" : "All categories"}</option>
+            {CATEGORIES.map((c) => (
+              <option key={c.key} value={c.key}>{isES ? c.label.es : c.label.en}</option>
+            ))}
+          </select>
+        </div>
+
+        {hasFilters && (
+          <button onClick={clearAll} className={styles.clearFilters}>
+            {isES ? "Limpiar filtros" : "Clear filters"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function CromoDetailModal({
+  cromo,
+  owned,
+  isFavorite,
+  onClose,
+  onToggleFavorite,
+  isES,
+}: {
+  cromo: Cromo;
+  owned: boolean;
+  isFavorite: boolean;
+  onClose: () => void;
+  onToggleFavorite: () => void;
+  isES: boolean;
+}) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+  }, [onClose]);
+
+  const color = rarityColor(cromo.rarity);
+  const glow = rarityGlow(cromo.rarity);
+  const detailRarityStyle: React.CSSProperties = {
+    color,
+    borderColor: `${color}55`,
+    boxShadow: `0 0 20px ${glow}`,
+  };
+
+  return (
+    <div onClick={onClose} className={styles.modalOverlay}>
+      <div onClick={(e) => e.stopPropagation()} className={`${styles.modalContent} ${styles.detailModal}`}>
+        <button onClick={onClose} className={styles.detailClose} aria-label="Close"><IconX /></button>
+
+        <div className={styles.detailHeader}>
+          <span className={styles.detailRarity} style={detailRarityStyle}>
+            {cromo.rarity}
+          </span>
+          <button
+            onClick={onToggleFavorite}
+            className={`${styles.detailFavorite} ${isFavorite ? styles.detailFavoriteActive : ""}`}
+            aria-label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
+          >
+            {isFavorite ? <IconHeartFilled /> : <IconHeart />}
+          </button>
+        </div>
+
+        <div className={styles.detailImgWrap} style={{ boxShadow: `0 0 40px ${glow}` }}>
+          <img src={cromo.path} alt={cromo.name} className={styles.detailImg} />
+        </div>
+
+        <div className={styles.detailInfo}>
+          <div className={styles.detailNumber}>#{String(cromo.number).padStart(3, "0")}</div>
+          <h2 className={styles.detailName}>{cromo.name}</h2>
+          <div className={styles.detailMeta}>
+            <span>{categoryLabel(cromo.category, isES)}</span>
+            <span className={styles.detailDot} />
+            <span style={{ color: owned ? "#4ade80" : "var(--album-muted)" }}>
+              {owned ? (isES ? "En tu colección" : "In your collection") : (isES ? "Te falta" : "Missing")}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function CategoryStats({ collection, isES }: { collection: Collection | null; isES: boolean }) {
+  return (
+    <div className={`${styles.box} ${styles.staggerContainer}`} data-reveal>
+      <h3>{isES ? "Por categoría" : "By category"}</h3>
+      <div>
+        {CATEGORIES.map((c) => {
+          const stat = collection?.byCategory[c.key] ?? { collected: 0, total: c.count };
+          const pct = Math.round((stat.collected / stat.total) * 100);
+          return (
+            <div key={c.key} className={`${styles.rarityRow} ${styles.staggerItem}`}>
+              <div className={styles.rarityHeader}>
+                <span className={styles.rarityName}>{isES ? c.label.es : c.label.en}</span>
+                <span className={styles.rarityCount}>{stat.collected}/{stat.total}</span>
+              </div>
+              <div className={styles.rarityTrack}>
+                <div className={styles.rarityBar} style={{ width: `${pct}%`, background: "var(--album-gold)" }} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export function CollectionMilestones({ progress, isES }: { progress: number; isES: boolean }) {
+  const milestones = [
+    { pct: 0.25, emoji: "🥉", label: isES ? "Bronce" : "Bronze" },
+    { pct: 0.5, emoji: "🥈", label: isES ? "Plata" : "Silver" },
+    { pct: 0.75, emoji: "🥇", label: isES ? "Oro" : "Gold" },
+    { pct: 1, emoji: "🏆", label: isES ? "Leyenda" : "Legend" },
+  ];
+
+  return (
+    <div className={styles.milestoneRow} data-reveal>
+      {milestones.map((m) => {
+        const reached = progress >= m.pct;
+        return (
+          <div key={m.pct} className={`${styles.milestoneBadge} ${reached ? styles.milestoneReached : ""}`}>
+            <div className={styles.milestoneEmoji}>{m.emoji}</div>
+            <div className={styles.milestoneLabel}>{m.label}</div>
+            <div className={styles.milestonePct}>{Math.round(m.pct * 100)}%</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]; onDone: () => void; isES: boolean }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const t = setTimeout(() => {
+      document.body.style.overflow = "";
+      onDone();
+    }, 2200);
+    return () => { clearTimeout(t); document.body.style.overflow = ""; };
+  }, [onDone]);
+
+  return (
+    <div className={styles.packOpeningOverlay}>
+      <div className={styles.packOpeningHeader}>{isES ? "Abriendo sobre..." : "Opening pack..."}</div>
+      <div className={styles.packOpeningCards}>
+        {cromos.map((c, i) => (
+          <div
+            key={c.id}
+            className={styles.packFlipCard}
+            style={{ animationDelay: `${0.3 + i * 0.35}s` }}
+          >
+            <div className={styles.packFlipInner}>
+              <div className={styles.packFlipFront}>
+                <img src="/sobres/sobre1.png" alt="" className={styles.packFlipImg} />
+              </div>
+              <div className={styles.packFlipBack}>
+                <img src={c.path} alt={c.name} className={styles.packFlipImg} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -237,21 +538,37 @@ export function AchievementsSection({ achievements, isES }: { achievements: Achi
   );
 }
 
-export function TradeOfferCard({ offer, isMine, onAccept, onCancel, t, isES }: {
+export function TradeOfferCard({
+  offer,
+  isMine,
+  onAccept,
+  onCancel,
+  expanded,
+  onToggleExpand,
+  t,
+  isES,
+}: {
   offer: TradeOffer;
   isMine: boolean;
   onAccept: () => void;
   onCancel: () => void;
+  expanded: boolean;
+  onToggleExpand: () => void;
   t: Translations;
   isES: boolean;
 }) {
   return (
-    <div className={styles.tradeCard}>
+    <div className={`${styles.tradeCard} ${expanded ? styles.tradeExpanded : ""}`} onClick={onToggleExpand}>
       <div className={styles.tradeUser}>
         <div className={styles.tradeAvatar}>{offer.creatorName?.[0]?.toUpperCase() || "?"}</div>
-        <div>
+        <div className={styles.tradeUserInfo}>
           <div className={styles.tradeName}>{offer.creatorName || (isES ? "Usuario" : "User")}</div>
-          {offer.message && <div className={styles.tradeMessage}>{offer.message}</div>}
+          <div className={styles.tradeMeta}>
+            <span className={`${styles.tradeStatus} ${styles[`tradeStatus${offer.status}`] ?? ""}`}>
+              {offer.status === "active" ? (isES ? "Activa" : "Active") : offer.status}
+            </span>
+            {offer.message && <span className={styles.tradeMessage}>{offer.message}</span>}
+          </div>
         </div>
       </div>
 
@@ -260,30 +577,42 @@ export function TradeOfferCard({ offer, isMine, onAccept, onCancel, t, isES }: {
           <div className={`${styles.tradeLabel} ${styles.tradeLabelOffered}`}>{t.offered}</div>
           <div className={styles.tradeThumbs}>
             {offer.offered.map((c) => (
-              <img key={c.id} src={c.path} alt="" className={styles.tradeThumb} />
+              <img key={c.id} src={c.path} alt={c.name} title={c.name} className={styles.tradeThumb} />
             ))}
           </div>
+          {expanded && <div className={styles.tradeNames}>{offer.offered.map((c) => c.name).join(", ")}</div>}
         </div>
         <div>
           <div className={styles.tradeLabel} style={{ color: "var(--album-muted)" }}>{t.wanted}</div>
           <div className={styles.tradeThumbs}>
             {offer.wanted.map((c) => (
-              <img key={c.id} src={c.path} alt="" className={styles.tradeThumb} />
+              <img key={c.id} src={c.path} alt={c.name} title={c.name} className={styles.tradeThumb} />
             ))}
           </div>
+          {expanded && <div className={styles.tradeNames}>{offer.wanted.map((c) => c.name).join(", ")}</div>}
         </div>
       </div>
 
-      {isMine ? (
-        <button onClick={onCancel} className={styles.btnDanger}>{t.cancel}</button>
-      ) : (
-        <button onClick={onAccept} className={styles.btnPrimary}>{t.accept}</button>
-      )}
+      <div className={styles.tradeActions}>
+        {isMine ? (
+          <button onClick={(e) => { e.stopPropagation(); onCancel(); }} className={styles.btnDanger}>{t.cancel}</button>
+        ) : (
+          <button onClick={(e) => { e.stopPropagation(); onAccept(); }} className={styles.btnPrimary}>{t.accept}</button>
+        )}
+      </div>
     </div>
   );
 }
 
-export function TradesSection({ offers, userId, onAccept, onCancel, onCreate, t, isES }: {
+export function TradesSection({
+  offers,
+  userId,
+  onAccept,
+  onCancel,
+  onCreate,
+  t,
+  isES,
+}: {
   offers: TradeOffer[];
   userId: string | null;
   onAccept: (id: string) => void;
@@ -292,6 +621,11 @@ export function TradesSection({ offers, userId, onAccept, onCancel, onCreate, t,
   t: Translations;
   isES: boolean;
 }) {
+  const [showMine, setShowMine] = useState(false);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const visibleOffers = showMine ? offers.filter((o) => o.creatorId === userId) : offers;
+
   return (
     <section className={styles.section} data-reveal>
       <div className={styles.tradeHeader}>
@@ -299,20 +633,30 @@ export function TradesSection({ offers, userId, onAccept, onCancel, onCreate, t,
           <IconSwap />
           <h2 className={styles.sectionTitle}>{isES ? "Intercambios" : "Trades"}</h2>
         </div>
-        <button onClick={onCreate} className={styles.btnPrimary}>{t.createTrade}</button>
+        <div className={styles.tradeControls}>
+          <button
+            onClick={() => setShowMine((v) => !v)}
+            className={`${styles.tab} ${showMine ? styles.tabActive : ""}`}
+          >
+            {isES ? (showMine ? "Mis ofertas" : "Ver solo mis ofertas") : (showMine ? "My offers" : "Show my offers")}
+          </button>
+          <button onClick={onCreate} className={styles.btnPrimary}>{t.createTrade}</button>
+        </div>
       </div>
 
-      {offers.length === 0 ? (
-        <div className={styles.tradeEmpty}>{t.noOffers}</div>
+      {visibleOffers.length === 0 ? (
+        <div className={styles.tradeEmpty}>{showMine ? (isES ? "No tienes ofertas activas" : "You have no active offers") : t.noOffers}</div>
       ) : (
         <div className={`${styles.tradeList} ${styles.staggerContainer}`}>
-          {offers.map((offer) => (
+          {visibleOffers.map((offer) => (
             <div key={offer.id} className={styles.staggerItem}>
               <TradeOfferCard
                 offer={offer}
                 isMine={offer.creatorId === userId}
                 onAccept={() => onAccept(offer.id)}
                 onCancel={() => onCancel(offer.id)}
+                expanded={expandedId === offer.id}
+                onToggleExpand={() => setExpandedId((id) => (id === offer.id ? null : offer.id))}
                 t={t}
                 isES={isES}
               />
@@ -421,7 +765,7 @@ export function PackResultModal({ cromos, onClose, t, isES }: { cromos: Cromo[];
           {cromos.map((c, i) => (
             <div
               key={c.id}
-              className={`${styles.modalCard} ${styles.cromoReveal}`}
+              className={`${styles.modalCard} ${styles.cromoReveal} ${styles.cromoUnlock}`}
               style={{
                 borderColor: `${rarityColor(c.rarity)}55`,
                 boxShadow: `0 0 30px ${rarityGlow(c.rarity)}`,

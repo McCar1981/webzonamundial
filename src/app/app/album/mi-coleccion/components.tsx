@@ -675,6 +675,15 @@ export function EmptyAlbumView({
   secondsLeft,
   cromos,
   ownedIds,
+  favoriteIds,
+  searchQuery,
+  onSearchChange,
+  rarityFilter,
+  onRarityToggle,
+  categoryFilter,
+  onCategoryChange,
+  onCromoClick,
+  onToggleFavorite,
   t,
   isES,
 }: {
@@ -684,6 +693,15 @@ export function EmptyAlbumView({
   secondsLeft: number;
   cromos: Cromo[];
   ownedIds: number[];
+  favoriteIds?: number[];
+  searchQuery: string;
+  onSearchChange: (q: string) => void;
+  rarityFilter: string[];
+  onRarityToggle: (rarity: string) => void;
+  categoryFilter: string;
+  onCategoryChange: (category: string) => void;
+  onCromoClick?: (cromo: Cromo) => void;
+  onToggleFavorite?: (id: number) => Promise<void>;
   t: Translations;
   isES: boolean;
 }) {
@@ -725,8 +743,24 @@ export function EmptyAlbumView({
       </div>
 
       <div style={{ marginTop: 60 }}>
+        <FilterBar
+          searchQuery={searchQuery}
+          onSearchChange={onSearchChange}
+          rarityFilter={rarityFilter}
+          onRarityToggle={onRarityToggle}
+          categoryFilter={categoryFilter}
+          onCategoryChange={onCategoryChange}
+          isES={isES}
+        />
         <h3 className={styles.sectionTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h3>
-        <CromoGrid cromos={cromos} ownedIds={ownedIds} emptyMessage={isES ? "No hay cromos para mostrar" : "No stickers to show"} />
+        <CromoGrid
+          cromos={cromos}
+          ownedIds={ownedIds}
+          favoriteIds={favoriteIds}
+          emptyMessage={isES ? "No hay cromos para mostrar" : "No stickers to show"}
+          onCromoClick={onCromoClick}
+          onToggleFavorite={onToggleFavorite}
+        />
       </div>
     </div>
   );

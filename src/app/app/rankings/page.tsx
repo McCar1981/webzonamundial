@@ -277,7 +277,11 @@ export default function RankingsPage() {
 
   return (
     <div ref={containerRef} style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}>
-      {/* ═══ Hero compacto: sirve de cabecera al tablero, que viene justo debajo ═══ */}
+      {/* ═══ Hero compacto: SOLO para visitantes SIN sesión (portada de captación).
+          El usuario logueado que llega desde el lobby aterriza directo en el
+          tablero, como describe la bifurcación por sesión de arriba. Antes se
+          mostraba a todos → el logueado caía en la "página informativa". ═══ */}
+      {authed === false && (
       <section style={{ padding: "18px 20px 28px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 60%)" }} />
         <div style={{ maxWidth: 800, margin: "0 auto", position: "relative" }}>
@@ -303,6 +307,7 @@ export default function RankingsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ Tablero (cambia según la vista) ═══ */}
       <section id="tablero" style={{ padding: "8px 20px 64px", background: BG }}>

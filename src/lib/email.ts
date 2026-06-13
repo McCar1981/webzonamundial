@@ -90,7 +90,7 @@ export async function sendWelcomeEmail(opts: {
     bodyHtml: `
       <p style="line-height:1.7;margin:0 0 18px;font-size:16px;color:#1f2937;">
         Tu cuenta en <strong style="color:#0f172a;">ZonaMundial</strong> ya está lista. 🎉
-        Ya formas parte de la comunidad que vivirá el <strong>Mundial 2026</strong> como nunca antes.
+        El <strong>Mundial 2026</strong> ya está en marcha: la fase de grupos rueda HOY y tú ya estás dentro para vivirla como nunca antes.
       </p>
       ${creatorLine}
 
@@ -122,14 +122,18 @@ export async function sendWelcomeEmail(opts: {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:26px 0 4px;">
         <tr><td style="background:linear-gradient(135deg,#0f172a,#13233A);border-radius:12px;padding:18px 20px;text-align:center;">
           <p style="margin:0;color:#E7D9A8;font-size:14px;line-height:1.5;">
-            Faltan pocos meses para el pitido inicial.<br>
-            <strong style="color:#FDE68A;">Tu camino al Mundial empieza ahora.</strong>
+            El Mundial ya está en juego y hay partidos hoy.<br>
+            <strong style="color:#FDE68A;">Haz tu primera predicción antes del pitido inicial.</strong>
           </p>
         </td></tr>
       </table>
+
+      <p style="line-height:1.6;margin:18px 0 0;font-size:13px;color:#6b7280;text-align:center;">
+        Y vuelve mañana: con tu <strong style="color:#8C7437;">check-in diario</strong> sumas racha y monedas, y la <strong style="color:#8C7437;">trivia del día</strong> te espera cada mañana.
+      </p>
     `,
-    ctaLabel: 'Entrar a ZonaMundial',
-    ctaHref: `${siteUrl}/app`,
+    ctaLabel: 'Haz tu predicción de hoy',
+    ctaHref: `${siteUrl}/app/predicciones`,
   });
 
   try {

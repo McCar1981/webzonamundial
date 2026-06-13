@@ -19,6 +19,7 @@ import StoryViewer from "@/components/stories/StoryViewer";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
+import { celebrate, celebratePop, haptic } from "@/lib/celebration";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
 const NAVY = "#0a1729";
@@ -495,6 +496,12 @@ export default function AppHubPage() {
   // Carrusel del hero: índice de la pantalla visible (rota sola entre estados).
   const [heroIdx, setHeroIdx] = useState(0);
   const { canInstall, install } = useInstallPrompt();
+  // Píldora de Fútcoins del header sticky: la "celebramos" (pop dorado) al
+  // reclamar la recompensa diaria → el saldo que sube es el premio visible.
+  const coinsPillRef = useRef<HTMLDivElement | null>(null);
+  // Badge de racha de "Misiones de hoy": pulso extra al reclamar si la racha
+  // sube o se mantiene (el otro premio del check-in diario).
+  const streakBadgeRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     const h = new URLSearchParams(window.location.search).get("hero");
@@ -635,13 +642,24 @@ export default function AppHubPage() {
       const r = await fetch("/api/predictions/daily", { method: "POST" });
       if (r.ok || r.status === 409) {
         setClaimedToday(true);
+        // Celebración del beat de hábito: pop dorado en la píldora de Fútcoins
+        // del header (el saldo que sube es el premio) + golpe háptico en móvil.
+        // celebratePop/haptic ya respetan prefers-reduced-motion internamente.
+        const prevStreak = gam?.streak.current ?? 0;
+        celebratePop(coinsPillRef.current);
+        haptic(10);
         setGam((prev) => prev?.daily ? { ...prev, daily: { ...prev.daily, can_claim: false } } : prev);
         const g = await fetch("/api/predictions/me").then((x) => (x.ok ? x.json() : null)).catch(() => null);
-        if (g) setGam(g);
+        if (g) {
+          setGam(g);
+          // Si la racha sube o se mantiene activa, un pulso extra de celebración
+          // (la racha es el otro premio del check-in diario).
+          if (g.streak?.current > 0 && g.streak.current >= prevStreak) celebrate(streakBadgeRef.current, 12);
+        }
       }
     } catch { /* la misión sigue visible; el usuario puede reintentar */ }
     finally { setClaiming(false); }
-  }, [claiming]);
+  }, [claiming, gam]);
 
   // Top-5 del ranking global por Fútcoins (público, sin sesión necesaria).
   useEffect(() => {
@@ -880,21 +898,29 @@ export default function AppHubPage() {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {/* Puntos — barrido de luz periódico sobre la píldora dorada */}
-            <div className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
+            {/* Puntos — barrido de luz periódico sobre la píldora dorada.
+                Mientras carga la gamificación, un skeleton shimmer (no "·") del
+                tamaño del saldo final → sin parpadeo de glifo ni salto. */}
+            <div ref={coinsPillRef} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z" fill={GOLD} /></svg>
-              <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? (gam ? gam.coins.toLocaleString() : "·") : "—"}</span>
+              {authed && !gam
+                ? <span aria-hidden className="zm-skel" style={{ display: "inline-block", width: 34, height: 12, borderRadius: 6 }} />
+                : <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? gam!.coins.toLocaleString() : "—"}</span>}
             </div>
-            {/* Nivel + XP */}
-            {authed && gam && (
+            {/* Nivel + XP — el hueco se RESERVA en cuanto hay sesión (aunque la
+                gamificación aún no llegue) para que la fila no se desplace al
+                cargar. Mientras carga = skeleton de nivel + barra apagada. */}
+            {authed && (
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
+                {gam
+                  ? <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
+                  : <span aria-hidden className="zm-skel" style={{ display: "inline-block", width: 46, height: 11, borderRadius: 6 }} />}
                 <div style={{ position: "relative", width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
                   {/* progress viene del servidor con la curva real (cuadrática);
                       el viejo (xp % 1000)/1000 mentía a partir del nivel 2. */}
-                  <div style={{ width: `${Math.min(100, Math.round((gam.level.progress ?? 0) * 100))}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
-                  {/* destello que recorre la barra de XP */}
-                  <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />
+                  <div style={{ width: gam ? `${Math.min(100, Math.round((gam.level.progress ?? 0) * 100))}%` : "0%", height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
+                  {/* destello que recorre la barra de XP (solo con datos) */}
+                  {gam && <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />}
                 </div>
               </div>
             )}
@@ -1183,12 +1209,26 @@ export default function AppHubPage() {
               <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}33,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>🎯</span>
               Misiones de hoy
             </h2>
-            {/* Racha en riesgo: loss-aversion con datos reales del servidor. */}
-            {authed && gam?.streak.active && typeof gam.streak.hours_left === "number" && gam.streak.hours_left <= 12 && gam.streak.current > 0 && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }}>
-                🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(gam.streak.hours_left))}h
-              </span>
-            )}
+            {/* Racha: SIEMPRE visible con racha activa (la racha es un logro que
+                engancha). El estilo de URGENCIA (rojo + pulso + "expira en Xh")
+                solo cuando quedan ≤12h → loss-aversion con datos reales; el
+                resto del tiempo, pastilla dorada con la llama y los días. */}
+            {authed && gam?.streak.active && gam.streak.current > 0 && (() => {
+              const hl = gam.streak.hours_left;
+              const atRisk = typeof hl === "number" && hl <= 12;
+              return (
+                <span
+                  ref={streakBadgeRef}
+                  style={atRisk
+                    ? { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }
+                    : { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#8a6a13", background: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 4px rgba(8,16,30,0.1)" }}
+                >
+                  {atRisk
+                    ? <>🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(hl as number))}h</>
+                    : <>🔥 Racha de {gam.streak.current} {gam.streak.current === 1 ? "día" : "días"}</>}
+                </span>
+              );
+            })()}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {authed ? (
@@ -1247,13 +1287,13 @@ export default function AppHubPage() {
               <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver ranking →</Link>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(110px,1fr))", gap: 10 }}>
-              <Stat k="Nivel" v={gam ? String(gam.level.level) : "·"} tint="#5b8def"
+              <Stat k="Nivel" v={gam ? String(gam.level.level) : ""} loading={!gam} tint="#5b8def"
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9.8C7.4 20.4 4 16.8 4 12V7l8-4Z" stroke="#5b8def" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9.5 12.5l2 2 3.5-4" stroke="#5b8def" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : "·"} tint={GOLD}
+              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : ""} loading={!gam} tint={GOLD}
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.8" /><path d="M12 8v8M9.5 10.2c.5-.8 1.4-1.2 2.5-1.2 1.5 0 2.5.7 2.5 1.8s-1 1.4-2.5 1.7c-1.5.3-2.5.7-2.5 1.8s1 1.7 2.5 1.7c1.1 0 2-.4 2.5-1.2" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" /></svg>} />
-              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} tint="#36c98f"
+              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : ""} loading={!gam} tint="#36c98f"
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z" stroke="#36c98f" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
-              <Stat k="Racha de aciertos" v={gam ? `${gam.streak.current} seguidos` : "·"} tint="#ff6b5a"
+              <Stat k="Racha de aciertos" v={gam ? `${gam.streak.current} seguidos` : ""} loading={!gam} tint="#ff6b5a"
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22c4 0 7-2.7 7-6.8 0-3-1.8-5.2-3.4-7C14.3 6.7 13 4.8 13 2c-3.5 2-5 4.8-5 7.2 0 .8.1 1.5.4 2.2C7.2 10.7 6.3 9.8 6 8.5 5 10 5 11.8 5 13c0 4.8 3 9 7 9Z" stroke="#ff6b5a" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
             </div>
           </section>
@@ -1412,6 +1452,25 @@ export default function AppHubPage() {
         /* Feedback táctil: el tap "hunde" levemente la card. */
         .zm-mod-card:active{ transform:scale(0.97) !important; }
         .zm-mod-card--locked:active{ transform:none !important; }
+
+        /* ── Skeleton shimmer mientras carga la gamificación (header + stats) ──
+           Sustituye los placeholders "·"/"—": una barra del tamaño del contenido
+           final que reserva el hueco (sin salto) y brilla suavemente. La variante
+           --dark va sobre las cards claras de "Tu progreso". */
+        @keyframes zm-skel-shine{ 0%{ background-position:-180% 0; } 100%{ background-position:180% 0; } }
+        .zm-skel{
+          background:linear-gradient(90deg, rgba(232,212,139,0.18) 25%, rgba(232,212,139,0.42) 50%, rgba(232,212,139,0.18) 75%);
+          background-size:200% 100%;
+          animation: zm-skel-shine 1.4s ease-in-out infinite;
+        }
+        .zm-skel--dark{
+          background:linear-gradient(90deg, rgba(14,28,51,0.06) 25%, rgba(14,28,51,0.13) 50%, rgba(14,28,51,0.06) 75%);
+          background-size:200% 100%;
+        }
+        @media (prefers-reduced-motion: reduce){
+          .zm-skel{ animation:none; background:rgba(232,212,139,0.26); }
+          .zm-skel--dark{ background:rgba(14,28,51,0.09); }
+        }
 
         /* ── Micro-interacciones de las piezas claras ── */
         .zm-stat{ transition: transform .2s ease, box-shadow .2s ease; }
@@ -1618,7 +1677,7 @@ function McTeam({ name, flag }: { name: string; flag: string }) {
 }
 // Stat de progreso: filo de color arriba + icono en chip teñido → cada métrica
 // tiene identidad propia (no cuatro cajas blancas iguales).
-function Stat({ k, v, tint = GOLD, icon }: { k: string; v: string; tint?: string; icon?: React.ReactNode }) {
+function Stat({ k, v, tint = GOLD, icon, loading = false }: { k: string; v: string; tint?: string; icon?: React.ReactNode; loading?: boolean }) {
   return (
     <div className="zm-stat" style={{ position: "relative", overflow: "hidden", textAlign: "center", padding: "13px 8px 11px", borderRadius: 14, background: "#fff", border: "1px solid rgba(14,28,51,0.05)", boxShadow: "0 2px 8px rgba(8,16,30,0.05)" }}>
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${tint}, ${tint}55)` }} />
@@ -1627,7 +1686,11 @@ function Stat({ k, v, tint = GOLD, icon }: { k: string; v: string; tint?: string
           {icon}
         </span>
       )}
-      <div style={{ fontSize: 20, fontWeight: 900, color: INK, letterSpacing: "-0.02em" }}>{v}</div>
+      {/* Mientras carga la gamificación: skeleton shimmer del alto del número
+          (20px) → la card no cambia de tamaño cuando llega el dato (sin "·"). */}
+      {loading
+        ? <span aria-hidden className="zm-skel zm-skel--dark" style={{ display: "block", width: 56, height: 20, borderRadius: 7, margin: "0 auto" }} />
+        : <div style={{ fontSize: 20, fontWeight: 900, color: INK, letterSpacing: "-0.02em" }}>{v}</div>}
       <div style={{ fontSize: 10.5, color: "#6a7791", fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", marginTop: 2 }}>{k}</div>
     </div>
   );

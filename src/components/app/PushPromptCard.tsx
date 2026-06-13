@@ -10,7 +10,7 @@
 // Reglas para no molestar:
 //  - Solo aparece si el navegador SOPORTA push y el permiso está en "default"
 //    (ni concedido ni bloqueado): si ya está activado o bloqueado, no pinta nada.
-//  - Descartable; si se cierra, no reaparece en 10 días (localStorage).
+//  - Descartable; si se cierra, no reaparece en 3 días (localStorage).
 //  - Al activar suscribe a "news" + "tournament-key-events" (noticias y los
 //    momentos clave del Mundial), que es lo que la gente quiere del torneo.
 
@@ -24,7 +24,7 @@ import {
 } from "@/lib/push-client";
 
 const DISMISS_KEY = "zm.app.pushcard.dismissedAt";
-const REASK_DAYS = 10;
+const REASK_DAYS = 3;
 const REWARD_COINS = 25; // gancho mostrado; el abono real (idempotente) lo decide el servidor
 
 type Status = "hidden" | "idle" | "loading" | "done" | "denied";

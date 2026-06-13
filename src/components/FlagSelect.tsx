@@ -233,7 +233,7 @@ export default function FlagSelect({
                     aria-selected={isSelected}
                     onMouseEnter={() => setActiveIdx(i)}
                     onClick={() => select(o.value)}
-                    className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${
+                    className={`flex items-center gap-3 px-3 py-3 min-h-[44px] cursor-pointer transition-colors ${
                       isSelected
                         ? 'bg-[#C9A84C]/15 text-[#C9A84C]'
                         : isActive

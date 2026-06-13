@@ -43,7 +43,7 @@ export default function SeleccionesIndex() {
           8 selecciones campeonas
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-[1.05]">
-          Selecciones Históricas
+          Selecciones campeonas del Mundial
         </h1>
         <p className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed">
           Las únicas 8 selecciones que han levantado la Copa del Mundo en 22 ediciones.

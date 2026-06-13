@@ -133,17 +133,20 @@ export default function AppBottomNav() {
               key={it.href}
               href={it.href}
               aria-current={active ? "page" : undefined}
+              className="app-bottom-nav-tab"
               style={{
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 3,
-                padding: "9px 0 8px",
+                minHeight: 48,
+                padding: "10px 0 9px",
                 textDecoration: "none",
                 color: active ? GOLD : DIM,
                 position: "relative",
-                transition: "color .2s",
+                transition: "color .2s, transform .12s ease, opacity .12s ease",
               }}
             >
               {/* Indicador dorado superior — barra fina del tab activo */}
@@ -162,7 +165,7 @@ export default function AppBottomNav() {
                 }}
               />
               {it.icon}
-              <span style={{ fontSize: 10.5, fontWeight: active ? 800 : 600, letterSpacing: 0.2 }}>
+              <span style={{ fontSize: 11.5, fontWeight: active ? 800 : 600, letterSpacing: 0.2 }}>
                 {it.label}
               </span>
             </Link>
@@ -170,6 +173,11 @@ export default function AppBottomNav() {
         })}
       </div>
       <style>{`
+        /* Estado de pulsación del tab: solo transform/opacity, sin reflujo. */
+        .app-bottom-nav-tab:active{ transform: scale(0.96); opacity: 0.85; }
+        @media (prefers-reduced-motion: reduce){
+          .app-bottom-nav-tab:active{ transform: none; }
+        }
         @media(max-width:768px){
           .app-bottom-nav{ display:block !important; }
           /* El juego de predicciones tiene su propio pie de acción fijo en

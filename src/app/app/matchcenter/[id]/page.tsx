@@ -13,6 +13,7 @@ import FollowMatchButton from "../FollowMatchButton";
 import MicroLive from "../MicroLive";
 import MicroHistory from "../MicroHistory";
 import MicroDuels from "../MicroDuels";
+import AffiliateBettingCTA from "../AffiliateBettingCTA";
 
 export const dynamic = "force-dynamic";
 
@@ -55,6 +56,10 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
       <MicroDuels matchId={matchId} />
       <MicroHistory matchId={matchId} />
       <MicroLive matchId={matchId} />
+      {/* CTA de apuestas (afiliado 1xBet). Server component con candado geo:
+          SOLO visitantes de países LATAM permitidos lo ven; España y país
+          desconocido → null (no se renderiza nada). */}
+      <AffiliateBettingCTA matchLabel={`${meta.home.name} vs ${meta.away.name}`} />
       {/* Colchón final de página: la bottom-nav fija (~64px) más los botones
           flotantes (comentarios/Coach, hasta ~130px) tapaban la última
           micro-predicción al llegar al fondo del scroll. Vive AQUÍ y no en el

@@ -32,7 +32,7 @@ const SAMPLE_STICKERS = [
 
 const COLLECTION_STATS = [
   { label: "Selecciones", value: "48", icon: ICON_DESCUBRE.selecciones },
-  { label: "Cromos únicos", value: "960+", icon: ICON_V3.stories },
+  { label: "Cromos únicos", value: "150", icon: ICON_V3.stories },
   { label: "Ediciones especiales", value: "104", icon: ICON_V3.rankings },
   { label: "Estadios", value: "16", icon: ICON_V3.matchCenter },
 ];

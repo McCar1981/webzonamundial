@@ -172,7 +172,7 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
     ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
-      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
+      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings#tablero", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
       { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible", accent: "#5b8def", accent2: "#8db1ff" },
       { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo", accent: "#36c98f", accent2: "#7ce0b3" },
@@ -912,7 +912,7 @@ export default function AppHubPage() {
     desc: "Responde y suma puntos extra para el ranking.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
     cta1: { label: "Responder trivia", href: "/trivia" },
-    cta2: { label: "Ver ranking", href: "/app/rankings" },
+    cta2: { label: "Ver ranking", href: "/app/rankings#tablero" },
   };
   // Orden de slides por prioridad de contexto (NO promos):
   //   live (si hay) → partido del día (si hay) → base → reto (si pendiente).
@@ -1585,7 +1585,7 @@ export default function AppHubPage() {
           <section data-reveal style={{ marginBottom: 26, borderRadius: 16, padding: "12px 14px", background: "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, gap: 12 }}>
               <h2 style={{ fontSize: 13.5, fontWeight: 800, color: TXT }}>Tu progreso</h2>
-              <Link href="/app/rankings" style={{ fontSize: 12, fontWeight: 800, color: GOLD2, textDecoration: "none" }}>Ver ranking →</Link>
+              <Link href="/app/rankings#tablero" style={{ fontSize: 12, fontWeight: 800, color: GOLD2, textDecoration: "none" }}>Ver ranking →</Link>
             </div>
             {/* Mini-métricas en una sola fila, separadas por filos verticales. */}
             <div style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
@@ -1700,7 +1700,7 @@ export default function AppHubPage() {
         <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Ranking global</h2>
-            <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
+            <Link href="/app/rankings#tablero" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {/* Con datos reales: top-5 por Fútcoins. Si aún no hay nadie, se

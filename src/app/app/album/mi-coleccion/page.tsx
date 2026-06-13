@@ -135,10 +135,12 @@ export default function MiColeccionPage() {
         setError(isES ? "Espera antes de abrir otro sobre" : "Wait before opening another pack");
       } else {
         setPackResult(data.cromos);
+        const nextAt = data.nextPackAt ? new Date(data.nextPackAt).getTime() : 0;
+        const secondsLeft = nextAt > 0 ? Math.max(0, Math.ceil((nextAt - Date.now()) / 1000)) : 14400;
         setPackStatus({
           canOpen: false,
           nextPackAt: data.nextPackAt ?? null,
-          secondsLeft: data.secondsLeft ?? 14400,
+          secondsLeft,
         });
         setTimeout(() => load(), 1500);
       }
@@ -240,6 +242,8 @@ export default function MiColeccionPage() {
               opening={opening}
               canOpen={packStatus.canOpen}
               secondsLeft={packStatus.secondsLeft}
+              cromos={CROMOS}
+              ownedIds={collection?.ownedIds ?? []}
               t={t}
               isES={isES}
             />

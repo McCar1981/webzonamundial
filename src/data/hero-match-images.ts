@@ -48,6 +48,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/qatar-suiza-wide.webp",
     mobile: "/images/hero/qatar-suiza-mobile.webp",
   },
+  // Brasil vs Marruecos (13 jun, Grupo C).
+  "brasil-marruecos": {
+    wide: "/images/hero/brasil-marruecos-wide.webp",
+    mobile: "/images/hero/brasil-marruecos-mobile.webp",
+  },
+  // Haití vs Escocia (13 jun, Grupo C).
+  "haiti-escocia": {
+    wide: "/images/hero/haiti-escocia-wide.webp",
+    mobile: "/images/hero/haiti-escocia-mobile.webp",
+  },
+  // Australia vs Turquía (13 jun, Grupo D).
+  "australia-turquia": {
+    wide: "/images/hero/australia-turquia-wide.webp",
+    mobile: "/images/hero/australia-turquia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

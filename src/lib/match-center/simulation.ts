@@ -319,6 +319,7 @@ function buildKeyframes(events: MatchEvent[], rng: () => number): StatKeyframe[]
       passes: [passesH, passesA],
       fouls: [count("yellow", "home") + Math.floor(progress * 6), count("yellow", "away") + Math.floor(progress * 6)],
       corners: [count("corner", "home"), count("corner", "away")],
+      offsides: [count("offside", "home"), count("offside", "away")],
       saves: [count("save", "home"), count("save", "away")],
       yellow: [count("yellow", "home"), count("yellow", "away")],
       red: [count("red", "home"), count("red", "away")],

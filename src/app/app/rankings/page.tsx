@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
 import { getCountryName } from "@/lib/countries";
 import { getCreadorBySlug, getCreadoresActivos } from "@/data/creadores";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -101,6 +102,19 @@ const HOW_TO_CLIMB = [
 
 export default function RankingsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // ¿Hay sesión? null = aún no se sabe. Quien entra desde el lobby ya está
+  // logueado → ve el TABLERO directo, sin la portada de captación. El visitante
+  // sin sesión sí ve el hero + CTA de registro (bifurcación por sesión, no
+  // cloaking: el ranking se muestra a ambos, solo cambia el envoltorio).
+  const [authed, setAuthed] = useState<boolean | null>(null);
+  useEffect(() => {
+    const sb = createSupabaseBrowserClient();
+    let on = true;
+    sb.auth.getUser().then(({ data }) => { if (on) setAuthed(!!data.user); }).catch(() => { if (on) setAuthed(false); });
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => { if (on) setAuthed(!!session?.user); });
+    return () => { on = false; sub.subscription.unsubscribe(); };
+  }, []);
 
   // Vista activa + selección dentro de cada vista.
   const [view, setView] = useState<View>("global");
@@ -263,8 +277,8 @@ export default function RankingsPage() {
 
   return (
     <div ref={containerRef} style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}>
-      {/* ═══ Hero ═══ */}
-      <section style={{ padding: "20px 20px 56px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      {/* ═══ Hero compacto: sirve de cabecera al tablero, que viene justo debajo ═══ */}
+      <section style={{ padding: "18px 20px 28px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 60%)" }} />
         <div style={{ maxWidth: 800, margin: "0 auto", position: "relative" }}>
           <span data-hero-badge style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", display: "inline-block" }}>Centro de Rankings</span>
@@ -290,35 +304,8 @@ export default function RankingsPage() {
         </div>
       </section>
 
-      {/* ═══ Tipos de ranking (todas las tarjetas llevan a algo real) ═══ */}
-      <section style={{ padding: "56px 20px", background: BG3 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <span style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>Competición</span>
-            <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800, marginTop: 14 }}>4 formas de <span style={{ color: GOLD }}>competir</span></h2>
-          </div>
-          <div data-types-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 20 }}>
-            {RANK_TYPES.map((t, i) => {
-              const inner = (
-                <>
-                  <SvgIcon name={t.icon} size={44} style={{ marginBottom: 14 }} />
-                  <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 8 }}>{t.title}</h3>
-                  <p style={{ fontSize: 14, color: DIM, lineHeight: 1.6 }}>{t.desc}</p>
-                </>
-              );
-              const cardStyle: React.CSSProperties = { padding: 26, borderRadius: 20, background: BG2, border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer", textAlign: "left", color: "#fff", display: "block", width: "100%" };
-              return t.href ? (
-                <Link key={i} data-type-card href={t.href} className="zm-rank-card" style={{ ...cardStyle, textDecoration: "none" }}>{inner}</Link>
-              ) : (
-                <button key={i} data-type-card onClick={() => goTo(t.view!)} className="zm-rank-card" style={{ ...cardStyle, font: "inherit" }}>{inner}</button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ═══ Tablero (cambia según la vista) ═══ */}
-      <section id="tablero" style={{ padding: "56px 20px 64px", background: BG }}>
+      <section id="tablero" style={{ padding: "8px 20px 64px", background: BG }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           {/* Conmutador de vista */}
           <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 26, flexWrap: "wrap" }}>
@@ -437,6 +424,33 @@ export default function RankingsPage() {
         </div>
       </section>
 
+      {/* ═══ Explora los rankings (tarjetas que llevan a cada vista) ═══ */}
+      <section style={{ padding: "56px 20px", background: BG3 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>Competición</span>
+            <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800, marginTop: 14 }}>4 formas de <span style={{ color: GOLD }}>competir</span></h2>
+          </div>
+          <div data-types-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 20 }}>
+            {RANK_TYPES.map((t, i) => {
+              const inner = (
+                <>
+                  <SvgIcon name={t.icon} size={44} style={{ marginBottom: 14 }} />
+                  <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 8 }}>{t.title}</h3>
+                  <p style={{ fontSize: 14, color: DIM, lineHeight: 1.6 }}>{t.desc}</p>
+                </>
+              );
+              const cardStyle: React.CSSProperties = { padding: 26, borderRadius: 20, background: BG2, border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer", textAlign: "left", color: "#fff", display: "block", width: "100%" };
+              return t.href ? (
+                <Link key={i} data-type-card href={t.href} className="zm-rank-card" style={{ ...cardStyle, textDecoration: "none" }}>{inner}</Link>
+              ) : (
+                <button key={i} data-type-card onClick={() => goTo(t.view!)} className="zm-rank-card" style={{ ...cardStyle, font: "inherit" }}>{inner}</button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ Cómo subir en el ranking (real: enlaza a los módulos que puntúan) ═══ */}
       <section style={{ padding: "56px 20px", background: BG3 }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
@@ -456,25 +470,32 @@ export default function RankingsPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section data-cta-section style={{ padding: "84px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 60%)" }} />
-        <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <SvgIcon name="ranking" size={60} style={{ marginBottom: 22, display: "inline-block" }} />
-          <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 14 }}>¿Serás el <span style={{ color: GOLD }}>número 1</span>?</h2>
-          <p data-cta-content style={{ color: MID, marginBottom: 34, fontSize: 18, maxWidth: 500, margin: "0 auto 34px", lineHeight: 1.6 }}>
-            Cada acierto suma. Cada racha multiplica. Empieza a escalar posiciones y pon a tu país en lo más alto.
-          </p>
-          <Link href="/registro" data-cta-content className="zm-rank-card" style={{
-            padding: "17px 42px", borderRadius: 14,
-            background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-            color: BG, fontWeight: 800, fontSize: 18, textDecoration: "none", display: "inline-block",
-            boxShadow: "0 8px 32px rgba(201,168,76,0.35)",
-          }}>Registrarme gratis</Link>
-        </div>
-      </section>
+      {/* ═══ CTA + FAQ de captación: SOLO visitantes sin sesión ═══
+          Quien ya tiene sesión (entra desde el lobby) no necesita "Registrarme
+          gratis" ni la comparativa Free/Founders: para él/ella la página es el
+          tablero. Esto evita la sensación de "portada de marketing". */}
+      {authed !== true && (
+        <>
+          <section data-cta-section style={{ padding: "84px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 60%)" }} />
+            <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
+              <SvgIcon name="ranking" size={60} style={{ marginBottom: 22, display: "inline-block" }} />
+              <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 14 }}>¿Serás el <span style={{ color: GOLD }}>número 1</span>?</h2>
+              <p data-cta-content style={{ color: MID, marginBottom: 34, fontSize: 18, maxWidth: 500, margin: "0 auto 34px", lineHeight: 1.6 }}>
+                Cada acierto suma. Cada racha multiplica. Empieza a escalar posiciones y pon a tu país en lo más alto.
+              </p>
+              <Link href="/registro" data-cta-content className="zm-rank-card" style={{
+                padding: "17px 42px", borderRadius: 14,
+                background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
+                color: BG, fontWeight: 800, fontSize: 18, textDecoration: "none", display: "inline-block",
+                boxShadow: "0 8px 32px rgba(201,168,76,0.35)",
+              }}>Registrarme gratis</Link>
+            </div>
+          </section>
 
-      <ModuleLandingExtras slug="rankings" />
+          <ModuleLandingExtras slug="rankings" />
+        </>
+      )}
 
       <style>{`
         .zm-rank-card { transition: transform .25s ease, box-shadow .25s ease; }

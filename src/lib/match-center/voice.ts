@@ -32,6 +32,17 @@ const MALE_VOICE_RE =
 const FEMALE_VOICE_RE =
   /\b(m[oó]nica|paulina|helena|laura|luc[ií]a|elvira|sabina|marisol|isabela|camila|francisca|soledad|ximena|female|mujer)\b/i;
 
+// Normaliza el texto SOLO para leerlo en voz (no afecta a lo que se ve). Los
+// motores TTS deletrean palabras alargadas ("GOOOOOL" -> "G O O O O L") y leen
+// las palabras todo-mayúsculas como siglas. Colapsamos las letras repetidas
+// (3+ -> 2, así "GOOOOOL" queda "GOOL" = grito largo pronunciable) y pasamos a
+// minúscula las mayúsculas para que se lean como palabra y no deletreadas.
+function forSpeech(text: string): string {
+  return text
+    .replace(/(\p{L})\1{2,}/gu, "$1$1")
+    .replace(/\b\p{Lu}{2,}\b/gu, (w) => w.toLowerCase());
+}
+
 class WebSpeechProvider implements VoiceProvider {
   readonly id = "web";
   private voice: SpeechSynthesisVoice | null = null;
@@ -66,7 +77,7 @@ class WebSpeechProvider implements VoiceProvider {
     if (opts?.priority) synth.cancel();
     // Evita backlog: si hay mucho en cola, prioriza lo nuevo.
     if (!opts?.priority && synth.speaking && synth.pending) synth.cancel();
-    const u = new SpeechSynthesisUtterance(text);
+    const u = new SpeechSynthesisUtterance(forSpeech(text));
     if (this.voice) u.voice = this.voice;
     u.lang = this.voice?.lang || "es-ES";
     // Tono de narrador deportivo: voz algo más grave y ritmo vivo.

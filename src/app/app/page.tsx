@@ -985,7 +985,9 @@ export default function AppHubPage() {
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:264px}@media(max-width:560px){.zm-hero{height:320px}.zm-open-cta{padding:9px 16px!important;font-size:13.5px!important}}@media(min-width:561px){.zm-hero-art--text{object-position:center 62%!important;opacity:.72!important;-webkit-mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important;mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
+      {/* paddingBottom = clearance de la barra inferior fija + safe-area del
+          móvil (home indicator): así ninguna card/CTA queda tapada por el nav. */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto", padding: "14px 14px calc(120px + env(safe-area-inset-bottom, 0px))" }}>
 
         {/* ═══ 1. HEADER COMPACTO (sticky, cristal) ═══
             Se queda pegado arriba al hacer scroll: la identidad (saldo, nivel,
@@ -1257,69 +1259,6 @@ export default function AppHubPage() {
           );
         })()}
 
-        {/* ═══ 5. DESDE TU ÚLTIMA VISITA — el "payoff" del retorno. Empieza con la
-            SÍNTESIS EMOCIONAL: puntos ganados (suma de points), aciertos (suma
-            correct/total) y delta de ranking (myRank.rank vs localStorage
-            "zm:lastRank", solo si hay valor previo y delta≠0). Debajo, máx 3
-            resultados. Datos 100% reales; nada inventado. ═══ */}
-        {authed === true && recentResults && recentResults.length > 0 && (() => {
-          const totalPts = recentResults.reduce((s, r) => s + r.points, 0);
-          const totalCorrect = recentResults.reduce((s, r) => s + r.correct, 0);
-          const totalAns = recentResults.reduce((s, r) => s + r.total, 0);
-          // Delta de ranking honesto: comparamos la posición actual con la guardada
-          // en la visita anterior (rank MENOR = subiste). Solo si hay previo y cambió.
-          const delta = rankDelta;
-          return (
-          <section data-reveal style={{ marginBottom: 16, borderRadius: 16, padding: "12px 14px 10px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
-            {/* Cabecera compacta: título + chips de síntesis emocional en una línea. */}
-            <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 9 }}>
-              <h2 style={{ fontSize: 13.5, fontWeight: 800, color: INK, display: "inline-flex", alignItems: "center", gap: 6, marginRight: 2 }}>
-                <span aria-hidden style={{ fontSize: 14 }}>📊</span>
-                Desde tu última visita
-              </h2>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 12, fontWeight: 900, color: totalPts >= 0 ? "#0a7d52" : "#dc2626", background: totalPts >= 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "#fdeceb", border: `1px solid ${totalPts >= 0 ? "#aee9cd" : "#f4c7c4"}` }}>
-                {totalPts >= 0 ? "+" : ""}{totalPts} pts
-              </span>
-              {totalAns > 0 && (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#4d5a70", background: "#fff", border: "1px solid rgba(14,28,51,0.1)" }}>
-                  {totalCorrect}/{totalAns} aciertos
-                </span>
-              )}
-              {delta !== 0 && (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: delta > 0 ? "#0a7d52" : "#b45309", background: delta > 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: `1px solid ${delta > 0 ? "#aee9cd" : "#f0dca0"}` }}>
-                  {delta > 0 ? `▲ ${delta}` : `▼ ${Math.abs(delta)}`}
-                </span>
-              )}
-            </div>
-            {/* MÁX 2 resultados, filas bajas: nombre + aciertos a la izq, puntos a la dcha. */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {recentResults.slice(0, 2).map((r) => {
-                const m = MATCHES.find((x) => String(x.i) === r.match_id);
-                const win = r.points > 0 && r.correct > 0;
-                return (
-                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 9, padding: "7px 10px", borderRadius: 10, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.24)" : "rgba(14,28,51,0.08)"}` }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                        {m ? `${m.h} vs ${m.a}` : "Tu predicción"}
-                      </div>
-                      <div style={{ fontSize: 11, color: "#5b6b86", marginTop: 1 }}>{r.correct}/{r.total} aciertos</div>
-                    </div>
-                    <span style={{ flexShrink: 0, fontSize: 13.5, fontWeight: 900, textAlign: "right", color: r.points >= 0 ? "#16a34a" : "#dc2626" }}>
-                      {r.points >= 0 ? "+" : ""}{r.points} pts
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-            {/* CTA secundario discreto al resumen completo. */}
-            <Link href="/app/predicciones" style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 9, fontSize: 12, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>
-              Ver resumen completo
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </Link>
-          </section>
-          );
-        })()}
-
         {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══
             El bloque más fuerte de la pantalla: navy + textura de estadio, banderas
             grandes, VS potente, borde/glow por estado (dorado=próximo, coral=en vivo,
@@ -1412,6 +1351,69 @@ export default function AppHubPage() {
           </Link>
         )}
 
+        {/* ═══ 5. DESDE TU ÚLTIMA VISITA — el "payoff" del retorno. Empieza con la
+            SÍNTESIS EMOCIONAL: puntos ganados (suma de points), aciertos (suma
+            correct/total) y delta de ranking (myRank.rank vs localStorage
+            "zm:lastRank", solo si hay valor previo y delta≠0). Debajo, máx 3
+            resultados. Datos 100% reales; nada inventado. ═══ */}
+        {authed === true && recentResults && recentResults.length > 0 && (() => {
+          const totalPts = recentResults.reduce((s, r) => s + r.points, 0);
+          const totalCorrect = recentResults.reduce((s, r) => s + r.correct, 0);
+          const totalAns = recentResults.reduce((s, r) => s + r.total, 0);
+          // Delta de ranking honesto: comparamos la posición actual con la guardada
+          // en la visita anterior (rank MENOR = subiste). Solo si hay previo y cambió.
+          const delta = rankDelta;
+          return (
+          <section data-reveal style={{ marginBottom: 16, borderRadius: 16, padding: "12px 14px 10px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+            {/* Cabecera compacta: título + chips de síntesis emocional en una línea. */}
+            <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 9 }}>
+              <h2 style={{ fontSize: 13.5, fontWeight: 800, color: INK, display: "inline-flex", alignItems: "center", gap: 6, marginRight: 2 }}>
+                <span aria-hidden style={{ fontSize: 14 }}>📊</span>
+                Desde tu última visita
+              </h2>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 12, fontWeight: 900, color: totalPts >= 0 ? "#0a7d52" : "#dc2626", background: totalPts >= 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "#fdeceb", border: `1px solid ${totalPts >= 0 ? "#aee9cd" : "#f4c7c4"}` }}>
+                {totalPts >= 0 ? "+" : ""}{totalPts} pts
+              </span>
+              {totalAns > 0 && (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#4d5a70", background: "#fff", border: "1px solid rgba(14,28,51,0.1)" }}>
+                  {totalCorrect}/{totalAns} aciertos
+                </span>
+              )}
+              {delta !== 0 && (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: delta > 0 ? "#0a7d52" : "#b45309", background: delta > 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: `1px solid ${delta > 0 ? "#aee9cd" : "#f0dca0"}` }}>
+                  {delta > 0 ? `▲ ${delta}` : `▼ ${Math.abs(delta)}`}
+                </span>
+              )}
+            </div>
+            {/* MÁX 2 resultados, filas bajas: nombre + aciertos a la izq, puntos a la dcha. */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {recentResults.slice(0, 2).map((r) => {
+                const m = MATCHES.find((x) => String(x.i) === r.match_id);
+                const win = r.points > 0 && r.correct > 0;
+                return (
+                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 9, padding: "7px 10px", borderRadius: 10, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.24)" : "rgba(14,28,51,0.08)"}` }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {m ? `${m.h} vs ${m.a}` : "Tu predicción"}
+                      </div>
+                      <div style={{ fontSize: 11, color: "#5b6b86", marginTop: 1 }}>{r.correct}/{r.total} aciertos</div>
+                    </div>
+                    <span style={{ flexShrink: 0, fontSize: 13.5, fontWeight: 900, textAlign: "right", color: r.points >= 0 ? "#16a34a" : "#dc2626" }}>
+                      {r.points >= 0 ? "+" : ""}{r.points} pts
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+            {/* CTA secundario discreto al resumen completo. */}
+            <Link href="/app/predicciones" style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 9, fontSize: 12, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>
+              Ver resumen completo
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
+          </section>
+          );
+        })()}
+
         {/* ═══ 6. MISIONES DE HOY — POR ENCIMA de los modos ═══
             El loop diario en checklist: check-in (recompensa server-side ya
             existente), predicción del partido del día y trivia. Estados REALES
@@ -1461,7 +1463,22 @@ export default function AppHubPage() {
             })()}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {authed ? (
+            {authed ? (missionsDone === missionsTotal && missionsTotal > 0 ? (
+              /* 3/3: estado compacto de CELEBRACIÓN (no 3 filas tachadas). */
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 8, padding: "10px 6px 6px" }}>
+                <span aria-hidden style={{ width: 46, height: 46, borderRadius: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg,#16a34a,#5fe3a8)", boxShadow: "0 6px 18px rgba(22,163,74,0.4)", fontSize: 24 }}>✅</span>
+                <div style={{ fontSize: 15.5, fontWeight: 900, color: TXT }}>¡Misiones completadas!</div>
+                <div style={{ fontSize: 12.5, color: TXT_MUT, maxWidth: 300, lineHeight: 1.45 }}>Completaste todo por hoy. Vuelve mañana para mantener tu racha.</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 14, marginTop: 4 }}>
+                  {["Recompensa", "Predicción", "Trivia"].map((t) => (
+                    <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11.5, fontWeight: 700, color: TXT_MUT }}>
+                      <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(22,163,74,0.18)", border: "1px solid rgba(95,227,168,0.5)", color: "#5fe3a8", fontSize: 10, fontWeight: 900 }}>✓</span>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : (
               <>
                 {gam?.daily && (() => {
                   const claimed = claimedToday || !gam.daily.can_claim;
@@ -1497,7 +1514,7 @@ export default function AppHubPage() {
                   href="/trivia"
                 />
               </>
-            ) : (
+            )) : (
               <>
                 <MissionRow
                   dark
@@ -1582,8 +1599,8 @@ export default function AppHubPage() {
             4 mini-métricas en fila (Nivel · Fútcoins/Ranking · XP · Racha) con
             etiqueta pequeña + microcopy motivacional honesto. Sin cajas blancas. */}
         {authed ? (
-          <section data-reveal style={{ marginBottom: 26, borderRadius: 16, padding: "12px 14px", background: "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10, gap: 12 }}>
+          <section data-reveal style={{ marginBottom: 22, borderRadius: 16, padding: "9px 14px", background: "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 7, gap: 12 }}>
               <h2 style={{ fontSize: 13.5, fontWeight: 800, color: TXT }}>Tu progreso</h2>
               <Link href="/app/rankings#tablero" style={{ fontSize: 12, fontWeight: 800, color: GOLD2, textDecoration: "none" }}>Ver ranking →</Link>
             </div>
@@ -1602,7 +1619,7 @@ export default function AppHubPage() {
               <StripStat k="Racha" v={gam ? String(gam.streak.current) : ""} loading={!gam} tint="#ff6b5a" />
             </div>
             {/* Microcopy motivacional honesto (sin números inventados). */}
-            <p style={{ fontSize: 11.5, color: TXT_MUT, fontWeight: 600, marginTop: 10, textAlign: "center" }}>
+            <p style={{ fontSize: 11.5, color: TXT_MUT, fontWeight: 600, marginTop: 7, textAlign: "center" }}>
               {gam?.streak?.active && (gam?.streak?.current ?? 0) > 0
                 ? "Vuelve mañana para mantener la racha."
                 : "Completa misiones para subir más rápido."}

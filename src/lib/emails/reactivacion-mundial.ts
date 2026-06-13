@@ -47,15 +47,15 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
         <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#FFFFFF;border-radius:16px;overflow:hidden;border:1px solid #E8EAED;">
           <tr>
             <td align="center" style="padding:28px 24px 18px 24px;background:#FFFFFF;border-bottom:1px solid #EEF0F3;">
-              <a href="https://www.zonamundial.app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=logo">
-                <img src="https://www.zonamundial.app/icons/icon-512.png" width="110" height="110" alt="ZonaMundial" style="display:block;margin:0 auto;width:110px;height:110px;border-radius:18px;">
+              <a href="https://zonamundial.app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=logo">
+                <img src="https://zonamundial.app/icons/icon-512.png" width="110" height="110" alt="ZonaMundial" style="display:block;margin:0 auto;width:110px;height:110px;border-radius:18px;">
               </a>
               <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:3px;color:#94A3B8;margin-top:12px;text-transform:uppercase;">Mundial 2026 · En vivo</div>
             </td>
           </tr>
           <tr>
             <td style="padding:0;font-size:0;line-height:0;background:#FFFFFF;">
-              <img src="https://www.zonamundial.app/img/heroes/ball-stadium-pitch.jpg" width="600" alt="El balón espera en el estadio — Mundial 2026" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
+              <img src="https://zonamundial.app/img/heroes/ball-stadium-pitch.jpg" width="600" alt="El balón espera en el estadio — Mundial 2026" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
             </td>
           </tr>
           <tr>
@@ -103,7 +103,7 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
                         <div style="font-size:26px;line-height:1;">🌍</div>
                         <p style="margin:12px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;color:#111827;">Draft Mundial</p>
                         <p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:21px;color:#4B5563;">Monta tu once ideal del torneo, compite y escala en el ranking. Una partida y ya no paras.</p>
-                        <a href="https://www.zonamundial.app/app/draft-mundial?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=card_draft" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:800;padding:11px 18px;border-radius:8px;">▶ Jugar el Draft</a>
+                        <a href="https://zonamundial.app/app/draft-mundial?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=card_draft" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:800;padding:11px 18px;border-radius:8px;">▶ Jugar el Draft</a>
                       </td></tr>
                     </table>
                   </td>
@@ -114,7 +114,7 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
                         <div style="font-size:26px;line-height:1;">🏆</div>
                         <p style="margin:12px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;color:#111827;">Modo Carrera</p>
                         <p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:21px;color:#4B5563;">Lleva a tu selección desde la fase de grupos hasta levantar la Copa. Tú decides cada jugada.</p>
-                        <a href="https://www.zonamundial.app/app/modo-carrera?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=card_carrera" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:800;padding:11px 18px;border-radius:8px;">▶ Entrar a Carrera</a>
+                        <a href="https://zonamundial.app/app/modo-carrera?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=card_carrera" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:800;padding:11px 18px;border-radius:8px;">▶ Entrar a Carrera</a>
                       </td></tr>
                     </table>
                   </td>
@@ -133,7 +133,7 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
                       <br><br>
                       Y por activarlas hoy, <strong style="color:#111827;">te regalamos 25 Fútcoins</strong> para tu próxima jugada.
                     </p>
-                    <a href="https://www.zonamundial.app/cuenta/notificaciones?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=cta_alertas" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:800;padding:13px 26px;border-radius:8px;">Activar alertas + 25 Fútcoins</a>
+                    <a href="https://zonamundial.app/cuenta/notificaciones?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=cta_alertas" style="display:inline-block;background:#C9A84C;color:#1A1208;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:800;padding:13px 26px;border-radius:8px;">Activar alertas + 25 Fútcoins</a>
                     <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#8C7437;">📱 ¿iPhone? Añade ZonaMundial a tu pantalla de inicio (Compartir → "Añadir a inicio") y podrás recibir las alertas de gol.</p>
                   </td>
                 </tr>
@@ -142,7 +142,7 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
           </tr>
           <tr>
             <td align="center" style="padding:30px 40px 8px 40px;">
-              <a href="https://www.zonamundial.app/app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=cta_principal" style="display:inline-block;background:#0F172A;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;padding:15px 40px;border-radius:10px;">Volver y jugar ahora ⚽</a>
+              <a href="https://zonamundial.app/app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=cta_principal" style="display:inline-block;background:#0F172A;color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;padding:15px 40px;border-radius:10px;">Volver y jugar ahora ⚽</a>
             </td>
           </tr>
           <tr>
@@ -160,7 +160,7 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
                 Recibes este correo porque te registraste en ZonaMundial. ¿No quieres recibir más? <a href="{{unsubscribe_url}}" style="color:#6B7280;text-decoration:underline;">Date de baja aquí</a> o responde <strong>BAJA</strong> a este correo.
               </p>
               <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#9CA3AF;">
-                ZonaMundial · <a href="mailto:gol@zonamundial.app" style="color:#6B7280;text-decoration:underline;">gol@zonamundial.app</a> · <a href="https://www.zonamundial.app" style="color:#6B7280;text-decoration:underline;">zonamundial.app</a>
+                ZonaMundial · <a href="mailto:gol@zonamundial.app" style="color:#6B7280;text-decoration:underline;">gol@zonamundial.app</a> · <a href="https://zonamundial.app" style="color:#6B7280;text-decoration:underline;">zonamundial.app</a>
               </p>
             </td>
           </tr>

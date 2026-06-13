@@ -104,8 +104,8 @@ export default function IACoachWidget() {
             aria-label="Abrir IA Coach"
             title="IA Coach"
             style={{
-              width: 46,
-              height: 46,
+              width: 56,
+              height: 56,
               borderRadius: "50%",
               border: "none",
               cursor: "pointer",
@@ -119,11 +119,11 @@ export default function IACoachWidget() {
               flexShrink: 0,
             }}
           >
-            <IconRobot size={22} />
+            <IconRobot size={26} />
           </button>
           <style>{`
             @media(max-width:768px){
-              .zm-coach-launcher--inapp{ bottom: calc(96px + env(safe-area-inset-bottom)) !important; }
+              .zm-coach-launcher--inapp{ bottom: calc(108px + env(safe-area-inset-bottom)) !important; }
             }
           `}</style>
         </div>

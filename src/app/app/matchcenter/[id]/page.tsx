@@ -13,7 +13,7 @@ import FollowMatchButton from "../FollowMatchButton";
 import MicroLive from "../MicroLive";
 import MicroHistory from "../MicroHistory";
 import MicroDuels from "../MicroDuels";
-import AffiliateBettingCTA from "../AffiliateBettingCTA";
+import AffiliateBettingCTA from "@/components/affiliate/AffiliateBettingCTA";
 
 export const dynamic = "force-dynamic";
 

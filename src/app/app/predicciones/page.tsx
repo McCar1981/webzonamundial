@@ -7,6 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
+import AffiliateBettingCTA from "@/components/affiliate/AffiliateBettingCTA";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -377,6 +378,7 @@ export default function PrediccionesPage() {
         </div>
       </section>
 
+      <AffiliateBettingCTA />
       <ModuleLandingExtras slug="predicciones" />
     </div>
   );

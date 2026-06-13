@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
+import AffiliateBettingCTA from "@/components/affiliate/AffiliateBettingCTA";
 import { MATCHES } from "@/data/matches";
 import { matchSlug } from "@/lib/match-center/slug";
 import MatchTimeLabel from "./MatchTimeLabel";
@@ -285,6 +286,7 @@ export default function MatchCenterPage() {
         </div>
       </section>
 
+      <AffiliateBettingCTA />
       <ModuleLandingExtras slug="matchcenter" />
     </div>
   );

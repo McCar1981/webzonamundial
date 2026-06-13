@@ -1,24 +1,45 @@
-// src/app/app/matchcenter/AffiliateBettingCTA.tsx
-//
-// CTA de apuestas (afiliado 1xBet) para el Match Center. SERVER COMPONENT: se
-// renderiza SOLO si el visitante está físicamente en un país LATAM permitido
-// (ver lib/affiliate/geo.ts). Para España y país desconocido devuelve null — no
-// se muestra NADA (requisito legal: prohibido anunciar apuestas en ES).
+"use client";
 
-import { visitorCanSeeBetting, BET_AFFILIATE_URL } from "@/lib/affiliate/geo";
+// CTA de apuestas (afiliado 1xBet). Pregunta a /api/affiliate/geo si el
+// visitante puede verlo (solo paises LATAM; NUNCA Espana — ilegal). FAIL-CLOSED:
+// empieza OCULTO y solo se muestra si la API confirma allowed:true. Es un client
+// component, asi que sirve igual en paginas de cliente y de servidor.
+
+import { useEffect, useState } from "react";
 
 const GOLD = "#C9A84C";
 
+interface GeoResp {
+  allowed: boolean;
+  url: string | null;
+}
+
 export default function AffiliateBettingCTA({ matchLabel }: { matchLabel?: string }) {
-  // FAIL-CLOSED: si no es un país LATAM permitido, no se muestra nada.
-  if (!visitorCanSeeBetting()) return null;
+  const [data, setData] = useState<GeoResp | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/affiliate/geo")
+      .then((r) => (r.ok ? (r.json() as Promise<GeoResp>) : { allowed: false, url: null }))
+      .then((d) => {
+        if (alive) setData(d);
+      })
+      .catch(() => {
+        /* fail-closed: ante cualquier error, queda oculto */
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  if (!data?.allowed || !data.url) return null;
 
   const title = matchLabel
     ? `¿Tan seguro de ${matchLabel}?`
     : "¿Tan seguro de tu pronóstico?";
 
   return (
-    <div style={{ maxWidth: 520, margin: "8px auto 0", padding: "0 16px" }}>
+    <div style={{ maxWidth: 520, margin: "16px auto", padding: "0 16px" }}>
       <div
         style={{
           background: "linear-gradient(135deg,#0F1D32,#0B1825)",
@@ -46,7 +67,7 @@ export default function AffiliateBettingCTA({ matchLabel }: { matchLabel?: strin
           Llévalo a 1xBet y apuesta este partido.
         </p>
         <a
-          href={BET_AFFILIATE_URL}
+          href={data.url}
           target="_blank"
           rel="nofollow sponsored noopener"
           style={{

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PrediccionesGame from "./PrediccionesGame";
+import AffiliateBettingCTA from "@/components/affiliate/AffiliateBettingCTA";
 
 export const metadata: Metadata = {
   title: "Predicciones · Juega los 8 tipos | ZonaMundial",
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function PrediccionesJugarPage() {
-  return <PrediccionesGame />;
+  return (
+    <>
+      <PrediccionesGame />
+      <AffiliateBettingCTA />
+    </>
+  );
 }

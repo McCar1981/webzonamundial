@@ -155,6 +155,19 @@ export async function GET(request: NextRequest) {
   const { emails: all, error } = await fetchAllAuthEmails();
   if (error) return NextResponse.json({ error }, { status: 500 });
 
+  // Acción: descargar la lista COMPLETA de emails reales (auth.users), uno por
+  // línea, como archivo. Sirve para cruzarla con los ya enviados (export de
+  // Resend) y saber EXACTAMENTE cuáles faltan, sin duplicar.
+  if (sp.get("dump") === "SI") {
+    return new NextResponse(all.join("\n"), {
+      status: 200,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Disposition": "attachment; filename=zonamundial-usuarios-reales.txt",
+      },
+    });
+  }
+
   const sentArr = (await kv.smembers(SENT_KEY)) as string[];
   const sentSet = new Set(sentArr ?? []);
 

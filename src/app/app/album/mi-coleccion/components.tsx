@@ -329,6 +329,8 @@ export function EmptyAlbumView({
   opening,
   canOpen,
   secondsLeft,
+  cromos,
+  ownedIds,
   t,
   isES,
 }: {
@@ -336,6 +338,8 @@ export function EmptyAlbumView({
   opening: boolean;
   canOpen: boolean;
   secondsLeft: number;
+  cromos: Cromo[];
+  ownedIds: number[];
   t: Translations;
   isES: boolean;
 }) {
@@ -374,6 +378,11 @@ export function EmptyAlbumView({
           )}
         </button>
         <p className={styles.packHint}>{t.openHint}</p>
+      </div>
+
+      <div style={{ marginTop: 60 }}>
+        <h3 className={styles.sectionTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h3>
+        <CromoGrid cromos={cromos} ownedIds={ownedIds} emptyMessage={isES ? "No hay cromos para mostrar" : "No stickers to show"} />
       </div>
     </div>
   );

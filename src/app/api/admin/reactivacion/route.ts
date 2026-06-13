@@ -1,26 +1,28 @@
 // src/app/api/admin/reactivacion/route.ts
 //
-// GET /api/admin/reactivacion               → DRY-RUN: cuenta los usuarios REALES
-//                                              (auth.users de Supabase) y NO envía.
-// GET /api/admin/reactivacion?confirm=ENVIAR → ENVÍO REAL del email de reactivación.
+// Envío de la campaña de reactivación a los usuarios REALES (Supabase auth.users),
+// en TANDAS y de forma IDEMPOTENTE (nunca envía dos veces al mismo email).
 //
-// FUENTE DE DESTINATARIOS: auth.users de Supabase (los usuarios que de verdad
-// iniciaron sesión, ~2.164). NO el KV de pre-registros (~559) ni el seed de demo
-// del CSV (~8.642 ficticios). Se lee con SUPABASE_SERVICE_ROLE_KEY contra el
-// admin API de Supabase, mismo patrón que src/app/api/auth/check-email/route.ts.
+// Acciones (GET, siempre con cookie admin zm_admin):
+//   (sin params)                     → DRY-RUN: cuántos reales, cuántos ya enviados,
+//                                       cuántos pendientes (NO envía).
+//   ?confirm=ENVIAR[&limit=N]        → envía la siguiente tanda de PENDIENTES
+//                                       (por defecto 400). Repetir hasta pendientes=0.
+//   ?markSentFirst=N                 → marca los PRIMEROS N reales como "ya enviados"
+//                                       SIN enviar (para saltar lo que ya salió en el
+//                                       intento que se cortó por timeout). NO envía.
+//   ?reset=SI                        → vacía el registro de enviados (empezar de cero).
 //
-// SEGURIDAD:
-//   - Cookie admin (zm_admin), igual que el resto de /admin.
-//   - DRY-RUN por defecto: hace falta ?confirm=ENVIAR explícito para enviar, así
-//     un prefetch/apertura accidental NUNCA dispara el envío masivo.
-//   - Filtra direcciones de rol (noreply@, postmaster@, …) y emails inválidos.
+// Idempotencia: KV Set `reactivacion:sent` con los emails ya enviados. Cada envío
+// con éxito hace SADD inmediato → si la función se corta, lo ya enviado queda
+// registrado y la siguiente tanda NO lo repite.
 //
-// BAJA (RGPD): cada email lleva enlace de baja FIRMADO por persona
-// (buildUnsubscribeToken → /api/notifications/digest/unsubscribe) + cabecera
-// List-Unsubscribe. Envío vía Resend (SMTP_PASS) en lotes concurrentes.
+// FUENTE: auth.users vía SUPABASE_SERVICE_ROLE_KEY (admin API, paginado).
+// BAJA (RGPD): enlace firmado por persona + List-Unsubscribe. Envío vía Resend.
 
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { kv } from "@vercel/kv";
 import { ADMIN_COOKIE_NAME, isValidAdminCookie } from "@/lib/admin-auth";
 import { buildUnsubscribeToken } from "@/lib/email-subscriptions";
 import {
@@ -32,10 +34,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
+const SENT_KEY = "reactivacion:sent";
 const FROM = `ZonaMundial <${process.env.SMTP_FROM || "noreply@zonamundial.app"}>`;
 const REPLY_TO = "gol@zonamundial.app";
-const RESEND_KEY = process.env.SMTP_PASS || ""; // En config Resend, SMTP_PASS = API key (re_...)
-const CONCURRENCY = 10;
+const RESEND_KEY = process.env.SMTP_PASS || "";
+const CONCURRENCY = 5; // suave con el rate-limit de Resend
+const DEFAULT_LIMIT = 400; // tanda por invocación (cabe de sobra en el timeout)
 const EMAIL_RX = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const ROLE_PREFIXES = [
   "noreply@",
@@ -57,17 +61,15 @@ function maskEmail(e: string): string {
   return `${head}@${d}`;
 }
 
-/**
- * Lee TODOS los emails de auth.users vía Supabase Admin API, paginado.
- * Termina cuando una página viene vacía (robusto ante el cap real de per_page).
- */
+/** TODOS los emails de auth.users (Supabase Admin API), paginado, en orden estable. */
 async function fetchAllAuthEmails(): Promise<{ emails: string[]; error?: string }> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) {
     return { emails: [], error: "Falta NEXT_PUBLIC_SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY" };
   }
-  const set = new Set<string>();
+  const seen = new Set<string>();
+  const ordered: string[] = [];
   const perPage = 1000;
   for (let page = 1; page <= 200; page++) {
     const resp = await fetch(
@@ -85,13 +87,14 @@ async function fetchAllAuthEmails(): Promise<{ emails: string[]; error?: string 
       const e = (u.email || "").trim().toLowerCase();
       if (!EMAIL_RX.test(e)) continue;
       if (ROLE_PREFIXES.some((p) => e.startsWith(p))) continue;
-      set.add(e);
+      if (seen.has(e)) continue;
+      seen.add(e);
+      ordered.push(e);
     }
   }
-  return { emails: [...set] };
+  return { emails: ordered };
 }
 
-/** Envía un email vía Resend con reintento ante 429/5xx. */
 async function sendOne(origin: string, email: string): Promise<boolean> {
   const token = buildUnsubscribeToken({ email, kind: "daily-digest" });
   const unsub = `${origin}/api/notifications/digest/unsubscribe?token=${token}`;
@@ -143,47 +146,87 @@ export async function GET(request: NextRequest) {
   const origin = request.nextUrl.origin;
   const sp = request.nextUrl.searchParams;
 
-  // Destinatarios reales: auth.users de Supabase (dedup + validados + sin rol).
+  // Acción: reset del registro de enviados.
+  if (sp.get("reset") === "SI") {
+    await kv.del(SENT_KEY);
+    return NextResponse.json({ ok: true, accion: "reset", registroEnviadosVaciado: true });
+  }
+
   const { emails: all, error } = await fetchAllAuthEmails();
   if (error) return NextResponse.json({ error }, { status: 500 });
 
-  // Permite trocear si hiciera falta: ?offset=0&limit=800
-  const offset = Math.max(0, parseInt(sp.get("offset") || "0", 10) || 0);
-  const limitParam = parseInt(sp.get("limit") || "0", 10);
-  const sliced = limitParam > 0 ? all.slice(offset, offset + limitParam) : all.slice(offset);
+  const sentArr = (await kv.smembers(SENT_KEY)) as string[];
+  const sentSet = new Set(sentArr ?? []);
+
+  // Acción: marcar los primeros N como ya enviados (para saltar lo del intento cortado).
+  const markFirst = parseInt(sp.get("markSentFirst") || "0", 10);
+  if (markFirst > 0) {
+    const toMark = all.slice(0, markFirst).filter((e) => !sentSet.has(e));
+    for (let i = 0; i < toMark.length; i += 200) {
+      const batch = toMark.slice(i, i + 200);
+      if (batch.length) await kv.sadd(SENT_KEY, ...batch);
+    }
+    return NextResponse.json({
+      ok: true,
+      accion: "markSentFirst",
+      marcadosAhora: toMark.length,
+      yaEnviadosTotal: sentSet.size + toMark.length,
+      reales: all.length,
+    });
+  }
+
+  const pending = all.filter((e) => !sentSet.has(e));
 
   if (sp.get("confirm") !== "ENVIAR") {
     return NextResponse.json({
       dryRun: true,
       fuente: "supabase auth.users",
-      usuariosReales: all.length,
-      enEsteLote: sliced.length,
-      muestra: sliced.slice(0, 5).map(maskEmail),
-      paraEnviar: `${origin}/api/admin/reactivacion?confirm=ENVIAR`,
+      reales: all.length,
+      yaEnviados: sentSet.size,
+      pendientes: pending.length,
+      muestraPendientes: pending.slice(0, 5).map(maskEmail),
+      paraEnviarTanda: `${origin}/api/admin/reactivacion?confirm=ENVIAR`,
     });
   }
 
-  // ENVÍO REAL con límite de concurrencia.
+  // Envío de UNA tanda de pendientes.
+  const limit = Math.max(1, parseInt(sp.get("limit") || "", 10) || DEFAULT_LIMIT);
+  const tanda = pending.slice(0, limit);
+
   let sent = 0;
   let failed = 0;
   let idx = 0;
   async function worker() {
-    while (idx < sliced.length) {
+    while (idx < tanda.length) {
       const i = idx++;
-      const ok = await sendOne(origin, sliced[i]);
-      if (ok) sent++;
-      else failed++;
+      const email = tanda[i];
+      const ok = await sendOne(origin, email);
+      if (ok) {
+        sent++;
+        try {
+          await kv.sadd(SENT_KEY, email);
+        } catch {
+          /* si falla el registro, peor un posible duplicado que un fallo de envío */
+        }
+      } else {
+        failed++;
+      }
     }
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
 
+  const pendientesRestantes = pending.length - sent;
   return NextResponse.json({
     ok: true,
-    fuente: "supabase auth.users",
-    usuariosReales: all.length,
-    intentados: sliced.length,
-    enviados: sent,
-    fallidos: failed,
-    offset,
+    reales: all.length,
+    enviadosEnEstaTanda: sent,
+    fallidosEnEstaTanda: failed,
+    yaEnviadosTotal: sentSet.size + sent,
+    pendientesRestantes,
+    terminado: pendientesRestantes <= 0,
+    siguiente:
+      pendientesRestantes > 0
+        ? `${origin}/api/admin/reactivacion?confirm=ENVIAR`
+        : "completado",
   });
 }

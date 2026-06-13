@@ -1108,15 +1108,9 @@ export default function AppHubPage() {
                     ? <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 13px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>{openingCountdown}</span>
                     : <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, letterSpacing: 0.3, color: "#fff", background: "rgba(8,16,30,0.5)", border: `1px solid ${heroStatusColor}88`, backdropFilter: "blur(4px)" }}>{heroStatus.label}</span>}
                 </div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 9 }}>
-                  <Link href={heroPrimaryCta.href} className="zm-cta-shine zm-open-cta" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "10px 20px", borderRadius: 11, fontWeight: 800, fontSize: 14, color: live ? "#1a0d08" : NAVY, textDecoration: "none", background: live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: live ? "0 6px 18px rgba(255,107,90,0.4)" : "0 6px 18px rgba(201,168,76,0.4)" }}>
-                    {heroPrimaryCta.label}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </Link>
-                  <Link href={matchHref} className="zm-open-cta" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "10px 16px", borderRadius: 11, fontWeight: 700, fontSize: 13.5, color: "#fff", textDecoration: "none", background: "rgba(8,16,30,0.5)", border: "1px solid rgba(255,255,255,0.22)", backdropFilter: "blur(4px)" }}>
-                    Match Center
-                  </Link>
-                </div>
+                {/* Hero = portada limpia: SIN CTAs. La acción vive justo debajo
+                    (Tu siguiente jugada · Match Center restaurado · Otros partidos).
+                    Aquí solo fecha + hora local + cuenta atrás. */}
               </div>
             </>
           ) : (

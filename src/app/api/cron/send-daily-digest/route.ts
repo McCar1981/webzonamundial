@@ -18,17 +18,16 @@
 // miles, migrar a envío en batches paralelos con Promise.allSettled.
 
 import { NextRequest, NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
-import { getAllPublicNoticias } from "@/lib/noticias-store";
 import {
   listActiveSubscribers,
   markSent,
   buildUnsubscribeToken,
 } from "@/lib/email-subscriptions";
 import { sendDailyDigest } from "@/lib/email";
-import { MATCHES } from "@/data/matches";
-import { etToDate } from "@/lib/bracket/match-time";
+import { buildDigestData, DIGEST_LAST_SENT_KEY } from "@/lib/daily-digest";
 import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
@@ -44,73 +43,23 @@ export async function GET(req: NextRequest) {
   const denied = requireCron(req);
   if (denied) return denied;
 
-  // 1. Cargar las 5 noticias más recientes.
-  //
-  // Antes filtrábamos por "publicadas en últimas 24h" pero el campo n.date
-  // viene de GNews (publishedAt del artículo original), no de cuándo lo
-  // reescribimos en ZonaMundial. Eso hacía que el digest no enviara nada
-  // si las noticias de la fuente eran de hace 2-3 días.
-  //
-  // Mejor enfoque: getAllPublicNoticias ya devuelve ordenado por fecha
-  // descendente. Tomamos los primeros 5, que son los más recientes.
-  // Garantía contra spam: si la lista NO ha cambiado desde ayer, el user
-  // recibirá los mismos titulares — aceptable porque son los del momento.
-  const all = await getAllPublicNoticias();
-  const recent = all.slice(0, 5);
-
-  // Partidos del día — el email "Tu día en el Mundial" lidera con ellos
-  // (gancho de retorno: predecir hoy). "Hoy" = fecha en Europe/Madrid del
-  // instante REAL del saque (etToDate convierte d+t en ET a un instante
-  // absoluto, así un partido a las 23:59 ET cae en su día correcto en España).
-  // Si no hay partidos hoy, caemos a los próximos del calendario.
-  const now = new Date();
-  const madridDate = (d: Date) =>
-    new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Europe/Madrid",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(d); // YYYY-MM-DD
-  const madridTime = (d: Date) =>
-    new Intl.DateTimeFormat("es-ES", {
-      timeZone: "Europe/Madrid",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }).format(d);
-  const todayStr = madridDate(now);
-  const withDt = MATCHES.map((m) => ({ m, dt: etToDate(m.d, m.t) })).filter(
-    (x) => x.dt !== null,
-  ) as { m: (typeof MATCHES)[number]; dt: Date }[];
-  let fixturesAreToday = true;
-  // Partidos de hoy que aún no han terminado (margen de 2h por si está en juego).
-  let slate = withDt.filter(
-    (x) =>
-      madridDate(x.dt) === todayStr &&
-      x.dt.getTime() >= now.getTime() - 2 * 60 * 60 * 1000,
-  );
-  if (slate.length === 0) {
-    fixturesAreToday = false;
-    const upcoming = withDt
-      .filter((x) => x.dt.getTime() >= now.getTime())
-      .sort((a, b) => a.dt.getTime() - b.dt.getTime());
-    const nextDate = upcoming.length ? madridDate(upcoming[0].dt) : null;
-    slate = nextDate
-      ? upcoming.filter((x) => madridDate(x.dt) === nextDate)
-      : [];
+  // 1. Construir el contenido del email (partidos del día + noticias) con la
+  //    lógica compartida en buildDigestData: lidera con los PARTIDOS DE HOY,
+  //    prioriza las noticias del partido del día (por flags) y DEDUPLICA contra
+  //    lo enviado en el último digest (slugs guardados en KV) para no repetir
+  //    titulares día tras día. Si KV falla, seguimos sin dedup (no bloqueamos).
+  let lastSent: string[] = [];
+  try {
+    lastSent = (await kv.get<string[]>(DIGEST_LAST_SENT_KEY)) ?? [];
+  } catch {
+    lastSent = [];
   }
-  slate.sort((a, b) => a.dt.getTime() - b.dt.getTime());
-  const fixtures = slate.slice(0, 8).map((x) => ({
-    home: x.m.h,
-    homeFlag: x.m.hf,
-    away: x.m.a,
-    awayFlag: x.m.af,
-    time: madridTime(x.dt),
-    group: x.m.g,
-  }));
+  const { fixtures, fixturesAreToday, articles } = await buildDigestData({
+    excludeSlugs: lastSent,
+  });
 
   // Solo nos saltamos el envío si NO hay ni partidos ni noticias.
-  if (recent.length === 0 && fixtures.length === 0) {
+  if (articles.length === 0 && fixtures.length === 0) {
     return NextResponse.json({
       ok: true,
       skipped: "no_articles_or_fixtures",
@@ -195,14 +144,7 @@ export async function GET(req: NextRequest) {
         unsubscribeUrl,
         fixtures,
         fixturesAreToday,
-        articles: recent.map((n) => ({
-          title: n.title,
-          slug: n.slug,
-          excerpt: n.excerpt,
-          image: n.realImage ?? null,
-          date: n.date,
-          cat: n.cat,
-        })),
+        articles,
       });
       if (ok) {
         sent += 1;
@@ -224,11 +166,26 @@ export async function GET(req: NextRequest) {
     await markSent(sentIds);
   }
 
+  // 5. Guardar los slugs enviados para no repetirlos en el próximo digest
+  //    (TTL 3 días por si un cron falla). Best-effort: si KV falla, el peor
+  //    caso es repetir titulares un día.
+  if (sent > 0 && articles.length > 0) {
+    try {
+      await kv.set(
+        DIGEST_LAST_SENT_KEY,
+        articles.map((a) => a.slug),
+        { ex: 3 * 24 * 60 * 60 },
+      );
+    } catch {
+      /* noop */
+    }
+  }
+
   await recordHeartbeat("send-daily-digest", true, { sent, failed });
 
   return NextResponse.json({
     ok: true,
-    articles: recent.length,
+    articles: articles.length,
     subscribers: rows.length,
     sent,
     failed,

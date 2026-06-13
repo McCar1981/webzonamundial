@@ -487,25 +487,18 @@ export default function PrediccionesGame() {
       )}
 
       {toast && (
-        <div ref={toastRef} role="status" aria-live="polite" style={{
-          position: "fixed", bottom: 20, left: 0, right: 0, marginInline: "auto", width: "fit-content", zIndex: 50,
+        <div ref={toastRef} className="pj-toast" role="status" aria-live="polite" data-reduce-motion={reduceMotion || undefined} style={{
           background: toast.kind === "ok" ? "rgba(34,197,94,0.95)" : "rgba(239,68,68,0.95)",
-          color: TEXT, padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.4)", maxWidth: "90vw", textAlign: "center",
-          animation: reduceMotion ? undefined : "micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1)",
         }}>
           {toast.msg}
         </div>
       )}
 
       {pushPrompt !== "hidden" && (
-        <div role="dialog" aria-label="Activar avisos de predicciones" style={{
-          position: "fixed", bottom: 76, left: 0, right: 0, marginInline: "auto", width: "fit-content", maxWidth: "92vw", zIndex: 55,
-          display: "flex", alignItems: "center", gap: 12,
+        <div role="dialog" aria-label="Activar avisos de predicciones" className="pj-push-prompt" data-reduce-motion={reduceMotion || undefined} style={{
           background: "linear-gradient(135deg, rgba(201,168,76,0.18), #0F1D32 60%, #0B1825)",
           border: `1px solid ${GOLD}59`, color: TEXT, padding: "12px 14px", borderRadius: 14,
           boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-          animation: reduceMotion ? undefined : "micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1)",
         }}>
           <span aria-hidden style={{ fontSize: 22, lineHeight: 1 }}>🔔</span>
           <div style={{ minWidth: 0, flex: 1 }}>
@@ -752,6 +745,29 @@ const PJ_CSS = `
   justify-content: space-between; padding-right: 76px;
 }
 @media (min-width: 860px) { .pj-sticky-inner { padding-right: 0; } }
+
+/* Toast y prompt contextual: en escritorio salen desde abajo; en móvil,
+   donde el pie fijo/barra del sistema los tapa, aparecen desde arriba. */
+.pj-toast {
+  position: fixed; left: 0; right: 0; bottom: 20px; margin-inline: auto; width: fit-content; z-index: 50;
+  color: ${TEXT}; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 14;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4); max-width: 90vw; text-align: center;
+  animation: micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1);
+}
+.pj-toast[data-reduce-motion="true"] { animation: none; }
+@media (max-width: 767px) {
+  .pj-toast { bottom: auto; top: 12px; animation-name: micro-slide-down; }
+}
+
+.pj-push-prompt {
+  position: fixed; left: 0; right: 0; bottom: 76px; margin-inline: auto; width: fit-content; max-width: 92vw; z-index: 55;
+  display: flex; align-items: center; gap: 12px;
+  animation: micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1);
+}
+.pj-push-prompt[data-reduce-motion="true"] { animation: none; }
+@media (max-width: 767px) {
+  .pj-push-prompt { bottom: auto; top: 12px; animation-name: micro-slide-down; }
+}
 `;
 
 function Shell({ children }: { children: React.ReactNode }) {

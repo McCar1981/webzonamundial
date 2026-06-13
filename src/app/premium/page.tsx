@@ -61,18 +61,6 @@ export default function PremiumPage() {
         { label: "Stats avanzadas", icon: "ranking", desc: "xG, xA y más" },
       ];
 
-  const testimonials = isEN
-    ? [
-        { name: "Alex M.", role: "Fantasy champion 2022", quote: "Premium stats changed everything. I won my private league thanks to the xG data." },
-        { name: "Sofia R.", role: "Predictions fanatic", quote: "Unlimited predictions and the AI Coach tips are worth every penny. Never going back." },
-        { name: "Marcus T.", role: "Streamer", quote: "The badge and animated avatar look epic on stream. My community loves it." },
-      ]
-    : [
-        { name: "Juan M.", role: "Campeón Fantasy 2022", quote: "Las estadísticas Premium cambiaron todo. Gané mi liga privada gracias a los datos de xG." },
-        { name: "Sofía R.", role: "Fanática de predicciones", quote: "Las predicciones ilimitadas y los consejos del IA Coach valen cada céntimo. No vuelvo atrás." },
-        { name: "Marcos T.", role: "Streamer", quote: "El badge dorado y el avatar animado quedan épicos en stream. Mi comunidad lo adora." },
-      ];
-
   return (
     <div
       style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}
@@ -175,27 +163,8 @@ export default function PremiumPage() {
       {/* ═══════ STATS BANNER ═══════ */}
       <section className="relative border-y" style={{ borderColor: "rgba(201,168,76,0.12)" }}>
         <div className="max-w-5xl mx-auto px-5 py-8 sm:py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
+          <div className="grid grid-cols-1 gap-3 sm:gap-5">
             {[
-              {
-                val: 2847, suffix: "", label: isEN ? "Premium users" : "Usuarios Premium",
-                icon: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                ),
-              },
-              {
-                val: 98, suffix: "%", label: isEN ? "Would renew" : "Renovarían",
-                icon: (
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z" />
-                    <polygon points="12 8 13.12 10.76 16 11.14 14 13.06 14.54 16 12 14.52 9.46 16 10 13.06 8 11.14 10.88 10.76" fill={GOLD} stroke="none" />
-                  </svg>
-                ),
-              },
               {
                 val: 24, suffix: "h", label: isEN ? "Priority support" : "Soporte prioritario",
                 icon: (
@@ -474,80 +443,6 @@ export default function PremiumPage() {
                   >
                     {pT.pricingCta}
                   </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ TESTIMONIALS ═══════ */}
-      <section className="relative px-5 py-16 sm:py-20" style={{ background: BG3 }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-4" style={{ color: GOLD }}>
-              {isEN ? "Testimonials" : "Testimonios"}
-            </span>
-            <h2
-              className="font-black text-white mb-3"
-              style={{ fontSize: "clamp(24px, 3.5vw, 36px)", letterSpacing: "-0.02em" }}
-            >
-              {isEN ? "What our Premium users say" : "Qué dicen nuestros usuarios Premium"}
-            </h2>
-            <p className="text-sm" style={{ color: MID }}>
-              {isEN ? "Join thousands who already upgraded" : "Únete a miles que ya dieron el salto"}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {testimonials.map((tl, i) => (
-              <div
-                key={i}
-                className="relative p-6 sm:p-7 rounded-2xl border transition-all hover:border-[#C9A84C]/25 hover:-translate-y-0.5"
-                style={{
-                  borderColor: "rgba(255,255,255,0.06)",
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
-                }}
-              >
-                {/* Quote mark */}
-                <div
-                  className="absolute top-5 right-5 text-5xl leading-none font-serif pointer-events-none select-none"
-                  style={{ color: `${GOLD}15` }}
-                >
-                  &ldquo;
-                </div>
-
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-4">
-                  {[...Array(5)].map((_, s) => (
-                    <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill={GOLD} aria-hidden>
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
-                    </svg>
-                  ))}
-                </div>
-
-                <p className="text-sm leading-relaxed mb-6" style={{ color: MID }}>
-                  &ldquo;{tl.quote}&rdquo;
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-                    style={{
-                      background: `linear-gradient(135deg, ${GOLD}30, ${GOLD}10)`,
-                      border: `1px solid ${GOLD}30`,
-                      color: GOLD,
-                    }}
-                  >
-                    {tl.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">{tl.name}</div>
-                    <div className="text-[11px]" style={{ color: DIM }}>{tl.role}</div>
-                  </div>
                 </div>
               </div>
             ))}

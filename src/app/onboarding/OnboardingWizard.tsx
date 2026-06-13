@@ -55,7 +55,7 @@ export default function OnboardingWizard({
   const finishDestination =
     nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
       ? nextParam
-      : "/";
+      : "/app";
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");

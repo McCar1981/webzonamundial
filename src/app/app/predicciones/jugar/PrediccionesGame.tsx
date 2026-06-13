@@ -18,6 +18,7 @@ import LiveMicroPicks from "./LiveMicroPicks";
 import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
 import { DoubleMatchCard, SecondChanceButton, usePowerupState } from "./Powerups";
 import { handleProRequired } from "@/lib/pro/paywall-client";
+import { celebrate, haptic, prefersReducedMotion } from "@/lib/celebration";
 import {
   TYPE_ICON, TIER_ICON, OracleIcon,
   ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Snowflake, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
@@ -43,7 +44,7 @@ import {
 // CTAs y texto), de modo que el juego adopta la identidad del bar sin tocar la
 // lógica compartida. INK = color del texto sobre los botones de acento.
 const BG = "var(--zm-bg, #060B14)", BG2 = "var(--zm-surface, #0F1D32)", BG3 = "var(--zm-surface2, #0B1825)";
-const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#6a7a9a";
+const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#94a3b8";
 const GREEN = "#22c55e", RED = "#ef4444";
 const INK = "var(--zm-ink, #060B14)";
 const TEXT = "var(--zm-text, #fff)";
@@ -211,6 +212,9 @@ export default function PrediccionesGame() {
   // "sin datos por error" de "cargando" y mostrar un reintento.
   const [loadFailed, setLoadFailed] = useState(false);
   const [toast, setToast] = useState<{ kind: "ok" | "err"; msg: string } | null>(null);
+  // ¿Reducir movimiento? Arranca en false para casar el SSR; se resuelve tras
+  // montar y, si es true, desactiva la animación de entrada del toast.
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   const [scorers, setScorers] = useState<ScorerCandidate[]>([]);
   const [pendingTeams, setPendingTeams] = useState<string[]>([]);
@@ -221,6 +225,12 @@ export default function PrediccionesGame() {
   const latestLoad = useRef<string | null>(null);
   const stateRef = useRef<MatchState | null>(null);
   stateRef.current = state;
+  // El nodo del toast de éxito: para darle un "pop" dorado al confirmarse el
+  // guardado (la animación de la celebración respeta reduced-motion).
+  const toastRef = useRef<HTMLDivElement | null>(null);
+  // El deep-link ?match= solo debe abrir el partido una vez (no en cada cambio
+  // de authed); este flag lo garantiza.
+  const deepLinkDone = useRef(false);
 
   // Partidos seleccionables (fase de grupos, en orden de calendario).
   const groupMatches = useMemo(
@@ -232,15 +242,7 @@ export default function PrediccionesGame() {
   useEffect(() => {
     const supa = createSupabaseBrowserClient();
     supa.auth.getUser().then(({ data }) => setAuthed(!!data.user));
-  }, []);
-
-  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
-  // enlazan directo a la predicción de UN partido concreto. Client-only vía
-  // window.location para no meter useSearchParams/Suspense en el prerender.
-  // Solo ids que existen en el selector; el resto cae al selector normal.
-  useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("match");
-    if (id && MATCHES.some((m) => String(m.i) === id)) setMatchId(id);
+    setReduceMotion(prefersReducedMotion());
   }, []);
 
   useEffect(() => {
@@ -312,6 +314,25 @@ export default function PrediccionesGame() {
     void loadMatch(id);
   }, [loadMatch]);
 
+  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
+  // enlazan directo a la predicción de UN partido concreto. Client-only vía
+  // window.location para no meter useSearchParams/Suspense en el prerender.
+  // Solo ids que existen en el selector; el resto cae al selector normal.
+  //
+  // IMPORTANTE: la carga del detalle solo se dispara cuando el usuario está
+  // autenticado (authed === true). Si está sin sesión (authed === false) NO
+  // cargamos: las peticiones devolverían 401 y disparaban el toast rojo "no se
+  // pudieron cargar" justo antes de mostrar el gate de login. Mientras authed
+  // sigue indeterminado (null) esperamos a que se resuelva.
+  useEffect(() => {
+    if (deepLinkDone.current || authed !== true) return;
+    const id = new URLSearchParams(window.location.search).get("match");
+    if (id && MATCHES.some((m) => String(m.i) === id)) {
+      deepLinkDone.current = true;
+      selectMatch(id);
+    }
+  }, [authed, selectMatch]);
+
   const submit = useCallback(async (
     type: PredictionType,
     data: PredictionData,
@@ -338,7 +359,19 @@ export default function PrediccionesGame() {
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
         setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
+        // Beat de dopamina al guardar: háptico + pop dorado sobre el toast (la
+        // micro-celebración respeta prefers-reduced-motion internamente). Si este
+        // guardado completa los 8 tipos ("Predicción Perfecta") usamos un patrón
+        // háptico más marcado. Como es una predicción nueva (no edición) cuenta
+        // para el total; sumamos el tipo recién guardado a los ya completados.
+        const completed = new Set(stateRef.current?.types_completed ?? []);
+        completed.add(type);
+        const isPerfect = !existing && completed.size >= PREDICTION_TYPES.length;
+        haptic(isPerfect ? [10, 40, 20] : 10);
         setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
+        // Pop visual sobre el toast una vez montado (pattern [] → sin vibración
+        // extra; la háptica ya se disparó arriba).
+        requestAnimationFrame(() => celebrate(toastRef.current, []));
         await loadMatch(matchId);
       } else if (handleProRequired(json)) {
         // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
@@ -397,11 +430,12 @@ export default function PrediccionesGame() {
       )}
 
       {toast && (
-        <div role="status" aria-live="polite" style={{
-          position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 50,
+        <div ref={toastRef} role="status" aria-live="polite" style={{
+          position: "fixed", bottom: 20, left: 0, right: 0, marginInline: "auto", width: "fit-content", zIndex: 50,
           background: toast.kind === "ok" ? "rgba(34,197,94,0.95)" : "rgba(239,68,68,0.95)",
           color: TEXT, padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
           boxShadow: "0 8px 24px rgba(0,0,0,0.4)", maxWidth: "90vw", textAlign: "center",
+          animation: reduceMotion ? undefined : "micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1)",
         }}>
           {toast.msg}
         </div>
@@ -2629,7 +2663,7 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
     </div>
   );
 }
-const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
+const stepBtn: React.CSSProperties = { width: 44, height: 44, display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, lineHeight: 1, cursor: "pointer" };
 
 function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreResult, disabled }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn; scoreResult: WinnerResult | null; disabled?: boolean }) {
   // Si el marcador exacto guardado es empate, el ganador queda fijado en

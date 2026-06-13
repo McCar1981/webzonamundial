@@ -162,7 +162,7 @@ export function HomeMatchPredictSection() {
                   ¡Anotado! En la app, acertar este resultado te suma puntos.
                 </p>
                 <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-                  <Link href="/app/predicciones/jugar" style={primaryBtn}>
+                  <Link href={`/app/predicciones/jugar?match=${featured.i}`} style={primaryBtn}>
                     Predecir en serio →
                   </Link>
                   <Link href={`/app/matchcenter/${featured.i}`} style={secondaryBtn}>

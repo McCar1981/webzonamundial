@@ -131,6 +131,39 @@ a:hover {
   color: var(--zm-gold-light);
 }
 
+/* ══════ TOUCH & FOCUS (mobile-first, a11y) ══════ */
+/* Mata el retardo de ~300ms (double-tap-zoom) en toda la app — 67% es móvil. */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+label,
+summary {
+  touch-action: manipulation;
+}
+
+/* Foco de teclado visible y coherente con marca en CUALQUIER elemento
+   interactivo (los botones inline del lobby/juegos no mostraban foco).
+   :where() mantiene especificidad 0 para que los rings por componente ganen. */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--zm-gold);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* iOS Safari hace auto-zoom cuando el input enfocado mide <16px → rompe el
+   layout en /registro (el peor embudo). Forzamos 16px en móvil; el look de
+   escritorio no cambia. */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 /* ══════ ANIMATIONS ══════ */
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 0.9s linear infinite; }
@@ -147,6 +180,19 @@ a:hover {
 @keyframes micro-border-pulse {
   0%, 100% { box-shadow: 0 18px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,168,76,0.35); }
   50%      { box-shadow: 0 18px 50px rgba(0,0,0,0.55), 0 0 22px rgba(201,168,76,0.55); }
+}
+
+/* Micro-celebración compartida: beats de hábito (predicción bloqueada,
+   recompensa diaria, racha mantenida, acierto de trivia). La dispara
+   src/lib/celebration.ts añadiendo .zm-celebrate; respeta reduced-motion. */
+@keyframes zm-celebrate-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.zm-celebrate {
+  animation: zm-celebrate-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
 }
 
 @keyframes gradient {
@@ -469,7 +515,14 @@ a:hover {
   .bb-aura-gold,
   .bb-rays,
   .bb-spark,
-  .bb-sheen {
+  .bb-sheen,
+  /* Utilidades globales con bucle infinito — antes ignoraban reduced-motion */
+  .animate-gradient,
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-shimmer,
+  .shimmer-rotate,
+  .zm-celebrate {
     animation: none !important;
   }
   .bb-no-motion-fallback,

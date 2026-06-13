@@ -467,7 +467,29 @@ export default function FantasyGame() {
   );
 
   if (!loaded) {
-    return <div style={{ minHeight: "100vh", background: BG, color: MID, display: "flex", alignItems: "center", justifyContent: "center" }}>Cargando…</div>;
+    // Skeleton (no el texto plano "Cargando…"): una tira de cabecera + un
+    // marcador de campo con pulso de opacidad. Guardado para reduced-motion.
+    return (
+      <div style={{ minHeight: "100vh", background: FANTASY_BG, backgroundAttachment: "fixed", padding: 16 }} aria-busy="true" aria-label="Cargando Fantasy">
+        <style>{`
+          @keyframes zmSkelPulse { 0%,100% { opacity: .55 } 50% { opacity: .9 } }
+          .zm-skel { animation: zmSkelPulse 1.3s ease-in-out infinite }
+          @media (prefers-reduced-motion: reduce) { .zm-skel { animation: none } }
+        `}</style>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          {/* Tira de cabecera */}
+          <div className="zm-skel" style={{ display: "flex", gap: 10, marginBottom: 12 }}>
+            <div style={{ flex: "1 1 200px", height: 34, borderRadius: 10, background: BG2 }} />
+            <div style={{ flex: "0 0 90px", height: 34, borderRadius: 10, background: BG2 }} />
+          </div>
+          <div className="zm-skel" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 14 }}>
+            {[0, 1, 2].map((k) => <div key={k} style={{ height: 52, borderRadius: 12, background: BG2 }} />)}
+          </div>
+          {/* Marcador de campo */}
+          <div className="zm-skel" style={{ maxWidth: 470, margin: "0 auto", aspectRatio: "400 / 680", borderRadius: 22, background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))", border: "1px solid rgba(255,255,255,0.08)" }} />
+        </div>
+      </div>
+    );
   }
 
   const pct = Math.min(100, (spent / BUDGET) * 100);
@@ -553,6 +575,16 @@ export default function FantasyGame() {
           >
             Con Pro haces cambios en vivo
           </button>
+        </div>
+      )}
+
+      {/* Banner de invitado: honesto y persistente. Solo cuando NO hay sesión
+          (authed===false, no durante la comprobación inicial). Un invitado
+          construye su equipo en localStorage pero NO compite en ranking. */}
+      {authed === false && (
+        <div style={{ background: "rgba(56,189,248,0.08)", borderBottom: "1px solid rgba(56,189,248,0.28)", padding: "8px 16px", fontSize: 12.5, fontWeight: 700, textAlign: "center", color: "#bfe6ff" }}>
+          👤 Juegas como invitado ·{" "}
+          <Link href="/login?next=/app/fantasy/jugar" style={{ color: GOLD2, fontWeight: 800, textDecoration: "underline" }}>inicia sesión para competir</Link>
         </div>
       )}
 

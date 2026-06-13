@@ -38,7 +38,7 @@ function buildNav(t: Translations) {
       { id: "modoCarrera",  label: t.nav.modoCarrera,  href: "/app/modo-carrera" },
       { id: "ligas",        label: t.nav.ligas,        href: "/app/fantasy/jugar?tab=ligas" },
       { id: "streaming",    label: t.nav.streaming,    href: "/app/streaming" },
-      { id: "album",        label: t.nav.album,        href: "/app/album" },
+      { id: "album",        label: t.nav.album,        href: "/cromos" },
     ]},
     { id: "noticias",   label: t.nav.noticias,   href: "/noticias" },
     { id: "blog",       label: t.nav.blog,        href: "/blog" },

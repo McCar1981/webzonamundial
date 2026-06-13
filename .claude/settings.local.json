@@ -1,6 +1,5 @@
 {
   "permissions": {
-    "defaultMode": "acceptEdits",
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -71,7 +70,11 @@
       "Bash(grep -rn \"transform\\\\|will-change\\\\|backdrop-filter\\\\|perspective\\\\|contain:\" tailwind.config.* postcss.config.*)",
       "Bash(npm uninstall:*)",
       "Bash(ls node_modules/react-world-flags/index.d.ts)",
-      "Bash(ls:*)"
-    ]
+      "Bash(ls:*)",
+      "Bash(git fetch *)",
+      "Bash(gh pr *)",
+      "Bash(git pull *)"
+    ],
+    "defaultMode": "acceptEdits"
   }
 }

@@ -401,5 +401,5 @@ export const MODULES_BASE = [
   { key: "chat", icon: ICON_V3.chat, color: "#6366f1", href: "/la-app" },
   { key: "microPred", icon: ICON_V3.microPred, color: "#dc2626", href: "/la-app" },
   { key: "stories", icon: ICON_V3.stories, color: "#8b5cf6", href: "/la-app" },
-  { key: "album", icon: ICON_V3.album, color: "#eab308", href: "/app/album" },
+  { key: "album", icon: ICON_V3.album, color: "#eab308", href: "/cromos" },
 ] as const;

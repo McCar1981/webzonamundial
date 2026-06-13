@@ -6,6 +6,8 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { claimDaily } from "@/lib/predictions/gamification-store";
+import { rewardDailyCheckin } from "@/lib/cromos/rewards";
+import { utcDayKey } from "@/lib/predictions/gamification";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,5 +22,8 @@ export async function POST() {
   if (result.already) {
     return NextResponse.json({ error: "already_claimed", message: "Ya reclamaste tu recompensa de hoy", ...result }, { status: 409 });
   }
-  return NextResponse.json(result);
+
+  const cromoReward = await rewardDailyCheckin(user.id, utcDayKey());
+
+  return NextResponse.json({ ...result, cromoReward });
 }

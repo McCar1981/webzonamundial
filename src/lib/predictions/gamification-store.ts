@@ -52,6 +52,12 @@ import type { CosmeticDisplay } from "./cosmetics";
 import { recordDuelResult } from "./rivalries-store";
 import { spendCoins, grantCoins } from "@/lib/economy/wallet";
 import { kv } from "@/lib/kv";
+import {
+  rewardPredictionMatch,
+  rewardPerfectMatch,
+  rewardJornadaBonus,
+  evaluateAchievements,
+} from "@/lib/cromos/rewards";
 
 // ── Check-in diario anclado en KV ────────────────────────────────────────────
 // El check-in diario usa Vercel KV como ANCLA de idempotencia (igual que la
@@ -318,6 +324,23 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
 
     // Battle Pass: el mismo XP de progresión llena la pista de temporada.
     await addSeasonXp(uid, totalXp).catch(() => {});
+
+    // ── Recompensas de cromos del álbum ───────────────────────────────────────
+    // Se ejecutan de forma best-effort: nunca deben bloquear la resolución del
+    // partido. Si fallan, se ignoran silenciosamente.
+    try {
+      const matchRows = rows.filter((r) => r.match_id === matchId);
+      const matchPoints = matchRows.reduce((s, r) => s + (r.points_earned ?? 0), 0);
+      const resolvedCount = matchRows.length;
+      const correctCount = matchRows.filter((r) => r.is_correct).length;
+      await rewardPredictionMatch(uid, matchId, matchPoints);
+      if (resolvedCount === 8 && correctCount === 8) {
+        await rewardPerfectMatch(uid, matchId);
+      }
+      await evaluateAchievements(uid);
+    } catch {
+      /* best-effort */
+    }
   }
 
   // Resolver duelos 1v1 de este partido.
@@ -678,6 +701,15 @@ export async function claimJornadaIfComplete(uid: string, dayKey: string): Promi
 
   await grantCoins(uid, bonus.coins, bonus.xp, { seasonXp: false, module: "predicciones" });
   await addSeasonXp(uid, bonus.xp).catch(() => {});
+
+  // Recompensa de cromos por bonus de jornada (best-effort)
+  try {
+    await rewardJornadaBonus(uid, dayKey);
+    await evaluateAchievements(uid);
+  } catch {
+    /* no bloquear el bonus */
+  }
+
   return { ok: true, awarded: true, xp: bonus.xp, coins: bonus.coins };
 }
 

@@ -47,15 +47,16 @@ export const REACTIVACION_HTML = `<!DOCTYPE html>
         <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#FFFFFF;border-radius:16px;overflow:hidden;border:1px solid #E8EAED;">
           <tr>
             <td align="center" style="padding:28px 24px 18px 24px;background:#FFFFFF;border-bottom:1px solid #EEF0F3;">
-              <a href="https://zonamundial.app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=logo">
-                <img src="https://zonamundial.app/icons/icon-512.png" width="110" height="110" alt="ZonaMundial" style="display:block;margin:0 auto;width:110px;height:110px;border-radius:18px;">
+              <a href="https://zonamundial.app?utm_source=email&utm_medium=reactivacion&utm_campaign=reactivacion_mundial_jun26&utm_content=logo" style="text-decoration:none;">
+                <img src="https://zonamundial.app/icons/icon-512.png" width="72" height="72" alt="" style="display:block;margin:0 auto 10px auto;width:72px;height:72px;border-radius:14px;">
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:800;letter-spacing:1px;color:#0F172A;">ZONA<span style="color:#C9A84C;">MUNDIAL</span></div>
               </a>
               <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:3px;color:#94A3B8;margin-top:12px;text-transform:uppercase;">Mundial 2026 · En vivo</div>
             </td>
           </tr>
           <tr>
             <td style="padding:0;font-size:0;line-height:0;background:#FFFFFF;">
-              <img src="https://zonamundial.app/img/heroes/ball-stadium-pitch.jpg" width="600" alt="El balón espera en el estadio — Mundial 2026" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
+              <img src="https://zonamundial.app/img/heroes/ball-stadium-pitch.jpg" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
             </td>
           </tr>
           <tr>

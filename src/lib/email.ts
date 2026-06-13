@@ -719,3 +719,67 @@ export async function sendProPaymentFailedEmail(opts: { to: string }): Promise<b
     }),
   });
 }
+
+/**
+ * Notificación interna: nos avisa cuando una marca envía una solicitud de
+ * PATROCINIO desde /patrocina. Destinatario fijo gol@zonamundial.app (mismo
+ * buzón interno que los nuevos registros). Fire-and-forget: si SMTP falla no
+ * rompe la respuesta al visitante (el lead también se guarda en KV).
+ */
+export async function sendSponsorLeadNotification(opts: {
+  empresa: string;
+  nombre: string;
+  email: string;
+  telefono?: string;
+  categoria?: string;
+  paquete?: string;
+  mensaje?: string;
+}): Promise<boolean> {
+  const fechaLegible = new Date().toLocaleString('es-ES', {
+    timeZone: 'Europe/Madrid',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const row = (label: string, value: string, o?: { gold?: boolean; link?: string }) => {
+    const color = o?.gold ? '#C9A84C' : '#111827';
+    const val = o?.link
+      ? `<a href="${o.link}" style="color:#C9A84C;text-decoration:none;">${escapeHtml(value)}</a>`
+      : escapeHtml(value);
+    return `<tr>
+      <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;width:38%;">${escapeHtml(label)}</td>
+      <td style="padding:10px 14px;font-size:14px;color:${color};font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${val}</td>
+    </tr>`;
+  };
+  return sendEmail({
+    to: 'gol@zonamundial.app',
+    subject: `💼 Patrocinio: ${opts.empresa} (${opts.email})`,
+    html: brandedEmail({
+      preheader: `Solicitud de patrocinio de ${opts.empresa}`,
+      heading: '💼 Nueva solicitud de patrocinio',
+      bodyHtml: `
+        <p style="margin:0 0 16px;">Una marca ha enviado una solicitud desde <strong>/patrocina</strong>:</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f9fafb;border-radius:10px;overflow:hidden;">
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;width:38%;">Empresa</td>
+            <td style="padding:10px 14px;font-size:15px;color:#111827;font-weight:700;text-align:right;">${escapeHtml(opts.empresa)}</td>
+          </tr>
+          ${row('Contacto', opts.nombre)}
+          ${row('Email', opts.email, { gold: true, link: `mailto:${opts.email}` })}
+          ${opts.telefono ? row('WhatsApp / Tel', opts.telefono) : ''}
+          ${opts.categoria ? row('Categoría', opts.categoria) : ''}
+          ${opts.paquete ? row('Paquete de interés', opts.paquete, { gold: true }) : ''}
+          ${row('Fecha', `${fechaLegible} (Madrid)`)}
+        </table>
+        ${opts.mensaje
+          ? `<p style="margin:18px 0 6px;font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;">Mensaje</p>
+             <p style="margin:0;padding:12px 14px;background:#f9fafb;border-radius:10px;font-size:14px;color:#1f2937;line-height:1.5;">${escapeHtml(opts.mensaje)}</p>`
+          : ''}
+      `,
+      ctaLabel: 'Responder por email',
+      ctaHref: `mailto:${opts.email}`,
+    }),
+  });
+}

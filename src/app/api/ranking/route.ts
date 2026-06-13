@@ -5,7 +5,10 @@
 //   · ?module=trivia|predicciones|fantasy|modo-carrera|micro → ranking de ESE
 //     módulo por Fútcoins GENERADAS en él (desde el ledger): su competencia propia.
 //   · ?country=xx (ISO-2) → ranking NACIONAL: top de jugadores DE ese país y,
-//     con sesión, tu puesto dentro de tu país. Tiene prioridad sobre ?module.
+//     con sesión, tu puesto dentro de tu país.
+//   · ?creator=slug → ranking de COMUNIDAD: top de la comunidad de ese creador y,
+//     con sesión, tu puesto en tu comunidad.
+//   Prioridad: creator > country > module > global.
 //
 //   · entries: top (por defecto 50, máx 200 vía ?limit=).
 //   · me: posición del usuario autenticado (null si no hay sesión / no compite).
@@ -22,7 +25,10 @@ import {
   getModuleUserRank,
   getCountryCoinRanking,
   getUserCountryRank,
+  getCreatorCoinRanking,
+  getUserCreatorRank,
 } from "@/lib/economy/ranking";
+import { validateFavCreator } from "@/lib/profile-validation";
 import type { CoinModule } from "@/lib/economy/wallet";
 
 export const runtime = "nodejs";
@@ -47,7 +53,21 @@ export async function GET(req: Request) {
   const mod = parseModule(url.searchParams.get("module"));
   const country = parseCountry(url.searchParams.get("country"));
 
+  const creator = validateFavCreator(url.searchParams.get("creator"));
+
   const user = await getCurrentUser();
+
+  // Ranking de COMUNIDAD (por creador): top de la comunidad + mi puesto en ella.
+  // Tiene prioridad sobre país/módulo. Su `me` es MyCreatorRank.
+  if (creator) {
+    const creatorMe = user ? await getUserCreatorRank(user.id) : null;
+    const me = creatorMe && creatorMe.creator === creator ? creatorMe : null;
+    if (onlyMe) {
+      return NextResponse.json({ creator, me }, { headers: { "Cache-Control": "no-store" } });
+    }
+    const entries = await getCreatorCoinRanking(creator, limit);
+    return NextResponse.json({ creator, entries, me }, { headers: { "Cache-Control": "no-store" } });
+  }
 
   // Ranking NACIONAL (por país): top del país + mi puesto nacional. Su `me`
   // tiene forma distinta (MyCountryRank), así que lo resolvemos por separado.

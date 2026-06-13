@@ -7,7 +7,7 @@
 // predicciones y match center.
 
 import { NextResponse } from "next/server";
-import { visitorCanSeeBetting, BET_AFFILIATE_URL } from "@/lib/affiliate/geo";
+import { visitorCanSeeBetting, BET_AFFILIATE_URL, BET_BANNER_URL } from "@/lib/affiliate/geo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,5 +17,6 @@ export async function GET() {
   return NextResponse.json({
     allowed,
     url: allowed ? BET_AFFILIATE_URL : null,
+    bannerUrl: allowed ? BET_BANNER_URL : null,
   });
 }

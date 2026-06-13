@@ -14,6 +14,11 @@ export const BET_AFFILIATE_URL =
   process.env.BET_AFFILIATE_URL ||
   "https://reffpa.com/L?tag=d_5711113m_97c_latam&site=5711113&ad=97";
 
+/** Banner oficial 1xBet (iframe 300x250 de 1xPartners). Configurable por env. */
+export const BET_BANNER_URL =
+  process.env.BET_BANNER_URL ||
+  "https://refbanners.com/I?tag=d_5711113m_70839c_&site=5711113&ad=70839";
+
 // Países donde SÍ se muestra el CTA (ISO-3166 alpha-2 lowercase). Solo LATAM
 // donde 1xBet opera. EXCLUYE España (ilegal sin licencia DGOJ) y EEUU (apuestas
 // reguladas estado a estado, 1xBet no licenciado). Lista EXPLÍCITA: ningún país

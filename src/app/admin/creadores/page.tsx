@@ -12,6 +12,7 @@ import {
   formatEur,
   getAllCreators,
   getAllManagers,
+  getDailySeries,
   getMonthlySeries,
   getPayments,
   getProgramStats,
@@ -26,6 +27,7 @@ import {
   type CreatorSponsorRow,
   type CreatorStats,
   type CreatorManagerRow,
+  type DailyPoint,
   type MonthlyPoint,
 } from "@/lib/creators/program";
 import AdminForm from "./AdminForm";
@@ -74,6 +76,8 @@ export default async function AdminCreadoresPage() {
   let allPayments: CreatorPaymentRow[];
   let allSponsors: CreatorSponsorRow[];
   let monthsBySlug: Map<string, MonthlyPoint[]>;
+  let dailyBySlug = new Map<string, DailyPoint[]>();
+  let dayCols: string[] = [];
 
   try {
     [creators, statsMap, allPayments, allSponsors] = await Promise.all([
@@ -84,6 +88,19 @@ export default async function AdminCreadoresPage() {
     ]);
     const monthly = await Promise.all(creators.map((c) => getMonthlySeries(c.slug)));
     monthsBySlug = new Map(creators.map((c, i) => [c.slug, monthly[i]]));
+
+    // Variación diaria desde el 8-jun (hora de Madrid) hasta hoy, por creador.
+    const DESDE = "2026-06-08";
+    const hoyISO = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: "Europe/Madrid",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
+    const daysCount = Math.max(1, Math.round((Date.parse(hoyISO) - Date.parse(DESDE)) / 86400000) + 1);
+    const daily = await Promise.all(creators.map((c) => getDailySeries(c.slug, daysCount)));
+    dailyBySlug = new Map(creators.map((c, i) => [c.slug, daily[i]]));
+    dayCols = daily[0]?.map((d) => d.dia) ?? [];
   } catch (e) {
     return <SetupNotice message={(e as Error).message} />;
   }
@@ -154,6 +171,16 @@ export default async function AdminCreadoresPage() {
           <Card label="Pagado (campaña)" value={formatEur(totPagado)} />
           <Card label="Sponsors abiertos" value={String(sponsorsAbiertos)} />
           <Card label="Sponsors cerrados" value={formatEur(sponsorsCerradosEur)} />
+        </section>
+
+        {/* Variación diaria por creador */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold mb-1">Variación diaria por creador</h2>
+          <p className="text-xs text-gray-400 mb-4">
+            Registros nuevos cada día desde el 8 de junio (hora de Madrid). Cada celda son las altas de ese día;
+            la última fila es el total diario del programa. Pasa el dedo/ratón por una columna para ver la fecha.
+          </p>
+          <DailyMatrix creators={creators} dailyBySlug={dailyBySlug} days={dayCols} />
         </section>
 
         {/* Creadores */}
@@ -510,6 +537,110 @@ function SetupNotice({ message }: { message: string }) {
         </p>
         <p className="text-xs text-gray-500 font-mono break-all">{message}</p>
       </div>
+    </div>
+  );
+}
+
+function DailyMatrix({
+  creators,
+  dailyBySlug,
+  days,
+}: {
+  creators: CreatorProgramRow[];
+  dailyBySlug: Map<string, DailyPoint[]>;
+  days: string[];
+}) {
+  if (days.length === 0) {
+    return <p className="text-sm text-gray-500">Aún sin datos diarios.</p>;
+  }
+
+  // Mapa creador → (día → registros) para acceso O(1) en el render.
+  const byCreator = new Map<string, Map<string, number>>();
+  for (const c of creators) {
+    const m = new Map<string, number>();
+    for (const p of dailyBySlug.get(c.slug) ?? []) m.set(p.dia, p.registros);
+    byCreator.set(c.slug, m);
+  }
+  const totalPorDia = days.map((d) =>
+    creators.reduce((acc, c) => acc + (byCreator.get(c.slug)?.get(d) ?? 0), 0),
+  );
+  const maxCell = Math.max(
+    1,
+    ...creators.flatMap((c) => days.map((d) => byCreator.get(c.slug)?.get(d) ?? 0)),
+  );
+
+  const STICKY = "sticky left-0 z-10 bg-[#0B1320]";
+  const dd = (iso: string) => iso.slice(8); // "08"
+  const newMonth = (iso: string, i: number) => i === 0 || iso.slice(5, 7) !== days[i - 1].slice(5, 7);
+
+  return (
+    <div className="overflow-x-auto rounded-2xl border border-white/10">
+      <table className="text-xs border-collapse">
+        <thead>
+          <tr className="bg-white/5 text-gray-400">
+            <th className={`${STICKY} text-left px-3 py-2 font-semibold`}>Creador</th>
+            {days.map((d, i) => (
+              <th
+                key={d}
+                title={d}
+                className={`px-2 py-2 font-mono font-normal text-center whitespace-nowrap ${
+                  newMonth(d, i) ? "border-l border-white/15" : ""
+                }`}
+              >
+                {dd(d)}
+              </th>
+            ))}
+            <th className="px-3 py-2 font-semibold text-right border-l border-white/15">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {creators.map((c) => {
+            const totalCreador = days.reduce((a, d) => a + (byCreator.get(c.slug)?.get(d) ?? 0), 0);
+            return (
+              <tr key={c.slug} className="border-t border-white/5">
+                <th className={`${STICKY} text-left px-3 py-2 font-semibold whitespace-nowrap`}>
+                  {c.display_name}
+                </th>
+                {days.map((d, i) => {
+                  const n = byCreator.get(c.slug)?.get(d) ?? 0;
+                  const alpha = n === 0 ? 0 : (0.06 + 0.2 * (n / maxCell)).toFixed(3);
+                  return (
+                    <td
+                      key={d}
+                      className={`px-2 py-2 text-center font-mono ${newMonth(d, i) ? "border-l border-white/15" : ""}`}
+                      style={{
+                        color: n === 0 ? "#3a4658" : "#E8D48B",
+                        background: n === 0 ? "transparent" : `rgba(201,168,76,${alpha})`,
+                      }}
+                    >
+                      {n === 0 ? "·" : n}
+                    </td>
+                  );
+                })}
+                <td className="px-3 py-2 text-right font-mono font-bold text-white border-l border-white/15">
+                  {totalCreador}
+                </td>
+              </tr>
+            );
+          })}
+          <tr className="border-t-2 border-white/15 bg-white/5">
+            <th className={`${STICKY} text-left px-3 py-2 font-bold`}>Total / día</th>
+            {totalPorDia.map((t, i) => (
+              <td
+                key={days[i]}
+                className={`px-2 py-2 text-center font-mono font-bold text-white ${
+                  newMonth(days[i], i) ? "border-l border-white/15" : ""
+                }`}
+              >
+                {t || "·"}
+              </td>
+            ))}
+            <td className="px-3 py-2 text-right font-mono font-black text-[#C9A84C] border-l border-white/15">
+              {totalPorDia.reduce((a, b) => a + b, 0)}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

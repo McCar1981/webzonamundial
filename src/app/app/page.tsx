@@ -13,7 +13,8 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, Fragment } from "react";
+import { MATCHES } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
 import PushPromptCard from "@/components/app/PushPromptCard";
@@ -464,6 +465,21 @@ function useInstallPrompt() {
 }
 
 /* ════════════════════════════ PÁGINA ════════════════════════════ */
+// "Desde tu última visita": una predicción resuelta (agregada por partido).
+type RecentResult = { match_id: string; points: number; correct: number; total: number; resolved_at: string };
+// "Partidos de hoy": un fixture del día (de /api/match-center/today).
+type TodayMatch = {
+  matchId: number;
+  slug: string;
+  live: boolean;
+  finished: boolean;
+  score: [number | null, number | null];
+  kickoff: string | null;
+  group: string;
+  home: { name: string; flag: string };
+  away: { name: string; flag: string };
+};
+
 export default function AppHubPage() {
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
@@ -502,6 +518,14 @@ export default function AppHubPage() {
   // Badge de racha de "Misiones de hoy": pulso extra al reclamar si la racha
   // sube o se mantiene (el otro premio del check-in diario).
   const streakBadgeRef = useRef<HTMLSpanElement | null>(null);
+  // "Desde tu última visita": predicciones resueltas recientes (de /api/predictions/mine).
+  const [recentResults, setRecentResults] = useState<RecentResult[] | null>(null);
+  // Mapa match_id -> nº de tipos predichos (chips "Predicho/Predecir" de "Partidos de hoy").
+  const [predictedCounts, setPredictedCounts] = useState<Record<string, number>>({});
+  // "Partidos de hoy": fixtures del día (de /api/match-center/today).
+  const [todayMatches, setTodayMatches] = useState<TodayMatch[] | null>(null);
+  // Catálogo de 18 módulos colapsado por defecto → el lobby enfoca la acción del día.
+  const [catalogOpen, setCatalogOpen] = useState(false);
 
   useEffect(() => {
     const h = new URLSearchParams(window.location.search).get("hero");
@@ -595,14 +619,21 @@ export default function AppHubPage() {
     return () => clearInterval(id);
   }, []);
 
-  // ¿Predijo ya el partido destacado? (misiones del día; auth requerida)
+  // /api/predictions/mine (auth): en UNA llamada alimenta tres cosas —
+  //   · predictedFeatured (¿predijo el destacado? para "Misiones")
+  //   · predictedCounts   (mapa match_id→nº tipos, chips de "Partidos de hoy")
+  //   · recentResults     (predicciones resueltas, "Desde tu última visita")
   useEffect(() => {
-    if (!authed || !match?.matchId) { setPredictedFeatured(null); return; }
+    if (!authed) { setPredictedFeatured(null); setRecentResults(null); setPredictedCounts({}); return; }
     let on = true;
     fetch("/api/predictions/mine")
       .then((r) => (r.ok ? r.json() : null))
-      .then((d: { counts?: Record<string, number> } | null) => {
-        if (on && d?.counts) setPredictedFeatured((d.counts[String(match.matchId)] ?? 0) > 0);
+      .then((d: { counts?: Record<string, number>; recent_results?: RecentResult[] } | null) => {
+        if (!on || !d) return;
+        const counts = d.counts ?? {};
+        setPredictedCounts(counts);
+        setRecentResults(d.recent_results ?? []);
+        if (match?.matchId) setPredictedFeatured((counts[String(match.matchId)] ?? 0) > 0);
       })
       .catch(() => {});
     return () => { on = false; };
@@ -620,6 +651,23 @@ export default function AppHubPage() {
       .catch(() => {});
     return () => { on = false; };
   }, [authed]);
+
+  // "Partidos de hoy": la tira con todos los fixtures del día (el destacado solo
+  // muestra uno). Una carga al entrar; ligera (endpoint público cacheado).
+  useEffect(() => {
+    if (authed !== true) { setTodayMatches(null); return; }
+    let on = true;
+    fetch("/api/match-center/today")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { matches?: TodayMatch[] } | null) => { if (on) setTodayMatches(d?.matches ?? []); })
+      .catch(() => { if (on) setTodayMatches([]); });
+    return () => { on = false; };
+  }, [authed]);
+
+  // Si llegan con #modulos (los CTA "Explorar modos"), abrimos el catálogo.
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#modulos") setCatalogOpen(true);
+  }, []);
 
   // Detección iOS para el hint de instalación (en effect → sin hydration mismatch).
   useEffect(() => {
@@ -967,6 +1015,67 @@ export default function AppHubPage() {
           <StoryViewer hideWhenEmpty />
         </div>
 
+        {/* ═══ TU SIGUIENTE JUGADA — una sola acción, la más importante del día.
+            El lobby debe responder "¿qué hago AHORA?" en un vistazo. Prioridad:
+            racha en riesgo → predicciones que faltan hoy → trivia diaria. ═══ */}
+        {authed === true && (() => {
+          const hl = gam?.streak?.hours_left;
+          const streakRisk = !!gam?.streak?.active && typeof hl === "number" && hl <= 12 && (gam?.streak?.current ?? 0) > 0;
+          const pendingToday = (todayMatches ?? []).filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
+          let act: { icon: string; label: string; cta: string; href: string; urgent?: boolean } | null = null;
+          if (streakRisk) act = { icon: "🔥", label: `Tu racha de ${gam!.streak.current} días expira en ${Math.max(1, Math.floor(hl as number))}h`, cta: "Sálvala", href: "/app/predicciones/jugar", urgent: true };
+          else if (pendingToday > 0) act = { icon: "🎯", label: `Te ${pendingToday === 1 ? "falta" : "faltan"} ${pendingToday} ${pendingToday === 1 ? "predicción" : "predicciones"} de hoy`, cta: "Jugar", href: "/app/predicciones" };
+          else if (triviaPlayedToday === false) act = { icon: "🧠", label: "Juega la trivia diaria y suma Fútcoins", cta: "Jugar", href: "/trivia" };
+          if (!act) return null;
+          const u = act.urgent;
+          return (
+            <Link href={act.href} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 16, borderRadius: 16, textDecoration: "none", color: TXT, background: u ? "linear-gradient(135deg,#f25a50,#dc3f36)" : "linear-gradient(135deg, rgba(201,168,76,0.20), #102a4d 72%)", border: `1px solid ${u ? "#f4aaa4" : GOLD + "66"}`, boxShadow: "0 12px 28px rgba(0,0,0,0.32)" }}>
+              <span aria-hidden style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>{act.icon}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: u ? "rgba(255,255,255,0.85)" : GOLD }}>Tu siguiente jugada</div>
+                <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{act.label}</div>
+              </div>
+              <span style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: u ? "#fff" : `linear-gradient(135deg,${GOLD},${GOLD2})` }}>
+                {act.cta}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </span>
+            </Link>
+          );
+        })()}
+
+        {/* ═══ DESDE TU ÚLTIMA VISITA — el "payoff" del retorno: tus predicciones
+            ya resueltas con sus puntos. Es el refuerzo variable que hace volver.
+            Datos reales de /api/predictions/mine (recent_results); nombres de
+            equipo por join con MATCHES (el endpoint solo trae match_id). ═══ */}
+        {authed === true && recentResults && recentResults.length > 0 && (
+          <section data-reveal style={{ marginBottom: 16, borderRadius: 18, padding: "14px 16px 12px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+              <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}33,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>📊</span>
+              <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Desde tu última visita</h2>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {recentResults.slice(0, 3).map((r) => {
+                const m = MATCHES.find((x) => String(x.i) === r.match_id);
+                const win = r.points > 0 && r.correct > 0;
+                return (
+                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 11px", borderRadius: 12, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.28)" : "rgba(14,28,51,0.08)"}` }}>
+                    <span aria-hidden style={{ fontSize: 18, lineHeight: 1, flexShrink: 0 }}>{win ? "✅" : "▪️"}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13.5, fontWeight: 800, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {m ? `${m.h} vs ${m.a}` : "Tu predicción"}
+                      </div>
+                      <div style={{ fontSize: 11.5, color: "#5b6b86", marginTop: 1 }}>{r.correct}/{r.total} aciertos</div>
+                    </div>
+                    <span style={{ flexShrink: 0, fontSize: 14, fontWeight: 900, color: r.points >= 0 ? "#16a34a" : "#dc2626" }}>
+                      {r.points >= 0 ? "+" : ""}{r.points} pts
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
         {/* Activador de notificaciones: solo aparece a quien NO las tiene aún.
             El lobby es donde está la gente logueada → mejor sitio para pedirlas.
             Si hay partido próximo, el copy se vuelve contextual ("⚽ X vs Y — faltan…"). */}
@@ -1198,6 +1307,57 @@ export default function AppHubPage() {
           </Link>
         )}
 
+        {/* ═══ PARTIDOS DE HOY — el lobby solo conocía UN partido; en grupos hay
+            3-4 al día. Lista con chip "Predicho ✓ / Predecir" + contador "te
+            faltan N" (bucle abierto: el usuario vuelve a cerrar lo pendiente).
+            Datos reales: /api/match-center/today + counts de /predictions/mine. ═══ */}
+        {authed === true && todayMatches && todayMatches.length > 0 && (() => {
+          const pending = todayMatches.filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
+          return (
+            <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "16px 16px 13px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
+                <h2 style={{ fontSize: 16, fontWeight: 800, color: INK, display: "flex", alignItems: "center", gap: 8 }}>
+                  <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}33,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>⚽</span>
+                  Partidos de hoy
+                </h2>
+                {pending > 0 && (
+                  <span style={{ fontSize: 11.5, fontWeight: 800, color: "#8a6a13", background: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", padding: "4px 11px", borderRadius: 999 }}>
+                    Te {pending === 1 ? "falta" : "faltan"} {pending} de hoy
+                  </span>
+                )}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {todayMatches.slice(0, 6).map((m) => {
+                  const predicted = (predictedCounts[String(m.matchId)] ?? 0) > 0;
+                  const ko = m.kickoff ? new Date(m.kickoff).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: false }) : "";
+                  return (
+                    <div key={m.matchId} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 11px", borderRadius: 12, background: "#fff", border: "1px solid rgba(14,28,51,0.08)" }}>
+                      <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 7, fontSize: 13, fontWeight: 700, color: INK }}>
+                        <img src={`https://flagcdn.com/w40/${m.home.flag}.png`} alt="" width={20} height={14} style={{ borderRadius: 2, flexShrink: 0 }} />
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "28vw" }}>{m.home.name}</span>
+                        <span style={{ color: "#9aa6bd", fontWeight: 700, flexShrink: 0 }}>{m.finished || m.live ? `${m.score[0] ?? 0}-${m.score[1] ?? 0}` : "vs"}</span>
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "28vw" }}>{m.away.name}</span>
+                        <img src={`https://flagcdn.com/w40/${m.away.flag}.png`} alt="" width={20} height={14} style={{ borderRadius: 2, flexShrink: 0 }} />
+                      </div>
+                      {m.finished ? (
+                        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, color: "#5b6b86" }}>Final</span>
+                      ) : m.live ? (
+                        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, color: "#dc2626", display: "inline-flex", alignItems: "center", gap: 4 }}><span style={{ width: 6, height: 6, borderRadius: 99, background: "#dc2626", display: "inline-block" }} />EN VIVO</span>
+                      ) : predicted ? (
+                        <span style={{ flexShrink: 0, fontSize: 11.5, fontWeight: 800, color: "#16a34a" }}>✓ Predicho</span>
+                      ) : (
+                        <Link href={`/app/predicciones/jugar?match=${m.matchId}`} style={{ flexShrink: 0, fontSize: 12, fontWeight: 800, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, padding: "6px 12px", borderRadius: 999, textDecoration: "none" }}>
+                          {ko && <span style={{ opacity: 0.7, marginRight: 5, fontWeight: 700 }}>{ko}</span>}Predecir
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* ═══ 3c. MISIONES DE HOY ═══
             El loop diario en una card: check-in (recompensa server-side ya
             existente), predicción del partido del día y trivia. Estados REALES
@@ -1318,9 +1478,22 @@ export default function AppHubPage() {
           </section>
         )}
 
-        {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
-        {CATS.map((cat, i) => (
-          <section key={cat.key} id={i === 0 ? "modulos" : undefined} data-reveal style={{ marginBottom: 32, scrollMarginTop: 14 }}>
+        {/* ═══ 5 + 6. CATEGORÍAS — la principal ("Jugar") SIEMPRE visible; el
+            resto del catálogo (12 modos) colapsado por defecto para que el lobby
+            enfoque la acción del día y no sea un muro de 18 cards. El toggle
+            mantiene #modulos alcanzable (sigue en la 1ª sección). ═══ */}
+        {CATS.map((cat, i) => {
+          const hidden = i > 0 && !catalogOpen;
+          return (
+          <Fragment key={cat.key}>
+            {i === 1 && (
+              <button type="button" onClick={() => setCatalogOpen((o) => !o)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", marginBottom: catalogOpen ? 20 : 32, padding: "12px 16px", borderRadius: 14, cursor: "pointer", fontSize: 13.5, fontWeight: 800, color: TXT, background: "rgba(255,255,255,0.04)", border: `1px solid ${LINE}` }}>
+                {catalogOpen ? "Ocultar modos" : `Ver todos los modos (${CATS.slice(1).reduce((n, c) => n + c.mods.length, 0)})`}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ transform: catalogOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }}><path d="M6 9l6 6 6-6" stroke={GOLD2} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </button>
+            )}
+            {!hidden && (
+          <section id={i === 0 ? "modulos" : undefined} data-reveal style={{ marginBottom: 32, scrollMarginTop: 14 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 14 }}>
               <span className="zm-cat-bar" style={{ width: 5, height: 34, borderRadius: 3, background: `linear-gradient(180deg, ${cat.tint}, ${cat.tint2})`, flexShrink: 0, boxShadow: `0 0 10px ${cat.tint}66` }} />
               <div style={{ minWidth: 0 }}>
@@ -1337,7 +1510,10 @@ export default function AppHubPage() {
               {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} cat={cat} />)}
             </div>
           </section>
-        ))}
+            )}
+          </Fragment>
+          );
+        })}
 
         {/* ═══ 6b. EL MUNDIAL EN TU CALENDARIO — mismo CTA que el home web,
                aquí en versión compacta para el móvil. El botón abre el modal

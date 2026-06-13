@@ -224,3 +224,164 @@ export async function getModuleUserRank(module: CoinModule, uid: string): Promis
     total: Number(row.total ?? 0),
   };
 }
+
+// ─── Ranking POR PAÍS y MEDALLERO DE NACIONES (profiles.country) ─────────────
+// La moneda es la misma en todo ZM; aquí cruzamos por `country` (residencia,
+// código ISO-3166 alpha-2 que el usuario eligió en pre-registro/perfil). Dos
+// lecturas distintas sobre el mismo dato:
+//   · getCountryCoinRanking → top de jugadores DE un país ("ranking nacional").
+//   · getNationsLeaderboard → MEDALLERO: países ordenados por las Fútcoins que
+//     suman sus jugadores ("¿qué afición manda?"). Muy del Mundial.
+
+/** Normaliza un código de país a ISO-2 minúsculas; null si no parece válido. */
+function normalizeCountry(v: string | null | undefined): string | null {
+  if (!v) return null;
+  const c = v.trim().toLowerCase();
+  return /^[a-z]{2}$/.test(c) ? c : null;
+}
+
+export interface MyCountryRank {
+  /** Código ISO-2 (minúsculas) del país del usuario. */
+  country: string;
+  /** Puesto del usuario DENTRO de su país (1 = líder nacional). */
+  rank: number;
+  /** Jugadores con saldo > 0 de ese país (denominador del "#N de M"). */
+  total: number;
+  /** Saldo de Fútcoins del usuario. */
+  coins: number;
+}
+
+export interface NationRank {
+  /** Puesto del país en el medallero (1 = el que más Fútcoins suma). */
+  rank: number;
+  /** Código ISO-2 (minúsculas) para la banderita. */
+  country: string;
+  /** Jugadores con saldo > 0 de ese país. */
+  players: number;
+  /** Suma de Fútcoins de todos sus jugadores (criterio del medallero). */
+  coins: number;
+  /** Nombre del jugador líder del país (puede ser null si sin username). */
+  topName: string | null;
+  /** Avatar del líder del país (puede ser null). */
+  topAvatar: string | null;
+}
+
+/**
+ * Top de jugadores DE un país por Fútcoins (mismo criterio que el global:
+ * saldo desc, XP desc, id asc). Re-rankea 1..N dentro del país. Excluye staff.
+ */
+export async function getCountryCoinRanking(country: string, limit = 50): Promise<RankingEntry[]> {
+  const code = normalizeCountry(country);
+  if (!code) return [];
+  const admin = adminClient();
+  let q = admin
+    .from("profiles")
+    .select("id,username,avatar_url,country,coins,xp")
+    .ilike("country", code) // case-insensitive: algún perfil legado guardó "MX"
+    .gt("coins", 0);
+  const excl = excludedInClause();
+  if (excl) q = q.not("id", "in", excl);
+  const { data } = await q
+    .order("coins", { ascending: false })
+    .order("xp", { ascending: false })
+    .order("id", { ascending: true })
+    .limit(Math.max(1, Math.min(200, limit)));
+
+  const rows = (data ?? []) as ProfRow[];
+  return rows.map((r, i) => ({
+    rank: i + 1,
+    userId: r.id,
+    name: r.username,
+    avatarUrl: r.avatar_url,
+    country: r.country,
+    coins: r.coins ?? 0,
+    xp: r.xp ?? 0,
+    level: levelForXp(r.xp ?? 0),
+  }));
+}
+
+/**
+ * Puesto del usuario DENTRO de su propio país. Cuenta cuántos compatriotas
+ * tienen más saldo (o empatan en saldo pero con más XP). Devuelve null si el
+ * usuario no tiene país, no tiene saldo aún, o es staff.
+ */
+export async function getUserCountryRank(uid: string): Promise<MyCountryRank | null> {
+  if (isRankingExcluded(uid)) return null;
+  const admin = adminClient();
+  const { data } = await admin.from("profiles").select("coins,xp,country").eq("id", uid).maybeSingle();
+  if (!data) return null;
+  const coins = (data as { coins?: number }).coins ?? 0;
+  const xp = (data as { xp?: number }).xp ?? 0;
+  const country = normalizeCountry((data as { country?: string | null }).country);
+  if (!country || coins <= 0) return null; // sin país o sin saldo no compite por país
+
+  const excl = excludedInClause();
+  const aboveQ = admin.from("profiles").select("id", { count: "exact", head: true }).ilike("country", country).gt("coins", coins);
+  const tiedQ = admin.from("profiles").select("id", { count: "exact", head: true }).ilike("country", country).eq("coins", coins).gt("xp", xp);
+  const totalQ = admin.from("profiles").select("id", { count: "exact", head: true }).ilike("country", country).gt("coins", 0);
+  const [{ count: above }, { count: tiedAhead }, { count: total }] = await Promise.all([
+    excl ? aboveQ.not("id", "in", excl) : aboveQ,
+    excl ? tiedQ.not("id", "in", excl) : tiedQ,
+    excl ? totalQ.not("id", "in", excl) : totalQ,
+  ]);
+
+  return { country, rank: (above ?? 0) + (tiedAhead ?? 0) + 1, total: total ?? 0, coins };
+}
+
+/**
+ * MEDALLERO de naciones: agrupa todos los perfiles con saldo por `country` y
+ * los ordena por la suma de Fútcoins de sus jugadores. Pagina la lectura para
+ * esquivar el tope silencioso de ~1000 filas de PostgREST (mismo patrón que el
+ * ranking de predicciones). Como leemos en orden de saldo desc, el primer
+ * perfil que aparece de cada país ya es su líder. Excluye staff.
+ */
+export async function getNationsLeaderboard(limit = 100): Promise<NationRank[]> {
+  const admin = adminClient();
+  const excl = excludedInClause();
+  const PAGE = 1000;       // tope por respuesta de PostgREST
+  const MAX_PAGES = 60;    // ~60k perfiles: backstop defensivo
+
+  interface Acc { coins: number; players: number; topCoins: number; topName: string | null; topAvatar: string | null }
+  const byCountry = new Map<string, Acc>();
+
+  for (let page = 0; page < MAX_PAGES; page++) {
+    let q = admin
+      .from("profiles")
+      .select("id,username,avatar_url,country,coins")
+      .gt("coins", 0)
+      .not("country", "is", null);
+    if (excl) q = q.not("id", "in", excl);
+    const { data, error } = await q
+      .order("coins", { ascending: false })
+      .order("id", { ascending: true })
+      .range(page * PAGE, page * PAGE + PAGE - 1);
+    if (error) {
+      console.error("[ranking] medallero falló en página", page, error.message);
+      break;
+    }
+    const rows = (data ?? []) as { id: string; username: string | null; avatar_url: string | null; country: string | null; coins: number | null }[];
+    for (const r of rows) {
+      const code = normalizeCountry(r.country);
+      if (!code) continue;
+      const c = r.coins ?? 0;
+      const a = byCountry.get(code) ?? { coins: 0, players: 0, topCoins: -1, topName: null, topAvatar: null };
+      a.coins += c;
+      a.players += 1;
+      if (c > a.topCoins) { a.topCoins = c; a.topName = r.username; a.topAvatar = r.avatar_url; }
+      byCountry.set(code, a);
+    }
+    if (rows.length < PAGE) break;
+    if (page === MAX_PAGES - 1) console.error("[ranking] medallero alcanzó MAX_PAGES; posiblemente incompleto");
+  }
+
+  const list = [...byCountry.entries()].map(([country, a]) => ({
+    country,
+    players: a.players,
+    coins: a.coins,
+    topName: a.topName,
+    topAvatar: a.topAvatar,
+  }));
+  // Orden: más Fútcoins, desempate por más jugadores y luego código (estable).
+  list.sort((x, y) => y.coins - x.coins || y.players - x.players || x.country.localeCompare(y.country));
+  return list.slice(0, Math.max(1, limit)).map((n, i) => ({ rank: i + 1, ...n }));
+}

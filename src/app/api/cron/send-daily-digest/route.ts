@@ -27,6 +27,8 @@ import {
   buildUnsubscribeToken,
 } from "@/lib/email-subscriptions";
 import { sendDailyDigest } from "@/lib/email";
+import { MATCHES } from "@/data/matches";
+import { etToDate } from "@/lib/bracket/match-time";
 import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
@@ -56,10 +58,62 @@ export async function GET(req: NextRequest) {
   const all = await getAllPublicNoticias();
   const recent = all.slice(0, 5);
 
-  if (recent.length === 0) {
+  // Partidos del día — el email "Tu día en el Mundial" lidera con ellos
+  // (gancho de retorno: predecir hoy). "Hoy" = fecha en Europe/Madrid del
+  // instante REAL del saque (etToDate convierte d+t en ET a un instante
+  // absoluto, así un partido a las 23:59 ET cae en su día correcto en España).
+  // Si no hay partidos hoy, caemos a los próximos del calendario.
+  const now = new Date();
+  const madridDate = (d: Date) =>
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/Madrid",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(d); // YYYY-MM-DD
+  const madridTime = (d: Date) =>
+    new Intl.DateTimeFormat("es-ES", {
+      timeZone: "Europe/Madrid",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(d);
+  const todayStr = madridDate(now);
+  const withDt = MATCHES.map((m) => ({ m, dt: etToDate(m.d, m.t) })).filter(
+    (x) => x.dt !== null,
+  ) as { m: (typeof MATCHES)[number]; dt: Date }[];
+  let fixturesAreToday = true;
+  // Partidos de hoy que aún no han terminado (margen de 2h por si está en juego).
+  let slate = withDt.filter(
+    (x) =>
+      madridDate(x.dt) === todayStr &&
+      x.dt.getTime() >= now.getTime() - 2 * 60 * 60 * 1000,
+  );
+  if (slate.length === 0) {
+    fixturesAreToday = false;
+    const upcoming = withDt
+      .filter((x) => x.dt.getTime() >= now.getTime())
+      .sort((a, b) => a.dt.getTime() - b.dt.getTime());
+    const nextDate = upcoming.length ? madridDate(upcoming[0].dt) : null;
+    slate = nextDate
+      ? upcoming.filter((x) => madridDate(x.dt) === nextDate)
+      : [];
+  }
+  slate.sort((a, b) => a.dt.getTime() - b.dt.getTime());
+  const fixtures = slate.slice(0, 8).map((x) => ({
+    home: x.m.h,
+    homeFlag: x.m.hf,
+    away: x.m.a,
+    awayFlag: x.m.af,
+    time: madridTime(x.dt),
+    group: x.m.g,
+  }));
+
+  // Solo nos saltamos el envío si NO hay ni partidos ni noticias.
+  if (recent.length === 0 && fixtures.length === 0) {
     return NextResponse.json({
       ok: true,
-      skipped: "no_articles_published",
+      skipped: "no_articles_or_fixtures",
       sent: 0,
     });
   }
@@ -139,6 +193,8 @@ export async function GET(req: NextRequest) {
       const ok = await sendDailyDigest({
         to: row.email,
         unsubscribeUrl,
+        fixtures,
+        fixturesAreToday,
         articles: recent.map((n) => ({
           title: n.title,
           slug: n.slug,

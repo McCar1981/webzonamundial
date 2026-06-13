@@ -340,6 +340,18 @@ export async function sendNewRegistrationNotification(opts: {
 export async function sendDailyDigest(opts: {
   to: string;
   unsubscribeUrl: string;
+  /** Partidos del día (gancho de retorno: predecir hoy). Si va vacío, el email
+   *  cae a su forma clásica de solo-noticias. */
+  fixtures?: Array<{
+    home: string;
+    homeFlag: string;
+    away: string;
+    awayFlag: string;
+    time: string;
+    group?: string;
+  }>;
+  /** false → los fixtures son los "próximos" (no había partidos hoy). */
+  fixturesAreToday?: boolean;
   articles: Array<{
     title: string;
     slug: string;
@@ -349,13 +361,48 @@ export async function sendDailyDigest(opts: {
     cat: string;
   }>;
 }): Promise<boolean> {
-  if (opts.articles.length === 0) return false;
+  const fixtures = opts.fixtures ?? [];
+  // Sin partidos NI noticias no hay nada que contar — no spammeamos.
+  if (opts.articles.length === 0 && fixtures.length === 0) return false;
+  const hasFixtures = fixtures.length > 0;
   const today = new Date().toLocaleDateString("es-ES", {
     timeZone: "Europe/Madrid",
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+
+  // ── Bloque "Partidos de hoy" — el gancho de retorno diario ──
+  const fixturesHtml = !hasFixtures ? "" : (() => {
+    const flag = (iso: string) =>
+      `<img src="https://flagcdn.com/w20/${escapeHtml(iso.toLowerCase())}.png" width="20" height="14" alt="" style="display:inline-block;width:20px;height:14px;border-radius:2px;vertical-align:middle;border:0;">`;
+    const rows = fixtures
+      .map((f) => `
+        <tr>
+          <td style="padding:9px 12px;font-size:14px;color:#111827;border-top:1px solid #EDE3CC;">
+            ${flag(f.homeFlag)} <strong style="font-weight:700;">${escapeHtml(f.home)}</strong>
+            <span style="color:#9ca3af;font-weight:400;"> vs </span>
+            <strong style="font-weight:700;">${escapeHtml(f.away)}</strong> ${flag(f.awayFlag)}
+          </td>
+          <td style="padding:9px 12px;font-size:13px;color:#8C7437;font-weight:700;text-align:right;white-space:nowrap;border-top:1px solid #EDE3CC;">
+            ${escapeHtml(f.time)}h${f.group ? ` · Gr.${escapeHtml(f.group)}` : ""}
+          </td>
+        </tr>`)
+      .join("");
+    const label = opts.fixturesAreToday === false ? "Próximos partidos" : "Partidos de hoy";
+    return `
+      <div style="background:#FBF7EC;border:1px solid #EDE3CC;border-radius:14px;padding:16px 16px 8px;margin:0 0 24px;">
+        <p style="margin:0 0 4px;font-family:Georgia,serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8C7437;font-weight:700;">
+          ⚽ ${label} <span style="color:#b8a06a;">(hora española)</span>
+        </p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+          ${rows}
+        </table>
+        <p style="margin:12px 2px 4px;font-size:13px;color:#3D3D5C;">
+          Haz tus predicciones <strong>antes del pitido inicial</strong> y súbete al ranking.
+        </p>
+      </div>`;
+  })();
 
   const articlesHtml = opts.articles
     .map((a, idx) => {
@@ -388,24 +435,47 @@ export async function sendDailyDigest(opts: {
     .join("");
 
   const articleCount = opts.articles.length;
-  const subject = articleCount === 1
-    ? "Tu resumen del Mundial 2026"
-    : `Tu resumen del Mundial 2026 · ${articleCount} novedades`;
+  // Noticias como bloque SECUNDARIO cuando hay partidos (el gancho es predecir).
+  const newsBlock = articleCount === 0 ? "" : `
+        <p style="margin:${hasFixtures ? "28px" : "0"} 0 14px;font-family:Georgia,serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8C7437;font-weight:700;">
+          📰 Lo último
+        </p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          ${articlesHtml}
+        </table>`;
+
+  const fxCount = fixtures.length;
+  const fxWord = fxCount === 1 ? "partido" : "partidos";
+  const subject = hasFixtures
+    ? `Tu día en el Mundial · ${fxCount} ${fxWord}${opts.fixturesAreToday === false ? "" : " hoy"}`
+    : (articleCount === 1
+        ? "Tu resumen del Mundial 2026"
+        : `Tu resumen del Mundial 2026 · ${articleCount} novedades`);
+  const heading = hasFixtures ? "Tu día en el Mundial" : "Buenos días, esto es lo más importante de hoy";
+  const preheader = hasFixtures
+    ? `${fxCount} ${fxWord} para predecir + tu trivia diaria`
+    : `${articleCount} ${articleCount === 1 ? "novedad hoy" : "novedades hoy"} en ZonaMundial`;
+  const ctaLabel = hasFixtures ? "Predice los partidos de hoy" : "Ver todas las noticias";
+  const ctaHref = hasFixtures
+    ? "https://zonamundial.app/app/predicciones"
+    : "https://zonamundial.app/noticias";
 
   return sendEmail({
     to: opts.to,
     subject,
     html: brandedEmail({
-      preheader: `${articleCount} ${articleCount === 1 ? "novedad hoy" : "novedades hoy"} en ZonaMundial`,
-      heading: `Buenos días, esto es lo más importante de hoy`,
+      preheader,
+      heading,
       bodyHtml: `
-        <p style="margin:0 0 24px;color:#6b7280;font-size:13px;letter-spacing:0.01em;">
+        <p style="margin:0 0 20px;color:#6b7280;font-size:13px;letter-spacing:0.01em;">
           ${escapeHtml(today)}
         </p>
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          ${articlesHtml}
-        </table>
-        <p style="margin:36px 0 0;padding-top:24px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;text-align:center;line-height:1.6;">
+        ${fixturesHtml}
+        ${newsBlock}
+        <p style="margin:24px 0 0;padding:14px 16px;background:#F4F1FB;border-radius:12px;font-size:14px;color:#3D3D5C;text-align:center;line-height:1.5;">
+          🧠 ¿Ya jugaste la <a href="https://zonamundial.app/trivia" style="color:#7c3aed;text-decoration:none;font-weight:700;">trivia diaria</a>? Mantén tu racha y suma Fútcoins.
+        </p>
+        <p style="margin:32px 0 0;padding-top:24px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;text-align:center;line-height:1.6;">
           Recibes este email porque te suscribiste al resumen diario de ZonaMundial.<br>
           <a href="${escapeHtml(opts.unsubscribeUrl)}" style="color:#C9A84C;text-decoration:underline;">
             Darse de baja
@@ -415,8 +485,8 @@ export async function sendDailyDigest(opts: {
           </a>
         </p>
       `,
-      ctaLabel: "Ver todas las noticias",
-      ctaHref: "https://zonamundial.app/noticias",
+      ctaLabel,
+      ctaHref,
     }),
   });
 }

@@ -65,7 +65,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
           letterSpacing: "-0.02em",
         }}
       >
-        {moduleLabel}: Free vs Founders Pass
+        {moduleLabel}: Free vs Pro
       </h3>
 
       <div style={{ overflowX: "auto" }}>
@@ -101,7 +101,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
                   color: "#FDE68A",
                 }}
               >
-                Founders Pass
+                Pro
               </th>
             </tr>
           </thead>
@@ -142,7 +142,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
 
       <div style={{ marginTop: 18, display: "flex", justifyContent: "flex-end" }}>
         <Link
-          href="/founders"
+          href="/pro"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -153,7 +153,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
             fontWeight: 600,
           }}
         >
-          Conocer el Founders Pass →
+          Hazte Pro →
         </Link>
       </div>
     </div>

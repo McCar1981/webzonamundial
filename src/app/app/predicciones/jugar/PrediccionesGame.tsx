@@ -20,6 +20,13 @@ import { DoubleMatchCard, SecondChanceButton, usePowerupState } from "./Powerups
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import { celebrate, haptic, prefersReducedMotion } from "@/lib/celebration";
 import {
+  isPushSupported,
+  getNotificationPermission,
+  getCurrentSubscription,
+  subscribeToPush,
+  claimPushReward,
+} from "@/lib/push-client";
+import {
   TYPE_ICON, TIER_ICON, OracleIcon,
   ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Snowflake, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
@@ -48,6 +55,21 @@ const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", 
 const GREEN = "#22c55e", RED = "#ef4444";
 const INK = "var(--zm-ink, #060B14)";
 const TEXT = "var(--zm-text, #fff)";
+
+// Prompt de push contextual tras guardar una predicción (momento de máxima
+// intención). Mismo flujo y reglas anti-molestia que PushPromptCard del lobby.
+const PUSH_DISMISS_KEY = "zm.pred.pushprompt.dismissedAt";
+const PUSH_REASK_DAYS = 3;
+const PUSH_REWARD = 25; // gancho mostrado; el abono real (idempotente) lo decide el servidor
+function pushDismissedRecently(): boolean {
+  try {
+    const at = parseInt(localStorage.getItem(PUSH_DISMISS_KEY) || "0", 10);
+    if (!at) return false;
+    return (Date.now() - at) / (1000 * 60 * 60 * 24) < PUSH_REASK_DAYS;
+  } catch {
+    return false;
+  }
+}
 const CARD_BORDER = "1px solid var(--zm-border, rgba(255,255,255,0.07))";
 
 const flagUrl = (code: string) => `https://flagcdn.com/w40/${code}.png`;
@@ -215,6 +237,10 @@ export default function PrediccionesGame() {
   // ¿Reducir movimiento? Arranca en false para casar el SSR; se resuelve tras
   // montar y, si es true, desactiva la animación de entrada del toast.
   const [reduceMotion, setReduceMotion] = useState(false);
+  // Prompt de push tras guardar (intención máxima: "te avisamos al resolverse").
+  const [pushPrompt, setPushPrompt] = useState<"hidden" | "idle" | "loading" | "done" | "denied">("hidden");
+  const [pushEarned, setPushEarned] = useState(0);
+  const pushOffered = useRef(false); // solo se ofrece una vez por sesión
 
   const [scorers, setScorers] = useState<ScorerCandidate[]>([]);
   const [pendingTeams, setPendingTeams] = useState<string[]>([]);
@@ -372,6 +398,13 @@ export default function PrediccionesGame() {
         // Pop visual sobre el toast una vez montado (pattern [] → sin vibración
         // extra; la háptica ya se disparó arriba).
         requestAnimationFrame(() => celebrate(toastRef.current, []));
+        // Justo después de apostar es cuando más razones hay para volver (ver si
+        // acertaste) → ofrecemos el push UNA vez por sesión, si el navegador lo
+        // soporta, el permiso sigue en "default" y no se descartó hace poco.
+        if (!pushOffered.current && isPushSupported() && getNotificationPermission() === "default" && !pushDismissedRecently()) {
+          pushOffered.current = true;
+          getCurrentSubscription().then((sub) => { if (!sub) setPushPrompt("idle"); }).catch(() => {});
+        }
         await loadMatch(matchId);
       } else if (handleProRequired(json)) {
         // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
@@ -383,6 +416,30 @@ export default function PrediccionesGame() {
       setToast({ kind: "err", msg: "Sin conexión: no se pudo guardar. Reintenta." });
     }
   }, [matchId, loadMatch]);
+
+  // Activar push desde el prompt contextual: suscribe a la resolución de
+  // predicciones + momentos clave y reclama la recompensa (idempotente).
+  async function activatePush() {
+    setPushPrompt("loading");
+    try {
+      const sub = await subscribeToPush({ kinds: ["predictions-reminder", "tournament-key-events"] });
+      if (sub) {
+        const reward = await claimPushReward();
+        setPushEarned(reward && !reward.alreadyClaimed ? reward.coins : 0);
+        setPushPrompt("done");
+        haptic(10);
+        setTimeout(() => setPushPrompt("hidden"), 4500);
+      } else {
+        setPushPrompt("denied");
+      }
+    } catch {
+      setPushPrompt("denied");
+    }
+  }
+  function dismissPush() {
+    try { localStorage.setItem(PUSH_DISMISS_KEY, String(Date.now())); } catch { /* ignore */ }
+    setPushPrompt("hidden");
+  }
 
   if (authed === false) {
     return (
@@ -438,6 +495,52 @@ export default function PrediccionesGame() {
           animation: reduceMotion ? undefined : "micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1)",
         }}>
           {toast.msg}
+        </div>
+      )}
+
+      {pushPrompt !== "hidden" && (
+        <div role="dialog" aria-label="Activar avisos de predicciones" style={{
+          position: "fixed", bottom: 76, left: 0, right: 0, marginInline: "auto", width: "fit-content", maxWidth: "92vw", zIndex: 55,
+          display: "flex", alignItems: "center", gap: 12,
+          background: "linear-gradient(135deg, rgba(201,168,76,0.18), #0F1D32 60%, #0B1825)",
+          border: `1px solid ${GOLD}59`, color: TEXT, padding: "12px 14px", borderRadius: 14,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+          animation: reduceMotion ? undefined : "micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1)",
+        }}>
+          <span aria-hidden style={{ fontSize: 22, lineHeight: 1 }}>🔔</span>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            {pushPrompt === "done" ? (
+              <div style={{ fontWeight: 800, fontSize: 14 }}>
+                {pushEarned > 0 ? `¡Listo! +${pushEarned} Fútcoins 🎉` : "¡Listo! Te avisaremos 🎉"}
+              </div>
+            ) : pushPrompt === "denied" ? (
+              <div style={{ fontSize: 13, color: MID }}>
+                Tienes las notificaciones bloqueadas. Ábrelas desde el candado de la barra de direcciones.
+              </div>
+            ) : (
+              <>
+                <div style={{ fontWeight: 800, fontSize: 14 }}>Te avisamos cuando se resuelva</div>
+                <div style={{ fontSize: 12.5, color: MID, marginTop: 2 }}>
+                  Entérate al instante si aciertas <span style={{ color: GOLD2, fontWeight: 700 }}>· +{PUSH_REWARD} Fútcoins</span>
+                </div>
+              </>
+            )}
+          </div>
+          {(pushPrompt === "idle" || pushPrompt === "loading") && (
+            <button type="button" onClick={activatePush} disabled={pushPrompt === "loading"} style={{
+              flexShrink: 0, borderRadius: 10, padding: "9px 14px", border: "none", cursor: "pointer",
+              fontWeight: 800, fontSize: 13, color: INK, background: `linear-gradient(135deg, ${GOLD}, #A8893D)`,
+              opacity: pushPrompt === "loading" ? 0.6 : 1,
+            }}>
+              {pushPrompt === "loading" ? "Activando…" : `Activar +${PUSH_REWARD}`}
+            </button>
+          )}
+          {pushPrompt !== "done" && (
+            <button type="button" onClick={dismissPush} aria-label="Cerrar" style={{
+              flexShrink: 0, background: "transparent", border: "none", color: "rgba(255,255,255,0.45)",
+              cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 4,
+            }}>✕</button>
+          )}
         </div>
       )}
     </Shell>

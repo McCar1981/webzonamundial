@@ -130,6 +130,7 @@ function statAt(frames: StatKeyframe[], t: number): LiveStats {
         passes: lerpPair(a.stats.passes, b.stats.passes, f),
         fouls: lerpPair(a.stats.fouls, b.stats.fouls, f),
         corners: lerpPair(a.stats.corners, b.stats.corners, f),
+        offsides: lerpPair(a.stats.offsides, b.stats.offsides, f),
         saves: lerpPair(a.stats.saves, b.stats.saves, f),
         yellow: lerpPair(a.stats.yellow, b.stats.yellow, f),
         red: lerpPair(a.stats.red, b.stats.red, f),
@@ -300,6 +301,14 @@ function EventIcon({ type, size = 18 }: { type: string; size?: number }) {
       );
     case "red":
       return <svg {...p}><rect x="7" y="3.5" width="10" height="14" rx="1.6" fill={RED} transform="rotate(8 12 10)" /></svg>;
+    case "foul":
+      return (
+        <svg {...p}>
+          <path d="M6 8h7c2.2 0 4 1.8 4 4s-1.8 4-4 4H6" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="6" cy="12" r="2.5" fill={GOLD} />
+          <path d="M15 6l3 3M15 18l3 -3" stroke={GOLD} strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      );
     case "sub":
       return (
         <svg {...p}>
@@ -692,6 +701,8 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
           snd?.save();
         } else if (e.type === "offside" || e.type === "penalty_miss") {
           snd?.whistle(false); // jugada interrumpida
+        } else if (e.type === "foul") {
+          snd?.whistle(false); // falta
         }
       }
       if (animate) {
@@ -909,10 +920,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       const newReal = data.events.filter((e) => !firedRef.current.has(e.id));
       for (const e of newReal) fireEvent(e, true);
       // ACTIVIDAD derivada de stats REALES: si entre polls subió el contador de
-      // tiros a puerta / córners / tiros de un equipo, se refleja como jugada en
-      // el campo y línea de cronología ("Remate de Portugal…"). Solo cuando no
-      // llegó ningún evento mayor en esta pasada (un gol ya cuenta su remate) y
-      // sin cambio de estado (los acumulados saltan raro al volver del descanso).
+      // tiros a puerta / córners / tiros / faltas / paradas de un equipo, se
+      // refleja como jugada en el campo y línea de cronología ("Remate de
+      // Portugal…", "Falta de Brasil…", "Paradón de…"). Solo cuando no llegó
+      // ningún evento mayor en esta pasada (un gol ya cuenta su remate) y sin
+      // cambio de estado (los acumulados saltan raro al volver del descanso).
       if (isInPlay(data.status) && prevStatus === data.status && newReal.length === 0) {
         for (const i of [0, 1] as const) {
           const side = i === 0 ? "home" : "away";
@@ -922,6 +934,44 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
             pushSynthetic("corner", side, mm);
           } else if ((data.stats.shots[i] ?? 0) > (prevStats.shots[i] ?? 0)) {
             pushSynthetic("shot", side, mm);
+          } else if ((data.stats.xg[i] ?? 0) > (prevStats.xg[i] ?? 0)) {
+            // Subida de xG sin remate registrado: ocasión clara que la API
+            // contabiliza como peligro (p.ej. remate bloqueado o gran jugada).
+            pushSynthetic("chance", side, mm);
+          }
+
+          // Anti-spam para faltas: si suben varias de golpe se resume en una.
+          const foulDelta = (data.stats.fouls[i] ?? 0) - (prevStats.fouls[i] ?? 0);
+          if (foulDelta > 0) {
+            pushSynthetic(
+              "foul",
+              side,
+              mm,
+              foulDelta > 1 ? `${foulDelta} faltas` : "Falta",
+            );
+          }
+
+          // Fuera de juego: la API publica el acumulado por equipo.
+          const offsideDelta = (data.stats.offsides[i] ?? 0) - (prevStats.offsides[i] ?? 0);
+          if (offsideDelta > 0) {
+            pushSynthetic(
+              "offside",
+              side,
+              mm,
+              offsideDelta > 1 ? `${offsideDelta} fueras de juego` : "Fuera de juego",
+            );
+          }
+
+          // Parada: side es el equipo que salvó (stats.saves[i] es del portero
+          // del equipo i). También se resume si suben varias.
+          const saveDelta = (data.stats.saves[i] ?? 0) - (prevStats.saves[i] ?? 0);
+          if (saveDelta > 0) {
+            pushSynthetic(
+              "save",
+              side,
+              mm,
+              saveDelta > 1 ? `${saveDelta} paradas` : "Parada",
+            );
           }
         }
       }
@@ -1696,6 +1746,7 @@ const STAT_ROWS: { key: keyof LiveStats; label: string; color: string; pct?: boo
   { key: "possession", label: "Posesión", color: "#3b82f6", pct: true },
   { key: "passes", label: "Pases", color: "#f59e0b" },
   { key: "corners", label: "Córneres", color: "#a855f7" },
+  { key: "offsides", label: "Fueras de juego", color: "#f97316" },
   { key: "fouls", label: "Faltas", color: "#ef4444" },
   { key: "saves", label: "Paradas", color: "#06b6d4" },
   { key: "yellow", label: "Amarillas", color: "#eab308" },
@@ -1769,29 +1820,54 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
 
       {log.length === 0 && <div style={{ color: DIM, fontSize: 13 }}>Aún sin eventos…</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, maxHeight: 360, overflowY: "auto" }}>
-        {log.map((e) => {
-          const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
-          const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
-          const can = RELIVE_TYPES.has(e.type);
-          return (
-            <div key={e.id} onClick={can ? () => onRelive(e) : undefined} style={{
-              display: "flex", alignItems: "center", gap: 10, padding: "6px 8px", borderRadius: 8,
-              background: isGoal ? "rgba(201,168,76,0.1)" : "transparent",
-              animation: "mcSlide .3s ease", cursor: can ? "pointer" : "default",
-            }}>
-              <span className="mc-num" style={{ fontSize: 11, fontWeight: 700, color: DIM, minWidth: 34 }}>
-                {e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}
-              </span>
-              <span style={{ minWidth: 22, display: "inline-flex", justifyContent: "center" }}><EventIcon type={e.type} size={16} /></span>
-              <span style={{ fontSize: 13, fontWeight: isGoal ? 800 : 600, flex: 1 }}>
-                {e.player ? `${e.player} ` : ""}
-                <span style={{ color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}</span>
-                {e.detail ? <span style={{ color: DIM }}> · {e.detail}</span> : ""}
-              </span>
-              {can && <span style={{ display: "inline-flex" }}><ReliveIcon size={13} /></span>}
-            </div>
-          );
-        })}
+        {log
+          // Agrupa eventos SINTÉTICOS consecutivos del mismo tipo/minuto/lado
+          // para no saturar la cronología cuando varios polls del mismo minuto
+          // generan lo mismo (p.ej. 3 faltas en 30 segundos reales).
+          .reduce<{ e: MatchEvent; count: number }[]>(
+            (acc, e) => {
+              if (!e.id.startsWith("syn-")) return [...acc, { e, count: 1 }];
+              const last = acc[acc.length - 1];
+              if (
+                last &&
+                last.e.id.startsWith("syn-") &&
+                last.e.type === e.type &&
+                last.e.minute === e.minute &&
+                last.e.side === e.side
+              ) {
+                last.count++;
+                return acc;
+              }
+              return [...acc, { e, count: 1 }];
+            },
+            [],
+          )
+          .map(({ e, count }) => {
+            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+            const can = RELIVE_TYPES.has(e.type);
+            return (
+              <div key={e.id} onClick={can ? () => onRelive(e) : undefined} style={{
+                display: "flex", alignItems: "center", gap: 10, padding: "6px 8px", borderRadius: 8,
+                background: isGoal ? "rgba(201,168,76,0.1)" : "transparent",
+                animation: "mcSlide .3s ease", cursor: can ? "pointer" : "default",
+              }}>
+                <span className="mc-num" style={{ fontSize: 11, fontWeight: 700, color: DIM, minWidth: 34 }}>
+                  {e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}
+                </span>
+                <span style={{ minWidth: 22, display: "inline-flex", justifyContent: "center" }}><EventIcon type={e.type} size={16} /></span>
+                <span style={{ fontSize: 13, fontWeight: isGoal ? 800 : 600, flex: 1 }}>
+                  {e.player ? `${e.player} ` : ""}
+                  <span style={{ color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}</span>
+                  {e.detail ? <span style={{ color: DIM }}> · {e.detail}</span> : ""}
+                  {count > 1 && (
+                    <span style={{ marginLeft: 6, fontSize: 10, fontWeight: 800, color: GOLD2 }}>+{count - 1}</span>
+                  )}
+                </span>
+                {can && <span style={{ display: "inline-flex" }}><ReliveIcon size={13} /></span>}
+              </div>
+            );
+          })}
       </div>
     </div>
   );

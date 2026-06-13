@@ -22,6 +22,7 @@ export type MatchEventType =
   | "shot_on"
   | "save"
   | "offside"
+  | "foul"
   | "injury"
   | "chance"
   | "half_time"
@@ -86,6 +87,7 @@ export interface LiveStats {
   passes: Pair;
   fouls: Pair;
   corners: Pair;
+  offsides: Pair;
   saves: Pair;
   yellow: Pair;
   red: Pair;
@@ -167,6 +169,7 @@ export const EMPTY_STATS: LiveStats = {
   passes: [0, 0],
   fouls: [0, 0],
   corners: [0, 0],
+  offsides: [0, 0],
   saves: [0, 0],
   yellow: [0, 0],
   red: [0, 0],

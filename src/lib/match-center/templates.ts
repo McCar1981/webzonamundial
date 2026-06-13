@@ -97,9 +97,13 @@ export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
     case "shot":
       return `Disparo de ${team}, se va desviado por poco. ${min}.`;
     case "save":
-      return `¡Paradón! El meta salva a su equipo ante ${team}. ${min}.`;
+      return `¡Paradón de ${team}! El meta evita el gol. ${min}.`;
     case "offside":
       return `Fuera de juego de ${team}. Se anula la jugada. ${min}.`;
+    case "foul":
+      return e.detail
+        ? `${e.detail} de ${team}. ${min}.`
+        : `Falta de ${team}. ${min}.`;
     case "injury":
       return `Atención médica sobre el césped para ${who(e)}. ${min}.`;
     case "chance":

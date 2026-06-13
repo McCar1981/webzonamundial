@@ -1,0 +1,406 @@
+.page {
+  min-height: 100vh;
+  background: #060B14;
+  color: #e8ecf3;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  padding: 24px 16px 80px;
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #e8d48b, #c9a84c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #8a94b0;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: #0F1D32;
+  border: 1px solid #1a2a42;
+  border-radius: 10px;
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.statValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8d48b;
+}
+
+.statLabel {
+  font-size: 11px;
+  color: #8a94b0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.legend {
+  max-width: 1200px;
+  margin: 0 auto 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #8a94b0;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.gridWrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.grid {
+  display: flex;
+  gap: 8px;
+  min-width: fit-content;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 108px;
+}
+
+.roundHeader {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c9a84c;
+  padding: 8px 0;
+  border-bottom: 1px solid #1a2a42;
+  margin-bottom: 4px;
+}
+
+.cell {
+  position: relative;
+  background: #0F1D32;
+  border: 1px solid #1a2a42;
+  border-radius: 8px;
+  padding: 8px 6px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cell:hover {
+  transform: translateY(-2px);
+  border-color: #c9a84c;
+  box-shadow: 0 4px 12px rgba(201, 168, 76, 0.12);
+}
+
+.cellEmpty {
+  background: transparent;
+  border: 1px dashed #1a2a42;
+  cursor: default;
+  min-height: 52px;
+}
+
+.cellEmpty:hover {
+  transform: none;
+  border-color: #1a2a42;
+  box-shadow: none;
+}
+
+.cellWatched {
+  border-color: #3b82f6;
+}
+
+.cellRated {
+  color: #fff;
+}
+
+.cellNumber {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cellTeams {
+  font-size: 9px;
+  color: #8a94b0;
+  margin-top: 4px;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.check {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #fff;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 11, 20, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal {
+  background: #0F1D32;
+  border: 1px solid #1a2a42;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.matchRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.teamName {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.vs {
+  color: #8a94b0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.meta {
+  text-align: center;
+  color: #8a94b0;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.sectionLabel {
+  font-size: 12px;
+  color: #8a94b0;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ratingRow {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ratingBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #1a2a42;
+  background: #0B1825;
+  color: #e8ecf3;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.ratingBtn:hover {
+  transform: scale(1.1);
+  border-color: #c9a84c;
+}
+
+.ratingBtnActive {
+  border-color: currentColor;
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  background: #0B1825;
+  border: 1px solid #1a2a42;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #8a94b0;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tag:hover {
+  border-color: #c9a84c;
+  color: #e8d48b;
+}
+
+.tagActive {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: #c9a84c;
+  color: #e8d48b;
+}
+
+.note {
+  width: 100%;
+  background: #0B1825;
+  border: 1px solid #1a2a42;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #e8ecf3;
+  font-size: 13px;
+  resize: none;
+  margin-bottom: 20px;
+}
+
+.note:focus {
+  outline: none;
+  border-color: #c9a84c;
+}
+
+.watchToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #c9a84c;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btnPrimary {
+  background: linear-gradient(90deg, #c9a84c, #e8d48b);
+  color: #060B14;
+}
+
+.btnSecondary {
+  background: #0B1825;
+  color: #8a94b0;
+  border: 1px solid #1a2a42;
+}
+
+.loading {
+  min-height: 100vh;
+  background: #060B14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a94b0;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 22px;
+  }
+  .round {
+    min-width: 86px;
+  }
+  .cellNumber {
+    font-size: 15px;
+  }
+  .cellTeams {
+    font-size: 8px;
+  }
+}

@@ -54,12 +54,15 @@ function storageKey(userId: string | null): string {
 
 export default function MatchRatingPage() {
   const router = useRouter();
-  const [authed, setAuthed] = useState<boolean | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
+  const hasSupabase = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const [authed, setAuthed] = useState<boolean | null>(hasSupabase ? null : true);
+  const [userId, setUserId] = useState<string | null>(hasSupabase ? null : "local-preview");
+  const previewMode = !hasSupabase;
   const [ratings, setRatings] = useState<Record<number, RatingEntry>>({});
   const [selected, setSelected] = useState<Match | null>(null);
 
   useEffect(() => {
+    if (!hasSupabase) return;
     const sb = createSupabaseBrowserClient();
     sb.auth.getUser().then(({ data }) => {
       setAuthed(!!data.user);
@@ -68,7 +71,7 @@ export default function MatchRatingPage() {
         router.replace("/login?next=/app/match-rating");
       }
     });
-  }, [router]);
+  }, [router, hasSupabase]);
 
   useEffect(() => {
     if (!userId) return;
@@ -127,6 +130,23 @@ export default function MatchRatingPage() {
         <meta name="description" content="Puntúa los partidos del Mundial 2026 como si fueran episodios." />
       </Head>
       <main className={styles.page}>
+        {previewMode && (
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: "0 auto 16px",
+              padding: "10px 14px",
+              borderRadius: 10,
+              background: "rgba(201,168,76,0.12)",
+              border: "1px solid rgba(201,168,76,0.35)",
+              color: "#e8d48b",
+              fontSize: 13,
+              textAlign: "center",
+            }}
+          >
+            Modo local: no hay variables de Supabase configuradas. El login está desactivado solo en este entorno.
+          </div>
+        )}
         <header className={styles.header}>
           <div>
             <h1 className={styles.title}>Mi Series Graph del Mundial</h1>

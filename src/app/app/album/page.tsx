@@ -183,7 +183,7 @@ export default function AlbumPage() {
             {p.subtitle}
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href={authed ? "/app/cromos" : "/registro"} data-hero-cta data-hover-btn style={{
+            <Link href={authed ? "/app/album/mi-coleccion" : "/registro"} data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
@@ -446,7 +446,7 @@ export default function AlbumPage() {
           <p data-cta-content style={{ color: MID, marginBottom: 40, fontSize: 18, maxWidth: 500, margin: "0 auto 40px", lineHeight: 1.6 }}>
             {p.subtitle}
           </p>
-          <Link href={authed ? "/app/cromos" : "/registro"} data-cta-content data-hover-btn style={{
+          <Link href={authed ? "/app/album/mi-coleccion" : "/registro"} data-cta-content data-hover-btn style={{
             padding: "18px 44px", borderRadius: 14,
             background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
             color: BG, fontWeight: 800, fontSize: 18, textDecoration: "none", display: "inline-block",

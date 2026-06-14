@@ -134,7 +134,7 @@ const CATS: Cat[] = [
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
       { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
       { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo", accent: "#8b7bd8", accent2: "#b3a6f0" },
-      { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", cta: "Avisarme", estado: "Próximamente", accent: "#34b9c4", accent2: "#6fdce5" },
+      { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/album", cta: "Ver álbum", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
       // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },

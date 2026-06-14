@@ -61,6 +61,7 @@ export default function MiColeccionPage() {
   );
   const [offers, setOffers] = useState<TradeOffer[]>([]);
   const [showCreateTrade, setShowCreateTrade] = useState(false);
+  const closePackAnimation = useCallback(() => setShowPackAnimation(false), []);
 
   useRevealOnScroll([loading, collection, activeTab, achievements, offers]);
 
@@ -374,7 +375,7 @@ export default function MiColeccionPage() {
       {showPackAnimation && packResult && (
         <PackOpeningAnimation
           cromos={packResult}
-          onDone={() => setShowPackAnimation(false)}
+          onDone={closePackAnimation}
           isES={isES}
         />
       )}

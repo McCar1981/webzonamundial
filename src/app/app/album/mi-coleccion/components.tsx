@@ -540,24 +540,30 @@ export function CollectionMilestones({ progress, isES }: { progress: number; isE
 }
 
 export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]; onDone: () => void; isES: boolean }) {
+  const [revealed, setRevealed] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const t = setTimeout(() => {
+    const revealT = setTimeout(() => setRevealed(true), 1600);
+    const doneT = setTimeout(() => {
       document.body.style.overflow = "";
       onDone();
-    }, 2200);
-    return () => { clearTimeout(t); document.body.style.overflow = ""; };
+    }, 2400);
+    return () => { clearTimeout(revealT); clearTimeout(doneT); document.body.style.overflow = ""; };
   }, [onDone]);
 
   return (
-    <div className={styles.packOpeningOverlay}>
+    <div className={styles.packOpeningOverlay} onClick={onDone}>
       <div className={styles.packOpeningHeader}>{isES ? "Abriendo sobre..." : "Opening pack..."}</div>
       <div className={styles.packOpeningCards}>
         {cromos.map((c, i) => (
           <div
             key={c.id}
-            className={styles.packFlipCard}
-            style={{ animationDelay: `${0.3 + i * 0.35}s` }}
+            className={`${styles.packFlipCard} ${revealed ? styles.packFlipRevealed : ""}`}
+            style={{
+              animationDelay: `${0.2 + i * 0.25}s`,
+              "--flip-delay": `${0.2 + i * 0.25}s`,
+            } as React.CSSProperties}
           >
             <div className={styles.packFlipInner}>
               <div className={styles.packFlipFront}>
@@ -570,6 +576,7 @@ export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]
           </div>
         ))}
       </div>
+      <div className={styles.packSkipHint}>{isES ? "Toca para continuar" : "Tap to continue"}</div>
     </div>
   );
 }

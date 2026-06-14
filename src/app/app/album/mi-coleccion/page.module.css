@@ -1496,7 +1496,9 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   animation: pack-flip 0.8s ease forwards;
+  animation-delay: var(--flip-delay, 0s);
 }
 
 .packFlipFront,
@@ -1504,6 +1506,7 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -1522,10 +1525,56 @@
   border: 2px solid var(--album-gold);
 }
 
+.packFlipCard.packFlipRevealed {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.packFlipCard.packFlipRevealed .packFlipInner {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  animation: none;
+}
+
 .packFlipImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.packSkipHint {
+  position: absolute;
+  bottom: 36px;
+  color: var(--album-muted);
+  font-size: 13px;
+  opacity: 0.8;
+  animation: fadeInUp 0.4s ease 1.2s both;
+}
+
+@media (max-width: 640px) {
+  .packOpeningCards {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .packFlipCard {
+    width: 120px;
+    height: 165px;
+  }
+
+  .packSkipHint {
+    bottom: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .packFlipCard {
+    width: 100px;
+    height: 138px;
+  }
 }
 
 @keyframes pack-flip {

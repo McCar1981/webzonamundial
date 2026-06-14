@@ -171,14 +171,38 @@ export async function acceptTradeOffer(
   // Transferir cromos
   // 1. Creator -> Acceptor (offeredIds)
   for (const cromoId of offeredIds) {
-    await admin.from("user_cromos").delete().eq("user_id", creatorId).eq("cromo_id", cromoId).then(() => {}, () => {});
-    await admin.from("user_cromos").insert({ user_id: acceptorId, cromo_id: cromoId, source: "trade" }).then(() => {}, () => {});
+    const { error: deleteErr } = await admin
+      .from("user_cromos")
+      .delete()
+      .eq("user_id", creatorId)
+      .eq("cromo_id", cromoId);
+    if (deleteErr) throw deleteErr;
+
+    const { error: insertErr } = await admin
+      .from("user_cromos")
+      .upsert(
+        { user_id: acceptorId, cromo_id: cromoId, source: "trade" },
+        { onConflict: "user_id,cromo_id", ignoreDuplicates: true },
+      );
+    if (insertErr) throw insertErr;
   }
 
   // 2. Acceptor -> Creator (wantedIds)
   for (const cromoId of wantedIds) {
-    await admin.from("user_cromos").delete().eq("user_id", acceptorId).eq("cromo_id", cromoId).then(() => {}, () => {});
-    await admin.from("user_cromos").insert({ user_id: creatorId, cromo_id: cromoId, source: "trade" }).then(() => {}, () => {});
+    const { error: deleteErr } = await admin
+      .from("user_cromos")
+      .delete()
+      .eq("user_id", acceptorId)
+      .eq("cromo_id", cromoId);
+    if (deleteErr) throw deleteErr;
+
+    const { error: insertErr } = await admin
+      .from("user_cromos")
+      .upsert(
+        { user_id: creatorId, cromo_id: cromoId, source: "trade" },
+        { onConflict: "user_id,cromo_id", ignoreDuplicates: true },
+      );
+    if (insertErr) throw insertErr;
   }
 
   return { ok: true };

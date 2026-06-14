@@ -169,7 +169,10 @@ export async function openPack(userId: string): Promise<PackResult> {
     cromo_id: c.id,
     source: "pack",
   }));
-  await admin.from("user_cromos").insert(inserts).then(() => {}, () => {});
+  const { error: insertErr } = await admin
+    .from("user_cromos")
+    .upsert(inserts, { onConflict: "user_id,cromo_id", ignoreDuplicates: true });
+  if (insertErr) throw insertErr;
 
   // Registrar el sobre abierto
   await admin.from("cromo_pack_claims").insert({

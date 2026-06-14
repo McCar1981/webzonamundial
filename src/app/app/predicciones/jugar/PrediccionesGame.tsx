@@ -746,18 +746,18 @@ const PJ_CSS = `
 }
 @media (min-width: 860px) { .pj-sticky-inner { padding-right: 0; } }
 
-/* Toast y prompt contextual: en escritorio salen desde abajo; en móvil,
-   donde el pie fijo/barra del sistema los tapa, aparecen desde arriba. */
+/* Toast contextual: CENTRADO en pantalla (vertical y horizontal) para que no lo
+   tape el pie fijo/barra del sistema (antes salía abajo y quedaba oculto).
+   Centrado sin transform (inset:0 + margin:auto) para no chocar con la animación
+   de entrada; pointer-events:none para que no bloquee toques. El prompt de push
+   sigue saliendo desde el borde. */
 .pj-toast {
-  position: fixed; left: 0; right: 0; bottom: 20px; margin-inline: auto; width: fit-content; z-index: 50;
+  position: fixed; inset: 0; margin: auto; width: fit-content; height: fit-content; z-index: 50; pointer-events: none;
   color: ${TEXT}; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 14;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4); max-width: 90vw; text-align: center;
   animation: micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1);
 }
 .pj-toast[data-reduce-motion="true"] { animation: none; }
-@media (max-width: 767px) {
-  .pj-toast { bottom: auto; top: 12px; animation-name: micro-slide-down; }
-}
 
 .pj-push-prompt {
   position: fixed; left: 0; right: 0; bottom: 76px; margin-inline: auto; width: fit-content; max-width: 92vw; z-index: 55;

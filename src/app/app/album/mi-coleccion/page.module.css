@@ -302,8 +302,15 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
 }
 
 .section {
@@ -476,7 +483,13 @@
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
   opacity: 0.55;
-  transition: transform 0.2s, opacity 0.2s;
+  transform-style: preserve-3d;
+  transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s, border-color 0.2s;
+  animation: cardEnter 0.45s ease both;
+}
+
+.cromoCard[role="button"] {
+  cursor: pointer;
 }
 
 .cromoOwned {
@@ -485,28 +498,39 @@
 }
 
 .cromoCard:hover {
-  transform: translateY(-4px);
+  transform: perspective(600px) rotateX(-4deg) rotateY(4deg) scale(1.03) translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
 
 .cromoImgWrap {
   position: relative;
   aspect-ratio: 3 / 4;
+  background: #060b14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cromoImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  padding: 4px;
+}
+
+.cromoImgMissing {
+  filter: grayscale(100%) brightness(0.7);
 }
 
 .cromoLocked {
   position: absolute;
   inset: 0;
-  background: rgba(6, 11, 20, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at center, rgba(6, 11, 20, 0.2), rgba(6, 11, 20, 0.55));
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .cromoCheck {
@@ -718,6 +742,11 @@
 
 .cromoReveal {
   animation: cromo-reveal 0.5s ease both;
+}
+
+@keyframes cardEnter {
+  from { transform: translateY(24px) scale(0.96); }
+  to { transform: none; }
 }
 
 /* ===== Animaciones de entrada ===== */
@@ -943,8 +972,15 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--album-line);
   border-radius: 20px;
-  padding: 16px;
+  padding: 12px;
   margin-bottom: 20px;
+}
+
+.filterInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .searchBox {
@@ -952,11 +988,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1 1 220px;
+  min-width: 220px;
   background: rgba(6, 11, 20, 0.5);
   border: 1px solid var(--album-line);
   border-radius: 14px;
   padding: 10px 12px;
-  margin-bottom: 14px;
   color: var(--album-muted);
 }
 
@@ -993,7 +1030,8 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  flex: 1 1 auto;
+  justify-content: center;
 }
 
 .filterPill {
@@ -1024,19 +1062,16 @@
   box-shadow: 0 0 16px color-mix(in srgb, var(--rarity-color) 25%, transparent);
 }
 
-.filterCheck {
-  font-size: 11px;
-}
-
-.filterRow {
+.filterGroup {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
 }
 
 .categorySelectWrap {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1044,10 +1079,27 @@
   border: 1px solid var(--album-line);
   border-radius: 12px;
   padding: 8px 12px;
+  padding-right: 30px;
   color: var(--album-muted);
 }
 
+.categorySelectWrap::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--album-muted);
+  pointer-events: none;
+}
+
 .categorySelect {
+  appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   border: none;
   color: var(--album-text);
@@ -1056,9 +1108,13 @@
   font-weight: 600;
   cursor: pointer;
   outline: none;
+  min-width: 110px;
 }
 
 .clearFilters {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: transparent;
   border: none;
   color: var(--album-gold);
@@ -1066,10 +1122,33 @@
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
 .clearFilters:hover {
-  text-decoration: underline;
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.gridHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gridTitle {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.gridCount {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--album-muted);
 }
 
 /* ===== Cromo detail modal ===== */
@@ -1364,19 +1443,6 @@
 
 .cromoUnlock {
   animation: cromo-reveal 0.5s ease both, cromo-unlock 0.8s ease 0.3s both;
-}
-
-/* ===== Card 3D hover + grid stagger ===== */
-
-.cromoCard {
-  cursor: pointer;
-  transform-style: preserve-3d;
-  opacity: 0;
-  animation: fadeInUp 0.45s ease both;
-}
-
-.cromoCard:hover {
-  transform: perspective(600px) rotateX(-4deg) rotateY(4deg) scale(1.03) translateY(-6px);
 }
 
 /* ===== Trade improvements ===== */

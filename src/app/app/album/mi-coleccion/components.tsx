@@ -204,13 +204,22 @@ export function CromoMiniCard({
   return (
     <div
       className={`${styles.cromoCard} ${owned ? styles.cromoOwned : ""}`}
-      style={{ animationDelay: `${(animateIndex ?? 0) * 40}ms` }}
+      style={{
+        animationDelay: `${(animateIndex ?? 0) * 40}ms`,
+        borderColor: owned ? `${color}40` : "rgba(255,255,255,0.08)",
+      }}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } } : undefined}
     >
       <div className={styles.cromoImgWrap}>
-        <img src={cromo.path} alt={cromo.name} loading="lazy" className={styles.cromoImg} style={{ filter: owned ? "none" : "grayscale(100%)" }} />
+        <img
+          src={cromo.path}
+          alt={cromo.name}
+          loading="lazy"
+          className={`${styles.cromoImg} ${owned ? "" : styles.cromoImgMissing}`}
+        />
         {!owned && (
           <div className={styles.cromoLocked}>
             <IconLock />
@@ -303,59 +312,62 @@ export function FilterBar({
 
   return (
     <div className={styles.filterBar} data-reveal>
-      <div className={styles.searchBox}>
-        <IconSearch />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder={isES ? "Buscar por nombre o número..." : "Search by name or number..."}
-          className={styles.searchInput}
-        />
-        {searchQuery && (
-          <button className={styles.searchClear} onClick={() => onSearchChange("")} aria-label="Clear search">
-            <IconX />
-          </button>
-        )}
-      </div>
-
-      <div className={styles.filterPills}>
-        {RARITIES.map((r) => {
-          const active = rarityFilter.includes(r.key);
-          return (
-            <button
-              key={r.key}
-              onClick={() => onRarityToggle(r.key)}
-              className={`${styles.filterPill} ${active ? styles.filterPillActive : ""}`}
-              style={{ "--rarity-color": r.color } as React.CSSProperties}
-            >
-              {active && <span className={styles.filterCheck}>✓</span>}
-              {isES ? r.label.es : r.label.en}
+      <div className={styles.filterInner}>
+        <div className={styles.searchBox}>
+          <IconSearch />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder={isES ? "Buscar por nombre o número..." : "Search by name or number..."}
+            className={styles.searchInput}
+          />
+          {searchQuery && (
+            <button className={styles.searchClear} onClick={() => onSearchChange("")} aria-label="Clear search">
+              <IconX />
             </button>
-          );
-        })}
-      </div>
-
-      <div className={styles.filterRow}>
-        <div className={styles.categorySelectWrap}>
-          <IconFilter />
-          <select
-            value={categoryFilter}
-            onChange={(e) => onCategoryChange(e.target.value)}
-            className={styles.categorySelect}
-          >
-            <option value="">{isES ? "Todas las categorías" : "All categories"}</option>
-            {CATEGORIES.map((c) => (
-              <option key={c.key} value={c.key}>{isES ? c.label.es : c.label.en}</option>
-            ))}
-          </select>
+          )}
         </div>
 
-        {hasFilters && (
-          <button onClick={clearAll} className={styles.clearFilters}>
-            {isES ? "Limpiar filtros" : "Clear filters"}
-          </button>
-        )}
+        <div className={styles.filterPills}>
+          {RARITIES.map((r) => {
+            const active = rarityFilter.includes(r.key);
+            return (
+              <button
+                key={r.key}
+                onClick={() => onRarityToggle(r.key)}
+                className={`${styles.filterPill} ${active ? styles.filterPillActive : ""}`}
+                style={{ "--rarity-color": r.color } as React.CSSProperties}
+                aria-pressed={active}
+              >
+                {isES ? r.label.es : r.label.en}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className={styles.filterGroup}>
+          <div className={styles.categorySelectWrap}>
+            <IconFilter />
+            <select
+              value={categoryFilter}
+              onChange={(e) => onCategoryChange(e.target.value)}
+              className={styles.categorySelect}
+              aria-label={isES ? "Filtrar por categoría" : "Filter by category"}
+            >
+              <option value="">{isES ? "Todas" : "All"}</option>
+              {CATEGORIES.map((c) => (
+                <option key={c.key} value={c.key}>{isES ? c.label.es : c.label.en}</option>
+              ))}
+            </select>
+          </div>
+
+          {hasFilters && (
+            <button onClick={clearAll} className={styles.clearFilters}>
+              <IconX /> {isES ? "Limpiar" : "Clear"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

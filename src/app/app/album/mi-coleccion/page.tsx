@@ -339,6 +339,13 @@ export default function MiColeccionPage() {
                 isES={isES}
               />
 
+              <div className={styles.gridHeader}>
+                <h2 className={styles.gridTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h2>
+                <span className={styles.gridCount}>
+                  {visibleCromos.length} {isES ? "cromos" : "stickers"}
+                </span>
+              </div>
+
               <CromoGrid
                 cromos={visibleCromos}
                 ownedIds={collection?.ownedIds ?? []}

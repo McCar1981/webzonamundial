@@ -169,10 +169,16 @@ export async function openPack(userId: string): Promise<PackResult> {
     cromo_id: c.id,
     source: "pack",
   }));
-  const { error: insertErr } = await admin
-    .from("user_cromos")
-    .upsert(inserts, { onConflict: "user_id,cromo_id", ignoreDuplicates: true });
-  if (insertErr) throw insertErr;
+  const { error: batchErr } = await admin.from("user_cromos").insert(inserts);
+  if (batchErr && batchErr.code === "23505") {
+    // ponytail: fallback por duplicados (colección completa o race condition)
+    for (const row of inserts) {
+      const { error } = await admin.from("user_cromos").insert(row);
+      if (error && error.code !== "23505") throw error;
+    }
+  } else if (batchErr) {
+    throw batchErr;
+  }
 
   // Registrar el sobre abierto
   await admin.from("cromo_pack_claims").insert({

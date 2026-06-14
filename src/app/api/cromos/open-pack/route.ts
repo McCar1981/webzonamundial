@@ -27,6 +27,7 @@ export async function POST() {
     const result = await openPack(user.id);
     return NextResponse.json(result);
   } catch (err) {
+    console.error("[open-pack] error:", err);
     const msg = err instanceof Error ? err.message : "open_failed";
     if (msg === "pack_on_cooldown") {
       const s = await getPackStatus(user.id);

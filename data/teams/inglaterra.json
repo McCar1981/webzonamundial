@@ -1126,11 +1126,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/British_Embassy_joined_World_Rugby_and_USA_Rugby_on_16_July_2025_to_host_players_and_coaches_from_each_of_the_four_national_teams_who_played_in_an_international_double-header_later_on_19_July_-_1.jpg/960px-thumbnail.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cheerleaders_from_the_New_England_Patriots_professional_football_team_perform_during_an_Operation_Seasons_Greetings_concert_at_Hangar_814_at_Royal_Air_Force_Mildenhall%2C_England_on_D_-_DPLA_-_d5d54aa503a7ddafe49d39f9aae54d13.jpeg/960px-thumbnail.jpeg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Antigua_and_Barbuda_football_team_training_in_England.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1950,

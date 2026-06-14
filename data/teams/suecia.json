@@ -1008,18 +1008,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sweden_-_Serbia_02.jpg/960px-Sweden_-_Serbia_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sweden_-_Serbia_04.jpg/960px-Sweden_-_Serbia_04.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Sweden_-_Serbia_07.jpg/960px-Sweden_-_Serbia_07.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sweden_-_Serbia_09.jpg/960px-Sweden_-_Serbia_09.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sweden_-_Serbia_10.jpg/960px-Sweden_-_Serbia_10.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Sweden_-_Serbia_15.jpg/960px-Sweden_-_Serbia_15.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sweden_-_Serbia_20.jpg/960px-Sweden_-_Serbia_20.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Sweden_-_Serbia_29.jpg/960px-Sweden_-_Serbia_29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Sweden_-_Serbia_31.jpg/960px-Sweden_-_Serbia_31.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Sweden_-_Serbia_32.jpg/960px-Sweden_-_Serbia_32.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1934,

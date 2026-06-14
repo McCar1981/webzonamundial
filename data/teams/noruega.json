@@ -1224,18 +1224,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Norway_Italy_-_June_2025_A_49.jpg/960px-Norway_Italy_-_June_2025_A_49.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Norway_Italy_-_June_2025_A_50.jpg/960px-Norway_Italy_-_June_2025_A_50.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1938,

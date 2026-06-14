@@ -63,6 +63,10 @@ export default function FantasyGame() {
   const [showCreatorPicker, setShowCreatorPicker] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
   const [authed, setAuthed] = useState<boolean | null>(null);
+  // Puntos PROVISIONALES de la jornada en curso (server-authoritative, del GET de
+  // equipo): permiten que la cabecera "Puntos totales" avance EN VIVO sin esperar
+  // a confirmar la jornada entera.
+  const [liveGw, setLiveGw] = useState<{ gw: number; points: number } | null>(null);
   // El servidor rechazó un guardado por el lock Free (plantilla cerrada). En vez
   // de reabrir el modal Pro en cada cambio, se muestra UN banner fijo y se pausa
   // el autoguardado mientras dure el cierre de la jornada.
@@ -104,7 +108,8 @@ export default function FantasyGame() {
       } catch { /* sin sesión */ }
       setAuthed(isAuthed);
       if (isAuthed) {
-        const { team: server, favCreator } = await fetchServerTeam();
+        const { team: server, favCreator, liveGameweek } = await fetchServerTeam();
+        if (liveGameweek) setLiveGw(liveGameweek);
         if (server) {
           const norm = normalizeTeam(server);
           // Backfill: usuarios que ya tenían equipo antes de esta función y se
@@ -467,7 +472,29 @@ export default function FantasyGame() {
   );
 
   if (!loaded) {
-    return <div style={{ minHeight: "100vh", background: BG, color: MID, display: "flex", alignItems: "center", justifyContent: "center" }}>Cargando…</div>;
+    // Skeleton (no el texto plano "Cargando…"): una tira de cabecera + un
+    // marcador de campo con pulso de opacidad. Guardado para reduced-motion.
+    return (
+      <div style={{ minHeight: "100vh", background: FANTASY_BG, backgroundAttachment: "fixed", padding: 16 }} aria-busy="true" aria-label="Cargando Fantasy">
+        <style>{`
+          @keyframes zmSkelPulse { 0%,100% { opacity: .55 } 50% { opacity: .9 } }
+          .zm-skel { animation: zmSkelPulse 1.3s ease-in-out infinite }
+          @media (prefers-reduced-motion: reduce) { .zm-skel { animation: none } }
+        `}</style>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          {/* Tira de cabecera */}
+          <div className="zm-skel" style={{ display: "flex", gap: 10, marginBottom: 12 }}>
+            <div style={{ flex: "1 1 200px", height: 34, borderRadius: 10, background: BG2 }} />
+            <div style={{ flex: "0 0 90px", height: 34, borderRadius: 10, background: BG2 }} />
+          </div>
+          <div className="zm-skel" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 14 }}>
+            {[0, 1, 2].map((k) => <div key={k} style={{ height: 52, borderRadius: 12, background: BG2 }} />)}
+          </div>
+          {/* Marcador de campo */}
+          <div className="zm-skel" style={{ maxWidth: 470, margin: "0 auto", aspectRatio: "400 / 680", borderRadius: 22, background: "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))", border: "1px solid rgba(255,255,255,0.08)" }} />
+        </div>
+      </div>
+    );
   }
 
   const pct = Math.min(100, (spent / BUDGET) * 100);
@@ -527,7 +554,22 @@ export default function FantasyGame() {
           {/* Stats — tira compacta de 3 (capitán vive en la cabecera) para subir el campo */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(112px,1fr))", gap: 8, marginTop: 9 }}>
             <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}${team.budgetBonus > 0 ? ` · +${money(team.budgetBonus)} reemb.` : ""}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
-            <Stat label="Puntos totales" value={String(team.totalPoints)} sub={`${team.history.length} jornadas`} />
+            {(() => {
+              // Total con el provisional EN VIVO de la jornada en curso sumado:
+              // team.totalPoints solo incluye jornadas YA confirmadas; liveGw es
+              // lo que llevas esta jornada (server-authoritative). Así el header
+              // avanza durante la semana en vez de quedarse clavado en 0.
+              const liveActive = !!liveGw && liveGw.gw === team.gameweek && liveGw.points > 0;
+              const shown = team.totalPoints + (liveActive ? liveGw!.points : 0);
+              return (
+                <Stat
+                  label="Puntos totales"
+                  value={String(shown)}
+                  valueColor={liveActive ? GOLD2 : undefined}
+                  sub={liveActive ? `${team.history.length} conf. · +${liveGw!.points} en vivo 🔴` : `${team.history.length} jornadas`}
+                />
+              );
+            })()}
             <Stat label="Plantilla" value={`${ownedIds.size}/15`} sub={validation.ok ? "Válida ✓" : "Incompleta"} valueColor={validation.ok ? GREEN : RED} />
           </div>
 
@@ -553,6 +595,16 @@ export default function FantasyGame() {
           >
             Con Pro haces cambios en vivo
           </button>
+        </div>
+      )}
+
+      {/* Banner de invitado: honesto y persistente. Solo cuando NO hay sesión
+          (authed===false, no durante la comprobación inicial). Un invitado
+          construye su equipo en localStorage pero NO compite en ranking. */}
+      {authed === false && (
+        <div style={{ background: "rgba(56,189,248,0.08)", borderBottom: "1px solid rgba(56,189,248,0.28)", padding: "8px 16px", fontSize: 12.5, fontWeight: 700, textAlign: "center", color: "#bfe6ff" }}>
+          👤 Juegas como invitado ·{" "}
+          <Link href="/login?next=/app/fantasy/jugar" style={{ color: GOLD2, fontWeight: 800, textDecoration: "underline" }}>inicia sesión para competir</Link>
         </div>
       )}
 

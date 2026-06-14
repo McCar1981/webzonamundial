@@ -112,10 +112,11 @@ export function zoneForEvent(
     case "offside":
       return { x: mirrorX(side, 0.6, 0.74, r), y: yMid };
 
-    // --- Tarjetas: donde se cometió la falta; mediocampo con dispersión ---
+    // --- Tarjetas y faltas: donde se cometió la falta; mediocampo con dispersión ---
     case "yellow":
     case "second_yellow":
     case "red":
+    case "foul":
       return { x: mirrorX(side, 0.4, 0.6, r), y: band(r2, 0.25, 0.75) };
 
     // --- Cambio: ocurre en la banda, el balón no se mueve ---

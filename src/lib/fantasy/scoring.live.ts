@@ -33,7 +33,7 @@ export function snapshotStarted(s: LiveSnapshot | undefined): boolean {
 // Normaliza: sin acentos, minúsculas, sin puntos/guiones. Acepta igualdad total,
 // coincidencia por apellido, o "inicial + apellido" (p. ej. "L. Messi" ~ "Lionel
 // Messi").
-function norm(s: string): string {
+export function norm(s: string): string {
   return s
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -215,7 +215,7 @@ function perfFromSnapshot(p: FantasyPlayer, snap: LiveSnapshot | undefined, side
 // eventos), calcula un BPS aproximado e independiente de posición y reparte
 // +3/+2/+1 a los tres mejores de cada partido. Devuelve matchId → (nombre
 // normalizado → bonus).
-function liveBonusMap(snapshots: Record<number, LiveSnapshot>): Map<number, Map<string, number>> {
+export function liveBonusMap(snapshots: Record<number, LiveSnapshot>): Map<number, Map<string, number>> {
   const out = new Map<number, Map<string, number>>();
   const awards = [3, 2, 1];
 

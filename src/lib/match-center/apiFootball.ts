@@ -112,6 +112,19 @@ function mapEventType(type: string, detail: string): MatchEventType {
   return "chance";
 }
 
+/** Traduce el detail crudo de un evento VAR a una etiqueta legible en español. */
+function mapVarDetail(detail: string): string {
+  const d = detail.toLowerCase();
+  if (d.includes("goal") && d.includes("cancel")) return "Gol anulado";
+  if (d.includes("goal") && d.includes("confirm")) return "Gol confirmado";
+  if (d.includes("penalty") && d.includes("cancel")) return "Penalti anulado";
+  if (d.includes("penalty") && d.includes("confirm")) return "Penalti confirmado";
+  if (d.includes("red") && d.includes("cancel")) return "Roja anulada";
+  if (d.includes("red")) return "Revisión de roja";
+  if (d.includes("card")) return "Revisión de tarjeta";
+  return "Revisión VAR";
+}
+
 function statNum(value: number | string | null): number {
   if (value == null) return 0;
   if (typeof value === "number") return value;
@@ -257,7 +270,7 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
       player: e.player.name || undefined,
       assist: e.assist.name || undefined,
       playerIn: type === "sub" ? e.assist.name || undefined : undefined,
-      detail: e.detail || undefined,
+      detail: type === "var" ? mapVarDetail(e.detail) : e.detail || undefined,
     };
   });
   events.sort((a, b) => a.minute - b.minute || (a.extra ?? 0) - (b.extra ?? 0));
@@ -281,6 +294,7 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
           passes: pair("Total passes"),
           fouls: pair("Fouls"),
           corners: pair("Corner Kicks"),
+          offsides: pair("Offsides"),
           saves: pair("Goalkeeper Saves"),
           yellow: pair("Yellow Cards"),
           red: pair("Red Cards"),

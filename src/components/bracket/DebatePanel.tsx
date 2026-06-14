@@ -189,9 +189,9 @@ export default function DebatePanel({
           )}
           {gate === "premium" && (
             <GateBox
-              text="El Retador es una función exclusiva del Founders Pass."
-              cta="Conseguir Founders Pass"
-              href="/founders"
+              text="El Retador es una función exclusiva del Plan Pro."
+              cta="Empezar 3 días gratis"
+              href="/pro"
             />
           )}
 

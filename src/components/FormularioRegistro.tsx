@@ -588,7 +588,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
           {/* Email */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.email}</label>
+            <label htmlFor="reg-email" className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.email}</label>
             <div className="relative">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -596,6 +596,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                 </svg>
               </div>
               <input
+                id="reg-email"
                 type="email"
                 required
                 value={formData.email}
@@ -609,7 +610,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           {/* Nombre + Apellido en grid 2 col en desktop, 1 col en mobile */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.firstName}</label>
+              <label htmlFor="reg-first-name" className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.firstName}</label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -617,6 +618,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                   </svg>
                 </div>
                 <input
+                  id="reg-first-name"
                   type="text"
                   required
                   value={formData.firstName}
@@ -629,7 +631,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
               </div>
             </div>
             <div className="space-y-2">
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.lastName}</label>
+              <label htmlFor="reg-last-name" className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.lastName}</label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -637,6 +639,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                   </svg>
                 </div>
                 <input
+                  id="reg-last-name"
                   type="text"
                   required
                   value={formData.lastName}
@@ -652,7 +655,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
           {/* Username público */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.username}</label>
+            <label htmlFor="reg-username" className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.username}</label>
             <div className="relative">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -660,6 +663,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                 </svg>
               </div>
               <input
+                id="reg-username"
                 type="text"
                 required
                 value={formData.nombre}

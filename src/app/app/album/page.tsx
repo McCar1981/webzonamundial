@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
@@ -22,25 +23,99 @@ const FEATURES = [
 ];
 
 const SAMPLE_STICKERS = [
-  { name: "Messi", team: "Argentina", flag: "ar", rarity: "Legendario", color: "#f59e0b" },
-  { name: "Mbappé", team: "Francia", flag: "fr", rarity: "Oro", color: "#eab308" },
-  { name: "Bellingham", team: "Inglaterra", flag: "gb-eng", rarity: "Plata", color: "#94a3b8" },
-  { name: "Vinicius Jr.", team: "Brasil", flag: "br", rarity: "Legendario", color: "#f59e0b" },
-  { name: "Pedri", team: "España", flag: "es", rarity: "Oro", color: "#eab308" },
-  { name: "Salah", team: "Egipto", flag: "eg", rarity: "Plata", color: "#94a3b8" },
+  { name: "Cromo #001", category: "Partidos", rarity: "Legendario", color: "#f59e0b" },
+  { name: "Cromo #050", category: "Partidos", rarity: "Oro", color: "#eab308" },
+  { name: "Cromo #073", category: "Edición Especial", rarity: "Legendario", color: "#f59e0b" },
+  { name: "Cromo #087", category: "Edición Especial", rarity: "Oro", color: "#eab308" },
+  { name: "Cromo #123", category: "Grupos", rarity: "Plata", color: "#94a3b8" },
+  { name: "Cromo #135", category: "Sedes", rarity: "Plata", color: "#94a3b8" },
 ];
 
 const COLLECTION_STATS = [
-  { label: "Selecciones", value: "48", icon: ICON_DESCUBRE.selecciones },
-  { label: "Cromos únicos", value: "960+", icon: ICON_V3.stories },
-  { label: "Ediciones especiales", value: "104", icon: ICON_V3.rankings },
-  { label: "Estadios", value: "16", icon: ICON_V3.matchCenter },
+  { label: "Partidos", value: "72", icon: ICON_V3.matchCenter },
+  { label: "Cromos únicos", value: "150", icon: ICON_V3.stories },
+  { label: "Ediciones especiales", value: "50", icon: ICON_V3.rankings },
+  { label: "Sedes", value: "16", icon: ICON_DESCUBRE.grupos },
 ];
+
+interface FeaturedDay {
+  dayIndex: number;
+  dayName: string;
+  dayNameEs: string;
+  cromo: { id: number; number: number; name: string; path: string; category: string; rarity: "Legendario" | "Oro" | "Plata" };
+  unlocksAt: string;
+  claimable: boolean;
+  claimed: boolean;
+  isToday: boolean;
+}
+
+function rarityColor(rarity: string): string {
+  if (rarity === "Legendario") return "#f59e0b";
+  if (rarity === "Oro") return "#eab308";
+  return "#94a3b8";
+}
 
 export default function AlbumPage() {
   const { t } = useLanguage();
   const p = t.albumPage;
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [featured, setFeatured] = useState<FeaturedDay[]>([]);
+  const [featuredWeek, setFeaturedWeek] = useState<string>("");
+  const [claiming, setClaiming] = useState<number | null>(null);
+  const [authed, setAuthed] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let on = true;
+    const sb = (() => {
+      try { return createSupabaseBrowserClient(); } catch { return null; }
+    })();
+    if (!sb) { setAuthed(false); return; }
+
+    const applyUser = (user: import("@supabase/supabase-js").User | null) => {
+      if (!on) return;
+      setAuthed(!!user);
+    };
+
+    sb.auth.getUser().then(({ data }) => applyUser(data.user));
+    const { data: listener } = sb.auth.onAuthStateChange((_event, session) => {
+      applyUser(session?.user ?? null);
+    });
+
+    return () => {
+      on = false;
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/cromos/featured")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data.cromos)) {
+          setFeatured(data.cromos);
+          setFeaturedWeek(data.weekKey ?? "");
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleClaim = useCallback(async (dayIndex: number) => {
+    setClaiming(dayIndex);
+    try {
+      const res = await fetch("/api/cromos/claim-featured", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dayIndex }),
+      });
+      if (res.ok) {
+        setFeatured((prev) =>
+          prev.map((c) => (c.dayIndex === dayIndex ? { ...c, claimed: true } : c))
+        );
+      }
+    } catch {}
+    setClaiming(null);
+  }, []);
 
   const cards = [
     { title: p.section1Title, desc: p.section1Desc },
@@ -108,7 +183,7 @@ export default function AlbumPage() {
             {p.subtitle}
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/registro" data-hero-cta data-hover-btn style={{
+            <Link href={authed ? "/app/album/mi-coleccion" : "/registro"} data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
@@ -204,6 +279,68 @@ export default function AlbumPage() {
         </div>
       </section>
 
+      {/* Weekly Featured Cromos */}
+      <section style={{ padding: "60px 20px", background: BG2 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800 }}>{p.featuredTitle}</h2>
+            <p style={{ color: MID, marginTop: 8, fontSize: 15 }}>{p.featuredSubtitle}</p>
+            {featuredWeek && (
+              <p style={{ color: DIM, marginTop: 6, fontSize: 12, fontWeight: 600 }}>
+                {p.featuredWeekOf} {featuredWeek}
+              </p>
+            )}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 12 }}>
+            {featured.map((day) => {
+              const color = rarityColor(day.cromo.rarity);
+              const canClaim = day.claimable && !day.claimed;
+              return (
+                <div key={day.dayIndex} style={{
+                  padding: 16, borderRadius: 14, background: BG,
+                  border: `1px solid ${day.isToday ? ACCENT + "44" : "rgba(255,255,255,0.06)"}`,
+                  textAlign: "center", opacity: day.claimable ? 1 : 0.5,
+                }}>
+                  <div style={{
+                    fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase",
+                    color: day.isToday ? ACCENT : DIM, marginBottom: 8
+                  }}>
+                    {day.isToday ? p.featuredToday : day.dayNameEs}
+                  </div>
+                  <div style={{
+                    width: 48, height: 48, borderRadius: 8, margin: "0 auto 10px",
+                    border: `2px solid ${color}44`, display: "flex", alignItems: "center", justifyContent: "center",
+                    background: `${color}15`, color, fontWeight: 900, fontSize: 14
+                  }}>
+                    {day.cromo.number}
+                  </div>
+                  <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 4 }}>{day.cromo.name}</div>
+                  <div style={{ fontSize: 10, color: DIM, marginBottom: 10 }}>{day.cromo.rarity}</div>
+                  {day.claimed ? (
+                    <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700 }}>{p.featuredClaimed}</span>
+                  ) : canClaim ? (
+                    <button
+                      onClick={() => handleClaim(day.dayIndex)}
+                      disabled={claiming === day.dayIndex}
+                      data-hover-btn
+                      style={{
+                        padding: "6px 16px", borderRadius: 8, background: ACCENT, color: BG,
+                        fontWeight: 700, fontSize: 12, border: "none", cursor: "pointer",
+                        opacity: claiming === day.dayIndex ? 0.6 : 1,
+                      }}
+                    >
+                      {claiming === day.dayIndex ? "..." : p.featuredClaim}
+                    </button>
+                  ) : (
+                    <span style={{ fontSize: 11, color: DIM }}>{p.featuredLocked}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Sticker showcase */}
       <section style={{ padding: "80px 20px", background: BG }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -221,12 +358,13 @@ export default function AlbumPage() {
               }}>
                 <div style={{
                   width: 56, height: 40, borderRadius: 6, overflow: "hidden", margin: "0 auto 12px",
-                  border: `2px solid ${s.color}44`, display: "flex", alignItems: "center", justifyContent: "center"
+                  border: `2px solid ${s.color}44`, display: "flex", alignItems: "center", justifyContent: "center",
+                  background: `${s.color}15`, color: s.color, fontWeight: 900, fontSize: 12
                 }}>
-                  <img src={`https://flagcdn.com/w80/${s.flag}.png`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  {s.name.replace("Cromo #", "")}
                 </div>
                 <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 4 }}>{s.name}</div>
-                <div style={{ fontSize: 12, color: DIM, marginBottom: 8 }}>{s.team}</div>
+                <div style={{ fontSize: 12, color: DIM, marginBottom: 8 }}>{s.category}</div>
                 <span style={{
                   display: "inline-block", padding: "3px 10px", borderRadius: 20,
                   fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase",
@@ -308,7 +446,7 @@ export default function AlbumPage() {
           <p data-cta-content style={{ color: MID, marginBottom: 40, fontSize: 18, maxWidth: 500, margin: "0 auto 40px", lineHeight: 1.6 }}>
             {p.subtitle}
           </p>
-          <Link href="/registro" data-cta-content data-hover-btn style={{
+          <Link href={authed ? "/app/album/mi-coleccion" : "/registro"} data-cta-content data-hover-btn style={{
             padding: "18px 44px", borderRadius: 14,
             background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
             color: BG, fontWeight: 800, fontSize: 18, textDecoration: "none", display: "inline-block",

@@ -8,9 +8,9 @@
   --zm-brand-blue: #2E86AB;
   --zm-brand-blue-light: #4FA0C2;
   --zm-brand-dark: #1A1A2E;
-  --zm-brand-gold: #D4A853;
-  --zm-brand-gold-dark: #B8913F;
-  --zm-brand-gold-light: #E0BD73;
+  --zm-brand-gold: #c9a84c;
+  --zm-brand-gold-dark: #a88a3d;
+  --zm-brand-gold-light: #e8d48b;
   --zm-brand-purple: #9b51e0;
   --zm-font-display: "Syne", system-ui, -apple-system, sans-serif;
   --zm-font-body: "Inter", system-ui, -apple-system, sans-serif;
@@ -126,7 +126,7 @@
 .zmH1Line { display: block; }
 .zmH1Gold {
   color: var(--zm-brand-gold);
-  background: linear-gradient(180deg, #F5D07A 0%, #D4A853 60%, #B8913F 100%);
+  background: linear-gradient(180deg, #e8d48b 0%, #c9a84c 60%, #a88a3d 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 20px rgba(212,168,83,0.3));
 }
@@ -139,7 +139,7 @@
   position: absolute;
   left: -5%; right: -5%; top: 0;
   width: 110%; height: 100%;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 120' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='0%25'><stop offset='0%25' stop-color='%23F5D07A' stop-opacity='0'/><stop offset='8%25' stop-color='%23F5D07A' stop-opacity='1'/><stop offset='50%25' stop-color='%23D4A853' stop-opacity='1'/><stop offset='92%25' stop-color='%23B8913F' stop-opacity='1'/><stop offset='100%25' stop-color='%23B8913F' stop-opacity='0'/></linearGradient></defs><path d='M8 72 C 60 58, 140 82, 205 64 S 340 78, 410 66 S 530 80, 592 60' stroke='url(%23g)' stroke-width='10' stroke-linecap='round' fill='none' filter='drop-shadow(0 2px 8px rgba(212,168,83,0.55))'/><path d='M20 75 C 95 68, 160 86, 230 70 S 355 82, 430 72 S 540 84, 580 68' stroke='url(%23g)' stroke-width='4' stroke-linecap='round' fill='none' opacity='0.5'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 120' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='0%25'><stop offset='0%25' stop-color='%23e8d48b' stop-opacity='0'/><stop offset='8%25' stop-color='%23e8d48b' stop-opacity='1'/><stop offset='50%25' stop-color='%23c9a84c' stop-opacity='1'/><stop offset='92%25' stop-color='%23a88a3d' stop-opacity='1'/><stop offset='100%25' stop-color='%23a88a3d' stop-opacity='0'/></linearGradient></defs><path d='M8 72 C 60 58, 140 82, 205 64 S 340 78, 410 66 S 530 80, 592 60' stroke='url(%23g)' stroke-width='10' stroke-linecap='round' fill='none' filter='drop-shadow(0 2px 8px rgba(212,168,83,0.55))'/><path d='M20 75 C 95 68, 160 86, 230 70 S 355 82, 430 72 S 540 84, 580 68' stroke='url(%23g)' stroke-width='4' stroke-linecap='round' fill='none' opacity='0.5'/></svg>");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
@@ -149,7 +149,7 @@
 }
 .zmH1Em {
   font-style: italic; font-weight: 800;
-  background: linear-gradient(90deg, #4FA0C2, #9b51e0 60%, #D4A853);
+  background: linear-gradient(90deg, #4FA0C2, #9b51e0 60%, #c9a84c);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 
@@ -216,7 +216,7 @@
 .zmCtaPrimary {
   position: relative; display: inline-flex; align-items: center; gap: 10px;
   padding: 18px 28px; border-radius: 9999px; border: 0; cursor: pointer;
-  background: linear-gradient(135deg, #F5D07A 0%, #D4A853 50%, #B8913F 100%);
+  background: linear-gradient(135deg, #e8d48b 0%, #c9a84c 50%, #a88a3d 100%);
   color: #1A1A2E; font-family: var(--zm-font-display); font-weight: 800; font-size: 16px;
   letter-spacing: -0.005em; text-decoration: none;
   box-shadow:
@@ -236,7 +236,7 @@
 .zmCtaPrimary:active { transform: translateY(0); }
 .zmCtaPrimaryArrow {
   width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(26,26,46,0.92); color: #F5D07A;
+  background: rgba(26,26,46,0.92); color: #e8d48b;
   display: flex; align-items: center; justify-content: center;
   transition: transform .25s var(--zm-ease-out);
 }

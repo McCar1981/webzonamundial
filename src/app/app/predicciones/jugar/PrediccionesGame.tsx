@@ -18,6 +18,14 @@ import LiveMicroPicks from "./LiveMicroPicks";
 import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
 import { DoubleMatchCard, SecondChanceButton, usePowerupState } from "./Powerups";
 import { handleProRequired } from "@/lib/pro/paywall-client";
+import { celebrate, haptic, prefersReducedMotion } from "@/lib/celebration";
+import {
+  isPushSupported,
+  getNotificationPermission,
+  getCurrentSubscription,
+  subscribeToPush,
+  claimPushReward,
+} from "@/lib/push-client";
 import {
   TYPE_ICON, TIER_ICON, OracleIcon,
   ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Snowflake, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
@@ -43,10 +51,25 @@ import {
 // CTAs y texto), de modo que el juego adopta la identidad del bar sin tocar la
 // lógica compartida. INK = color del texto sobre los botones de acento.
 const BG = "var(--zm-bg, #060B14)", BG2 = "var(--zm-surface, #0F1D32)", BG3 = "var(--zm-surface2, #0B1825)";
-const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#6a7a9a";
+const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#94a3b8";
 const GREEN = "#22c55e", RED = "#ef4444";
 const INK = "var(--zm-ink, #060B14)";
 const TEXT = "var(--zm-text, #fff)";
+
+// Prompt de push contextual tras guardar una predicción (momento de máxima
+// intención). Mismo flujo y reglas anti-molestia que PushPromptCard del lobby.
+const PUSH_DISMISS_KEY = "zm.pred.pushprompt.dismissedAt";
+const PUSH_REASK_DAYS = 3;
+const PUSH_REWARD = 25; // gancho mostrado; el abono real (idempotente) lo decide el servidor
+function pushDismissedRecently(): boolean {
+  try {
+    const at = parseInt(localStorage.getItem(PUSH_DISMISS_KEY) || "0", 10);
+    if (!at) return false;
+    return (Date.now() - at) / (1000 * 60 * 60 * 24) < PUSH_REASK_DAYS;
+  } catch {
+    return false;
+  }
+}
 const CARD_BORDER = "1px solid var(--zm-border, rgba(255,255,255,0.07))";
 
 const flagUrl = (code: string) => `https://flagcdn.com/w40/${code}.png`;
@@ -211,6 +234,13 @@ export default function PrediccionesGame() {
   // "sin datos por error" de "cargando" y mostrar un reintento.
   const [loadFailed, setLoadFailed] = useState(false);
   const [toast, setToast] = useState<{ kind: "ok" | "err"; msg: string } | null>(null);
+  // ¿Reducir movimiento? Arranca en false para casar el SSR; se resuelve tras
+  // montar y, si es true, desactiva la animación de entrada del toast.
+  const [reduceMotion, setReduceMotion] = useState(false);
+  // Prompt de push tras guardar (intención máxima: "te avisamos al resolverse").
+  const [pushPrompt, setPushPrompt] = useState<"hidden" | "idle" | "loading" | "done" | "denied">("hidden");
+  const [pushEarned, setPushEarned] = useState(0);
+  const pushOffered = useRef(false); // solo se ofrece una vez por sesión
 
   const [scorers, setScorers] = useState<ScorerCandidate[]>([]);
   const [pendingTeams, setPendingTeams] = useState<string[]>([]);
@@ -221,6 +251,12 @@ export default function PrediccionesGame() {
   const latestLoad = useRef<string | null>(null);
   const stateRef = useRef<MatchState | null>(null);
   stateRef.current = state;
+  // El nodo del toast de éxito: para darle un "pop" dorado al confirmarse el
+  // guardado (la animación de la celebración respeta reduced-motion).
+  const toastRef = useRef<HTMLDivElement | null>(null);
+  // El deep-link ?match= solo debe abrir el partido una vez (no en cada cambio
+  // de authed); este flag lo garantiza.
+  const deepLinkDone = useRef(false);
 
   // Partidos seleccionables (fase de grupos, en orden de calendario).
   const groupMatches = useMemo(
@@ -232,15 +268,7 @@ export default function PrediccionesGame() {
   useEffect(() => {
     const supa = createSupabaseBrowserClient();
     supa.auth.getUser().then(({ data }) => setAuthed(!!data.user));
-  }, []);
-
-  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
-  // enlazan directo a la predicción de UN partido concreto. Client-only vía
-  // window.location para no meter useSearchParams/Suspense en el prerender.
-  // Solo ids que existen en el selector; el resto cae al selector normal.
-  useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("match");
-    if (id && MATCHES.some((m) => String(m.i) === id)) setMatchId(id);
+    setReduceMotion(prefersReducedMotion());
   }, []);
 
   useEffect(() => {
@@ -312,6 +340,25 @@ export default function PrediccionesGame() {
     void loadMatch(id);
   }, [loadMatch]);
 
+  // Deep-link ?match=<id>: el modal del calendario (y los CTA de stories)
+  // enlazan directo a la predicción de UN partido concreto. Client-only vía
+  // window.location para no meter useSearchParams/Suspense en el prerender.
+  // Solo ids que existen en el selector; el resto cae al selector normal.
+  //
+  // IMPORTANTE: la carga del detalle solo se dispara cuando el usuario está
+  // autenticado (authed === true). Si está sin sesión (authed === false) NO
+  // cargamos: las peticiones devolverían 401 y disparaban el toast rojo "no se
+  // pudieron cargar" justo antes de mostrar el gate de login. Mientras authed
+  // sigue indeterminado (null) esperamos a que se resuelva.
+  useEffect(() => {
+    if (deepLinkDone.current || authed !== true) return;
+    const id = new URLSearchParams(window.location.search).get("match");
+    if (id && MATCHES.some((m) => String(m.i) === id)) {
+      deepLinkDone.current = true;
+      selectMatch(id);
+    }
+  }, [authed, selectMatch]);
+
   const submit = useCallback(async (
     type: PredictionType,
     data: PredictionData,
@@ -338,7 +385,26 @@ export default function PrediccionesGame() {
       const json = await res.json().catch(() => ({}));
       if (res.ok) {
         setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
+        // Beat de dopamina al guardar: háptico + pop dorado sobre el toast (la
+        // micro-celebración respeta prefers-reduced-motion internamente). Si este
+        // guardado completa los 8 tipos ("Predicción Perfecta") usamos un patrón
+        // háptico más marcado. Como es una predicción nueva (no edición) cuenta
+        // para el total; sumamos el tipo recién guardado a los ya completados.
+        const completed = new Set(stateRef.current?.types_completed ?? []);
+        completed.add(type);
+        const isPerfect = !existing && completed.size >= PREDICTION_TYPES.length;
+        haptic(isPerfect ? [10, 40, 20] : 10);
         setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
+        // Pop visual sobre el toast una vez montado (pattern [] → sin vibración
+        // extra; la háptica ya se disparó arriba).
+        requestAnimationFrame(() => celebrate(toastRef.current, []));
+        // Justo después de apostar es cuando más razones hay para volver (ver si
+        // acertaste) → ofrecemos el push UNA vez por sesión, si el navegador lo
+        // soporta, el permiso sigue en "default" y no se descartó hace poco.
+        if (!pushOffered.current && isPushSupported() && getNotificationPermission() === "default" && !pushDismissedRecently()) {
+          pushOffered.current = true;
+          getCurrentSubscription().then((sub) => { if (!sub) setPushPrompt("idle"); }).catch(() => {});
+        }
         await loadMatch(matchId);
       } else if (handleProRequired(json)) {
         // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
@@ -350,6 +416,30 @@ export default function PrediccionesGame() {
       setToast({ kind: "err", msg: "Sin conexión: no se pudo guardar. Reintenta." });
     }
   }, [matchId, loadMatch]);
+
+  // Activar push desde el prompt contextual: suscribe a la resolución de
+  // predicciones + momentos clave y reclama la recompensa (idempotente).
+  async function activatePush() {
+    setPushPrompt("loading");
+    try {
+      const sub = await subscribeToPush({ kinds: ["predictions-reminder", "tournament-key-events"] });
+      if (sub) {
+        const reward = await claimPushReward();
+        setPushEarned(reward && !reward.alreadyClaimed ? reward.coins : 0);
+        setPushPrompt("done");
+        haptic(10);
+        setTimeout(() => setPushPrompt("hidden"), 4500);
+      } else {
+        setPushPrompt("denied");
+      }
+    } catch {
+      setPushPrompt("denied");
+    }
+  }
+  function dismissPush() {
+    try { localStorage.setItem(PUSH_DISMISS_KEY, String(Date.now())); } catch { /* ignore */ }
+    setPushPrompt("hidden");
+  }
 
   if (authed === false) {
     return (
@@ -397,13 +487,53 @@ export default function PrediccionesGame() {
       )}
 
       {toast && (
-        <div role="status" aria-live="polite" style={{
-          position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 50,
+        <div ref={toastRef} className="pj-toast" role="status" aria-live="polite" data-reduce-motion={reduceMotion || undefined} style={{
           background: toast.kind === "ok" ? "rgba(34,197,94,0.95)" : "rgba(239,68,68,0.95)",
-          color: TEXT, padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.4)", maxWidth: "90vw", textAlign: "center",
         }}>
           {toast.msg}
+        </div>
+      )}
+
+      {pushPrompt !== "hidden" && (
+        <div role="dialog" aria-label="Activar avisos de predicciones" className="pj-push-prompt" data-reduce-motion={reduceMotion || undefined} style={{
+          background: "linear-gradient(135deg, rgba(201,168,76,0.18), #0F1D32 60%, #0B1825)",
+          border: `1px solid ${GOLD}59`, color: TEXT, padding: "12px 14px", borderRadius: 14,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+        }}>
+          <span aria-hidden style={{ fontSize: 22, lineHeight: 1 }}>🔔</span>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            {pushPrompt === "done" ? (
+              <div style={{ fontWeight: 800, fontSize: 14 }}>
+                {pushEarned > 0 ? `¡Listo! +${pushEarned} Fútcoins 🎉` : "¡Listo! Te avisaremos 🎉"}
+              </div>
+            ) : pushPrompt === "denied" ? (
+              <div style={{ fontSize: 13, color: MID }}>
+                Tienes las notificaciones bloqueadas. Ábrelas desde el candado de la barra de direcciones.
+              </div>
+            ) : (
+              <>
+                <div style={{ fontWeight: 800, fontSize: 14 }}>Te avisamos cuando se resuelva</div>
+                <div style={{ fontSize: 12.5, color: MID, marginTop: 2 }}>
+                  Entérate al instante si aciertas <span style={{ color: GOLD2, fontWeight: 700 }}>· +{PUSH_REWARD} Fútcoins</span>
+                </div>
+              </>
+            )}
+          </div>
+          {(pushPrompt === "idle" || pushPrompt === "loading") && (
+            <button type="button" onClick={activatePush} disabled={pushPrompt === "loading"} style={{
+              flexShrink: 0, borderRadius: 10, padding: "9px 14px", border: "none", cursor: "pointer",
+              fontWeight: 800, fontSize: 13, color: INK, background: `linear-gradient(135deg, ${GOLD}, #A8893D)`,
+              opacity: pushPrompt === "loading" ? 0.6 : 1,
+            }}>
+              {pushPrompt === "loading" ? "Activando…" : `Activar +${PUSH_REWARD}`}
+            </button>
+          )}
+          {pushPrompt !== "done" && (
+            <button type="button" onClick={dismissPush} aria-label="Cerrar" style={{
+              flexShrink: 0, background: "transparent", border: "none", color: "rgba(255,255,255,0.45)",
+              cursor: "pointer", fontSize: 16, lineHeight: 1, padding: 4,
+            }}>✕</button>
+          )}
         </div>
       )}
     </Shell>
@@ -615,6 +745,29 @@ const PJ_CSS = `
   justify-content: space-between; padding-right: 76px;
 }
 @media (min-width: 860px) { .pj-sticky-inner { padding-right: 0; } }
+
+/* Toast contextual: CENTRADO en pantalla (vertical y horizontal) para que no lo
+   tape el pie fijo/barra del sistema (antes salía abajo y quedaba oculto).
+   Centrado sin transform (inset:0 + margin:auto) para no chocar con la animación
+   de entrada; pointer-events:none para que no bloquee toques. El prompt de push
+   sigue saliendo desde el borde. */
+.pj-toast {
+  position: fixed; inset: 0; margin: auto; width: fit-content; height: fit-content; z-index: 50; pointer-events: none;
+  color: ${TEXT}; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 14;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4); max-width: 90vw; text-align: center;
+  animation: micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1);
+}
+.pj-toast[data-reduce-motion="true"] { animation: none; }
+
+.pj-push-prompt {
+  position: fixed; left: 0; right: 0; bottom: 76px; margin-inline: auto; width: fit-content; max-width: 92vw; z-index: 55;
+  display: flex; align-items: center; gap: 12px;
+  animation: micro-slide-up 0.32s cubic-bezier(0.16,1,0.3,1);
+}
+.pj-push-prompt[data-reduce-motion="true"] { animation: none; }
+@media (max-width: 767px) {
+  .pj-push-prompt { bottom: auto; top: 12px; animation-name: micro-slide-down; }
+}
 `;
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -2629,7 +2782,7 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
     </div>
   );
 }
-const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
+const stepBtn: React.CSSProperties = { width: 44, height: 44, display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, lineHeight: 1, cursor: "pointer" };
 
 function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreResult, disabled }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn; scoreResult: WinnerResult | null; disabled?: boolean }) {
   // Si el marcador exacto guardado es empate, el ganador queda fijado en

@@ -14,7 +14,7 @@
 // sea reproducible en cliente y servidor sin desincronizarse.
 
 // ─── RNG determinista (compartido) ───────────────────────────────────────────
-function hashStr(s: string): number {
+export function hashStr(s: string): number {
   let h = 2166136261;
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
@@ -22,7 +22,7 @@ function hashStr(s: string): number {
   }
   return h >>> 0;
 }
-function mulberry32(seed: number) {
+export function mulberry32(seed: number) {
   let a = seed >>> 0;
   return () => {
     a |= 0; a = (a + 0x6d2b79f5) | 0;

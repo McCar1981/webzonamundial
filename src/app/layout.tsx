@@ -6,6 +6,7 @@ import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalyticsRouteTracker from "@/components/analytics/GoogleAnalyticsRouteTracker";
+import AuthEventTracker from "@/components/analytics/AuthEventTracker";
 import NativeAppGuard from "@/components/NativeAppGuard";
 import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
 import PaywallModal from "@/components/pro/PaywallModal";
@@ -350,6 +351,9 @@ export default async function RootLayout({
         {/* Emite page_view en cada navegación SPA (App Router no recarga la
             página, así que sin esto solo se contaba la primera vista). */}
         <GoogleAnalyticsRouteTracker />
+        {/* Emite sign_up (alta) / login (vuelta) a GA4 al establecerse la sesión
+            — cubre email magic-link y OAuth, que convergen en /auth/callback. */}
+        <AuthEventTracker />
         <NativeAppGuard />
         <LanguageProvider>
           <EntitlementsProvider>

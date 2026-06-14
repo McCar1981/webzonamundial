@@ -32,6 +32,9 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
   const lineSlots = (prefix: string) => team.slots.filter((s) => !s.bench && s.slot.startsWith(prefix));
   const benchSlots = team.slots.filter((s) => s.bench);
+  // Plantilla vacía → zero-state con una acción dominante (Auto-draft IA) en vez
+  // de ~15 huecos "+" sin un siguiente paso obvio.
+  const empty = !team.slots.some((s) => s.playerId);
 
   // Botón de formación (reutilizado en escritorio y móvil).
   const fButton = (f: FormationRule) => (
@@ -79,6 +82,22 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           {validation.errors.map((e, i) => (
             <div key={i}>• {e}</div>
           ))}
+        </div>
+      )}
+
+      {/* Zero-state: con la plantilla vacía, una sola acción dominante y obvia
+          sobre el campo (Auto-draft IA), en vez de 15 huecos "+" sin rumbo. */}
+      {empty && (
+        <div style={{ position: "relative", marginBottom: 14, padding: "18px 18px 20px", borderRadius: 16, border: `1px solid ${GOLD}55`, background: `linear-gradient(135deg, ${GOLD}1f, ${BG2})`, textAlign: "center", boxShadow: "0 14px 34px rgba(0,0,0,0.35)" }}>
+          <div style={{ fontSize: 13, fontWeight: 800, color: GOLD2, letterSpacing: 0.5 }}>Tu campo está vacío</div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "4px 0 14px", lineHeight: 1.3 }}>Empieza con 15 jugadores en un toque</div>
+          <button
+            onClick={onAutoDraft}
+            style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", maxWidth: 360, padding: "14px 20px", borderRadius: 12, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 900, fontSize: 15.5, cursor: "pointer", boxShadow: `0 10px 26px ${GOLD}44` }}
+          >
+            🤖 Arma tu equipo en 10s · Auto-draft IA
+          </button>
+          <div style={{ fontSize: 11, color: MID, marginTop: 10, fontWeight: 700 }}>…o ficha tú mismo tocando los huecos del campo.</div>
         </div>
       )}
 

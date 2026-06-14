@@ -13,12 +13,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, Fragment } from "react";
+import { MATCHES } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
+import { celebrate, celebratePop, haptic } from "@/lib/celebration";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
 const NAVY = "#0a1729";
@@ -80,6 +82,12 @@ type Mod = {
   // con elegancia al fondo base premium sin romper el layout.
   art?: string;
   title: string; desc: string; href?: string; cta: string; estado: Estado;
+  // ACENTO PROPIO del modo (personalidad por launcher). Si está, tiñe el icono,
+  // el borde y el CTA de ESTE modo por encima del tint de la categoría → cada
+  // modo tiene carácter (Predicciones=oro, Trivia=verde, Fantasy=azul…). Sin él,
+  // la card cae al acento de la categoría (retrocompatible).
+  accent?: string;
+  accent2?: string;
   // Acción especial al pulsar: en vez de navegar, dispara algo en la propia app.
   // "ia-coach" abre el widget flotante del IA Coach (montado en RootLayoutClient)
   // sin salir del lobby a la landing estática. El href se conserva como respaldo
@@ -121,12 +129,12 @@ const CATS: Cat[] = [
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
-      { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible" },
-      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible" },
-      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible" },
-      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo" },
-      { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo" },
-      { icon: "album", art: "/img/album/album-hero.webp", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Ver", estado: "Nuevo" },
+      { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
+      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
+      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
+      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
+      { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo", accent: "#8b7bd8", accent2: "#b3a6f0" },
+      { icon: "album", art: "/img/album/album-hero.webp", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Ver", estado: "Nuevo", accent: "#34b9c4", accent2: "#6fdce5" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
       // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },
@@ -145,10 +153,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(255,120,90,0.52), rgba(45,210,230,0.42))",
     ctaColor: "#22120c", ctaBorder: "rgba(255,120,90,0.5)", ctaShadow: "0 8px 18px rgba(255,110,90,0.4)",
     mods: [
-      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
-      { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
-      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories/feed", cta: "Ver", estado: "Disponible" },
-      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
+      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible", accent: "#ff6b5a", accent2: "#ff9a4a" },
+      { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo", accent: "#ff8a3c", accent2: "#ffb46a" },
+      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories/feed", cta: "Ver", estado: "Disponible", accent: "#e0567a", accent2: "#f78fa8" },
+      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible", accent: "#7c5cff", accent2: "#a98fff" },
     ],
   },
   {
@@ -164,10 +172,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
     ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
-      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
-      { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible" },
-      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
-      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo" },
+      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings#tablero", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
+      { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
+      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible", accent: "#5b8def", accent2: "#8db1ff" },
+      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo", accent: "#36c98f", accent2: "#7ce0b3" },
     ],
   },
   {
@@ -183,10 +191,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(150,130,255,0.5), rgba(180,195,255,0.46))",
     ctaColor: "#16203a", ctaBorder: "rgba(150,130,255,0.5)", ctaShadow: "0 8px 18px rgba(150,130,255,0.4)",
     mods: [
-      { icon: "calendario", art: "/assets/card-backgrounds/calendario.webp", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
-      { icon: "grupos", art: "/assets/card-backgrounds/grupos.webp", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
-      { icon: "reglas", art: "/assets/card-backgrounds/reglas-de-puntos.webp", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible" },
-      { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.webp", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible" },
+      { icon: "calendario", art: "/assets/card-backgrounds/calendario.webp", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible", accent: "#8b7bd8", accent2: "#b3a6f0" },
+      { icon: "grupos", art: "/assets/card-backgrounds/grupos.webp", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible", accent: "#6e83c4", accent2: "#9db0e8" },
+      { icon: "reglas", art: "/assets/card-backgrounds/reglas-de-puntos.webp", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
+      { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.webp", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
     ],
   },
 ];
@@ -293,7 +301,16 @@ function cardBackground(tint: string, tint2: string, lift: boolean): React.CSSPr
      5. halo/acento superior + contenido
    La imagen NUNCA es la card cerrada; la identidad la dan los tokens del tema. */
 function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
-  const { tint, tint2, artOpacity, artOpacityHov, ovTop, ovMid, ovBot, border, borderHov, glow, wash, ctaBg, ctaBgHov, ctaColor, ctaBorder, ctaShadow } = cat;
+  const { artOpacity, artOpacityHov, ovTop, ovMid, ovBot, ctaBg, ctaBgHov, ctaColor, ctaBorder, ctaShadow } = cat;
+  // ── ACENTO EFECTIVO ── el del modo (personalidad propia) por encima del de la
+  // categoría. Tiñe icono, glow, wash, borde y CTA → cada modo se diferencia y no
+  // parece un banner repetido. Sin accent propio, hereda el de la categoría.
+  const tint = mod.accent ?? cat.tint;
+  const tint2 = mod.accent2 ?? cat.tint2;
+  const glow = mod.accent ? `${mod.accent}80` : cat.glow;
+  const wash = mod.accent ? `${mod.accent}2e` : cat.wash;
+  const border = mod.accent ? `${mod.accent}8c` : cat.border;
+  const borderHov = mod.accent ? `${mod.accent}f0` : cat.borderHov;
   const [hov, setHov] = useState(false);
   const disabled = !mod.href;
   const active = hov && !disabled;
@@ -379,26 +396,31 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
       </div>
       <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, letterSpacing: "-0.02em", color: "#071426", marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.title}</h3>
       <p style={{ position: "relative", zIndex: 2, fontSize: 12.5, fontWeight: 500, color: "#344154", lineHeight: 1.35, marginBottom: 14, minHeight: 34, textShadow: "0 1px 1px rgba(255,255,255,0.55)" }}>{mod.desc}</p>
-      {/* CTA con identidad de categoría (premium, no gris genérico). Anclado abajo. */}
+      {/* CTA con identidad del MODO (acento propio) sobre la base de categoría.
+          Con accent propio: degradado del acento del modo + texto oscuro legible →
+          cada launcher tiene su color (no banner repetido). Anclado abajo. */}
       <span
         style={{
           position: "relative", zIndex: 2, marginTop: "auto",
           display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           width: "100%",
           fontSize: 13, fontWeight: 800,
-          color: disabled ? "#4f6394" : ctaColor,
-          // Placa blanca translúcida bajo el degradado de categoría → el CTA se lee
-          // nítido aunque el arte sea fuerte justo debajo (el oro de "Jugar" es opaco
-          // y la tapa no se nota). Frosted sutil para acabado premium.
+          color: disabled ? "#4f6394" : (mod.accent ? "#0a1422" : ctaColor),
+          // Placa blanca translúcida bajo el degradado → el CTA se lee nítido aunque
+          // el arte sea fuerte justo debajo. Frosted sutil para acabado premium.
           background: disabled
             ? "#e3e9f5"
-            : active
-              ? `${ctaBgHov}, linear-gradient(rgba(255,255,255,0.62),rgba(255,255,255,0.62))`
-              : `${ctaBg}, linear-gradient(rgba(255,255,255,0.68),rgba(255,255,255,0.68))`,
+            : mod.accent
+              ? (active
+                  ? `linear-gradient(135deg,${tint},${tint2}), linear-gradient(rgba(255,255,255,0.42),rgba(255,255,255,0.42))`
+                  : `linear-gradient(135deg,${tint}d9,${tint2}d9), linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5))`)
+              : active
+                ? `${ctaBgHov}, linear-gradient(rgba(255,255,255,0.62),rgba(255,255,255,0.62))`
+                : `${ctaBg}, linear-gradient(rgba(255,255,255,0.68),rgba(255,255,255,0.68))`,
           backdropFilter: "saturate(150%) blur(3px)", WebkitBackdropFilter: "saturate(150%) blur(3px)",
           padding: "10px 0", borderRadius: 11,
-          border: `1px solid ${disabled ? "#ccd8ec" : ctaBorder}`,
-          boxShadow: active && !disabled ? `${ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.5)` : "inset 0 1px 0 rgba(255,255,255,0.4)",
+          border: `1px solid ${disabled ? "#ccd8ec" : (mod.accent ? `${tint}cc` : ctaBorder)}`,
+          boxShadow: active && !disabled ? `${mod.accent ? `0 8px 18px ${tint}55` : ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.5)` : "inset 0 1px 0 rgba(255,255,255,0.4)",
           transition: "background .25s, color .25s, box-shadow .25s",
         }}
       >
@@ -415,9 +437,9 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
   const style: React.CSSProperties = {
     position: "relative", overflow: "hidden",
     display: "flex", flexDirection: "column",
-    // Más alto ahora que el arte es protagonista (entrada a un "modo"). El arte ocupa
-    // toda la card al ser absoluto; min-height garantiza presencia sin cortar texto.
-    minHeight: 236,
+    // Launcher compacto (brief): el arte sigue siendo protagonista pero la card
+    // es algo más baja para que el grid de modos no compita con hero/misiones.
+    minHeight: 212,
     textDecoration: "none", borderRadius: 20, padding: "16px 16px 18px",
     ...cardBackground(tint, tint2, active),
     border: `1.5px solid ${active ? borderHov : border}`,
@@ -463,6 +485,21 @@ function useInstallPrompt() {
 }
 
 /* ════════════════════════════ PÁGINA ════════════════════════════ */
+// "Desde tu última visita": una predicción resuelta (agregada por partido).
+type RecentResult = { match_id: string; points: number; correct: number; total: number; resolved_at: string };
+// "Partidos de hoy": un fixture del día (de /api/match-center/today).
+type TodayMatch = {
+  matchId: number;
+  slug: string;
+  live: boolean;
+  finished: boolean;
+  score: [number | null, number | null];
+  kickoff: string | null;
+  group: string;
+  home: { name: string; flag: string };
+  away: { name: string; flag: string };
+};
+
 export default function AppHubPage() {
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
@@ -476,6 +513,10 @@ export default function AppHubPage() {
   const [topGlobal, setTopGlobal] = useState<TopEntry[] | null>(null);
   // Posición propia en el ranking (solo con sesión).
   const [myRank, setMyRank] = useState<MyRank | null>(null);
+  // Delta de ranking desde la última visita: rank guardado (localStorage
+  // "zm:lastRank") menos el actual → positivo = subiste (rank menor). 0 = sin
+  // previo o sin cambio (no mostramos nada inventado). Honesto, local.
+  const [rankDelta, setRankDelta] = useState(0);
   // ¿Ya predijo el partido destacado? null = sin saber (alimenta las misiones).
   const [predictedFeatured, setPredictedFeatured] = useState<boolean | null>(null);
   // Reclamo del check-in diario en curso (evita doble tap).
@@ -495,6 +536,20 @@ export default function AppHubPage() {
   // Carrusel del hero: índice de la pantalla visible (rota sola entre estados).
   const [heroIdx, setHeroIdx] = useState(0);
   const { canInstall, install } = useInstallPrompt();
+  // Píldora de Fútcoins del header sticky: la "celebramos" (pop dorado) al
+  // reclamar la recompensa diaria → el saldo que sube es el premio visible.
+  const coinsPillRef = useRef<HTMLDivElement | null>(null);
+  // Badge de racha de "Misiones de hoy": pulso extra al reclamar si la racha
+  // sube o se mantiene (el otro premio del check-in diario).
+  const streakBadgeRef = useRef<HTMLSpanElement | null>(null);
+  // "Desde tu última visita": predicciones resueltas recientes (de /api/predictions/mine).
+  const [recentResults, setRecentResults] = useState<RecentResult[] | null>(null);
+  // Mapa match_id -> nº de tipos predichos (chips "Predicho/Predecir" de "Partidos de hoy").
+  const [predictedCounts, setPredictedCounts] = useState<Record<string, number>>({});
+  // "Partidos de hoy": fixtures del día (de /api/match-center/today).
+  const [todayMatches, setTodayMatches] = useState<TodayMatch[] | null>(null);
+  // Catálogo de 18 módulos colapsado por defecto → el lobby enfoca la acción del día.
+  const [catalogOpen, setCatalogOpen] = useState(false);
 
   useEffect(() => {
     const h = new URLSearchParams(window.location.search).get("hero");
@@ -588,14 +643,21 @@ export default function AppHubPage() {
     return () => clearInterval(id);
   }, []);
 
-  // ¿Predijo ya el partido destacado? (misiones del día; auth requerida)
+  // /api/predictions/mine (auth): en UNA llamada alimenta tres cosas —
+  //   · predictedFeatured (¿predijo el destacado? para "Misiones")
+  //   · predictedCounts   (mapa match_id→nº tipos, chips de "Partidos de hoy")
+  //   · recentResults     (predicciones resueltas, "Desde tu última visita")
   useEffect(() => {
-    if (!authed || !match?.matchId) { setPredictedFeatured(null); return; }
+    if (!authed) { setPredictedFeatured(null); setRecentResults(null); setPredictedCounts({}); return; }
     let on = true;
     fetch("/api/predictions/mine")
       .then((r) => (r.ok ? r.json() : null))
-      .then((d: { counts?: Record<string, number> } | null) => {
-        if (on && d?.counts) setPredictedFeatured((d.counts[String(match.matchId)] ?? 0) > 0);
+      .then((d: { counts?: Record<string, number>; recent_results?: RecentResult[] } | null) => {
+        if (!on || !d) return;
+        const counts = d.counts ?? {};
+        setPredictedCounts(counts);
+        setRecentResults(d.recent_results ?? []);
+        if (match?.matchId) setPredictedFeatured((counts[String(match.matchId)] ?? 0) > 0);
       })
       .catch(() => {});
     return () => { on = false; };
@@ -609,10 +671,38 @@ export default function AppHubPage() {
       .then((r) => (r.ok ? r.json() : null))
       // Solo si ya compite (con saldo): con 0 Fútcoins el rank sale fuera del
       // total ("#152 de 80") y confunde más de lo que aporta.
-      .then((d: { me?: MyRank } | null) => { if (on && d?.me && d.me.rank > 0 && d.me.coins > 0) setMyRank(d.me); })
+      .then((d: { me?: MyRank } | null) => {
+        if (!on || !d?.me || d.me.rank <= 0 || d.me.coins <= 0) return;
+        setMyRank(d.me);
+        // Delta vs la visita anterior + persistencia para la próxima. Safari en
+        // navegación privada puede lanzar al tocar localStorage → try-catch.
+        try {
+          const prevRaw = localStorage.getItem("zm:lastRank");
+          const prev = prevRaw != null ? parseInt(prevRaw, 10) : NaN;
+          if (Number.isFinite(prev) && prev !== d.me.rank) setRankDelta(prev - d.me.rank);
+          localStorage.setItem("zm:lastRank", String(d.me.rank));
+        } catch { /* sin persistencia, sin delta: no pasa nada */ }
+      })
       .catch(() => {});
     return () => { on = false; };
   }, [authed]);
+
+  // "Partidos de hoy": la tira con todos los fixtures del día (el destacado solo
+  // muestra uno). Una carga al entrar; ligera (endpoint público cacheado).
+  useEffect(() => {
+    if (authed !== true) { setTodayMatches(null); return; }
+    let on = true;
+    fetch("/api/match-center/today")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { matches?: TodayMatch[] } | null) => { if (on) setTodayMatches(d?.matches ?? []); })
+      .catch(() => { if (on) setTodayMatches([]); });
+    return () => { on = false; };
+  }, [authed]);
+
+  // Si llegan con #modulos (los CTA "Explorar modos"), abrimos el catálogo.
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#modulos") setCatalogOpen(true);
+  }, []);
 
   // Detección iOS para el hint de instalación (en effect → sin hydration mismatch).
   useEffect(() => {
@@ -635,13 +725,24 @@ export default function AppHubPage() {
       const r = await fetch("/api/predictions/daily", { method: "POST" });
       if (r.ok || r.status === 409) {
         setClaimedToday(true);
+        // Celebración del beat de hábito: pop dorado en la píldora de Fútcoins
+        // del header (el saldo que sube es el premio) + golpe háptico en móvil.
+        // celebratePop/haptic ya respetan prefers-reduced-motion internamente.
+        const prevStreak = gam?.streak.current ?? 0;
+        celebratePop(coinsPillRef.current);
+        haptic(10);
         setGam((prev) => prev?.daily ? { ...prev, daily: { ...prev.daily, can_claim: false } } : prev);
         const g = await fetch("/api/predictions/me").then((x) => (x.ok ? x.json() : null)).catch(() => null);
-        if (g) setGam(g);
+        if (g) {
+          setGam(g);
+          // Si la racha sube o se mantiene activa, un pulso extra de celebración
+          // (la racha es el otro premio del check-in diario).
+          if (g.streak?.current > 0 && g.streak.current >= prevStreak) celebrate(streakBadgeRef.current, 12);
+        }
       }
     } catch { /* la misión sigue visible; el usuario puede reintentar */ }
     finally { setClaiming(false); }
-  }, [claiming]);
+  }, [claiming, gam]);
 
   // Top-5 del ranking global por Fútcoins (público, sin sesión necesaria).
   useEffect(() => {
@@ -705,6 +806,9 @@ export default function AppHubPage() {
 
   // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
   const CORAL = "#ff6b5a";
+
+  // Acento del Match Center según estado del partido.
+  const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
 
   // ── HERO dinámico (Live Hub) ── slider CONTEXTUAL (no promo de módulos).
   //   El hero responde a "¿qué pasa ahora en ZonaMundial?". Prioridad:
@@ -786,8 +890,11 @@ export default function AppHubPage() {
     title: <><span style={{ color: GOLD2 }}>{match.meta.home.name}</span> vs <span style={{ color: GOLD2 }}>{match.meta.away.name}</span> abre tu jornada</>,
     desc: "Consulta el directo, revisa datos y prepara tu predicción.",
     art: "/assets/card-backgrounds/match-center.webp",
-    cta1: { label: "Ver Match Center", href: matchHref },
-    cta2: { label: "Hacer predicción", href: "/app/predicciones/jugar" },
+    // CTA primario dinámico (predicho→ver, sin predecir→predecir); secundario = Match Center.
+    cta1: predictedFeatured === true
+      ? { label: "Ver predicción", href: `/app/predicciones/jugar?match=${match.matchId}` }
+      : { label: "Predecir ahora", href: `/app/predicciones/jugar?match=${match.matchId}` },
+    cta2: { label: "Match Center", href: matchHref },
   } : null;
   const heroBase: HeroCfg = {
     id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
@@ -805,7 +912,7 @@ export default function AppHubPage() {
     desc: "Responde y suma puntos extra para el ranking.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
     cta1: { label: "Responder trivia", href: "/trivia" },
-    cta2: { label: "Ver ranking", href: "/app/rankings" },
+    cta2: { label: "Ver ranking", href: "/app/rankings#tablero" },
   };
   // Orden de slides por prioridad de contexto (NO promos):
   //   live (si hay) → partido del día (si hay) → base → reto (si pendiente).
@@ -846,8 +953,26 @@ export default function AppHubPage() {
     icon: hero.icon ?? playIcon(hero.ctaInk),
   };
 
-  // Acento del Match Center según estado del partido.
-  const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
+  // ── Estado + CTA dinámicos del HERO (el único bloque grande del partido) ──
+  //   Estado honesto a partir de predictedFeatured + live + finished. El CTA
+  //   primario cambia según el momento; el secundario es siempre "Match Center".
+  //   Datos reales: nada inventado.
+  const heroStatus: { label: string; tone: "live" | "done" | "todo" | "next" } = (() => {
+    if (live) return { label: `En vivo · ${match!.elapsed}'`, tone: "live" };
+    if (finished) return { label: "Finalizado", tone: "done" };
+    if (predictedFeatured === true) return { label: "Ya predijiste", tone: "done" };
+    if (match && predictedFeatured === false) return { label: "Te falta predecir", tone: "todo" };
+    return { label: openingTime || "Próximo", tone: "next" };
+  })();
+  // CTA primario por estado (spec): no predicho→Predecir · predicho→Ver predicción ·
+  // en vivo→Seguir en vivo · finalizado→Ver puntos ganados.
+  const heroPrimaryCta = (() => {
+    if (live) return { label: "Seguir en vivo", href: matchHref };
+    if (finished) return { label: "Ver puntos ganados", href: matchHref };
+    if (predictedFeatured === true) return { label: "Ver predicción", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones" };
+    return { label: "Predecir ahora", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones/jugar" };
+  })();
+  const heroStatusColor = heroStatus.tone === "live" ? CORAL : heroStatus.tone === "done" ? GREEN : heroStatus.tone === "todo" ? GOLD2 : "#fff";
 
   return (
     <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.022) 1px, transparent 1.6px)`, backgroundSize: "100% 100%, 22px 22px", color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
@@ -860,7 +985,9 @@ export default function AppHubPage() {
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:264px}@media(max-width:560px){.zm-hero{height:320px}.zm-open-cta{padding:9px 16px!important;font-size:13.5px!important}}@media(min-width:561px){.zm-hero-art--text{object-position:center 62%!important;opacity:.72!important;-webkit-mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important;mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
+      {/* paddingBottom = clearance de la barra inferior fija + safe-area del
+          móvil (home indicator): así ninguna card/CTA queda tapada por el nav. */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto", padding: "14px 14px calc(120px + env(safe-area-inset-bottom, 0px))" }}>
 
         {/* ═══ 1. HEADER COMPACTO (sticky, cristal) ═══
             Se queda pegado arriba al hacer scroll: la identidad (saldo, nivel,
@@ -880,21 +1007,29 @@ export default function AppHubPage() {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {/* Puntos — barrido de luz periódico sobre la píldora dorada */}
-            <div className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
+            {/* Puntos — barrido de luz periódico sobre la píldora dorada.
+                Mientras carga la gamificación, un skeleton shimmer (no "·") del
+                tamaño del saldo final → sin parpadeo de glifo ni salto. */}
+            <div ref={coinsPillRef} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z" fill={GOLD} /></svg>
-              <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? (gam ? gam.coins.toLocaleString() : "·") : "—"}</span>
+              {authed && !gam
+                ? <span aria-hidden className="zm-skel" style={{ display: "inline-block", width: 34, height: 12, borderRadius: 6 }} />
+                : <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? gam!.coins.toLocaleString() : "—"}</span>}
             </div>
-            {/* Nivel + XP */}
-            {authed && gam && (
+            {/* Nivel + XP — el hueco se RESERVA en cuanto hay sesión (aunque la
+                gamificación aún no llegue) para que la fila no se desplace al
+                cargar. Mientras carga = skeleton de nivel + barra apagada. */}
+            {authed && (
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
+                {gam
+                  ? <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
+                  : <span aria-hidden className="zm-skel" style={{ display: "inline-block", width: 46, height: 11, borderRadius: 6 }} />}
                 <div style={{ position: "relative", width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
                   {/* progress viene del servidor con la curva real (cuadrática);
                       el viejo (xp % 1000)/1000 mentía a partir del nivel 2. */}
-                  <div style={{ width: `${Math.min(100, Math.round((gam.level.progress ?? 0) * 100))}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
-                  {/* destello que recorre la barra de XP */}
-                  <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />
+                  <div style={{ width: gam ? `${Math.min(100, Math.round((gam.level.progress ?? 0) * 100))}%` : "0%", height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
+                  {/* destello que recorre la barra de XP (solo con datos) */}
+                  {gam && <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />}
                 </div>
               </div>
             )}
@@ -936,18 +1071,10 @@ export default function AppHubPage() {
           </div>
         </div>
 
-        {/* ═══ Stories (burbujas estilo IG) — arriba del todo, bajo el saludo ═══ */}
+        {/* ═══ Stories (burbujas estilo IG) — pequeñas, bajo el header sticky ═══ */}
         <div style={{ margin: "4px 0 18px" }}>
           <StoryViewer hideWhenEmpty />
         </div>
-
-        {/* Activador de notificaciones: solo aparece a quien NO las tiene aún.
-            El lobby es donde está la gente logueada → mejor sitio para pedirlas.
-            Si hay partido próximo, el copy se vuelve contextual ("⚽ X vs Y — faltan…"). */}
-        <PushPromptCard
-          matchLabel={match ? `${match.meta.home.name} vs ${match.meta.away.name}` : null}
-          matchCountdown={openingCountdown || null}
-        />
 
         {/* ═══ 2. HERO DINÁMICO · LIVE HUB ═══
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
@@ -969,18 +1096,23 @@ export default function AppHubPage() {
                   style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover", objectPosition: "center", pointerEvents: "none" }}
                 />
               </picture>
-              {/* Sin CTA: el Match Center vive justo debajo y duplicarlo aquí
-                  sobraba. Solo horario + cuenta atrás, centrados. */}
-              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 12, padding: "0 18px 14px" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 800, letterSpacing: 0.4, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
-                  {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
-                  {hero.opening.time}
-                </span>
-                {openingCountdown && (
-                  <span style={{ display: "inline-flex", alignItems: "center", padding: "6px 14px", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>
-                    {openingCountdown}
+              {/* El hero es ahora el ÚNICO bloque grande del partido: además de la
+                  hora local + cuenta atrás, lleva su estado y su CTA dinámico
+                  (antes el CTA estaba en la card grande de abajo, ya eliminada). */}
+              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 10, padding: "0 16px 14px" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 9 }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontSize: 13.5, fontWeight: 800, letterSpacing: 0.3, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.65)" }}>
+                    {heroStatus.tone === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: CORAL }} />}
+                    {hero.opening.time}
+                    {!live && !finished && <span style={{ fontSize: 10.5, fontWeight: 700, color: "rgba(255,255,255,0.75)", letterSpacing: 0.4 }}>hora local</span>}
                   </span>
-                )}
+                  {openingCountdown
+                    ? <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 13px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>{openingCountdown}</span>
+                    : <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, letterSpacing: 0.3, color: "#fff", background: "rgba(8,16,30,0.5)", border: `1px solid ${heroStatusColor}88`, backdropFilter: "blur(4px)" }}>{heroStatus.label}</span>}
+                </div>
+                {/* Hero = portada limpia: SIN CTAs. La acción vive justo debajo
+                    (Tu siguiente jugada · Match Center restaurado · Otros partidos).
+                    Aquí solo fecha + hora local + cuenta atrás. */}
               </div>
             </>
           ) : (
@@ -1019,9 +1151,24 @@ export default function AppHubPage() {
             <h1 style={{ fontSize: "clamp(25px,5.4vw,38px)", fontWeight: 900, lineHeight: 1.06, margin: "8px 0 10px" }}>
               {hero.title}
             </h1>
-            <p style={{ color: TXT_MUT, fontSize: 14.5, lineHeight: 1.55, marginBottom: 20, maxWidth: 460 }}>
+            <p style={{ color: TXT_MUT, fontSize: 14.5, lineHeight: 1.55, marginBottom: 14, maxWidth: 460 }}>
               {hero.desc}
             </p>
+            {/* Fila de partido: hora LOCAL + estado dinámico. Solo en el slide del
+                partido del día y cuando hay datos reales (nada inventado). */}
+            {hero.id === "match" && match && (
+              <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, fontWeight: 700, color: TXT }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={GOLD2} strokeWidth="1.6" /><path d="M12 7v5l3 2" stroke={GOLD2} strokeWidth="1.6" strokeLinecap="round" /></svg>
+                  {openingTime}
+                  <span style={{ fontSize: 10, fontWeight: 700, color: TXT_MUT, letterSpacing: 0.3 }}>hora local</span>
+                </span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11, fontWeight: 800, letterSpacing: 0.3, color: heroStatusColor === "#fff" ? TXT : heroStatusColor, background: "rgba(255,255,255,0.06)", border: `1px solid ${heroStatusColor}55` }}>
+                  {heroStatus.tone === "done" ? "✓ " : heroStatus.tone === "todo" ? "◎ " : ""}{heroStatus.label}
+                </span>
+                {match.meta.group && <span style={{ fontSize: 11, fontWeight: 700, color: TXT_MUT }}>Grupo {match.meta.group}</span>}
+              </div>
+            )}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               <Link href={hero.cta1.href} className="zm-cta-shine" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
                 {heroCta1.icon}
@@ -1039,7 +1186,7 @@ export default function AppHubPage() {
 
           {/* Puntitos del carrusel: indican cuántas pantallas hay y permiten saltar. */}
           {heroSlides.length > 1 && (
-            <div style={{ position: "absolute", left: 0, right: 0, bottom: hero.opening ? 70 : 16, zIndex: 3, display: "flex", justifyContent: "center", gap: 7 }}>
+            <div style={{ position: "absolute", left: 0, right: 0, top: hero.opening ? 12 : undefined, bottom: hero.opening ? undefined : 16, zIndex: 3, display: "flex", justifyContent: "center", gap: 7 }}>
               {heroSlides.map((s, i) => {
                 const activo = i === heroIdx % heroSlides.length;
                 return (
@@ -1048,16 +1195,69 @@ export default function AppHubPage() {
                     aria-label={`Ver ${s.eyebrow || (s.id === "opening" ? "juego inaugural" : "partido")}`}
                     onClick={() => { lastManualRef.current = Date.now(); setHeroIdx(i); }}
                     style={{
-                      width: activo ? 22 : 8, height: 8, borderRadius: 99, padding: 0, cursor: "pointer",
-                      border: "none", transition: "width .25s ease, background .25s ease",
-                      background: activo ? hero.accent : "rgba(255,255,255,0.32)",
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      padding: "11px 7px", background: "transparent", border: "none", cursor: "pointer",
+                      WebkitTapHighlightColor: "transparent",
                     }}
-                  />
+                  >
+                    <span aria-hidden style={{
+                      display: "block", width: activo ? 22 : 8, height: 8, borderRadius: 99,
+                      transition: "width .25s ease, background .25s ease",
+                      background: activo ? hero.accent : "rgba(255,255,255,0.32)",
+                    }} />
+                  </button>
                 );
               })}
             </div>
           )}
         </div>
+
+        {/* Match Center grande y "Predicción rápida" ELIMINADOS: el hero único de
+            arriba es ya el ÚNICO bloque grande del partido (equipos, fase, hora
+            local, estado, CTA dinámico). El acceso al directo vive en el CTA
+            secundario "Match Center" del hero; la acción de predecir se concentra
+            en el hero + "Tu siguiente jugada" (que ya fusiona la antigua card). */}
+
+        {/* Activador de notificaciones: solo a quien NO las tiene. Card compacta
+            tras el hero; copy contextual si hay partido próximo. */}
+        <PushPromptCard
+          matchLabel={match ? `${match.meta.home.name} vs ${match.meta.away.name}` : null}
+          matchCountdown={openingCountdown || null}
+        />
+
+        {/* ═══ 4. TU SIGUIENTE JUGADA — la ÚNICA acción más importante del día.
+            Card compacta dark premium (NO otro hero). Prioridad: racha en riesgo →
+            predicciones que faltan hoy → trivia. Fusiona la antigua "Predicción
+            rápida": si lo pendiente es el partido del día, salta directo a ese
+            partido. Datos reales (racha, counts, triviaPlayedToday). ═══ */}
+        {authed === true && (() => {
+          const hl = gam?.streak?.hours_left;
+          const streakRisk = !!gam?.streak?.active && typeof hl === "number" && hl <= 12 && (gam?.streak?.current ?? 0) > 0;
+          const pendingToday = (todayMatches ?? []).filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
+          // Fusión "Predicción rápida": si el partido del día está sin predecir,
+          // el deep-link va a ese partido concreto (no al lobby de predicciones).
+          const featuredHref = match && predictedFeatured === false ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones";
+          let act: { icon: string; label: string; cta: string; href: string; urgent?: boolean } | null = null;
+          if (streakRisk) act = { icon: "🔥", label: `Tu racha de ${gam!.streak.current} días expira en ${Math.max(1, Math.floor(hl as number))}h`, cta: "Sálvala", href: "/app/predicciones/jugar", urgent: true };
+          else if (match && predictedFeatured === false) act = { icon: "🎯", label: `Predice ${match.meta.home.name} vs ${match.meta.away.name}`, cta: "Predecir", href: featuredHref };
+          else if (pendingToday > 0) act = { icon: "🎯", label: `Te ${pendingToday === 1 ? "falta" : "faltan"} ${pendingToday} ${pendingToday === 1 ? "predicción" : "predicciones"} de hoy`, cta: "Jugar", href: "/app/predicciones" };
+          else if (triviaPlayedToday === false) act = { icon: "🧠", label: "Juega la trivia diaria y suma Fútcoins", cta: "Jugar", href: "/trivia" };
+          if (!act) return null;
+          const u = act.urgent;
+          return (
+            <Link href={act.href} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 16, borderRadius: 16, textDecoration: "none", color: TXT, background: u ? "linear-gradient(135deg,#f25a50,#dc3f36)" : "linear-gradient(135deg, rgba(201,168,76,0.20), #102a4d 72%)", border: `1px solid ${u ? "#f4aaa4" : GOLD + "66"}`, boxShadow: "0 12px 28px rgba(0,0,0,0.32)" }}>
+              <span aria-hidden style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>{act.icon}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: u ? "rgba(255,255,255,0.85)" : GOLD }}>Tu siguiente jugada</div>
+                <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{act.label}</div>
+              </div>
+              <span style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: u ? "#fff" : `linear-gradient(135deg,${GOLD},${GOLD2})` }}>
+                {act.cta}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </span>
+            </Link>
+          );
+        })()}
 
         {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══
             El bloque más fuerte de la pantalla: navy + textura de estadio, banderas
@@ -1151,52 +1351,140 @@ export default function AppHubPage() {
           </Link>
         )}
 
-        {/* ═══ 3b. PREDICCIÓN RÁPIDA (compacta, acción directa) ═══
-            Card delgada que NO compite con el Match Center: solo invita a predecir
-            el partido del día. Aquí vive el único "Hacer predicción" de la home. */}
-        {match && !finished && (
-          <Link href="/app/predicciones/jugar" className="zm-quick" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, transition: "border-color .25s, background .25s, transform .18s" }}>
-            <span style={{ width: 40, height: 40, borderRadius: 11, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55` }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" stroke={GOLD2} strokeWidth="1.7" strokeLinecap="round" /></svg>
-            </span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Predicción rápida</div>
-              <div style={{ fontSize: 14, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {match.meta.home.name} <span style={{ color: TXT_MUT, fontWeight: 600 }}>vs</span> {match.meta.away.name}
-              </div>
+        {/* ═══ 5. DESDE TU ÚLTIMA VISITA — el "payoff" del retorno. Empieza con la
+            SÍNTESIS EMOCIONAL: puntos ganados (suma de points), aciertos (suma
+            correct/total) y delta de ranking (myRank.rank vs localStorage
+            "zm:lastRank", solo si hay valor previo y delta≠0). Debajo, máx 3
+            resultados. Datos 100% reales; nada inventado. ═══ */}
+        {authed === true && recentResults && recentResults.length > 0 && (() => {
+          const totalPts = recentResults.reduce((s, r) => s + r.points, 0);
+          const totalCorrect = recentResults.reduce((s, r) => s + r.correct, 0);
+          const totalAns = recentResults.reduce((s, r) => s + r.total, 0);
+          // Delta de ranking honesto: comparamos la posición actual con la guardada
+          // en la visita anterior (rank MENOR = subiste). Solo si hay previo y cambió.
+          const delta = rankDelta;
+          return (
+          <section data-reveal style={{ marginBottom: 16, borderRadius: 16, padding: "12px 14px 10px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+            {/* Cabecera compacta: título + chips de síntesis emocional en una línea. */}
+            <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 9 }}>
+              <h2 style={{ fontSize: 13.5, fontWeight: 800, color: INK, display: "inline-flex", alignItems: "center", gap: 6, marginRight: 2 }}>
+                <span aria-hidden style={{ fontSize: 14 }}>📊</span>
+                Desde tu última visita
+              </h2>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 12, fontWeight: 900, color: totalPts >= 0 ? "#0a7d52" : "#dc2626", background: totalPts >= 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "#fdeceb", border: `1px solid ${totalPts >= 0 ? "#aee9cd" : "#f4c7c4"}` }}>
+                {totalPts >= 0 ? "+" : ""}{totalPts} pts
+              </span>
+              {totalAns > 0 && (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#4d5a70", background: "#fff", border: "1px solid rgba(14,28,51,0.1)" }}>
+                  {totalCorrect}/{totalAns} aciertos
+                </span>
+              )}
+              {delta !== 0 && (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: delta > 0 ? "#0a7d52" : "#b45309", background: delta > 0 ? "linear-gradient(180deg,#e4faee,#cdf1df)" : "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: `1px solid ${delta > 0 ? "#aee9cd" : "#f0dca0"}` }}>
+                  {delta > 0 ? `▲ ${delta}` : `▼ ${Math.abs(delta)}`}
+                </span>
+              )}
             </div>
-            <span className="zm-cta-shine" style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 5px 14px rgba(201,168,76,0.28)" }}>
-              Predecir
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </Link>
-        )}
+            {/* MÁX 2 resultados, filas bajas: nombre + aciertos a la izq, puntos a la dcha. */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {recentResults.slice(0, 2).map((r) => {
+                const m = MATCHES.find((x) => String(x.i) === r.match_id);
+                const win = r.points > 0 && r.correct > 0;
+                return (
+                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 9, padding: "7px 10px", borderRadius: 10, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.24)" : "rgba(14,28,51,0.08)"}` }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        {m ? `${m.h} vs ${m.a}` : "Tu predicción"}
+                      </div>
+                      <div style={{ fontSize: 11, color: "#5b6b86", marginTop: 1 }}>{r.correct}/{r.total} aciertos</div>
+                    </div>
+                    <span style={{ flexShrink: 0, fontSize: 13.5, fontWeight: 900, textAlign: "right", color: r.points >= 0 ? "#16a34a" : "#dc2626" }}>
+                      {r.points >= 0 ? "+" : ""}{r.points} pts
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+            {/* CTA secundario discreto al resumen completo. */}
+            <Link href="/app/predicciones" style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 9, fontSize: 12, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>
+              Ver resumen completo
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
+          </section>
+          );
+        })()}
 
-        {/* ═══ 3c. MISIONES DE HOY ═══
-            El loop diario en una card: check-in (recompensa server-side ya
+        {/* ═══ 6. MISIONES DE HOY — POR ENCIMA de los modos ═══
+            El loop diario en checklist: check-in (recompensa server-side ya
             existente), predicción del partido del día y trivia. Estados REALES
             (nada inventado): daily.can_claim, /api/predictions/mine y
-            triviaPlayedToday. Para invitados, versión con gancho a registro. */}
-        <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "16px 16px 13px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+            triviaPlayedToday. Progreso honesto "X de N completadas"; sin premio
+            inventado. Para invitados, versión con gancho a registro. */}
+        {(() => {
+          // Progreso honesto de misiones (solo con sesión). Bonus opcional:
+          // "entrar al Match Center" no es trackeable aquí → no lo contamos como
+          // completado (no inventamos), pero suma al total como reto extra.
+          const dailyDone = claimedToday || !(gam?.daily?.can_claim);
+          const missionsDone = authed
+            ? [dailyDone, predictedFeatured === true, triviaPlayedToday === true].filter(Boolean).length
+            : 0;
+          const missionsTotal = authed ? 3 : 0;
+          return (
+        <section data-reveal style={{ marginBottom: 16, borderRadius: 18, padding: "16px 16px 13px", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 60%)", border: `1px solid ${GOLD}33`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
-            <h2 style={{ fontSize: 16, fontWeight: 800, color: INK, display: "flex", alignItems: "center", gap: 8 }}>
-              <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}33,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>🎯</span>
+            <h2 style={{ fontSize: 16, fontWeight: 800, color: TXT, display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}44,${GOLD2}22)`, border: `1px solid ${GOLD}66`, fontSize: 13 }}>🎯</span>
               Misiones de hoy
+              {authed && (
+                <span style={{ fontSize: 11.5, fontWeight: 800, color: missionsDone === missionsTotal ? "#5fe3a8" : TXT_MUT }}>
+                  {missionsDone} de {missionsTotal} completadas
+                </span>
+              )}
             </h2>
-            {/* Racha en riesgo: loss-aversion con datos reales del servidor. */}
-            {authed && gam?.streak.active && typeof gam.streak.hours_left === "number" && gam.streak.hours_left <= 12 && gam.streak.current > 0 && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }}>
-                🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(gam.streak.hours_left))}h
-              </span>
-            )}
+            {/* Racha: SIEMPRE visible con racha activa (la racha es un logro que
+                engancha). El estilo de URGENCIA (rojo + pulso + "expira en Xh")
+                solo cuando quedan ≤12h → loss-aversion con datos reales; el
+                resto del tiempo, pastilla dorada con la llama y los días. */}
+            {authed && gam?.streak.active && gam.streak.current > 0 && (() => {
+              const hl = gam.streak.hours_left;
+              const atRisk = typeof hl === "number" && hl <= 12;
+              return (
+                <span
+                  ref={streakBadgeRef}
+                  style={atRisk
+                    ? { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }
+                    : { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#8a6a13", background: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 4px rgba(8,16,30,0.1)" }}
+                >
+                  {atRisk
+                    ? <>🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(hl as number))}h</>
+                    : <>🔥 Racha de {gam.streak.current} {gam.streak.current === 1 ? "día" : "días"}</>}
+                </span>
+              );
+            })()}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {authed ? (
+            {authed ? (missionsDone === missionsTotal && missionsTotal > 0 ? (
+              /* 3/3: estado compacto de CELEBRACIÓN (no 3 filas tachadas). */
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 8, padding: "10px 6px 6px" }}>
+                <span aria-hidden style={{ width: 46, height: 46, borderRadius: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg,#16a34a,#5fe3a8)", boxShadow: "0 6px 18px rgba(22,163,74,0.4)", fontSize: 24 }}>✅</span>
+                <div style={{ fontSize: 15.5, fontWeight: 900, color: TXT }}>¡Misiones completadas!</div>
+                <div style={{ fontSize: 12.5, color: TXT_MUT, maxWidth: 300, lineHeight: 1.45 }}>Completaste todo por hoy. Vuelve mañana para mantener tu racha.</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 14, marginTop: 4 }}>
+                  {["Recompensa", "Predicción", "Trivia"].map((t) => (
+                    <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11.5, fontWeight: 700, color: TXT_MUT }}>
+                      <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(22,163,74,0.18)", border: "1px solid rgba(95,227,168,0.5)", color: "#5fe3a8", fontSize: 10, fontWeight: 900 }}>✓</span>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : (
               <>
                 {gam?.daily && (() => {
                   const claimed = claimedToday || !gam.daily.can_claim;
                   return (
                   <MissionRow
+                    dark
                     done={claimed}
                     label="Reclama tu recompensa diaria"
                     doneLabel="Reclamado"
@@ -1204,7 +1492,7 @@ export default function AppHubPage() {
                       ? `Día ${gam.daily.checkin_days + 1} de check-in${gam.daily.next_reward?.coins ? ` · +${gam.daily.next_reward.coins} Fútcoins` : ""}`
                       : "Vuelve mañana por la siguiente"}
                     action={
-                      <button onClick={claimDaily} disabled={claiming} style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 5, padding: "8px 14px", borderRadius: 999, fontWeight: 800, fontSize: 12.5, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", cursor: claiming ? "wait" : "pointer", boxShadow: "0 4px 12px rgba(201,168,76,0.3)", fontFamily: "inherit", opacity: claiming ? 0.7 : 1 }}>
+                      <button onClick={claimDaily} disabled={claiming} style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5, minHeight: 40, padding: "0 16px", borderRadius: 999, fontWeight: 800, fontSize: 12.5, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", cursor: claiming ? "wait" : "pointer", boxShadow: "0 4px 12px rgba(201,168,76,0.3)", fontFamily: "inherit", opacity: claiming ? 0.7 : 1 }}>
                         {claiming ? "Reclamando…" : "Reclamar"}
                       </button>
                     }
@@ -1212,50 +1500,130 @@ export default function AppHubPage() {
                   );
                 })()}
                 <MissionRow
+                  dark
                   done={predictedFeatured === true}
                   label={match?.meta ? `Predice ${match.meta.home.name} vs ${match.meta.away.name}` : "Predice el partido del día"}
                   sub="Suma puntos si aciertas el resultado"
-                  href="/app/predicciones/jugar"
+                  href={match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones/jugar"}
                 />
                 <MissionRow
+                  dark
                   done={triviaPlayedToday === true}
                   label="Responde la trivia diaria"
                   sub="Puntos extra para el ranking"
                   href="/trivia"
                 />
               </>
-            ) : (
+            )) : (
               <>
                 <MissionRow
+                  dark
                   done={triviaPlayedToday === true}
                   label="Responde la trivia diaria"
                   sub="Puedes jugar sin cuenta"
                   href="/trivia"
                 />
-                <MissionRow done={false} label="Explora los modos de juego" sub="Predicciones, Fantasy, Modo Carrera…" href="#modulos" />
-                <MissionRow done={false} label="Crea tu cuenta gratis" sub="Guarda rachas, Fútcoins y compite en el ranking" href="/registro" />
+                <MissionRow dark done={false} label="Explora los modos de juego" sub="Predicciones, Fantasy, Modo Carrera…" href="#modulos" />
+                <MissionRow dark done={false} label="Crea tu cuenta gratis" sub="Guarda rachas, Fútcoins y compite en el ranking" href="/registro" />
               </>
             )}
           </div>
+          {/* Recompensa HONESTA: nada de "+150 pts" inventado. Microcopy según
+              progreso real. */}
+          {authed && (
+            <p style={{ fontSize: 11.5, color: TXT_MUT, fontWeight: 600, marginTop: 11, textAlign: "center" }}>
+              {missionsDone === missionsTotal
+                ? "¡Misiones del día completadas! Vuelve mañana por más."
+                : "Completa tus misiones del día para mantener la racha."}
+            </p>
+          )}
         </section>
+          );
+        })()}
 
-        {/* ═══ 4. RANKING / PROGRESO — subido tras el partido destacado ═══ */}
+        {/* ═══ 7. OTROS PARTIDOS DE HOY — lista COMPACTA (no card grande).
+            EXCLUYE el partido del hero (match.matchId) para no repetirlo. Filas:
+            banderas + nombres truncados + hora local + estado (Predecir/Predicho/
+            En vivo/Finalizado). Datos reales: /api/match-center/today + counts. ═══ */}
+        {authed === true && todayMatches && (() => {
+          const others = todayMatches.filter((m) => m.matchId !== match?.matchId);
+          if (others.length === 0) return null;
+          const pending = others.filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
+          return (
+            <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "15px 14px 12px", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 62%)", border: `1px solid ${LINE}`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 11, flexWrap: "wrap" }}>
+                <h2 style={{ fontSize: 15.5, fontWeight: 800, color: TXT, display: "flex", alignItems: "center", gap: 8 }}>
+                  <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}44,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>⚽</span>
+                  Otros partidos de hoy
+                </h2>
+                {pending > 0 && (
+                  <span style={{ fontSize: 11.5, fontWeight: 800, color: GOLD2, background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}44`, padding: "4px 11px", borderRadius: 999 }}>
+                    Te {pending === 1 ? "falta" : "faltan"} {pending} de hoy
+                  </span>
+                )}
+              </div>
+              {/* Tickets oscuros y delgados: cada fixture es una pastilla translúcida. */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {others.slice(0, 6).map((m) => {
+                  const predicted = (predictedCounts[String(m.matchId)] ?? 0) > 0;
+                  const ko = m.kickoff ? new Date(m.kickoff).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: false }) : "";
+                  return (
+                    <div key={m.matchId} style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 56, padding: "8px 11px", borderRadius: 12, background: "rgba(255,255,255,0.04)", border: `1px solid ${LINE}` }}>
+                      <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 7, fontSize: 13, fontWeight: 700, color: TXT }}>
+                        <img src={`https://flagcdn.com/w40/${m.home.flag}.png`} alt="" width={20} height={14} style={{ borderRadius: 2, flexShrink: 0 }} />
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "26vw" }}>{m.home.name}</span>
+                        <span style={{ color: TXT_MUT, fontWeight: 700, flexShrink: 0 }}>{m.finished || m.live ? `${m.score[0] ?? 0}-${m.score[1] ?? 0}` : "vs"}</span>
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "26vw" }}>{m.away.name}</span>
+                        <img src={`https://flagcdn.com/w40/${m.away.flag}.png`} alt="" width={20} height={14} style={{ borderRadius: 2, flexShrink: 0 }} />
+                      </div>
+                      {m.finished ? (
+                        <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: 0.3, color: TXT_MUT, padding: "3px 9px", borderRadius: 999, background: "rgba(255,255,255,0.05)", border: `1px solid ${LINE}` }}>Final</span>
+                      ) : m.live ? (
+                        <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, color: "#fff", display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 9px", borderRadius: 999, background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 8px rgba(228,72,63,0.3)" }}><span style={{ width: 6, height: 6, borderRadius: 99, background: "#fff", display: "inline-block" }} />EN VIVO</span>
+                      ) : predicted ? (
+                        <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: 0.3, color: "#5fe3a8", padding: "3px 9px", borderRadius: 999, background: "rgba(54,201,143,0.12)", border: "1px solid rgba(54,201,143,0.30)" }}>✓ Predicho</span>
+                      ) : (
+                        <Link href={`/app/predicciones/jugar?match=${m.matchId}`} style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", minHeight: 36, fontSize: 12, fontWeight: 800, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, padding: "0 14px", borderRadius: 999, textDecoration: "none", boxShadow: "0 3px 10px rgba(201,168,76,0.28)" }}>
+                          {ko && <span style={{ opacity: 0.7, marginRight: 5, fontWeight: 700 }}>{ko}</span>}Predecir
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* ═══ 8. TU PROGRESO — TIRA compacta (banda dark/glass, ≤160px) ═══
+            4 mini-métricas en fila (Nivel · Fútcoins/Ranking · XP · Racha) con
+            etiqueta pequeña + microcopy motivacional honesto. Sin cajas blancas. */}
         {authed ? (
-          <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "18px 18px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, gap: 12 }}>
-              <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Tu progreso</h2>
-              <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver ranking →</Link>
+          <section data-reveal style={{ marginBottom: 22, borderRadius: 16, padding: "9px 14px", background: "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 7, gap: 12 }}>
+              <h2 style={{ fontSize: 13.5, fontWeight: 800, color: TXT }}>Tu progreso</h2>
+              <Link href="/app/rankings#tablero" style={{ fontSize: 12, fontWeight: 800, color: GOLD2, textDecoration: "none" }}>Ver ranking →</Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(110px,1fr))", gap: 10 }}>
-              <Stat k="Nivel" v={gam ? String(gam.level.level) : "·"} tint="#5b8def"
-                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9.8C7.4 20.4 4 16.8 4 12V7l8-4Z" stroke="#5b8def" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9.5 12.5l2 2 3.5-4" stroke="#5b8def" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
-              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : "·"} tint={GOLD}
-                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.8" /><path d="M12 8v8M9.5 10.2c.5-.8 1.4-1.2 2.5-1.2 1.5 0 2.5.7 2.5 1.8s-1 1.4-2.5 1.7c-1.5.3-2.5.7-2.5 1.8s1 1.7 2.5 1.7c1.1 0 2-.4 2.5-1.2" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" /></svg>} />
-              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} tint="#36c98f"
-                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z" stroke="#36c98f" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
-              <Stat k="Racha de aciertos" v={gam ? `${gam.streak.current} seguidos` : "·"} tint="#ff6b5a"
-                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22c4 0 7-2.7 7-6.8 0-3-1.8-5.2-3.4-7C14.3 6.7 13 4.8 13 2c-3.5 2-5 4.8-5 7.2 0 .8.1 1.5.4 2.2C7.2 10.7 6.3 9.8 6 8.5 5 10 5 11.8 5 13c0 4.8 3 9 7 9Z" stroke="#ff6b5a" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
+            {/* Mini-métricas en una sola fila, separadas por filos verticales. */}
+            <div style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+              <StripStat k="Nivel" v={gam ? String(gam.level.level) : ""} loading={!gam} tint="#5b8def" />
+              <span aria-hidden style={{ width: 1, alignSelf: "stretch", background: LINE, flexShrink: 0 }} />
+              {myRank ? (
+                <StripStat k="Ranking" v={`#${myRank.rank}`} tint={GOLD} />
+              ) : (
+                <StripStat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : ""} loading={!gam} tint={GOLD} />
+              )}
+              <span aria-hidden style={{ width: 1, alignSelf: "stretch", background: LINE, flexShrink: 0 }} />
+              <StripStat k="XP" v={gam ? gam.level.xp.toLocaleString() : ""} loading={!gam} tint="#36c98f" />
+              <span aria-hidden style={{ width: 1, alignSelf: "stretch", background: LINE, flexShrink: 0 }} />
+              <StripStat k="Racha" v={gam ? String(gam.streak.current) : ""} loading={!gam} tint="#ff6b5a" />
             </div>
+            {/* Microcopy motivacional honesto (sin números inventados). */}
+            <p style={{ fontSize: 11.5, color: TXT_MUT, fontWeight: 600, marginTop: 7, textAlign: "center" }}>
+              {gam?.streak?.active && (gam?.streak?.current ?? 0) > 0
+                ? "Vuelve mañana para mantener la racha."
+                : "Completa misiones para subir más rápido."}
+            </p>
           </section>
         ) : (
           <section data-reveal style={{ position: "relative", overflow: "hidden", marginBottom: 26, borderRadius: 18, padding: "22px 20px", background: "linear-gradient(135deg, #fff 0%, #eef2fb 100%)", border: `1px solid ${GOLD}55`, boxShadow: "0 6px 22px rgba(8,16,30,0.22)" }}>
@@ -1278,9 +1646,22 @@ export default function AppHubPage() {
           </section>
         )}
 
-        {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
-        {CATS.map((cat, i) => (
-          <section key={cat.key} id={i === 0 ? "modulos" : undefined} data-reveal style={{ marginBottom: 32, scrollMarginTop: 14 }}>
+        {/* ═══ 5 + 6. CATEGORÍAS — la principal ("Jugar") SIEMPRE visible; el
+            resto del catálogo (12 modos) colapsado por defecto para que el lobby
+            enfoque la acción del día y no sea un muro de 18 cards. El toggle
+            mantiene #modulos alcanzable (sigue en la 1ª sección). ═══ */}
+        {CATS.map((cat, i) => {
+          const hidden = i > 0 && !catalogOpen;
+          return (
+          <Fragment key={cat.key}>
+            {i === 1 && (
+              <button type="button" onClick={() => setCatalogOpen((o) => !o)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, width: "100%", marginBottom: catalogOpen ? 20 : 32, padding: "12px 16px", borderRadius: 14, cursor: "pointer", fontSize: 13.5, fontWeight: 800, color: TXT, background: "rgba(255,255,255,0.04)", border: `1px solid ${LINE}` }}>
+                {catalogOpen ? "Ocultar modos" : `Ver todos los modos (${CATS.slice(1).reduce((n, c) => n + c.mods.length, 0)})`}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ transform: catalogOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }}><path d="M6 9l6 6 6-6" stroke={GOLD2} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </button>
+            )}
+            {!hidden && (
+          <section id={i === 0 ? "modulos" : undefined} data-reveal style={{ marginBottom: 32, scrollMarginTop: 14 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 14 }}>
               <span className="zm-cat-bar" style={{ width: 5, height: 34, borderRadius: 3, background: `linear-gradient(180deg, ${cat.tint}, ${cat.tint2})`, flexShrink: 0, boxShadow: `0 0 10px ${cat.tint}66` }} />
               <div style={{ minWidth: 0 }}>
@@ -1297,7 +1678,10 @@ export default function AppHubPage() {
               {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} cat={cat} />)}
             </div>
           </section>
-        ))}
+            )}
+          </Fragment>
+          );
+        })}
 
         {/* ═══ 6b. EL MUNDIAL EN TU CALENDARIO — mismo CTA que el home web,
                aquí en versión compacta para el móvil. El botón abre el modal
@@ -1333,7 +1717,7 @@ export default function AppHubPage() {
         <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Ranking global</h2>
-            <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
+            <Link href="/app/rankings#tablero" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {/* Con datos reales: top-5 por Fútcoins. Si aún no hay nadie, se
@@ -1412,6 +1796,25 @@ export default function AppHubPage() {
         /* Feedback táctil: el tap "hunde" levemente la card. */
         .zm-mod-card:active{ transform:scale(0.97) !important; }
         .zm-mod-card--locked:active{ transform:none !important; }
+
+        /* ── Skeleton shimmer mientras carga la gamificación (header + stats) ──
+           Sustituye los placeholders "·"/"—": una barra del tamaño del contenido
+           final que reserva el hueco (sin salto) y brilla suavemente. La variante
+           --dark va sobre las cards claras de "Tu progreso". */
+        @keyframes zm-skel-shine{ 0%{ background-position:-180% 0; } 100%{ background-position:180% 0; } }
+        .zm-skel{
+          background:linear-gradient(90deg, rgba(232,212,139,0.18) 25%, rgba(232,212,139,0.42) 50%, rgba(232,212,139,0.18) 75%);
+          background-size:200% 100%;
+          animation: zm-skel-shine 1.4s ease-in-out infinite;
+        }
+        .zm-skel--dark{
+          background:linear-gradient(90deg, rgba(14,28,51,0.06) 25%, rgba(14,28,51,0.13) 50%, rgba(14,28,51,0.06) 75%);
+          background-size:200% 100%;
+        }
+        @media (prefers-reduced-motion: reduce){
+          .zm-skel{ animation:none; background:rgba(232,212,139,0.26); }
+          .zm-skel--dark{ background:rgba(14,28,51,0.09); }
+        }
 
         /* ── Micro-interacciones de las piezas claras ── */
         .zm-stat{ transition: transform .2s ease, box-shadow .2s ease; }
@@ -1568,7 +1971,7 @@ export default function AppHubPage() {
 
 /* ─────────── Subcomponentes ─────────── */
 // Fila de misión diaria: check verde al completarla; si no, CTA (link o botón).
-function MissionRow({ done, label, sub, href, action, doneLabel = "Hecho" }: {
+function MissionRow({ done, label, sub, href, action, doneLabel = "Hecho", dark = false }: {
   done: boolean;
   label: string;
   sub?: string;
@@ -1576,29 +1979,38 @@ function MissionRow({ done, label, sub, href, action, doneLabel = "Hecho" }: {
   action?: React.ReactNode;
   /** Texto del badge al completar ("Hecho", "Reclamado"…). */
   doneLabel?: string;
+  /** Variante oscura para la card de misiones dark/glass (checklist gamificada). */
+  dark?: boolean;
 }) {
   const inner = (
     <>
-      <span aria-hidden style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 900, color: done ? "#fff" : "#9aa6bd", background: done ? "linear-gradient(135deg,#36c98f,#2bb47e)" : "#eaeff8", border: done ? "1px solid #2bb47e" : "1px solid #d9e1ef", boxShadow: done ? "0 2px 8px rgba(54,201,143,0.35)" : "none" }}>
+      <span aria-hidden style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 900, color: done ? "#fff" : (dark ? TXT_MUT : "#9aa6bd"), background: done ? "linear-gradient(135deg,#36c98f,#2bb47e)" : (dark ? "rgba(255,255,255,0.07)" : "#eaeff8"), border: done ? "1px solid #2bb47e" : (dark ? "1px solid rgba(255,255,255,0.14)" : "1px solid #d9e1ef"), boxShadow: done ? "0 2px 8px rgba(54,201,143,0.35)" : "none" }}>
         {done ? "✓" : "·"}
       </span>
       <span style={{ flex: 1, minWidth: 0 }}>
-        <span style={{ display: "block", fontSize: 13.5, fontWeight: 800, color: done ? "#8a96ad" : INK, textDecoration: done ? "line-through" : "none", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
-        {sub && !done && <span style={{ display: "block", fontSize: 11.5, color: "#7a87a0", marginTop: 1 }}>{sub}</span>}
+        <span style={{ display: "block", fontSize: 13.5, fontWeight: 800, color: done ? (dark ? "#6f7e98" : "#8a96ad") : (dark ? TXT : INK), textDecoration: done ? "line-through" : "none", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
+        {sub && !done && <span style={{ display: "block", fontSize: 11.5, color: dark ? TXT_MUT : "#7a87a0", marginTop: 1 }}>{sub}</span>}
       </span>
       {done ? (
-        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", color: "#0a7d52" }}>{doneLabel}</span>
+        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", color: dark ? "#5fe3a8" : "#0a7d52" }}>{doneLabel}</span>
       ) : action ? action : (
-        <svg aria-hidden width="15" height="15" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><path d="M5 12h14M12 5l7 7-7 7" stroke="#8a6a13" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        <svg aria-hidden width="15" height="15" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><path d="M5 12h14M12 5l7 7-7 7" stroke={dark ? GOLD2 : "#8a6a13"} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
       )}
     </>
   );
-  const style: React.CSSProperties = {
-    display: "flex", alignItems: "center", gap: 11, padding: "10px 12px", borderRadius: 11,
-    background: done ? "#f4f9f4" : "#fff",
-    border: done ? "1px solid #cdeedd" : "1px solid rgba(14,28,51,0.06)",
-    textDecoration: "none",
-  };
+  const style: React.CSSProperties = dark
+    ? {
+        display: "flex", alignItems: "center", gap: 11, padding: "10px 12px", borderRadius: 11,
+        background: done ? "rgba(54,201,143,0.10)" : "rgba(255,255,255,0.04)",
+        border: done ? "1px solid rgba(54,201,143,0.30)" : `1px solid ${LINE}`,
+        textDecoration: "none",
+      }
+    : {
+        display: "flex", alignItems: "center", gap: 11, padding: "10px 12px", borderRadius: 11,
+        background: done ? "#f4f9f4" : "#fff",
+        border: done ? "1px solid #cdeedd" : "1px solid rgba(14,28,51,0.06)",
+        textDecoration: "none",
+      };
   if (!done && href) {
     return <Link href={href} className="zm-rank-row" style={style}>{inner}</Link>;
   }
@@ -1616,19 +2028,15 @@ function McTeam({ name, flag }: { name: string; flag: string }) {
     </div>
   );
 }
-// Stat de progreso: filo de color arriba + icono en chip teñido → cada métrica
-// tiene identidad propia (no cuatro cajas blancas iguales).
-function Stat({ k, v, tint = GOLD, icon }: { k: string; v: string; tint?: string; icon?: React.ReactNode }) {
+// Mini-métrica de la TIRA de progreso (dark/glass): número teñido grande +
+// etiqueta pequeña. Sin caja propia — comparte la banda y se separa por filos.
+function StripStat({ k, v, tint = GOLD, loading = false }: { k: string; v: string; tint?: string; loading?: boolean }) {
   return (
-    <div className="zm-stat" style={{ position: "relative", overflow: "hidden", textAlign: "center", padding: "13px 8px 11px", borderRadius: 14, background: "#fff", border: "1px solid rgba(14,28,51,0.05)", boxShadow: "0 2px 8px rgba(8,16,30,0.05)" }}>
-      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${tint}, ${tint}55)` }} />
-      {icon && (
-        <span style={{ width: 30, height: 30, margin: "2px auto 7px", borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", background: `${tint}1f`, border: `1px solid ${tint}44` }}>
-          {icon}
-        </span>
-      )}
-      <div style={{ fontSize: 20, fontWeight: 900, color: INK, letterSpacing: "-0.02em" }}>{v}</div>
-      <div style={{ fontSize: 10.5, color: "#6a7791", fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", marginTop: 2 }}>{k}</div>
+    <div style={{ flex: 1, minWidth: 0, textAlign: "center", padding: "2px 6px" }}>
+      {loading
+        ? <span aria-hidden className="zm-skel" style={{ display: "block", width: 38, height: 20, borderRadius: 6, margin: "2px auto 4px" }} />
+        : <div style={{ fontSize: 19, fontWeight: 900, color: tint, letterSpacing: "-0.02em", lineHeight: 1.1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{v}</div>}
+      <div style={{ fontSize: 10, color: TXT_MUT, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", marginTop: 3 }}>{k}</div>
     </div>
   );
 }

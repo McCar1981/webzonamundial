@@ -9,7 +9,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
-import { scoreGameweekFromState } from "@/lib/fantasy/scoring.server";
+import { scoreGameweekFromState, recordProvisionalGameweek } from "@/lib/fantasy/scoring.server";
 import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff, playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
 import { isFantasyLive } from "@/lib/fantasy/season";
 import { getPlayerById } from "@/lib/fantasy/players";
@@ -80,11 +80,17 @@ export async function GET() {
   // favCreator permite marcar el equipo con el creador del registro: el cliente
   // lo aplica al crear el equipo (o lo backfillea si aún no lo tenía).
   const [team, favCreator] = await Promise.all([getTeam(user.id), getFavCreator(user.id)]);
+  // Total PROVISIONAL en vivo: puntúa la jornada en curso con datos reales y la
+  // registra como provisional, para que el header, el ranking y las ligas se
+  // muevan SIN esperar a confirmar la jornada entera (que dura varios días). Va
+  // ANTES del barrido de Fútcoins para que, si la jornada acaba de cerrar, las
+  // monedas se abonen sobre el provisional ya registrado. Best-effort.
+  const liveGameweek = team ? await recordProvisionalGameweek(user.id, team) : null;
   // Al abrir el juego, abona cualquier Fútcoin pendiente de una jornada ya cerrada
   // que se confirmó "pronto" (sus partidos acabaron antes que el cierre de ventana).
   // Idempotente; las monedas caen en la billetera aunque no se muestre toast aquí.
   await sweepPendingGameweekCoins(user.id).catch(() => {});
-  return NextResponse.json({ team, favCreator });
+  return NextResponse.json({ team, favCreator, liveGameweek });
 }
 
 export async function PUT(req: Request) {

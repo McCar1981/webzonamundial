@@ -7,6 +7,7 @@
 // gestionamos la experiencia: timers, feedback inmediato, racha y ranking.
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { haptic } from "@/lib/celebration";
 import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import { POWERUP_PACK } from "@/lib/powerups/catalog";
@@ -17,7 +18,7 @@ const BG = "#060B14",
   GOLD = "#c9a84c",
   GOLD2 = "#e8d48b",
   MID = "#8a94b0",
-  DIM = "#6a7a9a",
+  DIM = "#94a3b8",
   GREEN = "#22c55e",
   RED = "#ef4444";
 
@@ -235,6 +236,12 @@ export default function TriviaGame() {
         return;
       }
       const data: AnswerResp = await r.json();
+      // Beat de dopamina al acertar (móvil = 67% de usuarios). La háptica hace
+      // feature-detection y respeta prefers-reduced-motion dentro del helper.
+      // En hitos de racha (cada 5 seguidas) damos un patrón un poco más fuerte.
+      if (data.correct) {
+        haptic(data.streak > 0 && data.streak % 5 === 0 ? [10, 30, 10] : 10);
+      }
       // Racha que se acaba de romper (este closure aún ve el valor previo):
       // la enseña la oferta del Salvarracha ("llevabas N seguidas").
       if (!data.correct) setLostStreak(streak);
@@ -515,6 +522,14 @@ export default function TriviaGame() {
           background-color:${BG};
           background-image:linear-gradient(to bottom,rgba(5,11,20,.92),rgba(5,11,20,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.webp');
           background-size:cover;background-position:center top;background-repeat:no-repeat;
+        }
+        @media(prefers-reduced-motion:reduce){
+          /* Neutraliza el feedback animado (pop/shake/flash) sin tocar la lógica:
+             redefinir los keyframes con el mismo nombre gana sobre el original y
+             deja el efecto en reposo aunque la animación se aplique inline. */
+          @keyframes pop{from{transform:none;opacity:1}to{transform:none;opacity:1}}
+          @keyframes shake{0%,100%{transform:none}}
+          @keyframes flashG{from{box-shadow:none}to{box-shadow:none}}
         }
         @media(min-width:1024px){
           .zm-result-bg{

@@ -18,15 +18,16 @@
 // miles, migrar a envío en batches paralelos con Promise.allSettled.
 
 import { NextRequest, NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
-import { getAllPublicNoticias } from "@/lib/noticias-store";
 import {
   listActiveSubscribers,
   markSent,
   buildUnsubscribeToken,
 } from "@/lib/email-subscriptions";
 import { sendDailyDigest } from "@/lib/email";
+import { buildDigestData, DIGEST_LAST_SENT_KEY } from "@/lib/daily-digest";
 import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
@@ -42,24 +43,26 @@ export async function GET(req: NextRequest) {
   const denied = requireCron(req);
   if (denied) return denied;
 
-  // 1. Cargar las 5 noticias más recientes.
-  //
-  // Antes filtrábamos por "publicadas en últimas 24h" pero el campo n.date
-  // viene de GNews (publishedAt del artículo original), no de cuándo lo
-  // reescribimos en ZonaMundial. Eso hacía que el digest no enviara nada
-  // si las noticias de la fuente eran de hace 2-3 días.
-  //
-  // Mejor enfoque: getAllPublicNoticias ya devuelve ordenado por fecha
-  // descendente. Tomamos los primeros 5, que son los más recientes.
-  // Garantía contra spam: si la lista NO ha cambiado desde ayer, el user
-  // recibirá los mismos titulares — aceptable porque son los del momento.
-  const all = await getAllPublicNoticias();
-  const recent = all.slice(0, 5);
+  // 1. Construir el contenido del email (partidos del día + noticias) con la
+  //    lógica compartida en buildDigestData: lidera con los PARTIDOS DE HOY,
+  //    prioriza las noticias del partido del día (por flags) y DEDUPLICA contra
+  //    lo enviado en el último digest (slugs guardados en KV) para no repetir
+  //    titulares día tras día. Si KV falla, seguimos sin dedup (no bloqueamos).
+  let lastSent: string[] = [];
+  try {
+    lastSent = (await kv.get<string[]>(DIGEST_LAST_SENT_KEY)) ?? [];
+  } catch {
+    lastSent = [];
+  }
+  const { fixtures, fixturesAreToday, articles } = await buildDigestData({
+    excludeSlugs: lastSent,
+  });
 
-  if (recent.length === 0) {
+  // Solo nos saltamos el envío si NO hay ni partidos ni noticias.
+  if (articles.length === 0 && fixtures.length === 0) {
     return NextResponse.json({
       ok: true,
-      skipped: "no_articles_published",
+      skipped: "no_articles_or_fixtures",
       sent: 0,
     });
   }
@@ -139,14 +142,9 @@ export async function GET(req: NextRequest) {
       const ok = await sendDailyDigest({
         to: row.email,
         unsubscribeUrl,
-        articles: recent.map((n) => ({
-          title: n.title,
-          slug: n.slug,
-          excerpt: n.excerpt,
-          image: n.realImage ?? null,
-          date: n.date,
-          cat: n.cat,
-        })),
+        fixtures,
+        fixturesAreToday,
+        articles,
       });
       if (ok) {
         sent += 1;
@@ -168,11 +166,26 @@ export async function GET(req: NextRequest) {
     await markSent(sentIds);
   }
 
+  // 5. Guardar los slugs enviados para no repetirlos en el próximo digest
+  //    (TTL 3 días por si un cron falla). Best-effort: si KV falla, el peor
+  //    caso es repetir titulares un día.
+  if (sent > 0 && articles.length > 0) {
+    try {
+      await kv.set(
+        DIGEST_LAST_SENT_KEY,
+        articles.map((a) => a.slug),
+        { ex: 3 * 24 * 60 * 60 },
+      );
+    } catch {
+      /* noop */
+    }
+  }
+
   await recordHeartbeat("send-daily-digest", true, { sent, failed });
 
   return NextResponse.json({
     ok: true,
-    articles: recent.length,
+    articles: articles.length,
     subscribers: rows.length,
     sent,
     failed,

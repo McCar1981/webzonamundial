@@ -1146,10 +1146,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1934,

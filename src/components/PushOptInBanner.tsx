@@ -65,7 +65,7 @@ export default function PushOptInBanner() {
 
   async function activate() {
     setLoading(true);
-    const sub = await subscribeToPush({ kinds: ["news"] });
+    const sub = await subscribeToPush({ kinds: ["news", "tournament-key-events"] });
     setLoading(false);
     if (sub) {
       setVisible(false);

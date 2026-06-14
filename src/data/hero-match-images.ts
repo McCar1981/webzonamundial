@@ -68,6 +68,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/alemania-curazao-wide.webp",
     mobile: "/images/hero/alemania-curazao-mobile.webp",
   },
+  // P. Bajos vs Japón (14 jun, Grupo F).
+  "p-bajos-japon": {
+    wide: "/images/hero/p-bajos-japon-wide.webp",
+    mobile: "/images/hero/p-bajos-japon-mobile.webp",
+  },
+  // C. de Marfil vs Ecuador (14 jun, Grupo E).
+  "c-de-marfil-ecuador": {
+    wide: "/images/hero/c-de-marfil-ecuador-wide.webp",
+    mobile: "/images/hero/c-de-marfil-ecuador-mobile.webp",
+  },
+  // Suecia vs Túnez (14 jun, Grupo F).
+  "suecia-tunez": {
+    wide: "/images/hero/suecia-tunez-wide.webp",
+    mobile: "/images/hero/suecia-tunez-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

@@ -19,6 +19,17 @@ import {
   IconHeart,
   IconHeartFilled,
 } from "./icons";
+import {
+  Medal,
+  Crown,
+  Star,
+  LayoutGrid,
+  Landmark,
+  BookOpen,
+  Sparkles,
+  Target,
+  Layers,
+} from "lucide-react";
 import styles from "./page.module.css";
 
 export const rarityColor = (rarity: string) => {
@@ -506,10 +517,10 @@ export function CategoryStats({ collection, isES }: { collection: Collection | n
 
 export function CollectionMilestones({ progress, isES }: { progress: number; isES: boolean }) {
   const milestones = [
-    { pct: 0.25, emoji: "🥉", label: isES ? "Bronce" : "Bronze" },
-    { pct: 0.5, emoji: "🥈", label: isES ? "Plata" : "Silver" },
-    { pct: 0.75, emoji: "🥇", label: isES ? "Oro" : "Gold" },
-    { pct: 1, emoji: "🏆", label: isES ? "Leyenda" : "Legend" },
+    { pct: 0.25, icon: <Medal size={22} color="#cd7f32" />, label: isES ? "Bronce" : "Bronze" },
+    { pct: 0.5, icon: <Medal size={22} color="#c0c0c0" />, label: isES ? "Plata" : "Silver" },
+    { pct: 0.75, icon: <Medal size={22} color="#ffd700" />, label: isES ? "Oro" : "Gold" },
+    { pct: 1, icon: <IconTrophy />, label: isES ? "Leyenda" : "Legend" },
   ];
 
   return (
@@ -518,7 +529,7 @@ export function CollectionMilestones({ progress, isES }: { progress: number; isE
         const reached = progress >= m.pct;
         return (
           <div key={m.pct} className={`${styles.milestoneBadge} ${reached ? styles.milestoneReached : ""}`}>
-            <div className={styles.milestoneEmoji}>{m.emoji}</div>
+            <div className={styles.milestoneEmoji}>{m.icon}</div>
             <div className={styles.milestoneLabel}>{m.label}</div>
             <div className={styles.milestonePct}>{Math.round(m.pct * 100)}%</div>
           </div>
@@ -563,6 +574,21 @@ export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]
   );
 }
 
+function AchievementIcon({ name, size = 24 }: { name: string; size?: number }) {
+  switch (name) {
+    case "Layers": return <Layers size={size} />;
+    case "Crown": return <Crown size={size} />;
+    case "Target": return <Target size={size} />;
+    case "Star": return <Star size={size} />;
+    case "LayoutGrid": return <LayoutGrid size={size} />;
+    case "Landmark": return <Landmark size={size} />;
+    case "Trophy": return <IconTrophy />;
+    case "BookOpen": return <BookOpen size={size} />;
+    case "Sparkles": return <Sparkles size={size} />;
+    default: return <IconTrophy />;
+  }
+}
+
 export function AchievementsSection({ achievements, isES }: { achievements: AchievementView[]; isES: boolean }) {
   return (
     <section className={styles.section} data-reveal>
@@ -573,7 +599,7 @@ export function AchievementsSection({ achievements, isES }: { achievements: Achi
       <div className={`${styles.achievementGrid} ${styles.staggerContainer}`}>
         {achievements.map((ach) => (
           <div key={ach.id} className={`${styles.achievementCard} ${ach.unlocked ? styles.achievementUnlocked : ""} ${styles.staggerItem}`}>
-            <div className={styles.achievementEmoji}>{ach.emoji}</div>
+            <div className={styles.achievementEmoji}><AchievementIcon name={ach.icon} size={28} /></div>
             <div className={styles.achievementName}>{isES ? ach.name.es : ach.name.en}</div>
             <div className={styles.achievementDesc}>{isES ? ach.description.es : ach.description.en}</div>
             {ach.unlocked && ach.unlockedAt && (

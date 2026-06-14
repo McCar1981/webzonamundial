@@ -126,15 +126,62 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
   }, []);
 
   // EMBUDO: compra completada (capa EXECUTION). Se dispara al volver de Stripe
-  // con ?purchase=success. transaction_id = session_id evita duplicados en GA4.
+  // con ?purchase=success. value+currency salen del OBJETO de Stripe (importe
+  // real, respeta promo-codes y mensual/anual, que no sobrevive al redirect).
+  // Dedup: transaction_id = session_id, marcado en localStorage para no contar
+  // dos veces si el usuario recarga la página de éxito.
   useEffect(() => {
     if (!purchaseSuccess) return;
-    trackEvent("purchase", {
-      transaction_id: searchParams.get("session_id") ?? undefined,
-      currency: prices.currency.toUpperCase(),
-      items: [{ item_id: "pro", item_name: "Plan Pro" }],
-    });
-  }, [purchaseSuccess, searchParams, prices.currency]);
+    const sessionId = searchParams.get("session_id");
+    // transaction_id es OBLIGATORIO para deduplicar: sin él no emitimos, para no
+    // arriesgar ingresos inflados ante recargas o re-render de /pro?purchase=success.
+    if (!sessionId) return;
+
+    const guardKey = `zm_purchase_tracked:${sessionId}`;
+    try {
+      if (window.localStorage.getItem(guardKey)) return; // ya emitido en este navegador
+    } catch {
+      /* incógnito/storage bloqueado: seguimos; GA4 deduplica igual por transaction_id */
+    }
+
+    let cancelled = false;
+    const fire = (value: number, currency: string, plan: string) => {
+      if (cancelled) return;
+      trackEvent("purchase", {
+        transaction_id: sessionId,
+        value,
+        currency,
+        items: [
+          { item_id: "pro", item_name: "Plan Pro", item_variant: plan, price: value, quantity: 1 },
+        ],
+      });
+      try {
+        window.localStorage.setItem(guardKey, "1");
+      } catch {
+        /* ignore */
+      }
+    };
+
+    fetch(`/api/pro/checkout-session?id=${encodeURIComponent(sessionId)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((d: { value?: number; currency?: string; plan?: string }) => {
+        fire(
+          typeof d.value === "number" ? d.value : prices[interval].amount / 100,
+          d.currency || prices.currency.toUpperCase(),
+          d.plan || interval,
+        );
+      })
+      .catch(() => {
+        // Degradado (Stripe no respondió): emitimos con la mejor estimación
+        // local — tarifa de catálogo del intervalo — para no perder la
+        // conversión; el transaction_id sigue deduplicando en GA4.
+        fire(prices[interval].amount / 100, prices.currency.toUpperCase(), interval);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [purchaseSuccess, searchParams, prices, interval]);
 
   async function handleSubscribe() {
     if (!authenticated) {

@@ -32,16 +32,18 @@ export interface FantasyLeagueStanding {
 export interface ServerTeamResult {
   team: FantasyTeamState | null; // null si el usuario aún no tiene equipo
   favCreator: string | null; // slug del creador con el que se registró
+  /** Puntos PROVISIONALES de la jornada en curso (server-authoritative), o null. */
+  liveGameweek: { gw: number; points: number } | null;
 }
 
 export async function fetchServerTeam(): Promise<ServerTeamResult> {
   try {
     const res = await fetch("/api/fantasy/team", { cache: "no-store" });
-    if (!res.ok) return { team: null, favCreator: null };
-    const data = (await res.json()) as { team: FantasyTeamState | null; favCreator?: string | null };
-    return { team: data.team ?? null, favCreator: data.favCreator ?? null };
+    if (!res.ok) return { team: null, favCreator: null, liveGameweek: null };
+    const data = (await res.json()) as { team: FantasyTeamState | null; favCreator?: string | null; liveGameweek?: { gw: number; points: number } | null };
+    return { team: data.team ?? null, favCreator: data.favCreator ?? null, liveGameweek: data.liveGameweek ?? null };
   } catch {
-    return { team: null, favCreator: null };
+    return { team: null, favCreator: null, liveGameweek: null };
   }
 }
 

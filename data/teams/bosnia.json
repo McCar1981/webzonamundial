@@ -1059,17 +1059,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/8/86/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/f9/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2802%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/20/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2812%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/13/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2814%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2818%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/dc/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2820%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/95/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2825%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/83/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2824%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/80/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2827%29.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 2014,

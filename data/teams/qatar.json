@@ -1057,18 +1057,7 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_03.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_03.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_02.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_01.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_05.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_05.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_04.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_04.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_06.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_06.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_07.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_07.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_09.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_09.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_08.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_08.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_10.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_10.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 2022,

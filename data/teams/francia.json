@@ -1037,12 +1037,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Maillot_Antoine_Griezmann_%C3%89quipe_France_Football_Maison_Vacheresse_-_Vonnas_%28FR01%29_-_2022-04-26_-_2.jpg/960px-Maillot_Antoine_Griezmann_%C3%89quipe_France_Football_Maison_Vacheresse_-_Vonnas_%28FR01%29_-_2022-04-26_-_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Match_Football_France_x_Autriche_Stade_France_-_Saint-Denis_%28FR93%29_-_2022-09-22_-_20.jpg/960px-Match_Football_France_x_Autriche_Stade_France_-_Saint-Denis_%28FR93%29_-_2022-09-22_-_20.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c4/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%286%29.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1930,

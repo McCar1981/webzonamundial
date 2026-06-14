@@ -984,16 +984,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1934,

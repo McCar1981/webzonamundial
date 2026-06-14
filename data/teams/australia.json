@@ -1078,18 +1078,7 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "team_photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/AUS-JOR_20190106_Asian_Cup_2.jpg/960px-AUS-JOR_20190106_Asian_Cup_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/AUS-SYR_20190116_Asian_Cup_8.jpg/960px-AUS-SYR_20190116_Asian_Cup_8.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/AUS-SYR_20190116_Asian_Cup_7.jpg/960px-AUS-SYR_20190116_Asian_Cup_7.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b9/UAE%26AUS_20190125_Asian_Cup_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/bd/UAE%26AUS_20190125_Asian_Cup_9.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg/960px-MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c4/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%286%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1974,

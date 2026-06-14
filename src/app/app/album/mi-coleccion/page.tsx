@@ -9,14 +9,13 @@ import { ALBUM_ACHIEVEMENTS, type AchievementView } from "@/lib/cromos/achieveme
 import { useLanguage } from "@/i18n/LanguageContext";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import {
-  IconSparkle,
   IconArrowLeft,
 } from "./icons";
 import {
   type Collection,
   type TradeOffer,
   type TabKey,
-  ProgressBar,
+  AlbumHeader,
   RarityStats,
   CategoryStats,
   CollectionMilestones,
@@ -274,14 +273,6 @@ export default function MiColeccionPage() {
             </Link>
           </div>
 
-          <header className={styles.header}>
-            <span className={styles.badge}>
-              <IconSparkle /> {isES ? "Tu colección" : "Your collection"}
-            </span>
-            <h1 className={styles.title}>{t.title}</h1>
-            <p className={styles.subtitle}>{t.subtitle}</p>
-          </header>
-
           {loading ? (
             <div className={styles.spinnerBox}>
               <div className={styles.spinner} />
@@ -304,12 +295,13 @@ export default function MiColeccionPage() {
               onCategoryChange={setCategoryFilter}
               onCromoClick={setSelectedCromo}
               onToggleFavorite={toggleFavorite}
+              collection={collection}
               t={t}
               isES={isES}
             />
           ) : (
             <>
-              <ProgressBar collection={collection} progressPct={progressPct} t={t} />
+              <AlbumHeader collection={collection} progressPct={progressPct} t={t} isES={isES} />
 
               <CollectionMilestones progress={collection?.progress ?? 0} isES={isES} />
 
@@ -336,6 +328,7 @@ export default function MiColeccionPage() {
                 onRarityToggle={(r) => setRarityFilter((prev) => prev.includes(r) ? prev.filter((x) => x !== r) : [...prev, r])}
                 categoryFilter={categoryFilter}
                 onCategoryChange={setCategoryFilter}
+                collection={collection}
                 isES={isES}
               />
 
@@ -351,6 +344,7 @@ export default function MiColeccionPage() {
                 ownedIds={collection?.ownedIds ?? []}
                 favoriteIds={favoriteIds}
                 emptyMessage={activeTab === "missing" ? t.emptyMissing : t.emptyOwned}
+                isES={isES}
                 onCromoClick={setSelectedCromo}
                 onToggleFavorite={toggleFavorite}
               />

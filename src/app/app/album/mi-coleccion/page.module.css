@@ -891,17 +891,6 @@
   100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
 }
 
-:global(.reveal) {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-
-:global(.revealIn) {
-  opacity: 1;
-  transform: none;
-}
-
 .staggerContainer .staggerItem {
   opacity: 0;
   transform: translateY(18px);
@@ -1603,7 +1592,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.reveal),
   .staggerContainer .staggerItem,
   .header,
   .badge,

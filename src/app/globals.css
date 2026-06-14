@@ -165,6 +165,17 @@ summary {
 }
 
 /* ══════ ANIMATIONS ══════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.revealIn {
+  opacity: 1;
+  transform: none;
+}
+
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 0.9s linear infinite; }
 
@@ -511,6 +522,8 @@ summary {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .revealIn,
   .bb-aura-country,
   .bb-aura-gold,
   .bb-rays,

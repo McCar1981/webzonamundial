@@ -59,6 +59,66 @@
   margin: 28px 0;
 }
 
+.albumHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 28px 0;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--album-line);
+  border-radius: 24px;
+}
+
+.albumHeaderMain {
+  flex: 1;
+}
+
+.albumHeaderMain .badge {
+  margin-bottom: 10px;
+}
+
+.albumHeaderMain .title {
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+.albumHeaderProgress {
+  flex: 1;
+  max-width: 420px;
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.progressCountInline {
+  color: var(--album-text);
+}
+
+.progressPct {
+  color: var(--album-gold-2);
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .albumHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .albumHeaderProgress {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -495,11 +555,17 @@
 .cromoOwned {
   background: var(--album-navy-light);
   opacity: 1;
+  border-color: var(--rarity-color);
 }
 
 .cromoCard:hover {
   transform: perspective(600px) rotateX(-4deg) rotateY(4deg) scale(1.03) translateY(-6px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cromoOwned:hover {
+  box-shadow: 0 0 28px var(--rarity-glow);
+  border-color: var(--rarity-color);
 }
 
 .cromoImgWrap {
@@ -520,7 +586,7 @@
 }
 
 .cromoImgMissing {
-  filter: grayscale(100%) brightness(0.7);
+  filter: grayscale(100%) brightness(0.35);
 }
 
 .cromoLocked {
@@ -529,8 +595,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(6, 11, 20, 0.2), rgba(6, 11, 20, 0.55));
-  color: rgba(255, 255, 255, 0.7);
+  background: rgba(6, 11, 20, 0.65);
+}
+
+.cromoMissing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.cromoMissingMark {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.35;
+}
+
+.cromoMissingText {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--album-muted);
 }
 
 .cromoCheck {
@@ -896,17 +985,6 @@
   transform: scale(1.06) rotate(-2deg);
 }
 
-.cromoCard {
-  opacity: 0;
-  animation: fadeInUp 0.45s ease both;
-  transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
-}
-
-.cromoCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-}
-
 .tab {
   transition: transform 0.15s ease, background 0.2s, border-color 0.2s, color 0.2s;
 }
@@ -1036,10 +1114,11 @@
 
 .filterPill {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 14px;
   font-size: 12px;
   font-weight: 700;
   font-family: inherit;
@@ -1048,6 +1127,7 @@
   background: rgba(255, 255, 255, 0.03);
   color: var(--album-muted);
   transition: all 0.2s;
+  min-width: 76px;
 }
 
 .filterPill:hover {
@@ -1060,6 +1140,17 @@
   border-color: var(--rarity-color);
   color: var(--album-text);
   box-shadow: 0 0 16px color-mix(in srgb, var(--rarity-color) 25%, transparent);
+}
+
+.filterPillName {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.filterPillCount {
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.75;
 }
 
 .filterGroup {

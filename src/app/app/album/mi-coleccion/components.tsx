@@ -88,6 +88,31 @@ export function ProgressBar({ collection, progressPct, t }: { collection: Collec
   );
 }
 
+export function AlbumHeader({ collection, progressPct, t, isES }: { collection: Collection | null; progressPct: number; t: Translations; isES: boolean }) {
+  return (
+    <div className={styles.albumHeader} data-reveal>
+      <div className={styles.albumHeaderMain}>
+        <span className={styles.badge}>
+          <IconSparkle /> {isES ? "Tu colección" : "Your collection"}
+        </span>
+        <h1 className={styles.title}>{t.title}</h1>
+        <p className={styles.subtitle}>{t.subtitle}</p>
+      </div>
+      <div className={styles.albumHeaderProgress}>
+        <div className={styles.progressTop}>
+          <span className={styles.progressCountInline}>
+            {collection?.collected ?? 0} / {TOTAL_CROMOS} {isES ? "cromos" : "stickers"}
+          </span>
+          <span className={styles.progressPct}>{progressPct}%</span>
+        </div>
+        <div className={styles.track}>
+          <div className={styles.bar} style={{ width: `${progressPct}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function RarityStats({ collection, isES }: { collection: Collection | null; isES: boolean }) {
   return (
     <div className={`${styles.box} ${styles.staggerContainer}`} data-reveal>
@@ -182,6 +207,7 @@ export function CromoMiniCard({
   cromo,
   owned,
   isFavorite,
+  isES,
   onClick,
   onToggleFavorite,
   animateIndex,
@@ -189,6 +215,7 @@ export function CromoMiniCard({
   cromo: Cromo;
   owned: boolean;
   isFavorite?: boolean;
+  isES: boolean;
   onClick?: () => void;
   onToggleFavorite?: (e: React.MouseEvent) => void;
   animateIndex?: number;
@@ -206,8 +233,9 @@ export function CromoMiniCard({
       className={`${styles.cromoCard} ${owned ? styles.cromoOwned : ""}`}
       style={{
         animationDelay: `${(animateIndex ?? 0) * 40}ms`,
-        borderColor: owned ? `${color}40` : "rgba(255,255,255,0.08)",
-      }}
+        "--rarity-color": color,
+        "--rarity-glow": glow,
+      } as React.CSSProperties}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
@@ -222,7 +250,10 @@ export function CromoMiniCard({
         />
         {!owned && (
           <div className={styles.cromoLocked}>
-            <IconLock />
+            <div className={styles.cromoMissing}>
+              <span className={styles.cromoMissingMark}>?</span>
+              <span className={styles.cromoMissingText}>{isES ? "Te falta" : "Missing"}</span>
+            </div>
           </div>
         )}
         {owned && (
@@ -253,6 +284,7 @@ export function CromoGrid({
   ownedIds,
   favoriteIds,
   emptyMessage,
+  isES,
   onCromoClick,
   onToggleFavorite,
 }: {
@@ -260,6 +292,7 @@ export function CromoGrid({
   ownedIds: number[];
   favoriteIds?: number[];
   emptyMessage: string;
+  isES: boolean;
   onCromoClick?: (cromo: Cromo) => void;
   onToggleFavorite?: (id: number) => Promise<void>;
 }) {
@@ -277,6 +310,7 @@ export function CromoGrid({
           cromo={cromo}
           owned={ownedSet.has(cromo.id)}
           isFavorite={favoriteSet.has(cromo.id)}
+          isES={isES}
           onClick={onCromoClick ? () => onCromoClick(cromo) : undefined}
           onToggleFavorite={onToggleFavorite ? (e) => { e.stopPropagation(); onToggleFavorite(cromo.id); } : undefined}
           animateIndex={i}
@@ -293,6 +327,7 @@ export function FilterBar({
   onRarityToggle,
   categoryFilter,
   onCategoryChange,
+  collection,
   isES,
 }: {
   searchQuery: string;
@@ -301,6 +336,7 @@ export function FilterBar({
   onRarityToggle: (rarity: string) => void;
   categoryFilter: string;
   onCategoryChange: (category: string) => void;
+  collection?: Collection | null;
   isES: boolean;
 }) {
   const clearAll = () => {
@@ -332,6 +368,7 @@ export function FilterBar({
         <div className={styles.filterPills}>
           {RARITIES.map((r) => {
             const active = rarityFilter.includes(r.key);
+            const stat = collection?.byRarity[r.key] ?? { collected: 0, total: r.count };
             return (
               <button
                 key={r.key}
@@ -340,7 +377,8 @@ export function FilterBar({
                 style={{ "--rarity-color": r.color } as React.CSSProperties}
                 aria-pressed={active}
               >
-                {isES ? r.label.es : r.label.en}
+                <span className={styles.filterPillName}>{isES ? r.label.es : r.label.en}</span>
+                <span className={styles.filterPillCount}>{stat.collected}/{stat.total}</span>
               </button>
             );
           })}
@@ -696,6 +734,7 @@ export function EmptyAlbumView({
   onCategoryChange,
   onCromoClick,
   onToggleFavorite,
+  collection,
   t,
   isES,
 }: {
@@ -714,6 +753,7 @@ export function EmptyAlbumView({
   onCategoryChange: (category: string) => void;
   onCromoClick?: (cromo: Cromo) => void;
   onToggleFavorite?: (id: number) => Promise<void>;
+  collection?: Collection | null;
   t: Translations;
   isES: boolean;
 }) {
@@ -762,6 +802,7 @@ export function EmptyAlbumView({
           onRarityToggle={onRarityToggle}
           categoryFilter={categoryFilter}
           onCategoryChange={onCategoryChange}
+          collection={collection}
           isES={isES}
         />
         <h3 className={styles.sectionTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h3>
@@ -770,6 +811,7 @@ export function EmptyAlbumView({
           ownedIds={ownedIds}
           favoriteIds={favoriteIds}
           emptyMessage={isES ? "No hay cromos para mostrar" : "No stickers to show"}
+          isES={isES}
           onCromoClick={onCromoClick}
           onToggleFavorite={onToggleFavorite}
         />

@@ -15,6 +15,9 @@ import { getPlayerById } from "./players";
 import { matchForFlag } from "./fixtures";
 import { scoreGameweekLive, snapshotFinished, snapshotStarted } from "./scoring.live";
 import { validateTeam, transferCost } from "./rules";
+import { isValidGameweek } from "./fixtures";
+import { isFantasyLive } from "./season";
+import { recordGameweekScore } from "./store.server";
 import type { FantasyTeamState } from "./types";
 
 /** Ids de partido reales de la jornada en los que el equipo tiene jugadores. */
@@ -120,4 +123,33 @@ export async function scoreGameweekFromState(
   const net = Math.max(0, gross - tc.penalty);
 
   return { gross, penalty: tc.penalty, net, anyStarted, allFinished, valid };
+}
+
+/**
+ * Total PROVISIONAL en vivo de la jornada en curso, server-authoritative. Puntúa
+ * con datos reales y, si algún partido del usuario YA empezó, REGISTRA la
+ * puntuación como provisional para que el header, el ranking global y las ligas
+ * se muevan DURANTE la jornada (no hay que esperar a que termine la semana
+ * entera para ver progreso). Es idempotente: la confirmación final (o la propia
+ * siguiente visita, cuando ya acabaron todos los partidos) sobrescribe con el
+ * mismo valor. NO paga Fútcoins: eso sigue gateado a jornada cerrada en
+ * awardGameweekCoins/sweepPendingGameweekCoins. Best-effort: devuelve null si no
+ * aplica (pretemporada, equipo incompleto, jornada sin empezar) o si algo falla,
+ * sin romper nunca la carga del equipo.
+ */
+export async function recordProvisionalGameweek(
+  userId: string,
+  team: FantasyTeamState,
+): Promise<{ gw: number; points: number } | null> {
+  const gw = team.gameweek;
+  if (!isFantasyLive() || !isValidGameweek(gw)) return null;
+  if (team.slots.filter((s) => s.playerId).length < 15) return null;
+  try {
+    const sc = await scoreGameweekFromState(team, gw);
+    if (!sc.anyStarted) return null;
+    await recordGameweekScore(userId, gw, sc.net, team.gwLock?.powerUp ?? team.powerUp ?? null);
+    return { gw, points: sc.net };
+  } catch {
+    return null;
+  }
 }

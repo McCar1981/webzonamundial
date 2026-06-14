@@ -13,7 +13,7 @@ import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import type { LiveSnapshot, MatchMeta } from "@/lib/match-center/types";
 import { getPlayerPool, type RealPlayerAgg } from "./players";
-import { realLineFor, snapshotFinished } from "./scoring.live";
+import { realLineFor, snapshotFinished, liveBonusMap, norm } from "./scoring.live";
 import { matchTier } from "./fixtures";
 import { isFantasyLive } from "./season";
 
@@ -24,7 +24,9 @@ export interface RealStatsBlob {
   players: Record<string, RealPlayerAgg>;
 }
 
-const KEY = "fantasy:realstats:v1";
+// v2: recomputa el acumulado desde cero para incluir la bonificación por partido
+// (BPS) que la v1 omitía. Un solo recálculo de los partidos ya jugados.
+const KEY = "fantasy:realstats:v2";
 const LOCK = `${KEY}:lock`;
 const STALE_MS = 30 * 60_000; // refresco como mucho cada 30 min
 
@@ -113,17 +115,23 @@ export async function getRealPlayerStats(): Promise<RealStatsBlob | null> {
   if (candidates.length > 0) {
     const snaps = await fetchSnaps(candidates);
     const pool = getPlayerPool();
+    // Bonificación por partido (+3/+2/+1 a los 3 mejores BPS), IGUAL que la vista
+    // En Vivo. Sin esto el acumulado del Mercado salía por debajo de lo real.
+    const bonusMap = liveBonusMap(snaps);
     for (const m of candidates) {
       const snap = snaps[m.i];
       if (!snap || !snapshotFinished(snap)) continue; // en juego o sin datos: aún no
       const mult = matchTier(m).multiplier;
+      const matchBonus = bonusMap.get(m.i);
       for (const p of pool) {
         const side = p.flag === m.hf ? ("home" as const) : p.flag === m.af ? ("away" as const) : null;
         if (!side) continue;
         const line = realLineFor(p, snap, side);
         if (!line.played) continue;
         const agg = next.players[p.id] ?? { pts: 0, played: 0, goals: 0, assists: 0, minutes: 0, cleanSheets: 0 };
-        agg.pts += Math.round(line.basePoints * mult);
+        // base × multiplicador + bonus (el bonus NO se multiplica, igual que en
+        // scoreGameweekLive: finalPoints = round(base*mult) + bonus).
+        agg.pts += Math.round(line.basePoints * mult) + (matchBonus?.get(norm(p.name)) ?? 0);
         agg.played += 1;
         agg.goals += line.goals;
         agg.assists += line.assists;

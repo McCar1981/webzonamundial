@@ -63,6 +63,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/australia-turquia-wide.webp",
     mobile: "/images/hero/australia-turquia-mobile.webp",
   },
+  // Alemania vs Curazao (14 jun, Grupo E).
+  "alemania-curazao": {
+    wide: "/images/hero/alemania-curazao-wide.webp",
+    mobile: "/images/hero/alemania-curazao-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

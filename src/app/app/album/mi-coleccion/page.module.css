@@ -411,8 +411,17 @@
 }
 
 .achievementEmoji {
-  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   margin-bottom: 8px;
+  color: var(--album-muted);
+}
+
+.achievementUnlocked .achievementEmoji {
+  color: var(--album-gold-2);
 }
 
 .achievementName {
@@ -882,13 +891,13 @@
   100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
 }
 
-.reveal {
+:global(.reveal) {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.revealIn {
+:global(.revealIn) {
   opacity: 1;
   transform: none;
 }
@@ -899,19 +908,19 @@
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
-.staggerContainer.revealIn .staggerItem {
+.staggerContainer:global(.revealIn) .staggerItem {
   opacity: 1;
   transform: none;
 }
 
-.staggerContainer.revealIn .staggerItem:nth-child(1) { transition-delay: 0ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(2) { transition-delay: 60ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(3) { transition-delay: 120ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(4) { transition-delay: 180ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(5) { transition-delay: 240ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(6) { transition-delay: 300ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(7) { transition-delay: 360ms; }
-.staggerContainer.revealIn .staggerItem:nth-child(8) { transition-delay: 420ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(1) { transition-delay: 0ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(2) { transition-delay: 60ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(3) { transition-delay: 120ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(4) { transition-delay: 180ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(5) { transition-delay: 240ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(6) { transition-delay: 300ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(7) { transition-delay: 360ms; }
+.staggerContainer:global(.revealIn) .staggerItem:nth-child(8) { transition-delay: 420ms; }
 
 .header {
   animation: fadeInUp 0.7s ease both;
@@ -1424,8 +1433,17 @@
 }
 
 .milestoneEmoji {
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
   margin-bottom: 4px;
+  color: var(--album-muted);
+}
+
+.milestoneReached .milestoneEmoji {
+  color: var(--album-gold-2);
 }
 
 .milestoneLabel {
@@ -1585,7 +1603,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
+  :global(.reveal),
   .staggerContainer .staggerItem,
   .header,
   .badge,

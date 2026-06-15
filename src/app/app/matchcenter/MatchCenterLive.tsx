@@ -1458,20 +1458,6 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
             {tab === "general" && (
             <>
-            {/* Previa editorial del partido (acordeón, con fotos reales de las
-                dos selecciones). Solo en partidos reales del torneo. */}
-            {feed.mode === "live" && matchId < 9000 && (
-              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
-            )}
-            {/* Estadio en Vivo: presencia + reacciones + rugido (solo partidos
-                reales no terminados; en finalizados no aporta y ahorra KV). */}
-            {feed.mode === "live" && matchId < 9000 && !finished && (
-              <EstadioEnVivo matchId={matchId} live={isInPlay(status)} />
-            )}
-            {/* Sala con amigos: watch party (chat + GIFs) por partido. */}
-            {feed.mode === "live" && matchId < 9000 && (
-              <SalaAmigos matchId={matchId} homeName={meta.home.name} awayName={meta.away.name} />
-            )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
@@ -1603,6 +1589,18 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                 onAsk={askLiveCoach}
               />
             </div>
+
+            {/* Previa, ambiente del estadio y sala con amigos: DEBAJO del campo
+                para que la acción (relato + cancha) quede siempre arriba. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
+            )}
+            {feed.mode === "live" && matchId < 9000 && !finished && (
+              <EstadioEnVivo matchId={matchId} live={isInPlay(status)} />
+            )}
+            {feed.mode === "live" && matchId < 9000 && (
+              <SalaAmigos matchId={matchId} homeName={meta.home.name} awayName={meta.away.name} />
+            )}
 
             {/* General: contexto del partido (historial, ficha) + comentarios */}
             {h2h && (

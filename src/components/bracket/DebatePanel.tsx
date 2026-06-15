@@ -190,7 +190,7 @@ export default function DebatePanel({
           {gate === "premium" && (
             <GateBox
               text="El Retador es una función exclusiva del Plan Pro."
-              cta="Empezar 3 días gratis"
+              cta="Activar Pro"
               href="/pro"
             />
           )}

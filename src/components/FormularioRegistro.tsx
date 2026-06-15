@@ -54,6 +54,10 @@ export default function FormularioRegistro({
     acceptTerms: false,
   });
 
+  // Flujo de CÓDIGO: aquí NO se elige creador. Se salta el paso 2 (selector
+  // de creador) y se envía directo desde el paso 1.
+  const isCodeFlow = !!(pedirCodigo || codigoPreseleccionado);
+
   // Feedback de validez del código (para enseñar el bono de bienvenida antes
   // de registrarse). null = sin comprobar todavía.
   const [codeInfo, setCodeInfo] = useState<
@@ -323,6 +327,9 @@ export default function FormularioRegistro({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // En el flujo de código se envía desde el paso 1 (no hay paso 2), así que
+    // validamos aquí los campos del paso 1 antes de continuar.
+    if (isCodeFlow && !validateStep1()) return;
     setLoading(true);
     setError('');
 
@@ -553,24 +560,27 @@ export default function FormularioRegistro({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Progress Steps */}
-      <div className="flex items-center justify-center gap-2 mb-6">
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-          step === 1 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#C9A84C]/20 text-[#C9A84C]'
-        }`}>
-          <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-            style={{ background: step === 1 ? '#030712' : 'transparent' }}>1</span>
-          {labels.step1}
+      {/* Progress Steps — solo en el registro normal/por creador (2 pasos).
+          En el flujo de código no hay paso 2 (no se elige creador). */}
+      {!isCodeFlow && (
+        <div className="flex items-center justify-center gap-2 mb-6">
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+            step === 1 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#C9A84C]/20 text-[#C9A84C]'
+          }`}>
+            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
+              style={{ background: step === 1 ? '#030712' : 'transparent' }}>1</span>
+            {labels.step1}
+          </div>
+          <div className="w-8 h-0.5 bg-[#1E293B]" />
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+            step === 2 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#1E293B] text-gray-500'
+          }`}>
+            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
+              style={{ background: step === 2 ? '#030712' : 'transparent' }}>2</span>
+            {labels.step2}
+          </div>
         </div>
-        <div className="w-8 h-0.5 bg-[#1E293B]" />
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-          step === 2 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#1E293B] text-gray-500'
-        }`}>
-          <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-            style={{ background: step === 2 ? '#030712' : 'transparent' }}>2</span>
-          {labels.step2}
-        </div>
-      </div>
+      )}
 
       {/* Error message */}
       {error && (
@@ -852,9 +862,12 @@ export default function FormularioRegistro({
           </div>
 
           <button
-            type="button"
-            onClick={handleContinue}
+            // Flujo de código: este botón ENVÍA (no hay paso 2). Registro
+            // normal/por creador: continúa al paso 2 (elegir creador).
+            type={isCodeFlow ? 'submit' : 'button'}
+            onClick={isCodeFlow ? undefined : handleContinue}
             disabled={
+              (isCodeFlow && loading) ||
               !formData.email ||
               !formData.firstName.trim() ||
               !formData.lastName.trim() ||
@@ -866,10 +879,31 @@ export default function FormularioRegistro({
             className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >
-            {labels.continue}
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            {isCodeFlow ? (
+              loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  {labels.submitting}
+                </>
+              ) : (
+                <>
+                  {labels.submit}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </>
+              )
+            ) : (
+              <>
+                {labels.continue}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </>
+            )}
           </button>
         </>
       )}

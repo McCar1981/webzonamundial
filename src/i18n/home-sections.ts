@@ -190,17 +190,17 @@ export const homeSections = {
       titleGold1: "Álbum.",
       title2: "Domina el",
       titleGold2: "Mundial.",
-      eyebrow: "Cromos de oro de las 48 selecciones.",
+      eyebrow: "Cromos de oro del Mundial 2026.",
       desc1: "Ediciones que solo desbloquean los que realmente viven el torneo.",
       desc2: "Y un mercado P2P para que nadie te frene.",
-      heroAlt: "Álbum dorado del Mundial 2026 con cromos de selecciones",
+      heroAlt: "Álbum dorado del Mundial 2026 con cromos de oro",
       benefits: [
         {
-          title: "48 selecciones. Un solo álbum.",
+          title: "150 cromos. Un solo álbum.",
           items: [
             "Desde las potencias hasta los debutantes.",
             "Cada cromo cuenta una historia.",
-            "Colecciónalos todas.",
+            "Colecciónalos todos.",
           ],
         },
         {
@@ -627,13 +627,13 @@ export const homeSections = {
       titleGold1: "Album.",
       title2: "Own the",
       titleGold2: "World Cup.",
-      eyebrow: "Gold stickers of the 48 teams.",
+      eyebrow: "Gold stickers of the 2026 World Cup.",
       desc1: "Editions only unlocked by those who truly live the tournament.",
       desc2: "Plus a P2P marketplace so nothing can stop you.",
-      heroAlt: "2026 World Cup golden album with team stickers",
+      heroAlt: "2026 World Cup golden album with gold stickers",
       benefits: [
         {
-          title: "48 teams. One album.",
+          title: "150 stickers. One album.",
           items: [
             "From the giants to the rookies.",
             "Every sticker tells a story.",

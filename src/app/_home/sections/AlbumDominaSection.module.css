@@ -9,8 +9,8 @@
   overflow: hidden;
   font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
   background:
-    radial-gradient(ellipse 60% 40% at 12% 20%, rgba(212, 168, 83, 0.10), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(212, 168, 83, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 12% 20%, rgba(201, 168, 76, 0.10), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(201, 168, 76, 0.08), transparent 60%),
     linear-gradient(180deg, #06060E 0%, #0A0A18 40%, #0F1428 60%, #06060E 100%);
   --mx: 50%;
   --my: 50%;
@@ -33,7 +33,7 @@
   background: radial-gradient(
     circle 340px at var(--mx) var(--my),
     rgba(245, 208, 122, 0.2),
-    rgba(212, 168, 83, 0.08) 45%,
+    rgba(201, 168, 76, 0.08) 45%,
     transparent 70%
   );
   mix-blend-mode: screen;
@@ -53,7 +53,7 @@
   position: absolute;
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: radial-gradient(circle, #FDEFB8, #D4A853 55%, transparent 100%);
+  background: radial-gradient(circle, #FDEFB8, #c9a84c 55%, transparent 100%);
   box-shadow: 0 0 10px rgba(245, 208, 122, 0.85);
   opacity: 0;
   animation: sparkFloat var(--dur, 14s) linear infinite;
@@ -91,7 +91,7 @@
   aspect-ratio: 1 / 1;
   box-shadow:
     0 30px 80px -20px rgba(0, 0, 0, 0.7),
-    0 0 60px -10px rgba(212, 168, 83, 0.4);
+    0 0 60px -10px rgba(201, 168, 76, 0.4);
   transform: perspective(1400px) rotateY(4deg) rotateX(-2deg);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s;
 }
@@ -99,7 +99,7 @@
   transform: perspective(1400px) rotateY(2deg) rotateX(-1deg) translateY(-6px);
   box-shadow:
     0 40px 100px -20px rgba(0, 0, 0, 0.8),
-    0 0 90px -5px rgba(212, 168, 83, 0.55);
+    0 0 90px -5px rgba(201, 168, 76, 0.55);
 }
 .imageWrap::before {
   content: "";
@@ -108,11 +108,11 @@
   padding: 2px;
   background: conic-gradient(
     from 0deg,
-    rgba(212, 168, 83, 0) 0deg,
-    rgba(212, 168, 83, 0.6) 90deg,
+    rgba(201, 168, 76, 0) 0deg,
+    rgba(201, 168, 76, 0.6) 90deg,
     rgba(245, 208, 122, 1) 180deg,
-    rgba(212, 168, 83, 0.6) 270deg,
-    rgba(212, 168, 83, 0) 360deg
+    rgba(201, 168, 76, 0.6) 270deg,
+    rgba(201, 168, 76, 0) 360deg
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -146,16 +146,16 @@
 }
 .titleGold {
   font-style: normal;
-  background: linear-gradient(135deg, #FFF1C4 0%, #F5D07A 40%, #D4A853 70%, #B8913F 100%);
+  background: linear-gradient(135deg, #FFF1C4 0%, #F5D07A 40%, #c9a84c 70%, #B8913F 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 6px 30px rgba(212, 168, 83, 0.5));
+  filter: drop-shadow(0 6px 30px rgba(201, 168, 76, 0.5));
   animation: goldPulse 4s ease-in-out infinite;
 }
 @keyframes goldPulse {
-  0%, 100% { filter: drop-shadow(0 6px 30px rgba(212, 168, 83, 0.45)); }
-  50% { filter: drop-shadow(0 6px 45px rgba(212, 168, 83, 0.85)); }
+  0%, 100% { filter: drop-shadow(0 6px 30px rgba(201, 168, 76, 0.45)); }
+  50% { filter: drop-shadow(0 6px 45px rgba(201, 168, 76, 0.85)); }
 }
 
 /* Star divider */
@@ -168,18 +168,18 @@
 .dividerLine {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.65), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.65), transparent);
 }
 .dividerStars {
   display: inline-flex; gap: 6px;
-  color: #D4A853;
+  color: #c9a84c;
 }
 .dividerStar {
   width: 14px; height: 14px;
 }
 
 .eyebrow {
-  color: #D4A853;
+  color: #c9a84c;
   font-family: var(--zm-font-display, "Syne", sans-serif);
   font-weight: 700;
   font-size: clamp(16px, 1.3vw, 19px);
@@ -207,7 +207,7 @@
 .card {
   position: relative;
   background: rgba(10, 10, 22, 0.72);
-  border: 1px solid rgba(212, 168, 83, 0.22);
+  border: 1px solid rgba(201, 168, 76, 0.22);
   border-radius: 22px;
   padding: 32px 28px 30px;
   overflow: hidden;
@@ -223,27 +223,27 @@
   font-family: var(--zm-font-display, "Syne", sans-serif);
   font-weight: 800;
   font-size: 56px;
-  color: rgba(212, 168, 83, 0.14);
+  color: rgba(201, 168, 76, 0.14);
   letter-spacing: -0.03em;
   line-height: 1;
   pointer-events: none;
 }
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(212, 168, 83, 0.55);
+  border-color: rgba(201, 168, 76, 0.55);
   box-shadow:
     0 24px 56px -18px rgba(0, 0, 0, 0.55),
-    0 0 40px -8px rgba(212, 168, 83, 0.35);
+    0 0 40px -8px rgba(201, 168, 76, 0.35);
 }
 .cardIconWrap {
   width: 64px; height: 64px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(212, 168, 83, 0.25), rgba(212, 168, 83, 0.08));
-  border: 1.5px solid rgba(212, 168, 83, 0.55);
+  background: radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.25), rgba(201, 168, 76, 0.08));
+  border: 1.5px solid rgba(201, 168, 76, 0.55);
   display: flex; align-items: center; justify-content: center;
-  color: #D4A853;
+  color: #c9a84c;
   margin-bottom: 20px;
-  box-shadow: 0 0 28px -6px rgba(212, 168, 83, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 28px -6px rgba(201, 168, 76, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   position: relative;
   z-index: 1;
 }
@@ -282,7 +282,7 @@
   flex-shrink: 0;
   width: 18px; height: 18px;
   border-radius: 50%;
-  color: #D4A853;
+  color: #c9a84c;
   margin-top: 1px;
 }
 

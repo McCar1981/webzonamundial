@@ -79,15 +79,14 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
 
   if (!bar) return <CreateBar onCreated={setBar} />;
 
-  const hasActivePlan = !!initialPayment && initialPayment.status === "active" && !initialPayment.refunded_at;
+  // Todo gratis: ya no hay planes ni pagos; el panel está siempre desbloqueado.
+  const hasActivePlan = true;
   const plan = getPlan(bar.plan_id);
   const isPublished = bar.status === "published";
   const isPaused = bar.status === "paused";
   const isRefunded = !!initialPayment && !!initialPayment.refunded_at;
 
-  const cardState: CardState = !hasActivePlan
-    ? (isRefunded ? "suspended" : "draft")
-    : isPublished ? "published" : "planActive";
+  const cardState: CardState = isPublished ? "published" : "planActive";
 
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   const goPlans = () => scrollTo("bd-planes");
@@ -98,7 +97,6 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   const checklist = [
     { label: "Datos del bar", done: hasBarData },
     { label: "Incentivo", done: hasPrize },
-    { label: "Plan activo", done: hasActivePlan },
     { label: "Publicación", done: isPublished },
     { label: "QR", done: !!qr },
     { label: "Kit", done: hasActivePlan },
@@ -139,14 +137,6 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
           </aside>
 
           <div className="bd-main">
-            {!hasActivePlan && (
-              <div id="bd-planes">
-                <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
-              </div>
-            )}
-            {hasActivePlan && (
-              <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
-            )}
             <KitSection hasActivePlan={hasActivePlan} />
             <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} hasActivePlan={hasActivePlan} isPublished={isPublished} />
             <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} hasActivePlan={hasActivePlan} />
@@ -213,8 +203,8 @@ function StatusCard({ state, bar, publishing, onPublish, onPlans }: { state: Car
       secondary: { label: "Ver vista previa", icon: <Eye size={15} />, href: `/b/${bar.slug}` },
     },
     planActive: {
-      eyebrow: "Estado de tu peña", title: "Tu plan está activo",
-      text: "Publica tu peña para activar el QR y empezar a recibir participantes.",
+      eyebrow: "Estado de tu peña", title: "Tu peña está lista",
+      text: "Publícala (es gratis) para activar el QR y empezar a recibir participantes.",
       primary: { label: "Publicar peña", icon: <Rocket size={16} />, onClick: onPublish, busy: publishing },
       secondary: { label: "Abrir kit de activación", icon: <Sparkles size={15} />, href: "/bar-dashboard/kit" },
     },
@@ -330,7 +320,6 @@ function QuickHelpCard({ bar, origin, onFlash }: { bar: BarRow; origin: string; 
         <button onClick={() => { void navigator.clipboard.writeText(url); onFlash("Enlace copiado"); }} style={{ ...qa(), cursor: "pointer", padding: "6px 9px" }} title="Copiar enlace"><Copy size={14} /></button>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-        <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={helpLink()}>Ver comparativa de planes <ExternalLink size={12} /></a>
         <a href="/bar-dashboard/kit" style={helpLink()}>Abrir kit de activación <ArrowRight size={12} /></a>
         <a href={`/b/${bar.slug}/ranking`} target="_blank" rel="noopener noreferrer" style={helpLink()}>Ver ranking del bar <ExternalLink size={12} /></a>
       </div>
@@ -373,8 +362,8 @@ function KitSection({ hasActivePlan }: { hasActivePlan: boolean }) {
         </h2>
         <p style={{ color: MID, fontSize: 13.5, margin: "5px 0 14px", maxWidth: 480, lineHeight: 1.5 }}>
           {hasActivePlan
-            ? "Incluido en tu plan: descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes."
-            : "Incluido en todos los planes: carteles, QR y materiales para redes listos para descargar."}
+            ? "Incluido y gratis: descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes."
+            : "Incluido y gratis: carteles, QR y materiales para redes listos para descargar."}
         </p>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
           {items.map((it) => (
@@ -444,7 +433,9 @@ function qa(): React.CSSProperties {
   return { display: "inline-flex", alignItems: "center", gap: 6, background: BG2, border: BORDER, color: "#E2E8F0", borderRadius: 10, fontWeight: 700, fontSize: 13, padding: "8px 12px", textDecoration: "none" };
 }
 
-// ─── Planes (tarjetas con qué incluye cada plan) ──────────────────────────────
+// ─── Planes — DESACTIVADO (todo gratis) ──────────────────────────────────────
+// Ya no se renderiza ni se enlaza al checkout. Se conserva el componente por si
+// en el futuro se reintroducen tiers de pago. Mientras tanto es código muerto.
 function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; payment: BarPayment | null; hasActivePlan: boolean; onFlash: (s: string) => void }) {
   const [busy, setBusy] = useState<string | null>(null);
   const currentPlan = getPlan(bar.plan_id);

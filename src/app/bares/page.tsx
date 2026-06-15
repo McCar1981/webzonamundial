@@ -11,12 +11,11 @@ import {
   QrCode, Trophy, Tv, Gift, BarChart3, Palette, ArrowRight, Smartphone,
   Beer, Repeat, Sparkles, Medal,
 } from "lucide-react";
-import PlanCards from "./PlanCards";
 import BarPhoto from "./BarPhoto";
 
 const BARES_TITLE = "Porra Digital para Bares · ZonaMundial";
 const BARES_DESCRIPTION =
-  "Crea la porra digital de tu bar para el Mundial 2026: QR en la barra, predicciones, ranking del local e incentivos que defines tú. Pago único, sin suscripción.";
+  "Crea gratis la porra digital de tu bar para el Mundial 2026: QR en la barra, predicciones, ranking del local e incentivos que defines tú. Sin pagos, sin suscripción.";
 
 export const metadata: Metadata = {
   title: BARES_TITLE,
@@ -209,17 +208,17 @@ export default function BaresLandingPage() {
                 Crear mi porra <ArrowRight size={18} />
               </Link>
               <Link
-                href="/bares/precios"
+                href="#gratis"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold transition-transform active:scale-[0.98]"
                 style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#E2E8F0" }}
               >
-                Ver planes
+                Por qué es gratis
               </Link>
             </div>
             <p className="mt-4 text-[12px] text-zm-text-muted flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1">
-              <span className="inline-flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} /> Pago único</span>
+              <span className="inline-flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} /> 100% gratis</span>
               <span className="opacity-40">·</span>
-              <span>Sin suscripción</span>
+              <span>Sin pagos</span>
               <span className="opacity-40">·</span>
               <span>Lista para compartir por QR</span>
             </p>
@@ -278,7 +277,7 @@ export default function BaresLandingPage() {
                 className="absolute left-4 top-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider"
                 style={{ background: GOLD_GRAD, color: "#1A1208", boxShadow: "0 8px 20px -8px rgba(201,168,76,0.8)" }}
               >
-                Pago único
+                Gratis
               </span>
             </div>
           </div>
@@ -406,19 +405,35 @@ export default function BaresLandingPage() {
           </div>
         </section>
 
-        {/* ── PLANES ───────────────────────────────────────── */}
-        <section className="mt-24">
-          <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Elige tu plan</h2>
-          <p className="mt-3 text-center text-zm-text-muted">
-            Pago único válido para todo el Mundial 2026. Sin suscripciones.
-          </p>
-          <div className="mt-12">
-            <PlanCards />
+        {/* ── GRATIS ───────────────────────────────────────── */}
+        <section id="gratis" className="mt-24 scroll-mt-24">
+          <div
+            className="relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-14"
+            style={{ borderColor: "rgba(201,168,76,0.3)", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(11,24,37,0.5) 55%)" }}
+          >
+            <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-bold" style={{ color: GOLD }}>
+              <Sparkles size={14} /> Sin pagos
+            </div>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black" style={{ color: "#F4F1E9" }}>
+              La porra de tu bar, ahora{" "}
+              <span style={{ backgroundImage: GOLD_GRAD, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>100% gratis</span>
+            </h2>
+            <p className="mt-4 max-w-xl mx-auto text-zm-text-muted leading-relaxed">
+              Crear tu página, el QR, el ranking del local y todo el kit de carteles: gratis,
+              sin suscripción y sin tarjeta. Solo necesitas una cuenta.
+            </p>
+            <Link
+              href="/bar-dashboard"
+              className="mt-8 inline-flex items-center gap-2 px-9 py-4 rounded-full font-black transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+              style={{ background: GOLD_GRAD, color: "#1A1208", boxShadow: "0 14px 38px -10px rgba(201,168,76,0.75)" }}
+            >
+              Crear mi porra gratis <ArrowRight size={18} />
+            </Link>
+            <p className="mt-5 text-[12px] text-zm-text-muted">
+              ¿Dudas? Escríbenos a{" "}
+              <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>
+            </p>
           </div>
-          <p className="mt-8 text-center text-[12px] text-zm-text-muted">
-            ¿Dudas? Escríbenos a{" "}
-            <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>
-          </p>
         </section>
 
         {/* ── CTA FINAL ────────────────────────────────────── */}
@@ -455,7 +470,7 @@ export default function BaresLandingPage() {
             Crear mi porra <ArrowRight size={18} />
           </Link>
           <p className="mt-5 text-[12px] text-zm-text-muted">
-            Pago único · Sin suscripción · Listo para compartir por QR
+            Gratis · Sin pagos · Listo para compartir por QR
           </p>
         </section>
 

@@ -39,7 +39,7 @@ export default async function BarKitPage() {
     getMainQr(bar.id), listPrizes(bar.id), getBarPayment(bar.id),
   ]);
 
-  const hasActivePlan = !!payment && payment.status === "active" && !payment.refunded_at;
+  const hasActivePlan = true; // Todo gratis: el kit está siempre desbloqueado.
   const plan = getPlan(bar.plan_id);
   const mainPrize = prizes.find((p) => p.prize_type === "principal") ?? prizes[0] ?? null;
 

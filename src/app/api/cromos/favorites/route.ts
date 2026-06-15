@@ -6,6 +6,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getUserFavorites, toggleFavorite } from "@/lib/cromos/collection";
+import { TOTAL_CROMOS } from "@/lib/cromos/catalog";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,7 +35,8 @@ export async function POST(req: Request) {
   }
 
   const cromoId = typeof body.cromoId === "number" ? body.cromoId : Number(body.cromoId);
-  if (!Number.isFinite(cromoId)) {
+  // Solo ids reales del catálogo (1..150), no cualquier número.
+  if (!Number.isInteger(cromoId) || cromoId < 1 || cromoId > TOTAL_CROMOS) {
     return NextResponse.json({ error: "invalid_cromo_id" }, { status: 400 });
   }
 

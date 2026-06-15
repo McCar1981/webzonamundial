@@ -17,12 +17,11 @@ import {
   type TabKey,
   AlbumHeader,
   RarityStats,
-  CategoryStats,
   CollectionMilestones,
   OpenPackCard,
   FilterTabs,
   FilterBar,
-  CromoGrid,
+  AlbumSections,
   AchievementsSection,
   TradesSection,
   EmptyAlbumView,
@@ -360,7 +359,6 @@ export default function MiColeccionPage() {
 
               <div className={styles.statsGrid}>
                 <RarityStats collection={collection} isES={isES} />
-                <CategoryStats collection={collection} isES={isES} />
                 <OpenPackCard
                   canOpen={packStatus.canOpen}
                   opening={opening}
@@ -385,21 +383,16 @@ export default function MiColeccionPage() {
                 isES={isES}
               />
 
-              <div className={styles.gridHeader}>
-                <h2 className={styles.gridTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h2>
-                <span className={styles.gridCount}>
-                  {visibleCromos.length} {isES ? "cromos" : "stickers"}
-                </span>
-              </div>
-
-              <CromoGrid
+              <AlbumSections
                 cromos={visibleCromos}
                 ownedIds={collection?.ownedIds ?? []}
                 favoriteIds={favoriteIds}
-                emptyMessage={activeTab === "missing" ? t.emptyMissing : t.emptyOwned}
+                collection={collection}
+                activeTab={activeTab}
                 isES={isES}
                 onCromoClick={setSelectedCromo}
                 onToggleFavorite={toggleFavorite}
+                t={t}
               />
 
               <AchievementsSection achievements={achievements} isES={isES} />

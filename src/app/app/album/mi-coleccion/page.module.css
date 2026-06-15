@@ -1684,3 +1684,133 @@
     animation: none;
   }
 }
+
+/* ===== Álbum por secciones (páginas) ===== */
+.albumNav {
+  position: sticky;
+  top: 8px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px;
+  margin: 0 0 24px;
+  border-radius: 16px;
+  background: rgba(10, 23, 41, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  scrollbar-width: none;
+}
+.albumNav::-webkit-scrollbar { display: none; }
+
+.albumNavChip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--album-line);
+  color: var(--album-text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: border-color 0.2s, background 0.2s;
+}
+.albumNavChip:hover { border-color: var(--album-gold); }
+
+.albumNavChipDone {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.albumNavName { color: var(--album-text); }
+.albumNavCount { color: var(--album-muted); font-weight: 800; font-size: 12px; font-variant-numeric: tabular-nums; }
+.albumNavChipDone .albumNavCount { color: var(--album-gold-2); }
+
+.albumSection {
+  position: relative;
+  margin: 0 0 22px;
+  padding: 22px 20px 20px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(15, 29, 50, 0.6), rgba(10, 23, 41, 0.35));
+  border: 1px solid var(--album-line);
+  scroll-margin-top: 76px;
+}
+.albumSection::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.55), transparent);
+}
+.albumSectionDone {
+  border-color: rgba(201, 168, 76, 0.35);
+}
+
+.sectionPageHeader {
+  margin: 2px 0 18px;
+}
+.sectionPageTitleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sectionPageTitle {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 800;
+  margin: 0;
+  color: var(--album-text);
+}
+.sectionPageRange {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--album-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sectionPageProgress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sectionPageTrack {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.sectionPageBar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--album-gold), var(--album-gold-2));
+  transition: width 0.5s ease;
+}
+.sectionPageCount {
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--album-muted);
+  font-variant-numeric: tabular-nums;
+}
+.sectionDoneBadge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--album-navy);
+  background: linear-gradient(135deg, var(--album-gold), var(--album-gold-2));
+  padding: 4px 10px;
+  border-radius: 999px;
+}

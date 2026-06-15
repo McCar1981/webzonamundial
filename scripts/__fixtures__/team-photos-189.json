@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "PR #189 (commit bc5d009)",
+  "generatedFrom": "PR #189 (commit bc5d009) · +VIP/políticos reclasificados a netRemoved (filtro looksLikeVip)",
   "current": {
     "alemania": [
       "https://upload.wikimedia.org/wikipedia/commons/7/7a/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_Germany_lineup.jpg"
@@ -38,12 +38,9 @@
     "colombia": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Llegada_de_la_selecci%C3%B3n_Colombia_al_parque_Sim%C3%B3n_Bol%C3%ADvar_%2814426410498%29.jpg/960px-Llegada_de_la_selecci%C3%B3n_Colombia_al_parque_Sim%C3%B3n_Bol%C3%ADvar_%2814426410498%29.jpg"
     ],
-    "corea-del-sur": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Luncheon_for_the_national_football_team_at_the_presidential_office.jpg/960px-Luncheon_for_the_national_football_team_at_the_presidential_office.jpg"
-    ],
+    "corea-del-sur": [],
     "costa-de-marfil": [],
     "croacia": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Croatia_personnel_during_game_v_England.jpg/960px-Croatia_personnel_during_game_v_England.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg/960px-CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croatian_nation_football_squad_%2842545971655%29.jpg/960px-Croatian_nation_football_squad_%2842545971655%29.jpg"
     ],
@@ -54,16 +51,9 @@
     "egipto": [
       "https://upload.wikimedia.org/wikipedia/commons/3/35/Egypt_national_football_team_them_As-Sajedeen.png"
     ],
-    "escocia": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/First_Minister_meets_with_Scottish_National_Football_Team.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg"
-    ],
+    "escocia": [],
     "espana": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Spain_football_team_in_2025.jpg/960px-Spain_football_team_in_2025.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Spain_football_team_in_2025.jpg/960px-Spain_football_team_in_2025.jpg"
     ],
     "estados-unidos": [],
     "francia": [],
@@ -94,12 +84,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Japan_warmup_in_Columbus_2.jpg/960px-Japan_warmup_in_Columbus_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Japan_national_team_players_in_Columbus_1.jpg/960px-Japan_national_team_players_in_Columbus_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Japan_national_team_players_in_Columbus_2.jpg/960px-Japan_national_team_players_in_Columbus_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan_national_team_players_huddling_in_Columbus.jpg/960px-Japan_national_team_players_huddling_in_Columbus.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan_national_team_players_huddling_in_Columbus.jpg/960px-Japan_national_team_players_huddling_in_Columbus.jpg"
     ],
     "jordania": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mohammed_Awad_%28Jordanian_Footballer%29.jpg/960px-Mohammed_Awad_%28Jordanian_Footballer%29.jpg"
@@ -224,10 +209,12 @@
       "https://upload.wikimedia.org/wikipedia/commons/c/ce/Iran%2C_S._Korea_Closer_to_Securing_Spot_in_World_Cup_Tournament_after_Draw_2021-8.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/68/Iran%2C_S._Korea_Closer_to_Securing_Spot_in_World_Cup_Tournament_after_Draw_2021-10.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/2022_FIFA_World_Cup_Korea_Uruguay_02.jpg/960px-2022_FIFA_World_Cup_Korea_Uruguay_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/d9/Korea_Beachsoccer_National_Team.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/d/d9/Korea_Beachsoccer_National_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Luncheon_for_the_national_football_team_at_the_presidential_office.jpg/960px-Luncheon_for_the_national_football_team_at_the_presidential_office.jpg"
     ],
     "croacia": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Croatia-England%2C_Zagreb.JPG/960px-Croatia-England%2C_Zagreb.JPG"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Croatia-England%2C_Zagreb.JPG/960px-Croatia-England%2C_Zagreb.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Croatia_personnel_during_game_v_England.jpg/960px-Croatia_personnel_during_game_v_England.jpg"
     ],
     "ecuador": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg/960px-Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg",
@@ -245,7 +232,11 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Scotland_v_Albania_%2830749806838%29.jpg/960px-Scotland_v_Albania_%2830749806838%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Scotland_v_Albania_%2842810081690%29.jpg/960px-Scotland_v_Albania_%2842810081690%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Scotland_v_Albania_%2844620812691%29.jpg/960px-Scotland_v_Albania_%2844620812691%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Scotland_v_Albania_%2844570605622%29.jpg/960px-Scotland_v_Albania_%2844570605622%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Scotland_v_Albania_%2844570605622%29.jpg/960px-Scotland_v_Albania_%2844570605622%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/First_Minister_meets_with_Scottish_National_Football_Team.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg"
     ],
     "espana": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg/960px-Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg",
@@ -254,7 +245,9 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2818%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2818%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2819%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2819%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2821%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2821%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg"
     ],
     "estados-unidos": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg/960px-XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg",
@@ -405,6 +398,13 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Iran_v_Uzbekistan%2C_11_June_2024_13_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_13_SNN.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Iran_v_Uzbekistan%2C_11_June_2024_16_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_16_SNN.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Iran_v_Uzbekistan%2C_11_June_2024_29_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_29_SNN.jpg"
+    ],
+    "japon": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg"
     ]
   }
 }

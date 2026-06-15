@@ -14,6 +14,7 @@ import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
 import PreviaAccordion from "./PreviaAccordion";
 import WinProbability from "./WinProbability";
+import MatchPrediction from "./MatchPrediction";
 import EstadioEnVivo from "./EstadioEnVivo";
 import SalaAmigos from "./SalaAmigos";
 import GroupStandingsTab from "./GroupStandingsTab";
@@ -1580,6 +1581,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
             {/* Latido de probabilidad: % real de mercado (1X2) + gol inminente */}
             <WinProbability matchId={matchId} home={meta.home} away={meta.away} momentum={momentum} live={isInPlay(status)} />
 
+            {/* Comparativa del modelo (forma/ataque/defensa), solo partidos reales */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <MatchPrediction matchId={matchId} home={meta.home} away={meta.away} />
+            )}
+
             {/* Pulso / momentum + reacción del público */}
             <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />
 
@@ -1758,8 +1764,11 @@ function Momentum({ stats, meta, momentum, soundOn }: { stats: LiveStats; meta: 
 const STAT_ROWS: { key: keyof LiveStats; label: string; color: string; pct?: boolean }[] = [
   { key: "shots", label: "Tiros", color: "#22c55e" },
   { key: "shotsOn", label: "A puerta", color: "#10b981" },
+  { key: "shotsInsidebox", label: "Tiros en el área", color: "#16a34a" },
+  { key: "shotsBlocked", label: "Tiros bloqueados", color: "#84cc16" },
   { key: "possession", label: "Posesión", color: "#3b82f6", pct: true },
   { key: "passes", label: "Pases", color: "#f59e0b" },
+  { key: "passesPct", label: "Precisión de pase", color: "#fbbf24", pct: true },
   { key: "corners", label: "Córneres", color: "#a855f7" },
   { key: "offsides", label: "Fueras de juego", color: "#f97316" },
   { key: "fouls", label: "Faltas", color: "#ef4444" },
@@ -1773,7 +1782,11 @@ function StatsPanel({ stats, meta }: { stats: LiveStats; meta: MatchMeta }) {
       <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Estadísticas</h3>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {STAT_ROWS.map((row) => {
-          const [h, a] = stats[row.key] as Pair;
+          // Las stats avanzadas son opcionales: si el feed no las trae (sim,
+          // EMPTY o un partido sin ese dato), se omite la fila.
+          const v = stats[row.key] as Pair | undefined;
+          if (!v) return null;
+          const [h, a] = v;
           const total = h + a || 1;
           const hw = row.pct ? h : Math.round((h / total) * 100);
           const aw = row.pct ? a : Math.round((a / total) * 100);

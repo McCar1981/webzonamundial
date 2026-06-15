@@ -303,6 +303,11 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
           yellow: pair("Yellow Cards"),
           red: pair("Red Cards"),
           xg: [findStat(homeStats, "expected_goals"), findStat(awayStats, "expected_goals")],
+          // Avanzadas (mismo bloque, cuota 0): calidad de la ocasión y del pase.
+          shotsInsidebox: pair("Shots insidebox"),
+          shotsBlocked: pair("Blocked Shots"),
+          passesAccurate: pair("Passes accurate"),
+          passesPct: pair("Passes %"),
         }
       : EMPTY_STATS;
 

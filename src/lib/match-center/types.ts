@@ -92,6 +92,14 @@ export interface LiveStats {
   yellow: Pair;
   red: Pair;
   xg: Pair;
+  // Estadísticas avanzadas REALES (viajan en el MISMO bloque embebido de
+  // api-football que ya descargamos). OPCIONALES: solo el feed en vivo las
+  // rellena; simulación y EMPTY_STATS las dejan sin definir y la UI las muestra
+  // únicamente si están presentes.
+  shotsInsidebox?: Pair;
+  shotsBlocked?: Pair;
+  passesAccurate?: Pair;
+  passesPct?: Pair; // % de acierto de pase
 }
 
 export interface MatchTeamMeta {

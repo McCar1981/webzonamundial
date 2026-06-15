@@ -138,8 +138,20 @@ export async function getPackStatus(userId: string): Promise<PackStatus> {
  * - Registra el claim en cromo_pack_claims.
  */
 export async function openPack(userId: string): Promise<PackResult> {
-  const status = await getPackStatus(userId);
-  if (!status.canOpen) {
+  const admin = adminClient();
+
+  // Reclama el "slot" del sobre de forma ATÓMICA: la RPC, bajo un advisory lock por
+  // usuario, comprueba el cooldown y marca el claim en una sola operación. Esto cierra
+  // la carrera por la que dos peticiones simultáneas abrían varios sobres saltándose
+  // el cooldown de 4h. Es "claim-first": el cooldown queda marcado antes de entregar.
+  const { data: claimId, error: claimErr } = await admin.rpc("try_claim_cromo_pack", {
+    p_uid: userId,
+    p_cooldown_seconds: Math.floor(PACK_COOLDOWN_MS / 1000),
+  });
+  if (claimErr) {
+    throw claimErr;
+  }
+  if (!claimId) {
     throw new Error("pack_on_cooldown");
   }
 
@@ -161,8 +173,6 @@ export async function openPack(userId: string): Promise<PackResult> {
     pickedIds.add(cromo.id);
   }
 
-  const admin = adminClient();
-
   // Insertar los cromos en user_cromos (ignorar duplicados)
   const inserts = picked.map((c) => ({
     user_id: userId,
@@ -180,13 +190,15 @@ export async function openPack(userId: string): Promise<PackResult> {
     throw batchErr;
   }
 
-  // Registrar el sobre abierto
-  await admin.from("cromo_pack_claims").insert({
-    user_id: userId,
-    cromo_1_id: picked[0]!.id,
-    cromo_2_id: picked[1]!.id,
-    cromo_3_id: picked[2]!.id,
-  });
+  // Rellena el claim ya creado con los cromos reales (el cooldown ya está marcado).
+  await admin
+    .from("cromo_pack_claims")
+    .update({
+      cromo_1_id: picked[0]!.id,
+      cromo_2_id: picked[1]!.id,
+      cromo_3_id: picked[2]!.id,
+    })
+    .eq("id", claimId);
 
   const newStatus = await getPackStatus(userId);
   return {

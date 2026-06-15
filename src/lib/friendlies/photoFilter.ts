@@ -146,6 +146,36 @@ function looksLikeJunk(s: string): boolean {
   return JUNK_SUBSTRINGS.some((j) => s.includes(j));
 }
 
+// ── VIP / dignatarios (políticos, jefes de Estado, autoridades) ──────────────
+// Fotos del equipo CON un político o autoridad (primer ministro, presidente,
+// secretario, gobernador, embajador…). Técnicamente sale la selección, pero un
+// político en un push deportivo da problema de imagen y reputación → fuera. El
+// push cae al retrato de un jugador (camiseta nacional), que es lo que queremos.
+// Casos reales: "Sánchez se reunió con los futbolistas de la selección española",
+// "Fumio Kishida with Japan National Football Team", "First Minister meets with
+// Scottish National Football Team", "Luncheon … at the presidential office".
+//
+// Frases multipalabra (subcadena sobre el nombre normalizado con espacios).
+const VIP_PHRASES = [
+  "se reunio", "se reune", "first minister", "prime minister", "primer ministro",
+  "meets with", "presidential", "presidencial", "white house", "casa blanca",
+  "head of state", "jefe de estado", "luncheon", "pena nieto", "official visit",
+  "state visit", "visita oficial", "visita de estado",
+];
+// Tokens EXACTOS (cargos/VIP que casi nunca son apellido de futbolista). NO se
+// incluyen "king"/"queen"/"prince"/"royal"/"mayor"/"premier" por chocar con
+// apellidos (Joshua King) o con "Premier League".
+const VIP_TOKENS = new Set([
+  "president", "presidente", "presidenta", "minister", "ministro", "ministra",
+  "secretary", "secretario", "secretaria", "chancellor", "canciller",
+  "governor", "gobernador", "senator", "senador", "potus", "ambassador",
+  "embajador", "embajadora", "alcalde", "kishida", "mayorkas", "aliyev",
+]);
+function looksLikeVip(s: string, tokens: string[]): boolean {
+  if (VIP_PHRASES.some((p) => s.includes(p))) return true;
+  return tokens.some((t) => VIP_TOKENS.has(t));
+}
+
 // ── Decisión ─────────────────────────────────────────────────────────────────
 
 const SCORE_RE = /\b\d{1,2}\s*[-–—:;]\s*\d{1,2}\b/;
@@ -213,6 +243,9 @@ export function keepTeamPhoto(url: string, ownerKey: string, nations: Nation[]):
   if (looksLikeJunk(s)) return false;
 
   const tokens = s.split(" ").filter(Boolean);
+
+  // 1b) Político / VIP con el equipo -> fuera (no es contenido deportivo).
+  if (looksLikeVip(s, tokens)) return false;
 
   // 2) Localiza cada mención de nación (dueña y rivales) con su posición.
   const occ = findOccurrences(tokens, nations);

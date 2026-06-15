@@ -64,17 +64,39 @@ export default function FormularioRegistro({
     { valid: boolean; reward: number; label: string | null } | null
   >(null);
 
-  const checkCode = async (raw: string) => {
+  // Valida el código contra el backend. Devuelve true SOLO si es un código
+  // reconocido y activo. Además guarda el resultado para el feedback visual.
+  const checkCode = async (raw: string): Promise<boolean> => {
     const c = normCode(raw);
-    if (c.length < 3) { setCodeInfo(null); return; }
+    if (c.length < 3) { setCodeInfo(null); return false; }
     try {
       const r = await fetch(`/api/registro-codigo/validar?code=${encodeURIComponent(c)}`);
-      if (!r.ok) { setCodeInfo(null); return; }
+      if (!r.ok) { setCodeInfo(null); return false; }
       const d = (await r.json()) as { valid?: boolean; rewardNewUser?: number; label?: string | null };
-      setCodeInfo({ valid: !!d.valid, reward: d.rewardNewUser || 0, label: d.label ?? null });
+      const valid = !!d.valid;
+      setCodeInfo({ valid, reward: d.rewardNewUser || 0, label: d.label ?? null });
+      return valid;
     } catch {
       setCodeInfo(null);
+      return false;
     }
+  };
+
+  // En la vía /registro-codigo el código es OBLIGATORIO y debe ser VÁLIDO
+  // (reconocido y activo). Hace una validación fresca y, si falla, muestra el
+  // error y devuelve false para bloquear el registro (email y OAuth).
+  const ensureValidCode = async (): Promise<boolean> => {
+    if (!isCodeFlow) return true;
+    const c = normCode(formData.signupCode);
+    if (!c) {
+      setError(isEN ? 'Enter your invite code to sign up here.' : 'Introduce tu código de invitación para registrarte aquí.');
+      return false;
+    }
+    const ok = await checkCode(c);
+    if (!ok) {
+      setError(isEN ? 'That code is not valid or not active.' : 'Ese código no es válido o no está activo.');
+    }
+    return ok;
   };
 
   // Si el código viene prerelleno (landing), lo validamos al montar.
@@ -268,6 +290,8 @@ export default function FormularioRegistro({
   // exigimos esos campos: no se pierden, solo se piden después de entrar.
   const handleOAuth = async (provider: 'google' | 'apple') => {
     setError('');
+    // En la vía de código, exigir un código válido antes de iniciar el OAuth.
+    if (!(await ensureValidCode())) return;
     setOauthLoading(provider);
     let supabase;
     try {
@@ -327,9 +351,12 @@ export default function FormularioRegistro({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // En el flujo de código se envía desde el paso 1 (no hay paso 2), así que
-    // validamos aquí los campos del paso 1 antes de continuar.
-    if (isCodeFlow && !validateStep1()) return;
+    // En el flujo de código se envía desde el paso 1 (no hay paso 2): validamos
+    // los campos del paso 1 y EXIGIMOS un código válido (obligatorio).
+    if (isCodeFlow) {
+      if (!validateStep1()) return;
+      if (!(await ensureValidCode())) return;
+    }
     setLoading(true);
     setError('');
 
@@ -596,7 +623,7 @@ export default function FormularioRegistro({
           {(pedirCodigo || codigoPreseleccionado) && (
             <div className="space-y-2 mb-2">
               <label htmlFor="reg-code" className="block text-xs font-bold text-[#C9A84C] uppercase tracking-wider">
-                {isEN ? 'Invite code' : 'Código de invitación'}
+                {isEN ? 'Invite code (required)' : 'Código de invitación (obligatorio)'}
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#C9A84C]">
@@ -616,24 +643,29 @@ export default function FormularioRegistro({
                   }}
                   onBlur={(e) => { void checkCode(e.target.value); }}
                   className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#C9A84C]/40 text-gray-900 text-sm font-bold tracking-wider uppercase focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-400 placeholder:font-normal placeholder:tracking-normal read-only:bg-[#C9A84C]/5"
-                  placeholder={isEN ? 'YOUR CODE (optional)' : 'TU CÓDIGO (opcional)'}
+                  placeholder={isEN ? 'YOUR CODE' : 'TU CÓDIGO'}
                   maxLength={32}
                   autoCapitalize="characters"
                   autoComplete="off"
                 />
               </div>
-              {codeInfo && codeInfo.valid && (
+              {codeInfo && codeInfo.valid ? (
                 <p className="text-[11px] font-bold text-emerald-400">
                   {isEN
                     ? `Valid code${codeInfo.label ? ` (${codeInfo.label})` : ''} — ${codeInfo.reward} Fútcoins welcome bonus`
                     : `Código válido${codeInfo.label ? ` (${codeInfo.label})` : ''} — bono de bienvenida de ${codeInfo.reward} Fútcoins`}
                 </p>
-              )}
-              {codeInfo && !codeInfo.valid && formData.signupCode.length >= 3 && (
-                <p className="text-[11px] text-gray-500">
+              ) : codeInfo && !codeInfo.valid && formData.signupCode.length >= 3 ? (
+                <p className="text-[11px] font-bold text-red-400">
                   {isEN
-                    ? 'Code not recognized — you can sign up anyway.'
-                    : 'Código no reconocido — puedes registrarte igualmente.'}
+                    ? 'That code is not valid or not active.'
+                    : 'Ese código no es válido o no está activo.'}
+                </p>
+              ) : (
+                <p className="text-[11px] text-[#C9A84C]/80">
+                  {isEN
+                    ? 'A valid code is required to sign up here.'
+                    : 'Necesitas un código válido para registrarte aquí.'}
                 </p>
               )}
             </div>

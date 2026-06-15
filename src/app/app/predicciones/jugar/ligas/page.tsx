@@ -62,6 +62,12 @@ export default function LigasPage() {
     return () => { alive = false; };
   }, []);
   useEffect(() => { if (toast) { const id = setTimeout(() => setToast(null), 3000); return () => clearTimeout(id); } }, [toast]);
+  // Invitación por enlace: si llegas con ?code=ABC123 (link de WhatsApp de un
+  // amigo), pre-rellenamos el código para unirte de un toque.
+  useEffect(() => {
+    const c = new URLSearchParams(window.location.search).get("code");
+    if (c) setCode(c.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6));
+  }, []);
 
   const create = useCallback(async () => {
     if (!name.trim()) return;
@@ -84,6 +90,15 @@ export default function LigasPage() {
       if (r.ok) { setCode(""); setToast("Te uniste a la liga"); await loadLeagues(); } else setToast(j.error === "league_not_found" ? "Código no encontrado" : "No se pudo unir");
     } finally { setBusy(false); }
   }, [code, loadLeagues]);
+
+  // Invitar a la liga por WhatsApp: abre wa.me con un enlace que pre-rellena el
+  // código (?code=). Convierte "copia el código y dícelo" en UN toque. Cada
+  // miembro trae a su grupo → bucle de crecimiento gratis.
+  const invite = useCallback((l: League) => {
+    const url = `${window.location.origin}/app/predicciones/jugar/ligas?code=${l.code}`;
+    const text = `🏆 ¡Únete a mi liga "${l.name}" en ZonaMundial y predice el Mundial conmigo! Entra aquí 👉 ${url}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  }, []);
 
   const viewStandings = useCallback(async (id: string) => {
     if (standings[id]) { setStandings((s) => { const n = { ...s }; delete n[id]; return n; }); return; }
@@ -157,9 +172,14 @@ export default function LigasPage() {
                     <div style={{ fontWeight: 800 }}>{l.name}</div>
                     <div style={{ color: MID, fontSize: 12.5 }}>Código <b style={{ color: GOLD2, letterSpacing: 1 }}>{l.code}</b> · {l.member_count} miembros</div>
                   </div>
-                  <button onClick={() => viewStandings(l.id)} style={{ cursor: "pointer", background: BG3, border: CARD_BORDER, borderRadius: 99, color: GOLD2, fontWeight: 700, fontSize: 12.5, padding: "7px 14px" }}>
-                    {standings[l.id] ? "Ocultar" : "Ver clasificación"}
-                  </button>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    <button onClick={() => invite(l)} style={{ cursor: "pointer", background: "linear-gradient(135deg,#25D366,#128C7E)", border: "none", borderRadius: 99, color: "#fff", fontWeight: 800, fontSize: 12.5, padding: "7px 14px" }}>
+                      Invitar por WhatsApp
+                    </button>
+                    <button onClick={() => viewStandings(l.id)} style={{ cursor: "pointer", background: BG3, border: CARD_BORDER, borderRadius: 99, color: GOLD2, fontWeight: 700, fontSize: 12.5, padding: "7px 14px" }}>
+                      {standings[l.id] ? "Ocultar" : "Ver clasificación"}
+                    </button>
+                  </div>
                 </div>
                 {standings[l.id] && (
                   <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 6 }}>

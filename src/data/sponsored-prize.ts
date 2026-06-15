@@ -1,6 +1,6 @@
 // src/data/sponsored-prize.ts
 //
-// PREMIO PATROCINADO del ranking "Campeón de la semana".
+// PREMIO PATROCINADO: Gran Premio del Mundial al Top 3 del ranking GLOBAL.
 //
 // Edita ESTE objeto para activar/cambiar el patrocinador y los premios. NO hay
 // migración ni base de datos: es un simple objeto. Mientras `active` sea false,
@@ -32,9 +32,13 @@ export interface SponsoredPrize {
 // Por defecto INACTIVO: el Campeón muestra solo la corona (estatus), sin premios.
 // Para activar cuando cierres patrocinador, copia el bloque de ejemplo de abajo.
 export const SPONSORED_PRIZE: SponsoredPrize = {
-  active: false,
-  sponsorName: "",
-  prizes: [],
+  active: false,                            // ← pon true cuando rellenes el patrocinador
+  sponsorName: "",                          // ← nombre del patrocinador (p.ej. "Coolligan")
+  // sponsorLogoUrl: "https://zonamundial.app/patrocinadores/marca.png", // logo horizontal
+  // sponsorUrl: "https://...",             // enlace del patrocinador (opcional)
+  prizes: ["Tarjeta regalo 300 €", "Tarjeta regalo 200 €", "Tarjeta regalo 100 €"], // 1º / 2º / 3º del ranking global
+  termsNote: "Premio para el Top 3 del ranking global al finalizar el Mundial. Participación gratuita.",
+  // termsUrl: "https://zonamundial.app/bases-campeon", // bases legales (las define el abogado)
 };
 
 // ─── EJEMPLO (copia esto sobre SPONSORED_PRIZE cuando tengas patrocinador) ────

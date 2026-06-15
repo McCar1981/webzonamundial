@@ -410,7 +410,8 @@ export default function RankingsPage() {
             </div>
           )}
 
-          {/* ─── Campeón de la semana (solo vista Global, no por módulo) ─── */}
+          {/* ─── Gran Premio del Mundial (Top 3 global) + Campeón de la semana ─── */}
+          {view === "global" && !tab && <GrandPrizeBanner />}
           {view === "global" && !tab && <WeeklyChampions entries={champions} />}
 
           {/* ─── Banner "tu posición" según la vista ─── */}
@@ -436,7 +437,7 @@ export default function RankingsPage() {
           ) : view === "creators" && !creatorToShow ? (
             <CreatorsList creators={creators} mySlug={myCreator} onPick={(slug) => { setSelectedCreator(slug); }} />
           ) : (
-            <PlayersList entries={entries} meId={view === "global" ? me?.userId ?? null : null} emptyKind={view === "country" ? "country" : view === "creators" ? "creator" : "global"} />
+            <PlayersList entries={entries} meId={view === "global" ? me?.userId ?? null : null} emptyKind={view === "country" ? "country" : view === "creators" ? "creator" : "global"} showPrize={view === "global" && !tab} />
           )}
         </div>
       </section>
@@ -548,20 +549,12 @@ function MeBanner({ rank, flag, leading, title, sub, value }: { rank: number; fl
 // Resetea cada semana, así cualquiera puede ser campeón. Premio en estatus.
 function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
   if (entries === null) return null;            // cargando: no ocupa sitio
-  // Premio patrocinado (si hay patrocinador activo en src/data/sponsored-prize.ts).
-  const prize = SPONSORED_PRIZE.active && SPONSORED_PRIZE.prizes.length > 0 ? SPONSORED_PRIZE : null;
-  const prizeFor = (pos: number) => prize?.prizes[pos] ?? null; // 0=1º, 1=2º, 2=3º
   if (entries.length === 0) {
     return (
       <div style={{ maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 16, background: "rgba(201,168,76,0.08)", border: "1px dashed rgba(201,168,76,0.35)", textAlign: "center" }}>
         <div style={{ fontSize: 22 }}>👑</div>
         <div style={{ fontWeight: 800, fontSize: 15, marginTop: 4 }}>Sé el <span style={{ color: GOLD }}>Campeón de la semana</span></div>
-        <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>
-          {prize
-            ? <>Quien más Fútcoins gane esta semana se lleva <b style={{ color: GOLD2 }}>{prizeFor(0)}</b>. ¡Empieza a jugar!</>
-            : "Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!"}
-        </div>
-        {prize && <div style={{ marginTop: 10 }}><SponsorTag prize={prize} /></div>}
+        <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!</div>
       </div>
     );
   }
@@ -578,11 +571,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
         <span style={{ color: GOLD, fontWeight: 900, fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase" }}>👑 Campeón de la semana</span>
         <span style={{ color: DIM, fontSize: 11.5 }}>Se reinicia cada semana · últimos 7 días</span>
       </div>
-
-      {/* Tira "Premio patrocinado por [Marca]" — solo si hay patrocinador activo. */}
-      {prize && <SponsorTag prize={prize} />}
-
-      <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: prize ? 12 : 0 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div style={{ position: "relative", flexShrink: 0 }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: champ.avatarUrl ? `url(${champ.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: `0 0 0 3px ${GOLD}`, color: BG, fontWeight: 900, fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!champ.avatarUrl && champName.charAt(0).toUpperCase()}</div>
           <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", fontSize: 22 }} aria-hidden>👑</div>
@@ -592,7 +581,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
             <span style={{ fontWeight: 900, fontSize: 19, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{champName}</span>
             <Flag code={champ.country} />
           </div>
-          <div style={{ color: prizeFor(0) ? GOLD2 : MID, fontSize: 12.5, marginTop: 2, fontWeight: prizeFor(0) ? 700 : 400 }}>{prizeFor(0) ? `🎁 Gana ${prizeFor(0)}` : "Lidera la semana"}</div>
+          <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>Lidera la semana</div>
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
           <div style={{ fontWeight: 900, fontSize: 22, color: GOLD }}>{champ.coins.toLocaleString()} 🪙</div>
@@ -606,7 +595,6 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
               <span style={{ fontSize: 16, width: 22, textAlign: "center", flexShrink: 0 }} aria-hidden>{i === 0 ? "🥈" : "🥉"}</span>
               <span style={{ flex: 1, minWidth: 0, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name || "Jugador anónimo"}</span>
               <Flag code={e.country} />
-              {prizeFor(i + 1) && <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 700, whiteSpace: "nowrap" }}>🎁 {prizeFor(i + 1)}</span>}
               <span style={{ fontWeight: 800, color: "#fff" }}>{e.coins.toLocaleString()} 🪙</span>
             </div>
           ))}
@@ -616,12 +604,47 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
   );
 }
 
+// ─── Gran Premio del Mundial (premio ÚNICO patrocinado al Top 3 GLOBAL) ──────
+// Premio real (lo financia el patrocinador) al Top 3 del ranking GLOBAL al
+// terminar el Mundial. Se anuncia tras la final. Solo se muestra si hay
+// patrocinador activo (src/data/sponsored-prize.ts).
+function GrandPrizeBanner() {
+  if (!SPONSORED_PRIZE.active || SPONSORED_PRIZE.prizes.length === 0) return null;
+  const p = SPONSORED_PRIZE;
+  const medals = ["🥇", "🥈", "🥉"];
+  return (
+    <div style={{
+      maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 18,
+      background: "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.04))",
+      border: "1px solid rgba(201,168,76,0.5)", boxShadow: "0 8px 32px rgba(201,168,76,0.14)",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <span style={{ fontSize: 20 }} aria-hidden>🏆</span>
+        <span style={{ color: GOLD, fontWeight: 900, fontSize: 14, letterSpacing: 0.5, textTransform: "uppercase" }}>Gran Premio del Mundial</span>
+      </div>
+      <div style={{ color: "#fff", fontSize: 13.5, marginTop: 8, lineHeight: 1.5 }}>
+        El <b style={{ color: GOLD2 }}>Top 3 del ranking global</b> al terminar el Mundial se lleva premios reales. Juega, gana Fútcoins y sube posiciones.
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
+        {p.prizes.slice(0, 3).map((prize, i) => (
+          <div key={i} style={{ flex: "1 1 110px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "8px 10px", textAlign: "center" }}>
+            <div style={{ fontSize: 16 }} aria-hidden>{medals[i]}</div>
+            <div style={{ color: GOLD2, fontWeight: 800, fontSize: 13.5, marginTop: 2 }}>{prize}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 12 }}><SponsorTag prize={p} /></div>
+      <div style={{ color: DIM, fontSize: 11, marginTop: 8 }}>Premios entregados al finalizar el Mundial. Participación gratuita.</div>
+    </div>
+  );
+}
+
 // Tira "Premio patrocinado por [Marca]" — logo (o nombre) + enlace a bases.
 // Solo se renderiza cuando hay patrocinador activo (src/data/sponsored-prize.ts).
 function SponsorTag({ prize }: { prize: SponsoredPrize }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, padding: "8px 12px", borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", fontSize: 12 }}>
-      <span style={{ color: DIM }}>🎁 Premio de la semana, patrocinado por</span>
+      <span style={{ color: DIM }}>🎁 Patrocinado por</span>
       {prize.sponsorUrl ? (
         <a href={prize.sponsorUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "#fff" }}>
           {prize.sponsorLogoUrl
@@ -639,7 +662,7 @@ function SponsorTag({ prize }: { prize: SponsoredPrize }) {
 }
 
 // ─── Lista de jugadores (global / por módulo / por país / por creador) ──────
-function PlayersList({ entries, meId, emptyKind = "global" }: { entries: RankEntry[] | null; meId: string | null; emptyKind?: "global" | "country" | "creator" }) {
+function PlayersList({ entries, meId, emptyKind = "global", showPrize = false }: { entries: RankEntry[] | null; meId: string | null; emptyKind?: "global" | "country" | "creator"; showPrize?: boolean }) {
   const emptyMsg = emptyKind === "country"
     ? "Aún no hay jugadores con Fútcoins en este país. ¡Sé el primero!"
     : emptyKind === "creator"
@@ -668,6 +691,9 @@ function PlayersList({ entries, meId, emptyKind = "global" }: { entries: RankEnt
               <div style={{ fontWeight: 700, fontSize: 15, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{name}{isMe && <span style={{ color: GOLD, fontWeight: 600 }}> · tú</span>}</div>
               <div style={{ fontSize: 12, color: DIM }}>Nivel {r.level}</div>
             </div>
+            {showPrize && i < 3 && SPONSORED_PRIZE.active && SPONSORED_PRIZE.prizes[i] && (
+              <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 700, whiteSpace: "nowrap" }}>🎁 {SPONSORED_PRIZE.prizes[i]}</span>
+            )}
             <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 || isMe ? GOLD : "#fff" }}>{r.coins.toLocaleString()} 🪙</div>
           </div>
         );

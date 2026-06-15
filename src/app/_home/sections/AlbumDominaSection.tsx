@@ -23,7 +23,7 @@ const IconCheck = () => (
     strokeLinejoin="round"
     aria-hidden="true"
   >
-    <circle cx="12" cy="12" r="10" fill="rgba(212, 168, 83, 0.12)" stroke="rgba(212, 168, 83, 0.6)" strokeWidth="1.2" />
+    <circle cx="12" cy="12" r="10" fill="rgba(201, 168, 76, 0.12)" stroke="rgba(201, 168, 76, 0.6)" strokeWidth="1.2" />
     <path d="m8 12.5 3 3 5-6" />
   </svg>
 );
@@ -41,7 +41,7 @@ const IconAlbumBooks = () => (
 
 const IconBallGold = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" fill="rgba(212, 168, 83, 0.15)" />
+    <circle cx="12" cy="12" r="9" fill="rgba(201, 168, 76, 0.15)" />
     <path d="M12 6.5 15.2 9 14 12.8h-4L8.8 9z" fill="currentColor" opacity="0.6" />
     <line x1="12" y1="6.5" x2="12" y2="3.5" />
     <line x1="15.2" y1="9" x2="18" y2="8" />

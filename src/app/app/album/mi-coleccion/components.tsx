@@ -611,7 +611,7 @@ export function AchievementsSection({ achievements, isES }: { achievements: Achi
             <div className={styles.achievementDesc}>{isES ? ach.description.es : ach.description.en}</div>
             {ach.unlocked && ach.unlockedAt && (
               <div className={styles.achievementDate}>
-                ✓ {new Date(ach.unlockedAt).toLocaleDateString(isES ? "es-ES" : "en-US")}
+                <IconCheck /> {new Date(ach.unlockedAt).toLocaleDateString(isES ? "es-ES" : "en-US")}
               </div>
             )}
           </div>

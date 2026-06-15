@@ -78,28 +78,31 @@ export default function MiColeccionPage() {
     setLoading(true);
     setError(null);
     try {
-      const [colRes, packRes, achRes, tradeRes] = await Promise.all([
-        fetch("/api/cromos/mine"),
-        fetch("/api/cromos/pack-status"),
-        fetch("/api/cromos/achievements"),
-        fetch("/api/cromos/trades"),
-      ]);
-
+      const colRes = await fetch("/api/cromos/mine");
       if (colRes.status === 401) {
         router.replace("/login?next=/app/album/mi-coleccion");
         return;
       }
+      if (!colRes.ok) throw new Error(`Collection fetch failed: ${colRes.status}`);
 
       const colData = await colRes.json();
       setCollection(colData);
       setFavoriteIds(colData.favoriteIds ?? []);
 
-      const packData = await packRes.json();
-      setPackStatus({
-        canOpen: packData.canOpen ?? true,
-        nextPackAt: packData.nextPackAt ?? null,
-        secondsLeft: packData.secondsLeft ?? 0,
-      });
+      const [packRes, achRes, tradeRes] = await Promise.all([
+        fetch("/api/cromos/pack-status"),
+        fetch("/api/cromos/achievements"),
+        fetch("/api/cromos/trades"),
+      ]);
+
+      if (packRes.ok) {
+        const packData = await packRes.json();
+        setPackStatus({
+          canOpen: packData.canOpen ?? true,
+          nextPackAt: packData.nextPackAt ?? null,
+          secondsLeft: packData.secondsLeft ?? 0,
+        });
+      }
 
       if (achRes.ok) {
         const achData = await achRes.json();
@@ -110,8 +113,9 @@ export default function MiColeccionPage() {
         const tradeData = await tradeRes.json();
         setOffers(tradeData.offers ?? []);
       }
-    } catch {
-      setError(isES ? "Error cargando tu colección" : "Error loading your collection");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : (isES ? "Error cargando tu colección" : "Error loading your collection");
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -147,6 +151,11 @@ export default function MiColeccionPage() {
         });
         setError(isES ? "Espera antes de abrir otro sobre" : "Wait before opening another pack");
       } else {
+        if (!Array.isArray(data.cromos) || data.cromos.length === 0) {
+          setError(isES ? "Error: cromos inválidos" : "Error: invalid cromos");
+          setOpening(false);
+          return;
+        }
         setShowPackAnimation(true);
         setPackResult(data.cromos);
         const nextAt = data.nextPackAt ? new Date(data.nextPackAt).getTime() : 0;
@@ -156,7 +165,7 @@ export default function MiColeccionPage() {
           nextPackAt: data.nextPackAt ?? null,
           secondsLeft,
         });
-        setTimeout(() => load(), 2500);
+        setTimeout(() => load(), 2400);
       }
     } catch {
       setError(isES ? "No se pudo abrir el sobre" : "Could not open pack");
@@ -189,13 +198,17 @@ export default function MiColeccionPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cromoId }),
       });
-      if (!res.ok) return;
+      if (!res.ok) {
+        setError(isES ? "No se pudo actualizar favoritos" : "Could not update favorites");
+        return;
+      }
       const { favorited } = await res.json();
       setFavoriteIds((prev) =>
         favorited ? [...prev, cromoId] : prev.filter((id) => id !== cromoId)
       );
-    } catch {
-      // ignore
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : (isES ? "Error con favoritos" : "Error with favorites");
+      setError(msg);
     }
   };
 
@@ -366,12 +379,30 @@ export default function MiColeccionPage() {
                 offers={offers}
                 userId={userId}
                 onAccept={async (id) => {
-                  const res = await fetch(`/api/cromos/trades/${id}/accept`, { method: "POST" });
-                  if (res.ok) load();
+                  try {
+                    const res = await fetch(`/api/cromos/trades/${id}/accept`, { method: "POST" });
+                    if (!res.ok) {
+                      setError(isES ? "No se pudo aceptar el intercambio" : "Could not accept trade");
+                      return;
+                    }
+                    await load();
+                  } catch (err) {
+                    const msg = err instanceof Error ? err.message : (isES ? "Error aceptando intercambio" : "Error accepting trade");
+                    setError(msg);
+                  }
                 }}
                 onCancel={async (id) => {
-                  const res = await fetch(`/api/cromos/trades/${id}`, { method: "DELETE" });
-                  if (res.ok) load();
+                  try {
+                    const res = await fetch(`/api/cromos/trades/${id}`, { method: "DELETE" });
+                    if (!res.ok) {
+                      setError(isES ? "No se pudo cancelar el intercambio" : "Could not cancel trade");
+                      return;
+                    }
+                    await load();
+                  } catch (err) {
+                    const msg = err instanceof Error ? err.message : (isES ? "Error cancelando intercambio" : "Error canceling trade");
+                    setError(msg);
+                  }
                 }}
                 onCreate={() => setShowCreateTrade(true)}
                 t={t}

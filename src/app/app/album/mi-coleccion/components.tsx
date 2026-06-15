@@ -544,11 +544,11 @@ export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const revealT = setTimeout(() => setRevealed(true), 1600);
+    const revealT = setTimeout(() => setRevealed(true), 2000);
     const doneT = setTimeout(() => {
       document.body.style.overflow = "";
       onDone();
-    }, 2400);
+    }, 2300);
     return () => { clearTimeout(revealT); clearTimeout(doneT); document.body.style.overflow = ""; };
   }, [onDone]);
 

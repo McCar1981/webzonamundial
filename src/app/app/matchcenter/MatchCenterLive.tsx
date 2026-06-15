@@ -13,6 +13,7 @@ import PreMatchHero from "./PreMatchHero";
 import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
 import PreviaAccordion from "./PreviaAccordion";
+import WinProbability from "./WinProbability";
 import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -1564,6 +1565,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                 </div>
               )}
             </div>
+
+            {/* Latido de probabilidad: % real de mercado (1X2) + gol inminente */}
+            <WinProbability matchId={matchId} home={meta.home} away={meta.away} momentum={momentum} live={isInPlay(status)} />
 
             {/* Pulso / momentum + reacción del público */}
             <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />

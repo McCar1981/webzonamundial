@@ -98,7 +98,7 @@ export default function AlbumPage() {
           setFeaturedWeek(data.weekKey ?? "");
         }
       })
-      .catch(() => {});
+      .catch(() => { setFeatured([]); });
   }, []);
 
   const handleClaim = useCallback(async (dayIndex: number) => {
@@ -125,49 +125,54 @@ export default function AlbumPage() {
   ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const heroTl = gsap.timeline();
-      heroTl.from("[data-hero-badge]", { y: -20, opacity: 0, duration: 0.6, ease: "power2.out" })
-            .from("[data-hero-title]", { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
-            .from("[data-hero-desc]", { y: 30, opacity: 0, duration: 0.7, ease: "power2.out" }, "-=0.5")
-            .from("[data-hero-cta]", { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)" }, "-=0.4");
+    if (!containerRef.current) return;
+    try {
+      const ctx = gsap.context(() => {
+        const heroTl = gsap.timeline();
+        heroTl.from("[data-hero-badge]", { y: -20, opacity: 0, duration: 0.6, ease: "power2.out" })
+              .from("[data-hero-title]", { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+              .from("[data-hero-desc]", { y: 30, opacity: 0, duration: 0.7, ease: "power2.out" }, "-=0.5")
+              .from("[data-hero-cta]", { y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)" }, "-=0.4");
 
-      gsap.from("[data-sticker-card]", {
-        scrollTrigger: { trigger: "[data-stickers-grid]", start: "top 85%" },
-        y: 50, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power3.out"
-      });
+        gsap.from("[data-sticker-card]", {
+          scrollTrigger: { trigger: "[data-stickers-grid]", start: "top 85%" },
+          y: 50, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power3.out"
+        });
 
-      gsap.from("[data-stat-item]", {
-        scrollTrigger: { trigger: "[data-stats-row]", start: "top 85%" },
-        y: 30, opacity: 0, duration: 0.5, stagger: 0.1, ease: "power2.out"
-      });
+        gsap.from("[data-stat-item]", {
+          scrollTrigger: { trigger: "[data-stats-row]", start: "top 85%" },
+          y: 30, opacity: 0, duration: 0.5, stagger: 0.1, ease: "power2.out"
+        });
 
-      gsap.from("[data-feat-card]", {
-        scrollTrigger: { trigger: "[data-feats-grid]", start: "top 85%" },
-        y: 50, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out"
-      });
+        gsap.from("[data-feat-card]", {
+          scrollTrigger: { trigger: "[data-feats-grid]", start: "top 85%" },
+          y: 50, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out"
+        });
 
-      gsap.from("[data-section-card]", {
-        scrollTrigger: { trigger: "[data-sections-grid]", start: "top 85%" },
-        y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: "power3.out"
-      });
+        gsap.from("[data-section-card]", {
+          scrollTrigger: { trigger: "[data-sections-grid]", start: "top 85%" },
+          y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: "power3.out"
+        });
 
-      gsap.from("[data-cta-content]", {
-        scrollTrigger: { trigger: "[data-cta-section]", start: "top 80%" },
-        y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out"
-      });
+        gsap.from("[data-cta-content]", {
+          scrollTrigger: { trigger: "[data-cta-section]", start: "top 80%" },
+          y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out"
+        });
 
-      gsap.utils.toArray<HTMLElement>("[data-hover-card]").forEach((card) => {
-        card.addEventListener("mouseenter", () => { gsap.to(card, { y: -8, duration: 0.3, ease: "power2.out" }); });
-        card.addEventListener("mouseleave", () => { gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" }); });
-      });
+        gsap.utils.toArray<HTMLElement>("[data-hover-card]").forEach((card) => {
+          card.addEventListener("mouseenter", () => { gsap.to(card, { y: -8, duration: 0.3, ease: "power2.out" }); });
+          card.addEventListener("mouseleave", () => { gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" }); });
+        });
 
-      gsap.utils.toArray<HTMLElement>("[data-hover-btn]").forEach((btn) => {
-        btn.addEventListener("mouseenter", () => { gsap.to(btn, { scale: 1.05, duration: 0.2, ease: "power2.out" }); });
-        btn.addEventListener("mouseleave", () => { gsap.to(btn, { scale: 1, duration: 0.2, ease: "power2.out" }); });
-      });
-    }, containerRef);
-    return () => ctx.revert();
+        gsap.utils.toArray<HTMLElement>("[data-hover-btn]").forEach((btn) => {
+          btn.addEventListener("mouseenter", () => { gsap.to(btn, { scale: 1.05, duration: 0.2, ease: "power2.out" }); });
+          btn.addEventListener("mouseleave", () => { gsap.to(btn, { scale: 1, duration: 0.2, ease: "power2.out" }); });
+        });
+      }, containerRef);
+      return () => ctx.revert();
+    } catch (e) {
+      console.error("GSAP animation setup failed:", e);
+    }
   }, []);
 
   return (

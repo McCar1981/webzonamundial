@@ -36,8 +36,8 @@ export const SPONSORED_PRIZE: SponsoredPrize = {
   sponsorName: "Sprintmarkt",
   // sponsorLogoUrl: "https://...",         // ← AÑADIR el logo (del patrocinador real) antes de la final
   // sponsorUrl: "https://...",
-  prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º del ranking global
-  termsNote: "Premio para el Top 3 del ranking global al finalizar el Mundial. Participación gratuita.",
+  prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º por tasa de acierto
+  termsNote: "Premio para el Top 3 por tasa de acierto (mín. 20 predicciones) al finalizar el Mundial. Participación gratuita.",
   // termsUrl: "https://zonamundial.app/bases-campeon", // bases legales (las define el abogado)
 };
 

@@ -15,6 +15,7 @@ import FormationBoard from "./FormationBoard";
 import PreviaAccordion from "./PreviaAccordion";
 import WinProbability from "./WinProbability";
 import EstadioEnVivo from "./EstadioEnVivo";
+import SalaAmigos from "./SalaAmigos";
 import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -1465,6 +1466,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                 reales no terminados; en finalizados no aporta y ahorra KV). */}
             {feed.mode === "live" && matchId < 9000 && !finished && (
               <EstadioEnVivo matchId={matchId} live={isInPlay(status)} />
+            )}
+            {/* Sala con amigos: watch party (chat + GIFs) por partido. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <SalaAmigos matchId={matchId} homeName={meta.home.name} awayName={meta.away.name} />
             )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>

@@ -355,12 +355,12 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                   boxShadow: "0 8px 30px rgba(201,168,76,0.25)",
                 }}
               >
-                {loading ? "Abriendo pago seguro…" : "Empezar 3 días gratis"}
+                {loading ? "Abriendo pago seguro…" : "Suscribirme ahora"}
               </button>
               {error && <div className="mt-3 text-sm text-red-400">{error}</div>}
               <div className="mt-3 text-xs text-gray-500">
-                3 días gratis, luego {interval === "yearly" ? prices.yearly.display : prices.monthly.display} · cancela
-                cuando quieras · pago seguro con Stripe
+                {interval === "yearly" ? prices.yearly.display : prices.monthly.display} · cancela cuando quieras · pago
+                seguro con Stripe
               </div>
             </div>
           </>
@@ -399,7 +399,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         <div className="mt-8 space-y-3">
           {[
             { q: "¿Y después del Mundial?", a: "Tu Pro sigue todo el año: Champions, Copa Libertadores, Eurocopa y las grandes ligas del mundo. No es solo el Mundial." },
-            { q: "¿Me cobran durante la prueba?", a: "No. Tienes 3 días gratis para probarlo todo. Si cancelas antes de que terminen, no se te cobra nada." },
+            { q: "¿Cuándo tengo acceso?", a: "Al instante. En cuanto completas el pago, se te desbloquea todo el Pro de inmediato." },
             { q: "¿Puedo cancelar?", a: "Cuando quieras, en dos clics desde tu cuenta. Sin permanencia ni llamadas." },
             { q: "¿El precio sube luego?", a: "Si te suscribes durante el Mundial, bloqueas el precio fundador de por vida. Más adelante subirá para las nuevas altas." },
           ].map((f) => (

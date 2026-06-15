@@ -61,7 +61,7 @@ export default function PaywallModal() {
   const perk = postWeekend
     ? "La probaste gratis durante el fin de semana. Actívala de nuevo con el precio fundador."
     : copy.perk;
-  const ctaLabel = postWeekend ? "Activar Pro" : "Empezar 3 días gratis";
+  const ctaLabel = "Activar Pro";
 
   return createPortal(
     <div

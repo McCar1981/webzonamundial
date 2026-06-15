@@ -654,8 +654,8 @@ const translations = {
       cta: {
         title: "¿Listo para el máximo potencial?",
         desc: "Únete a miles de usuarios que ya disfrutan de la experiencia Premium completa.",
-        btn: "Empieza tu prueba gratis →",
-        hint: "7 días gratis · Cancela cuando quieras · Sin tarjeta",
+        btn: "Hazte Pro →",
+        hint: "Cancela cuando quieras · Pago seguro con Stripe",
       },
       comparison: [
         { feature: "Predicciones básicas", free: "Sí", premium: "Sí", highlight: false },
@@ -2591,8 +2591,8 @@ const translations = {
       cta: {
         title: "Ready to unlock your full potential?",
         desc: "Join thousands of users already enjoying the full Premium experience.",
-        btn: "Start your free trial →",
-        hint: "7 days free · Cancel anytime · No card required",
+        btn: "Go Pro →",
+        hint: "Cancel anytime · Secure payment with Stripe",
       },
       comparison: [
         { feature: "Basic predictions", free: "Yes", premium: "Yes", highlight: false },

@@ -83,6 +83,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/suecia-tunez-wide.webp",
     mobile: "/images/hero/suecia-tunez-mobile.webp",
   },
+  // España vs Cabo Verde (15 jun, Grupo H).
+  "espana-cabo-verde": {
+    wide: "/images/hero/espana-cabo-verde-wide.webp",
+    mobile: "/images/hero/espana-cabo-verde-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

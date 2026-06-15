@@ -540,3 +540,82 @@ export async function getCreatorsLeaderboard(limit = 100): Promise<CreatorRank[]
   list.sort((x, y) => y.coins - x.coins || y.players - x.players || x.creator.localeCompare(y.creator));
   return list.slice(0, Math.max(1, limit)).map((n, i) => ({ rank: i + 1, ...n }));
 }
+
+// ─── CAMPEÓN DE LA SEMANA (Fútcoins GANADAS en una ventana móvil) ────────────
+// El ranking global usa el SALDO acumulado de siempre (profiles.coins): difícil
+// de alcanzar para quien llega nuevo y casi imposible de destronar. Este, en
+// cambio, mira solo lo GANADO en los últimos `days` días (coin_ledger.created_at)
+// y RESETEA con la ventana: cada semana todos parten de cero y cualquiera puede
+// ser campeón. El premio es ESTATUS (la corona), no dinero — motiva sin coste ni
+// riesgo legal. Agrega en TS paginando el ledger (mismo patrón que el medallero),
+// así NO necesita migración ni RPC nueva. Best-effort: si la lectura falla,
+// devuelve [] y la UI simplemente no muestra campeón (nunca rompe).
+
+interface LedgerRow { user_id: string; coins: number | null; xp: number | null }
+
+export async function getWeeklyCoinChampions(days = 7, limit = 10): Promise<RankingEntry[]> {
+  const admin = adminClient();
+  const since = new Date(Date.now() - Math.max(1, days) * 24 * 60 * 60 * 1000).toISOString();
+  const PAGE = 1000;     // tope por respuesta de PostgREST
+  const MAX_PAGES = 60;  // backstop defensivo
+  const byUser = new Map<string, { coins: number; xp: number }>();
+
+  try {
+    for (let page = 0; page < MAX_PAGES; page++) {
+      const { data, error } = await admin
+        .from("coin_ledger")
+        .select("user_id,coins,xp,created_at")
+        .gte("created_at", since)
+        .order("created_at", { ascending: false })
+        .range(page * PAGE, page * PAGE + PAGE - 1);
+      if (error) {
+        console.error("[ranking] campeón semana falló en página", page, error.message);
+        break;
+      }
+      const rows = (data ?? []) as LedgerRow[];
+      for (const r of rows) {
+        if (isRankingExcluded(r.user_id)) continue; // el staff no compite
+        const a = byUser.get(r.user_id) ?? { coins: 0, xp: 0 };
+        a.coins += r.coins ?? 0;
+        a.xp += r.xp ?? 0;
+        byUser.set(r.user_id, a);
+      }
+      if (rows.length < PAGE) break;
+      if (page === MAX_PAGES - 1) console.error("[ranking] campeón semana alcanzó MAX_PAGES; posiblemente incompleto");
+    }
+  } catch (e) {
+    console.error("[ranking] campeón semana excepción", (e as Error).message);
+    return [];
+  }
+
+  const agg = [...byUser.entries()]
+    .map(([userId, a]) => ({ userId, coins: a.coins, xp: a.xp }))
+    .filter((a) => a.coins > 0)
+    // Más Fútcoins ganadas esta semana; desempate por XP ganado y luego id (estable).
+    .sort((x, y) => y.coins - x.coins || y.xp - x.xp || x.userId.localeCompare(y.userId))
+    .slice(0, Math.max(1, Math.min(50, limit)));
+  if (!agg.length) return [];
+
+  // Hidratar perfiles (nombre/avatar/país + XP TOTAL para el nivel real).
+  const ids = agg.map((a) => a.userId);
+  const { data: profs } = await admin
+    .from("profiles")
+    .select("id,username,avatar_url,country,xp")
+    .in("id", ids);
+  const byId = new Map(((profs ?? []) as ProfRow[]).map((p) => [p.id, p]));
+
+  return agg.map((a, i) => {
+    const p = byId.get(a.userId);
+    const totalXp = Number(p?.xp ?? 0);
+    return {
+      rank: i + 1,
+      userId: a.userId,
+      name: p?.username ?? null,
+      avatarUrl: p?.avatar_url ?? null,
+      country: p?.country ?? null,
+      coins: a.coins,        // Fútcoins GANADAS en la ventana (no el saldo total)
+      xp: totalXp,
+      level: levelForXp(totalXp),
+    };
+  });
+}

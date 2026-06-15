@@ -168,6 +168,11 @@ export interface MatchResultReal {
   };
   player_ratings: Record<string, number>;
   first_sub_minute?: number;
+  /** Ganador efectivo cuando NO se decide en los 120' (tanda de penaltis, status
+   *  "PEN"): el `score` se queda con el marcador de los 120' (para "resultado
+   *  exacto"), pero el GANADOR (winner / social / cadena / piques / oráculo) usa
+   *  este override. Ausente en partidos resueltos en tiempo normal/prórroga. */
+  winner_override?: WinnerResult;
 }
 
 // ─── Duelos y líneas generadas (deterministas) ───────────────────────────────

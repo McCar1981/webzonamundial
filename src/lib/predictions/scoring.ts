@@ -75,6 +75,14 @@ function adjacentRange(a: MinuteRange, b: MinuteRange): boolean {
   const ib = MINUTE_RANGES.indexOf(b);
   return Math.abs(ia - ib) === 1;
 }
+// FIX (auditoría calificación): un evento del añadido del 2º tiempo (90+X) cae en
+// la franja "90+", no en "76-90"; el del 1er tiempo (45+X) se queda en "31-45".
+// api-football entrega minute=90/45 + extra; sin esto, "90+" era inalcanzable y
+// el gol del 90+4 se pagaba como "76-90" (8 pts en vez de 20).
+function effectiveRange(minute: number, extra?: number): MinuteRange {
+  if (extra && extra > 0 && minute >= 90) return "90+";
+  return rangeOfMinute(minute);
+}
 
 // ─── Scoring por tipo ────────────────────────────────────────────────────────
 function scoreExactScore(d: ExactScoreData, r: MatchResultReal): BaseScore {
@@ -84,8 +92,13 @@ function scoreExactScore(d: ExactScoreData, r: MatchResultReal): BaseScore {
   }
   const diff = Math.abs(d.home_goals - eh) + Math.abs(d.away_goals - ea);
   const sameWinner = winnerOf(d.home_goals, d.away_goals) === winnerOf(eh, ea);
-  if (diff === 1) return { correct: true, points: 10, detail: "Cerca: fallo por 1 gol" };
+  // FIX (auditoría calificación): el "fallo por 1 gol" solo cuenta como acierto y
+  // paga 10 si ADEMÁS acertó el ganador; si el signo del partido fue otro (p.ej.
+  // predijo 2-1 y fue 1-1), no debe marcar is_correct=true ni pagar más que un
+  // ganador acertado — solo una pequeña consolación neutra.
+  if (diff === 1 && sameWinner) return { correct: true, points: 10, detail: "Cerca: fallo por 1 gol (ganador correcto)" };
   if (sameWinner) return { correct: true, points: 5, detail: "Ganador correcto, marcador erróneo" };
+  if (diff === 1) return { correct: false, points: 3, detail: "Cerca por 1 gol, pero ganador errado" };
   return { correct: false, points: 0, detail: "Marcador y ganador fallados" };
 }
 
@@ -104,35 +117,58 @@ function scoreFirstScorer(d: FirstScorerData, r: MatchResultReal): BaseScore {
       : { correct: false, points: 0, detail: "Sí hubo goles" };
   }
   if (totalGoals === 0) return { correct: false, points: 0, detail: "No hubo goles" };
+  const goalEvents = r.events.filter((e) => e.type === "goal");
   const fg = firstGoal(r);
-  if (fg && fg.player_id === d.player_id) {
+  // FIX (auditoría calificación): el goleador del feed puede no mapearse al pool
+  // (transliteración / orden de nombre / homónimos: Son, los 3 Martínez…),
+  // dejando goles SIN player_id. Antes eso marcaba como FALLO (0 pts + racha rota)
+  // al que SÍ había acertado. Ahora distinguimos "no identificado" de "no marcó":
+  //   • acierto exacto solo si el PRIMER gol está identificado y coincide;
+  //   • "marcó (no el primero)" si el pick está entre los goles identificados;
+  //   • FALLO real solo si TODOS los goles están identificados y el pick no está;
+  //   • si hay algún gol sin identificar (incl. el primero) y no casó → ANULAR
+  //     (neutro, FIX 9) en vez de castigar un posible acierto que el feed no etiquetó.
+  if (fg && fg.player_id != null && fg.player_id === d.player_id) {
     return { correct: true, points: 30, detail: "Primer goleador exacto" };
   }
-  const scoredAnytime = r.events.some((e) => e.type === "goal" && e.player_id === d.player_id);
+  const scoredAnytime = goalEvents.some((e) => e.player_id === d.player_id);
   if (scoredAnytime) return { correct: true, points: 10, detail: "Marcó, pero no fue el primero" };
-  return { correct: false, points: 0, detail: "Tu goleador no marcó" };
+  const allIdentified = goalEvents.length > 0 && goalEvents.every((e) => e.player_id != null);
+  if (allIdentified) return { correct: false, points: 0, detail: "Tu goleador no marcó" };
+  return { correct: false, points: 0, detail: "Anulado: el feed no identificó al goleador", voided: true };
 }
 
 // Cuántos eslabones, EN ORDEN desde el primero, son correctos.
 export interface ChainStepResult { step: number; correct: boolean }
 export function evalChain(d: ChainData, r: MatchResultReal): { results: ChainStepResult[]; inOrder: number } {
-  const goals = r.events.filter((e) => e.type === "goal").sort((a, b) => a.minute - b.minute);
-  // FIX 4: tarjetas ordenadas por minuto + cursor de minuto consumido. Igual
-  // que los goles, cada eslabón "card" debe consumir una tarjeta DISTINTA del
-  // equipo indicado con minuto estrictamente creciente respecto a la anterior
-  // consumida. Así una cadena trivial repetida [card,card,card] ya no acierta.
-  const cards = r.events.filter((e) => e.type === "card").sort((a, b) => a.minute - b.minute);
-  let goalCursor = 0;
-  let cardLastMinute = -Infinity; // minuto de la última tarjeta consumida
-  const cardUsed = new Set<number>(); // índices de tarjetas ya consumidas
+  const goals = r.events.filter((e) => e.type === "goal");
+  // FIX (auditoría calificación): UN solo cursor cronológico sobre la línea de
+  // tiempo combinada de goles Y tarjetas. Antes goles y tarjetas tenían cursores
+  // independientes, así que una cadena que mezclaba gol y tarjeta se validaba como
+  // dos secuencias separadas y podía pagar el jackpot por un orden que NO ocurrió
+  // (p.ej. "tarjeta ANTES del gol" cuando fue al revés). Ahora un eslabón goal/card
+  // debe ser un evento POSTERIOR en la línea de tiempo al último eslabón consumido.
+  // winner/halftime_score son predicados del estado final (por diseño, no consumen
+  // del cursor — son checkpoints, no eventos cronológicos).
+  const timeline = r.events
+    .filter((e) => e.type === "goal" || e.type === "card")
+    .map((e, i) => ({ e, i }))
+    .sort((a, b) => a.e.minute - b.e.minute || a.i - b.i);
+  let cursor = -1; // índice en `timeline` del último evento cronológico consumido
   const results: ChainStepResult[] = [];
   for (const step of d.chain) {
     let ok = false;
     switch (step.event_type) {
-      case "goal": {
-        const g = goals[goalCursor];
-        if (g && g.team === step.event_data.team) ok = true;
-        goalCursor++;
+      case "goal":
+      case "card": {
+        for (let k = cursor + 1; k < timeline.length; k++) {
+          const t = timeline[k].e;
+          if (t.type === step.event_type && t.team === step.event_data.team) {
+            ok = true;
+            cursor = k;
+            break;
+          }
+        }
         break;
       }
       case "halftime_score": {
@@ -145,19 +181,6 @@ export function evalChain(d: ChainData, r: MatchResultReal): { results: ChainSte
       }
       case "winner": {
         ok = winnerOf(r.score.home, r.score.away) === step.event_data.result;
-        break;
-      }
-      case "card": {
-        // Busca la primera tarjeta no consumida, del equipo indicado, con minuto
-        // estrictamente mayor al de la última consumida; la consume si existe.
-        const idx = cards.findIndex(
-          (c, i) => !cardUsed.has(i) && c.team === step.event_data.team && c.minute > cardLastMinute,
-        );
-        if (idx !== -1) {
-          ok = true;
-          cardUsed.add(idx);
-          cardLastMinute = cards[idx].minute;
-        }
         break;
       }
     }
@@ -196,8 +219,12 @@ function scoreDuel(d: DuelData, r: MatchResultReal): BaseScore {
   }
   const ra = ratings[pa];
   const rb = ratings[pb];
-  const winner = ra === rb ? null : ra > rb ? pa : pb;
-  if (winner && winner === d.winner_player_id) {
+  // FIX (auditoría calificación): empate de rendimiento (mismo rating) → no hay
+  // ganador objetivo del duelo. Anular (neutro) en vez de marcar fallo, que
+  // rompería racha y precisión injustamente.
+  if (ra === rb) return { correct: false, points: 0, detail: "Anulado: empate de rendimiento", voided: true };
+  const winner = ra > rb ? pa : pb;
+  if (winner === d.winner_player_id) {
     return { correct: true, points: 15, detail: "Duelo acertado" };
   }
   return { correct: false, points: 0, detail: "Duelo fallado" };
@@ -241,15 +268,22 @@ function scoreMinuteDrama(d: MinuteDramaData, r: MatchResultReal): BaseScore {
   if (d.event === "first_sub" && r.first_sub_minute == null) {
     return { correct: false, points: 0, detail: "Anulado: sin minuto del primer cambio", voided: true };
   }
+  // Tomamos el EVENTO (no solo el minuto) para considerar el añadido. first_sub
+  // solo guarda minuto; goles/tarjetas pueden ser 90+X.
   let evMinute: number | undefined;
-  switch (d.event) {
-    case "first_goal": evMinute = firstGoal(r)?.minute; break;
-    case "first_card": evMinute = firstCard(r)?.minute; break;
-    case "last_goal": evMinute = lastGoal(r)?.minute; break;
-    case "first_sub": evMinute = r.first_sub_minute; break;
+  let real: MinuteRange;
+  if (d.event === "first_sub") {
+    evMinute = r.first_sub_minute;
+    if (evMinute == null) return { correct: false, points: 0, detail: "El evento no ocurrió" };
+    real = rangeOfMinute(evMinute);
+  } else {
+    const ev = d.event === "first_goal" ? firstGoal(r)
+      : d.event === "first_card" ? firstCard(r)
+      : lastGoal(r);
+    if (!ev) return { correct: false, points: 0, detail: "El evento no ocurrió" };
+    evMinute = ev.minute;
+    real = effectiveRange(ev.minute, ev.extra);
   }
-  if (evMinute == null) return { correct: false, points: 0, detail: "El evento no ocurrió" };
-  const real = rangeOfMinute(evMinute);
   if (d.minute_range === real) return { correct: true, points: 20, detail: `Franja exacta (min ${evMinute})` };
   if (d.minute_range && adjacentRange(d.minute_range, real)) {
     return { correct: true, points: 8, detail: `Franja adyacente (min ${evMinute})` };

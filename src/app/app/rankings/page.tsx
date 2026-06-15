@@ -9,6 +9,7 @@ import { getCountryName } from "@/lib/countries";
 import { getCreadorBySlug, getCreadoresActivos } from "@/data/creadores";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
+import { SPONSORED_PRIZE, type SponsoredPrize } from "@/data/sponsored-prize";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -547,12 +548,20 @@ function MeBanner({ rank, flag, leading, title, sub, value }: { rank: number; fl
 // Resetea cada semana, así cualquiera puede ser campeón. Premio en estatus.
 function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
   if (entries === null) return null;            // cargando: no ocupa sitio
+  // Premio patrocinado (si hay patrocinador activo en src/data/sponsored-prize.ts).
+  const prize = SPONSORED_PRIZE.active && SPONSORED_PRIZE.prizes.length > 0 ? SPONSORED_PRIZE : null;
+  const prizeFor = (pos: number) => prize?.prizes[pos] ?? null; // 0=1º, 1=2º, 2=3º
   if (entries.length === 0) {
     return (
       <div style={{ maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 16, background: "rgba(201,168,76,0.08)", border: "1px dashed rgba(201,168,76,0.35)", textAlign: "center" }}>
         <div style={{ fontSize: 22 }}>👑</div>
         <div style={{ fontWeight: 800, fontSize: 15, marginTop: 4 }}>Sé el <span style={{ color: GOLD }}>Campeón de la semana</span></div>
-        <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!</div>
+        <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>
+          {prize
+            ? <>Quien más Fútcoins gane esta semana se lleva <b style={{ color: GOLD2 }}>{prizeFor(0)}</b>. ¡Empieza a jugar!</>
+            : "Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!"}
+        </div>
+        {prize && <div style={{ marginTop: 10 }}><SponsorTag prize={prize} /></div>}
       </div>
     );
   }
@@ -569,7 +578,11 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
         <span style={{ color: GOLD, fontWeight: 900, fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase" }}>👑 Campeón de la semana</span>
         <span style={{ color: DIM, fontSize: 11.5 }}>Se reinicia cada semana · últimos 7 días</span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+
+      {/* Tira "Premio patrocinado por [Marca]" — solo si hay patrocinador activo. */}
+      {prize && <SponsorTag prize={prize} />}
+
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: prize ? 12 : 0 }}>
         <div style={{ position: "relative", flexShrink: 0 }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: champ.avatarUrl ? `url(${champ.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: `0 0 0 3px ${GOLD}`, color: BG, fontWeight: 900, fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!champ.avatarUrl && champName.charAt(0).toUpperCase()}</div>
           <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", fontSize: 22 }} aria-hidden>👑</div>
@@ -579,7 +592,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
             <span style={{ fontWeight: 900, fontSize: 19, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{champName}</span>
             <Flag code={champ.country} />
           </div>
-          <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>Lidera la semana</div>
+          <div style={{ color: prizeFor(0) ? GOLD2 : MID, fontSize: 12.5, marginTop: 2, fontWeight: prizeFor(0) ? 700 : 400 }}>{prizeFor(0) ? `🎁 Gana ${prizeFor(0)}` : "Lidera la semana"}</div>
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
           <div style={{ fontWeight: 900, fontSize: 22, color: GOLD }}>{champ.coins.toLocaleString()} 🪙</div>
@@ -593,11 +606,34 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
               <span style={{ fontSize: 16, width: 22, textAlign: "center", flexShrink: 0 }} aria-hidden>{i === 0 ? "🥈" : "🥉"}</span>
               <span style={{ flex: 1, minWidth: 0, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name || "Jugador anónimo"}</span>
               <Flag code={e.country} />
+              {prizeFor(i + 1) && <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 700, whiteSpace: "nowrap" }}>🎁 {prizeFor(i + 1)}</span>}
               <span style={{ fontWeight: 800, color: "#fff" }}>{e.coins.toLocaleString()} 🪙</span>
             </div>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+// Tira "Premio patrocinado por [Marca]" — logo (o nombre) + enlace a bases.
+// Solo se renderiza cuando hay patrocinador activo (src/data/sponsored-prize.ts).
+function SponsorTag({ prize }: { prize: SponsoredPrize }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, padding: "8px 12px", borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", fontSize: 12 }}>
+      <span style={{ color: DIM }}>🎁 Premio de la semana, patrocinado por</span>
+      {prize.sponsorUrl ? (
+        <a href={prize.sponsorUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "#fff" }}>
+          {prize.sponsorLogoUrl
+            ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 18, maxWidth: 120, objectFit: "contain" }} />
+            : <b>{prize.sponsorName}</b>}
+        </a>
+      ) : (
+        prize.sponsorLogoUrl
+          ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 18, maxWidth: 120, objectFit: "contain" }} />
+          : <b style={{ color: "#fff" }}>{prize.sponsorName}</b>
+      )}
+      {prize.termsUrl && <a href={prize.termsUrl} target="_blank" rel="noopener noreferrer" style={{ color: DIM, fontSize: 10.5, textDecoration: "underline" }}>bases</a>}
     </div>
   );
 }

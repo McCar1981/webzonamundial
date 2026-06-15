@@ -391,10 +391,9 @@ export async function getBarPayment(barId: string): Promise<BarPayment | null> {
   return (data as BarPayment | null) ?? null;
 }
 
-/** True si el bar tiene un plan pagado y no reembolsado. */
-export async function barHasActivePlan(barId: string): Promise<boolean> {
-  const payment = await getBarPayment(barId);
-  return !!payment && payment.status === "active" && !payment.refunded_at;
+/** Todo gratis: publicar y usar la porra ya no requiere plan ni pago. */
+export async function barHasActivePlan(_barId: string): Promise<boolean> {
+  return true;
 }
 
 /**

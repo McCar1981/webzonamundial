@@ -128,7 +128,7 @@ export default async function OGImage() {
                 display: "flex",
               }}
             >
-              Pago único · Con factura
+              100% gratis · Sin pagos
             </div>
           </div>
         </div>

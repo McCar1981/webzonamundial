@@ -58,8 +58,21 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
 
 export const DEFAULT_PLAN_ID: BarPlanId = "arranque";
 
-export function getPlan(id: string | null | undefined): BarPlan {
-  return (id && BAR_PLANS[id as BarPlanId]) || BAR_PLANS[DEFAULT_PLAN_ID];
+// Todo gratis: cualquier porra (bar o empresa) tiene TODAS las funciones
+// desbloqueadas. Se ignora el id de plan; ya no hay tiers de pago.
+export function getPlan(_id?: string | null): BarPlan {
+  return {
+    ...BAR_PLANS.pro,
+    name: "Gratis",
+    tagline: "Todo incluido, gratis",
+    priceEur: 0,
+    priceUsd: 0,
+    premiumMaterials: true,
+    exportParticipants: true,
+    weeklyPrizes: true,
+    barVsBar: true,
+    maxQrSources: 99,
+  };
 }
 
 export function isBarPlanId(id: string | null | undefined): id is BarPlanId {

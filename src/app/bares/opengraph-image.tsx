@@ -133,7 +133,7 @@ export default async function OGImage() {
                 display: "flex",
               }}
             >
-              Pago único · Sin suscripción
+              100% gratis · Sin pagos
             </div>
           </div>
         </div>

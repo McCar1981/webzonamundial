@@ -15,13 +15,12 @@ import {
   Trophy, Users, Mail, Repeat, BarChart3, Palette, ArrowRight,
   Lock, Megaphone, Monitor, FileText, Sparkles, Medal,
 } from "lucide-react";
-import EmpresaPlanCards from "./EmpresaPlanCards";
 // Reutiliza el cargador de imagen con fallback de /bares (genérico, no toca /bares).
 import BarPhoto from "../bares/BarPhoto";
 
 const EMPRESAS_TITLE = "Porra Corporativa para Empresas · ZonaMundial";
 const EMPRESAS_DESCRIPTION =
-  "Crea la liga del Mundial 2026 para tu empresa: liga privada solo para empleados, ranking por departamentos, kit de comunicación interna e incentivos que define tu equipo. Pago único, sin suscripción.";
+  "Crea gratis la liga del Mundial 2026 para tu empresa: liga privada solo para empleados, ranking por departamentos, kit de comunicación interna e incentivos que define tu equipo. Sin pagos, sin suscripción.";
 
 export const metadata: Metadata = {
   title: EMPRESAS_TITLE,
@@ -205,13 +204,13 @@ export default function EmpresasLandingPage() {
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold transition-transform active:scale-[0.98]"
                 style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#E2E8F0" }}
               >
-                Ver planes
+                Por qué es gratis
               </Link>
             </div>
             <p className="mt-4 text-[12px] text-zm-text-muted flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-1">
-              <span className="inline-flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} /> Pago único</span>
+              <span className="inline-flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} /> 100% gratis</span>
               <span className="opacity-40">·</span>
-              <span>Sin suscripción</span>
+              <span>Sin pagos</span>
               <span className="opacity-40">·</span>
               <span>Liga privada solo para tu equipo</span>
             </p>
@@ -286,7 +285,7 @@ export default function EmpresasLandingPage() {
                 className="absolute left-4 top-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider"
                 style={{ background: GOLD_GRAD, color: "#1A1208", boxShadow: "0 8px 20px -8px rgba(201,168,76,0.8)" }}
               >
-                Pago único
+                Gratis
               </span>
             </div>
           </div>
@@ -425,28 +424,35 @@ export default function EmpresasLandingPage() {
           </div>
         </section>
 
-        {/* ── PLANES ───────────────────────────────────────── */}
+        {/* ── GRATIS ───────────────────────────────────────── */}
         <section id="planes" className="mt-24 scroll-mt-24">
-          <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Elige el plan de tu empresa</h2>
-          <p className="mt-3 text-center text-zm-text-muted">
-            Pago único válido para todo el Mundial 2026. Sin suscripciones. Con factura. Precios para España.
-          </p>
-          <div className="mt-12">
-            <EmpresaPlanCards />
+          <div
+            className="relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-14"
+            style={{ borderColor: "rgba(201,168,76,0.3)", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(11,24,37,0.5) 55%)" }}
+          >
+            <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-bold" style={{ color: GOLD }}>
+              <Sparkles size={14} /> Sin pagos
+            </div>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black" style={{ color: "#F4F1E9" }}>
+              La liga de tu empresa, ahora{" "}
+              <span style={{ backgroundImage: GOLD_GRAD, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>100% gratis</span>
+            </h2>
+            <p className="mt-4 max-w-xl mx-auto text-zm-text-muted leading-relaxed">
+              Liga privada, ranking por departamentos, kit de comunicación interna y pantalla para la
+              oficina: todo gratis, sin suscripción y sin tarjeta. Solo necesitas una cuenta.
+            </p>
+            <Link
+              href={CTA_HREF}
+              className="mt-8 inline-flex items-center gap-2 px-9 py-4 rounded-full font-black transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+              style={{ background: GOLD_GRAD, color: "#1A1208", boxShadow: "0 14px 38px -10px rgba(201,168,76,0.75)" }}
+            >
+              Crear la liga de mi empresa <ArrowRight size={18} />
+            </Link>
+            <p className="mt-5 text-[12px] text-zm-text-muted">
+              ¿Dudas o necesitas ayuda para montarla? Escríbenos a{" "}
+              <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>
+            </p>
           </div>
-          <p className="mt-8 text-center text-sm text-zm-text-muted">
-            ¿Más de 150 empleados o varias oficinas? Escríbenos a{" "}
-            <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>{" "}
-            y lo montamos contigo.
-          </p>
-          <p className="mt-3 mx-auto max-w-xl text-center text-[11px] text-zm-text-muted leading-relaxed">
-            Emitimos factura. Actividad interna de empresa, sin premios en metálico gestionados por la plataforma.
-          </p>
-          <p className="mt-2 text-center text-[11px] text-zm-text-muted">
-            ¿Tu empresa está en LATAM?{" "}
-            <a href="mailto:gol@zonamundial.app?subject=Porra%20Empresas%20LATAM" style={{ color: GOLD }}>Escríbenos</a>{" "}
-            y te pasamos precios locales.
-          </p>
         </section>
 
         {/* ── CTA FINAL ────────────────────────────────────── */}
@@ -479,7 +485,7 @@ export default function EmpresasLandingPage() {
             Crear la liga de mi empresa <ArrowRight size={18} />
           </Link>
           <p className="mt-5 text-[12px] text-zm-text-muted">
-            Pago único · Liga privada · Lista en 10 minutos
+            Gratis · Liga privada · Lista en 10 minutos
           </p>
         </section>
 

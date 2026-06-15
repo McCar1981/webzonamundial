@@ -1,0 +1,410 @@
+{
+  "generatedFrom": "PR #189 (commit bc5d009)",
+  "current": {
+    "alemania": [
+      "https://upload.wikimedia.org/wikipedia/commons/7/7a/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_Germany_lineup.jpg"
+    ],
+    "arabia-saudi": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Saudi_National_Team_at_the_World_Cup_%282022%29.jpg/960px-Saudi_National_Team_at_the_World_Cup_%282022%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Saudi_Arabia_coach_Roberto_Mancini_240121.jpg/960px-Saudi_Arabia_coach_Roberto_Mancini_240121.jpg"
+    ],
+    "argelia": [
+      "https://upload.wikimedia.org/wikipedia/commons/1/1e/National_Liberation_Front_football_team_of_Algeria_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Algeriafans.JPG/960px-Algeriafans.JPG"
+    ],
+    "argentina": [
+      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Seleccionado_argentino.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Argentina_players_warming_up_-_ARG_v_CAN_-_2024-07-09.jpg/960px-Argentina_players_warming_up_-_ARG_v_CAN_-_2024-07-09.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5e/Argentina_vs_mexico_argentina_celebrando.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Festejos_de_Argentina_campe%C3%B3n_del_mundo_en_Qatar_2022_-_Ciudad_de_Santa_Fe_-_Berna_Gait%C3%A1n_Otar%C3%A1n_-_03.jpg/960px-Festejos_de_Argentina_campe%C3%B3n_del_mundo_en_Qatar_2022_-_Ciudad_de_Santa_Fe_-_Berna_Gait%C3%A1n_Otar%C3%A1n_-_03.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Festejos_de_Argentina_campe%C3%B3n_del_mundo_en_Qatar_2022_-_Ciudad_de_Santa_Fe_-_Berna_Gait%C3%A1n_Otar%C3%A1n_-_09.jpg/960px-Festejos_de_Argentina_campe%C3%B3n_del_mundo_en_Qatar_2022_-_Ciudad_de_Santa_Fe_-_Berna_Gait%C3%A1n_Otar%C3%A1n_-_09.jpg"
+    ],
+    "australia": [],
+    "austria": [],
+    "belgica": [],
+    "bosnia": [],
+    "brasil": [
+      "https://upload.wikimedia.org/wikipedia/commons/e/ec/Brazil_vs_Serbia_World_Cup_2022_match_Brazil_line-up.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Brazil_fans_2.jpg/960px-Brazil_fans_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/76/World_Cup_Brazil_Fans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Brazilian_supporters_in_Berlin.jpg/960px-Brazilian_supporters_in_Berlin.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Brazilian_Football_Fans.jpg/960px-Brazilian_Football_Fans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Brazil_fans_3.jpg/960px-Brazil_fans_3.jpg"
+    ],
+    "cabo-verde": [],
+    "canada": [
+      "https://upload.wikimedia.org/wikipedia/commons/5/56/Go_Canada_Go%21_%285074124054%29.jpg"
+    ],
+    "colombia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Llegada_de_la_selecci%C3%B3n_Colombia_al_parque_Sim%C3%B3n_Bol%C3%ADvar_%2814426410498%29.jpg/960px-Llegada_de_la_selecci%C3%B3n_Colombia_al_parque_Sim%C3%B3n_Bol%C3%ADvar_%2814426410498%29.jpg"
+    ],
+    "corea-del-sur": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Luncheon_for_the_national_football_team_at_the_presidential_office.jpg/960px-Luncheon_for_the_national_football_team_at_the_presidential_office.jpg"
+    ],
+    "costa-de-marfil": [],
+    "croacia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Croatia_personnel_during_game_v_England.jpg/960px-Croatia_personnel_during_game_v_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg/960px-CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croatian_nation_football_squad_%2842545971655%29.jpg/960px-Croatian_nation_football_squad_%2842545971655%29.jpg"
+    ],
+    "curazao": [],
+    "ecuador": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/CASA_DE_LA_SELECCI%C3%93N_%2831814339930%29.jpg/960px-CASA_DE_LA_SELECCI%C3%93N_%2831814339930%29.jpg"
+    ],
+    "egipto": [
+      "https://upload.wikimedia.org/wikipedia/commons/3/35/Egypt_national_football_team_them_As-Sajedeen.png"
+    ],
+    "escocia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/First_Minister_meets_with_Scottish_National_Football_Team.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg"
+    ],
+    "espana": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Spain_football_team_in_2025.jpg/960px-Spain_football_team_in_2025.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg/960px-S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%284%29.jpg"
+    ],
+    "estados-unidos": [],
+    "francia": [],
+    "ghana": [
+      "https://upload.wikimedia.org/wikipedia/commons/1/14/Ghana_national_football_team.jpg"
+    ],
+    "haiti": [],
+    "inglaterra": [],
+    "irak": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg/960px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg/960px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg/960px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg"
+    ],
+    "iran": [
+      "https://upload.wikimedia.org/wikipedia/commons/e/ef/Intra-team_friendly_match_of_the_Iranian_national_football_team_16_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Intra-team_friendly_match_of_the_Iranian_national_football_team_26_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5c/Intra-team_friendly_match_of_the_Iranian_national_football_team_3_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/37/Intra-team_friendly_match_of_the_Iranian_national_football_team_7_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f8/Intra-team_friendly_match_of_the_Iranian_national_football_team_21_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d5/Intra-team_friendly_match_of_the_Iranian_national_football_team_23_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c0/Intra-team_friendly_match_of_the_Iranian_national_football_team_9_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f1/Intra-team_friendly_match_of_the_Iranian_national_football_team_15_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/94/Intra-team_friendly_match_of_the_Iranian_national_football_team_19_%28Tasnim%2C_2026%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/74/Intra-team_friendly_match_of_the_Iranian_national_football_team_2_%28Tasnim%2C_2026%29.jpg"
+    ],
+    "japon": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Japan_warmup_in_Columbus_1.jpg/960px-Japan_warmup_in_Columbus_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Japan_warmup_in_Columbus_2.jpg/960px-Japan_warmup_in_Columbus_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Japan_national_team_players_in_Columbus_1.jpg/960px-Japan_national_team_players_in_Columbus_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Japan_national_team_players_in_Columbus_2.jpg/960px-Japan_national_team_players_in_Columbus_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan_national_team_players_huddling_in_Columbus.jpg/960px-Japan_national_team_players_huddling_in_Columbus.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg"
+    ],
+    "jordania": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mohammed_Awad_%28Jordanian_Footballer%29.jpg/960px-Mohammed_Awad_%28Jordanian_Footballer%29.jpg"
+    ],
+    "marruecos": [],
+    "mexico": [
+      "https://upload.wikimedia.org/wikipedia/commons/e/e1/Argentina_vs_mexico_mexico_lineup.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/The_Mexico_national_football_team_at_Los_Pinos.jpg/960px-The_Mexico_national_football_team_at_Los_Pinos.jpg"
+    ],
+    "noruega": [],
+    "nueva-zelanda": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_Zealand_goal.JPG/960px-New_Zealand_goal.JPG"
+    ],
+    "paises-bajos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Training_Netherlands_in_Freiburg.JPG/960px-Training_Netherlands_in_Freiburg.JPG"
+    ],
+    "panama": [
+      "https://upload.wikimedia.org/wikipedia/commons/c/ca/Panamanationalteam.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Marea_Roja_Panam%C3%A1.jpg/960px-Marea_Roja_Panam%C3%A1.jpg"
+    ],
+    "paraguay": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paraguay_campeona_2025.jpg/960px-Paraguay_campeona_2025.jpg"
+    ],
+    "portugal": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Portugal_national_football_team_0866.jpg/960px-Portugal_national_football_team_0866.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f6/Portugal_national_football_team_0866_%28Nuno_Mendes%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Fans_of_the_Portuguese_national_football_team_in_Cologne_1.jpg/960px-Fans_of_the_Portuguese_national_football_team_in_Cologne_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Fans_of_the_Portuguese_national_football_team_in_Cologne_2.jpg/960px-Fans_of_the_Portuguese_national_football_team_in_Cologne_2.jpg"
+    ],
+    "qatar": [],
+    "rd-congo": [],
+    "republica-checa": [],
+    "senegal": [],
+    "sudafrica": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/South_Africa_celebration.jpg/960px-South_Africa_celebration.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/South_Africa_celebrates_second_goal.jpg/960px-South_Africa_celebrates_second_goal.jpg"
+    ],
+    "suecia": [],
+    "suiza": [],
+    "tunez": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Tunisia.jpg/960px-Tunisia.jpg"
+    ],
+    "turquia": [],
+    "uruguay": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Seleccion_Uruguaya_con_su_tradicional_indumentaria.jpg/960px-Seleccion_Uruguaya_con_su_tradicional_indumentaria.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Uruguay_caravana.jpg/960px-Uruguay_caravana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/De_Uruguayaanse_trainer_Etchamendi_%28r%29%2C_Bestanddeelnr_925-6539.jpg/960px-De_Uruguayaanse_trainer_Etchamendi_%28r%29%2C_Bestanddeelnr_925-6539.jpg"
+    ],
+    "uzbekistan": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Uzbekistan_national_football_team_prepares_for_FIFA_Series_tournament.jpg/960px-Uzbekistan_national_football_team_prepares_for_FIFA_Series_tournament.jpg"
+    ]
+  },
+  "netRemoved": {
+    "alemania": [
+      "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg"
+    ],
+    "argentina": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg/960px-Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Boca_Juniors_and_Argentina%27s_national_team_dogs.jpg/960px-Boca_Juniors_and_Argentina%27s_national_team_dogs.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Argentina_3_v_Irak_1_-_Paris_2024_-_1.jpg/960px-Argentina_3_v_Irak_1_-_Paris_2024_-_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Scotland_v_Argentina_%2848154600631%29.jpg/960px-Scotland_v_Argentina_%2848154600631%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7a/Partido_Argentina-Polonia.jpg"
+    ],
+    "australia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/AUS-JOR_20190106_Asian_Cup_2.jpg/960px-AUS-JOR_20190106_Asian_Cup_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/AUS-SYR_20190116_Asian_Cup_8.jpg/960px-AUS-SYR_20190116_Asian_Cup_8.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/AUS-SYR_20190116_Asian_Cup_7.jpg/960px-AUS-SYR_20190116_Asian_Cup_7.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b9/UAE%26AUS_20190125_Asian_Cup_6.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/bd/UAE%26AUS_20190125_Asian_Cup_9.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg/960px-MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c4/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%286%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg"
+    ],
+    "austria": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg"
+    ],
+    "belgica": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg/960px-Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_11.jpg/960px-Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_11.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Belgian_footbal_national_team_official_shop_in_Brugges%2C_Belgium.jpg/960px-Belgian_footbal_national_team_official_shop_in_Brugges%2C_Belgium.jpg"
+    ],
+    "bosnia": [
+      "https://upload.wikimedia.org/wikipedia/commons/8/86/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f9/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2802%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/20/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2812%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/13/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2814%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2818%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/dc/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2820%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/95/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2825%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/83/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2824%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/80/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2827%29.jpg"
+    ],
+    "brasil": [
+      "https://upload.wikimedia.org/wikipedia/commons/c/ca/Brazil_vs_Serbia_World_Cup_2022_match_Serbia_line-up.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Brazil_v_Scotland_26_%285575222845%29.jpg/960px-Brazil_v_Scotland_26_%285575222845%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Brazil_v_Scotland_21_%285575802704%29.jpg/960px-Brazil_v_Scotland_21_%285575802704%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Brazil_v_Scotland_20_%285575209235%29.jpg/960px-Brazil_v_Scotland_20_%285575209235%29.jpg"
+    ],
+    "canada": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Canadavdominica.jpg/960px-Canadavdominica.jpg"
+    ],
+    "colombia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Jugadores_-_Colombia_vs_England.jpg/960px-Jugadores_-_Colombia_vs_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Colombia_vs_England.jpg/960px-Colombia_vs_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/24/Colombia_vs_Brasil.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Colombia-Ecuador.JPG/960px-Colombia-Ecuador.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Director_General_ultima_detalles_del_dispositivo_de_seguridad_en_partido_de_f%C3%BAtbol_Colombia_vs_Uruguay._%2830173111822%29.jpg/960px-Director_General_ultima_detalles_del_dispositivo_de_seguridad_en_partido_de_f%C3%BAtbol_Colombia_vs_Uruguay._%2830173111822%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/AACCh_-_Partido_Amistos_China_y_Colombia_2.jpg/960px-AACCh_-_Partido_Amistos_China_y_Colombia_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Panoramica_Colombia_Vs_Costa_de_Marfil.jpeg/960px-Panoramica_Colombia_Vs_Costa_de_Marfil.jpeg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/4e/Patrocinadores_Seleccion_Colombia.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Polic%C3%ADa_de_Infancia_y_Adolescencia_-_Selecci%C3%B3n_Colombia_II.jpeg/960px-Polic%C3%ADa_de_Infancia_y_Adolescencia_-_Selecci%C3%B3n_Colombia_II.jpeg"
+    ],
+    "corea-del-sur": [
+      "https://upload.wikimedia.org/wikipedia/commons/9/9d/South_Korea_%26_Bahrain_20190122%2C_Asian_Cup_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/0/0a/South_Korea_%26_Bahrain_20190122%2C_Asian_Cup_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/KOR-QAT_20190125_Asian_Cup1.jpg/960px-KOR-QAT_20190125_Asian_Cup1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/KOR-QAT_20190125_Asian_Cup2.jpg/960px-KOR-QAT_20190125_Asian_Cup2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29.jpg/960px-Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/ce/Iran%2C_S._Korea_Closer_to_Securing_Spot_in_World_Cup_Tournament_after_Draw_2021-8.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/68/Iran%2C_S._Korea_Closer_to_Securing_Spot_in_World_Cup_Tournament_after_Draw_2021-10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/2022_FIFA_World_Cup_Korea_Uruguay_02.jpg/960px-2022_FIFA_World_Cup_Korea_Uruguay_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d9/Korea_Beachsoccer_National_Team.jpg"
+    ],
+    "croacia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Croatia-England%2C_Zagreb.JPG/960px-Croatia-England%2C_Zagreb.JPG"
+    ],
+    "ecuador": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg/960px-Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Entonaci%C3%B3n_del_himno.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b2/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Seleccionado_argentino.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Colombia-Ecuador.JPG/960px-Colombia-Ecuador.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Galicia-Ecuador.jpg/960px-Galicia-Ecuador.jpg"
+    ],
+    "egipto": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Africa_cup_final1.jpg/960px-Africa_cup_final1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fa/In_de_rust_van_Egypt-Ghana.jpg"
+    ],
+    "escocia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Scotland_v_Albania_%2844620874171%29.jpg/960px-Scotland_v_Albania_%2844620874171%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Scotland_v_Albania_%2829682174347%29.jpg/960px-Scotland_v_Albania_%2829682174347%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Scotland_v_Albania_%2830749806838%29.jpg/960px-Scotland_v_Albania_%2830749806838%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Scotland_v_Albania_%2842810081690%29.jpg/960px-Scotland_v_Albania_%2842810081690%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Scotland_v_Albania_%2844620812691%29.jpg/960px-Scotland_v_Albania_%2844620812691%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Scotland_v_Albania_%2844570605622%29.jpg/960px-Scotland_v_Albania_%2844570605622%29.jpg"
+    ],
+    "espana": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg/960px-Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_11.jpg/960px-Partido_Espa%C3%B1a_-_B%C3%A9lxica_en_Riazor%2C_clasificatorio_Eurocopa_2025_11.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Bulgaria_national_football_team%2C_September_4%2C_2025.jpg/960px-Bulgaria_national_football_team%2C_September_4%2C_2025.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2818%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2818%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2819%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2819%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2821%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2821%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg/960px-Iran_and_Spain_match_at_the_FIFA_World_Cup_%2822%29.jpg"
+    ],
+    "estados-unidos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg/960px-XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/XA-VMH_A320neo%2C_Viva_%28Mexico_National_Football_Team_livery%29%2C_Cancun_03-08-26_%2855172115031%29.jpg/960px-XA-VMH_A320neo%2C_Viva_%28Mexico_National_Football_Team_livery%29%2C_Cancun_03-08-26_%2855172115031%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/British_Embassy_joined_World_Rugby_and_USA_Rugby_on_16_July_2025_to_host_players_and_coaches_from_each_of_the_four_national_teams_who_played_in_an_international_double-header_later_on_19_July_-_3.jpg/960px-thumbnail.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Japan_national_team_players_in_Columbus_2.jpg/960px-Japan_national_team_players_in_Columbus_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan_national_team_players_huddling_in_Columbus.jpg/960px-Japan_national_team_players_huddling_in_Columbus.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Powerful_Storm_Batters_the_United_States_%28MODIS_2024-01-11%29.jpg/960px-Powerful_Storm_Batters_the_United_States_%28MODIS_2024-01-11%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_3.jpg/960px-Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_5.jpg/960px-Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_5.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_4.jpg/960px-Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_7.jpg/960px-Department_of_Homeland_Security_works_with_National_Football_League_%28NFL%29%2C_the_State_of_Nevada%2C_and_the_City_of_Las_Vegas_to_Secure_Super_Bowl_LVIII_-_7.jpg"
+    ],
+    "francia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Maillot_Antoine_Griezmann_%C3%89quipe_France_Football_Maison_Vacheresse_-_Vonnas_%28FR01%29_-_2022-04-26_-_2.jpg/960px-Maillot_Antoine_Griezmann_%C3%89quipe_France_Football_Maison_Vacheresse_-_Vonnas_%28FR01%29_-_2022-04-26_-_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Match_Football_France_x_Autriche_Stade_France_-_Saint-Denis_%28FR93%29_-_2022-09-22_-_20.jpg/960px-Match_Football_France_x_Autriche_Stade_France_-_Saint-Denis_%28FR93%29_-_2022-09-22_-_20.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c4/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%286%29.jpg"
+    ],
+    "ghana": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Argentina_vs._Ghana.jpg/960px-Argentina_vs._Ghana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/20150331_Mali_vs_Ghana_042.jpg/960px-20150331_Mali_vs_Ghana_042.jpg"
+    ],
+    "haiti": [
+      "https://upload.wikimedia.org/wikipedia/commons/9/93/Bundesarchiv_Bild_183-N0619-0038%2C_Fu%C3%9Fball-WM%2C_Haiti_-_VR_Polen_0-7.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/57/Bundesarchiv_Bild_183-N0623-0019%2C_Fu%C3%9Fball-WM%2C_Argentinien-Haiti_4-1.jpg"
+    ],
+    "inglaterra": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/British_Embassy_joined_World_Rugby_and_USA_Rugby_on_16_July_2025_to_host_players_and_coaches_from_each_of_the_four_national_teams_who_played_in_an_international_double-header_later_on_19_July_-_1.jpg/960px-thumbnail.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cheerleaders_from_the_New_England_Patriots_professional_football_team_perform_during_an_Operation_Seasons_Greetings_concert_at_Hangar_814_at_Royal_Air_Force_Mildenhall%2C_England_on_D_-_DPLA_-_d5d54aa503a7ddafe49d39f9aae54d13.jpeg/960px-thumbnail.jpeg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Antigua_and_Barbuda_football_team_training_in_England.jpg"
+    ],
+    "irak": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/IRN-IRQ_20190116_Asian_Cup_13.jpg/960px-IRN-IRQ_20190116_Asian_Cup_13.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/IRN-IRQ_20190116_Asian_Cup_24.jpg/960px-IRN-IRQ_20190116_Asian_Cup_24.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Jahanbakhsh_Iran_national_football_team_1.jpg/960px-Jahanbakhsh_Iran_national_football_team_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/48/Olyroos-Iraq_support.jpg"
+    ],
+    "jordania": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/AUS-JOR_20190106_Asian_Cup_2.jpg/960px-AUS-JOR_20190106_Asian_Cup_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29.jpg/960px-Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29.jpg"
+    ],
+    "marruecos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Iran_vs_morocco_10.jpg/960px-Iran_vs_morocco_10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Iran_vs_morocco_15.jpg/960px-Iran_vs_morocco_15.jpg"
+    ],
+    "mexico": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg/960px-XA-VII_A320neo_Viva_%28Mexico_National_Football_Team_livery%29%2C_Roswell_02-03-26_%2855102827617%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/XA-VMH_A320neo%2C_Viva_%28Mexico_National_Football_Team_livery%29%2C_Cancun_03-08-26_%2855172115031%29.jpg/960px-XA-VMH_A320neo%2C_Viva_%28Mexico_National_Football_Team_livery%29%2C_Cancun_03-08-26_%2855172115031%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Saudi_National_Team_at_the_World_Cup_%282022%29.jpg/960px-Saudi_National_Team_at_the_World_Cup_%282022%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/91/Argentina_vs_mexico_players_and_supporters.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/86/Argentina_vs_mexico_festejo_gol.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5e/Argentina_vs_mexico_argentina_celebrando.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5d/Argentina_vs_mexico_messi_celebra_con_tribuna.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Aeromexico_and_Delta_joint_sponsorship_event_%2834337765691%29.jpg/960px-Aeromexico_and_Delta_joint_sponsorship_event_%2834337765691%29.jpg"
+    ],
+    "noruega": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Norway_Italy_-_June_2025_A_49.jpg/960px-Norway_Italy_-_June_2025_A_49.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Norway_Italy_-_June_2025_A_50.jpg/960px-Norway_Italy_-_June_2025_A_50.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg"
+    ],
+    "nueva-zelanda": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Philippine_Football_Federation_New_Zealand_Embassy_meet.jpg/960px-Philippine_Football_Federation_New_Zealand_Embassy_meet.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Australia_vs_New_Zealand.jpg/960px-Australia_vs_New_Zealand.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/New_Zealand-Portugal_%2830%29_%28cropped%29.jpg/960px-New_Zealand-Portugal_%2830%29_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/All_Whites_versus_Socceroos%2C_%28New_Zealand_vs_Australia%29_2022.jpg/960px-All_Whites_versus_Socceroos%2C_%28New_Zealand_vs_Australia%29_2022.jpg"
+    ],
+    "paises-bajos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Netherlands%2C_The_Hague%2C_Marktweg_%2802%29%2C_Lau_Mazirellaan.jpg/960px-Netherlands%2C_The_Hague%2C_Marktweg_%2802%29%2C_Lau_Mazirellaan.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Netherlands%2C_The_Hague%2C_Marktweg_%2809%29%2C_Lau_Mazirellaan.jpg/960px-Netherlands%2C_The_Hague%2C_Marktweg_%2809%29%2C_Lau_Mazirellaan.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Netherlands%2C_The_Hague%2C_Marktweg_%2804%29.jpg/960px-Netherlands%2C_The_Hague%2C_Marktweg_%2804%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Netherlands%2C_The_Hague%2C_Marktweg_%2808%29.jpg/960px-Netherlands%2C_The_Hague%2C_Marktweg_%2808%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Netherlands%2C_The_Hague%2C_Lau_Mazirellaan_%2801%29.jpg/960px-Netherlands%2C_The_Hague%2C_Lau_Mazirellaan_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Netherlands%2C_The_Hague%2C_Marktweg_%2807%29.jpg/960px-Netherlands%2C_The_Hague%2C_Marktweg_%2807%29.jpg"
+    ],
+    "panama": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_50.jpg/960px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_50.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_51.jpg/960px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_51.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Amistoso_Panam%C3%A1_vs_El_Salvador.jpg/960px-Amistoso_Panam%C3%A1_vs_El_Salvador.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/PanamavsElsalvadorCopaCentro.jpg/960px-PanamavsElsalvadorCopaCentro.jpg"
+    ],
+    "paraguay": [
+      "https://upload.wikimedia.org/wikipedia/commons/6/66/Jugadores_paraguay_peru_juntos.jpg"
+    ],
+    "portugal": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Stade_de_Gen%C3%A8ve_Italy_v_Portugal.jpg/960px-Stade_de_Gen%C3%A8ve_Italy_v_Portugal.jpg"
+    ],
+    "qatar": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_03.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_03.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_02.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_01.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_05.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_05.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_04.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_04.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_06.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_06.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_07.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_07.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_09.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_09.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_08.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_08.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_10.jpg/960px-The_last_practice_of_the_Iranian_national_football_team_before_traveling_to_Qatar_-_Avash_10.jpg"
+    ],
+    "suecia": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sweden_-_Serbia_02.jpg/960px-Sweden_-_Serbia_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sweden_-_Serbia_04.jpg/960px-Sweden_-_Serbia_04.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Sweden_-_Serbia_07.jpg/960px-Sweden_-_Serbia_07.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sweden_-_Serbia_09.jpg/960px-Sweden_-_Serbia_09.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sweden_-_Serbia_10.jpg/960px-Sweden_-_Serbia_10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Sweden_-_Serbia_15.jpg/960px-Sweden_-_Serbia_15.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sweden_-_Serbia_20.jpg/960px-Sweden_-_Serbia_20.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Sweden_-_Serbia_29.jpg/960px-Sweden_-_Serbia_29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Sweden_-_Serbia_31.jpg/960px-Sweden_-_Serbia_31.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Sweden_-_Serbia_32.jpg/960px-Sweden_-_Serbia_32.jpg"
+    ],
+    "suiza": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg"
+    ],
+    "tunez": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Tunisia_-_Equatorial_Guinea%2C_5_Jun_2024.jpg/960px-Tunisia_-_Equatorial_Guinea%2C_5_Jun_2024.jpg"
+    ],
+    "uruguay": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7087-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7087-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/2022_FIFA_World_Cup_Korea_Uruguay_02.jpg/960px-2022_FIFA_World_Cup_Korea_Uruguay_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Sede_Asociaci%C3%B3n_Uruguaya_de_F%C3%BAtbol.png/960px-Sede_Asociaci%C3%B3n_Uruguaya_de_F%C3%BAtbol.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Eliminatorias_Uruguay-Colombia_2021.jpg/960px-Eliminatorias_Uruguay-Colombia_2021.jpg"
+    ],
+    "uzbekistan": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Iran_v_Uzbekistan%2C_11_June_2024_12_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_12_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Iran_v_Uzbekistan%2C_11_June_2024_7_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_7_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Iran_v_Uzbekistan%2C_11_June_2024_2_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_2_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Iran_v_Uzbekistan%2C_11_June_2024_11_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_11_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Iran_v_Uzbekistan%2C_11_June_2024_4_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_4_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Iran_v_Uzbekistan%2C_11_June_2024_15_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_15_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Iran_v_Uzbekistan%2C_11_June_2024_13_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_13_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Iran_v_Uzbekistan%2C_11_June_2024_16_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_16_SNN.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Iran_v_Uzbekistan%2C_11_June_2024_29_SNN.jpg/960px-Iran_v_Uzbekistan%2C_11_June_2024_29_SNN.jpg"
+    ]
+  }
+}

@@ -25,19 +25,32 @@ export interface TradeOffer {
   wanted: Cromo[];
 }
 
+const VALID_CROMO_IDS = new Set(CROMOS.map((c) => c.id));
+const MAX_TRADE_ITEMS = 12;
+
 export async function createTradeOffer(input: TradeOfferInput): Promise<{ id: string } | { error: string }> {
   const admin = adminClient();
 
-  // Validar que el creador posee todos los cromos ofrecidos
-  const collection = await getUserCollection(input.creatorId);
-  const missingOffered = input.offeredCromoIds.filter((id) => !collection.ownedIds.has(id));
-  if (missingOffered.length > 0) {
-    return { error: "not_owner_of_offered" };
+  // Normaliza la entrada del cliente: deduplica y descarta ids que no existen en
+  // el catálogo (antes se insertaban tal cual, sin validar).
+  const offered = [...new Set(input.offeredCromoIds)].filter((id) => VALID_CROMO_IDS.has(id));
+  const wanted = [...new Set(input.wantedCromoIds)].filter((id) => VALID_CROMO_IDS.has(id));
+
+  if (offered.length === 0 || wanted.length === 0) {
+    return { error: "empty_offer" };
+  }
+  if (offered.length > MAX_TRADE_ITEMS || wanted.length > MAX_TRADE_ITEMS) {
+    return { error: "too_many_items" };
+  }
+  // Un mismo cromo no puede estar a la vez en ofrecidos y deseados.
+  if (offered.some((id) => wanted.includes(id))) {
+    return { error: "offered_wanted_overlap" };
   }
 
-  // Validar que hay al menos un cromo ofrecido y uno solicitado
-  if (input.offeredCromoIds.length === 0 || input.wantedCromoIds.length === 0) {
-    return { error: "empty_offer" };
+  // Validar que el creador posee todos los cromos ofrecidos.
+  const collection = await getUserCollection(input.creatorId);
+  if (offered.some((id) => !collection.ownedIds.has(id))) {
+    return { error: "not_owner_of_offered" };
   }
 
   const { data, error } = await admin
@@ -56,12 +69,19 @@ export async function createTradeOffer(input: TradeOfferInput): Promise<{ id: st
 
   const offerId = (data as { id: string }).id;
 
-  await admin.from("cromo_trade_offered").insert(
-    input.offeredCromoIds.map((id) => ({ offer_id: offerId, cromo_id: id })),
+  const { error: offeredErr } = await admin.from("cromo_trade_offered").insert(
+    offered.map((id) => ({ offer_id: offerId, cromo_id: id })),
   );
-  await admin.from("cromo_trade_wanted").insert(
-    input.wantedCromoIds.map((id) => ({ offer_id: offerId, cromo_id: id })),
+  const { error: wantedErr } = await admin.from("cromo_trade_wanted").insert(
+    wanted.map((id) => ({ offer_id: offerId, cromo_id: id })),
   );
+
+  // Si fallan los detalles, no dejes una oferta a medias (sin ofrecidos/deseados).
+  if (offeredErr || wantedErr) {
+    await admin.from("cromo_trade_offers").delete().eq("id", offerId);
+    console.error("[cromos] createTradeOffer items failed:", offeredErr?.message, wantedErr?.message);
+    return { error: "create_failed" };
+  }
 
   return { id: offerId };
 }
@@ -126,86 +146,23 @@ export async function acceptTradeOffer(
 ): Promise<{ ok: true } | { error: string }> {
   const admin = adminClient();
 
-  // Leer oferta
-  const { data: offer } = await admin
-    .from("cromo_trade_offers")
-    .select("id,creator_id,status")
-    .eq("id", offerId)
-    .eq("status", "active")
-    .maybeSingle();
+  // Toda la aceptación + transferencia ocurre de forma ATÓMICA en una única RPC
+  // transaccional (accept_cromo_trade) con SELECT ... FOR UPDATE sobre la oferta y
+  // las filas a mover. Eso cierra: la doble-aceptación (que duplicaba cromos), la
+  // duplicación por varias ofertas sobre la misma carta, y la destrucción de un
+  // cromo cuando el receptor ya lo posee. Ver scripts/sql/2026-37-cromos-trade-accept-rpc.sql.
+  const { data, error } = await admin.rpc("accept_cromo_trade", {
+    p_offer_id: offerId,
+    p_acceptor: acceptorId,
+  });
 
-  if (!offer) return { error: "offer_not_found" };
-  const { creator_id: creatorId } = offer as { creator_id: string };
-  if (creatorId === acceptorId) return { error: "cannot_accept_own" };
-
-  // Leer cromos ofrecidos y queridos
-  const [offeredRows, wantedRows] = await Promise.all([
-    admin.from("cromo_trade_offered").select("cromo_id").eq("offer_id", offerId),
-    admin.from("cromo_trade_wanted").select("cromo_id").eq("offer_id", offerId),
-  ]);
-
-  const offeredIds = ((offeredRows.data ?? []) as { cromo_id: number }[]).map((r) => r.cromo_id);
-  const wantedIds = ((wantedRows.data ?? []) as { cromo_id: number }[]).map((r) => r.cromo_id);
-
-  // Validar posesiones
-  const creatorCollection = await getUserCollection(creatorId);
-  const acceptorCollection = await getUserCollection(acceptorId);
-
-  const creatorMissingOffered = offeredIds.filter((id) => !creatorCollection.ownedIds.has(id));
-  if (creatorMissingOffered.length > 0) return { error: "creator_missing_offered" };
-
-  const acceptorMissingWanted = wantedIds.filter((id) => !acceptorCollection.ownedIds.has(id));
-  if (acceptorMissingWanted.length > 0) return { error: "acceptor_missing_wanted" };
-
-  // Marcar oferta como aceptada
-  const { error: updateErr } = await admin
-    .from("cromo_trade_offers")
-    .update({ status: "accepted", accepted_at: new Date().toISOString(), accepted_by: acceptorId })
-    .eq("id", offerId)
-    .eq("status", "active");
-
-  if (updateErr) {
-    return { error: "already_accepted" };
+  if (error) {
+    console.error("[cromos] acceptTradeOffer rpc failed:", error.message);
+    return { error: "accept_failed" };
   }
 
-  // Transferir cromos
-  // 1. Creator -> Acceptor (offeredIds)
-  for (const cromoId of offeredIds) {
-    const { error: deleteErr } = await admin
-      .from("user_cromos")
-      .delete()
-      .eq("user_id", creatorId)
-      .eq("cromo_id", cromoId);
-    if (deleteErr) throw deleteErr;
-
-    const { error: insertErr } = await admin
-      .from("user_cromos")
-      .upsert(
-        { user_id: acceptorId, cromo_id: cromoId, source: "trade" },
-        { onConflict: "user_id,cromo_id", ignoreDuplicates: true },
-      );
-    if (insertErr) throw insertErr;
-  }
-
-  // 2. Acceptor -> Creator (wantedIds)
-  for (const cromoId of wantedIds) {
-    const { error: deleteErr } = await admin
-      .from("user_cromos")
-      .delete()
-      .eq("user_id", acceptorId)
-      .eq("cromo_id", cromoId);
-    if (deleteErr) throw deleteErr;
-
-    const { error: insertErr } = await admin
-      .from("user_cromos")
-      .upsert(
-        { user_id: creatorId, cromo_id: cromoId, source: "trade" },
-        { onConflict: "user_id,cromo_id", ignoreDuplicates: true },
-      );
-    if (insertErr) throw insertErr;
-  }
-
-  return { ok: true };
+  const code = typeof data === "string" ? data : "accept_failed";
+  return code === "ok" ? { ok: true } : { error: code };
 }
 
 export async function cancelTradeOffer(

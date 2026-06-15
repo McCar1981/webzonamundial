@@ -4,7 +4,7 @@
 // POST /api/cromos/trades → crear oferta
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { listTradeOffers, createTradeOffer } from "@/lib/cromos/trades";
 
 export const runtime = "nodejs";
@@ -19,6 +19,11 @@ export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  const { limited } = await rateLimitByUser(user.id, "cromos:trade-create", 8, 60);
+  if (limited) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
   let body: { offeredCromoIds?: number[]; wantedCromoIds?: number[]; message?: string };

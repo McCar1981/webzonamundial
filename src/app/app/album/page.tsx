@@ -35,7 +35,8 @@ const COLLECTION_STATS = [
   { label: "Partidos", value: "72", icon: ICON_V3.matchCenter },
   { label: "Cromos únicos", value: "150", icon: ICON_V3.stories },
   { label: "Ediciones especiales", value: "50", icon: ICON_V3.rankings },
-  { label: "Sedes", value: "16", icon: ICON_DESCUBRE.grupos },
+  { label: "Grupos", value: "12", icon: ICON_DESCUBRE.grupos },
+  { label: "Sedes", value: "16", icon: ICON_DESCUBRE.selecciones },
 ];
 
 interface FeaturedDay {

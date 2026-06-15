@@ -640,6 +640,10 @@ export function TradeOfferCard({
   t: Translations;
   isES: boolean;
 }) {
+  // Antes de aceptar, el usuario confirma explícitamente qué ENTREGA y qué RECIBE
+  // (el "deseado" del creador sale de su colección, así que aceptar a ciegas podía
+  // costarle cromos valiosos sin darse cuenta).
+  const [confirming, setConfirming] = useState(false);
   return (
     <div className={`${styles.tradeCard} ${expanded ? styles.tradeExpanded : ""}`} onClick={onToggleExpand}>
       <div className={styles.tradeUser}>
@@ -679,8 +683,29 @@ export function TradeOfferCard({
       <div className={styles.tradeActions}>
         {isMine ? (
           <button onClick={(e) => { e.stopPropagation(); onCancel(); }} className={styles.btnDanger}>{t.cancel}</button>
+        ) : confirming ? (
+          <div onClick={(e) => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", gap: 8, width: "100%" }}>
+            <p style={{ fontSize: 13, lineHeight: 1.45, color: "var(--album-muted)", margin: 0 }}>
+              <strong style={{ color: "var(--album-gold)" }}>{isES ? "Entregas" : "You give"}:</strong>{" "}
+              {offer.wanted.map((c) => c.name).join(", ") || "—"}
+              {"  ·  "}
+              <strong style={{ color: "var(--album-gold)" }}>{isES ? "Recibes" : "You get"}:</strong>{" "}
+              {offer.offered.map((c) => c.name).join(", ") || "—"}
+            </p>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                onClick={(e) => { e.stopPropagation(); setConfirming(false); }}
+                style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "var(--album-muted)", cursor: "pointer", fontWeight: 600 }}
+              >
+                {isES ? "Cancelar" : "Cancel"}
+              </button>
+              <button onClick={(e) => { e.stopPropagation(); setConfirming(false); onAccept(); }} className={styles.btnPrimary}>
+                {isES ? "Confirmar" : "Confirm"}
+              </button>
+            </div>
+          </div>
         ) : (
-          <button onClick={(e) => { e.stopPropagation(); onAccept(); }} className={styles.btnPrimary}>{t.accept}</button>
+          <button onClick={(e) => { e.stopPropagation(); setConfirming(true); }} className={styles.btnPrimary}>{t.accept}</button>
         )}
       </div>
     </div>

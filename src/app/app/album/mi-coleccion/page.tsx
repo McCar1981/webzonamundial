@@ -279,6 +279,16 @@ export default function MiColeccionPage() {
               <div className={styles.spinner} />
               <p style={{ color: "var(--album-muted)" }}>{isES ? "Cargando tu álbum..." : "Loading your album..."}</p>
             </div>
+          ) : error && !collection ? (
+            <div className={styles.spinnerBox}>
+              <p style={{ color: "var(--album-muted)", maxWidth: 360, textAlign: "center" }}>{error}</p>
+              <button
+                onClick={() => load()}
+                style={{ marginTop: 12, padding: "10px 20px", borderRadius: 12, border: "none", background: "var(--album-gold)", color: "#1a1205", fontWeight: 700, cursor: "pointer" }}
+              >
+                {isES ? "Reintentar" : "Retry"}
+              </button>
+            </div>
           ) : collection?.collected === 0 ? (
             <EmptyAlbumView
               onOpen={open}

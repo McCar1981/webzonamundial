@@ -14,9 +14,15 @@
 // SEGURO POR DEFECTO: DRY-RUN. Escribe scripts/commons-images-report.json para
 // revisar. NO toca las fichas hasta --apply.
 //
-// Preferimos fotos de SELECCIÓN; si no hay ninguna en la categoría, caemos a una
-// foto del jugador (aunque sea de club) para no dejarlo sin imagen — pero SIEMPRE
-// es él. El pool de país es OPT-IN (--country) y desaconsejado.
+// Preferimos fotos de SELECCIÓN; si no hay ninguna en la categoría, caemos a la
+// imagen oficial P18 de Wikidata (aunque sea de club) para no dejarlo sin imagen
+// — pero SIEMPRE es él. El pool de país es OPT-IN (--country) y desaconsejado.
+//
+// ANTI-RIVAL: team_photos pasa por el filtro keepTeamPhoto de
+// src/lib/friendlies/photoFilter.ts (el mismo del motor de push) ANTES de
+// escribirse, para no reintroducir fotos del rival / otra selección / basura
+// (el bug que el PR #189 limpió a mano). Re-ejecutar --apply también PURGA fotos
+// contaminadas que ya estuvieran en la ficha. Requiere Node >= 22.6 (TS nativo).
 //
 // Uso:
 //   node scripts/fetch-commons-images.cjs                 # dry-run, 48 equipos
@@ -49,6 +55,44 @@ const REPORT = "scripts/commons-images-report.json";
 const COMMONS = "https://commons.wikimedia.org/w/api.php";
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
 const UA = "ZonaMundial-image-fetch/2.0 (https://zonamundial.com; biblia mundial 2026)";
+
+// ── Filtro defensivo anti-rival ──────────────────────────────────────────────
+// Reutiliza la MISMA lógica del motor de push (src/lib/friendlies/photoFilter.ts),
+// sin duplicarla, para no escribir en team_photos fotos del rival / de otra
+// selección / basura. Defensa en dos capas: el scraper filtra al ESCRIBIR y el
+// motor vuelve a filtrar al RENDERIZAR. Como este script es CommonJS y el filtro
+// es TS/ESM, se carga por import dinámico (requiere Node >= 22.6, soporte nativo
+// de TypeScript). Ver scripts/verify-team-photos.ts.
+let NATIONS = [];
+let keepTeamPhoto = null;
+async function loadPhotoFilter() {
+  const { pathToFileURL } = require("node:url");
+  const modUrl = pathToFileURL(
+    path.join(__dirname, "..", "src", "lib", "friendlies", "photoFilter.ts"),
+  ).href;
+  let mod;
+  try {
+    mod = await import(modUrl);
+  } catch (err) {
+    console.error(
+      "No se pudo cargar el filtro anti-rival (src/lib/friendlies/photoFilter.ts).\n" +
+        `Este script necesita Node >= 22.6 (TypeScript nativo). Tienes: ${process.version}\n` +
+        `Detalle: ${err.message}`,
+    );
+    process.exit(1);
+  }
+  keepTeamPhoto = mod.keepTeamPhoto;
+  // Set de naciones (las 48 fichas + externas) UNA vez. Siempre leemos TODAS las
+  // fichas (aunque --team limite el trabajo) para poder detectar al rival.
+  const teams = fs
+    .readdirSync(TEAMS_DIR)
+    .filter((f) => f.endsWith(".json") && !f.startsWith("_"))
+    .map((f) => {
+      const t = JSON.parse(fs.readFileSync(path.join(TEAMS_DIR, f), "utf8"));
+      return { slug: f.replace(/\.json$/, ""), name_es: t.name_es, name_en: t.name_en, name_local: t.name_local };
+    });
+  NATIONS = mod.buildNations(teams);
+}
 
 // ISO 3166 (el que guardan las fichas) → Qid de Wikidata del país/selección.
 const ISO2QID = {
@@ -608,6 +652,22 @@ async function collectForTeam(slug) {
         }
         usable = [...usable, ...extra];
       }
+
+      // (c) FOTO P18 de Wikidata: la imagen "oficial" de la persona en su ficha.
+      //     Garantía de identidad máxima (ES ese futbolista). La usamos como
+      //     último recurso cuando apenas hay fotos de selección — cubre a muchos
+      //     de los jugadores sin foto de selecciones pequeñas. Puede no ser de
+      //     camiseta nacional, pero para el push de goleador lo que importa es la
+      //     CARA correcta; va al final, tras las nacionales. No exige horizontal
+      //     (un retrato vertical correcto es mejor que una imagen genérica del país).
+      if (usable.length < PER_PLAYER && r?.img) {
+        const p18 = await fileThumb(r.img);
+        await sleep(DELAY_MS);
+        if (p18) {
+          usable = [...usable, { title: r.img, thumb: p18, w: 0, h: 0 }];
+          source += "+p18:1";
+        }
+      }
     }
 
     // Fallback de BÚSQUEDA por nombre si aún faltan (cubre estrellas tipo Messi).
@@ -637,8 +697,15 @@ async function collectForTeam(slug) {
     let teamInfos = [];
     try { teamInfos = await teamPhotosByYear(nameEn, countryNorm); }
     catch (err) { console.log(`error equipo (${err.message})`); }
-    const teamPics = dedupeCap(teamInfos.map((c) => c.thumb), PER_COUNTRY);
-    console.log(`${teamPics.length} foto(s) H (recientes)`);
+    const teamPicsRaw = dedupeCap(teamInfos.map((c) => c.thumb), PER_COUNTRY);
+    // Filtro anti-rival: descarta fotos del rival / otra selección / basura ANTES
+    // de meterlas en el informe (lo que se revisa = lo que se escribe).
+    const teamPics = teamPicsRaw.filter((u) => keepTeamPhoto(u, slug, NATIONS));
+    const dropped = teamPicsRaw.length - teamPics.length;
+    console.log(
+      `${teamPics.length} foto(s) H (recientes)` +
+        (dropped ? ` · ${dropped} descartada(s) por filtro anti-rival` : ""),
+    );
     report.team = { add: teamPics };
   }
 
@@ -683,7 +750,11 @@ function applyToTeam(team, report) {
     p.photos = dedupeCap([...(p.photos || []), ...r.add], PER_PLAYER);
   }
   if (report.team && report.team.add) {
-    wc.team_photos = dedupeCap([...(wc.team_photos || []), ...report.team.add], PER_COUNTRY);
+    // Defensa en profundidad: vuelve a pasar el filtro anti-rival sobre el
+    // resultado final. Así también PURGA fotos contaminadas que ya estuvieran en
+    // la ficha (re-ejecutar --apply limpia, no solo añade).
+    const merged = dedupeCap([...(wc.team_photos || []), ...report.team.add], PER_COUNTRY);
+    wc.team_photos = merged.filter((u) => keepTeamPhoto(u, team.slug, NATIONS));
   }
 }
 
@@ -693,6 +764,7 @@ function applyToTeam(team, report) {
     console.error("Se requiere Node 18+ (fetch global). Tienes:", process.version);
     process.exit(1);
   }
+  await loadPhotoFilter();
   const slugs = ONLY_TEAM
     ? ONLY_TEAM.split(",")
     : fs.readdirSync(TEAMS_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""));

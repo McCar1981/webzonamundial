@@ -13,6 +13,39 @@ import path from "node:path";
 import { loadTeam, listBibliaSlugs } from "@/lib/biblia";
 import type { NationalTeam, Player } from "@/types/team";
 import { flagEmoji, isoFromName } from "./flags";
+import { buildNations, keepTeamPhoto, type Nation, type TeamLike } from "./photoFilter";
+
+// Índice de naciones (las 48 fichas + externas), construido una vez. Sirve para
+// filtrar el banco de fotos de equipo: descartar las fotos contaminadas por el
+// scraper (foto del rival, otra selección o basura) y dejar solo las del país
+// dueño. Ver photoFilter.ts y scripts/verify-team-photos.ts.
+let nationsPromise: Promise<Nation[]> | null = null;
+async function getNations(): Promise<Nation[]> {
+  if (!nationsPromise) {
+    nationsPromise = (async () => {
+      const slugs = await listBibliaSlugs();
+      const teams: TeamLike[] = [];
+      for (const slug of slugs) {
+        const t = await loadTeam(slug);
+        if (t) teams.push({ slug: t.slug, name_es: t.name_es, name_en: t.name_en, name_local: t.name_local });
+      }
+      return buildNations(teams);
+    })();
+  }
+  return nationsPromise;
+}
+
+/**
+ * team_photos de una ficha YA FILTRADAS: descarta las que muestran a otra
+ * selección o son basura (defensa permanente contra el scraper; equivale a la
+ * limpieza manual del PR #189). Si todas caen, el motor usa el respaldo seguro
+ * (retrato de un jugador del propio país, camiseta nacional).
+ */
+function cleanTeamPhotos(t: NationalTeam, nations: Nation[]): string[] {
+  return (t.wc_2026?.team_photos ?? []).filter(
+    (u): u is string => !!u && keepTeamPhoto(u, t.slug, nations),
+  );
+}
 
 export interface TeamInfo {
   name_es: string;
@@ -173,11 +206,12 @@ async function getPoolIndex(): Promise<Map<string, string[]>> {
     poolIndexPromise = (async () => {
       const map = new Map<string, string[]>();
       const slugs = await listBibliaSlugs();
+      const nations = await getNations();
       for (const slug of slugs) {
         const t = await loadTeam(slug);
         if (!t) continue;
         const imgs: string[] = [];
-        for (const u of t.wc_2026?.team_photos ?? []) if (u) imgs.push(u);
+        for (const u of cleanTeamPhotos(t, nations)) imgs.push(u);
         for (const u of t.wc_2026?.image_pool ?? []) if (u) imgs.push(u);
         for (const p of t.wc_2026?.likely_squad ?? []) {
           if (p.photo_url) imgs.push(p.photo_url);
@@ -229,12 +263,13 @@ async function getAtmosphereIndex(): Promise<Map<string, string[]>> {
     atmosphereIndexPromise = (async () => {
       const map = new Map<string, string[]>();
       const slugs = await listBibliaSlugs();
+      const nations = await getNations();
       for (const slug of slugs) {
         const t = await loadTeam(slug);
         if (!t) continue;
         const imgs = [
           ...new Set([
-            ...(t.wc_2026?.team_photos ?? []),
+            ...cleanTeamPhotos(t, nations),
             ...(t.wc_2026?.image_pool ?? []),
           ].filter(Boolean)),
         ];
@@ -256,10 +291,11 @@ async function getTeamPhotosIndex(): Promise<Map<string, string[]>> {
     teamPhotosIndexPromise = (async () => {
       const map = new Map<string, string[]>();
       const slugs = await listBibliaSlugs();
+      const nations = await getNations();
       for (const slug of slugs) {
         const t = await loadTeam(slug);
         if (!t) continue;
-        const imgs = [...new Set((t.wc_2026?.team_photos ?? []).filter(Boolean))];
+        const imgs = [...new Set(cleanTeamPhotos(t, nations))];
         for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
           if (key) map.set(norm(key), imgs);
         }

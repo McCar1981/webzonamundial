@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test-gate": "tsx scripts/test-gate.ts",
+    "verify-team-photos": "tsx scripts/verify-team-photos.ts",
     "validate-content": "tsx scripts/validate-content.ts",
     "prebuild": "tsx scripts/validate-content.ts"
   },

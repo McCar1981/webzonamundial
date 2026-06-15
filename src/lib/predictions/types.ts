@@ -151,6 +151,8 @@ export interface PredictionRow {
 export interface MatchEventReal {
   type: "goal" | "card";
   minute: number;
+  /** Minuto añadido (45+extra / 90+extra) si aplica — necesario para la franja "90+". */
+  extra?: number;
   player_id?: string;
   team: "home" | "away";
   card_type?: "yellow" | "red";

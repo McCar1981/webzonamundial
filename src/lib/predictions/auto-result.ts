@@ -57,6 +57,7 @@ export function composeResultFromSnapshot(matchId: string, snap: LiveSnapshot): 
         events.push({
           type: "goal",
           minute: e.minute,
+          ...(e.extra ? { extra: e.extra } : {}),
           team: e.side,
           ...(pid ? { player_id: pid } : {}),
           ...(aid ? { assist_player_id: aid } : {}),
@@ -66,14 +67,14 @@ export function composeResultFromSnapshot(matchId: string, snap: LiveSnapshot): 
       case "own_goal":
         // api-football registra el autogol en el lado BENEFICIADO: cuenta para
         // marcador/cadena/franjas, pero sin goleador (nadie predice un autogol).
-        events.push({ type: "goal", minute: e.minute, team: e.side });
+        events.push({ type: "goal", minute: e.minute, team: e.side, ...(e.extra ? { extra: e.extra } : {}) });
         break;
       case "yellow":
-        events.push({ type: "card", card_type: "yellow", minute: e.minute, team: e.side });
+        events.push({ type: "card", card_type: "yellow", minute: e.minute, team: e.side, ...(e.extra ? { extra: e.extra } : {}) });
         break;
       case "red":
       case "second_yellow":
-        events.push({ type: "card", card_type: "red", minute: e.minute, team: e.side });
+        events.push({ type: "card", card_type: "red", minute: e.minute, team: e.side, ...(e.extra ? { extra: e.extra } : {}) });
         break;
       case "sub":
         if (firstSub == null || e.minute < firstSub) firstSub = e.minute;

@@ -131,6 +131,7 @@ export default function RankingsPage() {
   const [myNation, setMyNation] = useState<NationRank | null>(null);
   const [creators, setCreators] = useState<CreatorRank[] | null>(null);
   const [myCreatorRow, setMyCreatorRow] = useState<CreatorRank | null>(null);
+  const [champions, setChampions] = useState<RankEntry[] | null>(null); // campeones de la semana (Fútcoins ganadas en 7 días)
 
   // Mi país / mi creador (para precargar "Tu país" / "Por creador").
   const [myCountry, setMyCountry] = useState<string | null>(null);
@@ -167,6 +168,13 @@ export default function RankingsPage() {
         if (d.me?.creator) setMyCreator((c) => c ?? d.me!.creator);
       })
       .catch(() => { if (on) setCreators([]); });
+
+    // Campeón de la semana: top por Fútcoins GANADAS en los últimos 7 días.
+    // Resetea cada semana → todos tienen opción. Premio en estatus, no en dinero.
+    fetch("/api/ranking/semana?limit=5")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { champions?: RankEntry[] } | null) => { if (on) setChampions(d?.champions ?? []); })
+      .catch(() => { if (on) setChampions([]); });
     return () => { on = false; };
   }, []);
 
@@ -401,6 +409,9 @@ export default function RankingsPage() {
             </div>
           )}
 
+          {/* ─── Campeón de la semana (solo vista Global, no por módulo) ─── */}
+          {view === "global" && !tab && <WeeklyChampions entries={champions} />}
+
           {/* ─── Banner "tu posición" según la vista ─── */}
           {view === "global" && !tab && meOutsideTop && me && (
             <MeBanner rank={me.rank} flag={me.country} title="Tu posición" sub={`Nivel ${me.level} · de ${me.total.toLocaleString()} jugadores`} value={`${me.coins.toLocaleString()} 🪙`} />
@@ -531,6 +542,66 @@ function MeBanner({ rank, flag, leading, title, sub, value }: { rank: number; fl
   );
 }
 
+// ─── Campeón de la semana ───────────────────────────────────────────────────
+// El que más Fútcoins ha GANADO en los últimos 7 días (no el saldo de siempre).
+// Resetea cada semana, así cualquiera puede ser campeón. Premio en estatus.
+function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
+  if (entries === null) return null;            // cargando: no ocupa sitio
+  if (entries.length === 0) {
+    return (
+      <div style={{ maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 16, background: "rgba(201,168,76,0.08)", border: "1px dashed rgba(201,168,76,0.35)", textAlign: "center" }}>
+        <div style={{ fontSize: 22 }}>👑</div>
+        <div style={{ fontWeight: 800, fontSize: 15, marginTop: 4 }}>Sé el <span style={{ color: GOLD }}>Campeón de la semana</span></div>
+        <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!</div>
+      </div>
+    );
+  }
+  const champ = entries[0];
+  const rest = entries.slice(1, 3);
+  const champName = champ.name || "Jugador anónimo";
+  return (
+    <div style={{
+      maxWidth: 800, margin: "0 auto 18px", padding: "18px 18px 16px", borderRadius: 18,
+      background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(201,168,76,0.04))",
+      border: "1px solid rgba(201,168,76,0.45)", boxShadow: "0 8px 32px rgba(201,168,76,0.12)",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 6 }}>
+        <span style={{ color: GOLD, fontWeight: 900, fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase" }}>👑 Campeón de la semana</span>
+        <span style={{ color: DIM, fontSize: 11.5 }}>Se reinicia cada semana · últimos 7 días</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div style={{ position: "relative", flexShrink: 0 }}>
+          <div style={{ width: 56, height: 56, borderRadius: "50%", background: champ.avatarUrl ? `url(${champ.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: `0 0 0 3px ${GOLD}`, color: BG, fontWeight: 900, fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!champ.avatarUrl && champName.charAt(0).toUpperCase()}</div>
+          <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", fontSize: 22 }} aria-hidden>👑</div>
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <span style={{ fontWeight: 900, fontSize: 19, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{champName}</span>
+            <Flag code={champ.country} />
+          </div>
+          <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>Lidera la semana</div>
+        </div>
+        <div style={{ textAlign: "right", flexShrink: 0 }}>
+          <div style={{ fontWeight: 900, fontSize: 22, color: GOLD }}>{champ.coins.toLocaleString()} 🪙</div>
+          <div style={{ color: DIM, fontSize: 11 }}>esta semana</div>
+        </div>
+      </div>
+      {rest.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 12, paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+          {rest.map((e, i) => (
+            <div key={e.userId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13.5 }}>
+              <span style={{ fontSize: 16, width: 22, textAlign: "center", flexShrink: 0 }} aria-hidden>{i === 0 ? "🥈" : "🥉"}</span>
+              <span style={{ flex: 1, minWidth: 0, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name || "Jugador anónimo"}</span>
+              <Flag code={e.country} />
+              <span style={{ fontWeight: 800, color: "#fff" }}>{e.coins.toLocaleString()} 🪙</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Lista de jugadores (global / por módulo / por país / por creador) ──────
 function PlayersList({ entries, meId, emptyKind = "global" }: { entries: RankEntry[] | null; meId: string | null; emptyKind?: "global" | "country" | "creator" }) {
   const emptyMsg = emptyKind === "country"
@@ -554,7 +625,7 @@ function PlayersList({ entries, meId, emptyKind = "global" }: { entries: RankEnt
             background: isMe ? "rgba(201,168,76,0.14)" : i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
             border: `1px solid ${isMe ? "rgba(201,168,76,0.4)" : i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
           }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 14, flexShrink: 0, ...rankChipStyle(i) }}>{r.rank}</div>
+            <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 14, flexShrink: 0, ...rankChipStyle(i) }}>{i < 3 ? ["🥇", "🥈", "🥉"][i] : r.rank}</div>
             <div style={{ width: 30, height: 30, borderRadius: "50%", flexShrink: 0, background: r.avatarUrl ? `url(${r.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 800, fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!r.avatarUrl && initial}</div>
             <Flag code={r.country} />
             <div style={{ flex: 1, minWidth: 0 }}>

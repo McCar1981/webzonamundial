@@ -14,6 +14,7 @@ export const ADMIN_HOME = "/admin/panel";
 export const ADMIN_SECTIONS: AdminSection[] = [
   { href: "/admin/creadores", label: "Creadores", emoji: "🎬", desc: "Programa de monetización: registros, bonos y pagos por creador." },
   { href: "/admin/registros", label: "Registros", emoji: "📝", desc: "Altas de usuarios y su fuente de captación." },
+  { href: "/admin/codigos", label: "Códigos", emoji: "🎟️", desc: "Códigos de captación: reparte, recompensa y mide canales." },
   { href: "/admin/founders", label: "Founders", emoji: "👑", desc: "Compradores del Founders Pass e ingresos." },
   { href: "/admin/pro", label: "Plan Pro", emoji: "💎", desc: "Funnel de conversión y choques con límites Free." },
   { href: "/admin/push", label: "Push", emoji: "🔔", desc: "Enviar una notificación push manual a los suscriptores." },

@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { EmailOtpType } from "@supabase/supabase-js";
+import { redeemSignupCode, normalizeSignupCode } from "@/lib/signup-codes/store";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 /*
   OAuth + magic-link callback handler.
@@ -105,6 +107,27 @@ export async function GET(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  // Canje del CÓDIGO DE CAPTACIÓN (estrategia /registro-codigo). El código
+  // llega por raw_user_meta_data.signup_code (magic link) o por el parámetro
+  // `codigo` de `next` (OAuth Google/Apple). El canje es ATÓMICO e IDEMPOTENTE
+  // (una fila por usuario): si ya lo canjeó, no vuelve a abonar Fútcoins.
+  // Best-effort — un fallo aquí jamás bloquea el acceso del usuario.
+  if (user) {
+    try {
+      const metaCode =
+        (user.user_metadata as { signup_code?: string } | null)?.signup_code || "";
+      let urlCode = "";
+      const qIdx = next.indexOf("?");
+      if (qIdx >= 0) {
+        urlCode = new URLSearchParams(next.slice(qIdx + 1)).get("codigo") || "";
+      }
+      const code = normalizeSignupCode(metaCode || urlCode);
+      if (code) await redeemSignupCode(user.id, code);
+    } catch {
+      // Silencioso: el canje no es crítico para iniciar sesión.
+    }
+  }
 
   // Alta LIGERA desde una porra de bar: si el destino es la página de un bar
   // (/b/...), el usuario llegó por el QR del local y NO debe pasar por el

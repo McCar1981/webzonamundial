@@ -263,11 +263,13 @@ export async function sendNewRegistrationNotification(opts: {
   country?: string | null;
   favTeam?: string | null;
   favCreator?: string | null;
+  signupCode?: string | null;
 }): Promise<boolean> {
   const fullName = [opts.firstName, opts.lastName].filter(Boolean).join(' ') || '—';
   const country = opts.country ? opts.country.toUpperCase() : '—';
   const favTeam = opts.favTeam || '—';
   const favCreator = opts.favCreator || '—';
+  const signupCode = opts.signupCode || '—';
   const fechaIso = new Date().toISOString();
   // Render legible europeo: 18/05/2026 14:32 (Madrid).
   const fechaLegible = new Date().toLocaleString('es-ES', {
@@ -313,6 +315,10 @@ export async function sendNewRegistrationNotification(opts: {
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Creador elegido</td>
             <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;text-transform:capitalize;">${escapeHtml(favCreator)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Código de captación</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:700;text-align:right;border-top:1px solid #e5e7eb;letter-spacing:0.05em;">${escapeHtml(signupCode)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Fecha</td>

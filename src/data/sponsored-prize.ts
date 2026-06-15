@@ -34,7 +34,7 @@ export interface SponsoredPrize {
 export const SPONSORED_PRIZE: SponsoredPrize = {
   active: true,                             // marca de la casa (Sprintmarkt) mientras se cierra un patrocinador externo
   sponsorName: "Sprintmarkt",
-  // sponsorLogoUrl: "https://...",         // ← AÑADIR el logo (del patrocinador real) antes de la final
+  sponsorLogoUrl: "/patrocinadores/sprintmarkt.png", // ← cambiar por el del patrocinador real antes de la final
   // sponsorUrl: "https://...",
   prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º por tasa de acierto
   termsNote: "Premio para el Top 3 por tasa de acierto (mín. 20 predicciones) al finalizar el Mundial. Participación gratuita.",

@@ -662,12 +662,12 @@ function SponsorTag({ prize }: { prize: SponsoredPrize }) {
       {prize.sponsorUrl ? (
         <a href={prize.sponsorUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "#fff" }}>
           {prize.sponsorLogoUrl
-            ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 18, maxWidth: 120, objectFit: "contain" }} />
+            ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 28, maxWidth: 140, objectFit: "contain" }} />
             : <b>{prize.sponsorName}</b>}
         </a>
       ) : (
         prize.sponsorLogoUrl
-          ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 18, maxWidth: 120, objectFit: "contain" }} />
+          ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 28, maxWidth: 140, objectFit: "contain" }} />
           : <b style={{ color: "#fff" }}>{prize.sponsorName}</b>
       )}
       {prize.termsUrl && <a href={prize.termsUrl} target="_blank" rel="noopener noreferrer" style={{ color: DIM, fontSize: 10.5, textDecoration: "underline" }}>bases</a>}

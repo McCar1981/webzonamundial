@@ -1458,6 +1458,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
             {tab === "general" && (
             <>
+            {/* Previa editorial del partido (acordeón, fotos reales de las dos
+                selecciones): ARRIBA del todo. El campo va justo debajo. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
+            )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
@@ -1590,11 +1595,8 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               />
             </div>
 
-            {/* Previa, ambiente del estadio y sala con amigos: DEBAJO del campo
-                para que la acción (relato + cancha) quede siempre arriba. */}
-            {feed.mode === "live" && matchId < 9000 && (
-              <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
-            )}
+            {/* Ambiente del estadio y sala con amigos: DEBAJO del campo
+                (engagement social; no deben empujar la acción hacia abajo). */}
             {feed.mode === "live" && matchId < 9000 && !finished && (
               <EstadioEnVivo matchId={matchId} live={isInPlay(status)} />
             )}

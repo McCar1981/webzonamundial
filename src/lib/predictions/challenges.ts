@@ -169,7 +169,8 @@ export async function settleChallenges(matchId: string, result: MatchResultReal)
   const rows = (data ?? []) as ChallengeRow[];
   if (rows.length === 0) return;
 
-  const real = winnerOf(result.score.home, result.score.away);
+  // Penaltis (KO): el ganador lo decide la tanda, no el empate de los 120'.
+  const real = result.winner_override ?? winnerOf(result.score.home, result.score.away);
 
   for (const r of rows) {
     if (r.status === "open") {

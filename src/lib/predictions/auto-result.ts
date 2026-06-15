@@ -100,12 +100,22 @@ export function composeResultFromSnapshot(matchId: string, snap: LiveSnapshot): 
       }
     : {}) as MatchResultReal["stats"];
 
+  // Tanda de penaltis: si el KO se decidió en los penaltis (status "PEN"), el
+  // marcador (score) se queda en los 120' para "resultado exacto", pero el GANADOR
+  // (winner/social/cadena/piques/oráculo) lo decide la tanda vía winner_override.
+  const pen = snap.penalty;
+  const winnerOverride =
+    snap.status === "PEN" && pen && pen[0] !== pen[1]
+      ? pen[0] > pen[1] ? "home" : "away"
+      : undefined;
+
   return {
     score: { home: snap.score[0], away: snap.score[1] },
     events,
     stats,
     player_ratings: {},
     ...(firstSub != null ? { first_sub_minute: firstSub } : {}),
+    ...(winnerOverride ? { winner_override: winnerOverride } : {}),
   };
 }
 

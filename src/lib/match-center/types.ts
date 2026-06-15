@@ -150,6 +150,9 @@ export interface LiveSnapshot {
   /** Nombre del árbitro, si la API lo provee. */
   referee?: string;
   score: Pair;
+  /** Resultado de la tanda de penaltis [local, visitante] si el partido se
+   *  decidió así (status "PEN"). El `score` mantiene el marcador de los 120'. */
+  penalty?: Pair;
   events: MatchEvent[];
   /** eventId -> texto de locución (rellenado por el narrador IA). */
   narration: Record<string, string>;

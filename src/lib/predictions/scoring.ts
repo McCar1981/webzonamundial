@@ -44,6 +44,12 @@ function winnerOf(home: number, away: number): WinnerResult {
   if (home < away) return "away";
   return "draw";
 }
+// Ganador EFECTIVO: si el KO se decidió por penaltis usa el override de la tanda;
+// si no, el ganador del marcador. Lo usan winner / social / cadena. "Resultado
+// exacto" NO lo usa (puntúa el marcador de los 120').
+function resolvedWinner(r: MatchResultReal): WinnerResult {
+  return r.winner_override ?? winnerOf(r.score.home, r.score.away);
+}
 
 function firstGoal(result: MatchResultReal) {
   return result.events
@@ -103,7 +109,7 @@ function scoreExactScore(d: ExactScoreData, r: MatchResultReal): BaseScore {
 }
 
 function scoreWinner(d: WinnerData, mult: number, r: MatchResultReal): BaseScore {
-  const real = winnerOf(r.score.home, r.score.away);
+  const real = resolvedWinner(r);
   const m = Math.max(1, Math.min(3, mult || 1));
   if (d.result === real) return { correct: true, points: 10 * m, detail: `Ganador acertado ×${m}` };
   return { correct: false, points: -5 * m, detail: `Ganador fallado ×${m}` };
@@ -180,7 +186,7 @@ export function evalChain(d: ChainData, r: MatchResultReal): { results: ChainSte
         break;
       }
       case "winner": {
-        ok = winnerOf(r.score.home, r.score.away) === step.event_data.result;
+        ok = resolvedWinner(r) === step.event_data.result;
         break;
       }
     }
@@ -295,7 +301,7 @@ function scoreMinuteDrama(d: MinuteDramaData, r: MatchResultReal): BaseScore {
 function scoreSocial(d: SocialData, r: MatchResultReal): BaseScore {
   let hit = false;
   if (d.question_key === "winner") {
-    hit = d.choice === winnerOf(r.score.home, r.score.away);
+    hit = d.choice === resolvedWinner(r);
   } else if (d.question_key === "exact_score") {
     hit = d.choice === `${r.score.home}-${r.score.away}`;
   } else if (d.question_key === "first_scorer") {

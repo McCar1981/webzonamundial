@@ -153,7 +153,8 @@ export async function settleOracleChallenges(matchId: string, result: MatchResul
   const rows = (data ?? []) as OracleChallengeRow[];
   if (rows.length === 0) return;
 
-  const real = winnerOf(result.score.home, result.score.away);
+  // Penaltis (KO): el ganador lo decide la tanda, no el empate de los 120'.
+  const real = result.winner_override ?? winnerOf(result.score.home, result.score.away);
 
   for (const r of rows) {
     const userOk = r.user_pick?.result === real;

@@ -63,6 +63,10 @@ interface RawFixture {
   };
   teams: { home: { id: number }; away: { id: number } };
   goals: { home: number | null; away: number | null };
+  // Desglose por fases; solo usamos la tanda de penaltis para decidir el ganador
+  // de una eliminatoria empatada en los 120' (status "PEN"). `goals` se queda con
+  // el marcador de los 120'.
+  score?: { penalty?: { home: number | null; away: number | null } };
   // `/fixtures?id=` embebe estos bloques en la propia respuesta del fixture, de
   // modo que UNA petición trae eventos+stats+alineaciones (antes eran 4). Si la
   // API no los incluye, caemos a las peticiones sueltas como respaldo.
@@ -313,6 +317,13 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
     city: fx.fixture.venue.city || meta.city,
   };
 
+  // Tanda de penaltis (status "PEN"): decide el ganador de una eliminatoria
+  // empatada en los 120'. El `score` mantiene el marcador de los 120'.
+  const ph = fx.score?.penalty?.home;
+  const pa = fx.score?.penalty?.away;
+  const penalty: [number, number] | undefined =
+    typeof ph === "number" && typeof pa === "number" ? [ph, pa] : undefined;
+
   return {
     mode: "live",
     matchId: meta.id,
@@ -321,6 +332,7 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
     kickoff: fx.fixture.date,
     referee: fx.fixture.referee ?? undefined,
     score: [fx.goals.home ?? 0, fx.goals.away ?? 0],
+    ...(penalty ? { penalty } : {}),
     events: placedEvents,
     narration: {},
     stats,

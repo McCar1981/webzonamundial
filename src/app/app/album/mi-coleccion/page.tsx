@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -65,21 +65,13 @@ export default function MiColeccionPage() {
 
   useRevealOnScroll([loading, collection, activeTab, achievements, offers]);
 
-  useEffect(() => {
-    const sb = createSupabaseBrowserClient();
-    sb.auth.getUser().then(({ data }) => {
-      setAuthed(!!data.user);
-      setUserId(data.user?.id ?? null);
-      if (!data.user) router.replace("/login?next=/app/album/mi-coleccion");
-    });
-  }, [router]);
-
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const colRes = await fetch("/api/cromos/mine");
       if (colRes.status === 401) {
+        setAuthed(false);
         router.replace("/login?next=/app/album/mi-coleccion");
         return;
       }
@@ -89,29 +81,38 @@ export default function MiColeccionPage() {
       setCollection(colData);
       setFavoriteIds(colData.favoriteIds ?? []);
 
-      const [packRes, achRes, tradeRes] = await Promise.all([
-        fetch("/api/cromos/pack-status"),
-        fetch("/api/cromos/achievements"),
-        fetch("/api/cromos/trades"),
-      ]);
-
-      if (packRes.ok) {
-        const packData = await packRes.json();
-        setPackStatus({
-          canOpen: packData.canOpen ?? true,
-          nextPackAt: packData.nextPackAt ?? null,
-          secondsLeft: packData.secondsLeft ?? 0,
-        });
+      try {
+        const packRes = await fetch("/api/cromos/pack-status");
+        if (packRes.ok) {
+          const packData = await packRes.json();
+          setPackStatus({
+            canOpen: packData.canOpen ?? true,
+            nextPackAt: packData.nextPackAt ?? null,
+            secondsLeft: packData.secondsLeft ?? 0,
+          });
+        }
+      } catch {
+        setPackStatus({ canOpen: true, nextPackAt: null, secondsLeft: 0 });
       }
 
-      if (achRes.ok) {
-        const achData = await achRes.json();
-        setAchievements(achData.achievements);
+      try {
+        const achRes = await fetch("/api/cromos/achievements");
+        if (achRes.ok) {
+          const achData = await achRes.json();
+          setAchievements(achData.achievements);
+        }
+      } catch {
+        // silently fail, achievements are optional
       }
 
-      if (tradeRes.ok) {
-        const tradeData = await tradeRes.json();
-        setOffers(tradeData.offers ?? []);
+      try {
+        const tradeRes = await fetch("/api/cromos/trades");
+        if (tradeRes.ok) {
+          const tradeData = await tradeRes.json();
+          setOffers(tradeData.offers ?? []);
+        }
+      } catch {
+        // silently fail, trades are optional
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : (isES ? "Error cargando tu colección" : "Error loading your collection");
@@ -122,18 +123,46 @@ export default function MiColeccionPage() {
   }, [isES, router]);
 
   useEffect(() => {
-    if (authed) load();
-  }, [authed, load]);
+    let mounted = true;
+    const sb = createSupabaseBrowserClient();
+    sb.auth.getUser().then(({ data }) => {
+      if (!mounted) return;
+      const user = data.user;
+      setUserId(user?.id ?? null);
+      if (!user) {
+        setAuthed(false);
+        router.replace("/login?next=/app/album/mi-coleccion");
+      } else {
+        setAuthed(true);
+        load();
+      }
+    });
+    return () => { mounted = false; };
+  }, [router, load]);
+
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (packStatus.canOpen) return;
-    const id = setInterval(() => {
+    if (packStatus.canOpen) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
+    }
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
       setPackStatus((prev) => {
         const next = Math.max(0, prev.secondsLeft - 1);
         return { ...prev, secondsLeft: next, canOpen: next <= 0 };
       });
     }, 1000);
-    return () => clearInterval(id);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
   }, [packStatus.canOpen]);
 
   const open = async () => {

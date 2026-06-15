@@ -545,15 +545,12 @@ export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const revealT = setTimeout(() => setRevealed(true), 2000);
-    const doneT = setTimeout(() => {
-      document.body.style.overflow = "";
-      onDone();
-    }, 2300);
+    const doneT = setTimeout(() => onDone(), 2300);
     return () => { clearTimeout(revealT); clearTimeout(doneT); document.body.style.overflow = ""; };
   }, [onDone]);
 
   return (
-    <div className={styles.packOpeningOverlay} onClick={onDone}>
+    <div className={styles.packOpeningOverlay} onClick={onDone} style={{ cursor: "pointer" }}>
       <div className={styles.packOpeningHeader}>{isES ? "Abriendo sobre..." : "Opening pack..."}</div>
       <div className={styles.packOpeningCards}>
         {cromos.map((c, i) => (
@@ -561,7 +558,6 @@ export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]
             key={c.id}
             className={`${styles.packFlipCard} ${revealed ? styles.packFlipRevealed : ""}`}
             style={{
-              animationDelay: `${0.2 + i * 0.25}s`,
               "--flip-delay": `${0.2 + i * 0.25}s`,
             } as React.CSSProperties}
           >

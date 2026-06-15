@@ -161,6 +161,11 @@
 | #6 | page.tsx | 154-158 | Validar packResult es array con cromos |
 | #9 | page.tsx | 368-394 | Try-catch en trade accept/cancel callbacks |
 | #12 | page.tsx | 197-206 | Show error en toggleFavorite |
+| #1 | page.tsx | 68-126 | Combinar auth + load en un effect, remover race condition |
+| #7 | page.tsx | 92-115 | Promise.all → fetches independientes con try-catch individual |
+| #8 | page.tsx | 143-152 | Usar useRef para rastrear intervalo, evitar memory leak |
+| #5 | components.tsx | 563-566 | Remover animationDelay redundante, mantener --flip-delay |
+| #10-11 | components.tsx | 555 | Remover limpieza duplicate overflow, agregar cursor pointer |
 
 ---
 
@@ -217,4 +222,4 @@ Estos NO bloquean la feature pero deberían abordarse en próxima iteración.
 
 ---
 
-**Status:** ✅ 7 de 12 bugs críticos/altos FIXED
+**Status:** ✅ **12 de 12 bugs FIXED** (7 críticos/altos + 5 pendientes)

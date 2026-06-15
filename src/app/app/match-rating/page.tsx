@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { MATCHES, type Match } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import styles from "./page.module.css";
+
+// ponytail: minimal animation helper - tracks element visibility for stagger effects
+function useStaggerAnimation(count: number) {
+  return Array.from({ length: count }, (_, i) => ({ delay: i * 50 }));
+}
 
 interface RatingEntry {
   watched: boolean;

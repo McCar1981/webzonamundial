@@ -88,6 +88,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/espana-cabo-verde-wide.webp",
     mobile: "/images/hero/espana-cabo-verde-mobile.webp",
   },
+  // Bélgica vs Egipto (15 jun, Grupo G).
+  "belgica-egipto": {
+    wide: "/images/hero/belgica-egipto-wide.webp",
+    mobile: "/images/hero/belgica-egipto-mobile.webp",
+  },
+  // Irán vs N. Zelanda (15 jun, Grupo G).
+  "iran-n-zelanda": {
+    wide: "/images/hero/iran-n-zelanda-wide.webp",
+    mobile: "/images/hero/iran-n-zelanda-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

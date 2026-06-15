@@ -98,6 +98,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/iran-n-zelanda-wide.webp",
     mobile: "/images/hero/iran-n-zelanda-mobile.webp",
   },
+  // A. Saudí vs Uruguay (15 jun, Grupo H).
+  "a-saudi-uruguay": {
+    wide: "/images/hero/a-saudi-uruguay-wide.webp",
+    mobile: "/images/hero/a-saudi-uruguay-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

@@ -32,10 +32,10 @@ export interface SponsoredPrize {
 // Por defecto INACTIVO: el Campeón muestra solo la corona (estatus), sin premios.
 // Para activar cuando cierres patrocinador, copia el bloque de ejemplo de abajo.
 export const SPONSORED_PRIZE: SponsoredPrize = {
-  active: false,                            // ← pon true cuando rellenes el patrocinador
-  sponsorName: "",                          // ← nombre del patrocinador (p.ej. "Coolligan")
-  // sponsorLogoUrl: "https://zonamundial.app/patrocinadores/marca.png", // logo horizontal
-  // sponsorUrl: "https://...",             // enlace del patrocinador (opcional)
+  active: true,                             // marca de la casa (Sprintmarkt) mientras se cierra un patrocinador externo
+  sponsorName: "Sprintmarkt",
+  // sponsorLogoUrl: "https://...",         // ← AÑADIR el logo (del patrocinador real) antes de la final
+  // sponsorUrl: "https://...",
   prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º del ranking global
   termsNote: "Premio para el Top 3 del ranking global al finalizar el Mundial. Participación gratuita.",
   // termsUrl: "https://zonamundial.app/bases-campeon", // bases legales (las define el abogado)

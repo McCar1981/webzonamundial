@@ -14,6 +14,7 @@ import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
 import PreviaAccordion from "./PreviaAccordion";
 import WinProbability from "./WinProbability";
+import EstadioEnVivo from "./EstadioEnVivo";
 import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -1459,6 +1460,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                 dos selecciones). Solo en partidos reales del torneo. */}
             {feed.mode === "live" && matchId < 9000 && (
               <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
+            )}
+            {/* Estadio en Vivo: presencia + reacciones + rugido (solo partidos
+                reales no terminados; en finalizados no aporta y ahorra KV). */}
+            {feed.mode === "live" && matchId < 9000 && !finished && (
+              <EstadioEnVivo matchId={matchId} live={isInPlay(status)} />
             )}
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>

@@ -48,6 +48,9 @@ export interface Registro {
   last_name: string | null;
   full_name: string | null;
   creador: string | null;
+  // Código de captación (campaña/embajador/sponsor) con el que entró el
+  // usuario. Estrategia paralela a `creador`. MAYÚSCULAS, [A-Z0-9-]. Opcional.
+  signup_code: string | null;
   // ISO-3166 alpha-2 lowercase (ar, es, mx, …). Opcional.
   country: string | null;
   // Slug de SELECCIONES (argentina, espana, …). Opcional.
@@ -124,11 +127,18 @@ export type AddRegistroInput = {
   last_name?: string | null;
   full_name?: string | null;
   creador?: string | null;
+  signup_code?: string | null;
   country?: string | null;
   fav_team?: string | null;
   ip?: string | null;
   kind: RegistroKind;
 };
+
+/** Normaliza un código de captación: MAYÚSCULAS, solo [A-Z0-9-], máx 32. */
+function normSignupCode(input: string | null | undefined): string | null {
+  const c = (input ?? "").toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 32);
+  return c || null;
+}
 
 export type AddRegistroResult =
   | { ok: true; id: string; total: number; alreadyRegistered: boolean }
@@ -171,6 +181,7 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
         last_name: input.last_name?.trim() || null,
         full_name: input.full_name?.trim() || null,
         creador: input.creador?.trim() || null,
+        signup_code: normSignupCode(input.signup_code),
         country: input.country?.trim().toLowerCase() || null,
         fav_team: input.fav_team?.trim().toLowerCase() || null,
         kind: input.kind,
@@ -209,6 +220,7 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
       last_name: input.last_name?.trim() || null,
       full_name: input.full_name?.trim() || null,
       creador: input.creador?.trim() || null,
+      signup_code: normSignupCode(input.signup_code),
       country: input.country?.trim().toLowerCase() || null,
       fav_team: input.fav_team?.trim().toLowerCase() || null,
       kind: input.kind,

@@ -1,7 +1,7 @@
 // src/components/FormularioRegistro.tsx
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { getCreadoresActivos } from '@/data/creadores';
 import { SELECCIONES } from '@/data/selecciones';
@@ -18,7 +18,26 @@ import FlagSelect, { type FlagSelectOption } from '@/components/FlagSelect';
 // Por eso los pedimos en el pre-registro web, antes incluso del magic link,
 // para no perderlos si el usuario nunca completa onboarding.
 
-export default function FormularioRegistro({ creadorPreseleccionado }: { creadorPreseleccionado?: string }) {
+// Normaliza un código de captación a MAYÚSCULAS y solo [A-Z0-9-]. Debe
+// coincidir con normalizeSignupCode() del backend (lib/signup-codes/store.ts).
+function normCode(raw: string): string {
+  return (raw || '').toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 32);
+}
+
+export default function FormularioRegistro({
+  creadorPreseleccionado,
+  // Código de captación (estrategia paralela a los creadores). Si viene
+  // `codigoPreseleccionado` (landing /registro-codigo/<CODIGO>) el campo va
+  // bloqueado y prerelleno. Si `pedirCodigo` es true (página /registro-codigo
+  // genérica) se muestra un campo editable opcional. Si ninguno, el formulario
+  // se comporta EXACTAMENTE como hasta ahora (registro normal / por creador).
+  codigoPreseleccionado,
+  pedirCodigo,
+}: {
+  creadorPreseleccionado?: string;
+  codigoPreseleccionado?: string;
+  pedirCodigo?: boolean;
+}) {
   const { t } = useLanguage();
   const isEN = t.nav.selecciones === '48 Teams';
 
@@ -31,8 +50,38 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     country: '',      // ISO-3166 alpha-2 (ar, es, mx, …)
     fav_team: '',     // slug de SELECCIONES (argentina, espana, …)
     creador: creadorPreseleccionado || '',
+    signupCode: normCode(codigoPreseleccionado || ''), // código de captación
     acceptTerms: false,
   });
+
+  // Flujo de CÓDIGO: aquí NO se elige creador. Se salta el paso 2 (selector
+  // de creador) y se envía directo desde el paso 1.
+  const isCodeFlow = !!(pedirCodigo || codigoPreseleccionado);
+
+  // Feedback de validez del código (para enseñar el bono de bienvenida antes
+  // de registrarse). null = sin comprobar todavía.
+  const [codeInfo, setCodeInfo] = useState<
+    { valid: boolean; reward: number; label: string | null } | null
+  >(null);
+
+  const checkCode = async (raw: string) => {
+    const c = normCode(raw);
+    if (c.length < 3) { setCodeInfo(null); return; }
+    try {
+      const r = await fetch(`/api/registro-codigo/validar?code=${encodeURIComponent(c)}`);
+      if (!r.ok) { setCodeInfo(null); return; }
+      const d = (await r.json()) as { valid?: boolean; rewardNewUser?: number; label?: string | null };
+      setCodeInfo({ valid: !!d.valid, reward: d.rewardNewUser || 0, label: d.label ?? null });
+    } catch {
+      setCodeInfo(null);
+    }
+  };
+
+  // Si el código viene prerelleno (landing), lo validamos al montar.
+  useEffect(() => {
+    if (codigoPreseleccionado) void checkCode(normCode(codigoPreseleccionado));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Listas precomputadas para los selectores con bandera.
   // Las banderas se sirven desde flagcdn.com (CC0). Los slugs de
@@ -234,11 +283,15 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       (typeof window !== 'undefined' ? window.location.origin : '');
-    // Si el usuario venía de un creador, lo arrastramos al onboarding para
-    // preseleccionar su comunidad tras el OAuth.
-    const next = creadorPreseleccionado
-      ? `/onboarding?creador=${encodeURIComponent(creadorPreseleccionado)}`
-      : '/onboarding';
+    // Si el usuario venía de un creador o de un código de captación, lo
+    // arrastramos al onboarding (creador) y al callback (código) tras el
+    // OAuth. El código se canjea en /auth/callback leyendo el param `codigo`.
+    const codeForUrl = normCode(formData.signupCode || codigoPreseleccionado || '');
+    const params = new URLSearchParams();
+    if (creadorPreseleccionado) params.set('creador', creadorPreseleccionado);
+    if (codeForUrl) params.set('codigo', codeForUrl);
+    const qs = params.toString();
+    const next = qs ? `/onboarding?${qs}` : '/onboarding';
     const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`;
 
     const { error } = await supabase.auth.signInWithOAuth({
@@ -274,6 +327,9 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // En el flujo de código se envía desde el paso 1 (no hay paso 2), así que
+    // validamos aquí los campos del paso 1 antes de continuar.
+    if (isCodeFlow && !validateStep1()) return;
     setLoading(true);
     setError('');
 
@@ -283,6 +339,8 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     const cleanFullName = `${cleanFirstName} ${cleanLastName}`.trim();
     const cleanNombre = formData.nombre.trim();
     const cleanCreador = formData.creador?.trim() || '';
+    // Código de captación normalizado (vacío si no hay).
+    const cleanCode = normCode(formData.signupCode || '');
     // Country: ISO-3166 alpha-2 lowercase (ar, es, mx…). null si vacío.
     const cleanCountry = formData.country?.trim().toLowerCase() || null;
     // Fav team: slug de SELECCIONES (argentina, espana…). null si vacío.
@@ -345,6 +403,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           creador: cleanCreador,
           country: cleanCountry,
           fav_team: cleanFavTeam,
+          signup_code: cleanCode,
         }),
       });
     } catch {
@@ -395,6 +454,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             fav_creator: cleanCreador,
             country: cleanCountry,
             fav_team: cleanFavTeam,
+            signup_code: cleanCode,
             locale: isEN ? 'en' : 'es',
           },
         },
@@ -500,24 +560,27 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Progress Steps */}
-      <div className="flex items-center justify-center gap-2 mb-6">
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-          step === 1 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#C9A84C]/20 text-[#C9A84C]'
-        }`}>
-          <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-            style={{ background: step === 1 ? '#030712' : 'transparent' }}>1</span>
-          {labels.step1}
+      {/* Progress Steps — solo en el registro normal/por creador (2 pasos).
+          En el flujo de código no hay paso 2 (no se elige creador). */}
+      {!isCodeFlow && (
+        <div className="flex items-center justify-center gap-2 mb-6">
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+            step === 1 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#C9A84C]/20 text-[#C9A84C]'
+          }`}>
+            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
+              style={{ background: step === 1 ? '#030712' : 'transparent' }}>1</span>
+            {labels.step1}
+          </div>
+          <div className="w-8 h-0.5 bg-[#1E293B]" />
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+            step === 2 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#1E293B] text-gray-500'
+          }`}>
+            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
+              style={{ background: step === 2 ? '#030712' : 'transparent' }}>2</span>
+            {labels.step2}
+          </div>
         </div>
-        <div className="w-8 h-0.5 bg-[#1E293B]" />
-        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-          step === 2 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#1E293B] text-gray-500'
-        }`}>
-          <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-            style={{ background: step === 2 ? '#030712' : 'transparent' }}>2</span>
-          {labels.step2}
-        </div>
-      </div>
+      )}
 
       {/* Error message */}
       {error && (
@@ -528,6 +591,54 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
       {step === 1 && (
         <>
+          {/* Código de captación — solo en el flujo /registro-codigo. En el
+              registro normal/por creador no se muestra (props sin definir). */}
+          {(pedirCodigo || codigoPreseleccionado) && (
+            <div className="space-y-2 mb-2">
+              <label htmlFor="reg-code" className="block text-xs font-bold text-[#C9A84C] uppercase tracking-wider">
+                {isEN ? 'Invite code' : 'Código de invitación'}
+              </label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#C9A84C]">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 012 2v3a2 2 0 100 4v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a2 2 0 100-4V7a2 2 0 012-2z" />
+                  </svg>
+                </div>
+                <input
+                  id="reg-code"
+                  type="text"
+                  value={formData.signupCode}
+                  readOnly={!!codigoPreseleccionado}
+                  onChange={(e) => {
+                    setFormData({ ...formData, signupCode: normCode(e.target.value) });
+                    setCodeInfo(null);
+                    setError('');
+                  }}
+                  onBlur={(e) => { void checkCode(e.target.value); }}
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#C9A84C]/40 text-gray-900 text-sm font-bold tracking-wider uppercase focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-400 placeholder:font-normal placeholder:tracking-normal read-only:bg-[#C9A84C]/5"
+                  placeholder={isEN ? 'YOUR CODE (optional)' : 'TU CÓDIGO (opcional)'}
+                  maxLength={32}
+                  autoCapitalize="characters"
+                  autoComplete="off"
+                />
+              </div>
+              {codeInfo && codeInfo.valid && (
+                <p className="text-[11px] font-bold text-emerald-400">
+                  {isEN
+                    ? `Valid code${codeInfo.label ? ` (${codeInfo.label})` : ''} — ${codeInfo.reward} Fútcoins welcome bonus`
+                    : `Código válido${codeInfo.label ? ` (${codeInfo.label})` : ''} — bono de bienvenida de ${codeInfo.reward} Fútcoins`}
+                </p>
+              )}
+              {codeInfo && !codeInfo.valid && formData.signupCode.length >= 3 && (
+                <p className="text-[11px] text-gray-500">
+                  {isEN
+                    ? 'Code not recognized — you can sign up anyway.'
+                    : 'Código no reconocido — puedes registrarte igualmente.'}
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Registro en 1 clic — el camino más rápido. Google + Apple. */}
           <div className="space-y-3">
             <p className="text-center text-xs font-bold text-[#C9A84C] uppercase tracking-wider">
@@ -751,9 +862,12 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           </div>
 
           <button
-            type="button"
-            onClick={handleContinue}
+            // Flujo de código: este botón ENVÍA (no hay paso 2). Registro
+            // normal/por creador: continúa al paso 2 (elegir creador).
+            type={isCodeFlow ? 'submit' : 'button'}
+            onClick={isCodeFlow ? undefined : handleContinue}
             disabled={
+              (isCodeFlow && loading) ||
               !formData.email ||
               !formData.firstName.trim() ||
               !formData.lastName.trim() ||
@@ -765,10 +879,31 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >
-            {labels.continue}
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            {isCodeFlow ? (
+              loading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  {labels.submitting}
+                </>
+              ) : (
+                <>
+                  {labels.submit}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </>
+              )
+            ) : (
+              <>
+                {labels.continue}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </>
+            )}
           </button>
         </>
       )}

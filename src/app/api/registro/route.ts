@@ -18,6 +18,10 @@ interface RegistroBody {
   last_name?: string;
   full_name?: string;
   creador?: string;
+  // Código de captación (campaña/embajador/sponsor). Estrategia paralela a
+  // `creador`. Se guarda para métricas; el canje real (Fútcoins) ocurre en
+  // /auth/callback cuando el usuario confirma su cuenta.
+  signup_code?: string | null;
   // País del usuario (ISO-3166 alpha-2 lowercase).
   country?: string | null;
   // Slug de la selección favorita (argentina, espana, brasil…).
@@ -69,7 +73,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Cuerpo inválido' }, { status: 400 });
   }
 
-  const { email, nombre, first_name, last_name, full_name, creador, country, fav_team } = body || ({} as RegistroBody);
+  const { email, nombre, first_name, last_name, full_name, creador, signup_code, country, fav_team } = body || ({} as RegistroBody);
+
+  // Normaliza el código de captación: MAYÚSCULAS, solo [A-Z0-9-]. null si vacío.
+  const cleanSignupCode =
+    typeof signup_code === "string"
+      ? signup_code.toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 32) || null
+      : null;
 
   if (!email || !nombre) {
     return NextResponse.json(
@@ -136,6 +146,7 @@ export async function POST(request: NextRequest) {
     last_name: cleanLastName,
     full_name: cleanFullName,
     creador,
+    signup_code: cleanSignupCode,
     country: cleanCountry,
     fav_team: cleanFavTeam,
     ip: getClientIp(request),
@@ -179,6 +190,7 @@ export async function POST(request: NextRequest) {
     country: cleanCountry,
     favTeam: cleanFavTeam,
     favCreator: creador?.trim() || null,
+    signupCode: cleanSignupCode,
   });
 
   // Auto-suscribir al digest diario de noticias. RGPD-compliant porque:

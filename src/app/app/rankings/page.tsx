@@ -416,19 +416,19 @@ export default function RankingsPage() {
 
           {/* ─── Banner "tu posición" según la vista ─── */}
           {view === "global" && !tab && meOutsideTop && me && (
-            <MeBanner rank={me.rank} flag={me.country} title="Tu posición" sub={`Nivel ${me.level} · de ${me.total.toLocaleString()} jugadores`} value={`${me.coins.toLocaleString()} 🪙`} />
+            <MeBanner rank={me.rank} flag={me.country} title="Tu posición" sub={`Nivel ${me.level} · de ${me.total.toLocaleString()} jugadores`} value={`${me.coins.toLocaleString()} FC`} />
           )}
           {view === "country" && countryMe && (
-            <MeBanner rank={countryMe.rank} flag={countryMe.country} title={`Tu puesto en ${getCountryName(countryMe.country)}`} sub={`De ${countryMe.total.toLocaleString()} jugadores de tu país`} value={`${countryMe.coins.toLocaleString()} 🪙`} />
+            <MeBanner rank={countryMe.rank} flag={countryMe.country} title={`Tu puesto en ${getCountryName(countryMe.country)}`} sub={`De ${countryMe.total.toLocaleString()} jugadores de tu país`} value={`${countryMe.coins.toLocaleString()} FC`} />
           )}
           {view === "naciones" && myNation && (
-            <MeBanner rank={myNation.rank} flag={myNation.country} title={`${getCountryName(myNation.country)} en el medallero`} sub={`${myNation.players.toLocaleString()} jugadores compitiendo`} value={`${myNation.coins.toLocaleString()} 🪙`} />
+            <MeBanner rank={myNation.rank} flag={myNation.country} title={`${getCountryName(myNation.country)} en el medallero`} sub={`${myNation.players.toLocaleString()} jugadores compitiendo`} value={`${myNation.coins.toLocaleString()} FC`} />
           )}
           {view === "creators" && creatorToShow && creatorMe && (
-            <MeBanner rank={creatorMe.rank} leading={<CreatorAvatar slug={creatorMe.creator} size={26} />} title={`Tu puesto en ${creatorName(creatorMe.creator)}`} sub={`De ${creatorMe.total.toLocaleString()} jugadores de la comunidad`} value={`${creatorMe.coins.toLocaleString()} 🪙`} />
+            <MeBanner rank={creatorMe.rank} leading={<CreatorAvatar slug={creatorMe.creator} size={26} />} title={`Tu puesto en ${creatorName(creatorMe.creator)}`} sub={`De ${creatorMe.total.toLocaleString()} jugadores de la comunidad`} value={`${creatorMe.coins.toLocaleString()} FC`} />
           )}
           {view === "creators" && !creatorToShow && myCreatorRow && (
-            <MeBanner rank={myCreatorRow.rank} leading={<CreatorAvatar slug={myCreatorRow.creator} size={26} />} title={`${creatorName(myCreatorRow.creator)} en el ranking`} sub={`${myCreatorRow.players.toLocaleString()} jugadores compitiendo`} value={`${myCreatorRow.coins.toLocaleString()} 🪙`} />
+            <MeBanner rank={myCreatorRow.rank} leading={<CreatorAvatar slug={myCreatorRow.creator} size={26} />} title={`${creatorName(myCreatorRow.creator)} en el ranking`} sub={`${myCreatorRow.players.toLocaleString()} jugadores compitiendo`} value={`${myCreatorRow.coins.toLocaleString()} FC`} />
           )}
 
           {/* ─── Lista ─── */}
@@ -552,8 +552,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
   if (entries.length === 0) {
     return (
       <div style={{ maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 16, background: "rgba(201,168,76,0.08)", border: "1px dashed rgba(201,168,76,0.35)", textAlign: "center" }}>
-        <div style={{ fontSize: 22 }}>👑</div>
-        <div style={{ fontWeight: 800, fontSize: 15, marginTop: 4 }}>Sé el <span style={{ color: GOLD }}>Campeón de la semana</span></div>
+        <div style={{ fontWeight: 800, fontSize: 15 }}>Sé el <span style={{ color: GOLD }}>Campeón de la semana</span></div>
         <div style={{ color: DIM, fontSize: 12.5, marginTop: 4 }}>Quien más Fútcoins gane esta semana se lleva la corona. ¡Empieza a jugar!</div>
       </div>
     );
@@ -568,13 +567,12 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
       border: "1px solid rgba(201,168,76,0.45)", boxShadow: "0 8px 32px rgba(201,168,76,0.12)",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 6 }}>
-        <span style={{ color: GOLD, fontWeight: 900, fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase" }}>👑 Campeón de la semana</span>
+        <span style={{ color: GOLD, fontWeight: 900, fontSize: 13, letterSpacing: 1.5, textTransform: "uppercase" }}>Campeón de la semana</span>
         <span style={{ color: DIM, fontSize: 11.5 }}>Se reinicia cada semana · últimos 7 días</span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div style={{ position: "relative", flexShrink: 0 }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: champ.avatarUrl ? `url(${champ.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: `0 0 0 3px ${GOLD}`, color: BG, fontWeight: 900, fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!champ.avatarUrl && champName.charAt(0).toUpperCase()}</div>
-          <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", fontSize: 22 }} aria-hidden>👑</div>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
@@ -584,7 +582,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
           <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>Lidera la semana</div>
         </div>
         <div style={{ textAlign: "right", flexShrink: 0 }}>
-          <div style={{ fontWeight: 900, fontSize: 22, color: GOLD }}>{champ.coins.toLocaleString()} 🪙</div>
+          <div style={{ fontWeight: 900, fontSize: 22, color: GOLD }}>{champ.coins.toLocaleString()} FC</div>
           <div style={{ color: DIM, fontSize: 11 }}>esta semana</div>
         </div>
       </div>
@@ -592,10 +590,10 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
         <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 12, paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
           {rest.map((e, i) => (
             <div key={e.userId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13.5 }}>
-              <span style={{ fontSize: 16, width: 22, textAlign: "center", flexShrink: 0 }} aria-hidden>{i === 0 ? "🥈" : "🥉"}</span>
+              <span style={{ fontSize: 13, width: 22, textAlign: "center", flexShrink: 0, color: DIM, fontWeight: 800 }}>{i === 0 ? "2º" : "3º"}</span>
               <span style={{ flex: 1, minWidth: 0, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name || "Jugador anónimo"}</span>
               <Flag code={e.country} />
-              <span style={{ fontWeight: 800, color: "#fff" }}>{e.coins.toLocaleString()} 🪙</span>
+              <span style={{ fontWeight: 800, color: "#fff" }}>{e.coins.toLocaleString()} FC</span>
             </div>
           ))}
         </div>
@@ -611,7 +609,7 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
 function GrandPrizeBanner() {
   if (!SPONSORED_PRIZE.active || SPONSORED_PRIZE.prizes.length === 0) return null;
   const p = SPONSORED_PRIZE;
-  const medals = ["🥇", "🥈", "🥉"];
+  const medals = ["1º", "2º", "3º"];
   return (
     <div style={{
       maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 18,
@@ -619,7 +617,6 @@ function GrandPrizeBanner() {
       border: "1px solid rgba(201,168,76,0.5)", boxShadow: "0 8px 32px rgba(201,168,76,0.14)",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 20 }} aria-hidden>🏆</span>
         <span style={{ color: GOLD, fontWeight: 900, fontSize: 14, letterSpacing: 0.5, textTransform: "uppercase" }}>Gran Premio del Mundial</span>
       </div>
       <div style={{ color: "#fff", fontSize: 13.5, marginTop: 8, lineHeight: 1.5 }}>
@@ -644,7 +641,7 @@ function GrandPrizeBanner() {
 function SponsorTag({ prize }: { prize: SponsoredPrize }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, padding: "8px 12px", borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", fontSize: 12 }}>
-      <span style={{ color: DIM }}>🎁 Patrocinado por</span>
+      <span style={{ color: DIM }}>Patrocinado por</span>
       {prize.sponsorUrl ? (
         <a href={prize.sponsorUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "#fff" }}>
           {prize.sponsorLogoUrl
@@ -684,7 +681,7 @@ function PlayersList({ entries, meId, emptyKind = "global", showPrize = false }:
             background: isMe ? "rgba(201,168,76,0.14)" : i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
             border: `1px solid ${isMe ? "rgba(201,168,76,0.4)" : i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
           }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 14, flexShrink: 0, ...rankChipStyle(i) }}>{i < 3 ? ["🥇", "🥈", "🥉"][i] : r.rank}</div>
+            <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 14, flexShrink: 0, ...rankChipStyle(i) }}>{r.rank}</div>
             <div style={{ width: 30, height: 30, borderRadius: "50%", flexShrink: 0, background: r.avatarUrl ? `url(${r.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 800, fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>{!r.avatarUrl && initial}</div>
             <Flag code={r.country} />
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -692,9 +689,9 @@ function PlayersList({ entries, meId, emptyKind = "global", showPrize = false }:
               <div style={{ fontSize: 12, color: DIM }}>Nivel {r.level}</div>
             </div>
             {showPrize && i < 3 && SPONSORED_PRIZE.active && SPONSORED_PRIZE.prizes[i] && (
-              <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 700, whiteSpace: "nowrap" }}>🎁 {SPONSORED_PRIZE.prizes[i]}</span>
+              <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 700, whiteSpace: "nowrap" }}>{SPONSORED_PRIZE.prizes[i]}</span>
             )}
-            <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 || isMe ? GOLD : "#fff" }}>{r.coins.toLocaleString()} 🪙</div>
+            <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 || isMe ? GOLD : "#fff" }}>{r.coins.toLocaleString()} FC</div>
           </div>
         );
       })}
@@ -718,14 +715,14 @@ function NationsList({ nations, myCode, onPick }: { nations: NationRank[] | null
             background: isMine ? "rgba(201,168,76,0.14)" : i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
             border: `1px solid ${isMine ? "rgba(201,168,76,0.4)" : i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
           }}>
-            <div style={{ width: 34, height: 34, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 15, flexShrink: 0, ...rankChipStyle(i) }}>{i < 3 ? ["🥇", "🥈", "🥉"][i] : n.rank}</div>
+            <div style={{ width: 34, height: 34, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 15, flexShrink: 0, ...rankChipStyle(i) }}>{n.rank}</div>
             <Flag code={n.country} w={36} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 800, fontSize: 16, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{getCountryName(n.country)}{isMine && <span style={{ color: GOLD, fontWeight: 600 }}> · tu país</span>}</div>
               <div style={{ fontSize: 12, color: DIM }}>{n.players.toLocaleString()} {n.players === 1 ? "jugador" : "jugadores"}{n.topName ? ` · líder: ${n.topName}` : ""}</div>
             </div>
             <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? GOLD : "#fff" }}>{n.coins.toLocaleString()} 🪙</div>
+              <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? GOLD : "#fff" }}>{n.coins.toLocaleString()} FC</div>
               <div style={{ fontSize: 11, color: DIM }}>Ver ranking →</div>
             </div>
           </button>
@@ -751,14 +748,14 @@ function CreatorsList({ creators, mySlug, onPick }: { creators: CreatorRank[] | 
             background: isMine ? "rgba(201,168,76,0.14)" : i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
             border: `1px solid ${isMine ? "rgba(201,168,76,0.4)" : i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
           }}>
-            <div style={{ width: 34, height: 34, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 15, flexShrink: 0, ...rankChipStyle(i) }}>{i < 3 ? ["🥇", "🥈", "🥉"][i] : c.rank}</div>
+            <div style={{ width: 34, height: 34, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 15, flexShrink: 0, ...rankChipStyle(i) }}>{c.rank}</div>
             <CreatorAvatar slug={c.creator} size={36} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 800, fontSize: 16, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{creatorName(c.creator)}{isMine && <span style={{ color: GOLD, fontWeight: 600 }}> · tu comunidad</span>}</div>
               <div style={{ fontSize: 12, color: DIM }}>{c.players.toLocaleString()} {c.players === 1 ? "jugador" : "jugadores"}{c.topName ? ` · líder: ${c.topName}` : ""}</div>
             </div>
             <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? GOLD : "#fff" }}>{c.coins.toLocaleString()} 🪙</div>
+              <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? GOLD : "#fff" }}>{c.coins.toLocaleString()} FC</div>
               <div style={{ fontSize: 11, color: DIM }}>Ver ranking →</div>
             </div>
           </button>

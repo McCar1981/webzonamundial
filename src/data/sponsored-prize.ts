@@ -21,7 +21,7 @@ export interface SponsoredPrize {
   sponsorLogoUrl?: string;
   /** Enlace del patrocinador (su web/promo). Opcional. */
   sponsorUrl?: string;
-  /** Premios por puesto, de 1º a Nº. Ej: ["Tarjeta regalo 300 €", "200 €", "100 €"]. */
+  /** Premios por puesto, de 1º a Nº. Ej: ["Gift Card 300 €", "200 €", "100 €"]. */
   prizes: string[];
   /** Nota corta de condiciones (el abogado define el detalle). Opcional. */
   termsNote?: string;
@@ -36,7 +36,7 @@ export const SPONSORED_PRIZE: SponsoredPrize = {
   sponsorName: "",                          // ← nombre del patrocinador (p.ej. "Coolligan")
   // sponsorLogoUrl: "https://zonamundial.app/patrocinadores/marca.png", // logo horizontal
   // sponsorUrl: "https://...",             // enlace del patrocinador (opcional)
-  prizes: ["Tarjeta regalo 300 €", "Tarjeta regalo 200 €", "Tarjeta regalo 100 €"], // 1º / 2º / 3º del ranking global
+  prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º del ranking global
   termsNote: "Premio para el Top 3 del ranking global al finalizar el Mundial. Participación gratuita.",
   // termsUrl: "https://zonamundial.app/bases-campeon", // bases legales (las define el abogado)
 };
@@ -47,7 +47,7 @@ export const SPONSORED_PRIZE: SponsoredPrize = {
 //   sponsorName: "Coolligan",
 //   sponsorLogoUrl: "https://zonamundial.app/patrocinadores/coolligan.png",
 //   sponsorUrl: "https://coolligan.com",
-//   prizes: ["Tarjeta regalo 300 €", "Tarjeta regalo 200 €", "Tarjeta regalo 100 €"],
+//   prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"],
 //   termsNote: "Concurso gratuito de habilidad. Premio cortesía del patrocinador.",
 //   termsUrl: "https://zonamundial.app/bases-campeon",
 // };

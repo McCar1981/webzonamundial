@@ -14,6 +14,7 @@ import CommentsPanel from "./CommentsPanel";
 import FormationBoard from "./FormationBoard";
 import PreviaAccordion from "./PreviaAccordion";
 import WinProbability from "./WinProbability";
+import MatchMVP from "./MatchMVP";
 import EstadioEnVivo from "./EstadioEnVivo";
 import SalaAmigos from "./SalaAmigos";
 import GroupStandingsTab from "./GroupStandingsTab";
@@ -1579,6 +1580,12 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
             {/* Latido de probabilidad: % real de mercado (1X2) + gol inminente */}
             <WinProbability matchId={matchId} home={meta.home} away={meta.away} momentum={momentum} live={isInPlay(status)} />
+
+            {/* Jugador del partido: mejor nota REAL (api-football) + mejor de cada
+                selección. Se oculta solo si aún no hay notas. */}
+            {feed.mode === "live" && matchId < 9000 && (
+              <MatchMVP matchId={matchId} home={meta.home} away={meta.away} live={isInPlay(status)} />
+            )}
 
             {/* Pulso / momentum + reacción del público */}
             <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />

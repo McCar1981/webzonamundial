@@ -461,8 +461,15 @@ export default function MatchRatingPage() {
           </button>
 
           {showPassport && (
-            <div className={styles.passportContainer}>
-              <div className={styles.passportWrapper}>
+            <div className={styles.passportContainer} onClick={() => setShowPassport(false)}>
+              <div className={styles.passportWrapper} onClick={(e) => e.stopPropagation()}>
+                <button
+                  className={styles.passportCloseBtn}
+                  onClick={() => setShowPassport(false)}
+                  aria-label="Cerrar pasaporte"
+                >
+                  ✕
+                </button>
                 <div className={styles.passportHeader}>
                   <div className={styles.passportDecal}>MUNDIAL 2026</div>
                   <h2 className={styles.passportHeading}>Tu Viaje Emocional</h2>
@@ -472,6 +479,12 @@ export default function MatchRatingPage() {
                 <div className={styles.passportProgress}>
                   <div className={styles.progressOuter}>
                     <svg className={styles.progressSvg} viewBox="0 0 120 120">
+                      <defs>
+                        <linearGradient id="passportGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style={{ stopColor: "var(--mr-gold-2)", stopOpacity: 1 }} />
+                          <stop offset="100%" style={{ stopColor: "var(--mr-gold)", stopOpacity: 1 }} />
+                        </linearGradient>
+                      </defs>
                       <circle cx="60" cy="60" r="54" className={styles.progressBg} />
                       <circle
                         cx="60"

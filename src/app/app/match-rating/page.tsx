@@ -108,6 +108,7 @@ export default function MatchRatingPage() {
   const [filter, setFilter] = useState<FilterTab>("all");
   const [search, setSearch] = useState("");
   const [mobileView, setMobileView] = useState(false);
+  const [sharePhase, setSharePhase] = useState<string | null>(null);
 
   useEffect(() => {
     setMobileView(window.innerWidth < 768);
@@ -218,13 +219,47 @@ export default function MatchRatingPage() {
     }
   };
 
+  const generateShareText = (phase?: string) => {
+    let phaseStats = stats;
+    let phaseLabel = "Mi resumen del Mundial 2026";
+
+    if (phase) {
+      const phaseMatches = allMatches.filter((m) => {
+        const r = ROUNDS.find((r) => r.key === phase);
+        return r && r.filter(m);
+      });
+      const phaseRatings = phaseMatches.filter((m) => ratings[m.i]?.rating != null);
+      const phaseAvg = phaseRatings.length
+        ? phaseRatings.reduce((s, m) => s + (ratings[m.i].rating ?? 0), 0) / phaseRatings.length
+        : 0;
+      phaseLabel = `Mi análisis de ${phase === "S1" ? "Jornada 1" : phase === "S2" ? "Jornada 2" : phase === "S3" ? "Jornada 3" : phase === "S9" ? "la FINAL" : phase}`;
+      phaseStats = { ...phaseStats, rated: phaseRatings.length, avg: phaseAvg };
+    }
+
+    const badges = stats.unlockedBadges.map((b) => b.emoji).join("");
+    return `${phaseLabel}\n⭐ ${phaseStats.avg.toFixed(1)} promedio\n📊 ${phaseStats.rated} partidos puntuados\n${badges}\n\n¡Únete a ZonaMundial!\nhttps://zonamundial.com/app/match-rating\n\n#ZonaMundial #Mundial2026`;
+  };
+
   const shareResults = async () => {
-    const text = `Mi resumen del Mundial 2026\n⭐ ${stats.avg.toFixed(1)} promedio\n📊 ${stats.rated} partidos puntuados\n👀 ${stats.watched}/${stats.total} vistos\n${stats.unlockedBadges.map((b) => b.emoji).join("")}`;
+    if (sharePhase === null) {
+      setSharePhase("all");
+      return;
+    }
+
+    const text = generateShareText(sharePhase === "all" ? undefined : sharePhase);
+    const url = "https://zonamundial.com/app/match-rating";
+
     if (navigator.share) {
-      navigator.share({ title: "Mi Mundial", text });
+      navigator.share({
+        title: "Mi Mundial | ZonaMundial",
+        text,
+        url
+      });
+      setSharePhase(null);
     } else {
-      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}\n\n#ZonaMundial`;
-      window.open(url, "_blank");
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(tweetUrl, "_blank");
+      setSharePhase(null);
     }
   };
 
@@ -352,9 +387,48 @@ export default function MatchRatingPage() {
             </div>
           )}
 
-          <button className={styles.shareBtn} onClick={shareResults}>
-            📤 Compartir resumen
-          </button>
+          {sharePhase === null ? (
+            <button className={styles.shareBtn} onClick={shareResults}>
+              📤 Compartir resumen
+            </button>
+          ) : (
+            <div className={styles.shareModal}>
+              <div className={styles.shareTitle}>¿Qué deseas compartir?</div>
+              <button
+                className={`${styles.shareOption} ${sharePhase === "all" ? styles.shareOptionActive : ""}`}
+                onClick={() => {
+                  shareResults();
+                }}
+              >
+                <span className={styles.shareOptionIcon}>🌍</span>
+                <span className={styles.shareOptionText}>Resumen completo del Mundial</span>
+              </button>
+              {ROUNDS.map((round) => {
+                const roundMatches = allMatches.filter(round.filter);
+                const roundRatings = roundMatches.filter((m) => ratings[m.i]?.rating != null);
+                return (
+                  <button
+                    key={round.key}
+                    className={`${styles.shareOption} ${sharePhase === round.key ? styles.shareOptionActive : ""}`}
+                    onClick={() => {
+                      setSharePhase(round.key);
+                      setTimeout(shareResults, 0);
+                    }}
+                  >
+                    <span className={styles.shareOptionIcon}>
+                      {round.key === "S1" ? "1️⃣" : round.key === "S2" ? "2️⃣" : round.key === "S3" ? "3️⃣" : "⚽"}
+                    </span>
+                    <span className={styles.shareOptionText}>
+                      {round.label} ({roundRatings.length}/{roundMatches.length})
+                    </span>
+                  </button>
+                );
+              })}
+              <button className={styles.shareOptionCancel} onClick={() => setSharePhase(null)}>
+                Cancelar
+              </button>
+            </div>
+          )}
 
           <div className={styles.controls}>
             <div className={styles.tabs}>

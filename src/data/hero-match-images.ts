@@ -108,6 +108,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/francia-senegal-wide.webp",
     mobile: "/images/hero/francia-senegal-mobile.webp",
   },
+  // Irak vs Noruega (16 jun, Grupo I).
+  "irak-noruega": {
+    wide: "/images/hero/irak-noruega-wide.webp",
+    mobile: "/images/hero/irak-noruega-mobile.webp",
+  },
+  // Argentina vs Argelia (16 jun, Grupo J).
+  "argentina-argelia": {
+    wide: "/images/hero/argentina-argelia-wide.webp",
+    mobile: "/images/hero/argentina-argelia-mobile.webp",
+  },
+  // Austria vs Jordania (16 jun, Grupo J).
+  "austria-jordania": {
+    wide: "/images/hero/austria-jordania-wide.webp",
+    mobile: "/images/hero/austria-jordania-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

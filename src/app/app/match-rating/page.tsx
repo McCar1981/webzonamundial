@@ -85,17 +85,6 @@ const EMOJI_COLLECTIBLES: EmojiCollectable[] = [
   { emoji: "⚡", name: "Épico", rarity: "epic", minRating: 9 },
 ];
 
-const DEMO_RATINGS: Record<number, RatingEntry> = {
-  1: { watched: true, rating: 6, tags: ["Regular"], note: "Partido inaugural correcto." },
-  2: { watched: true, rating: 8, tags: ["Partidazo"], note: "Corea sorprendió." },
-  7: { watched: true, rating: 9, tags: ["Golazo"], note: "Brasil arrasó en el segundo tiempo." },
-  19: { watched: true, rating: 10, tags: ["Partidazo", "Golazo"], note: "Messi lo hizo de nuevo. Cine puro." },
-  24: { watched: true, rating: 7, tags: ["Sorpresa"], note: "Colombia sólida." },
-  33: { watched: true, rating: 5, tags: ["Soporífero"], note: "Alemania sin brillo." },
-  45: { watched: true, rating: 4, tags: ["Malo"], note: "Muy trabado." },
-  52: { watched: true, rating: 8, tags: ["Remontada"], note: "Voltereta increíble." },
-};
-
 function ratingColor(rating: number): string {
   if (rating >= 9) return "#3b82f6";
   if (rating >= 8) return "#22c55e";
@@ -242,7 +231,6 @@ export default function MatchRatingPage() {
     }));
   };
 
-  const seedDemo = () => setRatings(DEMO_RATINGS);
   const clearAll = () => {
     if (typeof window !== "undefined" && window.confirm("¿Borrar todas tus valoraciones?")) {
       setRatings({});
@@ -769,13 +757,9 @@ export default function MatchRatingPage() {
             </>
           ) : (
             <div className={styles.empty}>
-              <div className={styles.emptyTitle}>Aún no has puntuado ningún partido</div>
+              <div className={styles.emptyTitle}>Comienza tu viaje</div>
               <div className={styles.emptyDesc}>
-                Toca cualquier celda del grid para empezar, o carga datos de ejemplo para ver cómo queda.
-              </div>
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <button className={styles.emptyCta} onClick={seedDemo}>Cargar datos de ejemplo</button>
-                <button className={styles.emptyCta} onClick={clearAll} style={{ opacity: 0.7 }}>Borrar todo</button>
+                Selecciona un partido del grid para puntuar y comenzar a coleccionar reacciones emocionales.
               </div>
             </div>
           )}

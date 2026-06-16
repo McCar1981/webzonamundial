@@ -33,26 +33,26 @@ const ROUNDS = [
   { key: "S9", label: "S9", filter: (m: Match) => m.p === "FINAL" },
 ];
 
-const TAGS = ["Golazo", "Partidazo", "Sorpresa", "Soporífero", "Arbitraje dudoso", "Penaltis", "Remontada", "Clean sheet"];
+const TAGS = ["Golazo", "Partidazo", "Sorpresa", "Soporífero", "Arbitraje dudoso", "Penaltis", "Remontada", "Defensa impecable"];
 
 const LEGEND = [
-  { label: "Absolute Cinema", color: "#3b82f6", min: 9 },
-  { label: "Awesome", color: "#22c55e", min: 8 },
-  { label: "Great", color: "#84cc16", min: 7 },
-  { label: "Good", color: "#eab308", min: 6 },
-  { label: "Average", color: "#f97316", min: 5 },
-  { label: "Bad", color: "#ef4444", min: 3 },
-  { label: "Garbage", color: "#a855f7", min: 1 },
+  { label: "Cine puro", color: "#3b82f6", min: 9 },
+  { label: "Increíble", color: "#22c55e", min: 8 },
+  { label: "Excelente", color: "#84cc16", min: 7 },
+  { label: "Bueno", color: "#eab308", min: 6 },
+  { label: "Regular", color: "#f97316", min: 5 },
+  { label: "Malo", color: "#ef4444", min: 3 },
+  { label: "Pésimo", color: "#a855f7", min: 1 },
 ];
 
 const DEMO_RATINGS: Record<number, RatingEntry> = {
-  1: { watched: true, rating: 6, tags: ["Average"], note: "Partido inaugural correcto." },
+  1: { watched: true, rating: 6, tags: ["Regular"], note: "Partido inaugural correcto." },
   2: { watched: true, rating: 8, tags: ["Partidazo"], note: "Corea sorprendió." },
   7: { watched: true, rating: 9, tags: ["Golazo"], note: "Brasil arrasó en el segundo tiempo." },
-  19: { watched: true, rating: 10, tags: ["Partidazo", "Golazo"], note: "Messi lo hizo de nuevo. Absolute cinema." },
+  19: { watched: true, rating: 10, tags: ["Partidazo", "Golazo"], note: "Messi lo hizo de nuevo. Cine puro." },
   24: { watched: true, rating: 7, tags: ["Sorpresa"], note: "Colombia sólida." },
   33: { watched: true, rating: 5, tags: ["Soporífero"], note: "Alemania sin brillo." },
-  45: { watched: true, rating: 4, tags: ["Bad"], note: "Muy trabado." },
+  45: { watched: true, rating: 4, tags: ["Malo"], note: "Muy trabado." },
   52: { watched: true, rating: 8, tags: ["Remontada"], note: "Voltereta increíble." },
 };
 
@@ -67,13 +67,13 @@ function ratingColor(rating: number): string {
 }
 
 function ratingLabel(rating: number): string {
-  if (rating >= 9) return "Absolute Cinema";
-  if (rating >= 8) return "Awesome";
-  if (rating >= 7) return "Great";
-  if (rating >= 6) return "Good";
-  if (rating >= 5) return "Average";
-  if (rating >= 3) return "Bad";
-  return "Garbage";
+  if (rating >= 9) return "Cine puro";
+  if (rating >= 8) return "Increíble";
+  if (rating >= 7) return "Excelente";
+  if (rating >= 6) return "Bueno";
+  if (rating >= 5) return "Regular";
+  if (rating >= 3) return "Malo";
+  return "Pésimo";
 }
 
 function storageKey(userId: string | null): string {
@@ -210,7 +210,7 @@ export default function MatchRatingPage() {
   return (
     <>
       <Head>
-        <title>Match Ratings | ZonaMundial</title>
+        <title>Mi Mundial | ZonaMundial</title>
         <meta name="description" content="Puntúa los partidos del Mundial 2026 como si fueran episodios." />
       </Head>
 
@@ -224,9 +224,9 @@ export default function MatchRatingPage() {
         <div className={styles.container}>
           <header className={styles.hero}>
             <span className={styles.badge}>⭐ Mi Mundial</span>
-            <h1 className={styles.title}>Mi Series Graph del Mundial</h1>
+            <h1 className={styles.title}>Tu Resumen del Mundial</h1>
             <p className={styles.subtitle}>
-              Marca qué partidos has visto, puntúalos episodio a episodio y descubre tu propio resumen del torneo.
+              Marca qué partidos has visto, puntúalos episodio a episodio y descubre tu propio análisis del torneo.
             </p>
           </header>
 

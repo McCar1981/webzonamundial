@@ -97,8 +97,9 @@ export interface BlockAffiliate {
   title?: string;
   /** Texto introductorio opcional sobre los botones. */
   text?: string;
-  /** Botones: label visible + query de búsqueda en Amazon. */
-  items: Array<{ label: string; query: string }>;
+  /** Botones: label + query de búsqueda en Amazon, con bandera opcional
+   * (código ISO-2 para flagcdn, ej. "mx") y precio orientativo opcional. */
+  items: Array<{ label: string; query: string; flag?: string; price?: string }>;
   /** Aviso de afiliación a mostrar; si se omite, usa el estándar de Amazon. */
   note?: string;
 }

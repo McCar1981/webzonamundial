@@ -443,7 +443,7 @@ export default function MatchRatingPage() {
 
           {stats.unlockedBadges.length > 0 && (
             <div className={styles.badgesSection}>
-              <h2 className={styles.badgesTitle}>🏅 Tus logros</h2>
+              <h2 className={styles.badgesTitle}>Tus Logros</h2>
               <div className={styles.badgesGrid}>
                 {stats.unlockedBadges.map((badge) => (
                   <div key={badge.id} className={styles.badgeItem}>
@@ -456,72 +456,106 @@ export default function MatchRatingPage() {
           )}
 
           <button className={styles.passportBtn} onClick={() => setShowPassport(!showPassport)}>
-            🛂 Mi Pasaporte del Mundial ({collectedEmojis.size})
+            <span className={styles.passportBtnLabel}>Mi Pasaporte</span>
+            <span className={styles.passportBtnCounter}>{collectedEmojis.size}/10</span>
           </button>
 
           {showPassport && (
-            <div className={styles.passportCard}>
-              <div className={styles.passportTitle}>🛂 Tu Pasaporte Emocional del Mundial</div>
-              <div className={styles.passportStats}>
-                <span>Reacciones colectadas: {collectedEmojis.size}/10</span>
-                <div className={styles.progressBarSmall}>
-                  <div className={styles.progressBarFill} style={{ width: `${(collectedEmojis.size / 10) * 100}%` }} />
+            <div className={styles.passportContainer}>
+              <div className={styles.passportWrapper}>
+                <div className={styles.passportHeader}>
+                  <div className={styles.passportDecal}>MUNDIAL 2026</div>
+                  <h2 className={styles.passportHeading}>Tu Viaje Emocional</h2>
+                  <p className={styles.passportSubheading}>Reacciones colectadas en el torneo</p>
                 </div>
+
+                <div className={styles.passportProgress}>
+                  <div className={styles.progressOuter}>
+                    <svg className={styles.progressSvg} viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="54" className={styles.progressBg} />
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r="54"
+                        className={styles.progressFill}
+                        style={{ strokeDasharray: `${(collectedEmojis.size / 10) * 339.3} 339.3` }}
+                      />
+                    </svg>
+                    <div className={styles.progressText}>
+                      <span className={styles.progressNumber}>{collectedEmojis.size}</span>
+                      <span className={styles.progressLabel}>de 10</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.passportCollections}>
+                  {getCollectedEmojisByRarity.epic.length > 0 && (
+                    <div className={styles.rarityGroup}>
+                      <div className={styles.rarityLabel}>
+                        <span className={styles.rarityDot} style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }} />
+                        LEGENDARIO
+                      </div>
+                      <div className={styles.rarityGrid}>
+                        {getCollectedEmojisByRarity.epic.map((e) => (
+                          <div key={e.emoji} className={styles.emojiCard} title={e.name}>
+                            <span className={styles.emojiDisplay}>{e.emoji}</span>
+                            <span className={styles.emojiLabel}>{e.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {getCollectedEmojisByRarity.rare.length > 0 && (
+                    <div className={styles.rarityGroup}>
+                      <div className={styles.rarityLabel}>
+                        <span className={styles.rarityDot} style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }} />
+                        RARO
+                      </div>
+                      <div className={styles.rarityGrid}>
+                        {getCollectedEmojisByRarity.rare.map((e) => (
+                          <div key={e.emoji} className={styles.emojiCard} title={e.name}>
+                            <span className={styles.emojiDisplay}>{e.emoji}</span>
+                            <span className={styles.emojiLabel}>{e.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {getCollectedEmojisByRarity.common.length > 0 && (
+                    <div className={styles.rarityGroup}>
+                      <div className={styles.rarityLabel}>
+                        <span className={styles.rarityDot} style={{ background: "linear-gradient(135deg, #6366f1, #4f46e5)" }} />
+                        COMÚN
+                      </div>
+                      <div className={styles.rarityGrid}>
+                        {getCollectedEmojisByRarity.common.map((e) => (
+                          <div key={e.emoji} className={styles.emojiCard} title={e.name}>
+                            <span className={styles.emojiDisplay}>{e.emoji}</span>
+                            <span className={styles.emojiLabel}>{e.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  className={styles.passportShareBtn}
+                  onClick={() => {
+                    const text = `Mi Viaje Emocional del Mundial 2026\n${Array.from(collectedEmojis).join(" ")}\n${collectedEmojis.size} de 10 reacciones colectadas\n\nZonaMundial.com`;
+                    if (navigator.share) {
+                      navigator.share({ title: "Mi Pasaporte", text });
+                    } else {
+                      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                      window.open(url, "_blank");
+                    }
+                  }}
+                >
+                  Compartir Pasaporte
+                </button>
               </div>
-
-              {getCollectedEmojisByRarity.epic.length > 0 && (
-                <div className={styles.passportSection}>
-                  <div className={styles.passportRarity}>⭐ ÉPICO ({getCollectedEmojisByRarity.epic.length})</div>
-                  <div className={styles.passportEmojis}>
-                    {getCollectedEmojisByRarity.epic.map((e) => (
-                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
-                        {e.emoji}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {getCollectedEmojisByRarity.rare.length > 0 && (
-                <div className={styles.passportSection}>
-                  <div className={styles.passportRarity}>💎 RARO ({getCollectedEmojisByRarity.rare.length})</div>
-                  <div className={styles.passportEmojis}>
-                    {getCollectedEmojisByRarity.rare.map((e) => (
-                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
-                        {e.emoji}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {getCollectedEmojisByRarity.common.length > 0 && (
-                <div className={styles.passportSection}>
-                  <div className={styles.passportRarity}>🔵 COMÚN ({getCollectedEmojisByRarity.common.length})</div>
-                  <div className={styles.passportEmojis}>
-                    {getCollectedEmojisByRarity.common.map((e) => (
-                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
-                        {e.emoji}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <button
-                className={styles.passportShareBtn}
-                onClick={() => {
-                  const text = `Mi Pasaporte Emocional del Mundial 2026\n${Array.from(collectedEmojis).join(" ")}\n${collectedEmojis.size}/10 reacciones colectadas\n\n#ZonaMundial`;
-                  if (navigator.share) {
-                    navigator.share({ title: "Mi Pasaporte", text });
-                  } else {
-                    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-                    window.open(url, "_blank");
-                  }
-                }}
-              >
-                Compartir Pasaporte
-              </button>
             </div>
           )}
 

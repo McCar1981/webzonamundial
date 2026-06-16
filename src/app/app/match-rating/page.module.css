@@ -1359,239 +1359,491 @@
   padding-right: 16px;
 }
 
-/* Emoji Passport */
+/* Passport Button */
 .passportBtn {
   width: 100%;
-  padding: 12px;
-  background: var(--mr-surface-glass);
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(59, 130, 246, 0.08));
   border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: var(--mr-radius-sm);
   color: var(--mr-text);
   font-weight: 700;
   cursor: pointer;
   font-size: 13px;
-  margin-bottom: 12px;
-  transition: all 0.2s;
+  margin-bottom: 16px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .passportBtn:hover {
   border-color: rgba(201, 168, 76, 0.6);
-  background: rgba(201, 168, 76, 0.05);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.25), rgba(59, 130, 246, 0.12));
+  transform: translateY(-2px);
 }
 
-.passportCard {
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(59, 130, 246, 0.04));
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: var(--mr-radius);
-  padding: 16px;
-  margin-bottom: 20px;
-  animation: fadeInUp 0.4s ease backwards;
+.passportBtnLabel {
+  flex: 1;
 }
 
-.passportTitle {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--mr-text);
-  margin-bottom: 12px;
-}
-
-.passportStats {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+.passportBtnCounter {
+  background: rgba(201, 168, 76, 0.2);
+  padding: 4px 12px;
+  border-radius: 999px;
   font-size: 12px;
-  color: var(--mr-muted);
+  font-weight: 800;
+  color: var(--mr-gold-2);
 }
 
-.progressBarSmall {
-  height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
+/* Passport Container */
+.passportContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 11, 20, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeInOverlay 0.3s ease;
+}
+
+.passportWrapper {
+  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.8));
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 24px;
+  padding: 0;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideInUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+.passportHeader {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(59, 130, 246, 0.15));
+  padding: 32px 24px 28px;
+  text-align: center;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  position: relative;
   overflow: hidden;
 }
 
-.progressBarFill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--mr-gold), var(--mr-gold-2));
-  transition: width 0.3s ease;
+.passportHeader::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.08), transparent);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.passportSection {
-  margin-bottom: 12px;
-}
-
-.passportRarity {
+.passportDecal {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mr-gold);
+  margin-bottom: 12px;
+  opacity: 0.8;
+  animation: slideInLeft 0.6s ease backwards 0.2s;
+}
+
+.passportHeading {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0 0 8px;
+  background: linear-gradient(135deg, var(--mr-gold-2), var(--mr-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slideInLeft 0.6s ease backwards 0.3s;
+}
+
+.passportSubheading {
+  font-size: 13px;
+  color: var(--mr-muted);
+  margin: 0;
+  animation: slideInLeft 0.6s ease backwards 0.4s;
+}
+
+/* Circular Progress */
+.passportProgress {
+  padding: 32px 24px;
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.6s ease backwards 0.5s;
+}
+
+.progressOuter {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.progressSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progressBg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 3;
+}
+
+.progressFill {
+  fill: none;
+  stroke: url(#passportGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.4s ease;
+}
+
+.progressText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressNumber {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--mr-gold-2);
+  line-height: 1;
+}
+
+.progressLabel {
+  font-size: 11px;
   color: var(--mr-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-weight: 700;
 }
 
-.passportEmojis {
+/* Collections */
+.passportCollections {
+  padding: 0 24px 28px;
+  animation: fadeInUp 0.6s ease backwards 0.6s;
+}
+
+.rarityGroup {
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.rarityGroup:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rarityLabel {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--mr-muted);
+  margin-bottom: 12px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
 }
 
-.passportEmoji {
-  font-size: 24px;
+.rarityDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.rarityGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Emoji Cards */
+.emojiCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.passportEmoji:hover {
-  transform: scale(1.2) rotate(10deg);
+.emojiCard:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-4px) scale(1.05);
 }
 
+.emojiDisplay {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.emojiLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--mr-muted);
+  text-align: center;
+}
+
+.emojiCard:hover .emojiLabel {
+  color: var(--mr-text);
+}
+
+/* Share Button */
 .passportShareBtn {
   width: 100%;
-  padding: 10px;
-  background: rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  border-radius: var(--mr-radius-sm);
-  color: var(--mr-text);
-  font-weight: 600;
-  font-size: 12px;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--mr-gold), var(--mr-gold-2));
+  border: none;
+  border-radius: 12px;
+  color: var(--mr-bg);
+  font-weight: 800;
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 12px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  margin: 24px 24px 24px;
+  animation: fadeInUp 0.6s ease backwards 0.7s;
+}
+
+.passportShareBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+}
+
+.passportShareBtn:hover::before {
+  left: 100%;
 }
 
 .passportShareBtn:hover {
-  background: rgba(59, 130, 246, 0.3);
-  border-color: rgba(59, 130, 246, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(201, 168, 76, 0.3);
+}
+
+.passportShareBtn:active {
+  transform: translateY(0);
 }
 
 /* Roast & Praise Modal */
 .roastPraiseModal {
   background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.7));
   border: 1px solid rgba(201, 168, 76, 0.2);
-  border-radius: var(--mr-radius);
-  padding: 24px;
-  max-width: 500px;
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 520px;
   width: 90%;
   position: relative;
   animation: slideInUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   max-height: 90vh;
   overflow-y: auto;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
 }
 
 .roastPraiseClose {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--mr-muted);
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
-  padding: 0;
-  width: 32px;
-  height: 32px;
+  padding: 6px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s;
+  border-radius: 8px;
+  transition: all 0.2s;
 }
 
 .roastPraiseClose:hover {
   color: var(--mr-text);
+  border-color: rgba(201, 168, 76, 0.2);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .roastContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 .roastCard {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: var(--mr-radius-sm);
-  padding: 16px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.04));
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.roastCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -40px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.1), transparent);
+  border-radius: 50%;
 }
 
 .praiseCard {
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  border-radius: var(--mr-radius-sm);
-  padding: 16px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.04));
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.praiseCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -40px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1), transparent);
+  border-radius: 50%;
 }
 
 .roastTitle {
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 900;
   color: #ef4444;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
 }
 
 .praiseTitle {
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 900;
   color: #22c55e;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
 }
 
 .roastText,
 .praiseText {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--mr-text);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
 }
 
 .voteBtn {
   width: 100%;
-  padding: 10px;
-  background: var(--mr-surface);
-  border: 1px solid var(--mr-line);
-  border-radius: var(--mr-radius-sm);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   color: var(--mr-text);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .voteBtn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--mr-gold);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-2px);
 }
 
 .roastVs {
   text-align: center;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 11px;
+  font-weight: 900;
   color: var(--mr-muted);
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 8px 0;
+  padding: 16px 0;
 }
 
 .roastDoneBtn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: linear-gradient(135deg, var(--mr-gold), var(--mr-gold-2));
   border: none;
-  border-radius: var(--mr-radius-sm);
+  border-radius: 12px;
   color: var(--mr-bg);
-  font-weight: 800;
-  font-size: 14px;
+  font-weight: 900;
+  font-size: 13px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.roastDoneBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+}
+
+.roastDoneBtn:hover::before {
+  left: 100%;
 }
 
 .roastDoneBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 16px 40px rgba(201, 168, 76, 0.3);
 }
 
 @media (max-width: 768px) {

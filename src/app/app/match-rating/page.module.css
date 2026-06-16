@@ -1021,23 +1021,336 @@
   z-index: 1;
 }
 
-@media (max-width: 640px) {
+/* Gamification */
+.milestoneCard {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(59, 130, 246, 0.05));
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--mr-radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease backwards 0.2s;
+}
+
+.milestoneLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mr-text);
+  margin-bottom: 12px;
+}
+
+.milestoneBar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.milestoneFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mr-gold), var(--mr-gold-2));
+  transition: width 0.3s ease;
+}
+
+.milestoneStats {
+  font-size: 12px;
+  color: var(--mr-muted);
+  text-align: right;
+}
+
+.badgesSection {
+  margin-bottom: 24px;
+}
+
+.badgesTitle {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--mr-text);
+}
+
+.badgesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.badgeItem {
+  background: var(--mr-surface-glass);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--mr-radius-sm);
+  padding: 12px;
+  text-align: center;
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+.badgeEmoji {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.badgeText {
+  font-size: 11px;
+  color: var(--mr-muted);
+  font-weight: 600;
+}
+
+.shareBtn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--mr-gold), var(--mr-gold-2));
+  border: none;
+  border-radius: var(--mr-radius-sm);
+  color: var(--mr-bg);
+  font-weight: 800;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 14px;
+}
+
+.shareBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 168, 76, 0.3);
+}
+
+.shareBtn:active {
+  transform: translateY(0);
+}
+
+/* Mobile view */
+.mobileMatchList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mobileMatchCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--mr-surface-glass);
+  border: 1px solid var(--mr-line);
+  border-left: 4px solid var(--mr-muted);
+  border-radius: var(--mr-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  text-align: left;
+}
+
+.mobileMatchCard:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mobileMatchFlags {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.mobileMatchFlags img {
+  width: 24px;
+  height: 18px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.mobileMatchInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobileMatchTeams {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mr-text);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobileMatchMeta {
+  font-size: 11px;
+  color: var(--mr-muted);
+}
+
+.mobileMatchStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.watchedBadge {
+  font-size: 14px;
+}
+
+.ratingBadge {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.emptyBadge {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mr-surface);
+  border: 1px solid var(--mr-line);
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--mr-muted);
+}
+
+/* Quick rating in modal */
+.quickRatingRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.quickRatingBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--mr-surface-glass);
+  border: 2px solid var(--mr-line);
+  border-radius: var(--mr-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quickRatingBtn:active {
+  transform: scale(0.95);
+}
+
+.quickRatingBtn.quickRatingActive {
+  border-color: var(--mr-gold);
+  background: rgba(201, 168, 76, 0.15);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+}
+
+.quickRatingEmoji {
+  font-size: 24px;
+}
+
+.quickRatingLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quickRatingBtn.quickRatingActive .quickRatingLabel {
+  color: var(--mr-gold-2);
+}
+
+/* Sticky controls */
+.controls {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, var(--mr-bg) 80%, transparent);
+  padding: 12px 0 16px;
+  z-index: 99;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 768px) {
   .dashboard {
     grid-template-columns: 1fr;
   }
+
   .controls {
     flex-direction: column;
     align-items: stretch;
   }
+
   .tabs {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 4px;
   }
+
+  .search {
+    min-width: unset;
+  }
+
   .round {
     min-width: 96px;
   }
+
   .cellNumber {
     font-size: 17px;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  .mobileMatchCard {
+    padding: 12px;
+  }
+
+  .mobileMatchTeams {
+    font-size: 12px;
+  }
+
+  .ratingRow {
+    gap: 6px;
+  }
+
+  .ratingBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .tags {
+    gap: 6px;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .badgesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .modal {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .quickRatingRow {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .quickRatingBtn {
+    padding: 12px;
   }
 }

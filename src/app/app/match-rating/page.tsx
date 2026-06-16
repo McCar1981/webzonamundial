@@ -7,16 +7,19 @@ import { MATCHES, type Match } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import styles from "./page.module.css";
 
-// ponytail: minimal animation helper - tracks element visibility for stagger effects
-function useStaggerAnimation(count: number) {
-  return Array.from({ length: count }, (_, i) => ({ delay: i * 50 }));
-}
-
 interface RatingEntry {
   watched: boolean;
   rating: number | null;
   tags: string[];
   note: string;
+}
+
+interface Badge {
+  id: string;
+  label: string;
+  description: string;
+  emoji: string;
+  condition: (stats: any) => boolean;
 }
 
 type FilterTab = "all" | "watched" | "unwatched" | "rated";
@@ -43,6 +46,16 @@ const LEGEND = [
   { label: "Regular", color: "#f97316", min: 5 },
   { label: "Malo", color: "#ef4444", min: 3 },
   { label: "Pésimo", color: "#a855f7", min: 1 },
+];
+
+const BADGES: Badge[] = [
+  { id: "scout", label: "Scout", description: "Marca 5 partidos como vistos", emoji: "👀", condition: (s) => s.watched >= 5 },
+  { id: "critic", label: "Crítico", description: "Puntúa 10 partidos", emoji: "🎬", condition: (s) => s.rated >= 10 },
+  { id: "cinephile", label: "Cinéfilo", description: "Puntúa 25 partidos", emoji: "🎭", condition: (s) => s.rated >= 25 },
+  { id: "expert", label: "Experto", description: "Puntúa 50 partidos", emoji: "🏆", condition: (s) => s.rated >= 50 },
+  { id: "peak", label: "Pico de emoción", description: "Califica un partido con 10/10", emoji: "⚡", condition: (s) => s.best?.rating === 10 },
+  { id: "balanced", label: "Equilibrio", description: "Media entre 6.5 y 7.5", emoji: "⚖️", condition: (s) => s.avg >= 6.5 && s.avg <= 7.5 },
+  { id: "completist", label: "Completista", description: "Puntúa todos los partidos de una fase", emoji: "✅", condition: (s) => s.phaseComplete },
 ];
 
 const DEMO_RATINGS: Record<number, RatingEntry> = {
@@ -94,6 +107,14 @@ export default function MatchRatingPage() {
   const [selected, setSelected] = useState<Match | null>(null);
   const [filter, setFilter] = useState<FilterTab>("all");
   const [search, setSearch] = useState("");
+  const [mobileView, setMobileView] = useState(false);
+
+  useEffect(() => {
+    setMobileView(window.innerWidth < 768);
+    const handleResize = () => setMobileView(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!hasSupabase) return;
@@ -161,7 +182,8 @@ export default function MatchRatingPage() {
     }));
     const best = ratedEntries.length ? ratedEntries.reduce((a, b) => (a.rating! > b.rating! ? a : b)) : null;
     const worst = ratedEntries.length ? ratedEntries.reduce((a, b) => (a.rating! < b.rating! ? a : b)) : null;
-    return { watched, rated: rated.length, avg, best, worst, total: allMatches.length };
+    const unlockedBadges = BADGES.filter((b) => b.condition({ watched, rated: rated.length, avg, best, worst, total: allMatches.length }));
+    return { watched, rated: rated.length, avg, best, worst, total: allMatches.length, unlockedBadges };
   }, [ratings, allMatches.length]);
 
   const distribution = useMemo(() => {
@@ -195,6 +217,21 @@ export default function MatchRatingPage() {
       setRatings({});
     }
   };
+
+  const shareResults = async () => {
+    const text = `Mi resumen del Mundial 2026\n⭐ ${stats.avg.toFixed(1)} promedio\n📊 ${stats.rated} partidos puntuados\n👀 ${stats.watched}/${stats.total} vistos\n${stats.unlockedBadges.map((b) => b.emoji).join("")}`;
+    if (navigator.share) {
+      navigator.share({ title: "Mi Mundial", text });
+    } else {
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}\n\n#ZonaMundial`;
+      window.open(url, "_blank");
+    }
+  };
+
+  const nextMilestone = useMemo(() => {
+    const milestones = [5, 10, 25, 50, 64];
+    return milestones.find((m) => m > stats.rated) || null;
+  }, [stats.rated]);
 
   const selectedRating = selected ? ratings[selected.i] ?? { watched: false, rating: null, tags: [], note: "" } : null;
 
@@ -289,6 +326,36 @@ export default function MatchRatingPage() {
             </div>
           </section>
 
+          {nextMilestone && (
+            <div className={styles.milestoneCard}>
+              <div className={styles.milestoneProgress}>
+                <div className={styles.milestoneLabel}>Próximo logro: {nextMilestone} partidos puntuados</div>
+                <div className={styles.milestoneBar}>
+                  <div className={styles.milestoneFill} style={{ width: `${(stats.rated / nextMilestone) * 100}%` }} />
+                </div>
+                <div className={styles.milestoneStats}>{stats.rated}/{nextMilestone}</div>
+              </div>
+            </div>
+          )}
+
+          {stats.unlockedBadges.length > 0 && (
+            <div className={styles.badgesSection}>
+              <h2 className={styles.badgesTitle}>🏅 Tus logros</h2>
+              <div className={styles.badgesGrid}>
+                {stats.unlockedBadges.map((badge) => (
+                  <div key={badge.id} className={styles.badgeItem}>
+                    <div className={styles.badgeEmoji}>{badge.emoji}</div>
+                    <div className={styles.badgeText}>{badge.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <button className={styles.shareBtn} onClick={shareResults}>
+            📤 Compartir resumen
+          </button>
+
           <div className={styles.controls}>
             <div className={styles.tabs}>
               {[
@@ -315,62 +382,97 @@ export default function MatchRatingPage() {
             />
           </div>
 
-          <div className={styles.legend}>
-            {LEGEND.map((l) => (
-              <span key={l.label} className={styles.legendItem}>
-                <span className={styles.dot} style={{ background: l.color }} />
-                {l.label}
-              </span>
-            ))}
-          </div>
-
-          <div className={styles.gridWrap}>
-            <div className={styles.grid}>
-              {rounds.map((round) => (
-                <div key={round.key} className={styles.round}>
-                  <div className={styles.roundHeader}>{round.label}</div>
-                  {Array.from({ length: maxRows }).map((_, idx) => {
-                    const match = round.matches[idx];
-                    if (!match) {
-                      return <div key={idx} className={`${styles.cell} ${styles.cellEmpty}`} />;
-                    }
-                    const visible = filteredMatchIds.has(match.i);
-                    const entry = ratings[match.i];
-                    const watched = entry?.watched ?? false;
-                    const rating = entry?.rating ?? null;
-                    const rated = rating != null;
-                    return (
-                      <button
-                        key={match.i}
-                        className={`${styles.cell} ${watched ? styles.cellWatched : ""} ${!visible ? styles.cellEmpty : ""}`}
-                        style={
-                          rated && visible
-                            ? { backgroundColor: `${ratingColor(rating)}22`, borderColor: ratingColor(rating) }
-                            : undefined
-                        }
-                        onClick={() => visible && setSelected(match)}
-                        title={visible ? `${match.h} vs ${match.a}` : undefined}
-                        disabled={!visible}
-                      >
-                        {watched && visible && <span className={styles.check}>✓</span>}
-                        {visible && (
-                          <>
-                            <div className={styles.cellFlags}>
-                              <img src={`https://flagcdn.com/w40/${match.hf}.png`} alt="" />
-                              <span style={{ color: "var(--mr-muted)", fontSize: 10 }}>vs</span>
-                              <img src={`https://flagcdn.com/w40/${match.af}.png`} alt="" />
-                            </div>
-                            <span className={styles.cellNumber}>{rated ? rating.toFixed(1) : "?"}</span>
-                            <span className={styles.cellTeams}>{match.h.slice(0, 10)} · {match.a.slice(0, 10)}</span>
-                          </>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
+          {!mobileView && (
+            <div className={styles.legend}>
+              {LEGEND.map((l) => (
+                <span key={l.label} className={styles.legendItem}>
+                  <span className={styles.dot} style={{ background: l.color }} />
+                  {l.label}
+                </span>
               ))}
             </div>
-          </div>
+          )}
+
+          {mobileView ? (
+            <div className={styles.mobileMatchList}>
+              {allMatches.filter((m) => filteredMatchIds.has(m.i)).map((match) => {
+                const entry = ratings[match.i];
+                const watched = entry?.watched ?? false;
+                const rating = entry?.rating ?? null;
+                const rated = rating != null;
+                return (
+                  <button
+                    key={match.i}
+                    className={styles.mobileMatchCard}
+                    onClick={() => setSelected(match)}
+                    style={rated ? { borderLeftColor: ratingColor(rating) } : undefined}
+                  >
+                    <div className={styles.mobileMatchFlags}>
+                      <img src={`https://flagcdn.com/w40/${match.hf}.png`} alt="" />
+                      <img src={`https://flagcdn.com/w40/${match.af}.png`} alt="" />
+                    </div>
+                    <div className={styles.mobileMatchInfo}>
+                      <div className={styles.mobileMatchTeams}>{match.h} vs {match.a}</div>
+                      <div className={styles.mobileMatchMeta}>{match.p}</div>
+                    </div>
+                    <div className={styles.mobileMatchStatus}>
+                      {watched && <span className={styles.watchedBadge}>👁️</span>}
+                      {rated && <span className={styles.ratingBadge} style={{ background: ratingColor(rating) }}>{rating}</span>}
+                      {!rated && !watched && <span className={styles.emptyBadge}>?</span>}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className={styles.gridWrap}>
+              <div className={styles.grid}>
+                {rounds.map((round) => (
+                  <div key={round.key} className={styles.round}>
+                    <div className={styles.roundHeader}>{round.label}</div>
+                    {Array.from({ length: maxRows }).map((_, idx) => {
+                      const match = round.matches[idx];
+                      if (!match) {
+                        return <div key={idx} className={`${styles.cell} ${styles.cellEmpty}`} />;
+                      }
+                      const visible = filteredMatchIds.has(match.i);
+                      const entry = ratings[match.i];
+                      const watched = entry?.watched ?? false;
+                      const rating = entry?.rating ?? null;
+                      const rated = rating != null;
+                      return (
+                        <button
+                          key={match.i}
+                          className={`${styles.cell} ${watched ? styles.cellWatched : ""} ${!visible ? styles.cellEmpty : ""}`}
+                          style={
+                            rated && visible
+                              ? { backgroundColor: `${ratingColor(rating)}22`, borderColor: ratingColor(rating) }
+                              : undefined
+                          }
+                          onClick={() => visible && setSelected(match)}
+                          title={visible ? `${match.h} vs ${match.a}` : undefined}
+                          disabled={!visible}
+                        >
+                          {watched && visible && <span className={styles.check}>✓</span>}
+                          {visible && (
+                            <>
+                              <div className={styles.cellFlags}>
+                                <img src={`https://flagcdn.com/w40/${match.hf}.png`} alt="" />
+                                <span style={{ color: "var(--mr-muted)", fontSize: 10 }}>vs</span>
+                                <img src={`https://flagcdn.com/w40/${match.af}.png`} alt="" />
+                              </div>
+                              <span className={styles.cellNumber}>{rated ? rating.toFixed(1) : "?"}</span>
+                              <span className={styles.cellTeams}>{match.h.slice(0, 10)} · {match.a.slice(0, 10)}</span>
+                            </>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {topMatches.length > 0 ? (
             <>
@@ -451,19 +553,45 @@ export default function MatchRatingPage() {
             </label>
 
             <div className={styles.sectionLabel}>Tu nota — {selectedRating.rating ? ratingLabel(selectedRating.rating) : "Sin puntuar"}</div>
-            <div className={styles.ratingRow}>
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+            {mobileView ? (
+              <div className={styles.quickRatingRow}>
                 <button
-                  key={n}
-                  className={`${styles.ratingBtn} ${selectedRating.rating === n ? styles.ratingBtnActive : ""}`}
-                  style={selectedRating.rating === n ? { color: ratingColor(n), borderColor: ratingColor(n) } : undefined}
-                  onClick={() => updateRating(selected.i, { rating: n, watched: true })}
-                  title={ratingLabel(n)}
+                  className={`${styles.quickRatingBtn} ${selectedRating.rating && selectedRating.rating <= 4 ? styles.quickRatingActive : ""}`}
+                  onClick={() => updateRating(selected.i, { rating: 3, watched: true })}
                 >
-                  {n}
+                  <span className={styles.quickRatingEmoji}>😐</span>
+                  <span className={styles.quickRatingLabel}>Meh</span>
                 </button>
-              ))}
-            </div>
+                <button
+                  className={`${styles.quickRatingBtn} ${selectedRating.rating && selectedRating.rating >= 5 && selectedRating.rating <= 7 ? styles.quickRatingActive : ""}`}
+                  onClick={() => updateRating(selected.i, { rating: 6, watched: true })}
+                >
+                  <span className={styles.quickRatingEmoji}>😊</span>
+                  <span className={styles.quickRatingLabel}>Bueno</span>
+                </button>
+                <button
+                  className={`${styles.quickRatingBtn} ${selectedRating.rating && selectedRating.rating >= 8 ? styles.quickRatingActive : ""}`}
+                  onClick={() => updateRating(selected.i, { rating: 9, watched: true })}
+                >
+                  <span className={styles.quickRatingEmoji}>🔥</span>
+                  <span className={styles.quickRatingLabel}>Épico</span>
+                </button>
+              </div>
+            ) : (
+              <div className={styles.ratingRow}>
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    className={`${styles.ratingBtn} ${selectedRating.rating === n ? styles.ratingBtnActive : ""}`}
+                    style={selectedRating.rating === n ? { color: ratingColor(n), borderColor: ratingColor(n) } : undefined}
+                    onClick={() => updateRating(selected.i, { rating: n, watched: true })}
+                    title={ratingLabel(n)}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className={styles.sectionLabel}>Tags</div>
             <div className={styles.tags}>

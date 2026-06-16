@@ -49,6 +49,8 @@ interface Body {
   kind?: "full" | "waitlist" | "usuarios" | "all";
   /** Limit de destinatarios (para pruebas). Por defecto sin límite. */
   limit?: number;
+  /** Si viene, ENVÍA SOLO a esta dirección (prueba), ignorando lista y opt-outs. */
+  testEmail?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -73,35 +75,43 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Construimos la lista de destinatarios según el origen:
-  //  · "usuarios": TODOS los usuarios reales de Supabase (auth.users).
-  //  · "all": registros KV + usuarios Supabase, deduplicado.
-  //  · "full"/"waitlist"/sin kind: solo la lista KV de registros (como antes).
-  const wantSupabase = body.kind === "usuarios" || body.kind === "all";
-  const [registros, supaEmails] = await Promise.all([
-    listRegistros(),
-    wantSupabase ? listSupabaseUserEmails() : Promise.resolve([] as string[]),
-  ]);
+  // Envío de PRUEBA: si viene testEmail, mandamos SOLO a esa dirección (ignorando
+  // la lista y los opt-outs) para previsualizar el correo real antes del disparo
+  // masivo. Si no, construimos la lista normal según el origen.
+  const testEmail = body.testEmail?.trim().toLowerCase();
+  let unique: string[];
+  if (testEmail && testEmail.includes("@")) {
+    unique = [testEmail];
+  } else {
+    //  · "usuarios": TODOS los usuarios reales de Supabase (auth.users).
+    //  · "all": registros KV + usuarios Supabase, deduplicado.
+    //  · "full"/"waitlist"/sin kind: solo la lista KV de registros (como antes).
+    const wantSupabase = body.kind === "usuarios" || body.kind === "all";
+    const [registros, supaEmails] = await Promise.all([
+      listRegistros(),
+      wantSupabase ? listSupabaseUserEmails() : Promise.resolve([] as string[]),
+    ]);
 
-  const kvEmails =
-    body.kind === "usuarios"
-      ? []
-      : registros
-          .filter((r) => body.kind === "all" || !body.kind || r.kind === body.kind)
-          .map((r) => r.email)
-          .filter(Boolean);
+    const kvEmails =
+      body.kind === "usuarios"
+        ? []
+        : registros
+            .filter((r) => body.kind === "all" || !body.kind || r.kind === body.kind)
+            .map((r) => r.email)
+            .filter(Boolean);
 
-  let pool = [...kvEmails, ...supaEmails]
-    .map((e) => e.toLowerCase().trim())
-    .filter(Boolean);
+    let pool = [...kvEmails, ...supaEmails]
+      .map((e) => e.toLowerCase().trim())
+      .filter(Boolean);
 
-  // RGPD: respetar SIEMPRE las bajas de la newsletter (también en el dry-run).
-  const optOuts = await listNewsletterOptOuts();
-  pool = pool.filter((e) => !optOuts.has(e));
+    // RGPD: respetar SIEMPRE las bajas de la newsletter (también en el dry-run).
+    const optOuts = await listNewsletterOptOuts();
+    pool = pool.filter((e) => !optOuts.has(e));
 
-  // Deduplicar y aplicar límite opcional.
-  let unique = Array.from(new Set(pool));
-  if (body.limit) unique = unique.slice(0, body.limit);
+    // Deduplicar y aplicar límite opcional.
+    unique = Array.from(new Set(pool));
+    if (body.limit) unique = unique.slice(0, body.limit);
+  }
 
   if (body.dryRun) {
     return NextResponse.json({

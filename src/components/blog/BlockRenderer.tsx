@@ -285,28 +285,51 @@ export default function BlockRenderer({ blocks }: Props) {
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: 8,
+                        gap: 10,
                         padding: "9px 14px",
-                        borderRadius: 999,
+                        borderRadius: 14,
                         border: "1px solid rgba(201,168,76,0.45)",
                         background: "rgba(201,168,76,0.08)",
                         color: "var(--b-text)",
                         textDecoration: "none",
-                        fontWeight: 700,
-                        fontSize: 13.5,
                         fontFamily: "var(--b-font-display)",
                       }}
                     >
-                      {it.label}
+                      {it.flag && (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://flagcdn.com/w40/${it.flag}.png`}
+                            alt=""
+                            loading="lazy"
+                            style={{
+                              width: 26,
+                              height: 18,
+                              borderRadius: 3,
+                              objectFit: "cover",
+                              flexShrink: 0,
+                            }}
+                          />
+                        </>
+                      )}
                       <span
                         style={{
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "var(--b-gold-3)",
-                          opacity: 0.9,
+                          display: "flex",
+                          flexDirection: "column",
+                          lineHeight: 1.2,
                         }}
                       >
-                        Ver en Amazon
+                        <span style={{ fontWeight: 800, fontSize: 14 }}>{it.label}</span>
+                        <span
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "var(--b-gold-3)",
+                            opacity: 0.9,
+                          }}
+                        >
+                          {it.price ? `${it.price} · Ver en Amazon` : "Ver en Amazon"}
+                        </span>
                       </span>
                       <svg
                         width="13"

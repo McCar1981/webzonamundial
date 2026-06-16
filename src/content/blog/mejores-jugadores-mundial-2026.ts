@@ -1,4 +1,4 @@
-// Top 10 jugadores Mundial 2026 según casas de apuestas.
+// Top 10 jugadores Mundial 2026 según el ranking FIFA y la forma actual.
 // Keyword: "mejores jugadores mundial 2026" (~22.200/mes).
 // Publicación: jueves 7 mayo 2026.
 
@@ -6,9 +6,9 @@ import type { BlogPost } from "@/lib/blog/types";
 
 const post: BlogPost = {
   slug: "mejores-jugadores-mundial-2026",
-  title: "Los 10 mejores jugadores del Mundial 2026 según las casas de apuestas",
+  title: "Los 10 mejores jugadores del Mundial 2026 según el ranking FIFA y la forma actual",
   description:
-    "Ranking de los 10 mejores jugadores del Mundial 2026: Mbappé, Messi, Bellingham, Yamal, Vinicius… cuotas, posiciones y por qué cada uno entra en la lista.",
+    "Ranking de los 10 mejores jugadores del Mundial 2026: Mbappé, Messi, Bellingham, Yamal, Vinicius… análisis, posiciones y por qué cada uno entra en la lista.",
   dek: "Cinco generaciones se cruzan en este Mundial: el ocaso de Messi y CR7, el cenit de Mbappé y Bellingham, y la explosión de Yamal y Doué. Estos son los 10 jugadores que pueden decidir el torneo.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Kylian_Mbapp%C3%A9_%2846369981091%29.jpg/1280px-Kylian_Mbapp%C3%A9_%2846369981091%29.jpg",
@@ -37,13 +37,13 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "En esta lista cruzamos lo que hacen las casas de apuestas (cuotas para Bota de Oro y Balón de Oro del torneo), los rendimientos en clubes esta temporada y el factor 'momento de carrera'. El resultado son los 10 nombres que más probabilidad tienen de marcar el Mundial 2026.",
+      text: "En esta lista cruzamos los favoritos a Bota de Oro y Balón de Oro del torneo según los modelos de probabilidad, los rendimientos en clubes esta temporada y el factor 'momento de carrera'. El resultado son los 10 nombres que más probabilidad tienen de marcar el Mundial 2026.",
     },
     {
       type: "callout",
       variant: "gold",
       title: "TL;DR · LO ESENCIAL",
-      text: "**Mbappé** es el favorito #1 a Bota de Oro (+700) y MVP del torneo (+450). **Lamine Yamal**, con apenas 18 años, es el favorito a mejor joven. **Messi** llega a su último Mundial buscando ser el primer futbolista en ganar dos consecutivos como capitán-jugador.",
+      text: "**Mbappé** es el favorito #1 a Bota de Oro y MVP del torneo según los modelos de probabilidad. **Lamine Yamal**, con apenas 18 años, es el favorito a mejor joven. **Messi** llega a su último Mundial buscando ser el primer futbolista en ganar dos consecutivos como capitán-jugador.",
     },
     {
       type: "h2",
@@ -57,8 +57,8 @@ const post: BlogPost = {
     {
       type: "stat",
       items: [
-        { value: "+700", label: "Cuota Bota de Oro", sub: "Favorito #1" },
-        { value: "+450", label: "Cuota MVP", sub: "Favorito #1" },
+        { value: "#1", label: "Favorito Bota de Oro", sub: "Según los modelos" },
+        { value: "#1", label: "Favorito MVP", sub: "Según los modelos" },
         { value: "27", label: "Años", sub: "Cenit competitivo" },
         { value: "12", label: "Goles ya en Mundiales", sub: "Si marca 5 más, supera a Klose" },
       ],
@@ -120,7 +120,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Cuota MVP: **+800**. Favorito a Balón de Oro 2026 si Inglaterra avanza. Las apuestas le dan un **18% de probabilidad de terminar entre los 3 mejores del torneo**.",
+      text: "Es uno de los grandes favoritos a MVP. Candidato a Balón de Oro 2026 si Inglaterra avanza. Los modelos de probabilidad le dan un **18% de probabilidad de terminar entre los 3 mejores del torneo**.",
     },
     {
       type: "h2",
@@ -183,7 +183,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "El asterisco de la lista. Haaland es el mejor delantero centro del mundo, sin discusión. Pero **Noruega no ha vuelto a un Mundial desde 1998** y se ha colado entre las 48 con justeza. Su aventura mundialista será más simbólica que aspiracional al título: probablemente caiga en octavos. Pero la Bota de Oro sí es factible: **+1200**.",
+      text: "El asterisco de la lista. Haaland es el mejor delantero centro del mundo, sin discusión. Pero **Noruega no ha vuelto a un Mundial desde 1998** y se ha colado entre las 48 con justeza. Su aventura mundialista será más simbólica que aspiracional al título: probablemente caiga en octavos. Pero la Bota de Oro sí es un objetivo factible si Noruega aguanta unos partidos.",
     },
     {
       type: "h2",
@@ -192,7 +192,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Si Yamal pone los focos, Pedri pone el partido. El centrocampista canario es el mejor número 8 del mundo cuando está sano —y eso, este año, ha sido el caso. Su control de tempo, primer toque y capacidad para encontrar líneas de pase entre presión rival son superiores. España no ganaría sin él. Cuota MVP: **+1600**.",
+      text: "Si Yamal pone los focos, Pedri pone el partido. El centrocampista canario es el mejor número 8 del mundo cuando está sano —y eso, este año, ha sido el caso. Su control de tempo, primer toque y capacidad para encontrar líneas de pase entre presión rival son superiores. España no ganaría sin él. Un candidato silencioso al MVP del torneo.",
     },
     {
       type: "h2",
@@ -251,7 +251,7 @@ const post: BlogPost = {
       items: [
         {
           q: "¿Quién es el favorito a Bota de Oro del Mundial 2026?",
-          a: "Kylian Mbappé es el favorito con cuota +700, seguido de Lautaro Martínez (+1200) y Erling Haaland (+1200).",
+          a: "Kylian Mbappé es el favorito según los modelos de probabilidad, seguido de Lautaro Martínez y Erling Haaland.",
         },
         {
           q: "¿Cuántos goles ha marcado Messi en Mundiales?",
@@ -271,7 +271,7 @@ const post: BlogPost = {
   faq: [
     {
       q: "¿Quién es el favorito a la Bota de Oro del Mundial 2026?",
-      a: "Kylian Mbappé es el favorito (+700). Le siguen Lautaro Martínez, Erling Haaland y Vinícius Jr.",
+      a: "Kylian Mbappé es el favorito. Le siguen Lautaro Martínez, Erling Haaland y Vinícius Jr.",
     },
     {
       q: "¿Cuántos goles ha marcado Messi en Mundiales?",
@@ -279,7 +279,7 @@ const post: BlogPost = {
     },
     {
       q: "¿Quién es el favorito al MVP del torneo?",
-      a: "Kylian Mbappé (+450) lidera, seguido de Jude Bellingham (+800) y Lionel Messi (+1000).",
+      a: "Kylian Mbappé lidera, seguido de Jude Bellingham y Lionel Messi.",
     },
   ],
   related: [

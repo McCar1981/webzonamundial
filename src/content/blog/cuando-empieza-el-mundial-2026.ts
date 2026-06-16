@@ -177,7 +177,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "A fecha de mayo de 2026, faltan **menos de 30 días para el partido inaugural**. La excitación crece exponencialmente: en redes sociales, los hashtags #Mundial2026, #WorldCup2026 y #FIFA2026 acumulan ya millones de menciones diarias. Las casas de apuestas reportan récord histórico de cuotas movidas con seis meses de antelación. Y los hoteles en las 16 sedes están al 90% de ocupación para junio-julio.",
+      text: "A fecha de mayo de 2026, faltan **menos de 30 días para el partido inaugural**. La excitación crece exponencialmente: en redes sociales, los hashtags #Mundial2026, #WorldCup2026 y #FIFA2026 acumulan ya millones de menciones diarias. La expectación en los medios deportivos marca cifras récord con meses de antelación. Y los hoteles en las 16 sedes están al 90% de ocupación para junio-julio.",
     },
     {
       type: "h2",

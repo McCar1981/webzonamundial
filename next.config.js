@@ -55,29 +55,24 @@ const nextConfig = {
     //  - img-src https: data: blob: soporta imágenes externas variables.
     //  - connect-src incluye Supabase, Apple, Google, Analytics, Vercel, Upstash y Anthropic.
     //  - frame-src permite Google Ads/DoubleClick y proveedores OAuth.
-    //  - Adsterra (Native Banner): su invoke.js hace XHR (connect-src) y abre
-    //    iframes (frame-src) contra dominios propios ROTATORIOS. Los vistos el
-    //    09/06/2026 dentro del invoke.js son fizzyacerbitymellow.com,
-    //    protrafficinspector.com y cdn.cloudvideosa.com, pero cambian sin
-    //    avisar, por eso connect-src y frame-src replican el comodín
-    //    https://*.com / https://*.net que ya se asumió en script-src.
-    //    Riesgo de malvertising asumido por el dueño (handoff-adsterra.md §6).
-    //    Para endurecer en el futuro: quitar comodines y dejar explícitos.
+    //  - Adsterra RETIRADO de producción (2026-06-10): se eliminaron los
+    //    comodines https://*.com / https://*.net y los dominios muertos de su
+    //    invoke.js (effectivecpmnetwork.com, fizzyacerbitymellow.com,
+    //    protrafficinspector.com, cdn.cloudvideosa.com) de script/connect/frame.
+    //    Ahora sólo quedan orígenes EXPLÍCITOS legítimos.
     // AdSense/CMP en EXPLÍCITO (pagead2/tpc/googlesyndication, doubleclick,
-    // adtrafficquality, fundingchoices y gtm con subdominio www): hoy los
-    // comodines *.com/*.net ya los permiten, pero cuando se retiren los
-    // comodines (limpieza Adsterra pendiente post-revisión AdSense) los
-    // anuncios deben seguir funcionando sin tocar nada más. OJO:
-    // "googlesyndication.com" pelado NO cubre pagead2.googlesyndication.com.
+    // adtrafficquality, fundingchoices y gtm con subdominio www). OJO:
+    // "googlesyndication.com" pelado NO cubre pagead2.googlesyndication.com,
+    // por eso se listan los subdominios uno a uno.
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://googletagmanager.com https://www.googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com https://*.com https://*.net",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://googletagmanager.com https://www.googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com",
       "style-src 'self' 'unsafe-inline' https://cdn-apple.com",
       "font-src 'self' data: https://cdn-apple.com",
       "img-src 'self' data: blob: https:",
       "media-src 'self' https:",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
-      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://appleid.apple.com https://accounts.google.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
+      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://appleid.apple.com https://accounts.google.com",
       "base-uri 'self'",
       "form-action 'self' https://appleid.apple.com https://accounts.google.com",
       "frame-ancestors 'none'",

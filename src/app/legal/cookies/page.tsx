@@ -59,7 +59,7 @@ export default function CookiesPage() {
 
         <Section title="4. Gestión y retirada del consentimiento">
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Desde la Plataforma</h4>
-          <p>Accede al panel de preferencias de cookies desde el pie de página o desde Ajustes &gt; Privacidad. Puedes activar o desactivar cada categoría de forma individual.</p>
+          <p>En el banner de cookies puedes elegir entre &quot;Aceptar todas&quot; o &quot;Solo esenciales&quot;. Si más adelante quieres cambiar tu elección, borra las cookies de ZonaMundial desde tu navegador (ver más abajo): el banner volverá a aparecer y podrás decidir de nuevo.</p>
 
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Desde tu navegador web</h4>
           <ul>

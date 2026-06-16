@@ -1109,6 +1109,15 @@
   margin-bottom: 20px;
   transition: transform 0.2s, box-shadow 0.2s;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.shareIcon {
+  width: 18px;
+  height: 18px;
 }
 
 .shareBtn:hover {
@@ -1169,8 +1178,15 @@
 }
 
 .shareOptionIcon {
-  font-size: 18px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mr-text);
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .shareOptionText {

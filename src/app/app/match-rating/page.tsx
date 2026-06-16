@@ -562,7 +562,12 @@ export default function MatchRatingPage() {
 
           {sharePhase === null ? (
             <button className={styles.shareBtn} onClick={shareResults}>
-              📤 Compartir resumen
+              <svg className={styles.shareIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                <polyline points="17 21 17 13 7 13 7 21" />
+                <polyline points="7 3 7 8 15 8" />
+              </svg>
+              Compartir resumen
             </button>
           ) : (
             <div className={styles.shareModal}>
@@ -573,12 +578,43 @@ export default function MatchRatingPage() {
                   shareResults();
                 }}
               >
-                <span className={styles.shareOptionIcon}>🌍</span>
+                <svg className={styles.shareOptionIcon} viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" opacity="0.2" />
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+                </svg>
                 <span className={styles.shareOptionText}>Resumen completo del Mundial</span>
               </button>
               {ROUNDS.map((round) => {
                 const roundMatches = allMatches.filter(round.filter);
                 const roundRatings = roundMatches.filter((m) => ratings[m.i]?.rating != null);
+                const getRoundIcon = (key: string) => {
+                  switch (key) {
+                    case "S1":
+                      return (
+                        <svg className={styles.shareOptionIcon} viewBox="0 0 24 24" fill="currentColor">
+                          <text x="12" y="18" fontSize="20" fontWeight="bold" textAnchor="middle">1</text>
+                        </svg>
+                      );
+                    case "S2":
+                      return (
+                        <svg className={styles.shareOptionIcon} viewBox="0 0 24 24" fill="currentColor">
+                          <text x="12" y="18" fontSize="20" fontWeight="bold" textAnchor="middle">2</text>
+                        </svg>
+                      );
+                    case "S3":
+                      return (
+                        <svg className={styles.shareOptionIcon} viewBox="0 0 24 24" fill="currentColor">
+                          <text x="12" y="18" fontSize="20" fontWeight="bold" textAnchor="middle">3</text>
+                        </svg>
+                      );
+                    default:
+                      return (
+                        <svg className={styles.shareOptionIcon} viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-5h2v2h-2zm0-6h2v4h-2z" />
+                        </svg>
+                      );
+                  }
+                };
                 return (
                   <button
                     key={round.key}
@@ -588,9 +624,7 @@ export default function MatchRatingPage() {
                       setTimeout(shareResults, 0);
                     }}
                   >
-                    <span className={styles.shareOptionIcon}>
-                      {round.key === "S1" ? "1️⃣" : round.key === "S2" ? "2️⃣" : round.key === "S3" ? "3️⃣" : "⚽"}
-                    </span>
+                    {getRoundIcon(round.key)}
                     <span className={styles.shareOptionText}>
                       {round.label} ({roundRatings.length}/{roundMatches.length})
                     </span>

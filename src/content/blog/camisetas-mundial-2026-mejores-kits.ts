@@ -97,7 +97,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Joma rara vez tiene seleccionados grandes en sus arcas, pero el **debut absoluto de Cabo Verde** le dio la oportunidad. La camiseta es **azul profundo con detalles amarillo-naranja** que evocan el **mosaico volcánico** de las islas. Es la camiseta más simbólica del torneo: representa **el país más pequeño en haber clasificado a un Mundial** (550.000 habitantes). Coleccionistas: si quieres una pieza que será histórica, esta es la apuesta.",
+      text: "Joma rara vez tiene seleccionados grandes en sus arcas, pero el **debut absoluto de Cabo Verde** le dio la oportunidad. La camiseta es **azul profundo con detalles amarillo-naranja** que evocan el **mosaico volcánico** de las islas. Es la camiseta más simbólica del torneo: representa **el país más pequeño en haber clasificado a un Mundial** (550.000 habitantes). Coleccionistas: si quieres una pieza que será histórica, esta es la opción.",
     },
     {
       type: "h2",
@@ -248,14 +248,14 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Si quieres invertir en piezas que **suban de valor con los años**, estas son las apuestas seguras del Mundial 2026:",
+      text: "Si quieres invertir en piezas que **suban de valor con los años**, estas son las opciones más seguras del Mundial 2026:",
     },
     {
       type: "ol",
       items: [
         "**Camiseta de Argentina con el dorsal 10 de Messi** — será su última y subirá de precio sí o sí.",
         "**Camiseta de Cabo Verde** — debut histórico, escasa producción, alta demanda en años venideros.",
-        "**Camiseta de México con el águila bordada** — apuesta segura por el efecto local en sedes USA.",
+        "**Camiseta de México con el águila bordada** — valor seguro por el efecto local en sedes USA.",
         "**Camiseta de Croacia firmada por Modrić** — última Eurocopa de Modrić, valor sentimental enorme.",
         "**Camiseta de Brasil con el dorsal 9 (Vinicius o Endrick según convocatoria)** — generación nueva con potencial.",
       ],

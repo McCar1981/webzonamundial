@@ -224,7 +224,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Si tu selección depende de qué grupo le toque para empezar a soñar con avanzar, tenemos para ti un análisis detallado en [Selecciones clasificadas al Mundial 2026](/blog/selecciones-clasificadas-mundial-2026). Y si quieres saber qué dice el ranking FIFA y las casas de apuestas sobre quién levantará la copa el 19 de julio, no te pierdas nuestro [análisis selección por selección](/blog/quien-ganara-el-mundial-2026).",
+      text: "Si tu selección depende de qué grupo le toque para empezar a soñar con avanzar, tenemos para ti un análisis detallado en [Selecciones clasificadas al Mundial 2026](/blog/selecciones-clasificadas-mundial-2026). Y si quieres saber qué dicen el ranking FIFA y los modelos de probabilidad sobre quién levantará la copa el 19 de julio, no te pierdas nuestro [análisis selección por selección](/blog/quien-ganara-el-mundial-2026).",
     },
     {
       type: "divider",

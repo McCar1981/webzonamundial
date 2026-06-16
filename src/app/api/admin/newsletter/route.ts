@@ -14,18 +14,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE_NAME, isValidAdminCookie } from "@/lib/admin-auth";
 import { listRegistros } from "@/lib/registros-store";
-import { sendEmail, brandedEmail } from "@/lib/email";
+import { brandedEmail, sendResendBatch } from "@/lib/email";
 import { listSupabaseUserEmails } from "@/lib/supabase-emails";
 import { listNewsletterOptOuts, buildUnsubscribeToken } from "@/lib/email-subscriptions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-// ~2.500 emails en lotes de 25 con pausa de 1,5s tardan ~2,5 min, por encima del
-// límite por defecto de Vercel (60s). Subimos a 5 min (requiere plan Pro, que ya hay).
+// Con el Batch API (100 correos/petición) enviar ~2.500 es cuestión de segundos;
+// dejamos margen amplio por si hay reintentos de backoff. (Vercel Pro.)
 export const maxDuration = 300;
 
-const BATCH_SIZE = 25;
-const BATCH_DELAY_MS = 1500;
+const CHUNK_SIZE = 100;        // máximo de correos por petición del Batch API de Resend
+const REQUEST_DELAY_MS = 250;  // ~4 req/s, por debajo del límite de Resend (5 req/s)
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
@@ -122,40 +122,49 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  // Renderizamos el cuerpo POR destinatario: cada uno lleva su propio enlace de
-  // baja firmado (token HMAC) en el pie, requisito RGPD del envío masivo.
+  // Un correo POR destinatario (cada uno con su token de baja firmado en el pie,
+  // RGPD), enviados vía Resend Batch API: 100 por petición para no pasar del rate
+  // limit (5 req/s). Backoff exponencial si aun así rebota algún lote (429).
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zonamundial.app";
+  const items = unique.map((to) => ({
+    to,
+    subject,
+    html: brandedEmail({
+      preheader: body.preheader,
+      heading,
+      bodyHtml: html,
+      ctaLabel: body.ctaLabel,
+      ctaHref: body.ctaHref,
+      unsubscribeUrl: `${siteUrl}/baja?token=${buildUnsubscribeToken({ email: to, kind: "newsletter" })}`,
+    }),
+  }));
 
   let sent = 0;
   let failed = 0;
-  for (let i = 0; i < unique.length; i += BATCH_SIZE) {
-    const batch = unique.slice(i, i + BATCH_SIZE);
-    const results = await Promise.allSettled(
-      batch.map((to) => {
-        const unsubscribeUrl = `${siteUrl}/baja?token=${buildUnsubscribeToken({ email: to, kind: "newsletter" })}`;
-        const fullHtml = brandedEmail({
-          preheader: body.preheader,
-          heading,
-          bodyHtml: html,
-          ctaLabel: body.ctaLabel,
-          ctaHref: body.ctaHref,
-          unsubscribeUrl,
-        });
-        return sendEmail({ to, subject, html: fullHtml });
-      })
-    );
-    results.forEach((r) => {
-      if (r.status === "fulfilled" && r.value === true) sent++;
-      else failed++;
-    });
-    // Pausa entre lotes salvo el último.
-    if (i + BATCH_SIZE < unique.length) await sleep(BATCH_DELAY_MS);
+  let lastError: string | undefined;
+  for (let i = 0; i < items.length; i += CHUNK_SIZE) {
+    const chunk = items.slice(i, i + CHUNK_SIZE);
+    let attempt = 0;
+    for (;;) {
+      const r = await sendResendBatch(chunk);
+      if (r.error === "rate_limited" && attempt < 4) {
+        attempt++;
+        await sleep(REQUEST_DELAY_MS * Math.pow(2, attempt)); // 500, 1000, 2000, 4000 ms
+        continue;
+      }
+      sent += r.sent;
+      failed += r.failed;
+      if (r.error) lastError = r.error;
+      break;
+    }
+    if (i + CHUNK_SIZE < items.length) await sleep(REQUEST_DELAY_MS);
   }
 
   return NextResponse.json({
     ok: true,
-    total: unique.length,
+    total: items.length,
     sent,
     failed,
+    note: lastError ? `Algunos fallaron (último motivo: ${lastError}).` : undefined,
   });
 }

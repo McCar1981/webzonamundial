@@ -41,7 +41,7 @@ export function CalendarBanner() {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
             <div>
               <div className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.25em] mb-3">
-                📅 Nuevo · BIBLIA Calendar
+                Nuevo · BIBLIA Calendar
               </div>
               <h2
                 className="font-black text-white mb-3 leading-tight"
@@ -63,10 +63,10 @@ export function CalendarBanner() {
                 cambian fechas.
               </p>
               <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#94a3b8]">
-                <span>⏰ Recordatorios 24h / 2h / 15min</span>
-                <span>📍 Mapas integrados</span>
-                <span>🎵 Himnos en Spotify</span>
-                <span>🔄 Actualización automática</span>
+                <span>Recordatorios 24h / 2h / 15min</span>
+                <span>Mapas integrados</span>
+                <span>Himnos en Spotify</span>
+                <span>Actualización automática</span>
               </div>
             </div>
             <div className="flex md:justify-end">

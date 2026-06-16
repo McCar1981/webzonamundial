@@ -277,8 +277,8 @@ const post: BlogPost = {
     },
     {
       type: "h2",
-      text: "Las selecciones a seguir: tres apuestas del editor",
-      id: "apuestas-editor",
+      text: "Las selecciones a seguir: tres favoritas del editor",
+      id: "favoritas-editor",
     },
     {
       type: "p",

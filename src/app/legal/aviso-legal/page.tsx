@@ -21,6 +21,14 @@ export default function AvisoLegalPage() {
 
         <Section title="1. Datos del titular">
           <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los siguientes datos identificativos del titular de la plataforma.</p>
+          <ul style={{ marginTop: 12 }}>
+            <li><strong style={{ color: GOLD }}>Titular:</strong> Carlos Manuel Zamudio Corral (empresario individual / autónomo)</li>
+            <li><strong style={{ color: GOLD }}>Nombre comercial:</strong> SprintMarkt</li>
+            <li><strong style={{ color: GOLD }}>NIF:</strong> 26581062P</li>
+            <li><strong style={{ color: GOLD }}>Domicilio:</strong> Avenida General Avilés, 20 Duplo, 46015 Valencia, España</li>
+            <li><strong style={{ color: GOLD }}>Sitio web:</strong> zonamundial.app</li>
+            <li><strong style={{ color: GOLD }}>Email:</strong> <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+          </ul>
         </Section>
 
         <Section title="2. Objeto y actividad">
@@ -86,7 +94,12 @@ export default function AvisoLegalPage() {
           <p>Cualquier persona o entidad que desee establecer un enlace desde su sitio web a ZonaMundial deberá obtener autorización previa y por escrito. El enlace únicamente podrá dirigirse a la página principal (zonamundial.app). No se autorizan enlaces en sitios que contengan contenido ilícito, ofensivo, discriminatorio, o que pueda dañar la imagen de ZonaMundial o SprintMarkt.</p>
         </Section>
 
-        <Section title="7. Legislación aplicable y jurisdicción">
+        <Section title="7. Enlaces de afiliados">
+          <p>ZonaMundial participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados diseñado para ofrecer a sitios web un modo de obtener comisiones por publicidad, publicitando e incluyendo enlaces a Amazon.es. Como Afiliado de Amazon, el titular obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
+          <p>Algunos enlaces de la Plataforma son enlaces de afiliado: si el usuario realiza una compra a través de ellos, el titular puede percibir una comisión <strong style={{ color: GOLD }}>sin coste adicional para el usuario</strong>. Estos enlaces se identifican técnicamente con el atributo <code>rel=&quot;sponsored&quot;</code> y van acompañados del aviso de afiliación correspondiente. La inclusión de enlaces de afiliado no condiciona el criterio editorial de ZonaMundial.</p>
+        </Section>
+
+        <Section title="8. Legislación aplicable y jurisdicción">
           <p>El presente Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los Juzgados y Tribunales de Valencia (España). En el caso de usuarios con la condición de consumidores, será de aplicación la normativa de protección de consumidores vigente en su lugar de residencia habitual.</p>
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Marco normativo de referencia</h4>
           <ul>
@@ -99,7 +112,7 @@ export default function AvisoLegalPage() {
           </ul>
         </Section>
 
-        <Section title="8. Contacto">
+        <Section title="9. Contacto">
           <ul>
             <li>Email legal: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
             <li>Email comercial: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>

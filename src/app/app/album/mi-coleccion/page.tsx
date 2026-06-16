@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CROMOS, TOTAL_CROMOS, type Cromo } from "@/lib/cromos/catalog";
+import { CROMOS, TOTAL_CROMOS, CATEGORIES, type Cromo } from "@/lib/cromos/catalog";
 import { ALBUM_ACHIEVEMENTS, type AchievementView } from "@/lib/cromos/achievements";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -17,17 +17,17 @@ import {
   type TabKey,
   AlbumHeader,
   RarityStats,
-  CategoryStats,
   CollectionMilestones,
   OpenPackCard,
   FilterTabs,
   FilterBar,
-  CromoGrid,
+  AlbumSections,
   AchievementsSection,
   TradesSection,
   EmptyAlbumView,
   PackResultModal,
   PackOpeningAnimation,
+  CelebrationOverlay,
   CromoDetailModal,
   CreateTradeModal,
 } from "./components";
@@ -47,6 +47,10 @@ export default function MiColeccionPage() {
   const [opening, setOpening] = useState(false);
   const [packResult, setPackResult] = useState<Cromo[] | null>(null);
   const [showPackAnimation, setShowPackAnimation] = useState(false);
+  const [fx, setFx] = useState(true);
+  const [celebration, setCelebration] = useState<{ title: string; subtitle?: string } | null>(null);
+  const prevCompleteRef = useRef<Set<string>>(new Set());
+  const justOpenedRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -165,6 +169,89 @@ export default function MiColeccionPage() {
     };
   }, [packStatus.canOpen]);
 
+  // Efectos cinematográficos: ON por defecto, salvo "reducir movimiento" del sistema
+  // (que se puede forzar con el interruptor). Persistido en localStorage.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("album_fx");
+      if (saved === "off") setFx(false);
+      else if (saved === "on") setFx(true);
+      else setFx(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    } catch { /* noop */ }
+  }, []);
+
+  const toggleFx = () => setFx((v) => {
+    const nv = !v;
+    try { localStorage.setItem("album_fx", nv ? "on" : "off"); } catch { /* noop */ }
+    if (!nv) document.documentElement.style.setProperty("--album-parallax", "0px");
+    return nv;
+  });
+
+  // Parallax del fondo + holo de las cartas siguiendo el cursor (solo con fx).
+  useEffect(() => {
+    if (!fx) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--album-parallax", `${window.scrollY * 0.16}px`);
+        raf = 0;
+      });
+    };
+    const sel = `.${styles.cromoOwned}`;
+    const onMove = (e: PointerEvent) => {
+      const el = (e.target as HTMLElement)?.closest?.(sel) as HTMLElement | null;
+      if (!el) return;
+      const b = el.getBoundingClientRect();
+      const px = (e.clientX - b.left) / b.width;
+      const py = (e.clientY - b.top) / b.height;
+      el.style.setProperty("--hx", `${px * 100}%`);
+      el.style.setProperty("--hy", `${py * 100}%`);
+      el.style.transform = `perspective(700px) rotateX(${(0.5 - py) * 7}deg) rotateY(${(px - 0.5) * 7}deg) scale(1.04) translateY(-6px)`;
+      el.dataset.tilt = "1";
+    };
+    const onOut = (e: PointerEvent) => {
+      const el = (e.target as HTMLElement)?.closest?.(sel) as HTMLElement | null;
+      if (el && el.dataset.tilt) { el.style.transform = ""; delete el.dataset.tilt; }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("pointermove", onMove);
+    document.addEventListener("pointerout", onOut);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerout", onOut);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [fx]);
+
+  // Celebración al completar una página/sección o el álbum tras abrir un sobre.
+  useEffect(() => {
+    if (!collection) return;
+    const nowComplete = new Set<string>();
+    for (const [k, v] of Object.entries(collection.byCategory)) {
+      if (v.total > 0 && v.collected === v.total) nowComplete.add(k);
+    }
+    const albumComplete = collection.total > 0 && collection.collected >= collection.total;
+    if (justOpenedRef.current && fx) {
+      justOpenedRef.current = false;
+      if (albumComplete && !prevCompleteRef.current.has("__album__")) {
+        setCelebration({ title: isES ? "ÁLBUM" : "ALBUM", subtitle: isES ? "¡Álbum completo!" : "Album complete!" });
+      } else {
+        const newly = [...nowComplete].find((k) => !prevCompleteRef.current.has(k));
+        if (newly) {
+          const cat = CATEGORIES.find((c) => c.key === newly);
+          const label = cat ? (isES ? cat.label.es : cat.label.en) : newly;
+          setCelebration({ title: isES ? "COMPLETA" : "DONE", subtitle: isES ? `¡Página de ${label} completa!` : `${label} page complete!` });
+        }
+      }
+    } else {
+      justOpenedRef.current = false;
+    }
+    if (albumComplete) nowComplete.add("__album__");
+    prevCompleteRef.current = nowComplete;
+  }, [collection, fx, isES]);
+
   const open = async () => {
     if (opening || !packStatus.canOpen) return;
     setOpening(true);
@@ -187,6 +274,7 @@ export default function MiColeccionPage() {
         }
         setShowPackAnimation(true);
         setPackResult(data.cromos);
+        justOpenedRef.current = true;
         const nextAt = data.nextPackAt ? new Date(data.nextPackAt).getTime() : 0;
         const secondsLeft = nextAt > 0 ? Math.max(0, Math.ceil((nextAt - Date.now()) / 1000)) : 14400;
         setPackStatus({
@@ -292,8 +380,9 @@ export default function MiColeccionPage() {
         <title>{isES ? "Mi Álbum de Cromos | ZonaMundial" : "My Sticker Album | ZonaMundial"}</title>
       </Head>
 
-      <div className={styles.page}>
+      <div className={styles.page} data-album-fx={fx ? "on" : "off"}>
         <span aria-hidden className={styles.topLine} />
+        <div aria-hidden className={styles.parallaxLayer} />
 
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
@@ -314,6 +403,16 @@ export default function MiColeccionPage() {
             <Link href="/cromos" className={styles.backLink}>
               <IconArrowLeft /> {t.back}
             </Link>
+            <button
+              type="button"
+              onClick={toggleFx}
+              className={styles.fxToggle}
+              style={{ marginLeft: "auto" }}
+              aria-pressed={fx}
+              title={isES ? "Efectos cinematográficos (sobre que se rasga, holo, celebraciones)" : "Cinematic effects"}
+            >
+              {isES ? "Efectos" : "Effects"}: {fx ? "ON" : "OFF"}
+            </button>
           </div>
 
           {loading ? (
@@ -360,7 +459,6 @@ export default function MiColeccionPage() {
 
               <div className={styles.statsGrid}>
                 <RarityStats collection={collection} isES={isES} />
-                <CategoryStats collection={collection} isES={isES} />
                 <OpenPackCard
                   canOpen={packStatus.canOpen}
                   opening={opening}
@@ -385,21 +483,16 @@ export default function MiColeccionPage() {
                 isES={isES}
               />
 
-              <div className={styles.gridHeader}>
-                <h2 className={styles.gridTitle}>{isES ? "Cromos del álbum" : "Album stickers"}</h2>
-                <span className={styles.gridCount}>
-                  {visibleCromos.length} {isES ? "cromos" : "stickers"}
-                </span>
-              </div>
-
-              <CromoGrid
+              <AlbumSections
                 cromos={visibleCromos}
                 ownedIds={collection?.ownedIds ?? []}
                 favoriteIds={favoriteIds}
-                emptyMessage={activeTab === "missing" ? t.emptyMissing : t.emptyOwned}
+                collection={collection}
+                activeTab={activeTab}
                 isES={isES}
                 onCromoClick={setSelectedCromo}
                 onToggleFavorite={toggleFavorite}
+                t={t}
               />
 
               <AchievementsSection achievements={achievements} isES={isES} />
@@ -446,12 +539,17 @@ export default function MiColeccionPage() {
         <PackOpeningAnimation
           cromos={packResult}
           onDone={closePackAnimation}
+          fx={fx}
           isES={isES}
         />
       )}
 
       {packResult && !showPackAnimation && (
         <PackResultModal cromos={packResult} onClose={() => setPackResult(null)} t={t} isES={isES} />
+      )}
+
+      {celebration && fx && !showPackAnimation && !packResult && (
+        <CelebrationOverlay title={celebration.title} subtitle={celebration.subtitle} onDone={() => setCelebration(null)} />
       )}
 
       {selectedCromo && collection && (

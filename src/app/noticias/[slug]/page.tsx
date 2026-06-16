@@ -10,6 +10,14 @@ import { ArticleView } from "./ArticleView";
 
 const SITE_URL = "https://zonamundial.app";
 
+// Google exige URL ABSOLUTA en el campo "image" del JSON-LD. realImage puede
+// venir relativa (p.ej. "/img/heroes/ball-stadium-pitch.jpg"): si ya es http(s)
+// se deja; si empieza por "/" se prefija el dominio.
+function toAbsoluteUrl(src: string): string {
+  if (/^https?:\/\//i.test(src)) return src;
+  return `${SITE_URL}${src.startsWith("/") ? "" : "/"}${src}`;
+}
+
 interface Props {
   params: { slug: string };
 }
@@ -80,7 +88,7 @@ export default async function NoticiaPage({ params }: Props) {
     "@type": "NewsArticle",
     headline: noticia.title,
     description: noticia.seoDescription || noticia.excerpt,
-    image: noticia.realImage ? [noticia.realImage] : undefined,
+    image: noticia.realImage ? [toAbsoluteUrl(noticia.realImage)] : undefined,
     datePublished: `${noticia.date}T08:00:00.000Z`,
     dateModified: `${noticia.updatedAt || noticia.date}T08:00:00.000Z`,
     // Atribución honesta: las piezas reescritas de un medio declaran su

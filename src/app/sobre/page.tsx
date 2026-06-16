@@ -30,7 +30,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "ZonaMundial",
-  legalName: "Sprintmarkt S.L.",
+  legalName: "Carlos Manuel Zamudio Corral (SprintMarkt)",
   url: "https://zonamundial.app",
   logo: "https://zonamundial.app/og-image.jpg",
   foundingDate: "2025",
@@ -144,8 +144,9 @@ export default function SobrePage() {
 
         <Section title="El equipo">
           <p>
-            ZonaMundial es un proyecto de <strong style={{ color: "#E2E8F0" }}>Sprintmarkt S.L.</strong>, agencia digital
-            con sede en Valencia (España) especializada en producto digital, marketing performance y SEO. Sprintmarkt
+            ZonaMundial es un proyecto de <strong style={{ color: "#E2E8F0" }}>Carlos Manuel Zamudio Corral</strong>,
+            empresario individual (autónomo) que opera bajo el nombre comercial <strong style={{ color: "#E2E8F0" }}>SprintMarkt</strong>,
+            agencia digital con sede en Valencia (España) especializada en producto digital, marketing performance y SEO. SprintMarkt
             opera desde 2015 con clientes en e-commerce, banca, retail y deporte.
           </p>
           <p style={{ marginTop: 16 }}>
@@ -210,7 +211,7 @@ export default function SobrePage() {
             <li><strong style={{ color: "#E2E8F0" }}>Idiomas:</strong> Español y English</li>
             <li><strong style={{ color: "#E2E8F0" }}>Precio:</strong> 100% gratis. Premium opcional</li>
             <li><strong style={{ color: "#E2E8F0" }}>Sede operativa:</strong> Valencia, España</li>
-            <li><strong style={{ color: "#E2E8F0" }}>Empresa responsable:</strong> Sprintmarkt S.L.</li>
+            <li><strong style={{ color: "#E2E8F0" }}>Responsable:</strong> Carlos Manuel Zamudio Corral (empresario individual), nombre comercial SprintMarkt</li>
           </ul>
         </Section>
 

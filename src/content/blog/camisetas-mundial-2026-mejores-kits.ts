@@ -97,7 +97,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Joma rara vez tiene seleccionados grandes en sus arcas, pero el **debut absoluto de Cabo Verde** le dio la oportunidad. La camiseta es **azul profundo con detalles amarillo-naranja** que evocan el **mosaico volcánico** de las islas. Es la camiseta más simbólica del torneo: representa **el país más pequeño en haber clasificado a un Mundial** (550.000 habitantes). Coleccionistas: si quieres una pieza que será histórica, esta es la apuesta.",
+      text: "Joma rara vez tiene seleccionados grandes en sus arcas, pero el **debut absoluto de Cabo Verde** le dio la oportunidad. La camiseta es **azul profundo con detalles amarillo-naranja** que evocan el **mosaico volcánico** de las islas. Es la camiseta más simbólica del torneo: representa **el país más pequeño en haber clasificado a un Mundial** (550.000 habitantes). Coleccionistas: si quieres una pieza que será histórica, esta es la opción.",
     },
     {
       type: "h2",
@@ -235,6 +235,20 @@ const post: BlogPost = {
       text: "**Camisetas bajo 50€/USD son siempre falsificaciones**. Las réplicas oficiales nunca bajan de 80€/100USD. Si te ofrecen 'idénticas' por 30€, es producto falsificado de China o Tailandia.",
     },
     {
+      type: "affiliate",
+      title: "Busca tu camiseta del Mundial 2026 en Amazon",
+      text: "Comprueba precio y disponibilidad de la versión **oficial** de cada selección (réplica adulto **~90-110 €**). Verifica siempre que el vendedor sea la marca (Adidas, Nike, Puma) o un distribuidor autorizado.",
+      items: [
+        { label: "México", query: "camiseta seleccion mexico 2026", flag: "mx", price: "~90-110 €" },
+        { label: "Argentina", query: "camiseta seleccion argentina 2026", flag: "ar", price: "~90-110 €" },
+        { label: "Brasil", query: "camiseta seleccion brasil 2026", flag: "br", price: "~90-110 €" },
+        { label: "España", query: "camiseta seleccion españa 2026", flag: "es", price: "~90-110 €" },
+        { label: "Francia", query: "camiseta seleccion francia 2026", flag: "fr", price: "~90-110 €" },
+        { label: "Países Bajos", query: "camiseta holanda paises bajos 2026", flag: "nl", price: "~90-110 €" },
+        { label: "Todas las camisetas", query: "camiseta mundial 2026" },
+      ],
+    },
+    {
       type: "cta",
       title: "Las 48 selecciones del Mundial 2026",
       text: "Conoce el kit oficial de cada selección clasificada en su ficha BIBLIA con visualización 3D.",
@@ -248,14 +262,14 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Si quieres invertir en piezas que **suban de valor con los años**, estas son las apuestas seguras del Mundial 2026:",
+      text: "Si quieres invertir en piezas que **suban de valor con los años**, estas son las opciones más seguras del Mundial 2026:",
     },
     {
       type: "ol",
       items: [
         "**Camiseta de Argentina con el dorsal 10 de Messi** — será su última y subirá de precio sí o sí.",
         "**Camiseta de Cabo Verde** — debut histórico, escasa producción, alta demanda en años venideros.",
-        "**Camiseta de México con el águila bordada** — apuesta segura por el efecto local en sedes USA.",
+        "**Camiseta de México con el águila bordada** — valor seguro por el efecto local en sedes USA.",
         "**Camiseta de Croacia firmada por Modrić** — última Eurocopa de Modrić, valor sentimental enorme.",
         "**Camiseta de Brasil con el dorsal 9 (Vinicius o Endrick según convocatoria)** — generación nueva con potencial.",
       ],

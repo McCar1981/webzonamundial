@@ -11,6 +11,7 @@ interface Result {
   failed?: number;
   count?: number;
   error?: string;
+  note?: string;
 }
 
 export default function NewsletterComposer() {
@@ -20,9 +21,10 @@ export default function NewsletterComposer() {
   const [bodyHtml, setBodyHtml] = useState("<p>Hola,</p>\n<p>Aquí va el contenido del email.</p>");
   const [ctaLabel, setCtaLabel] = useState("");
   const [ctaHref, setCtaHref] = useState("");
-  const [kind, setKind] = useState<"all" | "full" | "waitlist">("all");
+  const [kind, setKind] = useState<"all" | "full" | "waitlist" | "usuarios">("all");
   const [limit, setLimit] = useState<string>("");
-  const [loading, setLoading] = useState<"idle" | "dry" | "send">("idle");
+  const [testEmail, setTestEmail] = useState("");
+  const [loading, setLoading] = useState<"idle" | "dry" | "send" | "test">("idle");
   const [result, setResult] = useState<Result | null>(null);
 
   async function send(dryRun: boolean) {
@@ -42,6 +44,35 @@ export default function NewsletterComposer() {
           kind,
           limit: limit ? Number(limit) : undefined,
           dryRun,
+        }),
+      });
+      const data = await r.json();
+      setResult(r.ok ? data : { ok: false, error: data.error || `HTTP ${r.status}` });
+    } catch (e) {
+      setResult({ ok: false, error: (e as Error).message });
+    } finally {
+      setLoading("idle");
+    }
+  }
+
+  // Envío de PRUEBA: manda 1 copia SOLO al email indicado (no a la lista).
+  async function sendTest() {
+    if (!testEmail.includes("@")) return;
+    setLoading("test");
+    setResult(null);
+    try {
+      const r = await fetch("/api/admin/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject,
+          heading: heading || subject,
+          preheader: preheader || undefined,
+          html: bodyHtml,
+          ctaLabel: ctaLabel || undefined,
+          ctaHref: ctaHref || undefined,
+          testEmail: testEmail.trim(),
+          dryRun: false,
         }),
       });
       const data = await r.json();
@@ -121,9 +152,10 @@ export default function NewsletterComposer() {
             onChange={(e) => setKind(e.target.value as typeof kind)}
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white"
           >
-            <option value="all">Todos los registros</option>
-            <option value="full">Solo registros completos</option>
-            <option value="waitlist">Solo lista de espera</option>
+            <option value="usuarios">Todos los usuarios (cuentas Supabase)</option>
+            <option value="all">Registros + usuarios (máxima cobertura)</option>
+            <option value="full">Solo registros completos (KV)</option>
+            <option value="waitlist">Solo lista de espera (KV)</option>
           </select>
         </Field>
         <Field label="Limit (vacío = sin límite)">
@@ -135,6 +167,26 @@ export default function NewsletterComposer() {
             placeholder="ej: 50 (para prueba)"
           />
         </Field>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 items-end pt-2">
+        <Field label="Email de prueba (envía 1 copia SOLO a esta dirección)">
+          <input
+            type="email"
+            value={testEmail}
+            onChange={(e) => setTestEmail(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white"
+            placeholder="tu@email.com"
+          />
+        </Field>
+        <button
+          type="button"
+          onClick={sendTest}
+          disabled={loading !== "idle" || !subject || !bodyHtml || !testEmail.includes("@")}
+          className="px-5 py-3 rounded-full text-sm font-bold border border-[#C9A84C]/40 text-[#FDE68A] bg-[#C9A84C]/10 disabled:opacity-50 whitespace-nowrap"
+        >
+          {loading === "test" ? "Enviando prueba…" : "Enviar prueba"}
+        </button>
       </div>
 
       <div className="flex gap-3 pt-4">
@@ -191,6 +243,12 @@ export default function NewsletterComposer() {
                 <b>Envío completado.</b>
                 <br />
                 Total: {result.total} · Enviados OK: <b>{result.sent}</b> · Fallidos: {result.failed}
+                {result.note && (
+                  <>
+                    <br />
+                    {result.note}
+                  </>
+                )}
               </>
             )
           ) : (

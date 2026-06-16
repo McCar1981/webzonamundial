@@ -73,7 +73,7 @@ export function GuiaMundial2026Section() {
         </h2>
 
         <p style={{ color: MUTED, fontSize: 14, marginBottom: 34 }}>
-          Redacción de ZonaMundial · Actualizado el 21 de mayo de 2026 ·{" "}
+          Redacción de ZonaMundial · Actualizado el 16 de junio de 2026 ·{" "}
           <span style={{ color: GOLD2 }}>Lectura ~10 min</span>
         </p>
 

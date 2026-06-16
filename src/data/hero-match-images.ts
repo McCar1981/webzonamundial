@@ -103,6 +103,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/a-saudi-uruguay-wide.webp",
     mobile: "/images/hero/a-saudi-uruguay-mobile.webp",
   },
+  // Francia vs Senegal (16 jun, Grupo I).
+  "francia-senegal": {
+    wide: "/images/hero/francia-senegal-wide.webp",
+    mobile: "/images/hero/francia-senegal-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

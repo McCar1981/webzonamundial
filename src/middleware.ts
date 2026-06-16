@@ -39,6 +39,10 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // updateSupabaseSession reenvía el pathname al layout raíz como cabecera de
+  // PETICIÓN ("x-pathname") vía NextResponse.next({ request: { headers } }), para
+  // que el layout (headers().get("x-pathname")) NO emita el cargador de AdSense
+  // en /app/** (donde vive el iframe de apuestas 1xBet).
   const { response, user } = await updateSupabaseSession(request);
 
   // Bifurcación por ESTADO DE SESIÓN (no por user-agent → sin cloaking).

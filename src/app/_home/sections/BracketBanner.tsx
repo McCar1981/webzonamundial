@@ -40,7 +40,7 @@ export function BracketBanner() {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center">
             <div>
               <div className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.25em] mb-3">
-                🏆 Nuevo · Bracket Challenge
+                Nuevo · Bracket Challenge
               </div>
               <h2
                 className="font-black text-white mb-3 leading-tight"
@@ -61,10 +61,10 @@ export function BracketBanner() {
                 sin registro, se guarda en tu dispositivo.
               </p>
               <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#94a3b8]">
-                <span>⚡ 104 partidos</span>
-                <span>🎨 Vista clásica + cósmica</span>
-                <span>🔒 Sin login</span>
-                <span>📤 Comparte tu bracket</span>
+                <span>104 partidos</span>
+                <span>Vista clásica + cósmica</span>
+                <span>Sin login</span>
+                <span>Comparte tu bracket</span>
               </div>
             </div>
             <div className="flex md:justify-end">

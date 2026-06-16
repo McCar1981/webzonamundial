@@ -132,7 +132,7 @@ export function HomeTriviaPlaySection() {
             <div className="absolute inset-0 flex flex-col justify-end sm:justify-center px-6 pb-6 sm:px-9 sm:pb-0">
               <div className="sm:max-w-[58%]">
                 <div className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3" style={{ color: GOLD }}>
-                  ⚡ Trivia · Juega ya
+                  Trivia · Juega ya
                 </div>
                 <h2
                   className="font-black text-white mb-2 leading-tight"
@@ -283,7 +283,7 @@ export function HomeTriviaPlaySection() {
                         }}
                       >
                         <div style={{ fontWeight: 800, fontSize: 15, color: revealed.correct ? GREEN : RED }}>
-                          {revealed.correct ? `✅ ¡Correcto! +${revealed.points} pts` : "❌ Casi…"}
+                          {revealed.correct ? `¡Correcto! +${revealed.points} pts` : "Casi…"}
                         </div>
                         {revealed.explanation && (
                           <div style={{ fontSize: 13, color: DIM, marginTop: 7, lineHeight: 1.5 }}>

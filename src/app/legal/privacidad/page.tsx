@@ -16,10 +16,10 @@ export default function PrivacidadPage() {
           Política de Privacidad
         </h1>
         <p style={{ color: DIM, fontSize: 13, marginBottom: 24 }}>
-          Última actualización: Abril 2026 · Conforme al RGPD (UE) 2016/679 y LOPDGDD 3/2018
+          Última actualización: Junio 2026 · Conforme al RGPD (UE) 2016/679 y LOPDGDD 3/2018
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, marginBottom: 32, padding: "16px", background: "rgba(201,168,76,0.08)", borderLeft: "3px solid " + GOLD, borderRadius: 4 }}>
-          <strong>Resumen:</strong> Recogemos tu email, nombre de usuario y actividad en la app para ofrecerte el servicio. No vendemos tus datos. Usamos proveedores de confianza (AWS, Stripe, Firebase). Tienes derecho a acceder, rectificar y eliminar tus datos escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.
+          <strong>Resumen:</strong> Recogemos tu email, nombre de usuario y actividad en la app para ofrecerte el servicio. No vendemos tus datos. Usamos proveedores de confianza (AWS, Stripe, Firebase). En la web usamos Google AdSense para mostrar publicidad; el detalle está en la <Link href="/legal/cookies" style={{ color: GOLD }}>Política de Cookies</Link>. Tienes derecho a acceder, rectificar y eliminar tus datos escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.
         </p>
 
         <Section title="1. Responsable del tratamiento">
@@ -61,16 +61,23 @@ export default function PrivacidadPage() {
           <p>El titular no vende, cede ni comparte datos personales con terceros para sus propios fines comerciales.</p>
         </Section>
 
-        <Section title="6. Transferencias internacionales de datos">
+        <Section title="6. Publicidad (Google AdSense)">
+          <p>En el sitio web se utiliza Google AdSense, un servicio de publicidad prestado por Google Ireland Ltd. (Gordon House, Barrow Street, Dublín 4, Irlanda). En la aplicación móvil se utiliza Google AdMob (ver apartado 2.2).</p>
+          <p>Google y sus socios utilizan cookies y tecnologías similares (incluida la cookie DoubleClick/DART y los identificadores publicitarios) para mostrar y medir anuncios en función de tus visitas a este y otros sitios. La publicidad puede ser personalizada o contextual según tu consentimiento.</p>
+          <p>Puedes gestionar o desactivar la publicidad personalizada en <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>google.com/settings/ads</a> y consultar el tratamiento de datos por parte de los socios de Google en <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>policies.google.com/technologies/partner-sites</a> y <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>policies.google.com/technologies/ads</a>.</p>
+          <p>En el Espacio Económico Europeo, el Reino Unido y Suiza, los anuncios solo se sirven conforme a tu elección en el mensaje de consentimiento. Para más detalle consulta la <Link href="/legal/cookies" style={{ color: GOLD }}>Política de Cookies</Link>.</p>
+        </Section>
+
+        <Section title="7. Transferencias internacionales de datos">
           <p>Algunos proveedores procesan datos fuera del Espacio Económico Europeo. Las garantías adoptadas son: Cláusulas Contractuales Tipo (SCCs) adoptadas por la Comisión Europea, Marco UE-EE.UU. de Privacidad de Datos (DPF) cuando el proveedor está certificado, y Evaluaciones de impacto de transferencia (TIA) para los proveedores principales.</p>
           <p>Puedes solicitar información sobre las garantías específicas escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
         </Section>
 
-        <Section title="7. Conservación de los datos">
+        <Section title="8. Conservación de los datos">
           <p>Los datos se conservan mientras la cuenta esté activa y durante los plazos legales aplicables tras su eliminación.</p>
         </Section>
 
-        <Section title="8. Tus derechos">
+        <Section title="9. Tus derechos">
           <p>Conforme al RGPD y la LOPDGDD, puedes ejercer los siguientes derechos:</p>
           <ul>
             <li><strong>Acceso:</strong> saber qué datos tenemos sobre ti.</li>
@@ -92,13 +99,13 @@ export default function PrivacidadPage() {
           <p>Si consideras que el tratamiento infringe la normativa, puedes reclamar ante la Agencia Española de Protección de Datos (AEPD): www.aepd.es, C/ Jorge Juan, 6, 28001 Madrid. Los usuarios de América Latina pueden dirigirse a la autoridad de protección de datos de su país de residencia.</p>
         </Section>
 
-        <Section title="9. Menores de edad">
+        <Section title="10. Menores de edad">
           <p>ZonaMundial está dirigida a usuarios mayores de 14 años, que es la edad mínima de consentimiento digital en España conforme al artículo 8 del RGPD y el artículo 7 de la LOPDGDD. Para usuarios residentes en otros países, se aplica la edad mínima de su legislación nacional si es superior.</p>
           <p>Si se detecta o recibe notificación de que un usuario es menor de 14 años, se procederá a la eliminación inmediata de su cuenta y todos los datos asociados. Los progenitores o tutores que tengan conocimiento de un registro indebido pueden solicitar la eliminación en <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
           <p>Publicidad: para usuarios identificados como menores de edad (entre 14 y 18 años), se mostrará exclusivamente publicidad contextual no dirigida, desactivando el uso de IDFA/GAID para AdMob.</p>
         </Section>
 
-        <Section title="10. Seguridad">
+        <Section title="11. Seguridad">
           <ul>
             <li><strong>Cifrado en tránsito:</strong> todas las comunicaciones mediante TLS 1.3 (HTTPS).</li>
             <li><strong>Cifrado en reposo:</strong> bases de datos y almacenamientos cifrados (AES-256).</li>
@@ -109,15 +116,15 @@ export default function PrivacidadPage() {
           </ul>
         </Section>
 
-        <Section title="11. Cookies y tecnologías similares">
+        <Section title="12. Cookies y tecnologías similares">
           <p>Para información detallada consulta la <Link href="/legal/cookies" style={{ color: GOLD }}>Política de Cookies</Link>.</p>
         </Section>
 
-        <Section title="12. Cambios en esta política">
+        <Section title="13. Cambios en esta política">
           <p>Cuando los cambios sean significativos, se notificará mediante aviso dentro de la app, correo electrónico a la dirección de registro y actualización de la fecha de este documento. El uso continuado de la Plataforma tras la publicación de cambios implica la aceptación de la política actualizada.</p>
         </Section>
 
-        <Section title="13. Contacto">
+        <Section title="14. Contacto">
           <ul>
             <li>Email de privacidad: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
             <li>Email general: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>

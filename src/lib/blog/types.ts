@@ -89,6 +89,20 @@ export interface BlockFaq {
 export interface BlockDivider {
   type: "divider";
 }
+/** Bloque de enlaces de afiliado (Amazon). Cada item es un botón de búsqueda
+ * etiquetada. Renderiza siempre el aviso de afiliación + rel="sponsored". */
+export interface BlockAffiliate {
+  type: "affiliate";
+  /** Título de la tarjeta (ej: "Busca tu camiseta en Amazon"). */
+  title?: string;
+  /** Texto introductorio opcional sobre los botones. */
+  text?: string;
+  /** Botones: label + query de búsqueda en Amazon, con bandera opcional
+   * (código ISO-2 para flagcdn, ej. "mx") y precio orientativo opcional. */
+  items: Array<{ label: string; query: string; flag?: string; price?: string }>;
+  /** Aviso de afiliación a mostrar; si se omite, usa el estándar de Amazon. */
+  note?: string;
+}
 
 export type BlogBlock =
   | BlockParagraph
@@ -101,7 +115,8 @@ export type BlogBlock =
   | BlockImage
   | BlockCta
   | BlockFaq
-  | BlockDivider;
+  | BlockDivider
+  | BlockAffiliate;
 
 export interface BlogPost {
   slug: string;

@@ -259,6 +259,12 @@ export function CromoMiniCard({
           loading="lazy"
           className={`${styles.cromoImg} ${owned ? "" : styles.cromoImgMissing}`}
         />
+        {owned && (
+          <div className={styles.cromoHolo} aria-hidden="true">
+            <div className={styles.cromoFoil} />
+            <div className={styles.cromoGlare} />
+          </div>
+        )}
         {!owned && (
           <div className={styles.cromoLocked}>
             <div className={styles.cromoMissing}>
@@ -630,40 +636,108 @@ export function CollectionMilestones({ progress, isES }: { progress: number; isE
   );
 }
 
-export function PackOpeningAnimation({ cromos, onDone, isES }: { cromos: Cromo[]; onDone: () => void; isES: boolean }) {
-  const [revealed, setRevealed] = useState(false);
+function buzz(fx: boolean, pattern: number | number[]) {
+  if (!fx) return;
+  try { if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate(pattern); } catch { /* noop */ }
+}
+
+// Apertura cinematográfica: el sobre flota, tiembla, se RASGA por la mitad con un
+// destello y los cromos salen y se revelan (la legendaria, a cámara lenta).
+// Si fx=false (efectos desactivados / reducir movimiento), salta directo al resultado.
+export function PackOpeningAnimation({ cromos, onDone, fx, isES }: { cromos: Cromo[]; onDone: () => void; fx: boolean; isES: boolean }) {
+  const [phase, setPhase] = useState<"idle" | "charge" | "rip" | "cards">("idle");
+  const [revealed, setRevealed] = useState(-1);
+  const [flash, setFlash] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const revealT = setTimeout(() => setRevealed(true), 2000);
-    const doneT = setTimeout(() => onDone(), 2300);
-    return () => { clearTimeout(revealT); clearTimeout(doneT); document.body.style.overflow = ""; };
-  }, [onDone]);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    if (!fx) {
+      timers.push(setTimeout(onDone, 350));
+      return () => { timers.forEach(clearTimeout); document.body.style.overflow = ""; };
+    }
+
+    timers.push(setTimeout(() => setPhase("charge"), 600));
+    timers.push(setTimeout(() => { setPhase("rip"); setFlash(true); buzz(fx, [40, 30, 80]); }, 1500));
+    timers.push(setTimeout(() => setFlash(false), 2050));
+    timers.push(setTimeout(() => setPhase("cards"), 2400));
+
+    let t = 2800;
+    cromos.forEach((c, i) => {
+      const leg = c.rarity === "Legendario";
+      timers.push(setTimeout(() => { setRevealed(i); buzz(fx, leg ? [40, 30, 90] : 25); }, t));
+      t += leg ? 1250 : 700;
+    });
+    timers.push(setTimeout(onDone, t + 500));
+
+    return () => { timers.forEach(clearTimeout); document.body.style.overflow = ""; };
+  }, [cromos, onDone, fx]);
+
+  const ripped = phase === "rip" || phase === "cards";
 
   return (
     <div className={styles.packOpeningOverlay} onClick={onDone} style={{ cursor: "pointer" }}>
-      <div className={styles.packOpeningHeader}>{isES ? "Abriendo sobre..." : "Opening pack..."}</div>
-      <div className={styles.packOpeningCards}>
-        {cromos.map((c, i) => (
-          <div
-            key={c.id}
-            className={`${styles.packFlipCard} ${revealed ? styles.packFlipRevealed : ""}`}
-            style={{
-              "--flip-delay": `${0.2 + i * 0.25}s`,
-            } as React.CSSProperties}
-          >
-            <div className={styles.packFlipInner}>
-              <div className={styles.packFlipFront}>
-                <img src="/sobres/sobre1.png" alt="" className={styles.packFlipImg} />
+      {flash && <div className={styles.cineFlash} />}
+      <div className={styles.packOpeningHeader}>
+        {phase === "cards" ? (isES ? "Tus cromos" : "Your stickers") : (isES ? "Abriendo sobre..." : "Opening pack...")}
+      </div>
+      <div className={styles.cineStage}>
+        <div className={`${styles.cinePack} ${phase === "charge" ? styles.cineCharge : ""} ${ripped ? styles.cineRip : ""}`}>
+          <div className={`${styles.cineHalf} ${styles.cineHalfL}`} />
+          <div className={`${styles.cineHalf} ${styles.cineHalfR}`} />
+          <div className={styles.cineTear} />
+          <div className={styles.cineCore} />
+        </div>
+        <div className={`${styles.cineCards} ${phase === "cards" ? styles.cineCardsShow : ""}`}>
+          {cromos.map((c, i) => {
+            const leg = c.rarity === "Legendario";
+            return (
+              <div
+                key={c.id}
+                className={`${styles.cineFlip} ${revealed >= i ? styles.cineFlipRev : ""} ${leg ? styles.cineFlipLeg : ""}`}
+                style={{ "--rc": rarityColor(c.rarity), "--rg": rarityGlow(c.rarity) } as React.CSSProperties}
+              >
+                <div className={styles.cineFlipInner}>
+                  <div className={styles.cineFlipFront} />
+                  <div className={styles.cineFlipBack}>
+                    <img src={c.path} alt={c.name} className={styles.cineFlipImg} />
+                    <div className={styles.cineBurst} />
+                  </div>
+                </div>
               </div>
-              <div className={styles.packFlipBack}>
-                <img src={c.path} alt={c.name} className={styles.packFlipImg} />
-              </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
       <div className={styles.packSkipHint}>{isES ? "Toca para continuar" : "Tap to continue"}</div>
+    </div>
+  );
+}
+
+// Celebración al completar una página/sección o el álbum entero.
+export function CelebrationOverlay({ title, subtitle, onDone }: { title: string; subtitle?: string; onDone: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onDone, 2800);
+    return () => clearTimeout(t);
+  }, [onDone]);
+  const cols = ["#c9a84c", "#e8d48b", "#f5d07a", "#ffffff"];
+  return (
+    <div className={styles.celOverlay} onClick={onDone}>
+      {Array.from({ length: 80 }, (_, i) => (
+        <span
+          key={i}
+          className={styles.celConf}
+          style={{
+            left: `${(i * 53) % 100}%`,
+            background: cols[i % 4],
+            animationDelay: `${(i % 12) * 0.05}s`,
+            animationDuration: `${1.8 + (i % 7) * 0.2}s`,
+          }}
+        />
+      ))}
+      <div className={styles.celSeal}><span className={styles.celPct}>100%</span><b>{title}</b></div>
+      {subtitle && <div className={styles.celTxt}>{subtitle}</div>}
     </div>
   );
 }

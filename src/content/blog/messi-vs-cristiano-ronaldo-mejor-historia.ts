@@ -242,7 +242,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "**Argentina llega como vigente campeona** del mundo. **Portugal está en el Grupo K**, uno de los más complicados (con Colombia y Uzbekistán como rivales serios). Si tuviéramos que apostar por uno de los dos a levantar la copa en el MetLife el 19 de julio, estadísticamente es **Messi el favorito**: lleva una selección más sólida, un seleccionador con experiencia ganando, y vino de ganar Qatar 2022.",
+      text: "**Argentina llega como vigente campeona** del mundo. **Portugal está en el Grupo K**, uno de los más complicados (con Colombia y Uzbekistán como rivales serios). Si tuviéramos que mojarnos por uno de los dos a levantar la copa en el MetLife el 19 de julio, estadísticamente es **Messi el favorito**: lleva una selección más sólida, un seleccionador con experiencia ganando, y vino de ganar Qatar 2022.",
     },
     {
       type: "p",

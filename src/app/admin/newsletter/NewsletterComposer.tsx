@@ -20,7 +20,7 @@ export default function NewsletterComposer() {
   const [bodyHtml, setBodyHtml] = useState("<p>Hola,</p>\n<p>Aquí va el contenido del email.</p>");
   const [ctaLabel, setCtaLabel] = useState("");
   const [ctaHref, setCtaHref] = useState("");
-  const [kind, setKind] = useState<"all" | "full" | "waitlist">("all");
+  const [kind, setKind] = useState<"all" | "full" | "waitlist" | "usuarios">("all");
   const [limit, setLimit] = useState<string>("");
   const [loading, setLoading] = useState<"idle" | "dry" | "send">("idle");
   const [result, setResult] = useState<Result | null>(null);
@@ -121,9 +121,10 @@ export default function NewsletterComposer() {
             onChange={(e) => setKind(e.target.value as typeof kind)}
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white"
           >
-            <option value="all">Todos los registros</option>
-            <option value="full">Solo registros completos</option>
-            <option value="waitlist">Solo lista de espera</option>
+            <option value="usuarios">Todos los usuarios (cuentas Supabase)</option>
+            <option value="all">Registros + usuarios (máxima cobertura)</option>
+            <option value="full">Solo registros completos (KV)</option>
+            <option value="waitlist">Solo lista de espera (KV)</option>
           </select>
         </Field>
         <Field label="Limit (vacío = sin límite)">

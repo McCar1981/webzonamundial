@@ -8,7 +8,7 @@ const CONTACT_EMAIL = "gol@zonamundial.app";
 export const metadata: Metadata = {
   title: "Contacto: cómo escribirnos | ZonaMundial",
   description:
-    "Datos de contacto de ZonaMundial: email único gol@zonamundial.app. Sprintmarkt S.L., Valencia, España. Tiempo de respuesta: 5 días hábiles.",
+    "Datos de contacto de ZonaMundial: email único gol@zonamundial.app. Carlos Manuel Zamudio Corral (SprintMarkt), Valencia, España. Tiempo de respuesta: 5 días hábiles.",
   keywords: [
     "contacto zonamundial",
     "contactar zonamundial",
@@ -39,7 +39,8 @@ export default function ContactoPage() {
           Contacto
         </h1>
         <p style={{ color: DIM, fontSize: 15, marginBottom: 40, maxWidth: 640, lineHeight: 1.6 }}>
-          ZonaMundial es un proyecto de Sprintmarkt S.L., agencia digital con sede en Valencia, España.
+          ZonaMundial es un proyecto de Carlos Manuel Zamudio Corral, empresario individual (autónomo) que opera
+          bajo el nombre comercial SprintMarkt, con sede en Valencia, España.
           Para cualquier consulta — soporte, prensa, comercial, legal o creadores — usa el email único{" "}
           <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: GOLD, fontWeight: 600 }}>{CONTACT_EMAIL}</a>{" "}
           y te respondemos en menos de 5 días hábiles.
@@ -74,7 +75,8 @@ export default function ContactoPage() {
         {/* Datos de la empresa */}
         <Section title="Datos del responsable">
           <ul style={{ listStyle: "none", padding: 0, lineHeight: 2 }}>
-            <li><strong style={{ color: "#E2E8F0" }}>Razón social:</strong> Sprintmarkt S.L.</li>
+            <li><strong style={{ color: "#E2E8F0" }}>Titular:</strong> Carlos Manuel Zamudio Corral (empresario individual)</li>
+            <li><strong style={{ color: "#E2E8F0" }}>Nombre comercial:</strong> SprintMarkt</li>
             <li><strong style={{ color: "#E2E8F0" }}>Marca:</strong> ZonaMundial</li>
             <li><strong style={{ color: "#E2E8F0" }}>Domicilio:</strong> Valencia, España</li>
             <li><strong style={{ color: "#E2E8F0" }}>Sitio web:</strong> <a href="https://zonamundial.app" style={{ color: GOLD }}>zonamundial.app</a></li>

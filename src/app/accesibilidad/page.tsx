@@ -41,7 +41,7 @@ const jsonLd = {
   publisher: {
     "@type": "Organization",
     name: "ZonaMundial",
-    legalName: "Sprintmarkt S.L.",
+    legalName: "Carlos Manuel Zamudio Corral (SprintMarkt)",
     url: "https://zonamundial.app",
     contactPoint: {
       "@type": "ContactPoint",

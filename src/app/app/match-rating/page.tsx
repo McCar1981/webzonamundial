@@ -22,6 +22,20 @@ interface Badge {
   condition: (stats: any) => boolean;
 }
 
+interface EmojiCollectable {
+  emoji: string;
+  name: string;
+  rarity: "common" | "rare" | "epic";
+  minRating?: number;
+}
+
+interface RoastPraise {
+  roast: string;
+  praise: string;
+  roastVotes: number;
+  praiseVotes: number;
+}
+
 type FilterTab = "all" | "watched" | "unwatched" | "rated";
 
 const ROUNDS = [
@@ -56,6 +70,19 @@ const BADGES: Badge[] = [
   { id: "peak", label: "Pico de emoción", description: "Califica un partido con 10/10", emoji: "⚡", condition: (s) => s.best?.rating === 10 },
   { id: "balanced", label: "Equilibrio", description: "Media entre 6.5 y 7.5", emoji: "⚖️", condition: (s) => s.avg >= 6.5 && s.avg <= 7.5 },
   { id: "completist", label: "Completista", description: "Puntúa todos los partidos de una fase", emoji: "✅", condition: (s) => s.phaseComplete },
+];
+
+const EMOJI_COLLECTIBLES: EmojiCollectable[] = [
+  { emoji: "🔥", name: "Épico", rarity: "epic", minRating: 9 },
+  { emoji: "🎬", name: "Cinematográfico", rarity: "epic", minRating: 9 },
+  { emoji: "😍", name: "Hermoso", rarity: "rare", minRating: 8 },
+  { emoji: "👏", name: "Aplausos", rarity: "rare", minRating: 7 },
+  { emoji: "🤯", name: "Sorpresa", rarity: "rare", minRating: 7 },
+  { emoji: "😤", name: "Malo", rarity: "common", minRating: 0 },
+  { emoji: "😴", name: "Aburrido", rarity: "common", minRating: 0 },
+  { emoji: "😠", name: "Fraudulento", rarity: "rare", minRating: 0 },
+  { emoji: "👁️", name: "Histórico", rarity: "epic", minRating: 10 },
+  { emoji: "⚡", name: "Épico", rarity: "epic", minRating: 9 },
 ];
 
 const DEMO_RATINGS: Record<number, RatingEntry> = {
@@ -109,6 +136,9 @@ export default function MatchRatingPage() {
   const [search, setSearch] = useState("");
   const [mobileView, setMobileView] = useState(false);
   const [sharePhase, setSharePhase] = useState<string | null>(null);
+  const [collectedEmojis, setCollectedEmojis] = useState<Set<string>>(new Set());
+  const [showPassport, setShowPassport] = useState(false);
+  const [roastPraiseData, setRoastPraiseData] = useState<RoastPraise | null>(null);
 
   useEffect(() => {
     setMobileView(window.innerWidth < 768);
@@ -268,6 +298,44 @@ export default function MatchRatingPage() {
     return milestones.find((m) => m > stats.rated) || null;
   }, [stats.rated]);
 
+  const generateRoastAndPraise = (match: Match, rating: number, globalAvg: number) => {
+    const diff = rating - globalAvg;
+    let roast = "";
+    let praise = "";
+
+    if (diff > 2) {
+      roast = `Bruh... ¿${rating}? ${match.h} vs ${match.a} y das ${rating}/10? El promedio global es ${globalAvg.toFixed(1)}. ¿Dónde viste el partido, en VHS? 📼`;
+      praise = `OK pero... tu ojo está calibrado diferente. Quizás viste detalles que otros no. Respeto la autenticidad 🎬`;
+    } else if (diff < -2) {
+      roast = `¿${rating}/10? Todos vimos el MISMO partido. ${match.h} jugó INCREÍBLE y das ${rating}? Creo que el audio estaba deshabilitado 🔇`;
+      praise = `Eres brutal. Mientras otros celebraban, tú eras crítico. A veces es válido - no todo es glamour 🧐`;
+    } else if (rating <= 3) {
+      roast = `Diste ${rating}/10. ¿Quién te lastimó en este partido? ${match.h} vs ${match.a} no fue PARA TANTO. Respira 😤`;
+      praise = `Extremo pero honesto. Algunos aprecian la honestidad brutal. Eres el crítico de sofá que nadie pidió pero todos necesitamos 🎭`;
+    } else if (rating >= 9) {
+      roast = `${rating}/10 es demasiado generoso, amigo. Fue un BUEN partido pero... ¿Messi-Ronaldo en 2026? Calma 🤖`;
+      praise = `¡SÍ! Alguien lo dijo. Ese fue UN PARTIDAZO. Mientras otros dudaban, tú viste la verdad 🔥`;
+    } else {
+      roast = `Tu rating de ${rating} es tan... promedio. Como una taza de café de aeropuerto ☕`;
+      praise = `Equilibrio perfecto. No eres extremista, solo honesto. El punto medio a veces es el más inteligente 🧘`;
+    }
+
+    return { roast, praise, roastVotes: 0, praiseVotes: 0 };
+  };
+
+  const addCollectedEmoji = (emojiObj: EmojiCollectable) => {
+    setCollectedEmojis((prev) => new Set([...prev, emojiObj.emoji]));
+  };
+
+  const getCollectedEmojisByRarity = useMemo(() => {
+    const emojis = Array.from(collectedEmojis);
+    return {
+      epic: EMOJI_COLLECTIBLES.filter((e) => e.rarity === "epic" && emojis.includes(e.emoji)),
+      rare: EMOJI_COLLECTIBLES.filter((e) => e.rarity === "rare" && emojis.includes(e.emoji)),
+      common: EMOJI_COLLECTIBLES.filter((e) => e.rarity === "common" && emojis.includes(e.emoji)),
+    };
+  }, [collectedEmojis]);
+
   const selectedRating = selected ? ratings[selected.i] ?? { watched: false, rating: null, tags: [], note: "" } : null;
 
   if (authed === false) return null;
@@ -384,6 +452,76 @@ export default function MatchRatingPage() {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          <button className={styles.passportBtn} onClick={() => setShowPassport(!showPassport)}>
+            🛂 Mi Pasaporte del Mundial ({collectedEmojis.size})
+          </button>
+
+          {showPassport && (
+            <div className={styles.passportCard}>
+              <div className={styles.passportTitle}>🛂 Tu Pasaporte Emocional del Mundial</div>
+              <div className={styles.passportStats}>
+                <span>Reacciones colectadas: {collectedEmojis.size}/10</span>
+                <div className={styles.progressBarSmall}>
+                  <div className={styles.progressBarFill} style={{ width: `${(collectedEmojis.size / 10) * 100}%` }} />
+                </div>
+              </div>
+
+              {getCollectedEmojisByRarity.epic.length > 0 && (
+                <div className={styles.passportSection}>
+                  <div className={styles.passportRarity}>⭐ ÉPICO ({getCollectedEmojisByRarity.epic.length})</div>
+                  <div className={styles.passportEmojis}>
+                    {getCollectedEmojisByRarity.epic.map((e) => (
+                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
+                        {e.emoji}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {getCollectedEmojisByRarity.rare.length > 0 && (
+                <div className={styles.passportSection}>
+                  <div className={styles.passportRarity}>💎 RARO ({getCollectedEmojisByRarity.rare.length})</div>
+                  <div className={styles.passportEmojis}>
+                    {getCollectedEmojisByRarity.rare.map((e) => (
+                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
+                        {e.emoji}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {getCollectedEmojisByRarity.common.length > 0 && (
+                <div className={styles.passportSection}>
+                  <div className={styles.passportRarity}>🔵 COMÚN ({getCollectedEmojisByRarity.common.length})</div>
+                  <div className={styles.passportEmojis}>
+                    {getCollectedEmojisByRarity.common.map((e) => (
+                      <span key={e.emoji} className={styles.passportEmoji} title={e.name}>
+                        {e.emoji}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <button
+                className={styles.passportShareBtn}
+                onClick={() => {
+                  const text = `Mi Pasaporte Emocional del Mundial 2026\n${Array.from(collectedEmojis).join(" ")}\n${collectedEmojis.size}/10 reacciones colectadas\n\n#ZonaMundial`;
+                  if (navigator.share) {
+                    navigator.share({ title: "Mi Pasaporte", text });
+                  } else {
+                    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                    window.open(url, "_blank");
+                  }
+                }}
+              >
+                Compartir Pasaporte
+              </button>
             </div>
           )}
 
@@ -698,10 +836,73 @@ export default function MatchRatingPage() {
               <button className={`${styles.btn} ${styles.btnSecondary}`} onClick={() => setSelected(null)}>
                 Cerrar
               </button>
-              <button className={`${styles.btn} ${styles.btnPrimary}`} onClick={() => setSelected(null)}>
-                Guardar
+              <button
+                className={`${styles.btn} ${styles.btnPrimary}`}
+                onClick={() => {
+                  if (selectedRating?.rating) {
+                    // Colectar emoji basado en rating
+                    const matchingEmoji = EMOJI_COLLECTIBLES.find(
+                      (e) => e.minRating && selectedRating.rating! >= e.minRating && e.rarity === "epic"
+                    );
+                    if (matchingEmoji) {
+                      addCollectedEmoji(matchingEmoji);
+                    }
+
+                    // Generar roast y praise
+                    const roastPraise = generateRoastAndPraise(selected, selectedRating.rating, stats.avg);
+                    setRoastPraiseData(roastPraise);
+                  }
+                }}
+              >
+                Guardar & Roast
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {roastPraiseData && (
+        <div className={styles.overlay} onClick={() => setRoastPraiseData(null)}>
+          <div className={styles.roastPraiseModal} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.roastPraiseClose} onClick={() => setRoastPraiseData(null)}>
+              ✕
+            </button>
+
+            <div className={styles.roastContainer}>
+              <div className={styles.roastCard}>
+                <div className={styles.roastTitle}>🔴 EL ROAST</div>
+                <div className={styles.roastText}>{roastPraiseData.roast}</div>
+                <button
+                  className={styles.voteBtn}
+                  onClick={() => setRoastPraiseData({ ...roastPraiseData, roastVotes: roastPraiseData.roastVotes + 1 })}
+                >
+                  👎 Tiene razón ({roastPraiseData.roastVotes})
+                </button>
+              </div>
+
+              <div className={styles.roastVs}>VS</div>
+
+              <div className={styles.praiseCard}>
+                <div className={styles.praiseTitle}>🟢 TU DEFENSA</div>
+                <div className={styles.praiseText}>{roastPraiseData.praise}</div>
+                <button
+                  className={styles.voteBtn}
+                  onClick={() => setRoastPraiseData({ ...roastPraiseData, praiseVotes: roastPraiseData.praiseVotes + 1 })}
+                >
+                  👍 Tú tienes razón ({roastPraiseData.praiseVotes})
+                </button>
+              </div>
+            </div>
+
+            <button
+              className={styles.roastDoneBtn}
+              onClick={() => {
+                setRoastPraiseData(null);
+                setSelected(null);
+              }}
+            >
+              Hecho
+            </button>
           </div>
         </div>
       )}

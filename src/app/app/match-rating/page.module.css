@@ -1359,6 +1359,241 @@
   padding-right: 16px;
 }
 
+/* Emoji Passport */
+.passportBtn {
+  width: 100%;
+  padding: 12px;
+  background: var(--mr-surface-glass);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--mr-radius-sm);
+  color: var(--mr-text);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+
+.passportBtn:hover {
+  border-color: rgba(201, 168, 76, 0.6);
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.passportCard {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(59, 130, 246, 0.04));
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: var(--mr-radius);
+  padding: 16px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+.passportTitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--mr-text);
+  margin-bottom: 12px;
+}
+
+.passportStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--mr-muted);
+}
+
+.progressBarSmall {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mr-gold), var(--mr-gold-2));
+  transition: width 0.3s ease;
+}
+
+.passportSection {
+  margin-bottom: 12px;
+}
+
+.passportRarity {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.passportEmojis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.passportEmoji {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.passportEmoji:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.passportShareBtn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: var(--mr-radius-sm);
+  color: var(--mr-text);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.passportShareBtn:hover {
+  background: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.6);
+}
+
+/* Roast & Praise Modal */
+.roastPraiseModal {
+  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.7));
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--mr-radius);
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: slideInUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.roastPraiseClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--mr-muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.roastPraiseClose:hover {
+  color: var(--mr-text);
+}
+
+.roastContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.roastCard {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--mr-radius-sm);
+  padding: 16px;
+}
+
+.praiseCard {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--mr-radius-sm);
+  padding: 16px;
+}
+
+.roastTitle {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ef4444;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.praiseTitle {
+  font-size: 13px;
+  font-weight: 800;
+  color: #22c55e;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.roastText,
+.praiseText {
+  font-size: 13px;
+  color: var(--mr-text);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.voteBtn {
+  width: 100%;
+  padding: 10px;
+  background: var(--mr-surface);
+  border: 1px solid var(--mr-line);
+  border-radius: var(--mr-radius-sm);
+  color: var(--mr-text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.voteBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--mr-gold);
+}
+
+.roastVs {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--mr-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 0;
+}
+
+.roastDoneBtn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--mr-gold), var(--mr-gold-2));
+  border: none;
+  border-radius: var(--mr-radius-sm);
+  color: var(--mr-bg);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.roastDoneBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 168, 76, 0.3);
+}
+
 @media (max-width: 768px) {
   .dashboard {
     grid-template-columns: 1fr;

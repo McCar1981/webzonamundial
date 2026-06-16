@@ -33,7 +33,7 @@ const post: BlogPost = {
   body: [
     {
       type: "p",
-      text: "Cuando Lionel Messi levantó la copa del mundo en el Lusail Stadium el **18 de diciembre de 2022**, muchos pensaron que era el cierre perfecto de una historia. Pero Argentina no se conformó. Tres años y medio después, llega al **Mundial 2026** como **vigente campeona del mundo, vigente campeona de América, número uno del ranking FIFA y favorita** —según las casas de apuestas— a repetir título.",
+      text: "Cuando Lionel Messi levantó la copa del mundo en el Lusail Stadium el **18 de diciembre de 2022**, muchos pensaron que era el cierre perfecto de una historia. Pero Argentina no se conformó. Tres años y medio después, llega al **Mundial 2026** como **vigente campeona del mundo, vigente campeona de América, número uno del ranking FIFA y una de las favoritas a repetir título según el ranking FIFA y los modelos de probabilidad**.",
     },
     {
       type: "p",
@@ -43,7 +43,7 @@ const post: BlogPost = {
       type: "callout",
       variant: "gold",
       title: "TL;DR · LO ESENCIAL",
-      text: "Argentina está en el **Grupo J** con **Argelia, Austria y Jordania**. Cuota campeón: **+450** (segunda favorita tras Francia). Bloque idéntico al de Qatar 2022 con dos relevos clave: **Lautaro Martínez como referencia** y **Mac Allister como dueño del medio**. Messi cumplirá 39 años durante el torneo (24 de junio).",
+      text: "Argentina está en el **Grupo J** con **Argelia, Austria y Jordania**. Segunda favorita tras Francia según los modelos de probabilidad (~18%). Bloque idéntico al de Qatar 2022 con dos relevos clave: **Lautaro Martínez como referencia** y **Mac Allister como dueño del medio**. Messi cumplirá 39 años durante el torneo (24 de junio).",
     },
     {
       type: "h2",
@@ -121,7 +121,7 @@ const post: BlogPost = {
     },
     {
       type: "quote",
-      text: "Si Argentina llega a final con Messi al 100%, la favorita es Argentina. Si Messi llega tocado, las cuotas cambian todas. Es así de simple y así de complejo.",
+      text: "Si Argentina llega a final con Messi al 100%, la favorita es Argentina. Si Messi llega tocado, el pronóstico cambia por completo. Es así de simple y así de complejo.",
       cite: "Diego Latorre, ESPN Argentina",
     },
     {
@@ -222,7 +222,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Las cuotas dicen 18.2% de probabilidad. Pero las cuotas no entienden de bloque, química, motivación ni narrativa. Si tenemos que apostar con corazón y cabeza, decimos: **Argentina llega como una de las dos favoritas reales, junto a Francia, y tiene argumentos suficientes para repetir el título**. La revancha de Mbappé, sin embargo, será uno de los obstáculos más complicados de superar.",
+      text: "Los modelos de probabilidad le dan en torno al 18%. Pero los modelos no entienden de bloque, química, motivación ni narrativa. Si tenemos que mojarnos con corazón y cabeza, decimos: **Argentina llega como una de las dos favoritas reales, junto a Francia, y tiene argumentos suficientes para repetir el título**. La revancha de Mbappé, sin embargo, será uno de los obstáculos más complicados de superar.",
     },
     {
       type: "p",
@@ -233,7 +233,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Si quieres saber qué dicen las casas de apuestas sobre todas las favoritas, lee nuestro [análisis selección por selección](/blog/quien-ganara-el-mundial-2026). Y si te interesa la lista de los 10 jugadores que pueden marcar el torneo, lo cubrimos [aquí](/blog/mejores-jugadores-mundial-2026).",
+      text: "Si quieres saber qué dicen el ranking FIFA y los modelos de probabilidad sobre todas las favoritas, lee nuestro [análisis selección por selección](/blog/quien-ganara-el-mundial-2026). Y si te interesa la lista de los 10 jugadores que pueden marcar el torneo, lo cubrimos [aquí](/blog/mejores-jugadores-mundial-2026).",
     },
     {
       type: "faq",
@@ -256,7 +256,7 @@ const post: BlogPost = {
         },
         {
           q: "¿Puede Argentina ser bicampeona consecutiva?",
-          a: "Las cuotas la sitúan como segunda favorita (+450, ~18% probabilidad implícita). Repetir es históricamente raro: el último bicampeón consecutivo fue Brasil 1958-1962.",
+          a: "Los modelos de probabilidad la sitúan como segunda favorita (~18%). Repetir es históricamente raro: el último bicampeón consecutivo fue Brasil 1958-1962.",
         },
       ],
     },

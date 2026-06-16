@@ -140,7 +140,7 @@ export default function CookieConsent() {
               fontWeight: 700,
             }}
           >
-            🍪 Cookies y privacidad
+            Cookies y privacidad
           </div>
           <p style={{ margin: 0 }}>
             Usamos cookies propias y de terceros (Google AdSense) para mostrarte

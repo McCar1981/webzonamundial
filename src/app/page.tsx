@@ -15,6 +15,7 @@ import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
 import { EditorialIntro } from "./_home/sections/EditorialIntro";
 import { GuiaMundial2026Section } from "./_home/sections/GuiaMundial2026Section";
+import { LatestNewsSection } from "./_home/sections/LatestNewsSection";
 import PushOptInBanner from "@/components/PushOptInBanner";
 import HomeInstallBanner from "@/components/HomeInstallBanner";
 import { StatsHowSection } from "./_home/sections/StatsHowSection";
@@ -112,6 +113,13 @@ export default function HomePage() {
         jugadores). Pieza con autoridad SEO y E-E-A-T.
       */}
       <GuiaMundial2026Section />
+      {/*
+        "Últimas del Mundial": rejilla de tarjetas tirando del motor editorial
+        (getAllPublicNoticias vía /api/noticias/ultimas). La sección es client
+        y hace fetch en useEffect porque page.tsx es "use client" y no puede
+        importar el loader server-only. Si la lista llega vacía, no renderiza.
+      */}
+      <LatestNewsSection />
       {/*
         Match Center + Predicciones (teaser interactivo): debajo del editorial.
         Próximo partido jugable "¿quién gana?" + tira de próximos partidos que

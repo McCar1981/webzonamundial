@@ -7,9 +7,9 @@ import type { BlogPost } from "@/lib/blog/types";
 const post: BlogPost = {
   slug: "quien-ganara-el-mundial-2026",
   title:
-    "¿Quién va a ganar el Mundial 2026? Análisis selección por selección y cuotas reales",
+    "¿Quién va a ganar el Mundial 2026? Análisis selección por selección y favoritas",
   description:
-    "Análisis profundo de las favoritas para ganar el Mundial 2026: Argentina, Francia, Brasil, España e Inglaterra. Cuotas, plantillas y por qué cada una puede levantar la copa.",
+    "Análisis profundo de las favoritas para ganar el Mundial 2026: Argentina, Francia, Brasil, España e Inglaterra. Ranking FIFA, plantillas y por qué cada una puede levantar la copa.",
   dek: "Argentina llega como vigente campeona, Francia con la mejor plantilla, España con el momento dulce, Brasil con la espina clavada e Inglaterra con la presión. Esta es la quiniela que importa.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg",
@@ -23,7 +23,7 @@ const post: BlogPost = {
   keywords: [
     "quien gana el mundial 2026",
     "favoritas mundial 2026",
-    "cuotas mundial 2026",
+    "ranking fifa mundial 2026",
     "candidatas mundial 2026",
     "predicciones mundial 2026",
   ],
@@ -33,13 +33,13 @@ const post: BlogPost = {
   body: [
     {
       type: "p",
-      text: "Predecir un Mundial es deporte de tontos —y, sin embargo, todos lo hacemos. La diferencia entre intuición y análisis está en qué información usas: ranking FIFA, plantillas, momento de forma, sorteo, sedes asignadas. En este artículo cruzamos los cinco grandes factores y construimos un cuadro de candidatas para el **Mundial 2026** mucho más fundamentado que la quiniela de la oficina. Spoiler: hay una favorita clara, dos outsiders peligrosísimos y una selección que las casas de apuestas están infravalorando.",
+      text: "Predecir un Mundial es deporte de tontos —y, sin embargo, todos lo hacemos. La diferencia entre intuición y análisis está en qué información usas: ranking FIFA, plantillas, momento de forma, sorteo, sedes asignadas. En este artículo cruzamos los cinco grandes factores y construimos un cuadro de candidatas para el **Mundial 2026** mucho más fundamentado que la quiniela de la oficina. Spoiler: hay una favorita clara, dos outsiders peligrosísimos y una selección que los modelos de probabilidad están infravalorando.",
     },
     {
       type: "callout",
       variant: "gold",
       title: "TL;DR · LO ESENCIAL",
-      text: "Las casas de apuestas tienen como favorita a **Francia** (cuota +400), seguida de **Argentina** (+450), **Brasil** (+550) y **España** (+700). Inglaterra, Alemania y Portugal forman el segundo escalón. Pero el formato de 48 equipos y los grupos rivales abren la puerta a sorpresas que ningún ranking captura.",
+      text: "Los modelos de probabilidad y el ranking FIFA señalan como favorita a **Francia** (20% estimado), seguida de **Argentina** (18%), **Brasil** (15%) y **España** (12%). Inglaterra, Alemania y Portugal forman el segundo escalón. Pero el formato de 48 equipos y los grupos rivales abren la puerta a sorpresas que ningún ranking captura.",
     },
     {
       type: "h2",
@@ -48,22 +48,22 @@ const post: BlogPost = {
     },
     {
       type: "table",
-      caption: "Cuotas medias para ganar el Mundial 2026 (datos de Bet365, William Hill y Pinnacle a 1 de mayo de 2026).",
-      headers: ["Selección", "Cuota media", "% probabilidad implícita", "Ranking FIFA"],
+      caption: "Probabilidad estimada de ganar el Mundial 2026 según nuestro modelo (ranking FIFA + Elo + momento de forma), a 1 de mayo de 2026.",
+      headers: ["Selección", "% probabilidad estimada", "Ranking FIFA"],
       rows: [
-        ["**Francia**", "+400", "20.0%", "2"],
-        ["**Argentina**", "+450", "18.2%", "1"],
-        ["**Brasil**", "+550", "15.4%", "3"],
-        ["**España**", "+700", "12.5%", "4"],
-        ["**Inglaterra**", "+900", "10.0%", "5"],
-        ["**Alemania**", "+1400", "6.7%", "10"],
-        ["**Portugal**", "+1600", "5.9%", "7"],
-        ["**Países Bajos**", "+2200", "4.3%", "6"],
+        ["**Francia**", "20.0%", "2"],
+        ["**Argentina**", "18.2%", "1"],
+        ["**Brasil**", "15.4%", "3"],
+        ["**España**", "12.5%", "4"],
+        ["**Inglaterra**", "10.0%", "5"],
+        ["**Alemania**", "6.7%", "10"],
+        ["**Portugal**", "5.9%", "7"],
+        ["**Países Bajos**", "4.3%", "6"],
       ],
     },
     {
       type: "p",
-      text: "La probabilidad implícita combinada de las cuatro grandes (Francia, Argentina, Brasil, España) suma alrededor del **66%**. Es decir, dos de cada tres veces, el campeón saldrá de ahí. Pero ese 33% restante es exactamente lo que hace inolvidables a torneos como Sudáfrica 2010 (España no era favorita) o Qatar 2022 (Argentina venía de perder con Arabia Saudí).",
+      text: "La probabilidad estimada combinada de las cuatro grandes (Francia, Argentina, Brasil, España) suma alrededor del **66%**. Es decir, dos de cada tres veces, el campeón saldrá de ahí. Pero ese 33% restante es exactamente lo que hace inolvidables a torneos como Sudáfrica 2010 (España no era favorita) o Qatar 2022 (Argentina venía de perder con Arabia Saudí).",
     },
     {
       type: "image",
@@ -92,7 +92,7 @@ const post: BlogPost = {
         { value: "1", label: "Ranking FIFA", sub: "Líder ininterrumpido desde 2023" },
         { value: "39", label: "Edad de Messi", sub: "En plena Copa del Mundo" },
         { value: "0.9", label: "Goles encajados/partido", sub: "Promedio en clasificatorias" },
-        { value: "+450", label: "Cuota campeón", sub: "Segunda favorita" },
+        { value: "18%", label: "Probabilidad campeón", sub: "Segunda favorita" },
       ],
     },
     {
@@ -127,7 +127,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "El gran cambio respecto a Qatar 2022 es la edad: **Mbappé llega con 27, Saliba con 25, Camavinga con 24, Doué con 21**. Es una plantilla en plena madurez. Si Francia falla en 2026 será por motivos psicológicos, no físicos ni futbolísticos. Cuota: **+400**, la favorita.",
+      text: "El gran cambio respecto a Qatar 2022 es la edad: **Mbappé llega con 27, Saliba con 25, Camavinga con 24, Doué con 21**. Es una plantilla en plena madurez. Si Francia falla en 2026 será por motivos psicológicos, no físicos ni futbolísticos. Probabilidad estimada: **20%**, la favorita.",
     },
     {
       type: "h2",
@@ -140,7 +140,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Brasil llegó a Qatar 2022 como favorita y cayó en cuartos contra Croacia. La memoria de aquel fracaso pesa. La hinchada brasileña —la más exigente del planeta— no perdonará otro tropiezo temprano. Cuota: **+550**.",
+      text: "Brasil llegó a Qatar 2022 como favorita y cayó en cuartos contra Croacia. La memoria de aquel fracaso pesa. La hinchada brasileña —la más exigente del planeta— no perdonará otro tropiezo temprano. Probabilidad estimada: **15%**.",
     },
     {
       type: "image",
@@ -165,7 +165,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "El gran factor a favor de España: **viene de jugar finales y semifinales seguidas** (Liga de Naciones 2023, Eurocopa 2024). Eso son rodaje y mentalidad de torneo que el resto de candidatos no tienen. La duda es defensiva: la baja ya confirmada de **Aymeric Laporte por lesión** deja al centro de la zaga con menos jerarquía. Cuota: **+700**.",
+      text: "El gran factor a favor de España: **viene de jugar finales y semifinales seguidas** (Liga de Naciones 2023, Eurocopa 2024). Eso son rodaje y mentalidad de torneo que el resto de candidatos no tienen. La duda es defensiva: la baja ya confirmada de **Aymeric Laporte por lesión** deja al centro de la zaga con menos jerarquía. Probabilidad estimada: **12%**.",
     },
     {
       type: "callout",
@@ -201,7 +201,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "**Países Bajos** (Grupo F: Túnez, Japón, Suecia) tiene un grupo amable y un Cody Gakpo + Xavi Simons + Frenkie de Jong + Memphis Depay que pueden hacer mucho daño en eliminatorias. Cuota +2200, pero la probabilidad real está más cerca del +1400.",
+      text: "**Países Bajos** (Grupo F: Túnez, Japón, Suecia) tiene un grupo amable y un Cody Gakpo + Xavi Simons + Frenkie de Jong + Memphis Depay que pueden hacer mucho daño en eliminatorias. Nuestro modelo le da un 4% de probabilidad, pero su sorteo amable sugiere que el valor real está más cerca del 7%.",
     },
     {
       type: "p",
@@ -257,15 +257,15 @@ const post: BlogPost = {
       items: [
         {
           q: "¿Quién es la favorita para ganar el Mundial 2026?",
-          a: "Las casas de apuestas tienen a **Francia como favorita** con cuota +400 (20% probabilidad implícita), seguida de **Argentina** (+450) y **Brasil** (+550). España es la cuarta favorita con +700.",
+          a: "Los modelos de probabilidad y el ranking FIFA señalan a **Francia como favorita** con un 20% de probabilidad estimada, seguida de **Argentina** (18%) y **Brasil** (15%). España es la cuarta favorita con un 12%.",
         },
         {
           q: "¿Puede Argentina repetir el título?",
-          a: "Sí. Argentina llega como número uno del ranking FIFA, vigente campeona del mundo y de América. El factor Messi en su último Mundial añade motivación extra. Las cuotas la sitúan como segunda favorita.",
+          a: "Sí. Argentina llega como número uno del ranking FIFA, vigente campeona del mundo y de América. El factor Messi en su último Mundial añade motivación extra. Nuestro modelo la sitúa como segunda favorita.",
         },
         {
           q: "¿Qué selecciones están infravaloradas?",
-          a: "Países Bajos y Marruecos tienen sorteos amables que pueden permitirles avanzar más de lo que reflejan sus cuotas. Inglaterra y Portugal completan el grupo de outsiders peligrosos.",
+          a: "Países Bajos y Marruecos tienen sorteos amables que pueden permitirles avanzar más de lo que refleja su probabilidad estimada. Inglaterra y Portugal completan el grupo de outsiders peligrosos.",
         },
         {
           q: "¿Quién marcará más goles en el Mundial 2026?",
@@ -277,7 +277,7 @@ const post: BlogPost = {
   faq: [
     {
       q: "¿Quién es la favorita para ganar el Mundial 2026?",
-      a: "Francia es la favorita con cuota media +400 (20% de probabilidad implícita), seguida de Argentina, Brasil y España.",
+      a: "Francia es la favorita con un 20% de probabilidad estimada, seguida de Argentina, Brasil y España.",
     },
     {
       q: "¿Puede Argentina repetir el título mundial?",

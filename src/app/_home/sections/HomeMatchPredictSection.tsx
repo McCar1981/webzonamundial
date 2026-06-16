@@ -76,7 +76,7 @@ export function HomeMatchPredictSection() {
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-8">
           <div className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3" style={{ color: GOLD }}>
-            🎯 Match Center · Predicciones
+            Match Center · Predicciones
           </div>
           <h2
             className="font-black text-white leading-tight"

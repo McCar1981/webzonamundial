@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import Script from "next/script";
 import { Outfit } from "next/font/google";
 import "./globals.css";
@@ -161,14 +162,10 @@ const jsonLd = {
       description: DEFAULT_DESCRIPTION,
       inLanguage: "es",
       publisher: { "@id": `${SITE_URL}/#organization` },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/buscar?q={search_term_string}`,
-        },
-        "query-input": "required name=search_term_string",
-      },
+      // Sin potentialAction/SearchAction: el único buscador (/historia/buscar)
+      // filtra en cliente y NO consume el parámetro ?q de la URL, así que una
+      // sitelinks searchbox enviaría a Google a una URL que ignora el término.
+      // Mejor no declarar la acción que declarar una rota.
     },
     {
       "@type": "Organization",
@@ -291,12 +288,20 @@ export default async function RootLayout({
   } catch {
     isProUser = false;
   }
+  // Ruta actual (la inyecta el middleware en la cabecera x-pathname). El layout
+  // raíz no recibe el pathname por props en App Router, así que se lee aquí.
+  const pathname = headers().get("x-pathname") ?? "";
+  // /app/** monta el iframe de la casa de apuestas (1xBet). Google prohíbe
+  // emitir el cargador de AdSense en páginas con ese contenido, así que el
+  // script NO debe aparecer en ninguna ruta de la webapp. GA4 sí sigue en todas.
+  const isApp = pathname === "/app" || pathname.startsWith("/app/");
+
   // AdSense cuando está habilitado y el usuario no es Pro. OJO: durante la
   // revisión de aprobación el script SÍ debe estar presente (checklist oficial
   // de AdSense: "código de anuncios colocado"); antes de aprobar no se sirve
   // ningún anuncio, así que no afecta a la UX. Para apagarlo en emergencia:
   // NEXT_PUBLIC_ADSENSE_ENABLED=false en Vercel.
-  const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isProUser;
+  const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isProUser && !isApp;
 
   return (
     <html lang="es" className={outfit.variable}>

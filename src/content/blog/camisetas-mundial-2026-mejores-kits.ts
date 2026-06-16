@@ -235,6 +235,20 @@ const post: BlogPost = {
       text: "**Camisetas bajo 50€/USD son siempre falsificaciones**. Las réplicas oficiales nunca bajan de 80€/100USD. Si te ofrecen 'idénticas' por 30€, es producto falsificado de China o Tailandia.",
     },
     {
+      type: "affiliate",
+      title: "Busca tu camiseta del Mundial 2026 en Amazon",
+      text: "Comprueba precio y disponibilidad de la versión **oficial** de cada selección. Verifica siempre que el vendedor sea la marca (Adidas, Nike, Puma) o un distribuidor autorizado.",
+      items: [
+        { label: "México", query: "camiseta seleccion mexico 2026" },
+        { label: "Argentina", query: "camiseta seleccion argentina 2026" },
+        { label: "Brasil", query: "camiseta seleccion brasil 2026" },
+        { label: "España", query: "camiseta seleccion españa 2026" },
+        { label: "Francia", query: "camiseta seleccion francia 2026" },
+        { label: "Países Bajos", query: "camiseta holanda paises bajos 2026" },
+        { label: "Todas las camisetas", query: "camiseta mundial 2026" },
+      ],
+    },
+    {
       type: "cta",
       title: "Las 48 selecciones del Mundial 2026",
       text: "Conoce el kit oficial de cada selección clasificada en su ficha BIBLIA con visualización 3D.",

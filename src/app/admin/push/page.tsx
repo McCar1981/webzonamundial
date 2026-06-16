@@ -6,7 +6,9 @@
 import type { Metadata } from "next";
 import AdminHeader from "@/components/admin/AdminHeader";
 import { getPushAudienceBreakdown } from "@/lib/push-notifications";
+import { CREADORES } from "@/data/creadores";
 import PushComposer, { PUSH_KINDS } from "./PushComposer";
+import CreatorLiveTrigger from "./CreatorLiveTrigger";
 
 export const metadata: Metadata = {
   title: "Push manual · Panel interno",
@@ -34,6 +36,15 @@ export default async function AdminPushPage() {
           description="Redacta y envía una notificación push a los suscriptores. Para envíos automáticos por partido existe el motor de Match Center; esto es para avisos puntuales que decides tú."
           current="/admin/push"
         />
+        <div className="mb-8">
+          <CreatorLiveTrigger
+            creators={CREADORES.map((c) => ({
+              slug: c.slug,
+              nombre: c.nombre,
+              plataforma: c.plataformaPrincipal,
+            }))}
+          />
+        </div>
         <PushComposer audience={audience} />
       </div>
     </div>

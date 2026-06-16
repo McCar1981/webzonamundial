@@ -38,7 +38,7 @@ export const SPONSORED_PRIZE: SponsoredPrize = {
   sponsorUrl: "https://www.sprintmarkt.com/?utm_source=zonamundial&utm_medium=banner&utm_campaign=granpremio",
   prizes: ["Gift Card 300 €", "Gift Card 200 €", "Gift Card 100 €"], // 1º / 2º / 3º por tasa de acierto
   termsNote: "Premio para el Top 3 por tasa de acierto (mín. 20 predicciones) al finalizar el Mundial. Participación gratuita.",
-  // termsUrl: "https://zonamundial.app/bases-campeon", // bases legales (las define el abogado)
+  termsUrl: "/legal/bases-gran-premio", // bases legales del Gran Premio
 };
 
 // ─── EJEMPLO (copia esto sobre SPONSORED_PRIZE cuando tengas patrocinador) ────

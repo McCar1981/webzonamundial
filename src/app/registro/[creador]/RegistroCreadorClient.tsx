@@ -13,34 +13,6 @@ interface Props {
   otrosCreadores: Creador[];
 }
 
-function getMockStats(c: Creador) {
-  const base = c.slug.length + c.nombre.length;
-  return {
-    contenidos: 40 + (base % 80),
-    predicciones: 75 + (base % 20),
-  };
-}
-
-function getMockContent(c: Creador) {
-  return [
-    {
-      title: `Análisis táctico: el rol de ${c.pais} en el Mundial 2026`,
-      type: 'Video',
-      views: '120K',
-    },
-    {
-      title: `Predicciones de ${c.nombre}: fase de grupos`,
-      type: 'Artículo',
-      views: '85K',
-    },
-    {
-      title: `Directo especial con ${c.nombre}: sorteo y reacciones`,
-      type: 'Stream',
-      views: '210K',
-    },
-  ];
-}
-
 function SocialLarge({
   url,
   plataforma,
@@ -78,8 +50,13 @@ export default function RegistroCreadorClient({ c, otrosCreadores }: Props) {
   const { t } = useLanguage();
   const rT = t.registroCreador;
   const nav = t.nav;
-  const stats = getMockStats(c);
-  const latest = getMockContent(c);
+  // Detección de idioma con el mismo patrón usado en FormularioRegistro
+  // (no hay clave i18n para "plataforma principal", así que la inlineamos).
+  const isEN = nav.selecciones === '48 Teams';
+  // Número de plataformas donde el creador tiene presencia (dato real del
+  // catálogo). Prueba social honesta junto a sus seguidores.
+  const plataformasActivas = c.redes?.length ?? 0;
+  const labelPlataforma = isEN ? 'Main platform' : 'Plataforma principal';
 
   const InfluencerModal = () => (
     <div
@@ -127,11 +104,13 @@ export default function RegistroCreadorClient({ c, otrosCreadores }: Props) {
               borderColor: `${c.colorPrimario}20`,
             }}
           >
-            <div className="text-xs text-gray-400 mb-1">{rT.fansRegistrados}</div>
             <div className="text-3xl sm:text-4xl font-black" style={{ color: c.colorPrimario }}>
-              —
+              {c.seguidores}
             </div>
-            <div className="text-xs text-gray-500 mt-1">{rT.seDeLos}</div>
+            <div className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">
+              {rT.seguidores}
+            </div>
+            <div className="text-xs text-gray-500 mt-2">{rT.seDeLos}</div>
           </div>
         </div>
       </div>
@@ -350,64 +329,66 @@ export default function RegistroCreadorClient({ c, otrosCreadores }: Props) {
           </div>
         </div>
 
-        {/* Stats Banner */}
+        {/* Stats Banner — solo datos REALES del catálogo (seguidores +
+            plataformas + plataforma principal). Sin métricas inventadas. */}
         <div
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 sm:mb-10"
         >
-          {[
-            { label: rT.seguidores, value: c.seguidoresNum },
-            { label: rT.statContent, value: stats.contenidos },
-            { label: rT.statPredictions, value: stats.predicciones },
-          ].map((s) => (
+          {/* Seguidores (cifra real, p.ej. "2.5M") */}
+          <div
+            className="p-5 rounded-2xl border text-center"
+            style={{
+              background: `${c.colorPrimario}08`,
+              borderColor: `${c.colorPrimario}20`,
+            }}
+          >
             <div
-              key={s.label}
-              className="p-5 rounded-2xl border text-center"
-              style={{
-                background: `${c.colorPrimario}08`,
-                borderColor: `${c.colorPrimario}20`,
-              }}
+              className="text-3xl sm:text-4xl font-black mb-1"
+              style={{ color: c.colorPrimario }}
             >
-              <div
-                className="text-3xl sm:text-4xl font-black mb-1"
-                style={{ color: c.colorPrimario }}
-              >
-                <StatCounter value={s.value} />
-                {s.label === rT.statPredictions ? '%' : ''}
-              </div>
-              <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                {s.label}
-              </div>
+              {c.seguidores}
             </div>
-          ))}
-        </div>
+            <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+              {rT.seguidores}
+            </div>
+          </div>
 
-        {/* Latest Content */}
-        <div className="mb-8 sm:mb-10">
-          <h2 className="text-xl sm:text-2xl font-black text-white mb-4">{rT.latestContent}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {latest.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl border hover:border-[#C9A84C]/30 transition-all group"
-                style={{
-                  background: 'rgba(15,23,42,0.4)',
-                  borderColor: 'rgba(255,255,255,0.08)',
-                }}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span
-                    className="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"
-                    style={{ background: `${c.colorPrimario}20`, color: c.colorPrimario }}
-                  >
-                    {item.type}
-                  </span>
-                  <span className="text-xs text-gray-500">{item.views} views</span>
-                </div>
-                <h3 className="text-sm font-bold text-white group-hover:text-[#C9A84C] transition-colors leading-snug">
-                  {item.title}
-                </h3>
-              </div>
-            ))}
+          {/* Plataformas donde está presente (número real del catálogo) */}
+          <div
+            className="p-5 rounded-2xl border text-center"
+            style={{
+              background: `${c.colorPrimario}08`,
+              borderColor: `${c.colorPrimario}20`,
+            }}
+          >
+            <div
+              className="text-3xl sm:text-4xl font-black mb-1"
+              style={{ color: c.colorPrimario }}
+            >
+              <StatCounter value={plataformasActivas} />
+            </div>
+            <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+              {rT.followOn}
+            </div>
+          </div>
+
+          {/* Plataforma principal (texto real, sin cifra fabricada) */}
+          <div
+            className="p-5 rounded-2xl border text-center flex flex-col items-center justify-center"
+            style={{
+              background: `${c.colorPrimario}08`,
+              borderColor: `${c.colorPrimario}20`,
+            }}
+          >
+            <div
+              className="text-2xl sm:text-3xl font-black mb-1"
+              style={{ color: c.colorPrimario }}
+            >
+              {c.plataformaPrincipal}
+            </div>
+            <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+              {labelPlataforma}
+            </div>
           </div>
         </div>
 
@@ -501,14 +482,16 @@ export default function RegistroCreadorClient({ c, otrosCreadores }: Props) {
                     borderColor: `${c.colorPrimario}20`,
                   }}
                 >
-                  <div className="text-xs text-gray-400 mb-1">{rT.fansRegistrados}</div>
                   <div
                     className="text-3xl sm:text-4xl font-black"
                     style={{ color: c.colorPrimario }}
                   >
-                    —
+                    {c.seguidores}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">{rT.seDeLos}</div>
+                  <div className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">
+                    {rT.seguidores}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2">{rT.seDeLos}</div>
                 </div>
               </div>
             </div>

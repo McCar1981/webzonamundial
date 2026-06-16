@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import type { BlogBlock } from "@/lib/blog/types";
-import { amazonSearchUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
+import { amazonGoUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
 import styles from "./blog.module.css";
 
 /** Convierte texto plano con marcado simple a JSX. */
@@ -279,7 +279,7 @@ export default function BlockRenderer({ blocks }: Props) {
                   {b.items.map((it, j) => (
                     <a
                       key={j}
-                      href={amazonSearchUrl(it.query)}
+                      href={amazonGoUrl(it.query)}
                       target="_blank"
                       rel="sponsored noopener noreferrer"
                       style={{

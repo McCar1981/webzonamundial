@@ -7,26 +7,57 @@
 // llevar rel="sponsored" y mostrar el aviso de afiliación cerca (lo hace el
 // bloque `affiliate` del BlockRenderer).
 //
-// Audiencia LATAM: hoy apuntamos a amazon.es (cobra en compras de España). Para
-// LATAM hará falta el alta en Amazon México (afiliados.amazon.com.mx) o montar
-// Amazon OneLink; cuando exista, se añade aquí un mapa de tag por marketplace.
+// Localización por país (OneLink casero): España -> Amazon España (.es, tag -21);
+// resto del mundo, LATAM incluido -> Amazon US (.com, tag -20), que envía a la
+// región. El redirector /go/amazon resuelve el destino por IP del visitante.
+// Para añadir México (.com.mx) o Brasil (.com.br) basta con sumar entradas a
+// amazonStoreForCountry.
 
 /** Tag de afiliado de Amazon España (Programa de Afiliados de la UE). */
 export const AMAZON_TAG = "zonamundial-21";
+/** Tag de afiliado de Amazon US (.com), para LATAM y resto del mundo. */
+export const AMAZON_TAG_US = "zonamundial-20";
 
 /** Marketplace por defecto (España). */
 export const AMAZON_STORE = "https://www.amazon.es";
 
+interface AmazonStore {
+  base: string;
+  tag: string;
+}
+const STORE_ES: AmazonStore = { base: "https://www.amazon.es", tag: AMAZON_TAG };
+const STORE_US: AmazonStore = { base: "https://www.amazon.com", tag: AMAZON_TAG_US };
+
+/** Resuelve el marketplace de Amazon según el país del visitante (ISO-2 lower).
+ * España -> .es; cualquier otro o desconocido -> .com (US, máxima cobertura). */
+export function amazonStoreForCountry(country: string | null): AmazonStore {
+  return country === "es" ? STORE_ES : STORE_US;
+}
+
 /**
- * Construye un enlace de BÚSQUEDA en Amazon con el tag de afiliado.
- * Los enlaces de resultados de búsqueda etiquetados generan comisión y evitan
- * tener que mantener ASINs concretos (que cambian de stock). Útil para productos
- * variables como camisetas por selección.
+ * Construye un enlace de BÚSQUEDA directo a Amazon España con el tag.
+ * Para localización por país usa amazonGoUrl + el redirector /go/amazon.
  */
 export function amazonSearchUrl(query: string): string {
   return `${AMAZON_STORE}/s?k=${encodeURIComponent(query)}&tag=${encodeURIComponent(
     AMAZON_TAG
   )}`;
+}
+
+/** Enlace de búsqueda LOCALIZADO según país (lo usa el redirector /go/amazon). */
+export function amazonSearchUrlForCountry(
+  query: string,
+  country: string | null
+): string {
+  const store = amazonStoreForCountry(country);
+  return `${store.base}/s?k=${encodeURIComponent(query)}&tag=${encodeURIComponent(
+    store.tag
+  )}`;
+}
+
+/** Href interno para los botones: el redirector /go/amazon localiza por IP. */
+export function amazonGoUrl(query: string): string {
+  return `/go/amazon?q=${encodeURIComponent(query)}`;
 }
 
 /**

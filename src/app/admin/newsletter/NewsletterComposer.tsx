@@ -11,6 +11,7 @@ interface Result {
   failed?: number;
   count?: number;
   error?: string;
+  note?: string;
 }
 
 export default function NewsletterComposer() {
@@ -242,6 +243,12 @@ export default function NewsletterComposer() {
                 <b>Envío completado.</b>
                 <br />
                 Total: {result.total} · Enviados OK: <b>{result.sent}</b> · Fallidos: {result.failed}
+                {result.note && (
+                  <>
+                    <br />
+                    {result.note}
+                  </>
+                )}
               </>
             )
           ) : (

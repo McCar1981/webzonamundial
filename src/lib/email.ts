@@ -25,6 +25,49 @@ if (!transporter) {
 }
 
 /**
+ * Envío MASIVO vía Resend Batch API: hasta 100 correos en UNA sola petición.
+ * Clave para no chocar con el rate limit (5 req/s): 100 emails = 1 request, en
+ * vez de 100 envíos SMTP sueltos. Cada item lleva su propio html (token de baja).
+ * Reusa la API key de Resend (en Resend la SMTP_PASS ES la API key `re_...`).
+ */
+export async function sendResendBatch(
+  items: { to: string; subject: string; html: string }[],
+): Promise<{ sent: number; failed: number; error?: string }> {
+  if (items.length === 0) return { sent: 0, failed: 0 };
+  const apiKey = SMTP_PASS;
+  if (!apiKey) return { sent: 0, failed: items.length, error: 'no_api_key' };
+  const from = SMTP_FROM.includes('<') ? SMTP_FROM : `ZonaMundial <${SMTP_FROM}>`;
+
+  const payload = items.slice(0, 100).map((it) => ({
+    from,
+    to: it.to,
+    subject: it.subject,
+    html: it.html,
+  }));
+
+  try {
+    const res = await fetch('https://api.resend.com/emails/batch', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (res.status === 429) return { sent: 0, failed: payload.length, error: 'rate_limited' };
+    if (!res.ok) {
+      const t = await res.text().catch(() => '');
+      return { sent: 0, failed: payload.length, error: `http_${res.status}: ${t.slice(0, 180)}` };
+    }
+    const data = (await res.json().catch(() => null)) as { data?: unknown[] } | null;
+    const okCount = Array.isArray(data?.data) ? data!.data!.length : payload.length;
+    return { sent: okCount, failed: payload.length - okCount };
+  } catch (err) {
+    return { sent: 0, failed: payload.length, error: (err as Error).message };
+  }
+}
+
+/**
  * Email de BIENVENIDA. Se envía UNA vez, cuando el usuario completa el
  * onboarding (ver src/app/onboarding/actions.ts). Para entonces ya tiene
  * sesión iniciada — da igual si entró por Google, Apple o magic link —

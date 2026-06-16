@@ -2,7 +2,8 @@
 
 // /admin/monitor — Panel de control en tiempo real del centro de mando ZM.
 //
-// Acceso: /admin/monitor?token=<ADMIN_TOKEN>
+// Acceso: con tu sesión de admin (cookie) basta — no hace falta token. El
+// ?token=<ADMIN_TOKEN> sigue funcionando para accesos externos sin sesión.
 // Hace polling al API cada 20s y permite "Escanear ahora" (POST).
 // UI deliberadamente sobria: claro de base, dorado sólo como acento.
 
@@ -70,17 +71,17 @@ function MonitorPageInner() {
   const [lastFetch, setLastFetch] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
-    if (!token) {
-      setError("Falta ?token= en la URL.");
-      return;
-    }
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/monitor?token=${encodeURIComponent(token)}&history=120`, {
+      // La cookie de admin viaja sola (same-origin). El token solo se añade si
+      // se entró con ?token= (acceso externo sin sesión).
+      const qs = token ? `token=${encodeURIComponent(token)}&` : "";
+      const res = await fetch(`/api/admin/monitor?${qs}history=120`, {
         cache: "no-store",
+        credentials: "same-origin",
       });
-      if (res.status === 401) throw new Error("Token inválido.");
-      if (res.status === 503) throw new Error("ADMIN_TOKEN no configurado en el servidor.");
+      if (res.status === 401) throw new Error("Sesión no válida. Vuelve a entrar en /admin.");
+      if (res.status === 503) throw new Error("Falta autenticación en el servidor (ni sesión ni ADMIN_TOKEN).");
       if (!res.ok) throw new Error(`Error ${res.status}`);
       setData((await res.json()) as ApiResponse);
       setError(null);
@@ -93,10 +94,10 @@ function MonitorPageInner() {
   }, [token]);
 
   const scanNow = useCallback(async () => {
-    if (!token) return;
     setScanning(true);
     try {
-      await fetch(`/api/admin/monitor?token=${encodeURIComponent(token)}`, { method: "POST" });
+      const qs = token ? `?token=${encodeURIComponent(token)}` : "";
+      await fetch(`/api/admin/monitor${qs}`, { method: "POST", credentials: "same-origin" });
       await fetchData();
     } finally {
       setScanning(false);
@@ -129,7 +130,7 @@ function MonitorPageInner() {
           </div>
           <button
             onClick={scanNow}
-            disabled={scanning || !token}
+            disabled={scanning}
             style={{
               background: "#D4AF37", color: "#1a1a1a", border: "none", borderRadius: 8,
               padding: "10px 16px", fontWeight: 700, cursor: scanning ? "wait" : "pointer", fontSize: 14,

@@ -331,6 +331,97 @@ export function CromoGrid({
   );
 }
 
+export function AlbumSections({
+  cromos,
+  ownedIds,
+  favoriteIds,
+  collection,
+  activeTab,
+  isES,
+  onCromoClick,
+  onToggleFavorite,
+  t,
+}: {
+  cromos: Cromo[];
+  ownedIds: number[];
+  favoriteIds?: number[];
+  collection: Collection | null;
+  activeTab: string;
+  isES: boolean;
+  onCromoClick?: (cromo: Cromo) => void;
+  onToggleFavorite?: (id: number) => Promise<void>;
+  t: Translations;
+}) {
+  const pad = (n: number) => String(n).padStart(3, "0");
+
+  // Agrupa los cromos visibles por categoría, en el orden del catálogo (= páginas).
+  const groups = CATEGORIES.map((cat) => {
+    const all = CROMOS.filter((c) => c.category === cat.key);
+    const nums = all.map((c) => c.number);
+    return {
+      cat,
+      items: cromos.filter((c) => c.category === cat.key),
+      from: Math.min(...nums),
+      to: Math.max(...nums),
+      stat: collection?.byCategory[cat.key] ?? { collected: 0, total: cat.count },
+    };
+  }).filter((g) => g.items.length > 0);
+
+  if (groups.length === 0) {
+    return <div className={styles.empty}>{activeTab === "missing" ? t.emptyMissing : t.emptyOwned}</div>;
+  }
+
+  return (
+    <div>
+      <nav className={styles.albumNav} aria-label={isES ? "Secciones del álbum" : "Album sections"}>
+        {groups.map(({ cat, stat }) => {
+          const done = stat.collected === stat.total;
+          return (
+            <a key={cat.key} href={`#sec-${cat.key}`} className={`${styles.albumNavChip} ${done ? styles.albumNavChipDone : ""}`}>
+              <span className={styles.albumNavName}>{isES ? cat.label.es : cat.label.en}</span>
+              <span className={styles.albumNavCount}>{stat.collected}/{stat.total}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      {groups.map(({ cat, items, from, to, stat }) => {
+        const pct = stat.total > 0 ? Math.round((stat.collected / stat.total) * 100) : 0;
+        const done = stat.collected === stat.total;
+        return (
+          <section key={cat.key} id={`sec-${cat.key}`} className={`${styles.albumSection} ${done ? styles.albumSectionDone : ""}`}>
+            <div className={styles.sectionPageHeader}>
+              <div className={styles.sectionPageTitleRow}>
+                <h3 className={styles.sectionPageTitle}>{isES ? cat.label.es : cat.label.en}</h3>
+                <span className={styles.sectionPageRange}>#{pad(from)}–#{pad(to)}</span>
+              </div>
+              <div className={styles.sectionPageProgress}>
+                <div className={styles.sectionPageTrack}>
+                  <div className={styles.sectionPageBar} style={{ width: `${pct}%` }} />
+                </div>
+                {done ? (
+                  <span className={styles.sectionDoneBadge}><IconCheck /> {isES ? "Completa" : "Complete"}</span>
+                ) : (
+                  <span className={styles.sectionPageCount}>{stat.collected}/{stat.total}</span>
+                )}
+              </div>
+            </div>
+            <CromoGrid
+              cromos={items}
+              ownedIds={ownedIds}
+              favoriteIds={favoriteIds}
+              emptyMessage=""
+              isES={isES}
+              onCromoClick={onCromoClick}
+              onToggleFavorite={onToggleFavorite}
+            />
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
 export function FilterBar({
   searchQuery,
   onSearchChange,

@@ -164,12 +164,12 @@ export const homeSections = {
     /* ============ CommunityCreatorsSection ============ */
     community: {
       pill: "Respaldado por los que realmente entienden de fútbol",
-      title1: "+12.3M de seguidores. Una sola app.",
+      title1: "+8.3M de seguidores. Una sola app.",
       titleGold: "Tú eliges con quién vivirlo.",
       desc:
         "Los creadores de contenido futbolístico más grandes del mundo están en ZonaMundial. Directos, reacciones, análisis y debates en tiempo real con quienes mejor entienden este deporte.",
       infoBefore: "Más de",
-      infoHighlight: "12.3M de seguidores",
+      infoHighlight: "8.3M de seguidores",
       infoAfter: "concentrados en una sola comunidad.",
       infoSub: "Elige con quién vivirlo cada partido.",
       cta: "Ver todos los creadores",
@@ -601,12 +601,12 @@ export const homeSections = {
 
     community: {
       pill: "Backed by those who truly know football",
-      title1: "+12.3M followers. One single app.",
+      title1: "+8.3M followers. One single app.",
       titleGold: "You choose who to live it with.",
       desc:
         "The world's biggest football content creators are on ZonaMundial. Live shows, reactions, analysis and debates in real time with those who know the game best.",
       infoBefore: "More than",
-      infoHighlight: "12.3M followers",
+      infoHighlight: "8.3M followers",
       infoAfter: "gathered in one single community.",
       infoSub: "Choose who to live it with every match.",
       cta: "See all creators",

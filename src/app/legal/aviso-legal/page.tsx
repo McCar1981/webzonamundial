@@ -21,6 +21,14 @@ export default function AvisoLegalPage() {
 
         <Section title="1. Datos del titular">
           <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los siguientes datos identificativos del titular de la plataforma.</p>
+          <ul style={{ marginTop: 12 }}>
+            <li><strong style={{ color: GOLD }}>Titular:</strong> Carlos Manuel Zamudio Corral (empresario individual / autónomo)</li>
+            <li><strong style={{ color: GOLD }}>Nombre comercial:</strong> SprintMarkt</li>
+            <li><strong style={{ color: GOLD }}>NIF:</strong> 26581062P</li>
+            <li><strong style={{ color: GOLD }}>Domicilio:</strong> Avenida General Avilés, 20 Duplo, 46015 Valencia, España</li>
+            <li><strong style={{ color: GOLD }}>Sitio web:</strong> zonamundial.app</li>
+            <li><strong style={{ color: GOLD }}>Email:</strong> <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+          </ul>
         </Section>
 
         <Section title="2. Objeto y actividad">

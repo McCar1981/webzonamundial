@@ -171,14 +171,14 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
-      legalName: "ZonaMundial by SprintMarkt",
+      legalName: "Carlos Manuel Zamudio Corral (SprintMarkt)",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp`,
       },
       foundingDate: "2025",
-      founder: { "@type": "Organization", name: "SprintMarkt" },
+      founder: { "@type": "Person", name: "Carlos Manuel Zamudio Corral" },
       sameAs: [
         "https://x.com/zonamundial",
         "https://instagram.com/zonamundial",

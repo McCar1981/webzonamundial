@@ -14,7 +14,8 @@ export type SubscriptionKind =
   | "daily-digest"
   | "match-alerts"
   | "fav-team-news"
-  | "blog-posts";
+  | "blog-posts"
+  | "newsletter";
 
 let _admin: SupabaseClient | null = null;
 
@@ -114,6 +115,72 @@ export async function unsubscribe(opts: {
     return { ok: true };
   } catch (err) {
     return { ok: false, error: (err as Error).message };
+  }
+}
+
+/**
+ * Registra la BAJA de la newsletter para un email. A diferencia de unsubscribe()
+ * (que solo ACTUALIZA filas existentes), aquí INSERTAMOS la fila si no existe:
+ * a la newsletter masiva no se suscribe nadie por adelantado, se envía a TODOS
+ * los usuarios MENOS los que están en esta lista de bajas. Sin la fila, la baja
+ * no quedaría registrada y el usuario seguiría recibiendo correos.
+ */
+export async function optOutNewsletter(
+  email: string,
+): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const admin = getAdmin();
+    const e = email.trim().toLowerCase();
+    const now = new Date().toISOString();
+    const { data: existing } = await admin
+      .from("email_subscriptions")
+      .select("id")
+      .eq("email", e)
+      .eq("kind", "newsletter")
+      .maybeSingle();
+    if (existing) {
+      const { error } = await admin
+        .from("email_subscriptions")
+        .update({ unsubscribed_at: now })
+        .eq("id", existing.id);
+      if (error) return { ok: false, error: error.message };
+    } else {
+      const { error } = await admin.from("email_subscriptions").insert({
+        email: e,
+        kind: "newsletter",
+        source: "newsletter-baja",
+        unsubscribed_at: now,
+      });
+      if (error) return { ok: false, error: error.message };
+    }
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
+  }
+}
+
+/**
+ * Emails (en minúsculas) que se han dado de BAJA de la newsletter. Se restan del
+ * pool de destinatarios antes de enviar (y antes del dry-run). Best-effort: si la
+ * lectura falla, devuelve set vacío (mejor no enviar de más por un fallo puntual…
+ * pero aquí preferimos no romper el envío; el riesgo es bajo).
+ */
+export async function listNewsletterOptOuts(): Promise<Set<string>> {
+  try {
+    const admin = getAdmin();
+    const { data, error } = await admin
+      .from("email_subscriptions")
+      .select("email")
+      .eq("kind", "newsletter")
+      .not("unsubscribed_at", "is", null);
+    if (error) {
+      console.error("[email-subscriptions] listNewsletterOptOuts failed:", error.message);
+      return new Set();
+    }
+    return new Set((data ?? []).map((r) => (r.email as string).toLowerCase().trim()));
+  } catch (err) {
+    console.error("[email-subscriptions] listNewsletterOptOuts threw:", (err as Error).message);
+    return new Set();
   }
 }
 

@@ -204,6 +204,8 @@ export function brandedEmail(opts: {
   bodyHtml: string;
   ctaLabel?: string;
   ctaHref?: string;
+  /** Si viene, el pie muestra un enlace "Darse de baja" (RGPD, envíos masivos). */
+  unsubscribeUrl?: string;
 }): string {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zonamundial.app';
   const cta =
@@ -236,7 +238,7 @@ ${preheader}
         ${cta}
         <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
         <p style="font-size:12px;color:#6b7280;text-align:center;margin:0;">
-          ZonaMundial · zonamundial.app — Si no esperabas este email, puedes ignorarlo.
+          ZonaMundial · zonamundial.app${opts.unsubscribeUrl ? ` — <a href="${opts.unsubscribeUrl}" style="color:#6b7280;text-decoration:underline;">Darse de baja</a>` : " — Si no esperabas este email, puedes ignorarlo."}
         </p>
       </td></tr>
     </table>

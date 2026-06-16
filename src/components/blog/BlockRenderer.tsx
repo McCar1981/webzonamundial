@@ -5,6 +5,7 @@
 
 import Link from "next/link";
 import type { BlogBlock } from "@/lib/blog/types";
+import { amazonSearchUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
 import styles from "./blog.module.css";
 
 /** Convierte texto plano con marcado simple a JSX. */
@@ -235,6 +236,108 @@ export default function BlockRenderer({ blocks }: Props) {
             );
           case "divider":
             return <hr key={k} className={styles.divider} />;
+          case "affiliate":
+            return (
+              <aside
+                key={k}
+                style={{
+                  margin: "28px 0",
+                  padding: "20px 22px",
+                  borderRadius: 14,
+                  border: "1px solid var(--b-border)",
+                  background:
+                    "linear-gradient(180deg, rgba(20,37,54,0.5), rgba(11,24,37,0.35))",
+                }}
+              >
+                {b.title && (
+                  <p
+                    style={{
+                      margin: "0 0 4px",
+                      fontFamily: "var(--b-font-display)",
+                      fontWeight: 800,
+                      fontSize: 17,
+                      letterSpacing: "-0.01em",
+                      color: "var(--b-gold-3)",
+                    }}
+                  >
+                    {b.title}
+                  </p>
+                )}
+                {b.text && (
+                  <p
+                    style={{
+                      margin: "0 0 14px",
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      color: "var(--b-text-2)",
+                    }}
+                  >
+                    {renderInline(b.text, k)}
+                  </p>
+                )}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {b.items.map((it, j) => (
+                    <a
+                      key={j}
+                      href={amazonSearchUrl(it.query)}
+                      target="_blank"
+                      rel="sponsored noopener noreferrer"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "9px 14px",
+                        borderRadius: 999,
+                        border: "1px solid rgba(201,168,76,0.45)",
+                        background: "rgba(201,168,76,0.08)",
+                        color: "var(--b-text)",
+                        textDecoration: "none",
+                        fontWeight: 700,
+                        fontSize: 13.5,
+                        fontFamily: "var(--b-font-display)",
+                      }}
+                    >
+                      {it.label}
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "var(--b-gold-3)",
+                          opacity: 0.9,
+                        }}
+                      >
+                        Ver en Amazon
+                      </span>
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+                <p
+                  style={{
+                    margin: "14px 0 0",
+                    fontSize: 11.5,
+                    lineHeight: 1.5,
+                    color: "var(--b-text-2)",
+                    opacity: 0.8,
+                  }}
+                >
+                  {b.note || AMAZON_DISCLOSURE}
+                </p>
+              </aside>
+            );
           default:
             return null;
         }

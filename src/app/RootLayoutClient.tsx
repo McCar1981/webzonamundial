@@ -42,6 +42,7 @@ function buildNav(t: Translations) {
     ]},
     { id: "noticias",   label: t.nav.noticias,   href: "/noticias" },
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
+    { id: "camisetas",  label: "Camisetas",       href: "/camisetas" },
     { id: "tutoriales", label: t.nav.tutoriales,  href: "/tutoriales" },
     { id: "creadores",  label: t.nav.creadores,   href: "/creadores" },
     { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
@@ -57,6 +58,7 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.grupos,      href: "/grupos" },
       { label: t.footer.sedes,       href: "/sedes" },
       { label: t.footer.calendario,  href: "/calendario" },
+      { label: "Camisetas",          href: "/camisetas" },
       { label: t.footer.historia,    href: "/historia" },
     ],
     [t.footer.plataforma]: [

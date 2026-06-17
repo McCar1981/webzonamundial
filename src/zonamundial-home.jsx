@@ -31,8 +31,7 @@ const CREATORS=[
   {name:"Pimpeano",handle:"@pimpeano",followers:"2.3M",code:"pimpeano",img:IMGS.c_pimpeano,color:"#ff6b35"},
   {name:"Nacho CP",handle:"@nachocp",followers:"1.6M",code:"nachocp",img:IMGS.c_nachocp,color:"#22c55e"},
   {name:"Nereita",handle:"@nereita",followers:"500K",code:"nereita",img:IMGS.c_nereita,color:"#e879f9"},
-  {name:"Elopi23",handle:"@elopi23",followers:"300K",code:"elopi23",img:IMGS.c_elopi23,color:"#38bdf8"},
-  {name:"Salvador",handle:"@salvador",followers:"300K",code:"salvador",img:IMGS.c_salvador,color:"#f97316"},
+  {name:"Salvador Otero",handle:"@salvadoroterogk",followers:"233K",code:"salvador",img:IMGS.c_salvador,color:"#f97316"},
   {name:"Franbar",handle:"@franbar",followers:"130K",code:"franbar",img:IMGS.c_franbar,color:"#a78bfa"},
 ];
 

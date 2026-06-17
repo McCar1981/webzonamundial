@@ -12,7 +12,7 @@ export const LAW_WHITE = "#f8f9fa";
 export const IMGS = {
   c_svgiago: "/img/zonamundial-images/creators/svgiago.jpg",
   c_jose_cobo: "/img/zonamundial-images/creators/jose-cobo.jpg",
-  c_elopi23: "/img/zonamundial-images/creators/elopi23.jpg",
+  c_salvador: "/img/zonamundial-images/creators/salvador.jpg",
   c_niku: "/img/zonamundial-images/creators/niku.jpeg",
   c_nereita: "/img/zonamundial-images/creators/nereita.jpeg",
 };

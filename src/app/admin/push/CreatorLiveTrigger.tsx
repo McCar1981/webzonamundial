@@ -1,8 +1,8 @@
 "use client";
 
 // Disparador MANUAL del push "creador en directo" para CUALQUIER creador.
-// El cron de Twitch solo detecta SVGiago / Elopi23; los grandes que emiten en
-// YouTube (José Cobo), TikTok (Niku) o Instagram (Nereita) hay que avisarlos a
+// El cron de Twitch solo detecta SVGiago; los que emiten en YouTube (José Cobo),
+// TikTok (Niku, Salvador) o Instagram (Nereita) hay que avisarlos a
 // mano desde aquí. Reutiliza /api/admin/creators-live (dry-run por defecto,
 // envío real solo con confirm:true tras confirmación explícita).
 

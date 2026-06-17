@@ -2,8 +2,8 @@
 // "creador en directo" para CUALQUIER creador (no solo los de Twitch).
 //
 // Por qué existe: el cron /api/cron/poll-creators-live solo detecta directos
-// vía la Twitch Helix API, así que solo avisa de SVGiago / Elopi23. Los
-// creadores grandes que emiten en YouTube (José Cobo), TikTok (Niku) o
+// vía la Twitch Helix API, así que solo avisa de SVGiago. Los
+// creadores que emiten en YouTube (José Cobo), TikTok (Niku, Salvador) o
 // Instagram (Nereita) nunca disparan el aviso automático. Este endpoint deja
 // que un admin lo lance a mano cuando ve que uno de ellos está en directo.
 //

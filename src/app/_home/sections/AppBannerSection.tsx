@@ -81,7 +81,7 @@ export function AppBannerSection({ h }: { h: any }) {
 
             <div className="flex items-center justify-center gap-3">
               <div className="flex -space-x-2">
-                {[IMGS.c_jose_cobo, IMGS.c_svgiago, IMGS.c_elopi23, IMGS.c_niku].map((src, i) => (
+                {[IMGS.c_jose_cobo, IMGS.c_svgiago, IMGS.c_salvador, IMGS.c_niku].map((src, i) => (
                   <img
                     key={i}
                     src={src}

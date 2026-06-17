@@ -128,6 +128,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/portugal-rd-congo-wide.webp",
     mobile: "/images/hero/portugal-rd-congo-mobile.webp",
   },
+  // Inglaterra vs Croacia (17 jun, Grupo L).
+  "inglaterra-croacia": {
+    wide: "/images/hero/inglaterra-croacia-wide.webp",
+    mobile: "/images/hero/inglaterra-croacia-mobile.webp",
+  },
+  // Ghana vs Panamá (17 jun, Grupo L). (slug = home-away del calendario)
+  "ghana-panama": {
+    wide: "/images/hero/ghana-panama-wide.webp",
+    mobile: "/images/hero/ghana-panama-mobile.webp",
+  },
+  // Uzbekistán vs Colombia (17 jun, Grupo K). (slug = home-away del calendario)
+  "uzbekistan-colombia": {
+    wide: "/images/hero/uzbekistan-colombia-wide.webp",
+    mobile: "/images/hero/uzbekistan-colombia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

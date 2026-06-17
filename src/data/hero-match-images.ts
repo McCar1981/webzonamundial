@@ -123,6 +123,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/austria-jordania-wide.webp",
     mobile: "/images/hero/austria-jordania-mobile.webp",
   },
+  // Portugal vs RD Congo (17 jun, Grupo K).
+  "portugal-rd-congo": {
+    wide: "/images/hero/portugal-rd-congo-wide.webp",
+    mobile: "/images/hero/portugal-rd-congo-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

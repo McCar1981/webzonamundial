@@ -176,6 +176,20 @@ function looksLikeVip(s: string, tokens: string[]): boolean {
   return tokens.some((t) => VIP_TOKENS.has(t));
 }
 
+// ── Festejos de AFICIÓN en la calle / familias (no es el equipo) ─────────────
+// "Festejos de Argentina campeón del mundo en Qatar 2022 - Ciudad de Santa Fe…"
+// es una foto de HINCHAS en la vía pública (salió una familia sentada en el push
+// "¡Gana Argentina!"). El equipo celebra en el campo, no en una plaza. Descartamos
+// "festejo(s)"/"celebración" cuando aparece un lugar PÚBLICO (ciudad/plaza/calle…).
+const PUBLIC_PLACE = [
+  "ciudad", "plaza", "calle", "avenida", "obelisco", "parque", "barrio",
+  "centro de", "fan zone", "fanzone", "fan fest", "street", "downtown",
+];
+function looksLikeStreetCelebration(s: string): boolean {
+  const hasParty = s.includes("festejo") || s.includes("celebracion");
+  return hasParty && PUBLIC_PLACE.some((p) => s.includes(p));
+}
+
 // ── Decisión ─────────────────────────────────────────────────────────────────
 
 const SCORE_RE = /\b\d{1,2}\s*[-–—:;]\s*\d{1,2}\b/;
@@ -246,6 +260,9 @@ export function keepTeamPhoto(url: string, ownerKey: string, nations: Nation[]):
 
   // 1b) Político / VIP con el equipo -> fuera (no es contenido deportivo).
   if (looksLikeVip(s, tokens)) return false;
+
+  // 1c) Festejos de afición en la calle / familias -> fuera (no es el equipo).
+  if (looksLikeStreetCelebration(s)) return false;
 
   // 2) Localiza cada mención de nación (dueña y rivales) con su posición.
   const occ = findOccurrences(tokens, nations);

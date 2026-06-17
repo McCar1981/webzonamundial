@@ -274,8 +274,10 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
 
   // ALINEACIONES (una sola vez, antes del saque) → FOTO DEL EQUIPO FAVORITO.
   if (!prev.lineupsSent && lineupsConfirmed(snap)) {
+    // Solo foto de EQUIPO (camiseta nacional, horizontal). Si no hay, SIN imagen:
+    // no caemos a contextImage (retrato de jugador, a veces de club/vertical).
     const lineupImage =
-      (await favoriteTeamPhoto(meta.home.name, meta.away.name, `xi-${matchId}`)) || contextImage;
+      (await favoriteTeamPhoto(meta.home.name, meta.away.name, `xi-${matchId}`)) || undefined;
     const forms =
       snap.homeLineup?.formation && snap.awayLineup?.formation
         ? `${snap.homeLineup.formation} vs ${snap.awayLineup.formation}. `
@@ -352,10 +354,12 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
         : (snap.score[1] ?? 0) > (snap.score[0] ?? 0)
         ? meta.away.name
         : null;
+    // Solo foto de EQUIPO del GANADOR (celebración, camiseta nacional, horizontal).
+    // Si no hay, SIN imagen: NO caemos al retrato del goleador ni al ambiente
+    // (pueden ser de club, verticales o de aficionados). "¡Gana Francia!" mostraba
+    // a un jugador con camiseta del AC Milan; mejor el aviso limpio sin foto.
     const ftImage =
-      (winner ? await winnerTeamPhoto(winner, `ft-${matchId}`) : null) ||
-      (await lastScorerPhoto(snap)) ||
-      contextImage;
+      (winner ? await winnerTeamPhoto(winner, `ft-${matchId}`) : null) || undefined;
     // El final NO se fija (pin: false): así el seguidor puede descartarlo.
     await send(
       {

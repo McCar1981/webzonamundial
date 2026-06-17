@@ -308,8 +308,14 @@ async function getTeamPhotosIndex(): Promise<Map<string, string[]>> {
 
 /**
  * Foto de EQUIPO de una selección (grupo/once/celebración, camiseta nacional,
- * horizontal). Para ALINEACIONES (favorito) y FINAL (ganador). Si la ficha no
- * tiene team_photos, cae a la imagen de ambiente. Determinista por `seed`.
+ * horizontal). Para ALINEACIONES (favorito) y FINAL (ganador). Determinista por
+ * `seed`.
+ *
+ * IMPORTANTE: si la ficha no tiene team_photos limpias, devuelve null — y NO cae
+ * al retrato de un jugador. Esos retratos suelen ser verticales y/o de camiseta
+ * de CLUB (la imagen oficial P18 de Wikidata), y el push de "¡Gana X!" mostraba
+ * a un jugador con la camiseta del AC Milan. Mejor sin imagen que con una mala:
+ * el llamador (push) deja el aviso sin foto cuando esto devuelve null.
  */
 export async function teamPhoto(name: string, seed = ""): Promise<string | null> {
   if (!name) return null;
@@ -319,7 +325,7 @@ export async function teamPhoto(name: string, seed = ""): Promise<string | null>
     const i = seed ? hashSeed(seed) % imgs.length : Math.floor(Math.random() * imgs.length);
     return imgs[i] ?? null;
   }
-  return countryAtmosphere(name, seed);
+  return null;
 }
 
 /**

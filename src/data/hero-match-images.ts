@@ -143,6 +143,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/uzbekistan-colombia-wide.webp",
     mobile: "/images/hero/uzbekistan-colombia-mobile.webp",
   },
+  // Rep. Checa vs Sudáfrica (18 jun, Grupo A · J2).
+  "rep-checa-sudafrica": {
+    wide: "/images/hero/rep-checa-sudafrica-wide.webp",
+    mobile: "/images/hero/rep-checa-sudafrica-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

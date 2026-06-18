@@ -298,7 +298,7 @@ function LoginForm() {
             href="/registro"
             className="text-[#C9A84C] hover:underline font-bold transition-colors"
           >
-            Pre-regístrate
+            Regístrate
           </Link>
         </span>
       </div>

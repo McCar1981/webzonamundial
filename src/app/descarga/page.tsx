@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: DOWNLOAD_URL,
     title: "Descarga ZonaMundial",
     description:
-      "Escanea el QR desde tu m\u00f3vil o env\u00edate el enlace para descargar la app cuando est\u00e9 disponible.",
+      "Escanea el QR desde tu m\u00f3vil o env\u00edate el enlace para instalar ZonaMundial al instante. Predicciones, fantasy, IA Coach y m\u00e1s.",
     siteName: "ZonaMundial",
   },
 };

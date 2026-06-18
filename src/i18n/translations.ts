@@ -64,8 +64,8 @@ const translations = {
       disclaimer: "Plataforma de predicciones gratuita. No implica apuesta monetaria.",
     },
     cta: {
-      register: "Pre-regístrate",
-      registerFree: "Pre-regístrate gratis",
+      register: "Regístrate",
+      registerFree: "Regístrate gratis",
       registerHint: "Gratis · Sin compromiso · 30 segundos",
     },
     home: {
@@ -74,7 +74,7 @@ const translations = {
       heroTitle2: "¿Vas a dejar que otro lo viva por ti?",
       heroSubtitle: "Predicciones · Fantasy · IA Coach · Trivia · Streaming con creadores. Todo. Gratis. Sin excusas.",
       countdown: { days: "DÍAS", hours: "HORAS", min: "MIN", sec: "SEG" },
-      heroCta1: "Reserva tu plaza ahora →",
+      heroCta1: "Regístrate gratis ahora →",
       heroCta2: "Ver los 48 equipos →",
       scrollIndicator: "Descubre más",
       explore: "Explorar",
@@ -203,13 +203,13 @@ const translations = {
         cta: "Registrarme gratis →",
       },
       appBanner: {
-        title: "Sé de los primeros.",
-        subtitle: "La app llega pronto. Tu lugar está reservado si lo reclamas ahora.",
-        coming: "LISTA DE ESPERA",
+        title: "Únete a la comunidad.",
+        subtitle: "La plataforma ya está disponible. Entra y empieza a jugar ahora.",
+        coming: "YA DISPONIBLE",
       },
       socialProof: {
         count: "+2.400",
-        label: "personas ya pre-registradas",
+        label: "personas ya registradas",
         trust: "Completamente gratis · Sin tarjeta de crédito",
       },
       appScreenshots: {
@@ -238,14 +238,14 @@ const translations = {
         "Los creadores hacen que todo sea más épico",
       ],
       waitlist: {
-        title: "Sé de los primeros.",
-        subtitle: "La app llega pronto. Tu lugar está reservado si lo reclamas ahora.",
+        title: "Únete a la comunidad.",
+        subtitle: "La plataforma ya está disponible. Entra y empieza a jugar ahora.",
         placeholder: "Tu email",
-        cta: "Unirme a la lista",
+        cta: "Crear mi cuenta gratis",
         hint: "Sin spam. Sin compromiso. Solo fútbol.",
-        counterLabel: "personas delante de ti",
-        successTitle: "¡Listo! Tu plaza está reservada.",
-        successSubtitle: "Te avisamos en cuanto la app esté disponible.",
+        counterLabel: "personas ya están dentro",
+        successTitle: "¡Listo! Tu cuenta está activa.",
+        successSubtitle: "Ya puedes empezar a jugar ahora mismo.",
       },
     },
     // ── Shared UI ──────────────────────────────────────────────────────────
@@ -726,7 +726,7 @@ const translations = {
       filterBy: "Filtrar por",
       all: "Todas",
       moreSoon: "Más creadores próximamente",
-      moreSoonDesc: "El roster de creadores sigue creciendo. Nuevos creadores se incorporarán antes del inicio del torneo.",
+      moreSoonDesc: "El roster de creadores sigue creciendo. Se incorporan nuevos creadores cada semana.",
       noFav: "¿No tienes creador favorito?",
       noFavDesc: "No te preocupes, puedes registrarte ahora y elegir tu creador más tarde",
       noFavBtn: "Regístrate y Elige Después",
@@ -769,7 +769,7 @@ const translations = {
       volverLista: "Volver a la lista de creadores",
       seguidores: "seguidores",
       fansRegistrados: "Fans ya registrados",
-      seDeLos: "Sé de los primeros en unirte",
+      seDeLos: "Únete gratis a su comunidad",
       alUnirte: "Al unirte obtienes:",
       tambiénPuedes: "También puedes unirte a:",
       formTitle: "Únete al equipo",
@@ -1321,8 +1321,8 @@ const translations = {
       step4Title: "Gana y sube",
       step4Desc: "Acumula puntos y escala en el ranking global",
       ctaTitle: "Domina todas las predicciones",
-      ctaDesc: "Pre-regístrate ahora y sé de los primeros en experimentar el sistema de predicciones más completo del Mundial 2026.",
-      ctaBtn: "Pre-regístrate →",
+      ctaDesc: "Regístrate gratis y juega ya el sistema de predicciones más completo del Mundial 2026.",
+      ctaBtn: "Regístrate gratis →",
     },
 
     fantasyPage: {
@@ -1429,7 +1429,7 @@ const translations = {
       ctaFinalTitleHighlight: "ideal",
       ctaFinalDesc: "Sin dinero, sin draft. Solo tu conocimiento futbolístico y estrategia.",
       ctaFinalDescStrong: "15 jugadores, 13 selecciones, 1 campeón.",
-      ctaFinalBtn: "Pre-regístrate gratis",
+      ctaFinalBtn: "Regístrate gratis",
       ctaFinalHint: "Es fácil de jugar, difícil de dominar · Gratis · Sin compromiso",
     },
 
@@ -1504,7 +1504,7 @@ const translations = {
       ctaFinalTitle: "Prueba el poder de la",
       ctaFinalTitleHighlight: "IA",
       ctaFinalDesc: "Tu coach de inteligencia artificial te espera. Análisis en tiempo real, alertas inteligentes y recomendaciones personalizadas para dominar tus predicciones.",
-      ctaFinalBtn: "Pre-regístrate →",
+      ctaFinalBtn: "Regístrate gratis →",
     },
 
     triviaPage: {
@@ -1861,7 +1861,7 @@ const translations = {
       title2: "plataforma completa",
       subtitle: "Cada módulo está diseñado para que no te pierdas ni un segundo del Mundial 2026. Haz clic en cualquiera para ver la demo interactiva.",
       verDemo: "Ver demo",
-      ctaBtn: "Pre-regístrate gratis",
+      ctaBtn: "Regístrate gratis",
     },
 
     blogPage: {
@@ -1879,9 +1879,9 @@ const translations = {
       subtitle: "Análisis, datos, historia y guías para vivir la Copa del Mundo como un experto.",
       backBtn: "Volver al blog",
       readTime: "min lectura",
-      fullArticle: "Este artículo completo estará disponible cuando la plataforma se lance. Pre-regístrate para no perderte ninguna publicación.",
+      fullArticle: "Regístrate gratis para leer el artículo completo y no perderte ninguna publicación.",
       ctaQ: "¿Quieres recibir artículos como este?",
-      ctaBtn: "Pre-regístrate gratis",
+      ctaBtn: "Regístrate gratis",
       shareLabel: "Compartir:",
       noArticles: "No hay artículos en esta categoría aún.",
       sourcePrefix: "Fuente:",
@@ -2001,8 +2001,8 @@ const translations = {
       disclaimer: "Free prediction platform. Does not involve monetary betting.",
     },
     cta: {
-      register: "Pre-register",
-      registerFree: "Pre-register free",
+      register: "Sign up",
+      registerFree: "Sign up free",
       registerHint: "Free · No commitment · 30 seconds",
     },
     home: {
@@ -2140,13 +2140,13 @@ const translations = {
         cta: "Register free →",
       },
       appBanner: {
-        title: "Be one of the first.",
-        subtitle: "The app is coming soon. Your spot is reserved if you claim it now.",
-        coming: "WAITLIST",
+        title: "Join the community.",
+        subtitle: "The platform is live. Jump in and start playing now.",
+        coming: "NOW LIVE",
       },
       socialProof: {
         count: "+2,400",
-        label: "people already pre-registered",
+        label: "people already registered",
         trust: "Completely free · No credit card",
       },
       appScreenshots: {
@@ -2175,14 +2175,14 @@ const translations = {
         "The creators make everything epic",
       ],
       waitlist: {
-        title: "Be one of the first.",
-        subtitle: "The app is coming soon. Your spot is reserved if you claim it now.",
+        title: "Join the community.",
+        subtitle: "The platform is live. Jump in and start playing now.",
         placeholder: "Your email",
-        cta: "Join the list",
+        cta: "Create my free account",
         hint: "No spam. No commitment. Just football.",
-        counterLabel: "people ahead of you",
-        successTitle: "Done! Your spot is reserved.",
-        successSubtitle: "We'll let you know as soon as the app is available.",
+        counterLabel: "people already in",
+        successTitle: "Done! Your account is active.",
+        successSubtitle: "You can start playing right now.",
       },
     },
     // ── Shared UI ──────────────────────────────────────────────────────────
@@ -2663,7 +2663,7 @@ const translations = {
       filterBy: "Filter by",
       all: "All",
       moreSoon: "More creators coming soon",
-      moreSoonDesc: "The creator roster keeps growing. New creators will join before the tournament begins.",
+      moreSoonDesc: "The creator roster keeps growing. New creators join every week.",
       noFav: "Don't have a favorite creator?",
       noFavDesc: "No worries, you can sign up now and choose your creator later",
       noFavBtn: "Sign Up & Choose Later",
@@ -2706,7 +2706,7 @@ const translations = {
       volverLista: "Back to creators list",
       seguidores: "followers",
       fansRegistrados: "Fans already registered",
-      seDeLos: "Be among the first to join",
+      seDeLos: "Join their community free",
       alUnirte: "When you join you get:",
       tambiénPuedes: "You can also join:",
       formTitle: "Join the team",
@@ -3258,8 +3258,8 @@ const translations = {
       step4Title: "Win and climb",
       step4Desc: "Accumulate points and rise in the global ranking",
       ctaTitle: "Master all predictions",
-      ctaDesc: "Pre-register now and be among the first to experience the most complete prediction system of the 2026 World Cup.",
-      ctaBtn: "Pre-register →",
+      ctaDesc: "Sign up free and play the most complete prediction system of the 2026 World Cup right now.",
+      ctaBtn: "Sign up free →",
     },
 
     fantasyPage: {
@@ -3366,7 +3366,7 @@ const translations = {
       ctaFinalTitleHighlight: "XI",
       ctaFinalDesc: "No money, no draft. Just your football knowledge and strategy.",
       ctaFinalDescStrong: "15 players, 13 nations, 1 champion.",
-      ctaFinalBtn: "Pre-register free",
+      ctaFinalBtn: "Sign up free",
       ctaFinalHint: "Easy to play, hard to master · Free · No commitment",
     },
 
@@ -3441,7 +3441,7 @@ const translations = {
       ctaFinalTitle: "Try the power of",
       ctaFinalTitleHighlight: "AI",
       ctaFinalDesc: "Your AI coach is waiting. Real-time analysis, smart alerts and personalized recommendations to dominate your predictions.",
-      ctaFinalBtn: "Pre-register →",
+      ctaFinalBtn: "Sign up free →",
     },
 
     triviaPage: {
@@ -3798,7 +3798,7 @@ const translations = {
       title2: "complete platform",
       subtitle: "Every module is designed so you don't miss a single second of the 2026 World Cup. Click any to see the interactive demo.",
       verDemo: "View demo",
-      ctaBtn: "Pre-register free",
+      ctaBtn: "Sign up free",
     },
 
     blogPage: {
@@ -3816,9 +3816,9 @@ const translations = {
       subtitle: "Analysis, data, history and guides to experience the World Cup like an expert.",
       backBtn: "Back to blog",
       readTime: "min read",
-      fullArticle: "The full article will be available when the platform launches. Pre-register to stay up to date.",
+      fullArticle: "Sign up free to read the full article and never miss a publication.",
       ctaQ: "Want to receive articles like this?",
-      ctaBtn: "Pre-register for free",
+      ctaBtn: "Sign up for free",
       shareLabel: "Share:",
       noArticles: "No articles in this category yet.",
       sourcePrefix: "Source:",

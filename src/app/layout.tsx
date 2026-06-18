@@ -5,7 +5,6 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
-import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalyticsRouteTracker from "@/components/analytics/GoogleAnalyticsRouteTracker";
 import AuthEventTracker from "@/components/analytics/AuthEventTracker";
 import NativeAppGuard from "@/components/NativeAppGuard";
@@ -320,7 +319,9 @@ export default async function RootLayout({
       <body>
         {/* Google Consent Mode v2 — default POR REGIÓN.
             - EU/EEA + Reino Unido + Suiza: todo denied por defecto (lo exige el
-              RGPD); CookieConsent lo concede si el usuario pulsa "Aceptar todas".
+              RGPD); el CMP certificado de Google (inyectado en runtime por IP del
+              EEE) es el único surface de consentimiento y lo concede si el usuario
+              acepta. El banner casero CookieConsent se retiró para no duplicar CMP.
             - Resto del mundo (LATAM, EEUU, etc.): granted por defecto. La mayor
               parte de la audiencia es LATAM (ul=es-419) y NO está bajo RGPD, así
               que meterla en denied la hacía invisible en GA4 Tiempo real sin
@@ -370,7 +371,6 @@ export default async function RootLayout({
             <FreeWeekendConversion />
           </EntitlementsProvider>
         </LanguageProvider>
-        <CookieConsent />
       </body>
     </html>
   );

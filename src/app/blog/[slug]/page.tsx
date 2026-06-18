@@ -3,6 +3,7 @@
 // JSON-LD Article + FAQPage + Breadcrumb para rich snippets.
 
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -104,19 +105,21 @@ export default async function BlogPostPage({ params }: Params) {
       <ArticleHero post={post} />
 
       <article className={styles.article} data-article>
-        {/* Dividir bloques para insertar anuncio in-article a la mitad. */}
+        {/* Anuncio in-article cada ~4 bloques (antes solo 1 al medio). Los
+            componentes de anuncio se auto-ocultan sin slot, así que es inerte
+            hasta activar AdSense. */}
         {(() => {
-          const mid = Math.floor(post.body.length / 2);
-          const firstHalf = post.body.slice(0, mid);
-          const secondHalf = post.body.slice(mid);
-          const showAd = post.body.length >= 4;
-          return (
-            <>
-              <BlockRenderer blocks={firstHalf} />
-              {showAd && <AdInArticle />}
-              <BlockRenderer blocks={secondHalf} />
-            </>
-          );
+          const CHUNK = 4;
+          const chunks: (typeof post.body)[] = [];
+          for (let i = 0; i < post.body.length; i += CHUNK) {
+            chunks.push(post.body.slice(i, i + CHUNK));
+          }
+          return chunks.map((c, idx) => (
+            <Fragment key={idx}>
+              <BlockRenderer blocks={c} />
+              {idx < chunks.length - 1 && post.body.length >= 6 && <AdInArticle />}
+            </Fragment>
+          ));
         })()}
         <ShareBar title={post.title} slug={post.slug} />
         <EditorialFooter />

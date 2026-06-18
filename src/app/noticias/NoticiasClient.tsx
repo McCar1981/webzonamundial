@@ -15,11 +15,13 @@
  * + sidebar with "Lo más leído" + app CTA.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Noticia } from "@/data/noticias";
 import AdSidebar from "@/components/ads/AdSidebar";
+import AdInFeed from "@/components/ads/AdInFeed";
+import { AD_SLOTS } from "@/lib/adsense";
 import styles from "./NoticiasIndex.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -514,8 +516,16 @@ export default function NoticiasClient({
                 ) : (
                   <>
                     <ul className={styles.articleList}>
-                      {list.map((p) => (
-                        <li key={p.id}>
+                      {list.map((p, i) => (
+                        <Fragment key={p.id}>
+                          {/* Anuncio in-feed cada 6 artículos (solo si hay slot,
+                              para no dejar un <li> vacío con AdSense apagado). */}
+                          {AD_SLOTS.display && i > 0 && i % 6 === 0 && (
+                            <li>
+                              <AdInFeed variant="row" />
+                            </li>
+                          )}
+                          <li>
                           <Link href={`/noticias/${p.slug}`} className={styles.listItem}>
                             {p.realImage && (
                               // eslint-disable-next-line @next/next/no-img-element
@@ -552,7 +562,8 @@ export default function NoticiasClient({
                               </div>
                             </div>
                           </Link>
-                        </li>
+                          </li>
+                        </Fragment>
                       ))}
                     </ul>
                     {hasMore && (

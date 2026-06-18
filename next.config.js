@@ -1,5 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Excluir del file-tracing de las FUNCIONES serverless los directorios de
+  // /public que NINGUNA función lee por fs en runtime (se sirven por CDN igual).
+  // Sin esto, el `existsSync` de src/lib/match-center/heroImage.ts sobre una ruta
+  // DINÁMICA de /public hacía que el tracer de Next empaquetara casi todo /public
+  // (~247 MB) en cada función, rozando el límite de 250 MB ("function_size_exceeded")
+  // y rompiendo el deploy al añadir cualquier imagen. Se mantiene public/img/heroes
+  // (lo único que heroImage necesita en runtime). Verificado: el resto de /public
+  // solo se referencia por URL, nunca por fs (auditoría 2026-06-17).
+  experimental: {
+    outputFileTracingExcludes: {
+      "*": [
+        "public/cromos/**",
+        "public/img/kits/**",
+        "public/img/modo-carrera/**",
+        "public/img/zonamundial-images/**",
+        "public/img/imagenessilviu/**",
+        "public/img/blog/**",
+        "public/images/**",
+        "public/sobres/**",
+        "public/assets/**",
+      ],
+    },
+  },
+
   // Ignorar errores de TypeScript y ESLint durante el build
   typescript: {
     ignoreBuildErrors: true,

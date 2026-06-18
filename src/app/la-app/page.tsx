@@ -99,7 +99,7 @@ export default function AppDemos(){
         {/* CTA */}
         <div style={{marginTop:48,textAlign:"center",padding:32,borderRadius:24,background:`linear-gradient(135deg,rgba(201,168,76,0.04),${BG2})`,border:"1px solid rgba(201,168,76,0.1)"}}>
           <h3 style={{fontWeight:800,fontSize:22,marginBottom:8}}>¿Listo para jugar?</h3>
-          <p style={{color:MID,fontSize:14,marginBottom:20}}>Pre-regístrate gratis y sé de los primeros en acceder a todos los módulos.</p>
+          <p style={{color:MID,fontSize:14,marginBottom:20}}>Regístrate gratis y juega ya en todos los módulos.</p>
           <button style={{padding:"14px 36px",borderRadius:14,border:"none",cursor:"pointer",background:`linear-gradient(135deg,${GOLD},${GOLD2})`,color:BG,fontWeight:700,fontSize:16,fontFamily:"inherit",transition:"all .3s",boxShadow:"0 4px 20px rgba(201,168,76,0.2)"}}
             onMouseEnter={e=>e.currentTarget.style.boxShadow="0 8px 32px rgba(201,168,76,0.35)"}
             onMouseLeave={e=>e.currentTarget.style.boxShadow="0 4px 20px rgba(201,168,76,0.2)"}

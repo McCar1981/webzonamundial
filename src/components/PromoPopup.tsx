@@ -190,7 +190,7 @@ export default function PromoPopup() {
                 letterSpacing: 2,
               }}
             >
-              {isEs ? "Oferta de lanzamiento" : "Launch offer"}
+              {isEs ? "Oferta especial" : "Special offer"}
             </span>
           </div>
 
@@ -206,8 +206,8 @@ export default function PromoPopup() {
             }}
           >
             {isEs
-              ? "Pre-regístrate ahora y "
-              : "Pre-register now and "}
+              ? "Regístrate ahora y "
+              : "Sign up now and "}
             <span style={{ color: "#c9a84c" }}>
               {isEs ? "ahorra en Premium" : "save on Premium"}
             </span>
@@ -223,8 +223,8 @@ export default function PromoPopup() {
             }}
           >
             {isEs
-              ? "Los primeros en registrarse tendrán un descuento exclusivo en la suscripción Premium."
-              : "Early registrants get an exclusive discount on the Premium subscription."}
+              ? "Regístrate hoy y consigue un descuento exclusivo en la suscripción Premium."
+              : "Sign up today and get an exclusive discount on the Premium subscription."}
           </p>
 
           {/* Pricing cards */}
@@ -352,8 +352,8 @@ export default function PromoPopup() {
             }}
           >
             {isEs
-              ? "Oferta válida solo para pre-registros antes del Mundial 2026"
-              : "Offer valid only for pre-registrations before the 2026 World Cup"}
+              ? "Oferta válida por tiempo limitado durante el Mundial 2026"
+              : "Offer valid for a limited time during the 2026 World Cup"}
           </p>
         </div>
       </div>

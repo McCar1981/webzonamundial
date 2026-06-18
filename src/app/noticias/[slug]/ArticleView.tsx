@@ -368,7 +368,7 @@ export function ArticleView({
               <h3>Vive el Mundial 2026 desde la app de ZonaMundial</h3>
               <p>Predicciones, fantasy, IA coach y streaming con creadores. Todo gratis.</p>
             </div>
-            <Link href="/registro" className={styles.appCtaBtn}>Pre-regístrate</Link>
+            <Link href="/registro" className={styles.appCtaBtn}>Regístrate gratis</Link>
           </aside>
         </article>
 
@@ -397,8 +397,8 @@ export function ArticleView({
           <div className={`${styles.sidebarBlock} ${styles.sidebarPromo}`}>
             <small>JUEGA GRATIS</small>
             <h3>Predicciones del Mundial</h3>
-            <p>Desafía a tus amigos y compite con creadores. Lista de espera abierta.</p>
-            <Link href="/registro">Entrar a la lista →</Link>
+            <p>Desafía a tus amigos y compite con creadores. Juega gratis ahora.</p>
+            <Link href="/registro">Entrar y jugar →</Link>
           </div>
 
           <div className={styles.sidebarBlock}>

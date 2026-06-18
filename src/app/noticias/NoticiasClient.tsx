@@ -599,8 +599,8 @@ export default function NoticiasClient({
                 <div className={`${styles.sideBlock} ${styles.sidePromo}`}>
                   <small>JUEGA GRATIS</small>
                   <h3>Predicciones del Mundial 2026</h3>
-                  <p>Compite con creadores y amigos. Lista de espera abierta.</p>
-                  <Link href="/registro">Pre-regístrate →</Link>
+                  <p>Compite con creadores y amigos. Juega gratis ahora.</p>
+                  <Link href="/registro">Regístrate gratis →</Link>
                 </div>
 
                 <div className={styles.sideBlock}>

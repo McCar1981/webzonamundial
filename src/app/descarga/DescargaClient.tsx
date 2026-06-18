@@ -628,7 +628,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               margin: "0 0 8px",
             }}
           >
-            Cuenta atrás final
+            Empieza ahora
           </p>
           <p
             style={{
@@ -641,9 +641,9 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               lineHeight: 1.3,
             }}
           >
-            Los pre-registrados entran <span style={{ color: "#FDE68A" }}>el primer día</span>.
+            Instala la webapp y entra a jugar <span style={{ color: "#FDE68A" }}>ahora mismo</span>.
             <br />
-            El resto, cuando podamos asignar plazas.
+            Predicciones, fantasy y mucho más, gratis.
           </p>
           <Link
             href="/registro"
@@ -659,7 +659,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               boxShadow: "0 0 40px -8px rgba(201,168,76,0.7)",
             }}
           >
-            Reservar mi acceso prioritario →
+            Crear mi cuenta gratis →
           </Link>
         </div>
       </div>

@@ -6,10 +6,12 @@
 //   "download" → CTA para abrir el módulo en la webapp (cuando esté publicada).
 //
 // El modo se decide globalmente con la env var NEXT_PUBLIC_APP_AVAILABILITY:
-//   - undefined o "waitlist" → "notify"
-//   - "live"                 → "download"
+//   - "live" (DEFAULT) o ausente → "download" (la webapp está publicada y en vivo)
+//   - "waitlist"                 → "notify"
 //
-// Esto permite cambiar el comportamiento de las 13 landings cambiando 1 env var.
+// La plataforma está EN VIVO, así que el default es "live": ninguna landing debe
+// mostrar "Avísame cuando se active". Para un módulo concreto aún no disponible,
+// pásale modeOverride="notify". Esto controla las 13 landings con 1 env var.
 
 "use client";
 
@@ -27,7 +29,7 @@ interface Props {
   modeOverride?: Mode;
 }
 
-const APP_AVAILABILITY = process.env.NEXT_PUBLIC_APP_AVAILABILITY || "waitlist";
+const APP_AVAILABILITY = process.env.NEXT_PUBLIC_APP_AVAILABILITY || "live";
 
 export default function ModuleNotifyCTA({
   slug,

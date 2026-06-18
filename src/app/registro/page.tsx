@@ -1,5 +1,5 @@
 // src/app/registro/page.tsx
-// ZonaMundial.app — Página de pre-registro
+// ZonaMundial.app — Página de registro
 
 "use client";
 

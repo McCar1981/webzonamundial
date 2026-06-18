@@ -64,7 +64,7 @@ const post: BlogPost = {
       type: "callout",
       variant: "gold",
       title: "TL;DR · LO ESENCIAL",
-      text: "**12 módulos integrados** en una sola app: predicciones, fantasy, IA Coach, trivia, ligas privadas, streaming, álbum digital y más. **Plan base gratuito**. Plan **Founders Pass** opcional para quien quiera apoyar el proyecto y desbloquear extras (estadísticas avanzadas, sin publicidad, beta access).",
+      text: "**12 módulos integrados** en una sola app: predicciones, fantasy, IA Coach, trivia, ligas privadas, streaming, álbum digital y más. **Plan base gratuito**. Plan **Founders Pass** opcional para quien quiera apoyar el proyecto y desbloquear extras (estadísticas avanzadas, sin publicidad, novedades primero).",
     },
     {
       type: "h2",
@@ -189,14 +189,14 @@ const post: BlogPost = {
       type: "ol",
       items: [
         "**Modo curioso**: descárgate el [calendario](/calendario), monta tu [bracket](/bracket) y lee artículos del [blog](/blog). Sin login, sin tarjeta.",
-        "**Modo aficionado**: [pre-regístrate gratis](/registro) para asegurar tu nombre de usuario y acceder a todos los módulos cuando empiece el torneo.",
-        "**Modo total**: cuando llegue junio, abre la app, predice partidos, monta tu fantasy, invita a tu pandilla a una liga privada y vive el Mundial desde dentro.",
+        "**Modo aficionado**: [regístrate gratis](/registro) y accede ya a todos los módulos: predicciones, fantasy, IA Coach, ligas privadas y más.",
+        "**Modo total**: abre la app ahora mismo, predice partidos, monta tu fantasy, invita a tu pandilla a una liga privada y vive el Mundial desde dentro.",
       ],
     },
     {
       type: "cta",
-      title: "Pre-regístrate gratis",
-      text: "Asegura tu nombre de usuario y accede a la app cuando empiece el Mundial. Sin tarjeta, sin compromiso.",
+      title: "Regístrate gratis",
+      text: "Crea tu cuenta y entra ya a la app: predicciones, fantasy, trivia y comunidad. Sin tarjeta, sin compromiso.",
       href: "/registro",
       label: "Crear cuenta",
     },
@@ -221,7 +221,7 @@ const post: BlogPost = {
         },
         {
           q: "¿ZonaMundial es gratis?",
-          a: "**El plan base es gratuito** e incluye los 12 módulos completos. Existe un plan opcional **Founders Pass** (pago único) para quien quiera apoyar el proyecto y desbloquear extras: navegación sin publicidad, estadísticas avanzadas, beta access y sticker pack exclusivo.",
+          a: "**El plan base es gratuito** e incluye los 12 módulos completos. Existe un plan opcional **Founders Pass** (pago único) para quien quiera apoyar el proyecto y desbloquear extras: navegación sin publicidad, estadísticas avanzadas, novedades primero y sticker pack exclusivo.",
         },
         {
           q: "¿Necesito registrarme para usar ZonaMundial?",

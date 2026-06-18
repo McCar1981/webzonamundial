@@ -66,6 +66,8 @@ export default async function CuentaProPage() {
         <SubscriptionCard sub={sub} />
       ) : ent.isFounder ? (
         <FounderCard />
+      ) : ent.isPro ? (
+        <CompCard />
       ) : (
         <BuyCard />
       )}
@@ -148,6 +150,20 @@ function FounderCard() {
       <Link href="/cuenta/founders-pass" className="text-sm font-bold text-[#C9A84C]">
         Ver mi Founders Pass →
       </Link>
+    </div>
+  );
+}
+
+function CompCard() {
+  return (
+    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#0F1D32] p-6">
+      <div className="text-white font-bold mb-2">Acceso Pro de cortesía activo</div>
+      <p className="text-sm text-gray-400">
+        Tu cuenta tiene todas las ventajas Pro desbloqueadas de por vida, sin
+        suscripción ni pagos: predicciones sin límites, IA ilimitada, fantasy en
+        vivo, temporadas infinitas del Modo Carrera, ligas privadas y navegación
+        sin anuncios.
+      </p>
     </div>
   );
 }

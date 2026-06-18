@@ -24,7 +24,7 @@ export default async function ProPage() {
   const user = await getCurrentUser();
 
   let isProUser = false;
-  let source: "subscription" | "founder" | null = null;
+  let source: "subscription" | "founder" | "comp" | null = null;
   let region: ProRegion = "eu";
 
   if (user) {

@@ -17,8 +17,11 @@ import { isFounder, isFounderByUserId } from "@/lib/founders/store";
 import { getSubscription, subscriptionIsActive } from "./subscriptions";
 import { readEntitlementsCache, writeEntitlementsCache } from "./cache";
 import { isFreeWeekendActive } from "./free-weekend";
+import { isFreeAccessEmail } from "./free-access";
 
-export type ProSource = "subscription" | "founder" | null;
+// "comp" = acceso libre total de cortesía (cuentas internas, ver free-access.ts):
+// Pro de por vida sin Stripe ni Founders.
+export type ProSource = "subscription" | "founder" | "comp" | null;
 
 export interface Entitlements {
   isPro: boolean;
@@ -64,6 +67,13 @@ export async function getEntitlements(
 }
 
 async function resolveEntitlements(userId: string | null, email: string | null): Promise<Entitlements> {
+  // 0) Acceso libre total de cortesía (cuentas internas, ver free-access.ts).
+  //    Va PRIMERO y por email: no toca KV ni Stripe ni infla el contador de
+  //    Founders. Pro de por vida, sin suscripción ni Founders Pass.
+  if (isFreeAccessEmail(email)) {
+    return { isPro: true, isFounder: false, source: "comp", periodEnd: null, cancelAtPeriodEnd: false };
+  }
+
   // 1) Founder (KV, barato). Lookup por email primero, luego por user_id —
   //    mismo orden que isPaseDT histórico.
   let founder = false;

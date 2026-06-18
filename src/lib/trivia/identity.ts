@@ -11,6 +11,9 @@ export interface TriviaIdentity {
   /** Id de Supabase SOLO si el usuario está autenticado ("" si es invitado/anon).
    *  Es el único caso en que se puede abonar la billetera (tabla profiles). */
   authUserId: string;
+  /** Email de Supabase del usuario autenticado ("" si es invitado/anon).
+   *  Lo necesita el gate Pro (isPro) para resolver entitlements por email. */
+  authEmail: string;
   name: string;
 }
 
@@ -35,6 +38,7 @@ export async function resolveIdentity(
 ): Promise<TriviaIdentity> {
   let userId = "";
   let authUserId = "";
+  let authEmail = "";
   let name = (bodyName || "").trim().slice(0, 24);
 
   try {
@@ -45,6 +49,7 @@ export async function resolveIdentity(
     if (user) {
       userId = user.id;
       authUserId = user.id;
+      authEmail = user.email ?? "";
       // Para un usuario AUTENTICADO el nombre del ranking sale SIEMPRE de su
       // perfil, nunca del nombre que manda el cliente: así un alias viejo cacheado
       // en localStorage (zm_trivia_name) no puede suplantar al username real de la
@@ -72,5 +77,5 @@ export async function resolveIdentity(
     }
   }
 
-  return { userId, authUserId, name };
+  return { userId, authUserId, authEmail, name };
 }

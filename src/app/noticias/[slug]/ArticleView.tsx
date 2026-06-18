@@ -7,7 +7,7 @@
  * server-side at the page level.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Noticia, NoticiaBlock } from "@/data/noticias";
@@ -292,13 +292,19 @@ export function ArticleView({
         {/* ARTICLE */}
         <article ref={articleRef} className={styles.article}>
           {noticia.body.map((b, i) => {
-            const midIndex = Math.floor(noticia.body.length / 2);
-            const showAd = noticia.body.length >= 4 && i === midIndex;
+            // Un anuncio in-article cada ~4 bloques (saltando el primero y el
+            // último). AdInArticle se auto-oculta si no hay slot, así que es
+            // inerte hasta activar AdSense. Antes solo había 1 al punto medio.
+            const showAd =
+              noticia.body.length >= 6 &&
+              i > 0 &&
+              i < noticia.body.length - 1 &&
+              (i + 1) % 4 === 0;
             return (
-              <>
-                <Block key={i} block={b} />
-                {showAd && <AdInArticle key={`ad-${i}`} />}
-              </>
+              <Fragment key={i}>
+                <Block block={b} />
+                {showAd && <AdInArticle />}
+              </Fragment>
             );
           })}
 

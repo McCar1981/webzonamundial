@@ -42,13 +42,25 @@ export interface CriticVerdict {
  *  - Media global >= MIN_MEDIA.
  *  - No duplicado.
  */
-export const CRITIC_MIN_CRITICA = Number(process.env.NEWS_CRITIC_MIN_CRITICA ?? 3);
-// Bajado 3.5 → 3.0: el Free de GNews trunca el texto fuente, lo que penaliza la
-// "profundidad" aunque la noticia sea legítima. Con 3.0 pasan noticias reales
-// que caían por una décima (p.ej. "Brasil sin Neymar") sin abrir la puerta a la
-// paja: el gate de dimensiones críticas (>=3 en relevancia/originalidad/precisión)
-// sigue tumbando off-topic y refritos con errores factuales.
-export const CRITIC_MIN_MEDIA = Number(process.env.NEWS_CRITIC_MIN_MEDIA ?? 3.0);
+// La rúbrica puntúa 0-5. Sanitizamos el umbral configurado para que una mala
+// config NO pueda matar la publicación: un valor en escala 0-100 (p.ej. el
+// "60"/"40" que arrastraba el .env.example antiguo) se reescala a 0-5, y se
+// acota al rango [0,5]. Así `shouldPublish` nunca se vuelve imposible de cumplir
+// por un env mal puesto (causa silenciosa de "0 noticias publicadas para siempre").
+function critThreshold(raw: string | undefined, fallback: number): number {
+  if (raw == null || raw.trim() === "") return fallback;
+  let n = Number(raw);
+  if (!Number.isFinite(n)) return fallback;
+  if (n > 5) n = n / 20; // venía en escala 0-100 → 0-5 (60→3, 40→2)
+  return Math.min(5, Math.max(0, n));
+}
+
+export const CRITIC_MIN_CRITICA = critThreshold(process.env.NEWS_CRITIC_MIN_CRITICA, 3);
+// 3.0 (antes 3.5): el Free de GNews trunca el texto fuente y penaliza la
+// "profundidad" aunque la noticia sea legítima; con 3.0 pasan noticias reales
+// que caían por una décima sin abrir la puerta a la paja (el gate de dimensiones
+// críticas >=3 en relevancia/originalidad/precisión sigue tumbando off-topic).
+export const CRITIC_MIN_MEDIA = critThreshold(process.env.NEWS_CRITIC_MIN_MEDIA, 3.0);
 
 const SYSTEM_PROMPT = `Eres el editor jefe de la sección de noticias de fútbol de ZonaMundial (plataforma sobre el Mundial 2026). Eres EXIGENTE: tu trabajo es proteger la calidad del sitio, que está bajo revisión de Google AdSense y no puede publicar contenido de poco valor. Ante la duda, RECHAZA.
 

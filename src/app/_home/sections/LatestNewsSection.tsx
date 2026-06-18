@@ -12,8 +12,9 @@
 // fecha relativa del hub /noticias para coherencia visual. Estilos inline al
 // estilo del resto de secciones del home. Oro #c9a84c solo como acento.
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
+import AdInFeed from "@/components/ads/AdInFeed";
 
 const BG = "#060B14";
 const CARD_BG = "#0F1D32";
@@ -173,7 +174,13 @@ export function LatestNewsSection() {
         >
           {loading
             ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
-            : items!.map((n) => <NewsCard key={n.slug} n={n} />)}
+            : items!.map((n, i) => (
+                <Fragment key={n.slug}>
+                  {/* Anuncio in-feed tras la primera fila (inerte sin slot). */}
+                  {i === 3 && <AdInFeed />}
+                  <NewsCard n={n} />
+                </Fragment>
+              ))}
         </div>
       </div>
     </section>

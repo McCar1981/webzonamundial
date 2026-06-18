@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   CATEGORY_LABELS,
@@ -13,6 +13,7 @@ import {
   type BlogPost,
 } from "@/lib/blog/types";
 import AdBanner from "@/components/ads/AdBanner";
+import AdInFeed from "@/components/ads/AdInFeed";
 import styles from "./BlogHub.module.css";
 import blogStyles from "./blog.module.css";
 
@@ -119,8 +120,11 @@ export default function BlogHub({ posts }: Props) {
           {/* GRID DEL RESTO */}
           {rest.length > 0 && (
             <div className={styles.grid}>
-              {rest.map((p) => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} className={styles.card}>
+              {rest.map((p, i) => (
+                <Fragment key={p.slug}>
+                  {/* Anuncio in-feed cada 6 posts (inerte sin slot). */}
+                  {i > 0 && i % 6 === 0 && <AdInFeed />}
+                <Link href={`/blog/${p.slug}`} className={styles.card}>
                   <div className={styles.cardImg}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={p.ogImage} alt="" />
@@ -141,6 +145,7 @@ export default function BlogHub({ posts }: Props) {
                     </div>
                   </div>
                 </Link>
+                </Fragment>
               ))}
             </div>
           )}

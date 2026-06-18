@@ -76,8 +76,15 @@ export default function GranPremioOffer() {
       <div style={{ color: GOLD, fontWeight: 900, fontSize: 12.5, letterSpacing: 1, textTransform: "uppercase", paddingRight: 18 }}>
         Gran Premio del Mundial
       </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/img/email/premios.jpg"
+        alt="Premios del Top 3: 300, 200 y 100 euros"
+        width={600}
+        style={{ display: "block", width: "100%", height: "auto", borderRadius: 10, margin: "8px 0 2px", border: "1px solid rgba(255,255,255,0.08)" }}
+      />
       <p style={{ margin: "6px 0 0", fontSize: 13.5, color: "#fff", lineHeight: 1.5 }}>
-        El Top 3 del ranking gana <strong style={{ color: GOLD2 }}>Gift Cards de 300, 200 y 100 €</strong>. Competir es gratis: gana quien más acierte.
+        El Top 3 del ranking se lleva estas Gift Cards. Competir es gratis: <strong style={{ color: GOLD2 }}>gana quien más acierte</strong>.
       </p>
       <p style={{ margin: "8px 0 12px", fontSize: 12.5, color: MID, lineHeight: 1.5 }}>
         Y desbloquea TODO hasta la final: <strong style={{ color: "#fff" }}>8 € pago único</strong>

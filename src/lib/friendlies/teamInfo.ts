@@ -460,6 +460,26 @@ export async function favoriteTeamPhoto(
 }
 
 /**
+ * BANDERA (flagcdn, horizontal, siempre correcta) de la selección FAVORITA del
+ * cruce. Imagen limpia de respaldo para RECORDATORIO y DESCANSO cuando no hay
+ * foto de equipo — mejor una bandera nítida que el techo de un estadio o un
+ * retrato de jugador de club. flagcdn.com ya está permitido en next.config.
+ * Soporta subdivisiones (gb-eng/gb-sct). null si no se resuelve el país.
+ */
+export async function favoriteFlagUrl(
+  homeName: string,
+  awayName: string,
+): Promise<string | null> {
+  const [h, a] = await Promise.all([teamInfo(homeName), teamInfo(awayName)]);
+  const hr = h?.rank ?? Number.POSITIVE_INFINITY;
+  const ar = a?.rank ?? Number.POSITIVE_INFINITY;
+  const fav = hr <= ar ? h : a;
+  const iso = (fav?.iso || h?.iso || a?.iso || "").toLowerCase();
+  if (!iso) return null;
+  return `https://flagcdn.com/w1280/${iso}.png`;
+}
+
+/**
  * FINAL: foto de EQUIPO (celebración) de la selección GANADORA. El llamador pasa
  * el nombre del ganador. Si no hay team_photos, cae a su imagen de ambiente.
  */

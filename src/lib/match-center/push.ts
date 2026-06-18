@@ -29,7 +29,7 @@ import {
   topValuePhoto,
   favoriteTeamPhoto,
   winnerTeamPhoto,
-  stadiumPhoto,
+  favoriteFlagUrl,
 } from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 import { clearFollowers, getFollowers } from "./followers";
@@ -127,25 +127,6 @@ function lineupsConfirmed(snap: LiveSnapshot): boolean {
 interface EventLabel {
   title: string;
   body: string;
-}
-
-/** Foto del autor del ÚLTIMO gol del partido (para resúmenes: descanso/final).
- *  Así la imagen cuenta lo que pasó en vez de mostrar siempre al favorito. Si no
- *  se resuelve el jugador, imagen variada del país que marcó. null si no hay gol. */
-async function lastScorerPhoto(snap: LiveSnapshot): Promise<string | null> {
-  const goals = snap.events.filter(
-    (e) => e.type === "goal" || e.type === "penalty_goal",
-  );
-  if (goals.length === 0) return null;
-  const last = goals.reduce((a, b) =>
-    b.minute + (b.extra ?? 0) / 100 >= a.minute + (a.extra ?? 0) / 100 ? b : a,
-  );
-  const meta = snap.meta;
-  const teamName =
-    last.side === "home" ? meta.home.name : last.side === "away" ? meta.away.name : "";
-  const seed = `${meta.id}:${last.id}`;
-  const byPlayer = last.player ? await playerPhoto(teamName, last.player, seed) : null;
-  return byPlayer || (await countryImage(teamName, seed));
 }
 
 /** Construye título+cuerpo de un evento. Goles y tarjetas rojas SIEMPRE
@@ -331,12 +312,14 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     });
   }
 
-  // DESCANSO (MEDIO TIEMPO) → FOTO DEL ESTADIO donde se juega.
+  // DESCANSO (MEDIO TIEMPO) → foto de EQUIPO del favorito o su BANDERA. NUNCA el
+  // banco de estadios (salían techos/cubiertas irreconocibles, p.ej. el del BC
+  // Place) ni retratos de jugador (a veces de club/verticales).
   if (!prev.htSent && snap.status === "HT") {
     const htImage =
-      (meta.venue ? await stadiumPhoto(meta.venue, `ht-${matchId}`) : null) ||
-      (await lastScorerPhoto(snap)) ||
-      contextImage;
+      (await favoriteTeamPhoto(meta.home.name, meta.away.name, `ht-${matchId}`)) ||
+      (await favoriteFlagUrl(meta.home.name, meta.away.name)) ||
+      undefined;
     await send({
       title: `Descanso — ${vs} ${scoreText(snap.score)}`,
       body: `Final de la primera parte.`,

@@ -18,7 +18,7 @@ const GOLD = "#C9A84C";
 interface Props {
   authenticated: boolean;
   isPro: boolean;
-  source: "subscription" | "founder" | null;
+  source: "subscription" | "founder" | "comp" | null;
   region: ProRegion;
 }
 

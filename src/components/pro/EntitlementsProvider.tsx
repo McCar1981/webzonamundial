@@ -16,7 +16,7 @@ export interface ClientEntitlements {
   authenticated: boolean;
   isPro: boolean;
   isFounder: boolean;
-  source: "subscription" | "founder" | null;
+  source: "subscription" | "founder" | "comp" | null;
   periodEnd: string | null;
   cancelAtPeriodEnd: boolean;
   /** Refresca tras un checkout exitoso o un cambio de sesión. */

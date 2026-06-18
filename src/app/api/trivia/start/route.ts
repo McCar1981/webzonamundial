@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     ? (body.mode as TriviaMode)
     : "diaria";
 
-  const { userId, authUserId } = await resolveIdentity(body.name, body.anonId);
+  const { userId, authUserId, authEmail } = await resolveIdentity(body.name, body.anonId);
 
   // ── Límites del plan Free ──
   // Diaria: FREE_LIMITS.trivia.dailyQuestions preguntas al día (acumulado).
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
   // (p. ej. la pregunta de muestra de la home, que no manda anonId) cae a un
   // cupo GLOBAL compartido y generoso — protege el gasto sin romper la demo
   // (mismo criterio que el cupo de invitados de la narrativa del Modo Carrera).
-  const pro = authUserId ? await isPro(authUserId) : false;
+  const pro = authUserId ? await isPro(authUserId, authEmail) : false;
   const isGuestGlobal = !userId;
   const quotaId = userId || "guest-global";
   const dailyQuestionsLimit = isGuestGlobal ? 500 : FREE_LIMITS.trivia.dailyQuestions;

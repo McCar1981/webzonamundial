@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import BarContextBanner from "@/components/bars/BarContextBanner";
 import { BarContextProvider } from "@/components/bars/BarContextProvider";
 import { getBarContext, barThemeCssVars } from "@/lib/bars/context";
+import GranPremioOffer from "@/components/pro/GranPremioOffer";
 
 /**
  * Group layout for /app/* internal modules.
@@ -32,7 +33,7 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
   const ctx = await getBarContext();
 
   // Sin contexto de bar: experiencia ZM intacta para el resto de usuarios.
-  if (!ctx) return <>{children}</>;
+  if (!ctx) return <>{children}<GranPremioOffer /></>;
 
   // Con contexto de bar: banner de marca + paleta del bar inyectada como
   // variables CSS, que los módulos de /app adoptan (fondos, acentos y CTAs).
@@ -43,6 +44,7 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
       <div style={barThemeCssVars(ctx.theme)}>
         <BarContextBanner bar={ctx.bar} theme={ctx.theme} />
         {children}
+        <GranPremioOffer />
       </div>
     </BarContextProvider>
   );

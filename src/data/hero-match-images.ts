@@ -158,6 +158,12 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/mexico-corea-del-sur-wide.webp",
     mobile: "/images/hero/mexico-corea-del-sur-mobile.webp",
   },
+  // Canadá vs Qatar (18 jun, Grupo B · J2). OJO: el arte rotula "GRUPO A"
+  // por error — publicado así por decisión de Carlos; reexportar a "GRUPO B".
+  "canada-qatar": {
+    wide: "/images/hero/canada-qatar-wide.webp",
+    mobile: "/images/hero/canada-qatar-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

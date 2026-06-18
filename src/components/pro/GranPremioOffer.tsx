@@ -14,7 +14,10 @@ import { X } from "lucide-react";
 import { useEntitlements } from "./EntitlementsProvider";
 
 const NAVY = "#0F1D32", BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
-const DISMISS_KEY = "zm:gp-offer-dismissed";
+const DISMISS_KEY = "zm:gp-offer-dismissed-at";
+// Reaparece N días después de cerrarlo (no para siempre): la oferta necesita
+// varios impactos para convertir — la gente compra al 2º o 3º, no al primero.
+const REAPPEAR_AFTER_MS = 2 * 24 * 60 * 60 * 1000;
 // El -30% (código FINDE30) vence el 20-jun 23:59 CEST. Tras esa fecha, ocultamos
 // esa línea para no anunciar un descuento caducado.
 const DISCOUNT_UNTIL = Date.parse("2026-06-21T00:00:00+02:00");
@@ -27,7 +30,8 @@ export default function GranPremioOffer() {
   useEffect(() => {
     setMounted(true);
     try {
-      setDismissed(localStorage.getItem(DISMISS_KEY) === "1");
+      const at = Number(localStorage.getItem(DISMISS_KEY) || "0");
+      setDismissed(at > 0 && Date.now() - at < REAPPEAR_AFTER_MS);
     } catch {
       setDismissed(false);
     }
@@ -42,7 +46,7 @@ export default function GranPremioOffer() {
   const close = () => {
     setDismissed(true);
     try {
-      localStorage.setItem(DISMISS_KEY, "1");
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
     } catch {
       /* ignore */
     }

@@ -14,7 +14,7 @@ import { kv } from "@vercel/kv";
 import { MATCHES, type Match } from "@/data/matches";
 import { etToDate } from "@/lib/bracket/match-time";
 import { broadcastPush } from "@/lib/push-notifications";
-import { stadiumPhoto, favoriteTeamPhoto } from "@/lib/friendlies/teamInfo";
+import { favoriteTeamPhoto, favoriteFlagUrl } from "@/lib/friendlies/teamInfo";
 
 /**
  * Canal de envío: "news" es hoy el ÚNICO con audiencia real (las demás
@@ -97,11 +97,12 @@ export async function runMatchReminders(now: Date = new Date()): Promise<MatchRe
     }
 
     const hora = kickoffEsLabel(kickoff);
-    // Imagen: el estadio (ambiente del partido); si no resuelve, foto de la
-    // selección favorita del cruce. Best-effort: undefined si nada resuelve.
+    // Imagen: foto de EQUIPO de la selección favorita; si no hay, su BANDERA
+    // (limpia y horizontal). NUNCA el banco de estadios (salían techos/cubiertas
+    // irreconocibles, p.ej. el del BC Place). Best-effort: undefined si nada sale.
     const image =
-      (await stadiumPhoto(m.vn, `rem-${m.i}`)) ||
       (await favoriteTeamPhoto(m.h, m.a, `rem-${m.i}`)) ||
+      (await favoriteFlagUrl(m.h, m.a)) ||
       undefined;
     await broadcastPush({
       kind: CATEGORY,

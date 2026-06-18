@@ -148,6 +148,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/rep-checa-sudafrica-wide.webp",
     mobile: "/images/hero/rep-checa-sudafrica-mobile.webp",
   },
+  // Suiza vs Bosnia (18 jun, Grupo B · J2).
+  "suiza-bosnia": {
+    wide: "/images/hero/suiza-bosnia-wide.webp",
+    mobile: "/images/hero/suiza-bosnia-mobile.webp",
+  },
+  // México vs Corea del Sur (18 jun, Grupo A · J2).
+  "mexico-corea-del-sur": {
+    wide: "/images/hero/mexico-corea-del-sur-wide.webp",
+    mobile: "/images/hero/mexico-corea-del-sur-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

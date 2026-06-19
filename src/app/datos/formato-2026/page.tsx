@@ -63,8 +63,9 @@ export default function Formato2026Page() {
       {/* HERO */}
       <section className="relative mb-10 overflow-hidden rounded-3xl sm:mb-14">
         <div className="absolute inset-0">
+          {/* Foto Wikimedia Commons (CC) — antes era un JPG real sin licencia. */}
           <img
-            src="/img/zonamundial-images/stadiums/metlife-stadium.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Meadowlands_Stadium_panorama.jpg/960px-Meadowlands_Stadium_panorama.jpg"
             alt="MetLife Stadium, sede de la final del Mundial 2026 en Nueva Jersey"
             className="h-full w-full object-cover"
             loading="lazy"

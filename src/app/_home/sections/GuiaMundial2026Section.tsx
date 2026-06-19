@@ -191,7 +191,7 @@ export function GuiaMundial2026Section() {
         </p>
 
         <p>
-          Los grandes favoritos según las casas de apuestas, ranking FIFA y
+          Los grandes favoritos según el ranking FIFA, los analistas y la
           forma reciente son <strong>Argentina</strong> (vigente campeón con
           Messi y Scaloni todavía en activo), <strong>España</strong> (con
           Lamine Yamal y Pedri como columna vertebral), <strong>Francia</strong>{" "}
@@ -283,8 +283,8 @@ export function GuiaMundial2026Section() {
           puntos, fantasy con presupuesto virtual, trivia diaria, álbum
           coleccionable digital, ligas privadas para grupos de amigos y un IA
           Coach con modelo Claude Sonnet 4.5 que analiza cada partido con
-          datos reales de api-football (lesiones, forma, H2H, cuotas
-          implícitas) antes de sugerir un pronóstico razonado.
+          datos reales de api-football (lesiones, forma, H2H, probabilidades
+          del mercado) antes de sugerir un pronóstico razonado.
         </p>
 
         <p>

@@ -136,7 +136,7 @@ export default function SobrePage() {
           <p style={{ marginTop: 16 }}>
             <strong style={{ color: "#E2E8F0" }}>Modelo de negocio.</strong> ZonaMundial es gratuito para todos los
             usuarios. Nos financiamos con publicidad display (incluida Google AdSense), patrocinios directos de marcas
-            (cerveceras, deportivas, casas de apuestas legales en mercados donde aplique), suscripción Premium opcional
+            (cerveceras, deportivas y de tecnología), suscripción Premium opcional
             (sin anuncios, con módulos avanzados), y acuerdos comerciales con creadores de contenido que reciben un
             porcentaje del tráfico que generan. Nunca vendemos datos personales de usuarios.
           </p>

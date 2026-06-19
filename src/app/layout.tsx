@@ -290,9 +290,9 @@ export default async function RootLayout({
   // Ruta actual (la inyecta el middleware en la cabecera x-pathname). El layout
   // raíz no recibe el pathname por props en App Router, así que se lee aquí.
   const pathname = headers().get("x-pathname") ?? "";
-  // /app/** monta el iframe de la casa de apuestas (1xBet). Google prohíbe
-  // emitir el cargador de AdSense en páginas con ese contenido, así que el
-  // script NO debe aparecer en ninguna ruta de la webapp. GA4 sí sigue en todas.
+  // En /app/** vive la zona de juego (módulos tras login) y el cargador de
+  // AdSense NO debe emitirse ahí. /app está además bloqueado en robots.txt para
+  // que ningún crawler de Google lo evalúe. GA4 sí sigue en todas las rutas.
   const isApp = pathname === "/app" || pathname.startsWith("/app/");
 
   // AdSense cuando está habilitado y el usuario no es Pro. OJO: durante la

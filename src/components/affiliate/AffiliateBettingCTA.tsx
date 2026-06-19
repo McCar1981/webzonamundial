@@ -57,7 +57,12 @@ export default function AffiliateBettingCTA() {
         href={data.clickUrl}
         target="_blank"
         rel="sponsored noopener noreferrer"
-        style={{ display: "inline-block", width: "100%", maxWidth: 300 }}
+        style={{
+          display: "block",
+          maxWidth: 300,
+          margin: "0 auto",
+          lineHeight: 0,
+        }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -65,9 +70,16 @@ export default function AffiliateBettingCTA() {
           alt="Promoción Betcris"
           loading="lazy"
           style={{
-            width: "100%",
+            // Responsive sin recortar: nunca mas ancho que el contenedor
+            // (max 300px) ni mas alto que 300px. Una creatividad vertical (9:16)
+            // se limita por la ALTURA (no domina la pantalla); una horizontal,
+            // por el ancho. Vale para cualquier tamano de banner que pongamos.
+            maxWidth: "100%",
+            maxHeight: 300,
+            width: "auto",
             height: "auto",
             display: "block",
+            margin: "0 auto",
             border: 0,
             borderRadius: 12,
           }}

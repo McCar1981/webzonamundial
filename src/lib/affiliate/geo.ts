@@ -19,15 +19,17 @@ export const BET_AFFILIATE_URL =
  * Banner Betcris = IMAGEN + ENLACE (no iframe). La imagen la sirve
  * media.betcrisaffiliates.com (la CSP ya la permite vía `img-src https:`), y el
  * clic va al enlace con tracking por creatividad. Ambos configurables por env
- * sin redeploy.
+ * sin redeploy. Creatividad actual: 300x250 (rectángulo estándar, encaja en el
+ * hueco del CTA sin escalar). Es la variante "Dominican Republic Spanish";
+ * funciona y atribuye igual para toda LATAM (mismo ID de afiliado ppVnDtkWM0).
  */
 export const BET_BANNER_IMAGE_URL =
   process.env.BET_BANNER_IMAGE_URL ||
-  "https://media.betcrisaffiliates.com/uploads/Soccer_Unites_US_LATAM_1080x1920.png";
+  "https://media.betcrisaffiliates.com/uploads/001xGE-GRA-10566_DO-300x250-px.gif";
 
 export const BET_BANNER_CLICK_URL =
   process.env.BET_BANNER_CLICK_URL ||
-  "https://record.betcrisaffiliates.com/_ppVnDtkWM0_m_2rCMVInDCG-TsQUuM2P/1/";
+  "https://record.betcrisaffiliates.com/_ppVnDtkWM08CurWVigjhV1CK4uRYiXBx/1/";
 
 // Países donde SÍ se muestra el CTA (ISO-3166 alpha-2 lowercase). Solo LATAM
 // donde Betcris opera. EXCLUYE España (Betcris no opera allí; el mercado español

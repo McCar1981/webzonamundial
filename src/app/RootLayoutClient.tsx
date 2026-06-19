@@ -13,6 +13,7 @@ import HeaderUserMenu from "@/components/HeaderUserMenu";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
+import LiveMatchBar from "@/components/LiveMatchBar";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
 import AppBottomNav from "@/components/AppBottomNav";
 import UpdateToast from "@/components/UpdateToast";
@@ -292,9 +293,17 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         position: "relative",
       }}
     >
+      {/* ═══ MARCADOR EN VIVO ═══
+          Barra anclada arriba del todo (por encima del header) y presente en
+          TODA la web. Solo se monta si hay un partido en juego ahora mismo; si
+          no, devuelve null y no ocupa espacio ("se desactiva"). Publica su
+          altura real en la variable CSS --zm-livebar-h para que el header se
+          ancle justo debajo y no quede tapado mientras la barra está visible. */}
+      <LiveMatchBar />
+
       {/* ═══ HEADER ═══ */}
       <header style={{
-        position: "sticky", top: 0, zIndex: 1000,
+        position: "sticky", top: "var(--zm-livebar-h, 0px)", zIndex: 1000,
         background: scrolled
           ? "rgba(6,11,20,0.88)"
           : "linear-gradient(180deg, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.15) 70%, transparent 100%)",
@@ -394,7 +403,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
         transition: "opacity 0.35s,visibility 0.35s",
         opacity: mobileOpen ? 1 : 0, visibility: mobileOpen ? "visible" : "hidden",
-        paddingTop: 80, overflowY: "auto",
+        paddingTop: "calc(80px + var(--zm-livebar-h, 0px))", overflowY: "auto",
       }}>
         <nav style={{ maxWidth: 400, margin: "0 auto", padding: "20px 24px" }}>
           {/* CTA prominente "Abrir la app" arriba del menú móvil — solo para

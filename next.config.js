@@ -88,6 +88,22 @@ const nextConfig = {
     // adtrafficquality, fundingchoices y gtm con subdominio www). OJO:
     // "googlesyndication.com" pelado NO cubre pagead2.googlesyndication.com,
     // por eso se listan los subdominios uno a uno.
+    // Host del banner del afiliado de apuestas (1xBet hoy; Betcris en cuanto se
+    // cambie BET_BANNER_URL en Vercel). Se deriva de la env var para que el
+    // iframe del banner NO quede bloqueado por CSP — bug por el que el banner
+    // estaba ganando 0€ (nunca se pintaba). Si la env apunta a otra casa, su
+    // host se whitelista solo, sin tocar este archivo.
+    const betBannerOrigin = (() => {
+      try {
+        return new URL(
+          process.env.BET_BANNER_URL ||
+            "https://refbanners.com/I?tag=d_5711113m_70839c_&site=5711113&ad=70839"
+        ).origin;
+      } catch {
+        return "https://refbanners.com";
+      }
+    })();
+
     const csp = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://googletagmanager.com https://www.googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com",
@@ -96,7 +112,7 @@ const nextConfig = {
       "img-src 'self' data: blob: https:",
       "media-src 'self' https:",
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://ep1.adtrafficquality.google https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
-      "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://appleid.apple.com https://accounts.google.com",
+      `frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google https://appleid.apple.com https://accounts.google.com ${betBannerOrigin}`,
       "base-uri 'self'",
       "form-action 'self' https://appleid.apple.com https://accounts.google.com",
       "frame-ancestors 'none'",

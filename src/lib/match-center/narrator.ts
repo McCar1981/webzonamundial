@@ -16,6 +16,7 @@ import {
   templateNarration,
   playersOnPitchByEvent,
   numericalSituation,
+  beneficiarySide,
 } from "./templates";
 import type { MatchEvent, MatchMeta } from "./types";
 
@@ -53,6 +54,7 @@ REGLAS:
 - No inventes nombres ni estadísticas que no estén en el evento.
 - Usa los nombres de equipo y jugador EXACTAMENTE como vienen.
 - EXPULSIONES (type "red" o "second_yellow"): si el evento trae el campo "situacion", DEBES reflejar ESA situación numérica exacta (p. ej. "se quedan diez contra diez, igualdad" si ambos van con uno menos). NUNCA digas que un equipo juega "con un hombre más" salvo que la "situacion" lo indique: el rival puede llevar ya sus propias expulsiones.
+- AUTOGOL (type "own_goal"): el gol cuenta SIEMPRE para el RIVAL del jugador. Quien se adelanta o suma es el equipo del campo "subeMarcadorPara"; NUNCA digas que el equipo del jugador ("team") se pone en ventaja, aunque sea quien la manda a su propia puerta.
 - Devuelve SOLO un JSON: { "lines": { "<eventId>": "<frase>", ... } }`;
 
 interface RawNarration {
@@ -73,19 +75,27 @@ export async function aiNarrateBatch(
   if (!client || events.length === 0) return {};
 
   const model = process.env.ANTHROPIC_MODEL_NARRATOR || DEFAULT_MODEL;
-  const compact = events.map((e) => ({
-    id: e.id,
-    min: e.minute,
-    type: e.type,
-    team: teamName(meta, e.side) ? teamName(meta, e.side) : "neutral",
-    player: e.player || null,
-    assist: e.assist || null,
-    in: e.playerIn || null,
-    detail: e.detail || null,
-    // Situación numérica REAL tras una expulsión (cuando aplica), para que la
-    // IA no asuma superioridad del rival si este ya iba con expulsados.
-    situacion: context?.[e.id] || null,
-  }));
+  const compact = events.map((e) => {
+    const row: Record<string, unknown> = {
+      id: e.id,
+      min: e.minute,
+      type: e.type,
+      team: teamName(meta, e.side) ? teamName(meta, e.side) : "neutral",
+      player: e.player || null,
+      assist: e.assist || null,
+      in: e.playerIn || null,
+      detail: e.detail || null,
+      // Situación numérica REAL tras una expulsión (cuando aplica), para que la
+      // IA no asuma superioridad del rival si este ya iba con expulsados.
+      situacion: context?.[e.id] || null,
+    };
+    // AUTOGOL: el gol sube al marcador del RIVAL. Se lo decimos explícito a la
+    // IA para que NUNCA atribuya la ventaja al equipo del jugador.
+    if (e.type === "own_goal") {
+      row.subeMarcadorPara = teamName(meta, beneficiarySide(e)) || "el rival";
+    }
+    return row;
+  });
 
   const userMessage = `Partido: ${meta.home.name} vs ${meta.away.name} (${meta.phase}, ${meta.venue}).
 Eventos a narrar (JSON):

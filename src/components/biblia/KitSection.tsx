@@ -31,7 +31,7 @@ export default function KitSection({ team }: { team: NationalTeam }) {
     <SectionCard id="equipacion">
       <SectionHeader
         eyebrow="Equipación · Mundial 2026"
-        title={`Camiseta oficial${kit.brand ? ` · ${kit.brand}` : ""}`}
+        title="Equipación (recreación)"
         action={
           <div
             className="inline-flex rounded-xl border border-[var(--bb-border-subtle)] p-1"

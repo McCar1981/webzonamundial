@@ -22,16 +22,23 @@ Disallow: /admin/
 Disallow: /login
 Disallow: /embed/
 
+# La webapp /app es noindex y sus pantallas son maquetas/datos que solo cargan
+# tras iniciar sesión (sin contenido textual real para un bot deslogueado). La
+# sacamos del rastreo para que ningún crawler de Google la evalúe como contenido
+# (evita señales de "contenido sin valor" y cualquier residuo de la zona de juego).
+Disallow: /app/
+
 # Permitir explícitamente recursos estáticos importantes
 Allow: /img/
 Allow: /favicon.ico
 Allow: /og-image.jpg
 Allow: /manifest.json
 
-# Rastreador de AdSense: acceso total para evaluar el contenido de las
-# páginas donde se servirán anuncios.
+# Rastreador de AdSense: acceso a las páginas con contenido donde se servirán
+# anuncios, pero NO a /app (noindex, sin anuncios y sin contenido textual real).
 User-agent: Mediapartners-Google
 Allow: /
+Disallow: /app/
 
 # Bots agresivos / scrapers AI sin valor SEO (opcional, descomentar si se desea bloquear)
 # User-agent: GPTBot

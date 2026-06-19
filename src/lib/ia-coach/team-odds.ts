@@ -10,8 +10,7 @@
 //   - On-demand desde el context-builder: solo cuando el usuario pide análisis.
 //   - Cache KV con clave por matchId, TTL corto (12h) — las cuotas cambian
 //     pero no en intervalos cortos.
-//   - Promedio de varias casas (Pinnacle, Bet365, 1xBet) para reducir sesgo
-//     de una sola casa.
+//   - Promedio de varias fuentes de mercado para reducir el sesgo de una sola.
 //
 // API: GET /odds?fixture={fixtureId}&bet=1 (1 = Match Winner / 1X2)
 // La cuota se da en formato decimal (ej. 1.80 = 55.6% implícito).

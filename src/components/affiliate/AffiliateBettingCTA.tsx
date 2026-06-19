@@ -53,7 +53,7 @@ export default function AffiliateBettingCTA() {
         width={300}
         height={250}
         scrolling="no"
-        title="1xBet"
+        title="Promoción"
         style={{
           border: 0,
           display: "inline-block",

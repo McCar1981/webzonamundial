@@ -18,6 +18,17 @@ function who(e: MatchEvent): string {
   return e.player ? e.player : "el equipo";
 }
 
+/** Lado que SE BENEFICIA del evento. En un AUTOGOL el gol cuenta para el RIVAL
+ *  del jugador que lo marca (la convención del feed es e.side = equipo del
+ *  jugador, y zones/score dependen de ella). Para el resto coincide con e.side. */
+export function beneficiarySide(e: MatchEvent): MatchEvent["side"] {
+  if (e.type === "own_goal") {
+    if (e.side === "home") return "away";
+    if (e.side === "away") return "home";
+  }
+  return e.side;
+}
+
 // Expulsión = roja directa o segunda amarilla. Para narrar la situación
 // numérica REAL (no asumir que el rival "tiene un hombre más" cuando ya iba con
 // expulsados), contamos los jugadores en el campo por lado DESPUÉS de cada
@@ -77,7 +88,8 @@ export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
     case "penalty_goal":
       return `¡GOL de penalti! ${who(e)} no perdona desde los once metros para ${team}. ${min}.`;
     case "own_goal":
-      return `¡Gol en propia puerta! Desafortunado ${who(e)}, sube al marcador para ${team}. ${min}.`;
+      // El autogol sube al marcador del RIVAL del jugador, no de su equipo.
+      return `¡Gol en propia puerta! Desafortunado ${who(e)}, sube al marcador para ${teamName(meta, beneficiarySide(e)) || "el rival"}. ${min}.`;
     case "penalty_miss":
       return `¡La falló! ${who(e)} desperdicia el penalti. Sigue todo igual. ${min}.`;
     case "yellow":

@@ -169,6 +169,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/ee-uu-australia-wide.webp",
     mobile: "/images/hero/ee-uu-australia-mobile.webp",
   },
+  // Escocia vs Marruecos (19 jun, Grupo C · J2).
+  "escocia-marruecos": {
+    wide: "/images/hero/escocia-marruecos-wide.webp",
+    mobile: "/images/hero/escocia-marruecos-mobile.webp",
+  },
+  // Brasil vs Haití (19 jun, Grupo C · J2).
+  "brasil-haiti": {
+    wide: "/images/hero/brasil-haiti-wide.webp",
+    mobile: "/images/hero/brasil-haiti-mobile.webp",
+  },
+  // Turquía vs Paraguay (19 jun, Grupo D · J2).
+  "turquia-paraguay": {
+    wide: "/images/hero/turquia-paraguay-wide.webp",
+    mobile: "/images/hero/turquia-paraguay-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

@@ -20,6 +20,7 @@ import StoryViewer from "@/components/stories/StoryViewer";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
+import MerchAmazonStrip from "@/components/affiliate/MerchAmazonStrip";
 import { celebrate, celebratePop, haptic } from "@/lib/celebration";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
@@ -1683,6 +1684,18 @@ export default function AppHubPage() {
           </Fragment>
           );
         })}
+
+        {/* ═══ 6a. CAMISETAS DEL MUNDIAL (afiliado Amazon) — merch contextual:
+               las camisetas de las selecciones del partido del día; si aún no
+               cargó el partido, CTA genérico. Zona de descubrimiento (tras los
+               módulos), no compite con la acción del día. ═══ */}
+        <section data-reveal style={{ marginBottom: 26 }}>
+          <MerchAmazonStrip
+            variant="lobby"
+            home={match?.meta?.home ?? null}
+            away={match?.meta?.away ?? null}
+          />
+        </section>
 
         {/* ═══ 6b. EL MUNDIAL EN TU CALENDARIO — mismo CTA que el home web,
                aquí en versión compacta para el móvil. El botón abre el modal

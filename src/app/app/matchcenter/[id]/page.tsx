@@ -14,6 +14,7 @@ import MicroLive from "../MicroLive";
 import MicroHistory from "../MicroHistory";
 import MicroDuels from "../MicroDuels";
 import AffiliateBettingCTA from "@/components/affiliate/AffiliateBettingCTA";
+import MerchAmazonStrip from "@/components/affiliate/MerchAmazonStrip";
 
 export const dynamic = "force-dynamic";
 
@@ -56,8 +57,19 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
       <MicroDuels matchId={matchId} />
       <MicroHistory matchId={matchId} />
       <MicroLive matchId={matchId} />
-      {/* CTA de apuestas (afiliado 1xBet). Server component con candado geo:
-          SOLO visitantes de países LATAM permitidos lo ven; España y país
+      {/* Camisetas de las dos selecciones de ESTE partido (afiliado Amazon).
+          Va FUERA de cualquier <Link>, así que no hay <a> anidados. */}
+      <div style={{ display: "flex", justifyContent: "center", padding: "8px 16px 0" }}>
+        <div style={{ width: "100%", maxWidth: 560 }}>
+          <MerchAmazonStrip
+            variant="match"
+            home={{ name: meta.home.name, flag: meta.home.flag }}
+            away={{ name: meta.away.name, flag: meta.away.flag }}
+          />
+        </div>
+      </div>
+      {/* CTA de apuestas (afiliado Betcris/1xBet). Server component con candado
+          geo: SOLO visitantes de países LATAM permitidos lo ven; España y país
           desconocido → null (no se renderiza nada). */}
       <AffiliateBettingCTA />
       {/* Colchón final de página: la bottom-nav fija (~64px) más los botones

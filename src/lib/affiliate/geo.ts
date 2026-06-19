@@ -1,28 +1,39 @@
 // src/lib/affiliate/geo.ts
 //
-// Candado geográfico del CTA de apuestas (afiliado 1xBet). El CTA SOLO puede
-// mostrarse a visitantes físicamente en países LATAM donde 1xBet opera. Mostrar
-// publicidad de apuestas a un usuario en ESPAÑA es ILEGAL (1xBet no tiene
-// licencia DGOJ) — por eso el diseño es FAIL-CLOSED: si no sabemos el país con
-// certeza, NO se muestra nada. Peor caso = no se muestra a nadie (0 ingresos),
-// nunca el caso peligroso (mostrarlo en España).
+// Candado geográfico del CTA de apuestas (afiliado Betcris, casa con licencia en
+// LATAM). El CTA SOLO puede mostrarse a visitantes físicamente en los países
+// LATAM donde Betcris opera. ESPAÑA queda EXCLUIDA (Betcris no opera en España;
+// el mercado español se monetizará aparte con 1xBet.es —operador con licencia
+// DGOJ— en su propia integración con verificación de edad). Diseño FAIL-CLOSED:
+// si no sabemos el país con certeza, NO se muestra nada. Peor caso = no se
+// muestra a nadie (0 ingresos), nunca el caso peligroso (mostrarlo donde no toca).
 
 import { headers } from "next/headers";
 
-/** Enlace de afiliado 1xBet (1xPartners). Configurable por env sin redeploy. */
+/** Enlace de afiliado Betcris (landing de seguimiento). Configurable por env sin redeploy. */
 export const BET_AFFILIATE_URL =
   process.env.BET_AFFILIATE_URL ||
-  "https://reffpa.com/L?tag=d_5711113m_97c_latam&site=5711113&ad=97";
+  "https://record.betcrisaffiliates.com/_ppVnDtkWM0-8JV5VcMXjlGNd7ZgqdRLk/1/";
 
-/** Banner oficial 1xBet (iframe 300x250 de 1xPartners). Configurable por env. */
-export const BET_BANNER_URL =
-  process.env.BET_BANNER_URL ||
-  "https://refbanners.com/I?tag=d_5711113m_70839c_&site=5711113&ad=70839";
+/**
+ * Banner Betcris = IMAGEN + ENLACE (no iframe). La imagen la sirve
+ * media.betcrisaffiliates.com (la CSP ya la permite vía `img-src https:`), y el
+ * clic va al enlace con tracking por creatividad. Ambos configurables por env
+ * sin redeploy.
+ */
+export const BET_BANNER_IMAGE_URL =
+  process.env.BET_BANNER_IMAGE_URL ||
+  "https://media.betcrisaffiliates.com/uploads/Soccer_Unites_US_LATAM_1080x1920.png";
+
+export const BET_BANNER_CLICK_URL =
+  process.env.BET_BANNER_CLICK_URL ||
+  "https://record.betcrisaffiliates.com/_ppVnDtkWM0_m_2rCMVInDCG-TsQUuM2P/1/";
 
 // Países donde SÍ se muestra el CTA (ISO-3166 alpha-2 lowercase). Solo LATAM
-// donde 1xBet opera. EXCLUYE España (ilegal sin licencia DGOJ) y EEUU (apuestas
-// reguladas estado a estado, 1xBet no licenciado). Lista EXPLÍCITA: ningún país
-// se cuela por error.
+// donde Betcris opera. EXCLUYE España (Betcris no opera allí; el mercado español
+// irá aparte con 1xBet.es) y EEUU. Lista EXPLÍCITA: ningún país se cuela por
+// error. PENDIENTE: confirmar contra los mercados con licencia de Betcris
+// (Soporte del panel) y recortar si procede.
 const BETTING_ALLOWED_COUNTRIES: ReadonlySet<string> = new Set([
   "mx", // México
   "ar", // Argentina

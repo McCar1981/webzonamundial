@@ -1,15 +1,18 @@
 "use client";
 
-// Banner de apuestas (afiliado 1xBet, creatividad oficial 300x250 de 1xPartners).
-// Pregunta a /api/affiliate/geo si el visitante puede verlo (solo paises LATAM;
-// NUNCA Espana — ilegal). FAIL-CLOSED: empieza OCULTO y solo se muestra si la API
-// confirma allowed:true. Client component → sirve en paginas de cliente y servidor.
+// Banner de apuestas (afiliado Betcris, creatividad oficial). Pregunta a
+// /api/affiliate/geo si el visitante puede verlo (solo paises LATAM donde Betcris
+// opera; NUNCA Espana). FAIL-CLOSED: empieza OCULTO y solo se muestra si la API
+// confirma allowed:true. El banner es una IMAGEN con ENLACE (no iframe), por eso
+// la CSP (img-src https:) ya lo permite sin cambios. Solo se monta dentro de /app
+// (usuarios logueados), nunca en paginas publicas indexadas.
 
 import { useEffect, useState } from "react";
 
 interface GeoResp {
   allowed: boolean;
-  bannerUrl: string | null;
+  imageUrl: string | null;
+  clickUrl: string | null;
 }
 
 export default function AffiliateBettingCTA() {
@@ -19,7 +22,9 @@ export default function AffiliateBettingCTA() {
     let alive = true;
     fetch("/api/affiliate/geo")
       .then((r) =>
-        r.ok ? (r.json() as Promise<GeoResp>) : { allowed: false, bannerUrl: null }
+        r.ok
+          ? (r.json() as Promise<GeoResp>)
+          : { allowed: false, imageUrl: null, clickUrl: null }
       )
       .then((d) => {
         if (alive) setData(d);
@@ -32,7 +37,7 @@ export default function AffiliateBettingCTA() {
     };
   }, []);
 
-  if (!data?.allowed || !data.bannerUrl) return null;
+  if (!data?.allowed || !data.imageUrl || !data.clickUrl) return null;
 
   return (
     <div style={{ margin: "18px auto", padding: "0 16px", textAlign: "center" }}>
@@ -48,19 +53,26 @@ export default function AffiliateBettingCTA() {
       >
         Publicidad
       </div>
-      <iframe
-        src={data.bannerUrl}
-        width={300}
-        height={250}
-        scrolling="no"
-        title="Promoción"
-        style={{
-          border: 0,
-          display: "inline-block",
-          maxWidth: "100%",
-          borderRadius: 12,
-        }}
-      />
+      <a
+        href={data.clickUrl}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        style={{ display: "inline-block", width: "100%", maxWidth: 300 }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={data.imageUrl}
+          alt="Promoción Betcris"
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            border: 0,
+            borderRadius: 12,
+          }}
+        />
+      </a>
       <div style={{ fontSize: 11, color: "#6b7c90", marginTop: 6 }}>
         +18 · Juega con responsabilidad
       </div>

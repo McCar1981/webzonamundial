@@ -9,9 +9,9 @@
 //
 // LOGO de Amazon: NO se reproduce su logo (el "smile" tiene uso muy restringido
 // y recrearlo arriesga la cuenta). Se usa el nombre "Amazon" (uso nominativo) +
-// un boton con su color reconocible + atribucion de marca al pie. La insignia
-// oficial "Available at Amazon" requeriria el asset oficial descargado de la
-// cuenta de Afiliados (se puede anadir tal cual cuando se tenga).
+// un boton con su color reconocible. En el pie se muestra la insignia OFICIAL
+// "Available at Amazon" (asset oficial descargado de las guias de marca de
+// Amazon, SIN modificar) + la atribucion de marca exigida.
 
 import type { CSSProperties } from "react";
 import { amazonGoUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
@@ -196,6 +196,20 @@ export default function MerchAmazonStrip({
         </div>
       )}
 
+      {/* Insignia OFICIAL "Available at Amazon" (asset oficial de Amazon,
+          descargado de sus guias de marca, SIN modificar; version "rev" para
+          fondo oscuro). Va en su propia fila con espacio libre alrededor, como
+          exigen las guias (no alterar, no dentro de una frase). */}
+      <div style={{ margin: "14px 2px 4px" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/img/affiliate/available-at-amazon.png"
+          alt="Available at Amazon"
+          height={22}
+          style={{ height: 22, width: "auto", display: "block" }}
+        />
+      </div>
+
       {/* avisos: afiliado + marca */}
       <p
         style={{
@@ -215,7 +229,7 @@ export default function MerchAmazonStrip({
           color: "#7d8aa6",
         }}
       >
-        Amazon y el logo de Amazon son marcas de Amazon.com, Inc. o sus filiales.
+        La marca de Amazon se usa bajo licencia de Amazon.com, Inc. o sus filiales.
       </p>
     </div>
   );

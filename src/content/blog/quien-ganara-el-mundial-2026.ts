@@ -7,9 +7,11 @@ import type { BlogPost } from "@/lib/blog/types";
 const post: BlogPost = {
   slug: "quien-ganara-el-mundial-2026",
   title:
-    "¿Quién va a ganar el Mundial 2026? Análisis selección por selección y favoritas",
+    "¿Quién va a ganar el Mundial 2026? Pronóstico y análisis selección por selección",
+  seoTitle:
+    "¿Quién ganará el Mundial 2026? Pronóstico y favoritas | ZonaMundial",
   description:
-    "Análisis profundo de las favoritas para ganar el Mundial 2026: Argentina, Francia, Brasil, España e Inglaterra. Ranking FIFA, plantillas y por qué cada una puede levantar la copa.",
+    "Pronóstico del Mundial 2026 selección por selección: quién puede ganar entre Argentina, Francia, Brasil, España e Inglaterra. Favoritas, ranking FIFA y claves para tu predicción.",
   dek: "Argentina llega como vigente campeona, Francia con la mejor plantilla, España con el momento dulce, Brasil con la espina clavada e Inglaterra con la presión. Esta es la quiniela que importa.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg",
@@ -22,6 +24,8 @@ const post: BlogPost = {
   category: "analisis",
   keywords: [
     "quien gana el mundial 2026",
+    "quien va a ganar el mundial 2026",
+    "pronostico mundial 2026",
     "favoritas mundial 2026",
     "ranking fifa mundial 2026",
     "candidatas mundial 2026",

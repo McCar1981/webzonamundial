@@ -41,10 +41,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!post) return { title: "Artículo no encontrado" };
   const url = `/blog/${post.slug}`;
   // Si el post define un seoTitle, se usa tal cual (absolute) para controlar
-  // exactamente el <title> mostrado; si no, se mantiene el patrón de marca.
+  // exactamente el <title>. Si no, se devuelve SOLO post.title y el template
+  // del layout raíz ("%s | ZonaMundial") añade el sufijo de marca una única
+  // vez. Devolver aquí el sufijo lo duplicaba ("… | ZonaMundial | ZonaMundial").
   const titleMeta: Metadata["title"] = post.seoTitle
     ? { absolute: post.seoTitle }
-    : `${post.title} | ZonaMundial`;
+    : post.title;
   const ogTitle = post.seoTitle ?? post.title;
   return {
     title: titleMeta,

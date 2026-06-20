@@ -7,8 +7,9 @@ import type { BlogPost } from "@/lib/blog/types";
 const post: BlogPost = {
   slug: "mejores-jugadores-mundial-2026",
   title: "Los 10 mejores jugadores del Mundial 2026 según el ranking FIFA y la forma actual",
+  seoTitle: "Los 10 mejores jugadores del Mundial 2026 | ZonaMundial",
   description:
-    "Ranking de los 10 mejores jugadores del Mundial 2026: Mbappé, Messi, Bellingham, Yamal, Vinicius… análisis, posiciones y por qué cada uno entra en la lista.",
+    "Ranking de los 10 mejores jugadores del Mundial 2026: Mbappé, Messi, Bellingham, Yamal, Vinícius… favoritos a Bota de Oro y MVP, posiciones y análisis.",
   dek: "Cinco generaciones se cruzan en este Mundial: el ocaso de Messi y CR7, el cenit de Mbappé y Bellingham, y la explosión de Yamal y Doué. Estos son los 10 jugadores que pueden decidir el torneo.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Kylian_Mbapp%C3%A9_%2846369981091%29.jpg/1280px-Kylian_Mbapp%C3%A9_%2846369981091%29.jpg",

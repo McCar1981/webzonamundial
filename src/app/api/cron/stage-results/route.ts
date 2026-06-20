@@ -18,6 +18,7 @@ import { buildMeta, getFixtureId, getLastSnapshot, cacheSnapshot } from "@/lib/m
 import { fetchLiveSnapshot } from "@/lib/match-center/apiFootball";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { getUnresolvedMatchIds, resolveMatch, type ResolveSummary } from "@/lib/predictions/store";
+import { notifyResolvedMatch } from "@/lib/predictions/engagement";
 import { stageMatchResult, clearStagedResult, resultStoreAvailable } from "@/lib/predictions/result-store";
 import { composeResultFromSnapshot, isFinishedRealSnapshot, ratingsForMatch } from "@/lib/predictions/auto-result";
 
@@ -91,6 +92,16 @@ export async function GET(req: Request) {
       const summary = await resolveMatch(matchId, result);
       await clearStagedResult(matchId);
       resolved.push(summary);
+
+      // Payoff "tu predicción se resolvió" (push). try/catch propio para que un
+      // fallo de notificación no marque el partido como error tras resolverlo OK.
+      if (summary.predictions_resolved > 0) {
+        try {
+          await notifyResolvedMatch(matchId);
+        } catch (notifyErr) {
+          console.error(`[stage-results] notifyResolvedMatch falló en ${matchId}:`, notifyErr);
+        }
+      }
     } catch (e) {
       console.error(`[stage-results] fallo en ${matchId}:`, e);
       errors.push(matchId);

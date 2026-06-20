@@ -36,7 +36,7 @@ function hexToRgb(hex: string): string {
 const GN_CSS = `
 /* Contenedor a pantalla completa (un poco mayor para que la sacudida de cámara
    no deje huecos). Fundido global al final + shake breve en el impacto. */
-.gnet{position:fixed;inset:-18px;z-index:2147483000;pointer-events:none;overflow:hidden;animation:gnetFade 6.6s ease forwards, gnetShake .5s cubic-bezier(.36,.07,.19,.97) 2.4s}
+.gnet{position:fixed;inset:-18px;z-index:2147483000;pointer-events:none;overflow:hidden;animation:gnetFade 6.6s ease forwards, gnetShake .6s cubic-bezier(.36,.07,.19,.97) 2.38s}
 @keyframes gnetFade{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
 @keyframes gnetShake{0%,100%{transform:translate(0,0)}16%{transform:translate(-5px,3px)}34%{transform:translate(4px,-4px)}52%{transform:translate(-3px,-2px)}70%{transform:translate(3px,3px)}86%{transform:translate(-2px,1px)}}
 
@@ -53,22 +53,58 @@ const GN_CSS = `
     repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),
     repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin);
   -webkit-mask-image:radial-gradient(circle at 50% 46%, #000 52%, rgba(0,0,0,.4) 100%);mask-image:radial-gradient(circle at 50% 46%, #000 52%, rgba(0,0,0,.4) 100%);
-  clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards}
+  clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;will-change:transform,filter;
+  animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards, gnetWobble 1.05s cubic-bezier(.22,.61,.36,1) 2.38s both}
 @keyframes gnetReveal{0%{clip-path:circle(0% at 50% 46%)}100%{clip-path:circle(165% at 50% 46%)}}
-
-/* ── 3) BOLSA de la red (se forma con el impacto): justo donde entra el balón la
-   red se HUNDE en PROFUNDIDAD — los rombos se vuelven más pequeños/densos
-   (perspectiva hacia el fondo) y un pozo oscuro marca el fondo del embudo. El
-   balón queda ANIDADO en este hueco. Se forma en el impacto y SE QUEDA. ── */
-.gnet-pocket{position:absolute;left:50%;top:46%;width:62vmin;height:62vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.18);opacity:0;
+/* La RED REACCIONA al impacto: golpe seco hacia dentro + 4 rebotes decrecientes
+   hasta asentar (damping). brightness en el pico = latigazo de luz. */
+@keyframes gnetWobble{
+  0%{transform:scale(1) translateY(0) skewX(0deg);filter:none}
+  9%{transform:scale(.93) translateY(2.7vh) skewX(0deg);filter:brightness(1.38)}
+  20%{transform:scale(.955) translateY(1.5vh)}
+  34%{transform:scale(1.036) translateY(-1.9vh)}
+  48%{transform:scale(.98) translateY(1vh)}
+  62%{transform:scale(1.02) translateY(-.9vh)}
+  76%{transform:scale(.994) translateY(.45vh)}
+  88%{transform:scale(1.008) translateY(-.4vh)}
+  100%{transform:scale(1) translateY(0) skewX(0deg);filter:none}
+}
+/* NÚCLEO: copia de la malla recortada al centro que cede CASI EL DOBLE que el
+   borde → la red se deforma como TELA (no como chapa rígida) en el impacto. */
+.gnet-mesh-core{position:absolute;inset:0;opacity:.95;
   background-image:
-    radial-gradient(circle, rgba(0,0,0,.93) 0%, rgba(0,0,0,.74) 18%, rgba(0,0,0,.42) 38%, rgba(0,0,0,.13) 58%, transparent 72%),
-    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(1.3vmin - .5px), rgba(255,255,255,.4) calc(1.3vmin - .5px) calc(1.3vmin + .5px), rgba(255,255,255,0) calc(1.3vmin + .5px) 2.6vmin),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(1.3vmin - .5px), rgba(255,255,255,.4) calc(1.3vmin - .5px) calc(1.3vmin + .5px), rgba(255,255,255,0) calc(1.3vmin + .5px) 2.6vmin);
-  -webkit-mask-image:radial-gradient(circle, #000 0%, #000 32%, rgba(0,0,0,.42) 54%, transparent 72%);
-  mask-image:radial-gradient(circle, #000 0%, #000 32%, rgba(0,0,0,.42) 54%, transparent 72%);
-  animation:gnetPocket .95s cubic-bezier(.2,.8,.3,1) 2.3s forwards}
-@keyframes gnetPocket{0%{opacity:0;transform:translate(-50%,-50%) scale(.14)}55%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}}
+    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.55) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.55) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin);
+  -webkit-mask-image:radial-gradient(circle at 50% 46%, #000 0%, #000 26%, transparent 50%);mask-image:radial-gradient(circle at 50% 46%, #000 0%, #000 26%, transparent 50%);
+  clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;will-change:transform,filter;
+  animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards, gnetWobbleCore 1.05s cubic-bezier(.22,.61,.36,1) 2.38s both}
+@keyframes gnetWobbleCore{
+  0%{transform:scale(1) translateY(0);filter:brightness(1)}
+  9%{transform:scale(.84) translateY(4.5vh);filter:brightness(1.6)}
+  20%{transform:scale(.9) translateY(2.6vh);filter:brightness(1.14)}
+  34%{transform:scale(1.075) translateY(-3.2vh)}
+  48%{transform:scale(.962) translateY(1.5vh)}
+  62%{transform:scale(1.04) translateY(-1.5vh)}
+  76%{transform:scale(.99) translateY(.6vh)}
+  88%{transform:scale(1.012) translateY(-.5vh)}
+  100%{transform:scale(1) translateY(0);filter:brightness(1)}
+}
+
+/* ── 3) BOLSA de la red (se forma con el impacto): donde entra el balón la red
+   se HUNDE — malla FINA (la red estirada del fondo, paso 1.15vmin) + halo del
+   COLOR DEL EQUIPO que da la profundidad. SIN NADA de negro (antes un radial
+   negro .93 parecía una mancha/sombra estática): la profundidad la dan la malla
+   densa + el halo + el ABOMBADO elástico (punch → recoil → asienta). ── */
+.gnet-pocket{position:absolute;left:50%;top:46%;width:62vmin;height:62vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.16);opacity:0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(1.15vmin - .5px), rgba(255,255,255,.55) calc(1.15vmin - .5px) calc(1.15vmin + .5px), rgba(255,255,255,0) calc(1.15vmin + .5px) 2.3vmin),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(1.15vmin - .5px), rgba(255,255,255,.55) calc(1.15vmin - .5px) calc(1.15vmin + .5px), rgba(255,255,255,0) calc(1.15vmin + .5px) 2.3vmin),
+    radial-gradient(circle, rgba(var(--teamrgb),.6) 0%, rgba(var(--teamrgb),.32) 30%, rgba(var(--teamrgb),.1) 52%, transparent 70%);
+  -webkit-mask-image:radial-gradient(circle, #000 0%, #000 30%, rgba(0,0,0,.45) 52%, transparent 72%);
+  mask-image:radial-gradient(circle, #000 0%, #000 30%, rgba(0,0,0,.45) 52%, transparent 72%);
+  will-change:transform,opacity;
+  animation:gnetPocketPunch 1.05s cubic-bezier(.22,.61,.36,1) 2.36s both}
+@keyframes gnetPocketPunch{0%{opacity:0;transform:translate(-50%,-50%) scale(.16)}9%{opacity:.95;transform:translate(-50%,-50%) scale(1.14)}34%{opacity:.85;transform:translate(-50%,-50%) scale(.92)}62%{opacity:.8;transform:translate(-50%,-50%) scale(1.04)}100%{opacity:.72;transform:translate(-50%,-50%) scale(1)}}
 
 /* Destello sobrio del impacto + onda de la red (vibración) */
 .gnet-flash{position:absolute;left:50%;top:46%;width:66vmin;height:66vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.3);opacity:0;background:radial-gradient(circle, rgba(255,255,255,.7) 0%, rgba(var(--teamrgb),.3) 24%, transparent 52%);mix-blend-mode:screen;animation:gnetFlash .65s ease-out 2.38s forwards}
@@ -105,7 +141,7 @@ const GN_CSS = `
 
 @media (prefers-reduced-motion: reduce){
   .gnet{animation:gnetFade 4.5s ease forwards!important}
-  .gnet-ball,.gnet-ring,.gnet-flash,.gnet-pocket{display:none!important}
+  .gnet-ball,.gnet-ring,.gnet-flash,.gnet-pocket,.gnet-mesh-core{display:none!important}
   .gnet-bg,.gnet-mesh{clip-path:none!important;animation:none!important;opacity:.9}
   .gnet-word{animation:gnetWord .3s ease 0s both!important}
   .gnet-name,.gnet-sub{animation:gnetUp .3s ease 0s both!important}
@@ -128,6 +164,7 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
       <div className="gnet-bg" />
       <div className="gnet-glow" />
       <div className="gnet-mesh" />
+      <div className="gnet-mesh-core" />
       <div className="gnet-pocket" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="gnet-ball" src="/img/matchcenter/balon.png" alt="" draggable={false} />

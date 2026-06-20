@@ -199,6 +199,12 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/espana-a-saudi-wide.webp",
     mobile: "/images/hero/espana-a-saudi-mobile.webp",
   },
+  // Ecuador vs Curazao (20 jun, Grupo E · J2). OJO: el MOBILE rotula "GRUPO F"
+  // por error (la wide está bien en E) — publicado así por decisión de Carlos.
+  "ecuador-curazao": {
+    wide: "/images/hero/ecuador-curazao-wide.webp",
+    mobile: "/images/hero/ecuador-curazao-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

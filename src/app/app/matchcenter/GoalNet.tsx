@@ -40,8 +40,12 @@ const GN_CSS = `
    rápido, sin clip-path) para que NO se vea el match center en ningún momento
    (era la "intermitencia"); encima, la malla de rombos se DIBUJA desde el
    centro. Sin backdrop-filter (parpadeaba en móvil). ── */
-.gnet-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(var(--teamrgb),.5) 0%, rgba(4,8,14,.98) 58%, rgba(3,6,11,1) 100%);opacity:0;transform-origin:50% 46%;animation:gnetBgIn .42s ease forwards, gnetBillow 1.2s cubic-bezier(.3,1.5,.4,1) 2.58s}
+.gnet-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgb(9,13,20) 0%, rgb(5,8,13) 55%, rgb(2,4,8) 100%);opacity:0;animation:gnetBgIn .42s ease forwards}
 @keyframes gnetBgIn{0%{opacity:0}100%{opacity:1}}
+/* Glow del color del equipo, ADITIVO (screen) SOBRE el fondo opaco: tinta el
+   centro SIN transparentar (antes el centro era rgba(team,.5) y dejaba ver el
+   match center por el medio = la "intermitencia"). */
+.gnet-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(var(--teamrgb),.62) 0%, rgba(var(--teamrgb),.14) 38%, transparent 62%);mix-blend-mode:screen;opacity:0;transform-origin:50% 46%;animation:gnetBgIn .55s ease forwards, gnetBillow 1.2s cubic-bezier(.3,1.5,.4,1) 2.58s}
 .gnet-mesh{position:absolute;inset:0;opacity:.9;
   background-image:
     repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),
@@ -112,6 +116,7 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
     <div key={fxKey} className="gnet" style={{ ["--teamrgb" as string]: hexToRgb(color) }}>
       <style>{GN_CSS}</style>
       <div className="gnet-bg" />
+      <div className="gnet-glow" />
       <div className="gnet-mesh" />
       <div className="gnet-bulge" />
       <div className="gnet-bloom" />

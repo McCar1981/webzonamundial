@@ -189,6 +189,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/p-bajos-suecia-wide.webp",
     mobile: "/images/hero/p-bajos-suecia-mobile.webp",
   },
+  // Túnez vs Japón (20 jun, Grupo F · J2). (slug = home-away del calendario)
+  "tunez-japon": {
+    wide: "/images/hero/tunez-japon-wide.webp",
+    mobile: "/images/hero/tunez-japon-mobile.webp",
+  },
+  // España vs A. Saudí (21 jun, Grupo H · J2).
+  "espana-a-saudi": {
+    wide: "/images/hero/espana-a-saudi-wide.webp",
+    mobile: "/images/hero/espana-a-saudi-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

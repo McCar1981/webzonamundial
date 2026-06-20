@@ -184,6 +184,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/turquia-paraguay-wide.webp",
     mobile: "/images/hero/turquia-paraguay-mobile.webp",
   },
+  // P. Bajos vs Suecia (20 jun, Grupo F · J2). (slug = home-away del calendario)
+  "p-bajos-suecia": {
+    wide: "/images/hero/p-bajos-suecia-wide.webp",
+    mobile: "/images/hero/p-bajos-suecia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

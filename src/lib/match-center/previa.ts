@@ -26,7 +26,8 @@ import { kv } from "@/lib/kv";
 import { MATCHES, type Match } from "@/data/matches";
 import { etToDate } from "@/lib/bracket/match-time";
 import { broadcastPush } from "@/lib/push-notifications";
-import { buildMeta } from "@/lib/match-center/store";
+import { buildMeta, getLastSnapshotsBulk } from "@/lib/match-center/store";
+import { FINISHED_STATUSES } from "@/lib/calendario/live";
 import { matchHeroImage } from "@/lib/match-center/heroImage";
 import { loadTeam, listBibliaTeamsBrief } from "@/lib/biblia";
 import { getH2H } from "@/lib/ia-coach/team-h2h";
@@ -39,7 +40,7 @@ import {
 } from "@/lib/noticias-store";
 import type { DraftNoticia } from "@/lib/noticias-ingest";
 import type { NoticiaBlock } from "@/data/noticias";
-import type { MatchMeta } from "@/lib/match-center/types";
+import type { MatchMeta, LiveSnapshot } from "@/lib/match-center/types";
 
 const DEFAULT_MODEL = "claude-sonnet-4-6";
 const LOCK_TOKEN_PREFIX = "previa-";
@@ -217,6 +218,7 @@ REGLAS INNEGOCIABLES:
 - No inventes NADA fuera del JSON: ni alineaciones titulares, ni lesiones, ni declaraciones, ni datos que no estén.
 - ALINEACIONES: a esta hora NO hay once confirmado. Habla de "convocados" y "jugadores a seguir", NUNCA presentes un XI titular como confirmado. Puedes citar nombres de la lista de convocados.
 - Si el historial cara a cara viene vacío, NO lo inventes: omítelo o di que no hay precedentes recientes.
+- CONTEXTO DE JORNADA (CLAVE): si el JSON trae "contexto_jornada" (jornada 2 o posterior), este partido NO es un estreno. La previa DEBE partir de cómo llega cada selección de su partido ANTERIOR usando "recorrido_local"/"recorrido_visitante" (rival, marcador y resultado REALES: victoria/empate/derrota), de su situación en el grupo según "clasificacion_grupo" (puntos y diferencia de goles), de QUÉ necesita cada una de ESTE partido (ganar para encarrilar la clasificación, sumar para no quedar contra las cuerdas, etc.) y del PLANTEAMIENTO que le conviene tras lo visto. PROHIBIDO escribir como si fuera su debut en el torneo. Si "contexto_jornada" es null, sí es la jornada 1 (estreno) y enfocas el debut.
 - Español neutro, previa profesional con ritmo y análisis (qué se juega, cómo llega cada equipo, el duelo táctico, jugadores a seguir). Sin emojis. Prohibido el lenguaje de apuestas; usa "favorito", "pronóstico". Di "Mundial 2026" o "el torneo".
 
 ESTRUCTURA EXACTA del JSON de salida:
@@ -224,12 +226,12 @@ ESTRUCTURA EXACTA del JSON de salida:
   "title": "Titular <=95 chars con las dos selecciones",
   "excerpt": "Entradilla <=220 chars",
   "seoDescription": "Meta description 120-155 chars con 'Mundial 2026'",
-  "intro": ["párrafo de apertura: el cruce, qué se juega, hora y sede"],
+  "intro": ["párrafo de apertura: el cruce, qué se juega, hora y sede; si hay contexto_jornada, abre con la situación del grupo y el momento de cada selección"],
   "sections": [
-    { "h2": "Lo que se juega", "paragraphs": ["..."] },
-    { "h2": "<Local>: cómo llega", "paragraphs": ["estilo, fortalezas/debilidades, estrella y DT"] },
+    { "h2": "Lo que se juega", "paragraphs": ["si hay contexto_jornada: la clasificación del grupo y qué necesita cada selección de este partido; si no, qué representa el estreno"] },
+    { "h2": "<Local>: cómo llega", "paragraphs": ["si jugó la jornada anterior, ARRANCA por ese resultado (rival y marcador) y sus lecciones; luego estilo, fortalezas/debilidades, estrella y DT"] },
     { "h2": "<Visitante>: cómo llega", "paragraphs": ["idem"] },
-    { "h2": "El duelo", "paragraphs": ["choque de estilos, factores X; cara a cara si hay datos"] },
+    { "h2": "El duelo y el planteamiento", "paragraphs": ["choque de estilos, factores X y el planteamiento que conviene a cada uno para ESTE partido tras lo visto en la jornada previa; cara a cara si hay datos"] },
     { "h2": "Jugadores a seguir", "paragraphs": ["nombres reales de los convocados a vigilar por su rol; recuerda que el once se confirma cerca del saque"] }
   ]
 }
@@ -307,6 +309,98 @@ function deterministicBlocks(meta: MatchMeta, h: Dossier | null, a: Dossier | nu
   return blocks;
 }
 
+/* ─────────── Contexto de jornada: cómo llega cada selección ─────────── */
+// En jornada 2 o posterior, la previa NO es un debut: cada selección llega de un
+// resultado real. Reconstruimos ese recorrido y la clasificación del grupo a
+// partir de los marcadores REALES ya jugados (snapshots durables mc:last:).
+
+interface TeamRun {
+  rival: string;
+  marcador: string; // desde la perspectiva del equipo, p.ej. "2-1"
+  resultado: "victoria" | "empate" | "derrota";
+  goles_favor: number;
+  goles_contra: number;
+}
+
+interface GroupRow {
+  equipo: string;
+  pts: number;
+  jugados: number;
+  gf: number;
+  gc: number;
+  dg: number;
+}
+
+interface GroupContext {
+  jornada: number;
+  recorrido_local: TeamRun | null;
+  recorrido_visitante: TeamRun | null;
+  clasificacion_grupo: GroupRow[] | null;
+}
+
+/** Recorrido de un equipo (por código de bandera) en un partido YA finalizado. */
+function runFromSnap(snap: LiveSnapshot | undefined, flag: string): TeamRun | null {
+  if (!snap || !FINISHED_STATUSES.has(snap.status)) return null;
+  const f = flag.toLowerCase();
+  const isHome = snap.meta.home.flag?.toLowerCase() === f;
+  const isAway = snap.meta.away.flag?.toLowerCase() === f;
+  if (!isHome && !isAway) return null;
+  const [hs, as] = snap.score ?? [0, 0];
+  const gf = isHome ? hs : as;
+  const gc = isHome ? as : hs;
+  const rival = isHome ? snap.meta.away.name : snap.meta.home.name;
+  const resultado = gf > gc ? "victoria" : gf < gc ? "derrota" : "empate";
+  return { rival, marcador: `${gf}-${gc}`, resultado, goles_favor: gf, goles_contra: gc };
+}
+
+/** Contexto de jornada (recorrido de ambas + clasificación del grupo) desde los
+ *  resultados REALES de las jornadas previas de este mismo grupo. Null en la
+ *  jornada 1 (no hay nada jugado: previa de debut). Best-effort: si KV falla o
+ *  aún no hay marcadores finalizados, degrada a null/parcial sin romper. */
+async function buildGroupContext(meta: MatchMeta, match: Match | undefined): Promise<GroupContext | null> {
+  if (!match || !match.g) return null;
+  const prior = MATCHES.filter((m) => m.g === match.g && m.p === match.p && m.j < match.j);
+  if (prior.length === 0) return null; // jornada 1
+  const snaps = await getLastSnapshotsBulk(prior.map((m) => m.i));
+
+  // Tabla del grupo con los partidos YA finalizados (3 pts victoria, 1 empate).
+  const table = new Map<string, GroupRow>();
+  const ensure = (flag: string, name: string): GroupRow => {
+    let r = table.get(flag);
+    if (!r) { r = { equipo: name, pts: 0, jugados: 0, gf: 0, gc: 0, dg: 0 }; table.set(flag, r); }
+    return r;
+  };
+  for (const m of prior) {
+    const s = snaps[m.i];
+    if (!s || !FINISHED_STATUSES.has(s.status)) continue;
+    const [hs, as] = s.score ?? [0, 0];
+    const H = ensure(m.hf, m.h);
+    const A = ensure(m.af, m.a);
+    H.gf += hs; H.gc += as; H.jugados++;
+    A.gf += as; A.gc += hs; A.jugados++;
+    if (hs > as) H.pts += 3; else if (hs < as) A.pts += 3; else { H.pts++; A.pts++; }
+  }
+  const clasificacion = [...table.values()]
+    .map((r) => ({ ...r, dg: r.gf - r.gc }))
+    .sort((a, b) => b.pts - a.pts || b.dg - a.dg || b.gf - a.gf);
+
+  // Recorrido de las dos selecciones de ESTE partido: su jornada previa más reciente.
+  const lastPriorFor = (flag: string): Match | undefined =>
+    prior.filter((m) => m.hf === flag || m.af === flag).sort((a, b) => b.j - a.j)[0];
+  const runFor = (flag: string | undefined): TeamRun | null => {
+    if (!flag) return null;
+    const pm = lastPriorFor(flag);
+    return pm ? runFromSnap(snaps[pm.i], flag) : null;
+  };
+
+  return {
+    jornada: match.j,
+    recorrido_local: runFor(meta.home.flag),
+    recorrido_visitante: runFor(meta.away.flag),
+    clasificacion_grupo: clasificacion.length ? clasificacion : null,
+  };
+}
+
 /* ───────────────────────── Generación + publicación ──────────────────────── */
 
 export interface PreviaResult {
@@ -330,10 +424,12 @@ export async function maybePublishPrevia(matchId: number, kickoffISO: string): P
   // una guarda defensiva ante un flag sin mapear).
   if (!hd && !ad) return { published: false, reason: "no_biblia" };
   // H2H y forma reciente: best-effort, null-safe (nunca inventan).
-  const [h2h, formHome, formAway] = await Promise.all([
+  const match = MATCHES.find((m) => m.i === matchId);
+  const [h2h, formHome, formAway, groupCtx] = await Promise.all([
     getH2H(meta.home.id, meta.away.id).catch(() => null),
     readTeamForm(meta.home.id).catch(() => null),
     readTeamForm(meta.away.id).catch(() => null),
+    buildGroupContext(meta, match).catch(() => null),
   ]);
 
   const ko = new Date(kickoffISO);
@@ -365,6 +461,10 @@ export async function maybePublishPrevia(matchId: number, kickoffISO: string): P
     forma_reciente: formHome || formAway
       ? { local: formHome?.summary ?? null, visitante: formAway?.summary ?? null }
       : null,
+    // Jornada del torneo + cómo llega cada selección de su(s) partido(s) previo(s)
+    // y la clasificación del grupo. null en la jornada 1 (debut).
+    jornada: match?.j ?? null,
+    contexto_jornada: groupCtx,
   };
 
   const article = await generateArticle(facts);
@@ -395,6 +495,17 @@ export async function maybePublishPrevia(matchId: number, kickoffISO: string): P
   if (caraACara?.resumen) datos.push(`Cara a cara: ${caraACara.resumen}`);
   if (formHome?.summary) datos.push(`Forma ${hd?.nombre ?? meta.home.name}: ${formHome.summary}`);
   if (formAway?.summary) datos.push(`Forma ${ad?.nombre ?? meta.away.name}: ${formAway.summary}`);
+  // Cómo llega cada selección de su jornada anterior + clasificación (jornada ≥2).
+  if (groupCtx?.recorrido_local) {
+    const r = groupCtx.recorrido_local;
+    datos.push(`${meta.home.name} llega de ${r.resultado} (${r.marcador}) ante ${r.rival} en la jornada anterior.`);
+  }
+  if (groupCtx?.recorrido_visitante) {
+    const r = groupCtx.recorrido_visitante;
+    datos.push(`${meta.away.name} llega de ${r.resultado} (${r.marcador}) ante ${r.rival} en la jornada anterior.`);
+  }
+  if (groupCtx?.clasificacion_grupo?.length)
+    datos.push(`Grupo ${meta.group}: ${groupCtx.clasificacion_grupo.map((r) => `${r.equipo} ${r.pts} pts`).join(" · ")}.`);
   blocks.push({ type: "h2", text: "Datos del partido" });
   blocks.push({ type: "list", items: datos });
 

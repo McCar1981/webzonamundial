@@ -120,7 +120,7 @@ export default function MatchCenterPage() {
             Todo lo que pasa en el partido, en un solo lugar. Stats, alineaciones, timeline y análisis en tiempo real.
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href={matchHref(1)} data-hero-cta data-hover-btn style={{
+            <Link href={`${matchHref(1)}&demo=1`} data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",

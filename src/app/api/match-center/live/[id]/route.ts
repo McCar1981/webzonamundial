@@ -71,7 +71,12 @@ export async function GET(
   // los de fase de grupos. Antes del saque se quedan "por comenzar" con cuenta
   // atrás; aunque se pida ?sim=1 desde el hub no simulan.
   const realOnly = REAL_ONLY_IDS.has(matchId) || isGroupStage(meta.phase);
-  const forceSim = url.searchParams.get("sim") === "1" && !realOnly;
+  // ?demo=1: simulación de DEMO explícita (botón "Ver demo en vivo"). Fuerza la
+  // simulación aunque el partido sea solo-real, para mostrar el Match Center
+  // jugándose en vivo con equipos REALES. El cliente marca la pantalla como
+  // SIMULACIÓN para no confundir con un resultado oficial.
+  const isDemo = url.searchParams.get("demo") === "1";
+  const forceSim = isDemo || (url.searchParams.get("sim") === "1" && !realOnly);
   const useAI = url.searchParams.get("ai") !== "0" && !!process.env.ANTHROPIC_API_KEY;
 
   // --- Modo live real ---

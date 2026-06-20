@@ -10,6 +10,7 @@ import { requireCron } from "@/lib/auth-helpers";
 import type { MatchResultReal } from "@/lib/predictions/types";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { resolveMatch } from "@/lib/predictions/store";
+import { notifyResolvedMatch } from "@/lib/predictions/engagement";
 import { stageMatchResult, resultStoreAvailable } from "@/lib/predictions/result-store";
 
 export const runtime = "nodejs";
@@ -41,5 +42,15 @@ export async function POST(req: Request) {
   }
 
   const summary = await resolveMatch(body.match_id, body.match_result);
+
+  // Payoff "tu predicción se resolvió" (push). AISLADO + fail-soft.
+  if (summary.predictions_resolved > 0) {
+    try {
+      await notifyResolvedMatch(body.match_id);
+    } catch (e) {
+      console.error(`[predictions/resolve] notifyResolvedMatch falló en ${body.match_id}:`, e);
+    }
+  }
+
   return NextResponse.json(summary);
 }

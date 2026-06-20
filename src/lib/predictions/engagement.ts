@@ -13,6 +13,7 @@
 
 import { adminClient } from "./admin";
 import { utcDayKey, dailyCheckinReward, COIN_NAME } from "./gamification";
+import { getMatchMeta } from "./match-data";
 import { sendPushToSubscription, type PushPayload } from "@/lib/push-notifications";
 import { sendEmail, brandedEmail, escapeHtml } from "@/lib/email";
 
@@ -220,4 +221,80 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
     emails,
     skipped_dedup: skippedDedup,
   };
+}
+
+export interface ResolvedNotifyResult {
+  match_id: string;
+  candidates: number;
+  notified: number;
+  pushes: number;
+  skipped_dedup: number;
+}
+
+/**
+ * Push de PAYOFF "tu predicción se resolvió / acertaste +X pts" tras resolver un
+ * partido. Cumple la promesa del prompt post-predicción ("te avisamos cuando se
+ * resuelva", por la que el usuario incluso recibe Fútcoins) y es el gancho de
+ * retorno de mayor dopamina (el momento "¿gané?").
+ *
+ * BLINDAJE: está AISLADO del cálculo de puntos. Se llama DESPUÉS de resolveMatch
+ * (lee filas YA resueltas, no las modifica) y los call sites lo envuelven en
+ * try/catch, así que un fallo aquí JAMÁS afecta a la resolución ni a las
+ * recompensas. Dedup por (user_id, "prediction-resolved:<matchId>") → un solo
+ * aviso por usuario y partido aunque varias pasadas/crons lo invoquen.
+ */
+export async function notifyResolvedMatch(matchId: string): Promise<ResolvedNotifyResult> {
+  const admin = adminClient();
+  const kind = "prediction-resolved";
+  const dedupKey = `${kind}:${matchId}`;
+
+  const meta = getMatchMeta(matchId);
+  const label = meta ? `${meta.home_team} - ${meta.away_team}` : "tu partido";
+
+  // Agregamos por usuario sus predicciones YA resueltas de este partido.
+  const { data: rows } = await admin
+    .from("predictions")
+    .select("user_id, points_earned, is_correct")
+    .eq("match_id", matchId)
+    .not("resolved_at", "is", null);
+
+  const byUser = new Map<string, { points: number; correct: number; scored: number }>();
+  for (const r of (rows ?? []) as { user_id: string; points_earned: number | null; is_correct: boolean | null }[]) {
+    if (!r.user_id) continue;
+    const agg = byUser.get(r.user_id) ?? { points: 0, correct: 0, scored: 0 };
+    agg.points += Number(r.points_earned) || 0;
+    if (r.is_correct === true) agg.correct += 1;
+    if (r.is_correct !== null) agg.scored += 1; // excluye anuladas (is_correct = null)
+    byUser.set(r.user_id, agg);
+  }
+
+  const pushOut = await optedOutUserIds("push");
+  let notified = 0, pushes = 0, skippedDedup = 0;
+
+  for (const [uid, agg] of byUser) {
+    if (agg.scored === 0) continue; // solo predicciones que puntuaron (no anuladas)
+    if (pushOut.has(uid)) continue;
+    // Reserva idempotente: un único aviso por usuario y partido.
+    if (!(await reserveDedup(uid, kind, dedupKey))) { skippedDedup += 1; continue; }
+
+    const acerto = agg.correct > 0;
+    const signo = agg.points >= 0 ? "+" : "";
+    const title = acerto
+      ? `¡Acertaste! ${signo}${agg.points} pts`
+      : `Tu predicción de ${label} se resolvió`;
+    const body = acerto
+      ? `${label}: ${agg.correct}/${agg.scored} aciertos · ${signo}${agg.points} pts. Mira cómo vas en el ranking.`
+      : `${label}: ${signo}${agg.points} pts esta vez. Entra y prepárate para el próximo.`;
+
+    const sent = await pushToUser(uid, {
+      title,
+      body,
+      url: `${SITE}/app/predicciones`,
+      tag: `prediction-resolved-${matchId}`,
+      pushId: dedupKey,
+    });
+    if (sent > 0) { pushes += sent; notified += 1; }
+  }
+
+  return { match_id: matchId, candidates: byUser.size, notified, pushes, skipped_dedup: skippedDedup };
 }

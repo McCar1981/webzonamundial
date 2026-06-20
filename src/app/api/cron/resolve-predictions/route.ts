@@ -16,6 +16,7 @@ import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { getUnresolvedMatchIds, resolveMatch, type ResolveSummary } from "@/lib/predictions/store";
+import { notifyResolvedMatch } from "@/lib/predictions/engagement";
 import { getStagedResult, clearStagedResult, resultStoreAvailable } from "@/lib/predictions/result-store";
 
 export const runtime = "nodejs";
@@ -60,6 +61,16 @@ export async function GET(req: Request) {
     const summary = await resolveMatch(matchId, result);
     await clearStagedResult(matchId);
     resolved.push(summary);
+
+    // Payoff "tu predicción se resolvió" (push). AISLADO + fail-soft: nunca
+    // puede tumbar la resolución ni las recompensas. Dedup 1×/usuario/partido.
+    if (summary.predictions_resolved > 0) {
+      try {
+        await notifyResolvedMatch(matchId);
+      } catch (e) {
+        console.error(`[resolve-predictions] notifyResolvedMatch falló en ${matchId}:`, e);
+      }
+    }
   }
 
   await recordHeartbeat("resolve-predictions", true, { resolved: resolved.length });

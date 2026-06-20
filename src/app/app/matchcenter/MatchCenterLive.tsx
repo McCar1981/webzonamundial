@@ -1090,11 +1090,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
     return () => clearInterval(id);
   }, [feed, paused, finished, status, meta]);
 
-  // Limpia el pulso de gol (la celebración GoalNet dura ~4,7s: red → balón →
-  // red que se hunde → texto; se desmonta al terminar).
+  // Limpia el pulso de gol (la celebración cinematográfica GoalNet dura ~5s:
+  // red → balón → red que se hunde con destello/flare/shake → texto).
   useEffect(() => {
     if (!goalPulse) return;
-    const t = setTimeout(() => setGoalPulse(null), 4900);
+    const t = setTimeout(() => setGoalPulse(null), 5200);
     return () => clearTimeout(t);
   }, [goalPulse]);
 

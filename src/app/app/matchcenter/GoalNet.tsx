@@ -1,18 +1,19 @@
 "use client";
 
-// Celebración de GOL CINEMATOGRÁFICA a pantalla completa, FÍSICA. Cámara detrás
-// de la portería:
-//   1) la RED aparece PRIMERO y cubre la pantalla (fondo OPACO + viñeta de cine);
-//   2) DESPUÉS el balón entra en PRIMER PLANO (grande, de frente) y vuela HACIA
-//      la red ALEJÁNDOSE — se hace pequeño = entra en PROFUNDIDAD, no por un
-//      lateral;
-//   3) la red forma una BOLSA que se hunde en profundidad (rombos más densos y
-//      oscuros = embudo) justo donde queda el balón, y el balón queda ANIDADO
-//      ahí dentro;
-//   4) impacto sobrio (destello + onda de la red + leve sacudida) y ¡GOOOL!.
-// Portal a document.body para ocupar el viewport ENTERO. Cámara lenta ~6,5 s.
+// Celebración de GOL en 3D (WebGL / Three.js). Cámara detrás de la portería:
+//   1) la RED 3D aparece (malla de rombos con volumen, tintada del color de la
+//      selección) sobre un fondo OPACO desde el primer frame (NUNCA se ve el
+//      match center detrás);
+//   2) el balón REAL entra en PRIMER PLANO (grande, de frente) y vuela HACIA la
+//      red ALEJÁNDOSE (perspectiva = profundidad, no por un lateral);
+//   3) al impactar, la RED SE HUNDE y ONDEA físicamente (embudo + onda radial
+//      amortiguada) y el balón queda ANIDADO en el hueco;
+//   4) destello del color del equipo + ¡GOOOL! + goleador.
+// Three.js se carga por import() dinámico (code-split): solo pesa al haber gol.
+// prefers-reduced-motion o WebGL no disponible → fallback estático (sin canvas).
+// Portal a document.body para ocupar el viewport ENTERO.
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { lastName } from "@/lib/match-center/names";
 
@@ -25,157 +26,279 @@ export interface GoalNetProps {
   fxKey: number;
 }
 
-function hexToRgb(hex: string): string {
+const TOTAL = 5.4; // s — duración de la animación 3D (la barra se desmonta a ~6.8s)
+
+function hexRgb01(hex: string): [number, number, number] {
   const h = (hex || "#c9a84c").replace("#", "");
   const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
   const n = parseInt(full, 16);
-  if (Number.isNaN(n)) return "201,168,76";
-  return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
+  if (Number.isNaN(n)) return [0.79, 0.66, 0.3];
+  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+}
+
+// ───────────────────────── escena 3D (Three.js) ─────────────────────────
+// Devuelve { render(t), resize(), dispose() }. Toda la geometría/material/
+// textura se libera en dispose() para no fugar memoria GPU al cambiar de gol.
+function buildScene(
+  THREE: typeof import("three"),
+  canvas: HTMLCanvasElement,
+  team: [number, number, number],
+) {
+  const TEAM = new THREE.Color(team[0], team[1], team[2]);
+  const W0 = canvas.clientWidth || window.innerWidth;
+  const H0 = canvas.clientHeight || window.innerHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(W0, H0, false);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x05080d); // OPACO desde el frame 0
+  scene.fog = new THREE.Fog(0x05080d, 6, 13);
+
+  const cam = new THREE.PerspectiveCamera(42, W0 / H0, 0.1, 100);
+  cam.position.set(0, 1.9, 5.4);
+  cam.lookAt(0, -0.55, -0.6);
+
+  scene.add(new THREE.AmbientLight(0x4a587f, 0.55));
+  const key = new THREE.PointLight(0xffffff, 60, 22); key.position.set(2.6, 3.4, 3.0); scene.add(key);
+  const rim = new THREE.PointLight(0xbcd0ff, 30, 24); rim.position.set(-3, -1.5, 3.2); scene.add(rim);
+  const teamLight = new THREE.PointLight(TEAM.getHex(), 42, 26); teamLight.position.set(0, 0.2, 3.0); scene.add(teamLight);
+
+  const disposables: Array<{ dispose: () => void }> = [];
+
+  // fondo: plano oscuro con aro del color del equipo (profundidad de la portería)
+  function bgTexture() {
+    const c = document.createElement("canvas"); c.width = c.height = 512;
+    const x = c.getContext("2d")!;
+    const r = (TEAM.r * 255) | 0, gg = (TEAM.g * 255) | 0, b = (TEAM.b * 255) | 0;
+    const g = x.createRadialGradient(256, 250, 8, 256, 250, 330);
+    g.addColorStop(0, "rgba(6,9,14,1)");
+    g.addColorStop(0.42, `rgba(${(r * 0.55) | 0},${(gg * 0.5) | 0},${(b * 0.5) | 0},1)`);
+    g.addColorStop(1, "rgba(3,5,9,1)");
+    x.fillStyle = "#04070c"; x.fillRect(0, 0, 512, 512);
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+    return new THREE.CanvasTexture(c);
+  }
+  const bgGeo = new THREE.PlaneGeometry(40, 40);
+  const bgMat = new THREE.MeshBasicMaterial({ map: bgTexture() });
+  const bgPlane = new THREE.Mesh(bgGeo, bgMat); bgPlane.position.z = -4; scene.add(bgPlane);
+  disposables.push(bgGeo, bgMat, bgMat.map!);
+
+  // textura de RED (rombos) + membrana muy tenue (para sombrear el pliegue)
+  function netTexture() {
+    const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
+    const x = c.getContext("2d")!;
+    x.clearRect(0, 0, S, S);
+    x.fillStyle = "rgba(255,255,255,0.06)"; x.fillRect(0, 0, S, S);
+    x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 6; x.lineCap = "round";
+    for (let i = -1; i <= 2; i++) {
+      x.beginPath(); x.moveTo(i * S, 0); x.lineTo((i + 1) * S, S); x.stroke();
+      x.beginPath(); x.moveTo(i * S, S); x.lineTo((i + 1) * S, 0); x.stroke();
+    }
+    const tex = new THREE.CanvasTexture(c); tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    return tex;
+  }
+  const netTex = netTexture();
+  const NW = 15, NH = 15, SX = 96, SY = 96;
+  netTex.repeat.set(NW / 0.42, NH / 0.42);
+  const netGeo = new THREE.PlaneGeometry(NW, NH, SX, SY);
+  const netMat = new THREE.MeshStandardMaterial({
+    map: netTex, transparent: true, side: THREE.DoubleSide,
+    color: new THREE.Color(0xffffff).lerp(TEAM, 0.1),
+    emissive: TEAM.clone().multiplyScalar(0.06),
+    roughness: 0.55, metalness: 0, alphaTest: 0.02, depthWrite: false,
+  });
+  const net = new THREE.Mesh(netGeo, netMat); scene.add(net);
+  disposables.push(netGeo, netMat, netTex);
+  const basePos = (netGeo.attributes.position.array as Float32Array).slice();
+  const vcount = netGeo.attributes.position.count;
+
+  // halo aditivo del gol
+  function radialTex() {
+    const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
+    const x = c.getContext("2d")!;
+    const g = x.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+    g.addColorStop(0, "rgba(255,255,255,1)"); g.addColorStop(0.25, "rgba(255,255,255,.5)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    x.fillStyle = g; x.fillRect(0, 0, S, S);
+    return new THREE.CanvasTexture(c);
+  }
+  const glowTex = radialTex();
+  const glowMat = new THREE.SpriteMaterial({ map: glowTex, color: TEAM, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0 });
+  const glow = new THREE.Sprite(glowMat); glow.scale.set(7, 7, 1); glow.position.set(0, 0, 0.4); scene.add(glow);
+  disposables.push(glowMat, glowTex);
+
+  // balón (billboard con la imagen real)
+  const loader = new THREE.TextureLoader();
+  const ballTex = loader.load("/img/matchcenter/balon.png");
+  ballTex.colorSpace = THREE.SRGBColorSpace;
+  const ballGeo = new THREE.PlaneGeometry(1, 1);
+  const ballMat = new THREE.MeshBasicMaterial({ map: ballTex, transparent: true, depthWrite: false });
+  const ball = new THREE.Mesh(ballGeo, ballMat); scene.add(ball);
+  disposables.push(ballGeo, ballMat, ballTex);
+
+  const IMPACT = 1.45;
+  const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
+  const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+  function netState(td: number) {
+    if (td < 0) return { pocket: 0, ripple: 0 };
+    const decay = Math.exp(-2.4 * td);
+    const pocket = 0.9 + 2.1 * decay * Math.cos(8.5 * td);
+    const ripple = 1.5 * decay;
+    return { pocket, ripple };
+  }
+  function deform(t: number) {
+    const td = t - IMPACT;
+    const st = netState(td);
+    const pos = netGeo.attributes.position.array as Float32Array;
+    const sig2 = 2 * 1.15 * 1.15, omega = 13.0, kWave = 2.6, sigR2 = 2 * 2.6 * 2.6;
+    for (let i = 0; i < vcount; i++) {
+      const x = basePos[i * 3], y = basePos[i * 3 + 1];
+      const r = Math.hypot(x, y + 0.12);
+      let z = 0;
+      if (td > 0) {
+        z -= st.pocket * Math.exp(-(r * r) / sig2);
+        z += st.ripple * Math.sin(omega * td - r * kWave) * Math.exp(-(r * r) / sigR2) * 0.5;
+      }
+      pos[i * 3 + 2] = z;
+    }
+    netGeo.attributes.position.needsUpdate = true;
+    netGeo.computeVertexNormals();
+  }
+  function ballAt(t: number) {
+    const tStart = 0.55;
+    if (t < tStart) { ball.visible = false; return; }
+    ball.visible = true;
+    if (t <= IMPACT) {
+      const p = clamp01((t - tStart) / (IMPACT - tStart)), e = easeOut(p);
+      ball.position.set(0, -1.6 + 1.6 * e, 5.0 + (0.05 - 5.0) * e);
+      const s = 1.7 + (0.95 - 1.7) * e; ball.scale.set(s, s, 1);
+      ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
+    } else {
+      const p = clamp01((t - IMPACT) / 0.7);
+      ball.position.set(0, -0.15 * p, 0.05 + (-0.55 - 0.05) * p);
+      const s = 0.95 + (0.62 - 0.95) * p; ball.scale.set(s, s, 1);
+      ball.rotation.z = -7.5 - p * 2.2; ballMat.opacity = 1;
+    }
+  }
+  function revealNet(t: number) {
+    const e = easeOut(clamp01(t / 0.55));
+    net.scale.setScalar(0.2 + 0.8 * e); netMat.opacity = e;
+  }
+  function glowAt(t: number) {
+    const td = t - IMPACT;
+    if (td < 0) { glowMat.opacity = 0; return; }
+    glowMat.opacity = 0.9 * Math.exp(-3.2 * td);
+    const s = 6 + 6 * (1 - Math.exp(-4 * td)); glow.scale.set(s, s, 1);
+  }
+
+  function render(t: number) {
+    revealNet(t); deform(t); ballAt(t); glowAt(t);
+    teamLight.intensity = 42 + (t > IMPACT && t < IMPACT + 0.16 ? 130 : 0);
+    renderer.render(scene, cam);
+  }
+  function resize() {
+    const w = canvas.clientWidth || window.innerWidth, h = canvas.clientHeight || window.innerHeight;
+    renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
+  }
+  function dispose() {
+    for (const d of disposables) { try { d.dispose(); } catch { /* noop */ } }
+    try { renderer.dispose(); } catch { /* noop */ }
+    try { renderer.forceContextLoss(); } catch { /* noop */ }
+  }
+  return { render, resize, dispose };
 }
 
 const GN_CSS = `
-/* Contenedor a pantalla completa (un poco mayor para que la sacudida de cámara
-   no deje huecos). Fundido global al final + shake breve en el impacto. */
-.gnet{position:fixed;inset:-18px;z-index:2147483000;pointer-events:none;overflow:hidden;animation:gnetFade 6.6s ease forwards, gnetShake .6s cubic-bezier(.36,.07,.19,.97) 2.38s}
-@keyframes gnetFade{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
-@keyframes gnetShake{0%,100%{transform:translate(0,0)}16%{transform:translate(-5px,3px)}34%{transform:translate(4px,-4px)}52%{transform:translate(-3px,-2px)}70%{transform:translate(3px,3px)}86%{transform:translate(-2px,1px)}}
-
-/* ── 1) La RED aparece PRIMERO. El fondo OPACO TAPA la pantalla DE GOLPE (fade
-   rápido) para que NO se vea el match center en ningún momento; encima, la malla
-   de rombos se DIBUJA desde el centro. ── */
-.gnet-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgb(9,13,20) 0%, rgb(5,8,13) 55%, rgb(2,4,8) 100%);opacity:0;animation:gnetBgIn .42s ease forwards}
-@keyframes gnetBgIn{0%{opacity:0}100%{opacity:1}}
-/* Glow del color del equipo, ADITIVO (screen) SOBRE el fondo opaco: tinta el
-   centro SIN transparentar. */
-.gnet-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(var(--teamrgb),.06) 0%, rgba(var(--teamrgb),.6) 24%, rgba(var(--teamrgb),.14) 48%, transparent 66%);mix-blend-mode:screen;opacity:0;animation:gnetBgIn .55s ease forwards}
-.gnet-mesh{position:absolute;inset:0;opacity:.9;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin);
-  -webkit-mask-image:radial-gradient(circle at 50% 46%, #000 52%, rgba(0,0,0,.4) 100%);mask-image:radial-gradient(circle at 50% 46%, #000 52%, rgba(0,0,0,.4) 100%);
-  clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;will-change:transform,filter;
-  animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards, gnetWobble 1.05s cubic-bezier(.22,.61,.36,1) 2.38s both}
-@keyframes gnetReveal{0%{clip-path:circle(0% at 50% 46%)}100%{clip-path:circle(165% at 50% 46%)}}
-/* La RED REACCIONA al impacto: golpe seco hacia dentro + 4 rebotes decrecientes
-   hasta asentar (damping). brightness en el pico = latigazo de luz. */
-@keyframes gnetWobble{
-  0%{transform:scale(1) translateY(0) skewX(0deg);filter:none}
-  9%{transform:scale(.93) translateY(2.7vh) skewX(0deg);filter:brightness(1.38)}
-  20%{transform:scale(.955) translateY(1.5vh)}
-  34%{transform:scale(1.036) translateY(-1.9vh)}
-  48%{transform:scale(.98) translateY(1vh)}
-  62%{transform:scale(1.02) translateY(-.9vh)}
-  76%{transform:scale(.994) translateY(.45vh)}
-  88%{transform:scale(1.008) translateY(-.4vh)}
-  100%{transform:scale(1) translateY(0) skewX(0deg);filter:none}
-}
-/* NÚCLEO: copia de la malla recortada al centro que cede CASI EL DOBLE que el
-   borde → la red se deforma como TELA (no como chapa rígida) en el impacto. */
-.gnet-mesh-core{position:absolute;inset:0;opacity:.95;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.55) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.55) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin);
-  -webkit-mask-image:radial-gradient(circle at 50% 46%, #000 0%, #000 26%, transparent 50%);mask-image:radial-gradient(circle at 50% 46%, #000 0%, #000 26%, transparent 50%);
-  clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;will-change:transform,filter;
-  animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards, gnetWobbleCore 1.05s cubic-bezier(.22,.61,.36,1) 2.38s both}
-@keyframes gnetWobbleCore{
-  0%{transform:scale(1) translateY(0);filter:brightness(1)}
-  9%{transform:scale(.84) translateY(4.5vh);filter:brightness(1.6)}
-  20%{transform:scale(.9) translateY(2.6vh);filter:brightness(1.14)}
-  34%{transform:scale(1.075) translateY(-3.2vh)}
-  48%{transform:scale(.962) translateY(1.5vh)}
-  62%{transform:scale(1.04) translateY(-1.5vh)}
-  76%{transform:scale(.99) translateY(.6vh)}
-  88%{transform:scale(1.012) translateY(-.5vh)}
-  100%{transform:scale(1) translateY(0);filter:brightness(1)}
-}
-
-/* ── 3) BOLSA de la red (se forma con el impacto): donde entra el balón la red
-   se HUNDE — malla FINA (la red estirada del fondo, paso 1.15vmin) + halo del
-   COLOR DEL EQUIPO que da la profundidad. SIN NADA de negro (antes un radial
-   negro .93 parecía una mancha/sombra estática): la profundidad la dan la malla
-   densa + el halo + el ABOMBADO elástico (punch → recoil → asienta). ── */
-.gnet-pocket{position:absolute;left:50%;top:46%;width:62vmin;height:62vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.16);opacity:0;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(1.15vmin - .5px), rgba(255,255,255,.55) calc(1.15vmin - .5px) calc(1.15vmin + .5px), rgba(255,255,255,0) calc(1.15vmin + .5px) 2.3vmin),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0) 0 calc(1.15vmin - .5px), rgba(255,255,255,.55) calc(1.15vmin - .5px) calc(1.15vmin + .5px), rgba(255,255,255,0) calc(1.15vmin + .5px) 2.3vmin),
-    radial-gradient(circle, rgba(var(--teamrgb),.6) 0%, rgba(var(--teamrgb),.32) 30%, rgba(var(--teamrgb),.1) 52%, transparent 70%);
-  -webkit-mask-image:radial-gradient(circle, #000 0%, #000 30%, rgba(0,0,0,.45) 52%, transparent 72%);
-  mask-image:radial-gradient(circle, #000 0%, #000 30%, rgba(0,0,0,.45) 52%, transparent 72%);
-  will-change:transform,opacity;
-  animation:gnetPocketPunch 1.05s cubic-bezier(.22,.61,.36,1) 2.36s both}
-@keyframes gnetPocketPunch{0%{opacity:0;transform:translate(-50%,-50%) scale(.16)}9%{opacity:.95;transform:translate(-50%,-50%) scale(1.14)}34%{opacity:.85;transform:translate(-50%,-50%) scale(.92)}62%{opacity:.8;transform:translate(-50%,-50%) scale(1.04)}100%{opacity:.72;transform:translate(-50%,-50%) scale(1)}}
-
-/* Destello sobrio del impacto + onda de la red (vibración) */
-.gnet-flash{position:absolute;left:50%;top:46%;width:66vmin;height:66vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.3);opacity:0;background:radial-gradient(circle, rgba(255,255,255,.7) 0%, rgba(var(--teamrgb),.3) 24%, transparent 52%);mix-blend-mode:screen;animation:gnetFlash .65s ease-out 2.38s forwards}
-@keyframes gnetFlash{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}26%{opacity:.8}100%{opacity:0;transform:translate(-50%,-50%) scale(.92)}}
-.gnet-ring{position:absolute;left:50%;top:46%;width:36px;height:36px;border-radius:50%;border:3px solid rgba(255,255,255,.5);opacity:0;transform:translate(-50%,-50%) scale(.2);animation:gnetRing 1s cubic-bezier(.2,.7,.3,1) 2.38s forwards}
-@keyframes gnetRing{0%{transform:translate(-50%,-50%) scale(.2);opacity:.7}100%{transform:translate(-50%,-50%) scale(30);opacity:0}}
-
-/* ── 2) El BALÓN entra DESPUÉS (la red ya está): aparece en PRIMER PLANO
-   (grande, de frente, cerca de la cámara) y vuela HACIA la red ALEJÁNDOSE — se
-   hace pequeño = entra en PROFUNDIDAD (NO por un lateral) — hasta HUNDIRSE en la
-   bolsa de la red, donde queda ANIDADO (pequeño y profundo). ── */
-.gnet-ball{position:absolute;left:50%;top:46%;height:clamp(82px,24vw,178px);width:auto;opacity:0;transform-origin:center center;will-change:transform,filter;animation:gnetBall 1.55s cubic-bezier(.3,.5,.3,1) 1.5s forwards}
-@keyframes gnetBall{
-  /* primer plano: GRANDE y de frente (cerca de la cámara), motion-blur */
-  0%{transform:translate(-50%, calc(-50% + 16vh)) scale(2.1) rotate(0);opacity:0;filter:drop-shadow(0 28px 42px rgba(0,0,0,.6)) blur(6px)}
-  12%{opacity:1;filter:drop-shadow(0 26px 38px rgba(0,0,0,.6)) blur(3px)}
-  /* vuela HACIA la red ALEJÁNDOSE (encoge = entra en profundidad) */
-  58%{transform:translate(-50%, calc(-50% + 2vh)) scale(.84) rotate(430deg);opacity:1;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5)) blur(.5px)}
-  /* se HUNDE en la bolsa de la red: pequeño y profundo, descansa en el fondo */
-  100%{transform:translate(-50%, calc(-50% + 3vh)) scale(.4) rotate(560deg);opacity:.97;filter:drop-shadow(0 6px 11px rgba(0,0,0,.55)) blur(.4px)}
-}
-
-/* ── 4) Texto cinematográfico (tras el impacto) ── */
-.gnet-text{position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
-.gnet-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnetWord .7s cubic-bezier(.2,1.5,.35,1) 2.7s both}
-@keyframes gnetWord{0%{transform:scale(.35) rotate(-4deg);opacity:0}60%{transform:scale(1.12) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-.gnet-name{font-weight:900;font-size:clamp(22px,5.5vw,40px);color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.65);opacity:0;animation:gnetUp .6s ease 3.05s both}
-.gnet-sub{font-weight:800;font-size:clamp(12px,3vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnetUp .6s ease 3.2s both}
-@keyframes gnetUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
-
-/* Viñeta (encuadre de cine), por encima de todo. */
-.gnet-vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%, transparent 36%, rgba(0,0,0,.34) 72%, rgba(0,0,0,.66) 100%);opacity:0;animation:gnetVig .7s ease forwards}
-@keyframes gnetVig{0%{opacity:0}100%{opacity:1}}
-
+.gnet3d{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden;
+  background:radial-gradient(circle at 50% 44%, rgba(var(--teamrgb),.18), #05080d 62%), #05080d;
+  animation:gnet3dFade 6.6s ease forwards}
+@keyframes gnet3dFade{0%{opacity:1}86%{opacity:1}100%{opacity:0}}
+.gnet3d-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.gnet3d-text{position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnet3dWord .7s cubic-bezier(.2,1.5,.35,1) 1.85s both}
+@keyframes gnet3dWord{0%{transform:scale(.35) rotate(-4deg);opacity:0}60%{transform:scale(1.12) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+.gnet3d-name{font-weight:900;font-size:clamp(22px,5.5vw,40px);color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.65);opacity:0;animation:gnet3dUp .6s ease 2.2s both}
+.gnet3d-sub{font-weight:800;font-size:clamp(12px,3vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnet3dUp .6s ease 2.35s both}
+@keyframes gnet3dUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
 @media (prefers-reduced-motion: reduce){
-  .gnet{animation:gnetFade 4.5s ease forwards!important}
-  .gnet-ball,.gnet-ring,.gnet-flash,.gnet-pocket,.gnet-mesh-core{display:none!important}
-  .gnet-bg,.gnet-mesh{clip-path:none!important;animation:none!important;opacity:.9}
-  .gnet-word{animation:gnetWord .3s ease 0s both!important}
-  .gnet-name,.gnet-sub{animation:gnetUp .3s ease 0s both!important}
+  .gnet3d{animation:gnet3dFade 4.5s ease forwards!important}
+  .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
+  .gnet3d-name,.gnet3d-sub{animation:gnet3dUp .3s ease 0s both!important}
 }
 `;
 
 export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: GoalNetProps) {
   const [target, setTarget] = useState<HTMLElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     setTarget(document.body);
   }, []);
+
+  useEffect(() => {
+    if (!target) return;
+    if (typeof window !== "undefined" && window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return; // fallback: solo fondo opaco + texto (sin WebGL)
+    }
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    let raf = 0;
+    let disposed = false;
+    let startTs: number | null = null;
+    let sceneObj: { render: (t: number) => void; resize: () => void; dispose: () => void } | null = null;
+    const onResize = () => { if (sceneObj) sceneObj.resize(); };
+
+    (async () => {
+      let THREE: typeof import("three");
+      try {
+        THREE = await import("three");
+      } catch {
+        return; // sin three → fallback CSS (fondo+texto)
+      }
+      if (disposed || !canvasRef.current) return;
+      try {
+        sceneObj = buildScene(THREE, canvasRef.current, hexRgb01(color));
+      } catch {
+        return; // WebGL no disponible → fallback
+      }
+      window.addEventListener("resize", onResize);
+      const loop = (ts: number) => {
+        if (disposed) return;
+        if (startTs == null) startTs = ts;
+        const t = (ts - startTs) / 1000;
+        try { sceneObj!.render(Math.min(t, TOTAL)); } catch { /* noop */ }
+        if (t < TOTAL + 0.15) raf = requestAnimationFrame(loop);
+      };
+      raf = requestAnimationFrame(loop);
+    })();
+
+    return () => {
+      disposed = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      if (sceneObj) sceneObj.dispose();
+    };
+  }, [target, fxKey, color]);
+
   if (!target) return null;
 
   const name = ownGoal ? teamName : player ? lastName(player) : "Gol";
   const sub = ownGoal ? `En propia${player ? ` · ${lastName(player)}` : ""}` : teamName;
+  const teamrgb = hexRgb01(color).map((v) => Math.round(v * 255)).join(",");
 
   const node = (
-    <div key={fxKey} className="gnet" style={{ ["--teamrgb" as string]: hexToRgb(color) }}>
+    <div key={fxKey} className="gnet3d" style={{ ["--teamrgb" as string]: teamrgb }}>
       <style>{GN_CSS}</style>
-      <div className="gnet-bg" />
-      <div className="gnet-glow" />
-      <div className="gnet-mesh" />
-      <div className="gnet-mesh-core" />
-      <div className="gnet-pocket" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="gnet-ball" src="/img/matchcenter/balon.png" alt="" draggable={false} />
-      <div className="gnet-flash" />
-      <div className="gnet-ring" />
-      <div className="gnet-text">
-        <div className="gnet-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
-        <div className="gnet-name">{name}</div>
-        <div className="gnet-sub">{sub}</div>
+      <canvas ref={canvasRef} className="gnet3d-cv" />
+      <div className="gnet3d-text">
+        <div className="gnet3d-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
+        <div className="gnet3d-name">{name}</div>
+        <div className="gnet3d-sub">{sub}</div>
       </div>
-      <div className="gnet-vig" />
     </div>
   );
 

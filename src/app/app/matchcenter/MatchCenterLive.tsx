@@ -546,7 +546,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   const [log, setLog] = useState<MatchEvent[]>([]);
   const [narration, setNarration] = useState<string>("");
   const [ball, setBall] = useState({ x: 0.5, y: 0.5 });
-  const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number; player?: string } | null>(null);
+  const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number; player?: string; ownGoal?: boolean } | null>(null);
   const [cardFx, setCardFx] = useState<{ side: "home" | "away"; color: string; key: number; player?: string } | null>(null);
   const [subFx, setSubFx] = useState<{ side: "home" | "away"; key: number; playerOut?: string; playerIn?: string } | null>(null);
   const [shotFx, setShotFx] = useState<{ key: number; x: number; y: number; raised: boolean; slow?: boolean } | null>(null);
@@ -677,7 +677,8 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         setLastScorer({ side: e.side, player: e.player, minute: e.minute });
         lastGoalRef.current = e;
         if (animate) {
-          setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
+          // El autogol lo celebra el RIVAL (beneficiario), no quien la mete en propia.
+          setGoalPulse({ side: e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
           if (coords) {
             setShotFx({ key: Date.now(), x: coords.x, y: coords.y, raised: true });
           }
@@ -1177,7 +1178,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     }
     const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
     if (isGoal && e.side !== "neutral") {
-      setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
+      setGoalPulse({ side: e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
       snd?.goal();
     } else if ((e.type === "yellow" || e.type === "second_yellow" || e.type === "red") && e.side !== "neutral") {
       setCardFx({ side: e.side, color: e.type === "red" ? "#ef4444" : "#eab308", key: Date.now(), player: e.player });

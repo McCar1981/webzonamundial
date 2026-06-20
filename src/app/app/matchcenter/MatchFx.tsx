@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import { lastName } from "@/lib/match-center/names";
 import type { MatchMeta } from "@/lib/match-center/types";
 
-export interface GoalPulse { side: "home" | "away"; key: number; player?: string }
+export interface GoalPulse { side: "home" | "away"; key: number; player?: string; ownGoal?: boolean }
 export interface CardFx { side: "home" | "away"; color: string; key: number; player?: string }
 export interface SubFx { side: "home" | "away"; key: number; playerOut?: string; playerIn?: string }
 
@@ -21,6 +21,15 @@ interface Props {
 }
 
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b";
+
+// Balón (regla del proyecto: SVG, nunca emojis).
+const BallSvg = ({ size = 30 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
+    <circle cx="12" cy="12" r="10.2" fill="#fff" stroke="#0b1825" strokeWidth="1.1" />
+    <path d="M12 6.6l3.4 2.5-1.3 4h-4.2l-1.3-4L12 6.6z" fill="#0b1825" />
+    <path d="M12 1.9l1.7 3.2M3.9 8.3l3.2.7M5.9 18.8l2.1-2.9M18.1 18.8l-2.1-2.9M20.1 9l-3.2.7" stroke="#0b1825" strokeWidth="1" strokeLinecap="round" />
+  </svg>
+);
 
 // Iconos SVG (regla del proyecto: nunca emojis). Heredan el color con currentColor.
 const SwapIcon = ({ size = 14 }: { size?: number }) => (
@@ -42,23 +51,22 @@ const ArrowDownIcon = ({ size = 12 }: { size?: number }) => (
 export default function MatchFx({ meta, goalPulse, cardFx, subFx }: Props) {
   const confetti = useMemo(() => {
     if (!goalPulse) return [];
-    const palette = [GOLD, GOLD2, "#ffffff", meta.home.color, meta.away.color, "#22c55e", "#ff5a8a", "#3b82f6"];
-    return Array.from({ length: 56 }).map((_, i) => {
-      const ang = (Math.random() * 360 * Math.PI) / 180;
-      const dist = 28 + Math.random() * 42; // % del overlay
-      return {
-        id: i,
-        tx: Math.cos(ang) * dist,
-        ty: Math.sin(ang) * dist + 22,
-        rot: Math.random() * 720 - 360,
-        color: palette[i % palette.length],
-        dur: 1.8 + Math.random() * 1.6,
-        delay: Math.random() * 0.25,
-        w: 7 + Math.random() * 7,
-        h: 10 + Math.random() * 10,
-        round: Math.random() < 0.4,
-      };
-    });
+    // Lluvia de confeti DOMINADA por el color de la selección que celebra
+    // (estilo Google), con acentos claros para contraste.
+    const team = goalPulse.side === "home" ? meta.home.color : meta.away.color;
+    const palette = [team, team, team, lighten(team), "#ffffff", GOLD, GOLD2];
+    return Array.from({ length: 80 }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100, // % del ancho
+      drift: (Math.random() * 2 - 1) * 14, // vw de deriva lateral al caer
+      rot: Math.random() * 1080 - 540,
+      color: palette[i % palette.length],
+      dur: 2.2 + Math.random() * 1.4,
+      delay: Math.random() * 0.7,
+      w: 6 + Math.random() * 7,
+      h: 9 + Math.random() * 9,
+      round: Math.random() < 0.35,
+    }));
   }, [goalPulse, meta.home.color, meta.away.color]);
 
   const goalTeam = goalPulse ? (goalPulse.side === "home" ? meta.home : meta.away) : null;
@@ -70,35 +78,42 @@ export default function MatchFx({ meta, goalPulse, cardFx, subFx }: Props) {
     <div style={overlay}>
       <style>{CSS}</style>
 
-      {/* ---------- GOL ---------- */}
+      {/* ---------- GOL (estilo Google: lluvia de confeti del color del equipo) ---------- */}
       {goalPulse && goalTeam && (
-        <div key={`g-${goalPulse.key}`} className="fx-goal">
-          <div className="fx-flash" />
-          <div className="fx-beams" style={{ ["--accent" as string]: goalTeam.color }} />
-          <div className="fx-shock" />
-          {confetti.map((c) => (
-            <span
-              key={c.id}
-              className="fx-conf"
-              style={{
-                background: c.color,
-                width: c.w,
-                height: c.h,
-                borderRadius: c.round ? "50%" : 2,
-                animationDuration: `${c.dur}s`,
-                animationDelay: `${c.delay}s`,
-                ["--tx" as string]: `${c.tx}vw`,
-                ["--ty" as string]: `${c.ty}vh`,
-                ["--r" as string]: `${c.rot}deg`,
-              }}
-            />
-          ))}
-          <div className="fx-goal-center">
-            <div className="fx-goal-word" data-text="¡GOOOL!">¡GOOOL!</div>
-            <div className="fx-lower" style={{ ["--team" as string]: goalTeam.color }}>
-              <span className="fx-lower-bar" />
-              <span className="fx-lower-name">{goalPulse.player || "Gol"}</span>
-              <span className="fx-lower-team">{goalTeam.name}</span>
+        <div
+          key={`g-${goalPulse.key}`}
+          className="fxg"
+          style={{ ["--team" as string]: goalTeam.color, ["--teamrgb" as string]: hexToRgb(goalTeam.color).join(",") }}
+        >
+          <div className="fxg-glow" />
+          <div className="fxg-rain">
+            {confetti.map((c) => (
+              <span
+                key={c.id}
+                className="fxg-piece"
+                style={{
+                  left: `${c.left}%`,
+                  background: c.color,
+                  width: c.w,
+                  height: c.h,
+                  borderRadius: c.round ? "50%" : 2,
+                  animationDuration: `${c.dur}s`,
+                  animationDelay: `${c.delay}s`,
+                  ["--drift" as string]: `${c.drift}vw`,
+                  ["--r" as string]: `${c.rot}deg`,
+                }}
+              />
+            ))}
+          </div>
+          <div className="fxg-center">
+            <div className="fxg-badge">
+              <span className="fxg-ball"><BallSvg size={34} /></span>
+              <span className="fxg-word">{goalPulse.ownGoal ? "¡GOL!" : "¡GOOOL!"}</span>
+            </div>
+            <div className="fxg-lower">
+              <span className="fxg-bar" />
+              <span className="fxg-name">{goalPulse.ownGoal ? goalTeam.name : (goalPulse.player ? lastName(goalPulse.player) : "Gol")}</span>
+              <span className="fxg-sub">{goalPulse.ownGoal ? `En propia${goalPulse.player ? ` · ${lastName(goalPulse.player)}` : ""}` : goalTeam.name}</span>
             </div>
           </div>
         </div>
@@ -177,34 +192,30 @@ const overlay: React.CSSProperties = {
 };
 
 const CSS = `
-.fx-goal,.fx-card-wrap,.fx-sub{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.fxg,.fx-card-wrap,.fx-sub{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 
-/* ---- GOL ---- */
-.fx-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(255,255,255,.95), rgba(255,221,128,.5) 35%, rgba(0,0,0,0) 70%);animation:fxFlash .9s ease forwards}
-@keyframes fxFlash{0%{opacity:.95}30%{opacity:0}50%{opacity:.5}100%{opacity:0}}
-.fx-beams{position:absolute;left:50%;top:46%;width:200%;height:200%;transform:translate(-50%,-50%);
-  background:repeating-conic-gradient(from 0deg, rgba(255,236,170,0) 0deg, rgba(255,236,170,.16) 5deg, rgba(255,236,170,0) 10deg, rgba(255,236,170,0) 18deg);
-  mix-blend-mode:screen;filter:blur(2px);animation:fxSpin 5.5s linear infinite, fxBeamFade 4s ease forwards}
-@keyframes fxSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-@keyframes fxBeamFade{0%{opacity:0}12%{opacity:1}80%{opacity:1}100%{opacity:0}}
-.fx-shock{position:absolute;left:50%;top:46%;width:40px;height:40px;border-radius:50%;border:4px solid rgba(255,255,255,.85);transform:translate(-50%,-50%) scale(0);animation:fxShock 1.1s ease-out forwards}
-@keyframes fxShock{0%{transform:translate(-50%,-50%) scale(0);opacity:.9}100%{transform:translate(-50%,-50%) scale(18);opacity:0}}
-.fx-conf{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);opacity:0;animation-name:fxConf;animation-timing-function:cubic-bezier(.15,.7,.3,1);animation-fill-mode:forwards}
-@keyframes fxConf{0%{opacity:1;transform:translate(-50%,-50%) rotate(0)}85%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) rotate(var(--r))}}
-.fx-goal-center{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px}
-.fx-goal-word{position:relative;font-weight:900;letter-spacing:3px;line-height:.9;font-size:clamp(54px,13vw,148px);
-  background:linear-gradient(100deg,#e8d48b 0%,#fff 18%,#c9a84c 38%,#fff 58%,#e8d48b 80%);background-size:280% 100%;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-  filter:drop-shadow(0 8px 20px rgba(0,0,0,.65));animation:fxWordIn .65s cubic-bezier(.2,1.5,.35,1) both, fxShine 1.8s linear .3s infinite}
-.fx-goal-word::after{content:attr(data-text);position:absolute;inset:0;-webkit-text-fill-color:transparent;color:transparent;-webkit-text-stroke:2px rgba(0,0,0,.35);z-index:-1}
-@keyframes fxWordIn{0%{transform:scale(.3) rotate(-7deg);opacity:0}60%{transform:scale(1.14) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-@keyframes fxShine{0%{background-position:0% 0}100%{background-position:280% 0}}
-.fx-lower{display:flex;align-items:center;gap:0;max-width:94vw;background:linear-gradient(90deg, rgba(11,24,37,.96), rgba(11,24,37,.82));border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);box-shadow:0 14px 36px rgba(0,0,0,.5);animation:fxLowerIn .5s .25s cubic-bezier(.2,1,.3,1) both}
-.fx-lower-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* ---- GOL (estilo Google: lluvia de confeti del color de la seleccion) ---- */
+.fxg{overflow:hidden}
 @keyframes fxLowerIn{0%{transform:translateY(34px) scale(.92);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
-.fx-lower-bar{width:8px;align-self:stretch;background:var(--team)}
-.fx-lower-name{padding:10px 14px;font-size:clamp(18px,3.4vw,30px);font-weight:900;color:#fff}
-.fx-lower-team{padding:10px 16px 10px 6px;font-size:clamp(12px,2vw,16px);font-weight:800;color:var(--team);text-transform:uppercase;letter-spacing:1px}
+.fxg-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%, rgba(var(--teamrgb),.5), rgba(var(--teamrgb),0) 60%);animation:fxgGlow 2.8s ease forwards}
+@keyframes fxgGlow{0%{opacity:0}10%{opacity:1}70%{opacity:.7}100%{opacity:0}}
+.fxg-rain{position:absolute;inset:0;pointer-events:none}
+.fxg-piece{position:absolute;top:-12vh;opacity:0;will-change:transform;animation-name:fxgFall;animation-timing-function:cubic-bezier(.3,.25,.45,1);animation-fill-mode:forwards}
+@keyframes fxgFall{0%{opacity:0;transform:translateY(0) translateX(0) rotate(0)}8%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateY(124vh) translateX(var(--drift)) rotate(var(--r))}}
+.fxg-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px}
+.fxg-badge{display:flex;align-items:center;gap:12px}
+.fxg-ball{display:inline-flex;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));animation:fxgBall .7s cubic-bezier(.2,1.4,.3,1) both}
+@keyframes fxgBall{0%{transform:translateY(-46px) scale(.4) rotate(-120deg);opacity:0}60%{transform:translateY(6px) scale(1.12) rotate(12deg);opacity:1}100%{transform:translateY(0) scale(1) rotate(0)}}
+.fxg-word{font-weight:900;letter-spacing:2px;line-height:.9;font-size:clamp(46px,11vw,120px);
+  background:linear-gradient(100deg, var(--team) 0%, #fff 26%, var(--team) 52%, #fff 78%, var(--team) 100%);background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.6));animation:fxgPop .6s cubic-bezier(.2,1.5,.35,1) both, fxgShine 1.8s linear .3s infinite}
+@keyframes fxgPop{0%{transform:scale(.3) rotate(-6deg);opacity:0}60%{transform:scale(1.12) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes fxgShine{0%{background-position:0 0}100%{background-position:260% 0}}
+.fxg-lower{display:flex;align-items:center;gap:0;max-width:94vw;background:linear-gradient(90deg, rgba(11,24,37,.96), rgba(11,24,37,.82));border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);box-shadow:0 14px 36px rgba(0,0,0,.5);animation:fxLowerIn .5s .25s cubic-bezier(.2,1,.3,1) both}
+.fxg-bar{width:8px;align-self:stretch;background:var(--team)}
+.fxg-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:10px 14px;font-size:clamp(18px,3.4vw,30px);font-weight:900;color:#fff}
+.fxg-sub{padding:10px 16px 10px 6px;font-size:clamp(12px,2vw,16px);font-weight:800;color:var(--team);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
 
 /* ---- TARJETA ---- */
 .fx-card-dim{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%, rgba(0,0,0,0), rgba(0,0,0,.55));animation:fxDim 2.6s ease forwards}
@@ -233,7 +244,11 @@ const CSS = `
 .fx-sub-dim{color:#8a94b0!important}
 
 @media (prefers-reduced-motion: reduce){
-  .fx-beams,.fx-card,.fx-card-sheen{animation-duration:.01s!important}
+  .fx-card,.fx-card-sheen{animation-duration:.01s!important}
+  .fxg-rain{display:none}
+  .fxg-word{animation:fxgPop .4s ease both!important}
+  .fxg-glow{animation-duration:.5s!important}
+  .fxg-ball{animation-duration:.4s!important}
 }
 @media (max-width:640px){
   .fx-card-stage{top:32%}
@@ -242,9 +257,9 @@ const CSS = `
   .fx-card-kind{font-size:11px;padding:3px 7px}
   .fx-card-name{font-size:18px}
   .fx-card-team{font-size:11px}
-  .fx-lower{max-width:96vw}
-  .fx-lower-name{font-size:20px;padding:8px 10px}
-  .fx-lower-team{font-size:12px;padding:8px 10px 8px 4px}
+  .fxg-lower{max-width:96vw}
+  .fxg-name{font-size:20px;padding:8px 10px}
+  .fxg-sub{font-size:12px;padding:8px 10px 8px 4px}
   .fx-sub-card{min-width:88vw}
 }
 `;

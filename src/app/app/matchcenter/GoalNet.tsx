@@ -27,44 +27,6 @@ function hexToRgb(hex: string): string {
   return `${(n >> 16) & 255},${(n >> 8) & 255},${n & 255}`;
 }
 
-/** Balón de fútbol clásico (blanco con pentágonos negros). SVG, nunca emoji. */
-function SoccerBall() {
-  return (
-    <svg className="gnet-ball" viewBox="0 0 100 100" aria-hidden>
-      <defs>
-        <radialGradient id="gnetBallG" cx="38%" cy="30%" r="80%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#cfd6de" />
-        </radialGradient>
-        <clipPath id="gnetBallClip">
-          <circle cx="50" cy="50" r="47" />
-        </clipPath>
-      </defs>
-      <circle cx="50" cy="50" r="47" fill="url(#gnetBallG)" stroke="#0b0f16" strokeWidth="2.5" />
-      <g clipPath="url(#gnetBallClip)">
-        {/* Pentágono central */}
-        <polygon points="50,33 64,43.5 58.6,60.5 41.4,60.5 36,43.5" fill="#0b0f16" />
-        {/* Costuras hacia el borde */}
-        <g stroke="#0b0f16" strokeWidth="3.2" fill="none" strokeLinecap="round">
-          <path d="M50,33 L50,8" />
-          <path d="M64,43.5 L86,34" />
-          <path d="M58.6,60.5 L72,82" />
-          <path d="M41.4,60.5 L28,82" />
-          <path d="M36,43.5 L14,34" />
-        </g>
-        {/* Pentágonos del borde (el clip los recorta al contorno del balón) */}
-        <g fill="#0b0f16">
-          <polygon points="50,1 62,-8 50,-19 38,-8" />
-          <polygon points="92,28 105,23 107,7 94,12" />
-          <polygon points="75,88 88,99 99,86 87,76" />
-          <polygon points="25,88 12,99 1,86 13,76" />
-          <polygon points="8,28 -5,23 -7,7 6,12" />
-        </g>
-      </g>
-    </svg>
-  );
-}
-
 const GN_CSS = `
 .gnet{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden}
 /* Fondo tintado que se revela en círculo desde el punto de impacto */
@@ -80,14 +42,21 @@ const GN_CSS = `
 /* Onda de impacto */
 .gnet-ring{position:absolute;left:50%;top:44%;width:42px;height:42px;border-radius:50%;border:5px solid rgba(255,255,255,.92);transform:translate(-50%,-50%) scale(.2);animation:gnetRing 1s cubic-bezier(.2,.7,.3,1) .34s forwards}
 @keyframes gnetRing{0%{transform:translate(-50%,-50%) scale(.2);opacity:.95}100%{transform:translate(-50%,-50%) scale(36);opacity:0}}
-/* Balón que entra desde el lateral inferior hacia la portería (centro) */
-.gnet-ball{position:absolute;left:50%;top:44%;width:clamp(58px,18vw,124px);height:clamp(58px,18vw,124px);filter:drop-shadow(0 10px 20px rgba(0,0,0,.55));animation:gnetBall .6s cubic-bezier(.3,.5,.35,1) forwards}
+/* Destello de impacto cuando el balón golpea la red */
+.gnet-flash{position:absolute;left:50%;top:44%;width:62vmin;height:62vmin;border-radius:50%;transform:translate(-50%,-50%) scale(.2);opacity:0;
+  background:radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(var(--teamrgb),.55) 32%, rgba(255,255,255,0) 66%);
+  mix-blend-mode:screen;animation:gnetFlash .55s ease-out .42s forwards}
+@keyframes gnetFlash{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}28%{opacity:.95}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}
+/* Balón (imagen real): entra desde el lateral GIRANDO, CRECE al acercarse
+   (perspectiva), proyecta SOMBRA creciente (volumen) con leve motion-blur, y
+   se hunde en la red al entrar al arco. */
+.gnet-ball{position:absolute;left:50%;top:44%;height:clamp(66px,20vw,140px);width:auto;transform-origin:center center;will-change:transform,filter;animation:gnetBall .64s cubic-bezier(.28,.5,.35,1) forwards}
 @keyframes gnetBall{
-  0%{transform:translate(calc(-50% - 64vw), calc(-50% + 36vh)) scale(.5) rotate(0);opacity:0}
-  16%{opacity:1}
-  48%{transform:translate(calc(-50% - 22vw), calc(-50% - 16vh)) scale(.96) rotate(320deg);opacity:1}
-  74%{transform:translate(-50%,-50%) scale(1.06) rotate(560deg);opacity:1}
-  100%{transform:translate(-50%,-50%) scale(.72) rotate(640deg);opacity:0}
+  0%{transform:translate(calc(-50% - 72vw), calc(-50% + 42vh)) scale(.3) rotate(0);opacity:0;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4)) blur(2.4px)}
+  14%{opacity:1;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45)) blur(1.4px)}
+  50%{transform:translate(calc(-50% - 18vw), calc(-50% - 15vh)) scale(.9) rotate(380deg);opacity:1;filter:drop-shadow(0 18px 26px rgba(0,0,0,.5)) blur(.4px)}
+  74%{transform:translate(-50%,-50%) scale(1.24) rotate(660deg);opacity:1;filter:drop-shadow(0 26px 40px rgba(0,0,0,.6)) blur(0)}
+  100%{transform:translate(-50%,calc(-50% + 5vh)) scale(.72) rotate(760deg);opacity:0;filter:drop-shadow(0 10px 16px rgba(0,0,0,.4)) blur(3px)}
 }
 /* Texto */
 .gnet-text{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -97,7 +66,7 @@ const GN_CSS = `
 .gnet-sub{font-weight:800;font-size:clamp(12px,3vw,17px);letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.9);opacity:0;animation:gnetUp .5s ease .96s both}
 @keyframes gnetUp{0%{transform:translateY(18px);opacity:0}100%{transform:translateY(0);opacity:1}}
 @media (prefers-reduced-motion: reduce){
-  .gnet-ball,.gnet-ring{display:none!important}
+  .gnet-ball,.gnet-ring,.gnet-flash{display:none!important}
   .gnet-bg{clip-path:none!important;animation:gnetMesh 2.2s ease forwards!important}
   .gnet-mesh{clip-path:none!important;animation:gnetMesh 2.2s ease forwards!important}
   .gnet-word{animation:gnetWord .3s ease both!important}
@@ -120,7 +89,9 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
       <div className="gnet-bg" />
       <div className="gnet-mesh" />
       <div className="gnet-ring" />
-      <SoccerBall />
+      <div className="gnet-flash" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="gnet-ball" src="/img/matchcenter/balon.png" alt="" draggable={false} />
       <div className="gnet-text">
         <div className="gnet-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
         <div className="gnet-name">{name}</div>

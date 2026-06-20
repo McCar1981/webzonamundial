@@ -1459,8 +1459,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
             {tab === "general" && (
             <>
             {/* Previa editorial del partido (acordeón, fotos reales de las dos
-                selecciones): ARRIBA del todo. El campo va justo debajo. */}
-            {feed.mode === "live" && matchId < 9000 && (
+                selecciones): SOLO antes del saque. Al arrancar el partido se
+                oculta para que el juego en vivo (campo + relato) suba y mande. */}
+            {feed.mode === "live" && matchId < 9000 && !isInPlay(status) && !finished && (
               <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
             )}
             {/* Controles */}

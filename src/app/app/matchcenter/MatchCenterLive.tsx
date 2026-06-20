@@ -531,11 +531,13 @@ interface Props {
   matchId: number;
   meta: MatchMeta;
   sim: boolean;
+  /** Demo: fuerza la simulación aunque el partido sea solo-real (botón "Ver demo en vivo"). */
+  demo?: boolean;
   /** Foto que acompaña al partido en la previa (jugador estrella / estadio). */
   heroImage?: string;
 }
 
-export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props) {
+export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }: Props) {
   const [feed, setFeed] = useState<MatchFeed | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -773,7 +775,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     setLoading(true);
     setError(null);
     try {
-      const qs = sim ? "sim=1&ai=1" : "ai=1";
+      const qs = demo ? "sim=1&demo=1&ai=1" : sim ? "sim=1&ai=1" : "ai=1";
       const r = await fetch(`/api/match-center/live/${matchId}?${qs}`, { cache: "no-store" });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const data = (await r.json()) as MatchFeed;
@@ -1475,6 +1477,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               </button>
               {feed.mode === "sim" && (
                 <>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "6px 10px", borderRadius: 8, fontSize: 11, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: "#0b1825", background: GOLD2 }}>
+                    Simulación · Demo
+                  </span>
                   <button onClick={() => setPaused((p) => !p)} disabled={finished} style={btnGhost}>
                     <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>{paused ? <PlayIcon size={13} /> : <PauseIcon size={13} />} {paused ? "Reanudar" : "Pausa"}</span>
                   </button>

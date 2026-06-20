@@ -20,7 +20,7 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { id: string };
-  searchParams: { sim?: string };
+  searchParams: { sim?: string; demo?: string };
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
@@ -42,6 +42,7 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
   const meta = matchId != null ? buildMeta(matchId) : null;
   if (matchId == null || !meta) notFound();
   const sim = searchParams?.sim === "1";
+  const demo = searchParams?.demo === "1";
   // Foto que acompaña al partido (jugador estrella local; respaldo: estadio).
   const heroImage = await matchHeroImage(meta);
   return (
@@ -53,7 +54,7 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
           awayName={meta.away.name}
         />
       </div>
-      <MatchCenterLive matchId={matchId} meta={meta} sim={sim} heroImage={heroImage} />
+      <MatchCenterLive matchId={matchId} meta={meta} sim={sim} demo={demo} heroImage={heroImage} />
       <MicroDuels matchId={matchId} />
       <MicroHistory matchId={matchId} />
       <MicroLive matchId={matchId} />

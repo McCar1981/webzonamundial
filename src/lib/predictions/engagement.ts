@@ -18,8 +18,11 @@ import { sendEmail, brandedEmail, escapeHtml } from "@/lib/email";
 
 const SITE = "https://zonamundial.app";
 const CATEGORY = "predictions-reminder";
-// Solo recordamos a quien tenga una cadena que valga la pena salvar.
-const STREAK_REMINDER_MIN_DAYS = 2;
+// Recordamos a partir del PRIMER día de racha (1): quien hizo su primer
+// check-in ayer y no ha vuelto hoy es justo la cohorte que más se fuga
+// (día 1→2). Con el umbral en 2, el usuario nuevo NUNCA recibía el empujón
+// del día 1 (era estructuralmente imposible). Retención día-1.
+const STREAK_REMINDER_MIN_DAYS = 1;
 const PLAY_URL = `${SITE}/app/predicciones/jugar`;
 
 /** YYYY-MM-DD UTC del día anterior a `ref`. */
@@ -162,12 +165,19 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
     const nextDays = days + 1;
     const reward = dailyCheckinReward(nextDays);
     const name = (r.username as string | null)?.trim() || "crack";
+    const dayWord = days === 1 ? "día" : "días";
+    // El usuario de día 1 (racha=1) aún no tiene "racha en peligro" emocional:
+    // el gancho es "arráncala/no la pierdas", no "la perderás".
+    const pushTitle =
+      days === 1
+        ? "Vuelve hoy y arranca tu racha"
+        : `Tu racha de ${days} días está en peligro`;
     let touched = false;
 
     // Push (si no ha desactivado el canal).
     if (!pushOut.has(uid)) {
       const sent = await pushToUser(uid, {
-        title: `Tu racha de ${days} días está en peligro`,
+        title: pushTitle,
         body: `Haz tu check-in de hoy y súbela a ${nextDays}. Te esperan ${reward.coins} ${COIN_NAME}.`,
         url: PLAY_URL,
         tag: "predictions-streak",
@@ -182,12 +192,12 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
       if (email) {
         const ok = await sendEmail({
           to: email,
-          subject: `No pierdas tu racha de ${days} días en ZonaMundial`,
+          subject: `No pierdas tu racha de ${days} ${dayWord} en ZonaMundial`,
           html: brandedEmail({
-            preheader: `Tu check-in diario te espera — racha de ${days} días en juego.`,
+            preheader: `Tu check-in diario te espera — racha de ${days} ${dayWord} en juego.`,
             heading: `Hola ${escapeHtml(name)}, tu racha está en juego`,
             bodyHtml: `
-              <p style="margin:0 0 16px;">Llevas <strong>${days} días</strong> seguidos de check-in en Predicciones. Si no entras hoy, tu racha vuelve a cero.</p>
+              <p style="margin:0 0 16px;">Llevas <strong>${days} ${dayWord}</strong> seguidos de check-in en Predicciones. Si no entras hoy, tu racha vuelve a cero.</p>
               <p style="margin:0 0 16px;">Haz tu check-in de hoy para subirla a <strong>${nextDays} días</strong> y llevarte <strong>${reward.coins} ${escapeHtml(COIN_NAME)}</strong>${reward.chest ? " + un cofre" : ""}.</p>
               <p style="margin:0;color:#6b7280;font-size:13px;">Solo te toma unos segundos.</p>
             `,

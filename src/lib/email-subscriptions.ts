@@ -52,21 +52,32 @@ export async function subscribe(opts: {
     // Upsert por (email, kind). Si existe inactiva, la activamos.
     const { data: existing } = await admin
       .from("email_subscriptions")
-      .select("id, unsubscribed_at")
+      .select("id, unsubscribed_at, user_id")
       .eq("email", email)
       .eq("kind", kind)
       .maybeSingle();
 
     if (existing) {
       if (!existing.unsubscribed_at) {
+        // Backfill del user_id si la fila se creó sin él (p. ej. la
+        // auto-suscripción de /api/registro, anterior a que el usuario exista).
+        // Sin user_id, el digest y los emails por-usuario (racha) no pueden
+        // cruzar email↔usuario y nunca se envían a esa persona.
+        if (!existing.user_id && opts.userId) {
+          await admin
+            .from("email_subscriptions")
+            .update({ user_id: opts.userId })
+            .eq("id", existing.id);
+        }
         return { ok: true, alreadyActive: true };
       }
-      // Re-suscribir: limpia el unsubscribed_at.
+      // Re-suscribir: limpia el unsubscribed_at (y rellena user_id si falta).
       const { error } = await admin
         .from("email_subscriptions")
         .update({
           unsubscribed_at: null,
           source: opts.source ?? "resubscribe",
+          ...(opts.userId ? { user_id: opts.userId } : {}),
         })
         .eq("id", existing.id);
       if (error) return { ok: false, alreadyActive: false, error: error.message };

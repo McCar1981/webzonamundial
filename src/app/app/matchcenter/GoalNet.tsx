@@ -137,9 +137,48 @@ function buildScene(
   const ball = new THREE.Mesh(ballGeo, ballMat); scene.add(ball);
   disposables.push(ballGeo, ballMat, ballTex);
 
+  // confeti de celebración (color de la selección + blanco + dorado)
+  const CN = 160;
+  const confGeo = new THREE.BufferGeometry();
+  const confPos = new Float32Array(CN * 3);
+  const confCol = new Float32Array(CN * 3);
+  const confVel: Array<{ x: number; y: number; z: number }> = [];
+  const confBase: Array<{ x: number; y: number; z: number }> = [];
+  const white = new THREE.Color(0xffffff), gold = new THREE.Color(0xffd76a);
+  for (let i = 0; i < CN; i++) {
+    const ang = Math.random() * Math.PI * 2, sp = 2.5 + Math.random() * 4.5;
+    confVel.push({ x: Math.cos(ang) * sp * 0.7, y: 2.5 + Math.random() * 4.5, z: 1 + Math.random() * 2.5 });
+    confBase.push({ x: (Math.random() - 0.5) * 1.2, y: (Math.random() - 0.5) * 0.8, z: 0.2 });
+    const c = Math.random() < 0.5 ? TEAM : (Math.random() < 0.5 ? white : gold);
+    confCol[i * 3] = c.r; confCol[i * 3 + 1] = c.g; confCol[i * 3 + 2] = c.b;
+    confPos[i * 3] = confBase[i].x; confPos[i * 3 + 1] = confBase[i].y; confPos[i * 3 + 2] = confBase[i].z;
+  }
+  confGeo.setAttribute("position", new THREE.BufferAttribute(confPos, 3));
+  confGeo.setAttribute("color", new THREE.BufferAttribute(confCol, 3));
+  const confCanvas = document.createElement("canvas"); confCanvas.width = confCanvas.height = 32;
+  const ccx = confCanvas.getContext("2d")!; ccx.fillStyle = "#fff"; ccx.fillRect(6, 4, 20, 24);
+  const confTexture = new THREE.CanvasTexture(confCanvas);
+  const confMat = new THREE.PointsMaterial({ size: 0.42, map: confTexture, vertexColors: true, transparent: true, depthWrite: false, opacity: 0 });
+  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); scene.add(confetti);
+  disposables.push(confGeo, confMat, confTexture);
+
   const IMPACT = 1.45;
   const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
   const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+  function confettiAt(t: number) {
+    const td = t - IMPACT;
+    if (td < 0) { confMat.opacity = 0; return; }
+    confMat.opacity = Math.max(0, 1 - td / 2.6);
+    const p = confGeo.attributes.position.array as Float32Array;
+    for (let i = 0; i < CN; i++) {
+      const v = confVel[i], b = confBase[i];
+      p[i * 3] = b.x + v.x * td;
+      p[i * 3 + 1] = b.y + v.y * td - 4.4 * td * td; // gravedad
+      p[i * 3 + 2] = b.z + v.z * td * 0.4;
+    }
+    confGeo.attributes.position.needsUpdate = true;
+  }
 
   function netState(td: number) {
     if (td < 0) return { pocket: 0, ripple: 0 };
@@ -194,8 +233,11 @@ function buildScene(
   }
 
   function render(t: number) {
-    revealNet(t); deform(t); ballAt(t); glowAt(t);
+    revealNet(t); deform(t); ballAt(t); glowAt(t); confettiAt(t);
     teamLight.intensity = 42 + (t > IMPACT && t < IMPACT + 0.16 ? 130 : 0);
+    // dolly: empuje suave de cámara hacia la red en el impacto (energía)
+    cam.position.z = 5.4 - 0.55 * easeOut(clamp01((t - IMPACT) / 1.2));
+    cam.lookAt(0, -0.55, -0.6);
     renderer.render(scene, cam);
   }
   function resize() {

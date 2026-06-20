@@ -36,10 +36,12 @@ const GN_CSS = `
 @keyframes gnetFade{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
 @keyframes gnetShake{0%,100%{transform:translate(0,0)}14%{transform:translate(-6px,4px)}30%{transform:translate(5px,-5px)}46%{transform:translate(-4px,-3px)}62%{transform:translate(4px,4px)}80%{transform:translate(-3px,2px)}}
 
-/* ── 1) La RED aparece PRIMERO: fondo OPACO tintado + malla de rombos, se
-   revelan (clip-path circular) hasta cubrir TODA la pantalla. Sin
-   backdrop-filter (causaba parpadeo); el fondo tapa el match center. ── */
-.gnet-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(var(--teamrgb),.5) 0%, rgba(4,8,14,.97) 60%, rgba(3,6,11,.99) 100%);clip-path:circle(0% at 50% 46%);transform-origin:50% 46%;animation:gnetReveal 1.3s cubic-bezier(.25,.7,.3,1) forwards, gnetBillow 1.2s cubic-bezier(.3,1.5,.4,1) 2.58s}
+/* ── 1) La RED aparece PRIMERO. El fondo OPACO TAPA la pantalla DE GOLPE (fade
+   rápido, sin clip-path) para que NO se vea el match center en ningún momento
+   (era la "intermitencia"); encima, la malla de rombos se DIBUJA desde el
+   centro. Sin backdrop-filter (parpadeaba en móvil). ── */
+.gnet-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%, rgba(var(--teamrgb),.5) 0%, rgba(4,8,14,.98) 58%, rgba(3,6,11,1) 100%);opacity:0;transform-origin:50% 46%;animation:gnetBgIn .42s ease forwards, gnetBillow 1.2s cubic-bezier(.3,1.5,.4,1) 2.58s}
+@keyframes gnetBgIn{0%{opacity:0}100%{opacity:1}}
 .gnet-mesh{position:absolute;inset:0;opacity:.9;
   background-image:
     repeating-linear-gradient(45deg, rgba(255,255,255,0) 0 calc(3.4vmin - 1px), rgba(255,255,255,.5) calc(3.4vmin - 1px) calc(3.4vmin + 1px), rgba(255,255,255,0) calc(3.4vmin + 1px) 6.8vmin),

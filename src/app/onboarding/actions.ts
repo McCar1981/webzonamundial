@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { sendWelcomeEmail } from "@/lib/email";
+import { subscribe } from "@/lib/email-subscriptions";
 import { getCreadorBySlug } from "@/data/creadores";
 import { getSeleccionBySlug } from "@/data/selecciones";
 import { COUNTRIES } from "@/lib/countries";
@@ -109,6 +110,17 @@ export async function completeOnboardingAction(
       teamName,
       creatorName,
     });
+    // Alta en el digest diario con el user_id REAL. Es lo que habilita que el
+    // digest y los emails por-usuario (recordatorio de racha) lleguen al
+    // usuario: sin esta fila con user_id, el canal email queda mudo (los OAuth
+    // no pasan por la auto-suscripción de /api/registro). Idempotente + RGPD
+    // (baja en el footer y en /cuenta/notificaciones).
+    void subscribe({
+      email: user.email,
+      userId: user.id,
+      kind: "daily-digest",
+      source: "onboarding",
+    });
   }
 
   revalidatePath("/");
@@ -128,6 +140,30 @@ export async function skipOnboardingAction(next?: string) {
     .from("profiles")
     .update({ onboarded_at: new Date().toISOString() })
     .eq("id", user.id);
+
+  // Bienvenida + alta en el digest TAMBIÉN para quien salta el wizard: sin
+  // esto, el que pulsa "Saltar" se quedaba sin NINGÚN email de ciclo de vida
+  // (ni bienvenida ni digest). Best-effort: un fallo de email no rompe el skip.
+  if (user.email) {
+    try {
+      const { data: prof } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", user.id)
+        .maybeSingle();
+      const username =
+        (prof?.username as string | null)?.trim() || user.email.split("@")[0];
+      await sendWelcomeEmail({ to: user.email, username });
+      await subscribe({
+        email: user.email,
+        userId: user.id,
+        kind: "daily-digest",
+        source: "onboarding-skip",
+      });
+    } catch {
+      // no-op: la bienvenida/alta es best-effort, no debe bloquear el skip
+    }
+  }
 
   // Respetar el destino pedido antes de loguearse (p. ej. volver a la peña
   // del bar para completar la unión). Same-origin only: nunca open-redirect.

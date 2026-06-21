@@ -46,12 +46,7 @@ function buildScene(
   THREE: typeof import("three"),
   canvas: HTMLCanvasElement,
   colorHex: string,
-  seed: number,
 ) {
-  // Punto de impacto DESCENTRADO por gol (anti-repetición): cada gol entra por
-  // un sitio distinto de la portería en vez de siempre al centro.
-  const HX = (((seed % 5) + 5) % 5 - 2) * 0.42;          // ∈ {-0.84..0.84}
-  const HY = ((((seed >> 4) % 3) + 3) % 3 - 1) * 0.38;   // ∈ {-0.38,0,0.38}
   // setStyle interpreta el hex como sRGB (color-managed): el tinte del equipo
   // sale fiel (el constructor numérico lo trataría como lineal y desviaría el color).
   const TEAM = new THREE.Color();
@@ -115,24 +110,24 @@ function buildScene(
     const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
     const x = c.getContext("2d")!;
     x.clearRect(0, 0, S, S);
-    x.fillStyle = "rgba(255,255,255,0.05)"; x.fillRect(0, 0, S, S);
+    x.fillStyle = "rgba(255,255,255,0.09)"; x.fillRect(0, 0, S, S);   // membrana más visible
     x.lineCap = "round";
     const diag = (dir: 1 | -1) => {
       for (let i = -1; i <= 2; i++) {
         const x0 = i * S, y0 = dir > 0 ? 0 : S, x1 = (i + 1) * S, y1 = dir > 0 ? S : 0;
-        x.strokeStyle = "rgba(0,0,0,0.28)"; x.lineWidth = 6;                 // sombra
+        x.strokeStyle = "rgba(0,0,0,0.35)"; x.lineWidth = 10;                // sombra (cuerda gruesa)
         x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
-        x.strokeStyle = "rgba(226,233,247,0.9)"; x.lineWidth = 3.4;          // cuerpo
+        x.strokeStyle = "rgba(234,240,252,0.97)"; x.lineWidth = 6;           // cuerpo
         x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
-        x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 1.1;         // brillo
+        x.strokeStyle = "rgba(255,255,255,1)"; x.lineWidth = 2.4;            // brillo
         x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
       }
     };
     diag(1); diag(-1);
-    // nudos en los cruces de la rejilla diamante (esquinas + centro del tile)
-    x.fillStyle = "rgba(255,255,255,0.96)";
+    // NUDOS gruesos en los cruces de la rejilla diamante (con sombra + brillo)
     for (const [kx, ky] of [[0, 0], [S, 0], [0, S], [S, S], [S / 2, S / 2]]) {
-      x.beginPath(); x.arc(kx, ky, 3.4, 0, Math.PI * 2); x.fill();
+      x.fillStyle = "rgba(0,0,0,0.3)"; x.beginPath(); x.arc(kx, ky, 6.5, 0, Math.PI * 2); x.fill();
+      x.fillStyle = "rgba(255,255,255,0.98)"; x.beginPath(); x.arc(kx, ky, 5, 0, Math.PI * 2); x.fill();
     }
     const tex = new THREE.CanvasTexture(c); tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
     return tex;
@@ -141,7 +136,7 @@ function buildScene(
   // 48×48 = 2401 vértices (antes 96×96 = 9409): ~4× menos trabajo de deformación
   // y de normales por frame. El embudo+onda son de baja frecuencia → se ve igual.
   const NW = 15, NH = 15, SX = 48, SY = 48;
-  netTex.repeat.set(NW / 0.42, NH / 0.42);
+  netTex.repeat.set(NW / 0.55, NH / 0.55); // celdas algo más grandes → la red "rombo" se lee mejor
   const netGeo = new THREE.PlaneGeometry(NW, NH, SX, SY);
   // Lambert (no PBR): fragment shader mucho más barato a pantalla completa con
   // varias luces; para una red tintada difusa el resultado es casi idéntico.
@@ -167,7 +162,7 @@ function buildScene(
   }
   const glowTex = radialTex();
   const glowMat = new THREE.SpriteMaterial({ map: glowTex, color: TEAM, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0 });
-  const glow = new THREE.Sprite(glowMat); glow.scale.set(7, 7, 1); glow.position.set(HX, HY, 0.4); scene.add(glow);
+  const glow = new THREE.Sprite(glowMat); glow.scale.set(7, 7, 1); glow.position.set(0, 0, 0.4); scene.add(glow);
   disposables.push(glowMat, glowTex);
 
   // balón (billboard con la imagen real)
@@ -179,6 +174,21 @@ function buildScene(
   const ball = new THREE.Mesh(ballGeo, ballMat); scene.add(ball);
   ball.renderOrder = 5; // SIEMPRE delante de la red (la red lo frena, no lo traspasa)
   disposables.push(ballGeo, ballMat, ballTex);
+
+  // ESTELA/COMETA del balón en vuelo: sprites "fantasma" de la imagen rezagados
+  // (motion-blur de cámara lenta) + RIM aditivo detrás (lo separa del fondo, deja
+  // de parecer pegatina). Reutilizan ballTex/glowTex → cero VRAM nueva.
+  const TRAIL = 4;
+  const ghostOpa = [0.34, 0.22, 0.13, 0.07];
+  const ghosts: InstanceType<typeof THREE.Sprite>[] = [];
+  for (let i = 0; i < TRAIL; i++) {
+    const gm = new THREE.SpriteMaterial({ map: ballTex, transparent: true, depthWrite: false, opacity: 0 });
+    const g = new THREE.Sprite(gm); g.renderOrder = 4; g.visible = false; scene.add(g);
+    ghosts.push(g); disposables.push(gm);
+  }
+  const ballRimMat = new THREE.SpriteMaterial({ map: glowTex, color: new THREE.Color(0xffffff).lerp(TEAM, 0.5), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0 });
+  const ballRim = new THREE.Sprite(ballRimMat); ballRim.renderOrder = 4; scene.add(ballRim);
+  disposables.push(ballRimMat);
 
   // confeti de celebración (color de la selección + blanco + dorado)
   const CN = 160;
@@ -202,7 +212,7 @@ function buildScene(
   const ccx = confCanvas.getContext("2d")!; ccx.fillStyle = "#fff"; ccx.fillRect(6, 4, 20, 24);
   const confTexture = new THREE.CanvasTexture(confCanvas);
   const confMat = new THREE.PointsMaterial({ size: 0.42, map: confTexture, vertexColors: true, transparent: true, depthWrite: false, opacity: 0 });
-  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(HX, HY - 0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
+  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
   disposables.push(confGeo, confMat, confTexture);
 
   // FLASHES de cámaras del estadio en las gradas del fondo: puntos blancos que
@@ -270,28 +280,57 @@ function buildScene(
     const sig2 = 2 * 1.15 * 1.15, omega = 13.0, kWave = 2.6, sigR2 = 2 * 2.6 * 2.6;
     for (let i = 0; i < vcount; i++) {
       const x = basePos[i * 3], y = basePos[i * 3 + 1];
-      const r = Math.hypot(x - HX, y - HY);
+      const r = Math.hypot(x, y + 0.12);
       pos[i * 3 + 2] = -st.pocket * Math.exp(-(r * r) / sig2)
         + st.ripple * Math.sin(omega * td - r * kWave) * Math.exp(-(r * r) / sigR2) * 0.5;
     }
     netGeo.attributes.position.needsUpdate = true;
     netGeo.computeVertexNormals();
   }
+  // Pose del balón (posición + escala) en CUALQUIER instante → la reusan el balón
+  // y los fantasmas de la estela (calculados a tiempos rezagados).
+  const TBALL = 0.32;
+  function ballPose(tt: number): { vis: boolean; x: number; y: number; z: number; s: number } {
+    if (tt < TBALL) return { vis: false, x: 0, y: 0, z: 0, s: 1 };
+    if (tt <= IMPACT) {
+      const e = easeOut(clamp01((tt - TBALL) / (IMPACT - TBALL)));
+      return { vis: true, x: 0, y: -1.6 + 1.6 * e, z: 5.0 + (0.2 - 5.0) * e, s: 1.7 + (0.95 - 1.7) * e }; // CENTRO, z=0.2 DELANTE
+    }
+    const p = clamp01((tt - IMPACT) / 0.45);
+    return { vis: true, x: 0, y: -0.12 * p, z: 0.2 - 0.05 * p, s: 0.95 + (0.8 - 0.95) * p }; // la red lo FRENA, queda delante
+  }
   function ballAt(t: number) {
-    const tStart = 0.32;
-    if (t < tStart) { ball.visible = false; return; }
-    ball.visible = true;
-    if (t <= IMPACT) {
-      const p = clamp01((t - tStart) / (IMPACT - tStart)), e = easeOut(p);
-      ball.position.set(HX * e, -1.6 + (HY + 1.6) * e, 5.0 + (0.2 - 5.0) * e); // entra al punto (HX,HY), z=0.2 DELANTE
-      const s = 1.7 + (0.95 - 1.7) * e; ball.scale.set(s, s, 1);
-      ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
+    const po = ballPose(t);
+    ball.visible = po.vis;
+    if (po.vis) {
+      ball.position.set(po.x, po.y, po.z); ball.scale.set(po.s, po.s, 1);
+      if (t <= IMPACT) {
+        const p = clamp01((t - TBALL) / (IMPACT - TBALL));
+        ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
+      } else {
+        ballMat.opacity = 1; ball.rotation.z = -7.5 - clamp01((t - IMPACT) / 0.45) * 1.4;
+      }
+    }
+    // ESTELA: fantasmas rezagados, solo en VUELO (antes del impacto)
+    const flight = t > TBALL && t < IMPACT;
+    for (let i = 0; i < TRAIL; i++) {
+      const g = ghosts[i];
+      const gp = flight ? ballPose(t - (i + 1) * 0.045) : { vis: false, x: 0, y: 0, z: 0, s: 1 };
+      g.visible = gp.vis;
+      if (gp.vis) {
+        g.position.set(gp.x, gp.y, gp.z);
+        g.scale.set(gp.s * (4 / 3), gp.s, 1);
+        ghosts[i].material.opacity = ghostOpa[i] * clamp01((t - 0.42) / 0.18);
+      }
+    }
+    // RIM aditivo detrás del balón: sutil en vuelo, florece al llegar a la red
+    const td = t - IMPACT;
+    if (po.vis) {
+      ballRim.position.set(po.x, po.y, po.z - 0.12);
+      ballRim.scale.set(po.s * 2.4, po.s * 2.4, 1);
+      ballRimMat.opacity = flight ? 0.18 * clamp01((t - 0.42) / 0.2) : (td >= 0 ? 0.12 + 0.45 * Math.exp(-1.6 * td) : 0);
     } else {
-      const p = clamp01((t - IMPACT) / 0.45);
-      // la red lo FRENA: queda DELANTE (z>0 siempre), apenas un pelín atrás+abajo y asienta
-      ball.position.set(HX, HY - 0.12 * p, 0.2 - 0.05 * p);
-      const s = 0.95 + (0.8 - 0.95) * p; ball.scale.set(s, s, 1);
-      ball.rotation.z = -7.5 - p * 1.4; ballMat.opacity = 1;
+      ballRimMat.opacity = 0;
     }
   }
   function revealNet(t: number) {
@@ -434,7 +473,7 @@ export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey 
       }
       if (disposed || !canvasRef.current) return;
       try {
-        sceneObj = buildScene(THREE, canvasRef.current, color, fxKey);
+        sceneObj = buildScene(THREE, canvasRef.current, color);
       } catch {
         showFallbackText();
         return; // WebGL no disponible → fallback

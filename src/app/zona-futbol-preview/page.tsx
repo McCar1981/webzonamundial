@@ -9,9 +9,24 @@ import { ParallaxImage } from "@/components/ParallaxImage";
 import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
 import { FloatingElements } from "@/components/FloatingElements";
+import { Users, TrendingUp, Zap, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Award, Swords, Trophy, Gamepad2, Globe, BarChart3, Coins, Shirt, Medal } from "lucide-react";
 
 // ZONA FUTBOL ULTRA-PREMIUM — Temporada 2026/2027
 // 54 agentes, 4 oleadas, análisis profundo ZonaMundial + propuestas radicales
+
+const getIconComponent = (iconName: string) => {
+  const iconMap: Record<string, any> = {
+    swords: Swords,
+    trophy: Trophy,
+    gamepad: Gamepad2,
+    globe: Globe,
+    chart: BarChart3,
+    coins: Coins,
+    shirt: Shirt,
+    medal: Medal,
+  };
+  return iconMap[iconName] || Trophy;
+};
 
 interface League {
   name: string;
@@ -100,40 +115,40 @@ const LEAGUES: League[] = [
 const FEATURES: Feature[] = [
   {
     id: "duelos",
-    icon: "[A]",
+    icon: "swords",
     title: "Duelos Directos",
     desc: "Desafía a tus amigos en competencias cabeza a cabeza. Apuestas reales, recompensas dinámicas.",
     badge: "Nuevo",
   },
   {
     id: "achievements",
-    icon: "[B]",
+    icon: "trophy",
     title: "Achievements Granular",
     desc: "Logros por liga, equipo, jugador. Badges con narrativa. Recompensas escalonadas.",
     badge: "Popular",
   },
   {
     id: "minijuegos",
-    icon: "[G]",
+    icon: "gamepad",
     title: "Minijuegos Liga-Específicos",
     desc: "Penales, headers, predicciones. Cada liga tiene mecánicas únicas. Premios diarios.",
   },
   {
     id: "rankings",
-    icon: "[W]",
+    icon: "globe",
     title: "Rankings Globales Dinámicos",
     desc: "Compite contra el mundo. Multi-dimensión: Predictor, Fantasy, Collector, Duelista.",
     badge: "Destacado",
   },
   {
     id: "stats",
-    icon: "[S]",
+    icon: "chart",
     title: "Live Stats Dashboard Premium",
     desc: "Estadísticas en vivo. xG, posesión, heat maps. Análisis de IA en tiempo real.",
   },
   {
     id: "predictions",
-    icon: "[M]",
+    icon: "coins",
     title: "Predictions Tournament",
     desc: "Torneo de predicciones con premios reales. Rake comunitario. Leaderboards globales.",
     badge: "Premium",
@@ -143,7 +158,7 @@ const FEATURES: Feature[] = [
 const STEPS: StepItem[] = [
   {
     number: 1,
-    icon: "[C]",
+    icon: "shirt",
     title: "Elige Tu Equipo Favorito",
     desc: "Personaliza tu experiencia. Acceso a duelos, predicciones, logros temáticos. Comunidad por equipo.",
     stat: 50,
@@ -151,7 +166,7 @@ const STEPS: StepItem[] = [
   },
   {
     number: 2,
-    icon: "[G]",
+    icon: "gamepad",
     title: "Participa en Minijuegos Diarios",
     desc: "Juega en cada fecha. 8 minijuegos diferentes. Gana puntos, sube en ranking, desbloquea cosmetics.",
     stat: 8,
@@ -159,7 +174,7 @@ const STEPS: StepItem[] = [
   },
   {
     number: 3,
-    icon: "[P]",
+    icon: "medal",
     title: "Sube en Rankings Globales",
     desc: "Compite contra 100k+ jugadores. Premios semanales y de temporada. Reputación global.",
     stat: 100,
@@ -304,17 +319,22 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {[
-              {value: "18,500+", label: "Usuarios de Zona Mundial", icon: "01"},
-              {value: "9,200", label: "Se Unen Cada Semana", icon: "02"},
-              {value: "92,400", label: "Predicciones Diarias", icon: "03"},
-              {value: "100%", label: "Seguro y Gratuito", icon: "04"},
-            ].map((stat, idx) => (
-              <div key={idx} className="p-5 sm:p-6 rounded-xl bg-gradient-to-br from-[#0F1D32]/50 via-[#0a0f1a]/30 to-transparent backdrop-blur-sm border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 text-center group cursor-pointer">
-                <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
-                <div className="text-xl sm:text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">{stat.value}</div>
-                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">{stat.label}</div>
-              </div>
-            ))}
+              {value: "18,500+", label: "Usuarios de Zona Mundial", Icon: Users},
+              {value: "9,200", label: "Se Unen Cada Semana", Icon: TrendingUp},
+              {value: "92,400", label: "Predicciones Diarias", Icon: Target},
+              {value: "100%", label: "Seguro y Gratuito", Icon: CheckCircle},
+            ].map((stat, idx) => {
+              const Icon = stat.Icon;
+              return (
+                <div key={idx} className="p-5 sm:p-6 rounded-xl bg-gradient-to-br from-[#0F1D32]/50 via-[#0a0f1a]/30 to-transparent backdrop-blur-sm border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 text-center group cursor-pointer">
+                  <div className="mb-2 group-hover:scale-125 transition-transform duration-300 flex justify-center">
+                    <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-[#D4AF37] group-hover:text-[#ffc266]" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">{stat.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -386,21 +406,25 @@ export default function ZonaFutbolPreviewPage() {
             <SectionHeader eyebrow="Funcionalidades Ultra-Premium" title="Lo que Zona Futbol te Ofrece" subtitle="6 modos competitivos con recompensas reales. Fantasy, predicciones, duelos, achievements, minijuegos y rankings globales." align="center" />
 
             <AnimatedSection className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" stagger={0.15} delay={0.2} y={-35}>
-              {FEATURES.map((feature, idx) => (
-                <Link key={feature.id} href={`#${feature.id}`} style={{animationDelay: `${idx * 0.1}s`}} className="group relative overflow-hidden rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 active:scale-95 bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent hover:from-[#0F1D32]/80 hover:to-[#D4AF37]/10 block">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-2xl" />
+              {FEATURES.map((feature, idx) => {
+                const IconComponent = getIconComponent(feature.icon);
+                return (
+                  <Link key={feature.id} href={`#${feature.id}`} style={{animationDelay: `${idx * 0.1}s`}} className="group relative overflow-hidden rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 active:scale-95 bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent hover:from-[#0F1D32]/80 hover:to-[#D4AF37]/10 block">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-2xl" />
 
-                  <div className="relative z-10 flex flex-col gap-4">
-                    {feature.badge && (
-                      <div className="flex justify-between items-start gap-3">
-                        <div className="text-5xl group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>
-                        <span className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#D4AF37]/25 text-[#D4AF37] border border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/40 transition-all duration-300 shadow-lg">
-                          {feature.badge}
-                        </span>
-                      </div>
-                    )}
-                    {!feature.badge && <div className="text-5xl group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>}
+                    <div className="relative z-10 flex flex-col gap-4">
+                      {feature.badge && (
+                        <div className="flex justify-between items-start gap-3">
+                          <IconComponent className="w-12 h-12 text-[#D4AF37] group-hover:scale-125 transition-transform duration-300 group-hover:text-[#ffc266]" />
+                          <span className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#D4AF37]/25 text-[#D4AF37] border border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/40 transition-all duration-300 shadow-lg">
+                            {feature.badge}
+                          </span>
+                        </div>
+                      )}
+                      {!feature.badge && <div className="group-hover:scale-125 transition-transform duration-300">
+                        <IconComponent className="w-12 h-12 text-[#D4AF37] group-hover:text-[#ffc266]" />
+                      </div>}
 
                     <h3 className="font-black text-lg text-white group-hover:text-[#D4AF37] transition-colors duration-300 tracking-tight">
                       {feature.title}
@@ -413,7 +437,8 @@ export default function ZonaFutbolPreviewPage() {
                     <div className="mt-auto pt-4 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </AnimatedSection>
 
             {/* Highlight Box */}
@@ -448,19 +473,23 @@ export default function ZonaFutbolPreviewPage() {
             <SectionHeader eyebrow="Guía Rápida" title="Cómo Jugar en Zona Futbol" subtitle="3 pasos para convertirte en campeón global. Desde elegir equipo hasta ganar premios reales." align="center" />
 
             <AnimatedSection className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12" stagger={0.22} delay={0.2} y={-30}>
-              {STEPS.map((step, idx) => (
-                <div key={step.number} className="group relative">
-                  <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-transparent hover:from-[#0F1D32]/90 hover:via-[#0a0f1a]/70 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 hover:shadow-2xl cursor-pointer active:scale-95 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
-                    <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full border-2 border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 transition-all duration-300" />
+              {STEPS.map((step, idx) => {
+                const StepIcon = getIconComponent(step.icon);
+                return (
+                  <div key={step.number} className="group relative">
+                    <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-transparent hover:from-[#0F1D32]/90 hover:via-[#0a0f1a]/70 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 hover:shadow-2xl cursor-pointer active:scale-95 relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
+                      <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full border-2 border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 transition-all duration-300" />
 
-                    <div className="relative z-10 space-y-4">
-                      <div className="flex items-center gap-4">
-                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#ffc266] text-[#060B14] font-black text-2xl group-hover:scale-125 group-hover:shadow-[0_0_24px_rgba(212,175,55,0.6)] transition-all duration-300 shadow-lg">
-                          {step.number}
+                      <div className="relative z-10 space-y-4">
+                        <div className="flex items-center gap-4">
+                          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#ffc266] text-[#060B14] font-black text-2xl group-hover:scale-125 group-hover:shadow-[0_0_24px_rgba(212,175,55,0.6)] transition-all duration-300 shadow-lg">
+                            {step.number}
+                          </div>
+                          <div className="group-hover:scale-110 transition-transform duration-300">
+                            <StepIcon className="w-10 h-10 text-[#D4AF37] group-hover:text-[#ffc266]" />
+                          </div>
                         </div>
-                        <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{step.icon}</div>
-                      </div>
 
                       <h3 className="font-black text-xl text-white leading-tight group-hover:text-[#D4AF37] transition-colors duration-300 tracking-tight">
                         {step.title}
@@ -483,7 +512,8 @@ export default function ZonaFutbolPreviewPage() {
                     <div className="hidden sm:block absolute -right-4 top-14 w-8 h-8 bg-[#D4AF37] rounded-full border-4 border-[#060B14] shadow-lg group-hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-shadow duration-300" />
                   )}
                 </div>
-              ))}
+                );
+              })}
             </AnimatedSection>
 
             {/* Description */}
@@ -591,19 +621,24 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
             {[
-              {value: "100K+", label: "Jugadores Activos", icon: "01"},
-              {value: "2M+", label: "Predicciones", icon: "02"},
-              {value: "$500K", label: "Premios Distribuidos", icon: "03"},
-              {value: "24/7", label: "Disponible", icon: "04"},
-            ].map((stat, idx) => (
-              <div key={idx} className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent backdrop-blur-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-all duration-300 text-center hover:shadow-2xl group cursor-pointer">
-                <div className="text-3xl sm:text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
-                <div className="text-2xl sm:text-3xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300 mb-1 animate-fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
-                  {stat.value}
+              {value: "100K+", label: "Jugadores Activos", Icon: Users},
+              {value: "2M+", label: "Predicciones", Icon: Target},
+              {value: "$500K", label: "Premios Distribuidos", Icon: Coins},
+              {value: "24/7", label: "Disponible", Icon: CheckCircle},
+            ].map((stat, idx) => {
+              const Icon = stat.Icon;
+              return (
+                <div key={idx} className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent backdrop-blur-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-all duration-300 text-center hover:shadow-2xl group cursor-pointer">
+                  <div className="mb-3 group-hover:scale-125 transition-transform duration-300 flex justify-center">
+                    <Icon className="w-10 h-10 sm:w-12 sm:h-12 text-[#D4AF37]" />
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300 mb-1 animate-fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#94A3B8] font-medium">{stat.label}</div>
                 </div>
-                <div className="text-xs sm:text-sm text-[#94A3B8] font-medium">{stat.label}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -616,16 +651,21 @@ export default function ZonaFutbolPreviewPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               {[
-                {icon: "[1]", title: "Acceso Directo", desc: "Home screen, tap y juega al instante"},
-                {icon: "[2]", title: "Notificaciones Push", desc: "Alertas de partidos, resultados y recompensas"},
-                {icon: "[3]", title: "Experiencia Nativa", desc: "Rápido, fluido, funciona offline"},
-              ].map((benefit, i) => (
-                <div key={i} className="p-6 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 text-center transition-all duration-300 group cursor-pointer">
-                  <div className="text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
-                  <h4 className="font-black text-sm text-white mb-2">{benefit.title}</h4>
-                  <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
-                </div>
-              ))}
+                {Icon: Smartphone, title: "Acceso Directo", desc: "Home screen, tap y juega al instante"},
+                {Icon: Bell, title: "Notificaciones Push", desc: "Alertas de partidos, resultados y recompensas"},
+                {Icon: Lightning, title: "Experiencia Nativa", desc: "Rápido, fluido, funciona offline"},
+              ].map((benefit, i) => {
+                const Icon = benefit.Icon;
+                return (
+                  <div key={i} className="p-6 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 text-center transition-all duration-300 group cursor-pointer">
+                    <div className="mb-3 group-hover:scale-125 transition-transform duration-300 flex justify-center">
+                      <Icon className="w-10 h-10 text-[#D4AF37]" />
+                    </div>
+                    <h4 className="font-black text-sm text-white mb-2">{benefit.title}</h4>
+                    <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="mt-12 text-center">
@@ -683,16 +723,16 @@ export default function ZonaFutbolPreviewPage() {
               {/* Feature Highlights */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 px-4 py-6 rounded-xl bg-[#0F1D32]/60 border border-[#D4AF37]/25 backdrop-blur-xl hover:border-[#D4AF37]/60 transition-all duration-300">
                 <div className="text-center group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">[T]</div>
-                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">5 min para jugar</p>
+                  <Zap className="w-6 h-6 sm:w-7 sm:h-7 mx-auto text-[#D4AF37] group-hover:text-[#ffc266] transition-colors" />
+                  <p className="text-xs text-[#94A3B8] mt-2 group-hover:text-[#cbd5e1]">5 min para jugar</p>
                 </div>
                 <div className="text-center border-l border-r border-[#D4AF37]/25 group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">[G]</div>
-                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Sin experiencia</p>
+                  <Target className="w-6 h-6 sm:w-7 sm:h-7 mx-auto text-[#D4AF37] group-hover:text-[#ffc266] transition-colors" />
+                  <p className="text-xs text-[#94A3B8] mt-2 group-hover:text-[#cbd5e1]">Sin experiencia</p>
                 </div>
                 <div className="text-center group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">+</div>
-                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Instantáneo</p>
+                  <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 mx-auto text-[#D4AF37] group-hover:text-[#ffc266] transition-colors" />
+                  <p className="text-xs text-[#94A3B8] mt-2 group-hover:text-[#cbd5e1]">Instantáneo</p>
                 </div>
               </div>
 

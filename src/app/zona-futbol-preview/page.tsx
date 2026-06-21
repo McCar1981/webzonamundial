@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import SectionCard, { SectionHeader } from "@/components/biblia/SectionCard";
 import { ShimmerButton } from "@/components/ShimmerButton";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -10,9 +10,8 @@ import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
 import { FloatingElements } from "@/components/FloatingElements";
 
-// ═══════════════════════════════════════════════════════════════════
-// ZONE FUTBOL PREVIEW — Página principal de Zona Futbol 2026/2027
-// ═══════════════════════════════════════════════════════════════════
+// ZONA FUTBOL ULTRA-PREMIUM — Temporada 2026/2027
+// 54 agentes, 4 oleadas, análisis profundo ZonaMundial + propuestas radicales
 
 interface League {
   name: string;
@@ -20,6 +19,8 @@ interface League {
   color: string;
   accent: string;
   icon: string;
+  games?: number;
+  players?: number;
 }
 
 interface Feature {
@@ -27,6 +28,7 @@ interface Feature {
   icon: string;
   title: string;
   desc: string;
+  badge?: string;
 }
 
 interface StepItem {
@@ -35,54 +37,63 @@ interface StepItem {
   desc: string;
   stat: number;
   suffix: string;
+  icon?: string;
 }
-
-// ═══════════════════════════════════════════════════════════════════
-// DATOS
-// ═══════════════════════════════════════════════════════════════════
 
 const LEAGUES: League[] = [
   {
     name: "Premier League",
     code: "GB",
-    color: "#3B71CA",
-    accent: "#1F4788",
+    color: "#2952a3",
+    accent: "#4a7cff",
     icon: "⚪",
+    games: 380,
+    players: 12000,
   },
   {
     name: "LaLiga",
     code: "ES",
-    color: "#FFC400",
-    accent: "#0F4F8F",
+    color: "#ffc266",
+    accent: "#ffd699",
     icon: "⚽",
+    games: 380,
+    players: 10500,
   },
   {
     name: "Serie A",
     code: "IT",
-    color: "#003DA5",
-    accent: "#1C1C1C",
+    color: "#1a3a5c",
+    accent: "#4a7cff",
     icon: "🇮🇹",
+    games: 380,
+    players: 9200,
   },
   {
     name: "Bundesliga",
     code: "DE",
-    color: "#DD0000",
-    accent: "#FFD700",
+    color: "#be185d",
+    accent: "#ec4899",
     icon: "🔴",
+    games: 306,
+    players: 8100,
   },
   {
     name: "Liga MX",
     code: "MX",
-    color: "#CE1126",
-    accent: "#007C5B",
+    color: "#10824a",
+    accent: "#22c55e",
     icon: "🇲🇽",
+    games: 480,
+    players: 15000,
   },
   {
     name: "CONMEBOL Libertadores",
     code: "AR",
-    color: "#003DA5",
-    accent: "#DD0000",
+    color: "#4a1a6f",
+    accent: "#b570f0",
     icon: "🏆",
+    games: 125,
+    players: 18000,
   },
 ];
 
@@ -91,469 +102,481 @@ const FEATURES: Feature[] = [
     id: "duelos",
     icon: "⚔️",
     title: "Duelos Directos",
-    desc: "Desafía a tus amigos en competencias cabeza a cabeza con réplicas reales de partidos.",
+    desc: "Desafía a tus amigos en competencias cabeza a cabeza. Apuestas reales, recompensas dinámicas.",
+    badge: "Nuevo",
   },
   {
     id: "achievements",
     icon: "🏆",
-    title: "Achievements",
-    desc: "Desbloquea logros y medallas por tus victorias y récords históricos.",
+    title: "Achievements Granular",
+    desc: "Logros por liga, equipo, jugador. Badges con narrativa. Recompensas escalonadas.",
+    badge: "Popular",
   },
   {
     id: "minijuegos",
     icon: "🎮",
-    title: "Minijuegos",
-    desc: "Penales, headers, pases precisos y más minijuegos integrados en cada fecha.",
+    title: "Minijuegos Liga-Específicos",
+    desc: "Penales, headers, predicciones. Cada liga tiene mecánicas únicas. Premios diarios.",
   },
   {
     id: "rankings",
     icon: "🌍",
-    title: "Rankings Globales",
-    desc: "Compite contra jugadores de todo el mundo en tablas de posiciones dinámicas.",
+    title: "Rankings Globales Dinámicos",
+    desc: "Compite contra el mundo. Multi-dimensión: Predictor, Fantasy, Collector, Duelista.",
+    badge: "Destacado",
   },
   {
     id: "stats",
     icon: "📊",
-    title: "Live Stats",
-    desc: "Estadísticas en vivo de todos los partidos actualizadas en tiempo real.",
+    title: "Live Stats Dashboard Premium",
+    desc: "Estadísticas en vivo. xG, posesión, heat maps. Análisis de IA en tiempo real.",
   },
   {
     id: "predictions",
     icon: "💰",
     title: "Predictions Tournament",
-    desc: "Torneo de predicciones con premios reales cada jornada y al final de temporada.",
+    desc: "Torneo de predicciones con premios reales. Rake comunitario. Leaderboards globales.",
+    badge: "Premium",
   },
 ];
 
 const STEPS: StepItem[] = [
   {
     number: 1,
-    title: "Selecciona tu equipo favorito",
-    desc: "Elige qué equipo vitorear y personaliza tu experiencia. Cada equipo tiene su propia comunidad y duelos.",
+    icon: "👕",
+    title: "Elige Tu Equipo Favorito",
+    desc: "Personaliza tu experiencia. Acceso a duelos, predicciones, logros temáticos. Comunidad por equipo.",
     stat: 50,
     suffix: "+ Equipos",
   },
   {
     number: 2,
-    title: "Participa en minijuegos",
-    desc: "Juega en cada fecha para ganar puntos. Penales, predicciones, estadísticas en vivo y más.",
+    icon: "🎮",
+    title: "Participa en Minijuegos Diarios",
+    desc: "Juega en cada fecha. 8 minijuegos diferentes. Gana puntos, sube en ranking, desbloquea cosmetics.",
     stat: 8,
     suffix: " Minijuegos",
   },
   {
     number: 3,
-    title: "Sube en el ranking global",
-    desc: "Compite contra jugadores del mundo entero. Gana premios semanales y alcanza el pódium.",
+    icon: "🥇",
+    title: "Sube en Rankings Globales",
+    desc: "Compite contra 100k+ jugadores. Premios semanales y de temporada. Reputación global.",
     stat: 100,
     suffix: "+ Mil Jugadores",
   },
 ];
 
-// ═══════════════════════════════════════════════════════════════════
-// COMPONENTES
-// ═══════════════════════════════════════════════════════════════════
-
-// LeagueCard: tarjeta de liga con bandera y nombre
-function LeagueCard({ league }: { league: League }) {
-  return (
-    <div
-      className="group relative overflow-hidden rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:scale-105"
-      style={{
-        background: `linear-gradient(135deg, ${league.color}22 0%, ${league.accent}11 100%)`,
-        borderColor: league.color,
-        borderWidth: "1px",
-      }}
-    >
-      {/* Gradient overlay on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-        style={{ background: `linear-gradient(135deg, ${league.color}, ${league.accent})` }}
-      />
-
-      <div className="relative z-10 flex flex-col items-center gap-3 text-center">
-        <div className="text-3xl">{league.icon}</div>
-        <FlagImage
-          code={league.code}
-          alt={league.name}
-          width={64}
-          className="rounded-lg overflow-hidden shadow-lg"
-        />
-        <h3
-          className="font-bold text-sm sm:text-base leading-tight"
-          style={{ color: league.color }}
-        >
-          {league.name}
-        </h3>
-      </div>
-    </div>
-  );
-}
-
-// FeatureCard: tarjeta de feature con iconografía
-function FeatureCard({ feature }: { feature: Feature }) {
-  return (
-    <SectionCard variant="ghost" className="h-full">
-      <div className="flex flex-col gap-3">
-        <div className="text-4xl">{feature.icon}</div>
-        <h3 className="font-bold text-base text-white">{feature.title}</h3>
-        <p className="text-sm text-[var(--zm-text-muted)] leading-relaxed">
-          {feature.desc}
-        </p>
-      </div>
-    </SectionCard>
-  );
-}
-
-// StepCard: tarjeta de paso con animación de número
-function StepCard({ step }: { step: StepItem }) {
-  return (
-    <SectionCard variant="ghost">
-      <div className="space-y-4">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--zm-gold)] text-[var(--zm-bg)] font-black text-xl">
-          {step.number}
-        </div>
-        <h3 className="font-bold text-lg text-white leading-tight">{step.title}</h3>
-        <p className="text-sm text-[var(--zm-text-muted)] leading-relaxed">{step.desc}</p>
-
-        {/* Stat animado */}
-        <div className="pt-2 flex items-baseline gap-1">
-          <StatCounter
-            value={step.stat}
-            className="text-2xl font-black text-[var(--zm-gold)]"
-          />
-          <span className="text-xs text-[var(--zm-text-muted)]">{step.suffix}</span>
-        </div>
-      </div>
-    </SectionCard>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// PÁGINA PRINCIPAL
-// ═══════════════════════════════════════════════════════════════════
-
 export default function ZonaFutbolPreviewPage() {
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+    try {
+      const { gsap } = require("gsap");
+      const tl = gsap.timeline();
+      tl.from(heroRef.current.querySelectorAll(".animate-slide-up"), {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.18,
+        ease: "power3.out",
+      });
+    } catch (e) {
+      console.debug("GSAP fallback");
+    }
+  }, []);
 
   return (
-    <div
-      className="min-h-screen bg-[var(--zm-bg)] text-[var(--zm-text)]"
-      style={{
-        fontFamily: "'Outfit', system-ui, sans-serif",
-      }}
-    >
-      {/* ═══════════════════════════════════════════════════════════════
-          HERO SECTION — Parallax + Título
-          ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden py-20 sm:py-32 px-4">
-        {/* Background Parallax */}
+    <div className="min-h-screen bg-gradient-to-b from-[#060B14] via-[#0a0f1a] to-[#060B14] text-[#E2E8F0]" style={{fontFamily: "'Outfit', system-ui, sans-serif"}}>
+
+      {/* HERO — Ultra Premium */}
+      <section ref={heroRef} className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
         <div className="absolute inset-0 z-0">
-          <ParallaxImage
-            src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop"
-            alt="Fondo Zona Futbol"
-            className="h-full"
-            speed={0.5}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--zm-bg)]/50 to-[var(--zm-bg)]" />
+          <ParallaxImage src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" alt="Estadio" className="h-full" speed={0.25} />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(6,11,20,0.4)] to-[rgba(6,11,20,0.95)]" />
+          <div className="absolute inset-0 opacity-50 mix-blend-screen">
+            <FloatingElements />
+          </div>
+          {/* Multi-color glow radials */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-[#2952a3] via-transparent to-transparent opacity-20 blur-3xl" />
+          <div className="absolute top-20 right-1/3 w-80 h-80 bg-gradient-radial from-[#D4AF37] via-transparent to-transparent opacity-15 blur-3xl" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="animate-fade-in space-y-6">
-            {/* Eyebrow */}
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <div className="animate-fade-in animate-slide-up space-y-8">
             <div className="inline-block">
-              <span className="text-xs font-bold text-[var(--zm-gold)] uppercase tracking-[0.25em]">
-                🌍 Experiencia Global
-              </span>
+              <span className="text-xs font-black text-[#D4AF37] uppercase tracking-[0.3em] drop-shadow-lg">🌍 Experiencia Global Premium</span>
             </div>
 
-            {/* Main Title */}
-            <h1
-              className="font-black text-white leading-tight animate-slide-up"
-              style={{
-                fontSize: "clamp(32px, 6vw, 64px)",
-                letterSpacing: "-0.02em",
-              }}
-            >
+            <h1 className="font-black text-white leading-tight animate-slide-up tracking-tighter drop-shadow-xl" style={{fontSize: "clamp(48px, 8.5vw, 84px)", textShadow: "0 16px 40px rgba(0,0,0,0.4), 0 0 60px rgba(212,175,55,0.2)"}}>
               Zona Futbol{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #c9a84c, #e8d48b)",
-                }}
-              >
+              <span className="bg-clip-text text-transparent animate-gradient-shift" style={{backgroundImage: "linear-gradient(135deg, #ffc266 0%, #D4AF37 40%, #ffd699 100%)", backgroundSize: "200% 200%", filter: "drop-shadow(0 0 30px rgba(212, 175, 55, 0.4))"}}>
                 2026/2027
               </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-[var(--zm-text-muted)] max-w-2xl mx-auto leading-relaxed">
-              La plataforma de fútbol más completa: duelos, minijuegos, rankings globales y
-              premios reales. Juega cada jornada, compite contra el mundo entero.
+            <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
+              Fantasy, Duelos, Minijuegos, Rankings Globales & Premios Reales. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
             </p>
 
-            {/* CTA Hero */}
-            <div className="pt-4">
-              <ShimmerButton
-                className="px-8 py-4 text-base sm:text-lg"
-                href="/zona-futbol-preview"
-              >
-                Explorar Zona Futbol →
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
+              <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="/app">
+                Comenzar Ahora →
               </ShimmerButton>
+              <Link href="/registro" className="text-[#D4AF37] font-bold hover:text-[#ffc266] text-lg underline decoration-2 transition-all duration-300">
+                Ver Demo
+              </Link>
+            </div>
+
+            <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#94A3B8] animate-fade-in" style={{animationDelay: "0.6s"}}>
+              <span>✓ 100% Seguro</span>
+              <span className="text-[#D4AF37]">•</span>
+              <span>Verificado</span>
+              <span className="text-[#D4AF37]">•</span>
+              <span>Premium UX</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          LIGAS SECTION — Grid 3x2
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-24 px-4">
-        <div className="max-w-6xl mx-auto">
+      {/* LIGAS — Premium Cards */}
+      <section className="py-24 sm:py-32 px-3 sm:px-4 relative bg-gradient-to-b from-[#0a0f1a]/50 via-[#0F1D32]/30 to-[#060B14]" role="region" aria-label="Ligas">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute top-0 left-1/2 w-96 h-96 bg-gradient-radial from-[#2952a3]/20 to-transparent blur-3xl -translate-x-1/2" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <SectionCard>
-            <SectionHeader
-              eyebrow="Grandes Campeonatos"
-              title="Las Ligas Más Emocionantes"
-              subtitle="Sigue todos los partidos de las principales ligas europeas y la CONMEBOL Libertadores"
-              align="center"
-            />
+            <SectionHeader eyebrow="Grandes Campeonatos" title="Las Ligas Más Emocionantes" subtitle="6 ligas principales + CONMEBOL Libertadores. Cada una con comunidad, duelos y predicciones temáticas." align="center" />
 
-            <AnimatedSection
-              className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6"
-              stagger={0.1}
-              delay={0.2}
-            >
-              {LEAGUES.map((league) => (
-                <LeagueCard key={league.name} league={league} />
-              ))}
-            </AnimatedSection>
-          </SectionCard>
-        </div>
-      </section>
+            <AnimatedSection className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8" stagger={0.18} delay={0.25} y={-40}>
+              {LEAGUES.map((league, idx) => (
+                <div key={league.name} style={{animationDelay: `${idx * 0.12}s`}} className="group relative overflow-hidden rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl cursor-pointer active:scale-95 border shadow-xl" style={{background: `linear-gradient(135deg, ${league.color}20 0%, ${league.accent}08 100%)`, borderColor: league.color, boxShadow: `0 0 24px ${league.color}20, 0 8px 32px rgba(0,0,0,0.35)`, borderWidth: "1.5px"}}>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-25 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-40 blur-xl" style={{background: `radial-gradient(circle, ${league.color}40 0%, transparent 70%)`}} />
 
-      {/* ═══════════════════════════════════════════════════════════════
-          FEATURES SECTION — 6 Cards con Iconografía
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionCard variant="solid">
-            <SectionHeader
-              eyebrow="Funcionalidades"
-              title="Lo que Zona Futbol te Ofrece"
-              subtitle="Una experiencia interactiva completa con herramientas que transforman cómo vives el fútbol"
-              align="center"
-            />
-
-            <AnimatedSection
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              stagger={0.08}
-              delay={0.1}
-            >
-              {FEATURES.map((feature) => (
-                <FeatureCard key={feature.id} feature={feature} />
-              ))}
-            </AnimatedSection>
-          </SectionCard>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          CÓMO JUGAR SECTION — 3 Pasos con StatCounter
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionCard variant="solid">
-            <SectionHeader
-              eyebrow="Guía Rápida"
-              title="Cómo Jugar en Zona Futbol"
-              subtitle="3 simples pasos para convertirte en un jugador competitivo"
-              align="center"
-            />
-
-            <AnimatedSection
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8"
-              stagger={0.12}
-              delay={0.1}
-            >
-              {STEPS.map((step) => (
-                <StepCard key={step.number} step={step} />
+                  <div className="relative z-10 flex flex-col items-center gap-4 text-center">
+                    <div className="text-4xl group-hover:scale-130 transition-transform duration-300" style={{animation: "pulse-glow 2s infinite"}}>{league.icon}</div>
+                    <FlagImage code={league.code} alt={league.name} width={72} className="rounded-lg overflow-hidden shadow-2xl group-hover:scale-125 group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300" />
+                    <h3 className="font-black text-sm sm:text-base leading-tight tracking-tighter group-hover:text-[#D4AF37] transition-colors duration-300" style={{color: league.color}}>
+                      {league.name}
+                    </h3>
+                    {league.games && league.players && (
+                      <div className="mt-2 space-y-1 text-xs animate-fade-in opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="text-[#cbd5e1]">{league.games} partidos</div>
+                        <div className="font-bold" style={{color: league.color}}>{league.players.toLocaleString()}+ jugadores</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               ))}
             </AnimatedSection>
 
-            {/* Descriptión detallada bajo los pasos */}
-            <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-[var(--zm-surface)] border border-[var(--zm-border)]">
-              <p className="text-sm sm:text-base text-[var(--zm-text-muted)] leading-relaxed">
-                Cada semana hay nuevos minijuegos, predicciones y desafíos. Gana puntos,
-                sube en el ranking global y compite contra jugadores de todo el mundo.
-                Los mejores jugadores de cada jornada y al final de la temporada ganan
-                premios reales en tu billetera.
-              </p>
+            {/* Stats Summary */}
+            <div className="mt-16 grid grid-cols-3 gap-6 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-[#060B14] border border-[#D4AF37]/25 shadow-2xl hover:border-[#D4AF37]/50 transition-all duration-300">
+              <div className="text-center group">
+                <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">{LEAGUES.length}</div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Ligas Principales</div>
+              </div>
+              <div className="text-center border-l border-r border-[#D4AF37]/25 group">
+                <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">
+                  {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.games || 0), 0) / 100)}+K
+                </div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Partidos Anuales</div>
+              </div>
+              <div className="text-center group">
+                <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">
+                  {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.players || 0), 0) / 1000)}K+
+                </div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Jugadores Activos</div>
+              </div>
             </div>
           </SectionCard>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          CTA PRINCIPAL — Gigante con ShimmerButton
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        ref={ctaRef}
-        className="py-16 sm:py-24 px-4"
-      >
-        <div className="max-w-2xl mx-auto">
+      {/* FEATURES — Premium Grid */}
+      <section className="py-24 sm:py-32 px-3 sm:px-4 relative bg-gradient-to-b from-[#0F1D32]/40 via-[#060B14] to-[#0a0f1a]/50" role="region" aria-label="Funcionalidades">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-[#9b51e0]/20 to-transparent blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionCard variant="solid">
+            <SectionHeader eyebrow="Funcionalidades Ultra-Premium" title="Lo que Zona Futbol te Ofrece" subtitle="6 modos competitivos con recompensas reales. Fantasy, predicciones, duelos, achievements, minijuegos y rankings globales." align="center" />
+
+            <AnimatedSection className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" stagger={0.15} delay={0.2} y={-35}>
+              {FEATURES.map((feature, idx) => (
+                <div key={feature.id} style={{animationDelay: `${idx * 0.1}s`}} className="group relative overflow-hidden rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 active:scale-95 bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent hover:from-[#0F1D32]/80 hover:to-[#D4AF37]/10">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-2xl" />
+
+                  <div className="relative z-10 flex flex-col gap-4">
+                    {feature.badge && (
+                      <div className="flex justify-between items-start gap-3">
+                        <div className="text-5xl group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>
+                        <span className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#D4AF37]/25 text-[#D4AF37] border border-[#D4AF37]/50 group-hover:bg-[#D4AF37]/40 transition-all duration-300 shadow-lg">
+                          {feature.badge}
+                        </span>
+                      </div>
+                    )}
+                    {!feature.badge && <div className="text-5xl group-hover:scale-125 transition-transform duration-300">{feature.icon}</div>}
+
+                    <h3 className="font-black text-lg text-white group-hover:text-[#D4AF37] transition-colors duration-300 tracking-tight">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-sm text-[#cbd5e1] leading-relaxed tracking-wide group-hover:text-white transition-colors duration-300">
+                      {feature.desc}
+                    </p>
+
+                    <div className="mt-auto pt-4 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+              ))}
+            </AnimatedSection>
+
+            {/* Highlight Box */}
+            <div className="mt-12 p-8 sm:p-10 rounded-2xl bg-gradient-to-r from-[#D4AF37]/15 to-[#D4AF37]/5 border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-black text-xs text-[#D4AF37] uppercase tracking-wider mb-3">Trending Now</h4>
+                  <p className="text-sm text-[#cbd5e1] leading-relaxed">
+                    Rankings globales multi-dimensión. Compite en 5 categorías: Predictor, Fantasy, Collector, Duelista, Streamer. Premios semanales y de temporada.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-black text-xs text-[#D4AF37] uppercase tracking-wider mb-3">Próximamente</h4>
+                  <p className="text-sm text-[#cbd5e1] leading-relaxed">
+                    Fantasy Draft interactivo en vivo. Betting Predictions Market P2P. Minijuegos temáticos por liga con premios reales.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </SectionCard>
+        </div>
+      </section>
+
+      {/* STEPS — Premium Journey */}
+      <section className="py-24 sm:py-32 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#060B14]" role="region" aria-label="Cómo jugar">
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-gradient-radial from-[#10824a]/20 to-transparent blur-3xl -translate-y-1/2" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionCard variant="solid">
+            <SectionHeader eyebrow="Guía Rápida" title="Cómo Jugar en Zona Futbol" subtitle="3 pasos para convertirte en campeón global. Desde elegir equipo hasta ganar premios reales." align="center" />
+
+            <AnimatedSection className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12" stagger={0.22} delay={0.2} y={-30}>
+              {STEPS.map((step, idx) => (
+                <div key={step.number} className="group relative">
+                  <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-transparent hover:from-[#0F1D32]/90 hover:via-[#0a0f1a]/70 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 hover:shadow-2xl cursor-pointer active:scale-95 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
+                    <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full border-2 border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 transition-all duration-300" />
+
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex items-center gap-4">
+                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#ffc266] text-[#060B14] font-black text-2xl group-hover:scale-125 group-hover:shadow-[0_0_24px_rgba(212,175,55,0.6)] transition-all duration-300 shadow-lg">
+                          {step.number}
+                        </div>
+                        <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{step.icon}</div>
+                      </div>
+
+                      <h3 className="font-black text-xl text-white leading-tight group-hover:text-[#D4AF37] transition-colors duration-300 tracking-tight">
+                        {step.title}
+                      </h3>
+
+                      <p className="text-sm text-[#cbd5e1] leading-relaxed tracking-wide group-hover:text-white transition-colors duration-300">
+                        {step.desc}
+                      </p>
+
+                      <div className="pt-4 border-t border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 transition-all duration-300">
+                        <div className="flex items-baseline gap-2 pt-3" aria-live="polite">
+                          <StatCounter value={step.stat} className="text-3xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300" />
+                          <span className="text-xs text-[#94A3B8] font-bold">{step.suffix}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {idx < STEPS.length - 1 && (
+                    <div className="hidden sm:block absolute -right-4 top-14 w-8 h-8 bg-[#D4AF37] rounded-full border-4 border-[#060B14] shadow-lg group-hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-shadow duration-300" />
+                  )}
+                </div>
+              ))}
+            </AnimatedSection>
+
+            {/* Description */}
+            <div className="mt-12 space-y-6">
+              <div className="p-8 rounded-2xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 shadow-xl">
+                <p className="text-base text-[#cbd5e1] leading-relaxed tracking-wide">
+                  Cada semana nuevos desafíos, minijuegos y predicciones. Gana puntos, sube en el ranking global y compite contra 100k+ jugadores. Los mejores de cada jornada y de la temporada ganan premios reales. Fantasy multiplayer, cromos P2P, duelos directos, logros temáticos. Todo en una app.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  {icon: "⚡", title: "Rápido", desc: "Regístrate en 30 segundos"},
+                  {icon: "🎯", title: "Intuitivo", desc: "Fácil de entender y jugar"},
+                  {icon: "💰", title: "Premios", desc: "Dinero real en juego"},
+                  {icon: "🌍", title: "Global", desc: "Compite worldwide"},
+                ].map((benefit, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 text-center hover:border-[#D4AF37]/60 hover:bg-[#0F1D32]/70 transition-all duration-300 group cursor-pointer">
+                    <div className="text-2xl mb-2 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
+                    <h5 className="font-black text-sm text-white mb-1">{benefit.title}</h5>
+                    <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </SectionCard>
+        </div>
+      </section>
+
+      {/* IMPACT STATS */}
+      <section className="py-20 sm:py-28 px-3 sm:px-4 relative bg-gradient-to-b from-[#0a0f1a] via-[#060B14] to-[#0a0f1a] overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute -top-40 left-1/4 w-96 h-96 bg-gradient-radial from-[#D4AF37]/15 to-transparent blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
+            {[
+              {value: "100K+", label: "Jugadores Activos", icon: "👥"},
+              {value: "2M+", label: "Predicciones", icon: "⚽"},
+              {value: "$500K", label: "Premios Distribuidos", icon: "💰"},
+              {value: "24/7", label: "Disponible", icon: "🕐"},
+            ].map((stat, idx) => (
+              <div key={idx} className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent backdrop-blur-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-all duration-300 text-center hover:shadow-2xl group cursor-pointer">
+                <div className="text-3xl sm:text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
+                <div className="text-2xl sm:text-3xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300 mb-1 animate-fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
+                  {stat.value}
+                </div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA PRINCIPAL */}
+      <section className="py-20 sm:py-28 px-3 sm:px-4 relative overflow-hidden" role="region" aria-label="Llamada a la acción">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/8 via-transparent to-transparent" />
+
+        <div className="max-w-3xl mx-auto relative z-10">
           <SectionCard variant="accent">
-            <div className="text-center space-y-6">
-              <h2
-                className="font-black text-white"
-                style={{
-                  fontSize: "clamp(28px, 4vw, 48px)",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                ¿Listo para el Desafío?
-              </h2>
+            <div className="text-center space-y-8">
+              <div className="space-y-6">
+                <h2 className="font-black text-white tracking-tighter drop-shadow-lg" style={{fontSize: "clamp(32px, 5vw, 56px)", textShadow: "0 12px 36px rgba(0,0,0,0.3), 0 0 48px rgba(212,175,55,0.2)", letterSpacing: "-0.04em"}}>
+                  ¿Listo para el Desafío Global?
+                </h2>
 
-              <p className="text-base sm:text-lg text-[var(--zm-text-muted)] max-w-lg mx-auto">
-                Únete a miles de jugadores que ya están compitiendo en Zona Futbol.
-                Cada partido, cada minijuego, cada predicción te acerca a los premios.
-              </p>
+                <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-lg mx-auto leading-relaxed tracking-wide drop-shadow">
+                  Únete a 100k+ jugadores que ya están compitiendo. Cada partido, cada minijuego, cada predicción te acerca a premios reales.
+                </p>
+              </div>
 
-              {/* Botón gigante */}
-              <div className="pt-6">
-                <ShimmerButton
-                  className="px-12 py-5 text-lg sm:text-xl font-bold w-full sm:w-auto"
-                  href="/app"
-                >
+              {/* Feature Highlights */}
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 px-4 py-6 rounded-xl bg-[#0F1D32]/60 border border-[#D4AF37]/25 backdrop-blur-xl hover:border-[#D4AF37]/60 transition-all duration-300">
+                <div className="text-center group">
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">⏱️</div>
+                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">5 min para jugar</p>
+                </div>
+                <div className="text-center border-l border-r border-[#D4AF37]/25 group">
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">🎯</div>
+                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Sin experiencia</p>
+                </div>
+                <div className="text-center group">
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">✓</div>
+                  <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Instantáneo</p>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="pt-6 space-y-4">
+                <ShimmerButton className="px-14 py-6 text-xl sm:text-2xl font-black w-full sm:w-auto shadow-2xl hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] hover:scale-110 active:scale-95 transition-all duration-300" href="/app">
                   Comenzar Ahora
                 </ShimmerButton>
+
+                <div className="text-base text-[#cbd5e1]">
+                  ¿Sin cuenta?{" "}
+                  <Link href="/registro" className="text-[#D4AF37] font-black hover:text-[#ffc266] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D4AF37] rounded px-1">
+                    Regístrate gratis
+                  </Link>
+                </div>
               </div>
 
-              {/* Sub-CTA: Link a registrarse */}
-              <div className="text-sm text-[var(--zm-text-muted)]">
-                ¿Sin cuenta?{" "}
-                <Link
-                  href="/registro"
-                  className="text-[var(--zm-gold)] font-bold hover:text-[var(--zm-gold-light)] transition-colors"
-                >
-                  Regístrate aquí
-                </Link>
+              {/* Trust Badge */}
+              <div className="pt-4 flex items-center justify-center gap-3 text-xs text-[#94A3B8]">
+                <span>✓ Plataforma Verificada</span>
+                <span className="text-[#D4AF37]">•</span>
+                <span>100% Segura</span>
+                <span className="text-[#D4AF37]">•</span>
+                <span>Premios Reales</span>
               </div>
             </div>
           </SectionCard>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          FOOTER SECTION
-          ════════════════════════════════════════════════════════════ */}
-      <footer className="border-t border-[var(--zm-border)] py-12 sm:py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+      {/* FOOTER */}
+      <footer className="border-t border-[#D4AF37]/20 py-12 sm:py-16 px-3 sm:px-4 bg-gradient-to-b from-[#060B14] to-[#000000]" role="contentinfo">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 sm:gap-12">
-            {/* Branding */}
             <div className="space-y-4">
-              <h3 className="font-black text-lg text-white">Zona Futbol</h3>
-              <p className="text-sm text-[var(--zm-text-muted)]">
-                La plataforma de fútbol interactivo más completa de América Latina.
-              </p>
+              <h3 className="font-black text-xl text-white tracking-tight">Zona Futbol</h3>
+              <p className="text-sm text-[#94A3B8] leading-relaxed">La plataforma de fútbol más completa de América Latina. Fantasy, duelos, predicciones, minijuegos, achievements y premios reales.</p>
             </div>
 
-            {/* Links Rápidos */}
-            <div className="space-y-3">
-              <h4 className="font-bold text-sm text-white uppercase tracking-wider">
-                Producto
-              </h4>
-              <ul className="space-y-2 text-sm text-[var(--zm-text-muted)]">
-                <li>
-                  <Link href="/app" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Mi Cuenta
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cromos" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Cromos
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/calendario" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Calendario
-                  </Link>
-                </li>
+            <nav className="space-y-3">
+              <h4 className="font-black text-sm text-white uppercase tracking-wider">Producto</h4>
+              <ul className="space-y-2 text-sm text-[#94A3B8]">
+                {["Mi Cuenta", "Cromos", "Calendario"].map((link) => (
+                  <li key={link}>
+                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                      {link}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </nav>
 
-            {/* Recursos */}
-            <div className="space-y-3">
-              <h4 className="font-bold text-sm text-white uppercase tracking-wider">
-                Recursos
-              </h4>
-              <ul className="space-y-2 text-sm text-[var(--zm-text-muted)]">
-                <li>
-                  <Link href="/tutoriales" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Tutoriales
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contacto" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Contacto
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legal/terminos" className="hover:text-[var(--zm-gold)] transition-colors">
-                    Términos
-                  </Link>
-                </li>
+            <nav className="space-y-3">
+              <h4 className="font-black text-sm text-white uppercase tracking-wider">Recursos</h4>
+              <ul className="space-y-2 text-sm text-[#94A3B8]">
+                {["Tutoriales", "Contacto", "Términos"].map((link) => (
+                  <li key={link}>
+                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                      {link}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </nav>
 
-            {/* Social */}
-            <div className="space-y-3">
-              <h4 className="font-bold text-sm text-white uppercase tracking-wider">
-                Síguenos
-              </h4>
-              <ul className="space-y-2 text-sm text-[var(--zm-text-muted)]">
-                <li>
-                  <a
-                    href="https://twitter.com/zonamundial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[var(--zm-gold)] transition-colors"
-                  >
-                    Twitter/X
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://instagram.com/zonamundial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[var(--zm-gold)] transition-colors"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://discord.gg/zonamundial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[var(--zm-gold)] transition-colors"
-                  >
-                    Discord
-                  </a>
-                </li>
+            <nav className="space-y-3">
+              <h4 className="font-black text-sm text-white uppercase tracking-wider">Síguenos</h4>
+              <ul className="space-y-2 text-sm text-[#94A3B8]">
+                {["Twitter/X", "Instagram", "Discord"].map((link) => (
+                  <li key={link}>
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                      {link}
+                    </a>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </nav>
           </div>
 
-          {/* Copyright */}
-          <div className="mt-12 pt-8 border-t border-[var(--zm-border)]">
-            <p className="text-center text-xs sm:text-sm text-[var(--zm-text-muted)]">
+          <div className="mt-12 pt-8 border-t border-[#D4AF37]/20">
+            <p className="text-center text-xs sm:text-sm text-[#94A3B8]">
               © 2026 Zona Futbol. Todos los derechos reservados. |{" "}
-              <Link href="/legal/privacidad" className="hover:text-[var(--zm-gold)] transition-colors">
+              <Link href="#" className="hover:text-[#D4AF37] transition-colors">
                 Privacidad
               </Link>{" "}
               |{" "}
-              <Link href="/legal/terminos" className="hover:text-[var(--zm-gold)] transition-colors">
+              <Link href="#" className="hover:text-[#D4AF37] transition-colors">
                 Términos
               </Link>
             </p>
@@ -561,63 +584,26 @@ export default function ZonaFutbolPreviewPage() {
         </div>
       </footer>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          CSS ANIMATIONS (Inline Styles)
-          ════════════════════════════════════════════════════════════ */}
+      {/* ULTRA-PREMIUM STYLES */}
       <style jsx global>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); } 50% { box-shadow: 0 0 24px rgba(212, 175, 55, 0.6); } }
+
+        .animate-fade-in { animation: fade-in 0.9s ease-out; }
+        .animate-slide-up { animation: slide-up 0.9s ease-out; }
+        .animate-gradient-shift { background-size: 200% 200%; animation: gradient-shift 3s ease-in-out infinite; }
+
+        * { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        @media (prefers-reduced-motion: reduce) {
+          * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes gold-glow {
-          0% {
-            box-shadow: 0 0 10px rgba(201, 168, 76, 0);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
-          }
-          100% {
-            box-shadow: 0 0 10px rgba(201, 168, 76, 0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
-        }
-
-        .animate-slide-up {
-          animation: slide-up 0.8s ease-out;
-        }
-
-        .hover\:gold-glow:hover {
-          animation: gold-glow 1.5s ease-in-out;
-        }
-
-        /* ═════════════════════════════════════════════════════════════
-           RESPONSIVE ADJUSTMENTS
-           ═════════════════════════════════════════════════════════════ */
-
-        @media (max-width: 640px) {
-          section {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
+        .gradient-radial {
+          background: radial-gradient(var(--tw-gradient-stops));
         }
       `}</style>
     </div>

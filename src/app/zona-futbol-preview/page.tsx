@@ -46,7 +46,7 @@ const LEAGUES: League[] = [
     code: "GB",
     color: "#2952a3",
     accent: "#4a7cff",
-    icon: "⚪",
+    icon: "[o]",
     games: 380,
     players: 12000,
   },
@@ -55,7 +55,7 @@ const LEAGUES: League[] = [
     code: "ES",
     color: "#ffc266",
     accent: "#ffd699",
-    icon: "⚽",
+    icon: "[*]",
     games: 380,
     players: 10500,
   },
@@ -64,7 +64,7 @@ const LEAGUES: League[] = [
     code: "IT",
     color: "#1a3a5c",
     accent: "#4a7cff",
-    icon: "🇮🇹",
+    icon: "[IT]",
     games: 380,
     players: 9200,
   },
@@ -73,7 +73,7 @@ const LEAGUES: League[] = [
     code: "DE",
     color: "#be185d",
     accent: "#ec4899",
-    icon: "🔴",
+    icon: "[●]",
     games: 306,
     players: 8100,
   },
@@ -82,7 +82,7 @@ const LEAGUES: League[] = [
     code: "MX",
     color: "#10824a",
     accent: "#22c55e",
-    icon: "🇲🇽",
+    icon: "[MX]",
     games: 480,
     players: 15000,
   },
@@ -91,7 +91,7 @@ const LEAGUES: League[] = [
     code: "AR",
     color: "#4a1a6f",
     accent: "#b570f0",
-    icon: "🏆",
+    icon: "[T]",
     games: 125,
     players: 18000,
   },
@@ -100,40 +100,40 @@ const LEAGUES: League[] = [
 const FEATURES: Feature[] = [
   {
     id: "duelos",
-    icon: "⚔️",
+    icon: "[A]",
     title: "Duelos Directos",
     desc: "Desafía a tus amigos en competencias cabeza a cabeza. Apuestas reales, recompensas dinámicas.",
     badge: "Nuevo",
   },
   {
     id: "achievements",
-    icon: "🏆",
+    icon: "[B]",
     title: "Achievements Granular",
     desc: "Logros por liga, equipo, jugador. Badges con narrativa. Recompensas escalonadas.",
     badge: "Popular",
   },
   {
     id: "minijuegos",
-    icon: "🎮",
+    icon: "[G]",
     title: "Minijuegos Liga-Específicos",
     desc: "Penales, headers, predicciones. Cada liga tiene mecánicas únicas. Premios diarios.",
   },
   {
     id: "rankings",
-    icon: "🌍",
+    icon: "[W]",
     title: "Rankings Globales Dinámicos",
     desc: "Compite contra el mundo. Multi-dimensión: Predictor, Fantasy, Collector, Duelista.",
     badge: "Destacado",
   },
   {
     id: "stats",
-    icon: "📊",
+    icon: "[S]",
     title: "Live Stats Dashboard Premium",
     desc: "Estadísticas en vivo. xG, posesión, heat maps. Análisis de IA en tiempo real.",
   },
   {
     id: "predictions",
-    icon: "💰",
+    icon: "[M]",
     title: "Predictions Tournament",
     desc: "Torneo de predicciones con premios reales. Rake comunitario. Leaderboards globales.",
     badge: "Premium",
@@ -143,7 +143,7 @@ const FEATURES: Feature[] = [
 const STEPS: StepItem[] = [
   {
     number: 1,
-    icon: "👕",
+    icon: "[C]",
     title: "Elige Tu Equipo Favorito",
     desc: "Personaliza tu experiencia. Acceso a duelos, predicciones, logros temáticos. Comunidad por equipo.",
     stat: 50,
@@ -151,7 +151,7 @@ const STEPS: StepItem[] = [
   },
   {
     number: 2,
-    icon: "🎮",
+    icon: "[G]",
     title: "Participa en Minijuegos Diarios",
     desc: "Juega en cada fecha. 8 minijuegos diferentes. Gana puntos, sube en ranking, desbloquea cosmetics.",
     stat: 8,
@@ -159,7 +159,7 @@ const STEPS: StepItem[] = [
   },
   {
     number: 3,
-    icon: "🥇",
+    icon: "[P]",
     title: "Sube en Rankings Globales",
     desc: "Compite contra 100k+ jugadores. Premios semanales y de temporada. Reputación global.",
     stat: 100,
@@ -231,12 +231,12 @@ export default function ZonaFutbolPreviewPage() {
 
             <div className="pt-6">
               <span className="inline-block px-4 py-2 rounded-full text-xs font-black text-[#D4AF37] bg-[#D4AF37]/15 border border-[#D4AF37]/40">
-                🏆 Plaza de Fundador Zona Futbol — Primera Temporada
+                Plaza de Fundador Zona Futbol — Primera Temporada
               </span>
             </div>
 
             <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#94A3B8] animate-fade-in" style={{animationDelay: "0.6s"}}>
-              <span>✓ 100% Seguro</span>
+              <span>100% Seguro</span>
               <span className="text-[#D4AF37]">•</span>
               <span>Verificado</span>
               <span className="text-[#D4AF37]">•</span>
@@ -259,15 +259,15 @@ export default function ZonaFutbolPreviewPage() {
               </div>
               <div className="space-y-3">
                 <div className="flex gap-3">
-                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-[#D4AF37] font-black">•</span>
                   <span className="text-sm text-[#cbd5e1]"><strong>Tu progreso se migra:</strong> Puntos, logros, historial de predicciones</span>
                 </div>
                 <div className="flex gap-3">
-                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-[#D4AF37] font-black">•</span>
                   <span className="text-sm text-[#cbd5e1]"><strong>Bonus de fundador:</strong> Recompensas extras para migraciones tempranas</span>
                 </div>
                 <div className="flex gap-3">
-                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-[#D4AF37] font-black">•</span>
                   <span className="text-sm text-[#cbd5e1]"><strong>Experiencia sin interrupciones:</strong> Continúa donde lo dejaste</span>
                 </div>
               </div>
@@ -304,10 +304,10 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {[
-              {value: "18,500+", label: "Usuarios de Zona Mundial", icon: "👥"},
-              {value: "9,200", label: "Se Unen Cada Semana", icon: "📈"},
-              {value: "92,400", label: "Predicciones Diarias", icon: "⚽"},
-              {value: "100%", label: "Seguro y Gratuito", icon: "🔒"},
+              {value: "18,500+", label: "Usuarios de Zona Mundial", icon: "01"},
+              {value: "9,200", label: "Se Unen Cada Semana", icon: "02"},
+              {value: "92,400", label: "Predicciones Diarias", icon: "03"},
+              {value: "100%", label: "Seguro y Gratuito", icon: "04"},
             ].map((stat, idx) => (
               <div key={idx} className="p-5 sm:p-6 rounded-xl bg-gradient-to-br from-[#0F1D32]/50 via-[#0a0f1a]/30 to-transparent backdrop-blur-sm border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 text-center group cursor-pointer">
                 <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
@@ -496,10 +496,10 @@ export default function ZonaFutbolPreviewPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  {icon: "⚡", title: "Rápido", desc: "Regístrate en 30 segundos"},
-                  {icon: "🎯", title: "Intuitivo", desc: "Fácil de entender y jugar"},
-                  {icon: "💰", title: "Premios", desc: "Dinero real en juego"},
-                  {icon: "🌍", title: "Global", desc: "Compite worldwide"},
+                  {icon: "[F]", title: "Rápido", desc: "Regístrate en 30 segundos"},
+                  {icon: "[T]", title: "Intuitivo", desc: "Fácil de entender y jugar"},
+                  {icon: "[P]", title: "Premios", desc: "Dinero real en juego"},
+                  {icon: "[W]", title: "Global", desc: "Compite worldwide"},
                 ].map((benefit, i) => (
                   <div key={i} className="p-4 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 text-center hover:border-[#D4AF37]/60 hover:bg-[#0F1D32]/70 transition-all duration-300 group cursor-pointer">
                     <div className="text-2xl mb-2 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
@@ -591,10 +591,10 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
             {[
-              {value: "100K+", label: "Jugadores Activos", icon: "👥"},
-              {value: "2M+", label: "Predicciones", icon: "⚽"},
-              {value: "$500K", label: "Premios Distribuidos", icon: "💰"},
-              {value: "24/7", label: "Disponible", icon: "🕐"},
+              {value: "100K+", label: "Jugadores Activos", icon: "01"},
+              {value: "2M+", label: "Predicciones", icon: "02"},
+              {value: "$500K", label: "Premios Distribuidos", icon: "03"},
+              {value: "24/7", label: "Disponible", icon: "04"},
             ].map((stat, idx) => (
               <div key={idx} className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent backdrop-blur-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-all duration-300 text-center hover:shadow-2xl group cursor-pointer">
                 <div className="text-3xl sm:text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
@@ -616,9 +616,9 @@ export default function ZonaFutbolPreviewPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               {[
-                {icon: "📱", title: "Acceso Directo", desc: "Home screen, tap y juega al instante"},
-                {icon: "🔔", title: "Notificaciones Push", desc: "Alertas de partidos, resultados y recompensas"},
-                {icon: "⚡", title: "Experiencia Nativa", desc: "Rápido, fluido, funciona offline"},
+                {icon: "[1]", title: "Acceso Directo", desc: "Home screen, tap y juega al instante"},
+                {icon: "[2]", title: "Notificaciones Push", desc: "Alertas de partidos, resultados y recompensas"},
+                {icon: "[3]", title: "Experiencia Nativa", desc: "Rápido, fluido, funciona offline"},
               ].map((benefit, i) => (
                 <div key={i} className="p-6 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 text-center transition-all duration-300 group cursor-pointer">
                   <div className="text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
@@ -683,15 +683,15 @@ export default function ZonaFutbolPreviewPage() {
               {/* Feature Highlights */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 px-4 py-6 rounded-xl bg-[#0F1D32]/60 border border-[#D4AF37]/25 backdrop-blur-xl hover:border-[#D4AF37]/60 transition-all duration-300">
                 <div className="text-center group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">⏱️</div>
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">[T]</div>
                   <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">5 min para jugar</p>
                 </div>
                 <div className="text-center border-l border-r border-[#D4AF37]/25 group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">🎯</div>
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">[G]</div>
                   <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Sin experiencia</p>
                 </div>
                 <div className="text-center group">
-                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">✓</div>
+                  <div className="text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266]">+</div>
                   <p className="text-xs text-[#94A3B8] mt-1 group-hover:text-[#cbd5e1]">Instantáneo</p>
                 </div>
               </div>
@@ -768,7 +768,7 @@ export default function ZonaFutbolPreviewPage() {
 
           <div className="py-6 border-t border-b border-[#D4AF37]/20">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-sm text-[#94A3B8]">
-              <span>🌍 Síguenos:</span>
+              <span>Síguenos:</span>
               <a href="#" className="text-[#D4AF37] hover:text-[#ffc266] font-black transition-colors">Instagram</a>
               <span className="hidden sm:block text-[#D4AF37]">•</span>
               <a href="#" className="text-[#D4AF37] hover:text-[#ffc266] font-black transition-colors">Facebook</a>
@@ -782,7 +782,7 @@ export default function ZonaFutbolPreviewPage() {
               © 2026 <span className="text-[#D4AF37] font-black">Sprintmarkt</span> · Valencia, España
             </p>
             <p className="max-w-2xl mx-auto leading-relaxed">
-              ⚠️ <strong>Aviso Legal:</strong> Zona Futbol es un juego 100% gratuito. No implica apuestas reales ni transacciones monetarias. Los Futcions y puntos no tienen valor monetario. Únicamente con fines de entretenimiento.
+              <strong>Aviso Legal:</strong> Zona Futbol es un juego 100% gratuito. No implica apuestas reales ni transacciones monetarias. Los Futcions y puntos no tienen valor monetario. Únicamente con fines de entretenimiento.
             </p>
           </div>
         </div>

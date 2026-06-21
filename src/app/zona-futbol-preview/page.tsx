@@ -166,7 +166,7 @@ export default function ZonaFutbolPreviewPage() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <SectionCard variant="solid">
-            <SectionHeader eyebrow="Funcionalidades Ultra-Premium" title="Lo que Zona Futbol te Ofrece" subtitle="6 modos competitivos con recompensas reales. Fantasy, predicciones, duelos, achievements, minijuegos y rankings globales." align="center" />
+            <SectionHeader eyebrow="Funcionalidades Ultra-Premium" title="Lo que Zona Futbol te Ofrece" subtitle="6 modos competitivos con recompensas reales. Fantasía, predicciones, duelos, logros, minijuegos y clasificaciones globales." align="center" />
 
             <AnimatedSection className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" stagger={0.15} delay={0.2} y={-35}>
               {FEATURES.map((feature, idx) => {

@@ -35,7 +35,7 @@ export function Hero() {
             Fantasy, Duelos, Minijuegos, Rankings Globales & IA Coach 24/7. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
           </p>
 
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
+          <div className="pt-8 flex flex-col items-center justify-center gap-4 animate-slide-up">
             <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="/app">
               Regístrate Gratis
             </ShimmerButton>

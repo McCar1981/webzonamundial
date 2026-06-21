@@ -6,12 +6,12 @@ import { ShimmerButton } from "@/components/ShimmerButton";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
-import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Coins } from "lucide-react";
+import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Coins, Crown, Shirt, Flame } from "lucide-react";
 
 // Imports desde archivos separados
 import { League, Feature, StepItem } from "./types";
 import { LEAGUES, FEATURES, STEPS } from "./data";
-import { getIconComponent } from "./utils";
+import { getIconComponent, getLeagueIcon } from "./utils";
 import { Hero, GlobalStyles } from "./components";
 
 export default function ZonaFutbolPreviewPage() {
@@ -116,7 +116,10 @@ export default function ZonaFutbolPreviewPage() {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-40 blur-xl" style={{background: `radial-gradient(circle, ${league.color}40 0%, transparent 70%)`}} />
 
                   <div className="relative z-10 flex flex-col items-center gap-4 text-center">
-                    <div className="text-4xl group-hover:scale-130 transition-transform duration-300" style={{animation: "pulse-glow 2s infinite"}}>{league.icon}</div>
+                    {(() => {
+                      const LeagueIcon = getLeagueIcon(league.code);
+                      return <LeagueIcon className="w-8 h-8 text-[#D4AF37] group-hover:text-[#ffc266] group-hover:scale-110 transition-all duration-300" />;
+                    })()}
                     <FlagImage code={league.code} alt={league.name} width={72} className="rounded-lg overflow-hidden shadow-2xl group-hover:scale-125 group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300" />
                     <h3 className="font-black text-sm sm:text-base leading-tight tracking-tighter group-hover:text-[#D4AF37] transition-colors duration-300" style={{color: league.color}}>
                       {league.name}

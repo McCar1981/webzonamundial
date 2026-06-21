@@ -1,4 +1,4 @@
-import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Swords, Trophy, Gamepad2, Globe, BarChart3, Coins, Shirt, Medal } from "lucide-react";
+import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Swords, Trophy, Gamepad2, Globe, BarChart3, Coins, Shirt, Medal, Crown, Flame, Zap } from "lucide-react";
 
 export const getIconComponent = (iconName: string) => {
   const iconMap: Record<string, any> = {
@@ -12,4 +12,16 @@ export const getIconComponent = (iconName: string) => {
     medal: Medal,
   };
   return iconMap[iconName] || Trophy;
+};
+
+export const getLeagueIcon = (leagueCode: string) => {
+  const leagueIconMap: Record<string, any> = {
+    GB: Crown,
+    ES: Flame,
+    IT: Zap,
+    DE: Flame,
+    MX: Flame,
+    AR: Trophy,
+  };
+  return leagueIconMap[leagueCode] || Crown;
 };

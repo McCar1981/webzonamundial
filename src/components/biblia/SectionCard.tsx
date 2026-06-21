@@ -62,10 +62,10 @@ export function SectionHeader({
   return (
     <div
       className={`mb-6 sm:mb-8 ${
-        align === "center" ? "text-center" : "flex items-start justify-between flex-wrap gap-4"
+        align === "center" ? "flex flex-col items-center text-center" : "flex items-start justify-between flex-wrap gap-4"
       }`}
     >
-      <div>
+      <div className={align === "center" ? "max-w-2xl" : ""}>
         {eyebrow ? (
           <div className="text-[10px] font-bold text-[var(--bb-gold)] uppercase tracking-[0.25em] mb-2">
             {eyebrow}

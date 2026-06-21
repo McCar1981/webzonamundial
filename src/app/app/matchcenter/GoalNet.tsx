@@ -46,7 +46,12 @@ function buildScene(
   THREE: typeof import("three"),
   canvas: HTMLCanvasElement,
   colorHex: string,
+  seed: number,
 ) {
+  // Punto de impacto DESCENTRADO por gol (anti-repetición): cada gol entra por
+  // un sitio distinto de la portería en vez de siempre al centro.
+  const HX = (((seed % 5) + 5) % 5 - 2) * 0.42;          // ∈ {-0.84..0.84}
+  const HY = ((((seed >> 4) % 3) + 3) % 3 - 1) * 0.38;   // ∈ {-0.38,0,0.38}
   // setStyle interpreta el hex como sRGB (color-managed): el tinte del equipo
   // sale fiel (el constructor numérico lo trataría como lineal y desviaría el color).
   const TEAM = new THREE.Color();
@@ -162,7 +167,7 @@ function buildScene(
   }
   const glowTex = radialTex();
   const glowMat = new THREE.SpriteMaterial({ map: glowTex, color: TEAM, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0 });
-  const glow = new THREE.Sprite(glowMat); glow.scale.set(7, 7, 1); glow.position.set(0, 0, 0.4); scene.add(glow);
+  const glow = new THREE.Sprite(glowMat); glow.scale.set(7, 7, 1); glow.position.set(HX, HY, 0.4); scene.add(glow);
   disposables.push(glowMat, glowTex);
 
   // balón (billboard con la imagen real)
@@ -197,8 +202,39 @@ function buildScene(
   const ccx = confCanvas.getContext("2d")!; ccx.fillStyle = "#fff"; ccx.fillRect(6, 4, 20, 24);
   const confTexture = new THREE.CanvasTexture(confCanvas);
   const confMat = new THREE.PointsMaterial({ size: 0.42, map: confTexture, vertexColors: true, transparent: true, depthWrite: false, opacity: 0 });
-  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
+  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(HX, HY - 0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
   disposables.push(confGeo, confMat, confTexture);
+
+  // FLASHES de cámaras del estadio en las gradas del fondo: puntos blancos que
+  // parpadean (destellos secos), con PICO en el gol → "estadio vivo" de TV.
+  const FN = 140;
+  const flashGeo = new THREE.BufferGeometry();
+  const flashPos = new Float32Array(FN * 3);
+  const flashCol = new Float32Array(FN * 3);
+  const flashFreq: number[] = [], flashPhase: number[] = [];
+  for (let i = 0; i < FN; i++) {
+    flashPos[i * 3] = (Math.random() - 0.5) * 16;        // ancho de las gradas
+    flashPos[i * 3 + 1] = 0.6 + Math.random() * 7.2;     // por encima de la portería
+    flashPos[i * 3 + 2] = -3.6 - Math.random() * 0.6;    // detrás de la red, delante del fondo
+    flashFreq.push(6 + Math.random() * 14);
+    flashPhase.push(Math.random() * Math.PI * 2);
+  }
+  flashGeo.setAttribute("position", new THREE.BufferAttribute(flashPos, 3));
+  flashGeo.setAttribute("color", new THREE.BufferAttribute(flashCol, 3));
+  const flashMat = new THREE.PointsMaterial({ size: 0.14, map: glowTex, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+  const stadiumFlash = new THREE.Points(flashGeo, flashMat); scene.add(stadiumFlash);
+  disposables.push(flashGeo, flashMat);
+  function flashesAt(t: number) {
+    const td = t - IMPACT;
+    const env = td < 0 ? 0.16 + 0.1 * clamp01(t / 0.6) : Math.max(0.12, Math.exp(-1.1 * td));
+    const col = flashGeo.attributes.color.array as Float32Array;
+    for (let i = 0; i < FN; i++) {
+      const s = Math.sin(t * flashFreq[i] + flashPhase[i]);
+      const v = (s > 0 ? Math.pow(s, 16) : 0) * env; // destello seco
+      col[i * 3] = col[i * 3 + 1] = col[i * 3 + 2] = v;
+    }
+    flashGeo.attributes.color.needsUpdate = true;
+  }
 
   const IMPACT = 1.0; // s (escena corta: impacto pronto, todo termina ~2.6s)
   const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
@@ -234,7 +270,7 @@ function buildScene(
     const sig2 = 2 * 1.15 * 1.15, omega = 13.0, kWave = 2.6, sigR2 = 2 * 2.6 * 2.6;
     for (let i = 0; i < vcount; i++) {
       const x = basePos[i * 3], y = basePos[i * 3 + 1];
-      const r = Math.hypot(x, y + 0.12);
+      const r = Math.hypot(x - HX, y - HY);
       pos[i * 3 + 2] = -st.pocket * Math.exp(-(r * r) / sig2)
         + st.ripple * Math.sin(omega * td - r * kWave) * Math.exp(-(r * r) / sigR2) * 0.5;
     }
@@ -247,13 +283,13 @@ function buildScene(
     ball.visible = true;
     if (t <= IMPACT) {
       const p = clamp01((t - tStart) / (IMPACT - tStart)), e = easeOut(p);
-      ball.position.set(0, -1.6 + 1.6 * e, 5.0 + (0.2 - 5.0) * e); // llega a z=0.2 (DELANTE de la red)
+      ball.position.set(HX * e, -1.6 + (HY + 1.6) * e, 5.0 + (0.2 - 5.0) * e); // entra al punto (HX,HY), z=0.2 DELANTE
       const s = 1.7 + (0.95 - 1.7) * e; ball.scale.set(s, s, 1);
       ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
     } else {
       const p = clamp01((t - IMPACT) / 0.45);
       // la red lo FRENA: queda DELANTE (z>0 siempre), apenas un pelín atrás+abajo y asienta
-      ball.position.set(0, -0.12 * p, 0.2 - 0.05 * p);
+      ball.position.set(HX, HY - 0.12 * p, 0.2 - 0.05 * p);
       const s = 0.95 + (0.8 - 0.95) * p; ball.scale.set(s, s, 1);
       ball.rotation.z = -7.5 - p * 1.4; ballMat.opacity = 1;
     }
@@ -271,7 +307,14 @@ function buildScene(
   }
 
   function render(t: number) {
-    revealNet(t); deform(t); ballAt(t); glowAt(t); confettiAt(t);
+    revealNet(t); deform(t); ballAt(t); glowAt(t); confettiAt(t); flashesAt(t);
+    // red con VIDA durante el hold: balanceo suave del CONJUNTO (cuelga por
+    // gravedad). Barato: no recalcula vértices/normales, solo mueve la malla.
+    if (t > 1.5) {
+      const s = t - 1.5;
+      net.rotation.z = 0.014 * Math.sin(s * 1.7) * Math.exp(-0.1 * s);
+      net.position.x = 0.025 * Math.sin(s * 1.15);
+    }
     const td = t - IMPACT;
     teamLight.intensity = 42 + (td > 0 && td < 0.16 ? 130 : 0);
     // bloom fake: la RED "florece" (emissive pulsado) justo en el impacto
@@ -325,21 +368,31 @@ const GN_CSS = `
   opacity:0;animation:gnet3dWord .6s cubic-bezier(.2,1.5,.35,1) 1.1s both, gnet3dSheen 1.1s ease 1.5s both}
 @keyframes gnet3dWord{0%{transform:scale(.35) rotate(-4deg);opacity:0}60%{transform:scale(1.12) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 @keyframes gnet3dSheen{0%{background-position:160% 0,0 0}100%{background-position:-60% 0,0 0}}
-/* País que marca + su BANDERA (línea protagonista) */
-.gnet3d-country{display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;animation:gnet3dUp .5s ease 1.4s both}
-.gnet3d-flag{width:clamp(38px,9vw,60px);height:auto;border-radius:5px;box-shadow:0 4px 14px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.5)}
-.gnet3d-country span{font-weight:900;font-size:clamp(26px,7vw,52px);color:#fff;text-shadow:0 3px 16px rgba(0,0,0,.7);letter-spacing:.5px}
-.gnet3d-scorer{font-weight:800;font-size:clamp(13px,3.4vw,20px);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnet3dUp .5s ease 1.5s both}
-@keyframes gnet3dUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
-/* Fallback (sin WebGL/three): el texto no espera al delay de la animación 3D. */
+/* LOWER-THIRD estilo retransmisión: barra con franja del color del equipo,
+   bandera ONDEANDO + país (grande) + goleador, entrada por WIPE. */
+.gnet3d-lower{position:relative;display:inline-flex;align-items:center;gap:12px;padding:9px 18px 9px 16px;border-radius:11px;overflow:hidden;
+  background:linear-gradient(180deg, rgba(15,26,42,.93), rgba(8,15,26,.93));border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.55);
+  opacity:0;animation:gnet3dBar .55s cubic-bezier(.2,1,.3,1) 1.4s both}
+.gnet3d-lower::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:rgb(var(--teamrgb));box-shadow:0 0 14px rgba(var(--teamrgb),.9)}
+.gnet3d-flag{width:clamp(34px,8vw,52px);height:auto;border-radius:4px;box-shadow:0 3px 10px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.5);transform-origin:center;animation:gnet3dWave 2.6s ease-in-out 1.7s infinite}
+.gnet3d-info{display:flex;flex-direction:column;align-items:flex-start;line-height:1.05}
+.gnet3d-country{font-weight:900;font-size:clamp(22px,6vw,42px);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6);letter-spacing:.5px}
+.gnet3d-scorer{font-weight:800;font-size:clamp(11px,3vw,16px);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.82)}
+@keyframes gnet3dBar{0%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(10px)}100%{opacity:1;clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes gnet3dWave{0%,100%{transform:skewX(0) scaleY(1)}25%{transform:skewX(-5deg) scaleY(.97)}50%{transform:skewX(3deg) scaleY(1.03)}75%{transform:skewX(-2deg) scaleY(.99)}}
+/* LETTERBOX cinematográfico (entra y se queda; se va con el contenedor). */
+.gnet3d-lb{position:absolute;left:0;right:0;height:0;background:#04060b;z-index:1;animation:gnet3dLetter .6s ease .2s forwards}
+.gnet3d-lb.t{top:0}.gnet3d-lb.b{bottom:0}
+@keyframes gnet3dLetter{0%{height:0}100%{height:5.5vh}}
+/* Fallback (sin WebGL/three): el rótulo no espera al delay de la animación 3D. */
 .gnet3d--nofx .gnet3d-word{animation-delay:.1s}
-.gnet3d--nofx .gnet3d-country{animation-delay:.25s}
-.gnet3d--nofx .gnet3d-scorer{animation-delay:.4s}
+.gnet3d--nofx .gnet3d-lower{animation-delay:.25s}
 @media (prefers-reduced-motion: reduce){
   .gnet3d{animation:gnet3dFade 6.5s ease forwards!important}
-  .gnet3d-flash{display:none!important}
+  .gnet3d-flash,.gnet3d-lb{display:none!important}
+  .gnet3d-flag{animation:none!important}
   .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
-  .gnet3d-country,.gnet3d-scorer{animation:gnet3dUp .3s ease 0s both!important}
+  .gnet3d-lower{animation:gnet3dBar .3s ease 0s both!important}
 }
 `;
 
@@ -381,7 +434,7 @@ export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey 
       }
       if (disposed || !canvasRef.current) return;
       try {
-        sceneObj = buildScene(THREE, canvasRef.current, color);
+        sceneObj = buildScene(THREE, canvasRef.current, color, fxKey);
       } catch {
         showFallbackText();
         return; // WebGL no disponible → fallback
@@ -422,16 +475,20 @@ export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey 
       <style>{GN_CSS}</style>
       <canvas ref={canvasRef} className="gnet3d-cv" />
       <div className="gnet3d-flash" />
+      <div className="gnet3d-lb t" />
+      <div className="gnet3d-lb b" />
       <div className="gnet3d-text">
         <div className="gnet3d-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
-        <div className="gnet3d-country">
+        <div className="gnet3d-lower">
           {flag && (
             // eslint-disable-next-line @next/next/no-img-element
             <img className="gnet3d-flag" src={`https://flagcdn.com/w320/${flag}.png`} alt="" />
           )}
-          <span>{teamName}</span>
+          <div className="gnet3d-info">
+            <span className="gnet3d-country">{teamName}</span>
+            {scorer && <span className="gnet3d-scorer">{scorer}</span>}
+          </div>
         </div>
-        {scorer && <div className="gnet3d-scorer">{scorer}</div>}
       </div>
     </div>
   );

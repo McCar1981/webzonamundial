@@ -48,12 +48,9 @@ export function ShimmerButton({ children, className = "", onClick, href }: Shimm
     </>
   );
 
-  const textClass = "relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#e8d48b]";
-
   if (href) {
     return (
       <a href={href} className={`${baseClasses} ${className}`} onClick={onClick}>
-        <span className={textClass}>{children}</span>
         {content}
       </a>
     );
@@ -61,7 +58,6 @@ export function ShimmerButton({ children, className = "", onClick, href }: Shimm
 
   return (
     <button type="button" className={`${baseClasses} ${className}`} onClick={onClick}>
-      <span className={textClass}>{children}</span>
       {content}
     </button>
   );

@@ -6,7 +6,7 @@ import { ShimmerButton } from "@/components/ShimmerButton";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
-import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Coins, Crown, Shirt, Flame } from "lucide-react";
+import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Coins, Crown, Shirt, Flame, Zap, Brain, Globe } from "lucide-react";
 
 // Imports desde archivos separados
 import { League, Feature, StepItem } from "./types";
@@ -289,17 +289,20 @@ export default function ZonaFutbolPreviewPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  {icon: "[F]", title: "Rápido", desc: "Regístrate en 30 segundos"},
-                  {icon: "[T]", title: "Intuitivo", desc: "Fácil de entender y jugar"},
-                  {icon: "[P]", title: "Premios", desc: "Dinero real en juego"},
-                  {icon: "[W]", title: "Global", desc: "Compite worldwide"},
-                ].map((benefit, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 text-center hover:border-[#D4AF37]/60 hover:bg-[#0F1D32]/70 transition-all duration-300 group cursor-pointer">
-                    <div className="text-2xl mb-2 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
-                    <h5 className="font-black text-sm text-white mb-1">{benefit.title}</h5>
-                    <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
-                  </div>
-                ))}
+                  {iconComponent: Zap, title: "Rápido", desc: "Regístrate en 30 segundos"},
+                  {iconComponent: Brain, title: "Intuitivo", desc: "Fácil de entender y jugar"},
+                  {iconComponent: Coins, title: "Premios", desc: "Dinero real en juego"},
+                  {iconComponent: Globe, title: "Global", desc: "Compite mundial"},
+                ].map((benefit, i) => {
+                  const IconComp = benefit.iconComponent;
+                  return (
+                    <div key={i} className="p-4 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 text-center hover:border-[#D4AF37]/60 hover:bg-[#0F1D32]/70 transition-all duration-300 group cursor-pointer">
+                      <IconComp className="w-8 h-8 mx-auto mb-2 text-[#D4AF37] group-hover:text-[#ffc266] group-hover:scale-125 transition-all duration-300" />
+                      <h5 className="font-black text-sm text-white mb-1">{benefit.title}</h5>
+                      <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </SectionCard>

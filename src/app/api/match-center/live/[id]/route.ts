@@ -123,7 +123,9 @@ export async function GET(
   }
 
   // --- Modo simulación ---
-  const script = buildSimulation(meta);
+  // En DEMO ("Ver demo en vivo") colocamos los goles muy pronto para no esperar
+  // a ver la celebración; en simulación normal/fallback, guion aleatorio realista.
+  const script = buildSimulation(meta, undefined, { demoEarly: isDemo });
   if (useAI) {
     const cacheKey = `${SIMNARR_PREFIX}${matchId}:${script.seed}`;
     let aiNarr: Record<string, string> | null = null;

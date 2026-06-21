@@ -28,7 +28,8 @@ export interface GoalNetProps {
   fxKey: number;
 }
 
-const TOTAL = 2.6; // s — duración de la animación 3D (escena corta 2-3s; se desmonta a ~2.9s)
+const TOTAL = 7.0; // s — la ACCIÓN (balón+impacto) es ágil (~2.6s) pero el rótulo
+                   // ¡GOOOL!+país+goleador se MANTIENE legible hasta ~7s (se desmonta a ~7.3s)
 
 function hexRgb01(hex: string): [number, number, number] {
   const h = (hex || "#c9a84c").replace("#", "");
@@ -221,7 +222,8 @@ function buildScene(
   }
   function deform(t: number) {
     const td = t - IMPACT;
-    if (td < 0) return; // antes del impacto la red está PLANA (z=0): nada que hacer
+    if (td < 0) return;   // antes del impacto la red está PLANA (z=0): nada que hacer
+    if (td > 1.8) return; // ya asentada: la red mantiene su forma; no recalcular durante el hold de ~7s
     const st = netState(td);
     const pos = netGeo.attributes.position.array as Float32Array;
     const sig2 = 2 * 1.15 * 1.15, omega = 13.0, kWave = 2.6, sigR2 = 2 * 2.6 * 2.6;
@@ -285,8 +287,8 @@ function buildScene(
 const GN_CSS = `
 .gnet3d{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden;
   background:radial-gradient(circle at 50% 44%, rgba(var(--teamrgb),.18), #05080d 62%), #05080d;
-  animation:gnet3dFade 2.8s ease forwards}
-@keyframes gnet3dFade{0%{opacity:1}82%{opacity:1}100%{opacity:0}}
+  animation:gnet3dFade 7.2s ease forwards}
+@keyframes gnet3dFade{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
 .gnet3d-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .gnet3d-text{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
 .gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnet3dWord .6s cubic-bezier(.2,1.5,.35,1) 1.1s both}
@@ -302,7 +304,7 @@ const GN_CSS = `
 .gnet3d--nofx .gnet3d-country{animation-delay:.25s}
 .gnet3d--nofx .gnet3d-scorer{animation-delay:.4s}
 @media (prefers-reduced-motion: reduce){
-  .gnet3d{animation:gnet3dFade 2.5s ease forwards!important}
+  .gnet3d{animation:gnet3dFade 6.5s ease forwards!important}
   .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
   .gnet3d-country,.gnet3d-scorer{animation:gnet3dUp .3s ease 0s both!important}
 }

@@ -1,33 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useEffect } from "react";
 import { ShimmerButton } from "@/components/ShimmerButton";
 import { ParallaxImage } from "@/components/ParallaxImage";
 import { FloatingElements } from "@/components/FloatingElements";
 
 export function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!heroRef.current) return;
-    try {
-      const { gsap } = require("gsap");
-      const tl = gsap.timeline();
-      tl.from(heroRef.current.querySelectorAll(".animate-slide-up"), {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.18,
-        ease: "power3.out",
-      });
-    } catch (e) {
-      console.debug("GSAP fallback");
-    }
-  }, []);
-
   return (
-    <section ref={heroRef} className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
+    <section className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
       <div className="absolute inset-0 z-0">
         <ParallaxImage src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" alt="Estadio" className="h-full" speed={0.25} />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(6,11,20,0.6)] via-[rgba(6,11,20,0.7)] to-[rgba(6,11,20,0.95)]" />

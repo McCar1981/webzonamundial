@@ -483,7 +483,7 @@ export default function ZonaFutbolPreviewPage() {
               {/* Feature Highlights */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 px-4 py-6 rounded-xl bg-[#0F1D32]/60 border border-[#D4AF37]/25 backdrop-blur-xl hover:border-[#D4AF37]/60 transition-all duration-300">
                 <div className="text-center group">
-                  <Zap className="w-6 h-6 sm:w-7 sm:h-7 mx-auto text-[#D4AF37] group-hover:text-[#ffc266] transition-colors" />
+                  <Lightning className="w-6 h-6 sm:w-7 sm:h-7 mx-auto text-[#D4AF37] group-hover:text-[#ffc266] transition-colors" />
                   <p className="text-xs text-[#94A3B8] mt-2 group-hover:text-[#cbd5e1]">5 min para jugar</p>
                 </div>
                 <div className="text-center border-l border-r border-[#D4AF37]/25 group">

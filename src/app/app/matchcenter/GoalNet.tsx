@@ -42,14 +42,25 @@ function hexRgb01(hex: string): [number, number, number] {
 function buildScene(
   THREE: typeof import("three"),
   canvas: HTMLCanvasElement,
-  team: [number, number, number],
+  colorHex: string,
 ) {
-  const TEAM = new THREE.Color(team[0], team[1], team[2]);
+  // setStyle interpreta el hex como sRGB (color-managed): el tinte del equipo
+  // sale fiel (el constructor numérico lo trataría como lineal y desviaría el color).
+  const TEAM = new THREE.Color();
+  try { TEAM.setStyle(colorHex || "#c9a84c"); } catch { TEAM.setStyle("#c9a84c"); }
+  // componentes sRGB 0-255 del color (para los gradientes dibujados en canvas 2D)
+  const _h = (colorHex || "#c9a84c").replace("#", "");
+  const _f = _h.length === 3 ? _h.split("").map((c) => c + c).join("") : _h;
+  const _n = parseInt(_f, 16);
+  const SR = (_n >> 16) & 255, SG = (_n >> 8) & 255, SB = _n & 255;
   const W0 = canvas.clientWidth || window.innerWidth;
   const H0 = canvas.clientHeight || window.innerHeight;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // En móviles densos (dpr alto) capamos el pixelRatio y quitamos el antialias
+  // (el propio downsampling ya suaviza): baja mucho el fillrate sin verse peor.
+  const dpr = window.devicePixelRatio || 1;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: dpr < 1.5, alpha: false });
+  renderer.setPixelRatio(Math.min(dpr, 1.5));
   renderer.setSize(W0, H0, false);
 
   const scene = new THREE.Scene();
@@ -63,7 +74,7 @@ function buildScene(
   scene.add(new THREE.AmbientLight(0x4a587f, 0.55));
   const key = new THREE.PointLight(0xffffff, 60, 22); key.position.set(2.6, 3.4, 3.0); scene.add(key);
   const rim = new THREE.PointLight(0xbcd0ff, 30, 24); rim.position.set(-3, -1.5, 3.2); scene.add(rim);
-  const teamLight = new THREE.PointLight(TEAM.getHex(), 42, 26); teamLight.position.set(0, 0.2, 3.0); scene.add(teamLight);
+  const teamLight = new THREE.PointLight(0xffffff, 42, 26); teamLight.color.copy(TEAM); teamLight.position.set(0, 0.2, 3.0); scene.add(teamLight);
 
   const disposables: Array<{ dispose: () => void }> = [];
 
@@ -71,7 +82,7 @@ function buildScene(
   function bgTexture() {
     const c = document.createElement("canvas"); c.width = c.height = 512;
     const x = c.getContext("2d")!;
-    const r = (TEAM.r * 255) | 0, gg = (TEAM.g * 255) | 0, b = (TEAM.b * 255) | 0;
+    const r = SR, gg = SG, b = SB;
     const g = x.createRadialGradient(256, 250, 8, 256, 250, 330);
     g.addColorStop(0, "rgba(6,9,14,1)");
     g.addColorStop(0.42, `rgba(${(r * 0.55) | 0},${(gg * 0.5) | 0},${(b * 0.5) | 0},1)`);
@@ -100,14 +111,18 @@ function buildScene(
     return tex;
   }
   const netTex = netTexture();
-  const NW = 15, NH = 15, SX = 96, SY = 96;
+  // 48×48 = 2401 vértices (antes 96×96 = 9409): ~4× menos trabajo de deformación
+  // y de normales por frame. El embudo+onda son de baja frecuencia → se ve igual.
+  const NW = 15, NH = 15, SX = 48, SY = 48;
   netTex.repeat.set(NW / 0.42, NH / 0.42);
   const netGeo = new THREE.PlaneGeometry(NW, NH, SX, SY);
-  const netMat = new THREE.MeshStandardMaterial({
+  // Lambert (no PBR): fragment shader mucho más barato a pantalla completa con
+  // varias luces; para una red tintada difusa el resultado es casi idéntico.
+  const netMat = new THREE.MeshLambertMaterial({
     map: netTex, transparent: true, side: THREE.DoubleSide,
     color: new THREE.Color(0xffffff).lerp(TEAM, 0.1),
     emissive: TEAM.clone().multiplyScalar(0.06),
-    roughness: 0.55, metalness: 0, alphaTest: 0.02, depthWrite: false,
+    alphaTest: 0.02, depthWrite: false,
   });
   const net = new THREE.Mesh(netGeo, netMat); scene.add(net);
   disposables.push(netGeo, netMat, netTex);
@@ -189,18 +204,15 @@ function buildScene(
   }
   function deform(t: number) {
     const td = t - IMPACT;
+    if (td < 0) return; // antes del impacto la red está PLANA (z=0): nada que hacer
     const st = netState(td);
     const pos = netGeo.attributes.position.array as Float32Array;
     const sig2 = 2 * 1.15 * 1.15, omega = 13.0, kWave = 2.6, sigR2 = 2 * 2.6 * 2.6;
     for (let i = 0; i < vcount; i++) {
       const x = basePos[i * 3], y = basePos[i * 3 + 1];
       const r = Math.hypot(x, y + 0.12);
-      let z = 0;
-      if (td > 0) {
-        z -= st.pocket * Math.exp(-(r * r) / sig2);
-        z += st.ripple * Math.sin(omega * td - r * kWave) * Math.exp(-(r * r) / sigR2) * 0.5;
-      }
-      pos[i * 3 + 2] = z;
+      pos[i * 3 + 2] = -st.pocket * Math.exp(-(r * r) / sig2)
+        + st.ripple * Math.sin(omega * td - r * kWave) * Math.exp(-(r * r) / sigR2) * 0.5;
     }
     netGeo.attributes.position.needsUpdate = true;
     netGeo.computeVertexNormals();
@@ -264,6 +276,11 @@ const GN_CSS = `
 .gnet3d-name{font-weight:900;font-size:clamp(22px,5.5vw,40px);color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.65);opacity:0;animation:gnet3dUp .6s ease 2.2s both}
 .gnet3d-sub{font-weight:800;font-size:clamp(12px,3vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnet3dUp .6s ease 2.35s both}
 @keyframes gnet3dUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
+/* Fallback (sin WebGL/three): el texto no debe esperar al delay de la
+   animación 3D que no va a ocurrir → se adelanta. */
+.gnet3d--nofx .gnet3d-word{animation-delay:.15s}
+.gnet3d--nofx .gnet3d-name{animation-delay:.3s}
+.gnet3d--nofx .gnet3d-sub{animation-delay:.45s}
 @media (prefers-reduced-motion: reduce){
   .gnet3d{animation:gnet3dFade 4.5s ease forwards!important}
   .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
@@ -293,21 +310,27 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
     let startTs: number | null = null;
     let sceneObj: { render: (t: number) => void; resize: () => void; dispose: () => void } | null = null;
     const onResize = () => { if (sceneObj) sceneObj.resize(); };
+    window.addEventListener("resize", onResize); // antes del await: no se pierde una rotación durante la carga
+    // Si no hay WebGL/three, adelanta el texto del fallback (no esperar al delay de la animación 3D).
+    const showFallbackText = () => {
+      canvasRef.current?.closest(".gnet3d")?.classList.add("gnet3d--nofx");
+    };
 
     (async () => {
       let THREE: typeof import("three");
       try {
         THREE = await import("three");
       } catch {
+        showFallbackText();
         return; // sin three → fallback CSS (fondo+texto)
       }
       if (disposed || !canvasRef.current) return;
       try {
-        sceneObj = buildScene(THREE, canvasRef.current, hexRgb01(color));
+        sceneObj = buildScene(THREE, canvasRef.current, color);
       } catch {
+        showFallbackText();
         return; // WebGL no disponible → fallback
       }
-      window.addEventListener("resize", onResize);
       const loop = (ts: number) => {
         if (disposed) return;
         if (startTs == null) startTs = ts;

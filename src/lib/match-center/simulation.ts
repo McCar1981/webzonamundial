@@ -106,7 +106,15 @@ interface PlannedScore {
   sides: ("home" | "away")[]; // lado de cada gol
 }
 
-function planGoals(rng: () => number): PlannedScore {
+function planGoals(rng: () => number, demoEarly?: boolean): PlannedScore {
+  // DEMO ("Ver demo en vivo"): goles PRONTO y espaciados, para no esperar a ver
+  // la celebración. A 12× cada minuto de partido son 5s reales → primer gol a
+  // ~5s; separados 4-5 min para que no se solapen con la celebración (~7s).
+  if (demoEarly) {
+    const minutes = [1, 5, 9, 14];
+    const sides: ("home" | "away")[] = ["home", "away", "home", "away"];
+    return { total: minutes.length, minutes, sides };
+  }
   const total = weightedGoals(rng);
   const sides: ("home" | "away")[] = [];
   for (let i = 0; i < total; i++) {
@@ -120,7 +128,11 @@ function planGoals(rng: () => number): PlannedScore {
 }
 
 /** Construye el guion completo de un partido simulado. */
-export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScript {
+export function buildSimulation(
+  meta: MatchMeta,
+  seedInput?: number,
+  opts?: { demoEarly?: boolean },
+): MatchScript {
   _eidCounter = 0;
   const seed = (seedInput ?? meta.id * 2654435761) >>> 0;
   const rng = mulberry32(seed);
@@ -138,7 +150,7 @@ export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScrip
   assignNumbers(rng, homeLineup);
   assignNumbers(rng, awayLineup);
 
-  const goals = planGoals(rng);
+  const goals = planGoals(rng, opts?.demoEarly);
   const events: MatchEvent[] = [];
 
   // Saque inicial

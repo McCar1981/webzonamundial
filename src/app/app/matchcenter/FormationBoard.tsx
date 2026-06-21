@@ -12,9 +12,13 @@
 // el once, muestra el aviso "por confirmar" en vez de inventar nombres.
 
 import { useMemo } from "react";
-import type { MatchMeta, TeamLineup } from "@/lib/match-center/types";
+import type { MatchMeta, TeamLineup, MatchEvent, Side } from "@/lib/match-center/types";
 import { lastName } from "@/lib/match-center/names";
 import { kitColors } from "@/data/kits-2026";
+
+// Estado de un jugador acumulado de los eventos (para pintar en la alineación).
+interface PlayerStatus { goals: number; ownGoals: number; yellow: boolean; red: boolean; subOff: boolean; subOn: boolean; }
+const normKey = (name?: string): string => lastName(name || "").toLowerCase().trim();
 
 const BG2 = "#0F1D32";
 const MID = "#8a94b0";
@@ -62,11 +66,38 @@ interface Props {
   lineup: TeamLineup;
   /** En vivo: si la API aún no publicó el once, muestra "por confirmar". */
   allowPending?: boolean;
+  /** Eventos YA ocurridos (gol/tarjeta/cambio) para reflejarlos en la alineación. */
+  events?: MatchEvent[];
+  /** Lado de este equipo (para filtrar sus eventos). */
+  side?: Side;
 }
 
-export default function FormationBoard({ team, lineup, allowPending }: Props) {
+export default function FormationBoard({ team, lineup, allowPending, events, side }: Props) {
   const kit = useMemo(() => teamKit(team.flag, team.color), [team.flag, team.color]);
   const confirmed = lineup.starters.some((p) => !!p.name);
+
+  // Acumula gol/tarjeta/cambio por jugador (clave = apellido normalizado).
+  const status = useMemo(() => {
+    const m = new Map<string, PlayerStatus>();
+    const get = (n?: string): PlayerStatus | null => {
+      const k = normKey(n); if (!k) return null;
+      let s = m.get(k);
+      if (!s) { s = { goals: 0, ownGoals: 0, yellow: false, red: false, subOff: false, subOn: false }; m.set(k, s); }
+      return s;
+    };
+    for (const e of events || []) {
+      if (side && e.side !== side) continue; // solo los de ESTE equipo
+      const s = get(e.player);
+      if (e.type === "goal" || e.type === "penalty_goal") { if (s) s.goals++; }
+      else if (e.type === "own_goal") { if (s) s.ownGoals++; }
+      else if (e.type === "yellow") { if (s) s.yellow = true; }
+      else if (e.type === "second_yellow") { if (s) { s.yellow = true; s.red = true; } }
+      else if (e.type === "red") { if (s) s.red = true; }
+      else if (e.type === "sub") { if (s) s.subOff = true; const si = get(e.playerIn); if (si) si.subOn = true; }
+    }
+    return m;
+  }, [events, side]);
+  const statusFor = (name?: string): PlayerStatus | undefined => status.get(normKey(name));
 
   // Camiseta REAL diseñada (PNG en /public). Si falta, se cae a la silueta de
   // color. El dorsal va superpuesto sobre el pecho con contraste automático.
@@ -135,8 +166,9 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
             const fill = isGk ? kit.gk : kit.out;
             const ink = inkOn(fill);
             const label = p.name ? lastName(p.name) : `#${p.num}`;
+            const st = statusFor(p.name);
             return (
-              <g key={`${p.num}-${i}`} transform={`translate(${X},${Y})`}>
+              <g key={`${p.num}-${i}`} transform={`translate(${X},${Y})`} opacity={st?.subOff ? 0.62 : 1}>
                 {/* sombra */}
                 <ellipse cx="0" cy="16" rx="12" ry="3.2" fill="rgba(0,0,0,0.30)" />
                 {jersey ? (
@@ -159,6 +191,8 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
                   <rect x="-31" y="-9" width="62" height="16" rx="4" fill="rgba(6,15,24,0.78)" />
                   <text x="0" y="2.5" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#eef2f9">{label.length > 11 ? label.slice(0, 10) + "…" : label}</text>
                 </g>
+                {/* distintivos: gol / tarjeta / sustituido */}
+                <PlayerBadges st={st} />
               </g>
             );
           })}
@@ -177,12 +211,16 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
             <>
               <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD2, textTransform: "uppercase", marginBottom: 8 }}>Suplentes</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(130px,1fr))", gap: "4px 14px" }}>
-                {lineup.substitutes.map((s, i) => (
-                  <div key={`${s.num}-${i}`} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12.5 }}>
-                    <span className="mc-num" style={{ color: DIM, minWidth: 18, textAlign: "right", fontWeight: 700 }}>{s.num || "–"}</span>
-                    <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.name ? lastName(s.name) : "—"}</span>
-                  </div>
-                ))}
+                {lineup.substitutes.map((s, i) => {
+                  const sst = statusFor(s.name);
+                  return (
+                    <div key={`${s.num}-${i}`} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12.5, opacity: sst?.subOn ? 1 : 0.92 }}>
+                      <span className="mc-num" style={{ color: DIM, minWidth: 18, textAlign: "right", fontWeight: 700 }}>{s.num || "–"}</span>
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: sst?.subOn ? "#fff" : undefined }}>{s.name ? lastName(s.name) : "—"}</span>
+                      <SubBadges st={sst} />
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}
@@ -190,4 +228,65 @@ export default function FormationBoard({ team, lineup, allowPending }: Props) {
       )}
     </div>
   );
+}
+
+/** Distintivos sobre el titular en el campo (SVG): gol(es), tarjeta(s), sustituido. */
+function PlayerBadges({ st }: { st?: PlayerStatus }) {
+  if (!st) return null;
+  return (
+    <g>
+      {/* GOL(es): balón arriba-izquierda */}
+      {st.goals > 0 && (
+        <g transform="translate(-13,-11)">
+          <circle r="5.2" fill="#fff" stroke="#0b1825" strokeWidth="0.7" />
+          <circle r="1.7" fill="#16202c" />
+          {st.goals > 1 && (
+            <text x="0" y="12.5" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fff" stroke="#0b1825" strokeWidth="0.5" paintOrder="stroke">×{st.goals}</text>
+          )}
+        </g>
+      )}
+      {/* AUTOGOL: balón con aro rojo */}
+      {st.ownGoals > 0 && (
+        <g transform="translate(-13,-11)">
+          <circle r="5.2" fill="#fff" stroke="#e5484d" strokeWidth="1.2" />
+          <circle r="1.7" fill="#16202c" />
+        </g>
+      )}
+      {/* TARJETAS: arriba-derecha (amarilla detrás, roja delante para 2ª amarilla) */}
+      {st.yellow && !st.red && (
+        <rect x="9" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 12.2 -10)" />
+      )}
+      {st.red && (
+        <>
+          {st.yellow && <rect x="6.8" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 10 -10)" />}
+          <rect x="10" y="-14" width="6.4" height="9" rx="1.2" fill="#e5484d" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 13.2 -9.5)" />
+        </>
+      )}
+      {/* SUSTITUIDO: flecha roja hacia abajo, abajo-derecha */}
+      {st.subOff && <path d="M9.5,5.5 h7 l-3.5,6.2 z" fill="#e5484d" stroke="#0b1825" strokeWidth="0.5" />}
+    </g>
+  );
+}
+
+/** Distintivos del suplente en la lista (HTML): entró ▲, gol, tarjeta. */
+function SubBadges({ st }: { st?: PlayerStatus }) {
+  if (!st) return null;
+  const items: JSX.Element[] = [];
+  if (st.subOn) items.push(
+    <svg key="on" width="9" height="9" viewBox="0 0 10 10" aria-label="entró"><path d="M5 1 L9 8 L1 8 Z" fill="#22c55e" /></svg>
+  );
+  if (st.goals > 0) items.push(
+    <span key="g" title="Gol" style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "#fff", border: "1px solid #0b1825" }} />
+  );
+  if (st.ownGoals > 0) items.push(
+    <span key="og" title="Gol en propia" style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "#fff", border: "1.5px solid #e5484d" }} />
+  );
+  if (st.yellow && !st.red) items.push(
+    <span key="y" title="Amarilla" style={{ display: "inline-block", width: 7, height: 10, borderRadius: 1.5, background: "#f6c700" }} />
+  );
+  if (st.red) items.push(
+    <span key="r" title="Roja" style={{ display: "inline-block", width: 7, height: 10, borderRadius: 1.5, background: "#e5484d" }} />
+  );
+  if (!items.length) return null;
+  return <span style={{ display: "inline-flex", alignItems: "center", gap: 4, marginLeft: "auto", flexShrink: 0 }}>{items}</span>;
 }

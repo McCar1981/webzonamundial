@@ -1311,6 +1311,15 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
       : { home: feed.homeLineup, away: feed.awayLineup }
     : null;
 
+  // Eventos de jugador YA OCURRIDOS (gol/tarjeta/cambio) para reflejarlos en las
+  // alineaciones. En vivo: todos los del feed (ya pasaron). En simulación: solo
+  // los que el reloj ha alcanzado (t <= sec) — feed.events incluye los futuros.
+  const lineupEvents = useMemo(() => {
+    if (!feed) return [] as MatchEvent[];
+    const SIG = new Set<string>(["goal", "penalty_goal", "own_goal", "yellow", "red", "second_yellow", "sub"]);
+    return feed.events.filter((e) => SIG.has(e.type) && (feed.mode === "live" || e.t <= sec));
+  }, [feed, sec]);
+
   return (
     // El colchón para la bottom-nav vive al FINAL de la página ([id]/page.tsx):
     // las micro-predicciones se montan después de este componente y un padding
@@ -1643,8 +1652,8 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
                 SUPLENTES y el entrenador. */}
             {tab === "alineaciones" && (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
-                <FormationBoard team={meta.home} lineup={lineups.home} allowPending={feed.mode === "live"} />
-                <FormationBoard team={meta.away} lineup={lineups.away} allowPending={feed.mode === "live"} />
+                <FormationBoard team={meta.home} lineup={lineups.home} allowPending={feed.mode === "live"} events={lineupEvents} side="home" />
+                <FormationBoard team={meta.away} lineup={lineups.away} allowPending={feed.mode === "live"} events={lineupEvents} side="away" />
               </div>
             )}
 

@@ -150,6 +150,7 @@ function buildScene(
   const ballGeo = new THREE.PlaneGeometry(1, 1);
   const ballMat = new THREE.MeshBasicMaterial({ map: ballTex, transparent: true, depthWrite: false });
   const ball = new THREE.Mesh(ballGeo, ballMat); scene.add(ball);
+  ball.renderOrder = 5; // SIEMPRE delante de la red (la red lo frena, no lo traspasa)
   disposables.push(ballGeo, ballMat, ballTex);
 
   // confeti de celebración (color de la selección + blanco + dorado)
@@ -174,7 +175,7 @@ function buildScene(
   const ccx = confCanvas.getContext("2d")!; ccx.fillStyle = "#fff"; ccx.fillRect(6, 4, 20, 24);
   const confTexture = new THREE.CanvasTexture(confCanvas);
   const confMat = new THREE.PointsMaterial({ size: 0.42, map: confTexture, vertexColors: true, transparent: true, depthWrite: false, opacity: 0 });
-  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); scene.add(confetti);
+  const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
   disposables.push(confGeo, confMat, confTexture);
 
   const IMPACT = 1.45;
@@ -223,14 +224,15 @@ function buildScene(
     ball.visible = true;
     if (t <= IMPACT) {
       const p = clamp01((t - tStart) / (IMPACT - tStart)), e = easeOut(p);
-      ball.position.set(0, -1.6 + 1.6 * e, 5.0 + (0.05 - 5.0) * e);
+      ball.position.set(0, -1.6 + 1.6 * e, 5.0 + (0.2 - 5.0) * e); // llega a z=0.2 (DELANTE de la red)
       const s = 1.7 + (0.95 - 1.7) * e; ball.scale.set(s, s, 1);
       ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
     } else {
       const p = clamp01((t - IMPACT) / 0.7);
-      ball.position.set(0, -0.15 * p, 0.05 + (-0.55 - 0.05) * p);
-      const s = 0.95 + (0.62 - 0.95) * p; ball.scale.set(s, s, 1);
-      ball.rotation.z = -7.5 - p * 2.2; ballMat.opacity = 1;
+      // la red lo FRENA: queda DELANTE (z>0 siempre), apenas un pelín atrás+abajo y asienta
+      ball.position.set(0, -0.12 * p, 0.2 - 0.05 * p);
+      const s = 0.95 + (0.8 - 0.95) * p; ball.scale.set(s, s, 1);
+      ball.rotation.z = -7.5 - p * 1.4; ballMat.opacity = 1;
     }
   }
   function revealNet(t: number) {

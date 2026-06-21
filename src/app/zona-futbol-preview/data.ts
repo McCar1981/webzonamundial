@@ -8,7 +8,6 @@ export const LEAGUES: League[] = [
     accent: "#4a7cff",
     icon: "[o]",
     games: 380,
-    players: 12000,
   },
   {
     name: "LaLiga",
@@ -17,7 +16,6 @@ export const LEAGUES: League[] = [
     accent: "#ffd699",
     icon: "[*]",
     games: 380,
-    players: 10500,
   },
   {
     name: "Serie A",
@@ -26,7 +24,6 @@ export const LEAGUES: League[] = [
     accent: "#4a7cff",
     icon: "[IT]",
     games: 380,
-    players: 9200,
   },
   {
     name: "Bundesliga",
@@ -35,7 +32,6 @@ export const LEAGUES: League[] = [
     accent: "#ec4899",
     icon: "[●]",
     games: 306,
-    players: 8100,
   },
   {
     name: "Liga MX",
@@ -44,7 +40,6 @@ export const LEAGUES: League[] = [
     accent: "#22c55e",
     icon: "[MX]",
     games: 480,
-    players: 15000,
   },
   {
     name: "CONMEBOL Libertadores",
@@ -53,7 +48,6 @@ export const LEAGUES: League[] = [
     accent: "#b570f0",
     icon: "[T]",
     games: 125,
-    players: 18000,
   },
 ];
 

@@ -56,7 +56,7 @@ export default function ZonaFutbolPreviewPage() {
                   <span className="font-black text-[#D4AF37]">100%</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-[#D4AF37]/20">
-                  <span>Logros y Badges</span>
+                  <span>Logros e Insignias</span>
                   <span className="font-black text-[#D4AF37]">100%</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-[#D4AF37]/20">
@@ -136,22 +136,16 @@ export default function ZonaFutbolPreviewPage() {
             </AnimatedSection>
 
             {/* Stats Summary */}
-            <div className="mt-16 grid grid-cols-3 gap-6 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-[#060B14] border border-[#D4AF37]/25 shadow-2xl hover:border-[#D4AF37]/50 transition-all duration-300">
+            <div className="mt-16 grid grid-cols-2 gap-6 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-[#060B14] border border-[#D4AF37]/25 shadow-2xl hover:border-[#D4AF37]/50 transition-all duration-300">
               <div className="text-center group">
                 <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">{LEAGUES.length}</div>
-                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Ligas Principales</div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Ligas Disponibles</div>
               </div>
-              <div className="text-center border-l border-r border-[#D4AF37]/25 group">
+              <div className="text-center group">
                 <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">
                   {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.games || 0), 0) / 100)}+K
                 </div>
                 <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Partidos Anuales</div>
-              </div>
-              <div className="text-center group">
-                <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">
-                  {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.players || 0), 0) / 1000)}K+
-                </div>
-                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Jugadores Activos</div>
               </div>
             </div>
           </SectionCard>
@@ -210,7 +204,7 @@ export default function ZonaFutbolPreviewPage() {
                 <div>
                   <h4 className="font-black text-xs text-[#D4AF37] uppercase tracking-wider mb-3">Trending Now</h4>
                   <p className="text-sm text-[#cbd5e1] leading-relaxed">
-                    Rankings globales multi-dimensión. Compite en 5 categorías: Predictor, Fantasy, Collector, Duelista, Streamer. Premios semanales y de temporada.
+                    Rankings globales multi-dimensión. Compite en categorías: Predictor, Fantasía, Coleccionista, Duelista. Premios semanales y de temporada.
                   </p>
                 </div>
                 <div>
@@ -387,9 +381,9 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
             {[
-              {value: "100K+", label: "Jugadores Activos", Icon: Users},
-              {value: "2M+", label: "Predicciones", Icon: Target},
-              {value: "$500K", label: "Premios Distribuidos", Icon: Coins},
+              {value: "6", label: "Ligas Disponibles", Icon: Users},
+              {value: "∞", label: "Posibilidades de Juego", Icon: Target},
+              {value: "Semanal", label: "Premios", Icon: Coins},
               {value: "24/7", label: "Disponible", Icon: CheckCircle},
             ].map((stat, idx) => {
               const Icon = stat.Icon;
@@ -463,7 +457,7 @@ export default function ZonaFutbolPreviewPage() {
             </div>
 
             <p className="text-xs text-center text-[#94A3B8]">
-              <span className="text-[#D4AF37] font-black">9,284</span> aficionados ya suscritos • Sin spam • Sin compromiso
+              Sé uno de los primeros • Sin spam • Sin compromiso
             </p>
           </div>
         </div>
@@ -527,8 +521,8 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12">
             <div className="space-y-4">
-              <h3 className="font-black text-lg text-white tracking-tight">Zona Mundial</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">Hecha por fans, para fans. Fantasy, predicciones, duelos, minijuegos y premios reales.</p>
+              <h3 className="font-black text-lg text-white tracking-tight">Zona Futbol</h3>
+              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">Fantasía de ligas, predicciones, duelos, minijuegos y premios reales. Hecho para fans.</p>
               <p className="text-xs text-[#94A3B8]">Powered by <span className="text-[#D4AF37] font-black">Sprintmarkt</span></p>
             </div>
 
@@ -588,7 +582,7 @@ export default function ZonaFutbolPreviewPage() {
               © 2026 <span className="text-[#D4AF37] font-black">Sprintmarkt</span> · Valencia, España
             </p>
             <p className="max-w-2xl mx-auto leading-relaxed">
-              <strong>Aviso Legal:</strong> Zona Futbol es un juego 100% gratuito. No implica apuestas reales ni transacciones monetarias. Los Futcions y puntos no tienen valor monetario. Únicamente con fines de entretenimiento.
+              <strong>Aviso Legal:</strong> Zona Futbol es un juego 100% gratuito. No implica apuestas reales. Los puntos y premios son solo con fines de entretenimiento.
             </p>
           </div>
         </div>

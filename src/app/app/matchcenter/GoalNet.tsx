@@ -65,6 +65,11 @@ function buildScene(
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: dpr < 1.5, alpha: false });
   renderer.setPixelRatio(Math.min(dpr, 1.5));
   renderer.setSize(W0, H0, false);
+  // GRADO de imagen: tone mapping cinematográfico (rolloff de altas luces) →
+  // los blancos de la red y los destellos dejan de quemarse "sucio" = look de
+  // plató de TV en vez de "render plano". Coste GPU cero (curva del pase actual).
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x05080d); // OPACO desde el frame 0
@@ -260,16 +265,30 @@ function buildScene(
   function glowAt(t: number) {
     const td = t - IMPACT;
     if (td < 0) { glowMat.opacity = 0; return; }
-    glowMat.opacity = 0.9 * Math.exp(-3.2 * td);
+    // bloom fake: floración corta y brillante en el impacto + halo que decae
+    glowMat.opacity = Math.min(1.15, 1.0 * Math.exp(-3.2 * td) + 0.6 * Math.exp(-18 * td));
     const s = 6 + 6 * (1 - Math.exp(-4 * td)); glow.scale.set(s, s, 1);
   }
 
   function render(t: number) {
     revealNet(t); deform(t); ballAt(t); glowAt(t); confettiAt(t);
-    teamLight.intensity = 42 + (t > IMPACT && t < IMPACT + 0.16 ? 130 : 0);
-    // dolly: empuje suave de cámara hacia la red en el impacto (energía)
-    cam.position.z = 5.4 - 0.55 * easeOut(clamp01((t - IMPACT) / 0.8));
+    const td = t - IMPACT;
+    teamLight.intensity = 42 + (td > 0 && td < 0.16 ? 130 : 0);
+    // bloom fake: la RED "florece" (emissive pulsado) justo en el impacto
+    netMat.emissive.copy(TEAM).multiplyScalar(0.06 + (td > 0 ? 0.55 * Math.exp(-12 * td) : 0));
+    // cámara: dolly + KICK del balonazo (handheld) + micro-handheld en el hold
+    const dolly = 5.4 - 0.55 * easeOut(clamp01(td / 0.8));
+    let kx = 0, ky = 0, roll = 0;
+    if (td > 0 && td < 0.45) {
+      const k = Math.exp(-9 * td);
+      kx = 0.18 * k * Math.sin(60 * td);
+      ky = -0.12 * k * Math.cos(55 * td);
+      roll = 0.035 * k * Math.sin(60 * td);
+    }
+    const hand = t > 0.5 ? 0.012 : 0; // micro-handheld muy sutil durante el hold
+    cam.position.set(kx + hand * Math.sin(t * 1.7), ky + hand * Math.cos(t * 1.3), dolly);
     cam.lookAt(0, -0.55, -0.6);
+    cam.rotation.z += roll;
     renderer.render(scene, cam);
   }
   function resize() {
@@ -290,9 +309,22 @@ const GN_CSS = `
   animation:gnet3dFade 7.2s ease forwards}
 @keyframes gnet3dFade{0%{opacity:1}88%{opacity:1}100%{opacity:0}}
 .gnet3d-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* FOGONAZO de exposición a pantalla completa en el impacto (mezcla screen sobre
+   el canvas) — el frame-firma del gol. Sincronizado con IMPACT (~1.0s). */
+.gnet3d-flash{position:absolute;inset:0;mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(circle at 50% 46%, rgba(255,255,255,.98), rgba(var(--teamrgb),.5) 50%, rgba(var(--teamrgb),0) 78%);
+  animation:gnet3dFlash .34s ease-out 1s both}
+@keyframes gnet3dFlash{0%{opacity:0}18%{opacity:.85}100%{opacity:0}}
 .gnet3d-text{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
-.gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnet3dWord .6s cubic-bezier(.2,1.5,.35,1) 1.1s both}
+/* ¡GOOOL! METÁLICO (relleno cromado con banda del color del equipo) + barrido. */
+.gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);
+  background-image:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%),linear-gradient(180deg,#fff 0%,#dfe6f2 40%,rgb(var(--teamrgb)) 52%,#dfe6f2 64%,#fff 100%);
+  background-size:280% 100%,100% 100%;background-position:160% 0,0 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 6px 22px rgba(0,0,0,.6)) drop-shadow(0 0 28px rgba(var(--teamrgb),.85));
+  opacity:0;animation:gnet3dWord .6s cubic-bezier(.2,1.5,.35,1) 1.1s both, gnet3dSheen 1.1s ease 1.5s both}
 @keyframes gnet3dWord{0%{transform:scale(.35) rotate(-4deg);opacity:0}60%{transform:scale(1.12) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes gnet3dSheen{0%{background-position:160% 0,0 0}100%{background-position:-60% 0,0 0}}
 /* País que marca + su BANDERA (línea protagonista) */
 .gnet3d-country{display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;animation:gnet3dUp .5s ease 1.4s both}
 .gnet3d-flag{width:clamp(38px,9vw,60px);height:auto;border-radius:5px;box-shadow:0 4px 14px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.5)}
@@ -305,6 +337,7 @@ const GN_CSS = `
 .gnet3d--nofx .gnet3d-scorer{animation-delay:.4s}
 @media (prefers-reduced-motion: reduce){
   .gnet3d{animation:gnet3dFade 6.5s ease forwards!important}
+  .gnet3d-flash{display:none!important}
   .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
   .gnet3d-country,.gnet3d-scorer{animation:gnet3dUp .3s ease 0s both!important}
 }
@@ -353,12 +386,18 @@ export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey 
         showFallbackText();
         return; // WebGL no disponible → fallback
       }
+      // SPEED-RAMP (bullet-time): congela ~110ms el instante del impacto. Es un
+      // remapeo escalar del reloj → lo HEREDAN red, balón, confeti y deformación
+      // sin tocarlos. FREEZE_AT debe coincidir con IMPACT (1.0) de la escena.
+      const FREEZE_AT = 1.0, FREEZE_DUR = 0.11;
+      const warp = (rt: number) =>
+        rt <= FREEZE_AT ? rt : rt < FREEZE_AT + FREEZE_DUR ? FREEZE_AT : rt - FREEZE_DUR;
       const loop = (ts: number) => {
         if (disposed) return;
         if (startTs == null) startTs = ts;
-        const t = (ts - startTs) / 1000;
-        try { sceneObj!.render(Math.min(t, TOTAL)); } catch { /* noop */ }
-        if (t < TOTAL + 0.15) raf = requestAnimationFrame(loop);
+        const rt = (ts - startTs) / 1000;
+        try { sceneObj!.render(Math.min(warp(rt), TOTAL)); } catch { /* noop */ }
+        if (rt < TOTAL + FREEZE_DUR + 0.15) raf = requestAnimationFrame(loop);
       };
       raf = requestAnimationFrame(loop);
     })();
@@ -382,6 +421,7 @@ export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey 
     <div key={fxKey} className="gnet3d" style={{ ["--teamrgb" as string]: teamrgb }}>
       <style>{GN_CSS}</style>
       <canvas ref={canvasRef} className="gnet3d-cv" />
+      <div className="gnet3d-flash" />
       <div className="gnet3d-text">
         <div className="gnet3d-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
         <div className="gnet3d-country">

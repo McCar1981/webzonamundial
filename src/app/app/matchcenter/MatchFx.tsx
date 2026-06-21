@@ -53,6 +53,7 @@ export default function MatchFx({ meta, goalPulse, cardFx, subFx }: Props) {
         <GoalNet
           teamName={goalTeam.name}
           color={goalTeam.color}
+          flag={goalTeam.flag}
           player={goalPulse.player}
           ownGoal={goalPulse.ownGoal}
           fxKey={goalPulse.key}

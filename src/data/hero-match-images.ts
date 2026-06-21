@@ -205,6 +205,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/ecuador-curazao-wide.webp",
     mobile: "/images/hero/ecuador-curazao-mobile.webp",
   },
+  // Uruguay vs Cabo Verde (21 jun, Grupo H · J2).
+  "uruguay-cabo-verde": {
+    wide: "/images/hero/uruguay-cabo-verde-wide.webp",
+    mobile: "/images/hero/uruguay-cabo-verde-mobile.webp",
+  },
+  // Bélgica vs Irán (21 jun, Grupo G · J2).
+  "belgica-iran": {
+    wide: "/images/hero/belgica-iran-wide.webp",
+    mobile: "/images/hero/belgica-iran-mobile.webp",
+  },
+  // N. Zelanda vs Egipto (21 jun, Grupo G · J2). (slug = home-away del calendario)
+  "n-zelanda-egipto": {
+    wide: "/images/hero/n-zelanda-egipto-wide.webp",
+    mobile: "/images/hero/n-zelanda-egipto-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

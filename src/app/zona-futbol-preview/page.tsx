@@ -1,265 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useEffect } from "react";
 import SectionCard, { SectionHeader } from "@/components/biblia/SectionCard";
 import { ShimmerButton } from "@/components/ShimmerButton";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { ParallaxImage } from "@/components/ParallaxImage";
 import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
-import { FloatingElements } from "@/components/FloatingElements";
-import { Users, TrendingUp, Zap, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Award, Swords, Trophy, Gamepad2, Globe, BarChart3, Coins, Shirt, Medal } from "lucide-react";
+import { Users, TrendingUp, Target, CheckCircle, Smartphone, Bell, Zap as Lightning, Coins } from "lucide-react";
 
-// ZONA FUTBOL ULTRA-PREMIUM — Temporada 2026/2027
-// 54 agentes, 4 oleadas, análisis profundo ZonaMundial + propuestas radicales
-
-const getIconComponent = (iconName: string) => {
-  const iconMap: Record<string, any> = {
-    swords: Swords,
-    trophy: Trophy,
-    gamepad: Gamepad2,
-    globe: Globe,
-    chart: BarChart3,
-    coins: Coins,
-    shirt: Shirt,
-    medal: Medal,
-  };
-  return iconMap[iconName] || Trophy;
-};
-
-interface League {
-  name: string;
-  code: string;
-  color: string;
-  accent: string;
-  icon: string;
-  games?: number;
-  players?: number;
-}
-
-interface Feature {
-  id: string;
-  icon: string;
-  title: string;
-  desc: string;
-  badge?: string;
-}
-
-interface StepItem {
-  number: number;
-  title: string;
-  desc: string;
-  stat: number;
-  suffix: string;
-  icon?: string;
-}
-
-const LEAGUES: League[] = [
-  {
-    name: "Premier League",
-    code: "GB",
-    color: "#2952a3",
-    accent: "#4a7cff",
-    icon: "[o]",
-    games: 380,
-    players: 12000,
-  },
-  {
-    name: "LaLiga",
-    code: "ES",
-    color: "#ffc266",
-    accent: "#ffd699",
-    icon: "[*]",
-    games: 380,
-    players: 10500,
-  },
-  {
-    name: "Serie A",
-    code: "IT",
-    color: "#1a3a5c",
-    accent: "#4a7cff",
-    icon: "[IT]",
-    games: 380,
-    players: 9200,
-  },
-  {
-    name: "Bundesliga",
-    code: "DE",
-    color: "#be185d",
-    accent: "#ec4899",
-    icon: "[●]",
-    games: 306,
-    players: 8100,
-  },
-  {
-    name: "Liga MX",
-    code: "MX",
-    color: "#10824a",
-    accent: "#22c55e",
-    icon: "[MX]",
-    games: 480,
-    players: 15000,
-  },
-  {
-    name: "CONMEBOL Libertadores",
-    code: "AR",
-    color: "#4a1a6f",
-    accent: "#b570f0",
-    icon: "[T]",
-    games: 125,
-    players: 18000,
-  },
-];
-
-const FEATURES: Feature[] = [
-  {
-    id: "duelos",
-    icon: "swords",
-    title: "Duelos Directos",
-    desc: "Desafía a tus amigos en competencias cabeza a cabeza. Apuestas reales, recompensas dinámicas.",
-    badge: "Nuevo",
-  },
-  {
-    id: "achievements",
-    icon: "trophy",
-    title: "Achievements Granular",
-    desc: "Logros por liga, equipo, jugador. Badges con narrativa. Recompensas escalonadas.",
-    badge: "Popular",
-  },
-  {
-    id: "minijuegos",
-    icon: "gamepad",
-    title: "Minijuegos Liga-Específicos",
-    desc: "Penales, headers, predicciones. Cada liga tiene mecánicas únicas. Premios diarios.",
-  },
-  {
-    id: "rankings",
-    icon: "globe",
-    title: "Rankings Globales Dinámicos",
-    desc: "Compite contra el mundo. Multi-dimensión: Predictor, Fantasy, Collector, Duelista.",
-    badge: "Destacado",
-  },
-  {
-    id: "stats",
-    icon: "chart",
-    title: "Live Stats Dashboard Premium",
-    desc: "Estadísticas en vivo. xG, posesión, heat maps. Análisis de IA en tiempo real.",
-  },
-  {
-    id: "predictions",
-    icon: "coins",
-    title: "Predictions Tournament",
-    desc: "Torneo de predicciones con premios reales. Rake comunitario. Leaderboards globales.",
-    badge: "Premium",
-  },
-];
-
-const STEPS: StepItem[] = [
-  {
-    number: 1,
-    icon: "shirt",
-    title: "Elige Tu Equipo Favorito",
-    desc: "Personaliza tu experiencia. Acceso a duelos, predicciones, logros temáticos. Comunidad por equipo.",
-    stat: 50,
-    suffix: "+ Equipos",
-  },
-  {
-    number: 2,
-    icon: "gamepad",
-    title: "Participa en Minijuegos Diarios",
-    desc: "Juega en cada fecha. 8 minijuegos diferentes. Gana puntos, sube en ranking, desbloquea cosmetics.",
-    stat: 8,
-    suffix: " Minijuegos",
-  },
-  {
-    number: 3,
-    icon: "medal",
-    title: "Sube en Rankings Globales",
-    desc: "Compite contra 100k+ jugadores. Premios semanales y de temporada. Reputación global.",
-    stat: 100,
-    suffix: "+ Mil Jugadores",
-  },
-];
+// Imports desde archivos separados
+import { League, Feature, StepItem } from "./types";
+import { LEAGUES, FEATURES, STEPS } from "./data";
+import { getIconComponent } from "./utils";
+import { Hero, GlobalStyles } from "./components";
 
 export default function ZonaFutbolPreviewPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!heroRef.current) return;
-    try {
-      const { gsap } = require("gsap");
-      const tl = gsap.timeline();
-      tl.from(heroRef.current.querySelectorAll(".animate-slide-up"), {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.18,
-        ease: "power3.out",
-      });
-    } catch (e) {
-      console.debug("GSAP fallback");
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#060B14] via-[#0a0f1a] to-[#060B14] text-[#E2E8F0]" style={{fontFamily: "'Outfit', system-ui, sans-serif"}}>
 
-      {/* HERO — Ultra Premium */}
-      <section ref={heroRef} className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
-        <div className="absolute inset-0 z-0">
-          <ParallaxImage src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" alt="Estadio" className="h-full" speed={0.25} />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(6,11,20,0.6)] via-[rgba(6,11,20,0.7)] to-[rgba(6,11,20,0.95)]" />
-          <div className="absolute inset-0 opacity-30 mix-blend-screen">
-            <FloatingElements />
-          </div>
-          {/* Multi-color glow radials */}
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-[#2952a3] via-transparent to-transparent opacity-20 blur-3xl" />
-          <div className="absolute top-20 right-1/3 w-80 h-80 bg-gradient-radial from-[#D4AF37] via-transparent to-transparent opacity-15 blur-3xl" />
-        </div>
-
-        <div className="relative z-20 max-w-7xl mx-auto text-center">
-          <div className="animate-fade-in animate-slide-up space-y-8">
-            <div className="inline-block">
-              <span className="text-xs font-black text-[#D4AF37] uppercase tracking-[0.3em] drop-shadow-lg">Experiencia Global Premium</span>
-            </div>
-
-            <h1 className="font-black text-white leading-tight animate-slide-up tracking-tighter drop-shadow-xl" style={{fontSize: "clamp(48px, 8.5vw, 84px)", textShadow: "0 16px 40px rgba(0,0,0,0.4), 0 0 60px rgba(212,175,55,0.2)"}}>
-              Zona Futbol{" "}
-              <span className="bg-clip-text text-transparent animate-gradient-shift" style={{backgroundImage: "linear-gradient(135deg, #ffc266 0%, #D4AF37 40%, #ffd699 100%)", backgroundSize: "200% 200%", filter: "drop-shadow(0 0 30px rgba(212, 175, 55, 0.4))"}}>
-                2026/2027
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
-              Fantasy, Duelos, Minijuegos, Rankings Globales & IA Coach 24/7. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
-            </p>
-
-            <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
-              <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="/app">
-                Regístrate Gratis
-              </ShimmerButton>
-              <Link href="#como-funciona" className="text-[#D4AF37] font-bold hover:text-[#ffc266] text-lg underline decoration-2 transition-all duration-300">
-                Ver Cómo Funciona
-              </Link>
-            </div>
-
-            <div className="pt-6">
-              <span className="inline-block px-4 py-2 rounded-full text-xs font-black text-[#D4AF37] bg-[#D4AF37]/15 border border-[#D4AF37]/40">
-                Plaza de Fundador Zona Futbol — Primera Temporada
-              </span>
-            </div>
-
-            <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#94A3B8] animate-fade-in" style={{animationDelay: "0.6s"}}>
-              <span>100% Seguro</span>
-              <span className="text-[#D4AF37]">•</span>
-              <span>Verificado</span>
-              <span className="text-[#D4AF37]">•</span>
-              <span>Premium UX</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* SOBRE ZONA FUTBOL — Narrativa Migracion */}
       <section className="py-16 sm:py-20 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#0F1D32]/30" role="region" aria-label="Sobre Zona Futbol">
@@ -828,28 +588,7 @@ export default function ZonaFutbolPreviewPage() {
         </div>
       </footer>
 
-      {/* ULTRA-PREMIUM STYLES */}
-      <style jsx global>{`
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); } 50% { box-shadow: 0 0 24px rgba(212, 175, 55, 0.6); } }
-
-        .animate-fade-in { animation: fade-in 0.9s ease-out; }
-        .animate-slide-up { animation: slide-up 0.9s ease-out; }
-        .animate-gradient-shift { background-size: 200% 200%; animation: gradient-shift 3s ease-in-out infinite; }
-
-        * { scroll-behavior: smooth; }
-        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-        @media (prefers-reduced-motion: reduce) {
-          * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-        }
-
-        .gradient-radial {
-          background: radial-gradient(var(--tw-gradient-stops));
-        }
-      `}</style>
+      <GlobalStyles />
     </div>
   );
 }

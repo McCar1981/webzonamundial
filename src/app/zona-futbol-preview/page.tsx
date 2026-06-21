@@ -143,7 +143,7 @@ export default function ZonaFutbolPreviewPage() {
               </div>
               <div className="text-center group">
                 <div className="text-3xl sm:text-4xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">
-                  {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.games || 0), 0) / 100)}+K
+                  {Math.floor(LEAGUES.reduce((sum, l) => sum + (l.games || 0), 0) / 1000)}K+
                 </div>
                 <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">Partidos Anuales</div>
               </div>

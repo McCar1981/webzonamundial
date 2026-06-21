@@ -42,8 +42,8 @@ export const LEAGUES: League[] = [
     games: 480,
   },
   {
-    name: "CONMEBOL Libertadores",
-    code: "AR",
+    name: "Copa Libertadores",
+    code: "BR",
     color: "#4a1a6f",
     accent: "#b570f0",
     icon: "[T]",

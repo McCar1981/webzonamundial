@@ -20,13 +20,15 @@ import { lastName } from "@/lib/match-center/names";
 export interface GoalNetProps {
   teamName: string;
   color: string;
+  /** Código de bandera (ISO-2) de la selección que marca, p.ej. "es". */
+  flag?: string;
   player?: string;
   ownGoal?: boolean;
   /** Cambia en cada gol: fuerza el remontaje y reinicia la animación. */
   fxKey: number;
 }
 
-const TOTAL = 5.4; // s — duración de la animación 3D (la barra se desmonta a ~6.8s)
+const TOTAL = 2.6; // s — duración de la animación 3D (escena corta 2-3s; se desmonta a ~2.9s)
 
 function hexRgb01(hex: string): [number, number, number] {
   const h = (hex || "#c9a84c").replace("#", "");
@@ -96,16 +98,30 @@ function buildScene(
   const bgPlane = new THREE.Mesh(bgGeo, bgMat); bgPlane.position.z = -4; scene.add(bgPlane);
   disposables.push(bgGeo, bgMat, bgMat.map!);
 
-  // textura de RED (rombos) + membrana muy tenue (para sombrear el pliegue)
+  // textura de RED realista: cada cuerda con SOMBRA + cuerpo + BRILLO (aspecto de
+  // soga 3D) y NUDOS en los cruces, sobre una membrana muy tenue.
   function netTexture() {
     const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
     const x = c.getContext("2d")!;
     x.clearRect(0, 0, S, S);
-    x.fillStyle = "rgba(255,255,255,0.06)"; x.fillRect(0, 0, S, S);
-    x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 6; x.lineCap = "round";
-    for (let i = -1; i <= 2; i++) {
-      x.beginPath(); x.moveTo(i * S, 0); x.lineTo((i + 1) * S, S); x.stroke();
-      x.beginPath(); x.moveTo(i * S, S); x.lineTo((i + 1) * S, 0); x.stroke();
+    x.fillStyle = "rgba(255,255,255,0.05)"; x.fillRect(0, 0, S, S);
+    x.lineCap = "round";
+    const diag = (dir: 1 | -1) => {
+      for (let i = -1; i <= 2; i++) {
+        const x0 = i * S, y0 = dir > 0 ? 0 : S, x1 = (i + 1) * S, y1 = dir > 0 ? S : 0;
+        x.strokeStyle = "rgba(0,0,0,0.28)"; x.lineWidth = 6;                 // sombra
+        x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
+        x.strokeStyle = "rgba(226,233,247,0.9)"; x.lineWidth = 3.4;          // cuerpo
+        x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
+        x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 1.1;         // brillo
+        x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke();
+      }
+    };
+    diag(1); diag(-1);
+    // nudos en los cruces de la rejilla diamante (esquinas + centro del tile)
+    x.fillStyle = "rgba(255,255,255,0.96)";
+    for (const [kx, ky] of [[0, 0], [S, 0], [0, S], [S, S], [S / 2, S / 2]]) {
+      x.beginPath(); x.arc(kx, ky, 3.4, 0, Math.PI * 2); x.fill();
     }
     const tex = new THREE.CanvasTexture(c); tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
     return tex;
@@ -147,7 +163,7 @@ function buildScene(
   const loader = new THREE.TextureLoader();
   const ballTex = loader.load("/img/matchcenter/balon.png");
   ballTex.colorSpace = THREE.SRGBColorSpace;
-  const ballGeo = new THREE.PlaneGeometry(1, 1);
+  const ballGeo = new THREE.PlaneGeometry(800 / 600, 1); // imagen 800×600 (4:3): plano con su MISMA proporción → balón REDONDO (no ovalado)
   const ballMat = new THREE.MeshBasicMaterial({ map: ballTex, transparent: true, depthWrite: false });
   const ball = new THREE.Mesh(ballGeo, ballMat); scene.add(ball);
   ball.renderOrder = 5; // SIEMPRE delante de la red (la red lo frena, no lo traspasa)
@@ -178,14 +194,14 @@ function buildScene(
   const confetti = new THREE.Points(confGeo, confMat); confetti.position.set(0, -0.1, 0.3); confetti.renderOrder = 6; scene.add(confetti);
   disposables.push(confGeo, confMat, confTexture);
 
-  const IMPACT = 1.45;
+  const IMPACT = 1.0; // s (escena corta: impacto pronto, todo termina ~2.6s)
   const easeOut = (p: number) => 1 - Math.pow(1 - p, 3);
   const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
   function confettiAt(t: number) {
     const td = t - IMPACT;
     if (td < 0) { confMat.opacity = 0; return; }
-    confMat.opacity = Math.max(0, 1 - td / 2.6);
+    confMat.opacity = Math.max(0, 1 - td / 1.7);
     const p = confGeo.attributes.position.array as Float32Array;
     for (let i = 0; i < CN; i++) {
       const v = confVel[i], b = confBase[i];
@@ -219,7 +235,7 @@ function buildScene(
     netGeo.computeVertexNormals();
   }
   function ballAt(t: number) {
-    const tStart = 0.55;
+    const tStart = 0.32;
     if (t < tStart) { ball.visible = false; return; }
     ball.visible = true;
     if (t <= IMPACT) {
@@ -228,7 +244,7 @@ function buildScene(
       const s = 1.7 + (0.95 - 1.7) * e; ball.scale.set(s, s, 1);
       ballMat.opacity = clamp01(p * 5); ball.rotation.z = -p * 7.5;
     } else {
-      const p = clamp01((t - IMPACT) / 0.7);
+      const p = clamp01((t - IMPACT) / 0.45);
       // la red lo FRENA: queda DELANTE (z>0 siempre), apenas un pelín atrás+abajo y asienta
       ball.position.set(0, -0.12 * p, 0.2 - 0.05 * p);
       const s = 0.95 + (0.8 - 0.95) * p; ball.scale.set(s, s, 1);
@@ -236,7 +252,7 @@ function buildScene(
     }
   }
   function revealNet(t: number) {
-    const e = easeOut(clamp01(t / 0.55));
+    const e = easeOut(clamp01(t / 0.35));
     net.scale.setScalar(0.2 + 0.8 * e); netMat.opacity = e;
   }
   function glowAt(t: number) {
@@ -250,7 +266,7 @@ function buildScene(
     revealNet(t); deform(t); ballAt(t); glowAt(t); confettiAt(t);
     teamLight.intensity = 42 + (t > IMPACT && t < IMPACT + 0.16 ? 130 : 0);
     // dolly: empuje suave de cámara hacia la red en el impacto (energía)
-    cam.position.z = 5.4 - 0.55 * easeOut(clamp01((t - IMPACT) / 1.2));
+    cam.position.z = 5.4 - 0.55 * easeOut(clamp01((t - IMPACT) / 0.8));
     cam.lookAt(0, -0.55, -0.6);
     renderer.render(scene, cam);
   }
@@ -269,28 +285,30 @@ function buildScene(
 const GN_CSS = `
 .gnet3d{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden;
   background:radial-gradient(circle at 50% 44%, rgba(var(--teamrgb),.18), #05080d 62%), #05080d;
-  animation:gnet3dFade 6.6s ease forwards}
-@keyframes gnet3dFade{0%{opacity:1}86%{opacity:1}100%{opacity:0}}
+  animation:gnet3dFade 2.8s ease forwards}
+@keyframes gnet3dFade{0%{opacity:1}82%{opacity:1}100%{opacity:0}}
 .gnet3d-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
-.gnet3d-text{position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
-.gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnet3dWord .7s cubic-bezier(.2,1.5,.35,1) 1.85s both}
+.gnet3d-text{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:94vw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.gnet3d-word{font-weight:900;letter-spacing:2px;line-height:.84;font-size:clamp(54px,16vw,140px);color:#fff;text-shadow:0 6px 24px rgba(0,0,0,.65),0 0 34px rgba(var(--teamrgb),.95);opacity:0;animation:gnet3dWord .6s cubic-bezier(.2,1.5,.35,1) 1.1s both}
 @keyframes gnet3dWord{0%{transform:scale(.35) rotate(-4deg);opacity:0}60%{transform:scale(1.12) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-.gnet3d-name{font-weight:900;font-size:clamp(22px,5.5vw,40px);color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.65);opacity:0;animation:gnet3dUp .6s ease 2.2s both}
-.gnet3d-sub{font-weight:800;font-size:clamp(12px,3vw,18px);letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnet3dUp .6s ease 2.35s both}
+/* País que marca + su BANDERA (línea protagonista) */
+.gnet3d-country{display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;animation:gnet3dUp .5s ease 1.4s both}
+.gnet3d-flag{width:clamp(38px,9vw,60px);height:auto;border-radius:5px;box-shadow:0 4px 14px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.5)}
+.gnet3d-country span{font-weight:900;font-size:clamp(26px,7vw,52px);color:#fff;text-shadow:0 3px 16px rgba(0,0,0,.7);letter-spacing:.5px}
+.gnet3d-scorer{font-weight:800;font-size:clamp(13px,3.4vw,20px);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;animation:gnet3dUp .5s ease 1.5s both}
 @keyframes gnet3dUp{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}
-/* Fallback (sin WebGL/three): el texto no debe esperar al delay de la
-   animación 3D que no va a ocurrir → se adelanta. */
-.gnet3d--nofx .gnet3d-word{animation-delay:.15s}
-.gnet3d--nofx .gnet3d-name{animation-delay:.3s}
-.gnet3d--nofx .gnet3d-sub{animation-delay:.45s}
+/* Fallback (sin WebGL/three): el texto no espera al delay de la animación 3D. */
+.gnet3d--nofx .gnet3d-word{animation-delay:.1s}
+.gnet3d--nofx .gnet3d-country{animation-delay:.25s}
+.gnet3d--nofx .gnet3d-scorer{animation-delay:.4s}
 @media (prefers-reduced-motion: reduce){
-  .gnet3d{animation:gnet3dFade 4.5s ease forwards!important}
+  .gnet3d{animation:gnet3dFade 2.5s ease forwards!important}
   .gnet3d-word{animation:gnet3dWord .3s ease 0s both!important}
-  .gnet3d-name,.gnet3d-sub{animation:gnet3dUp .3s ease 0s both!important}
+  .gnet3d-country,.gnet3d-scorer{animation:gnet3dUp .3s ease 0s both!important}
 }
 `;
 
-export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: GoalNetProps) {
+export default function GoalNet({ teamName, color, flag, player, ownGoal, fxKey }: GoalNetProps) {
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -353,8 +371,9 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
 
   if (!target) return null;
 
-  const name = ownGoal ? teamName : player ? lastName(player) : "Gol";
-  const sub = ownGoal ? `En propia${player ? ` · ${lastName(player)}` : ""}` : teamName;
+  const scorer = ownGoal
+    ? `En propia${player ? ` · ${lastName(player)}` : ""}`
+    : (player ? lastName(player) : "");
   const teamrgb = hexRgb01(color).map((v) => Math.round(v * 255)).join(",");
 
   const node = (
@@ -363,8 +382,14 @@ export default function GoalNet({ teamName, color, player, ownGoal, fxKey }: Goa
       <canvas ref={canvasRef} className="gnet3d-cv" />
       <div className="gnet3d-text">
         <div className="gnet3d-word">{ownGoal ? "¡GOL!" : "¡GOOOL!"}</div>
-        <div className="gnet3d-name">{name}</div>
-        <div className="gnet3d-sub">{sub}</div>
+        <div className="gnet3d-country">
+          {flag && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="gnet3d-flag" src={`https://flagcdn.com/w320/${flag}.png`} alt="" />
+          )}
+          <span>{teamName}</span>
+        </div>
+        {scorer && <div className="gnet3d-scorer">{scorer}</div>}
       </div>
     </div>
   );

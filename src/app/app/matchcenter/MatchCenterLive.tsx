@@ -1090,11 +1090,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
     return () => clearInterval(id);
   }, [feed, paused, finished, status, meta]);
 
-  // Limpia el pulso de gol (la celebración cinematográfica GoalNet dura ~6,5s:
-  // red → balón hacia la red hundiéndose → impacto → texto).
+  // Limpia el pulso de gol (la celebración 3D GoalNet dura ~2,6s: red → balón →
+  // impacto/red que se hunde → ¡GOOOL! + país; escena corta de 2-3s).
   useEffect(() => {
     if (!goalPulse) return;
-    const t = setTimeout(() => setGoalPulse(null), 6800);
+    const t = setTimeout(() => setGoalPulse(null), 2900);
     return () => clearTimeout(t);
   }, [goalPulse]);
 
@@ -1107,8 +1107,8 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
     const start = setTimeout(() => {
       setReplayTag(true);
       setShotFx({ key: Date.now(), x: e.x!, y: e.y!, raised: true, slow: true });
-    }, 6800);
-    const end = setTimeout(() => setReplayTag(false), 6800 + 2600);
+    }, 2900);
+    const end = setTimeout(() => setReplayTag(false), 2900 + 2600);
     return () => { clearTimeout(start); clearTimeout(end); };
   }, [goalPulse]);
 

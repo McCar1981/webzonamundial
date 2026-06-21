@@ -79,9 +79,9 @@ export default function ZonaFutbolPreviewPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {[
-              {value: "18,500+", label: "Usuarios de Zona Mundial", Icon: Users},
-              {value: "9,200", label: "Se Unen Cada Semana", Icon: TrendingUp},
-              {value: "92,400", label: "Predicciones Diarias", Icon: Target},
+              {value: "Fase Beta", label: "Acceso Anticipado", Icon: Users},
+              {value: "6", label: "Ligas Disponibles", Icon: TrendingUp},
+              {value: "∞", label: "Premios Ilimitados", Icon: Target},
               {value: "100%", label: "Seguro y Gratuito", Icon: CheckCircle},
             ].map((stat, idx) => {
               const Icon = stat.Icon;
@@ -283,7 +283,7 @@ export default function ZonaFutbolPreviewPage() {
             <div className="mt-12 space-y-6">
               <div className="p-8 rounded-2xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 shadow-xl">
                 <p className="text-base text-[#cbd5e1] leading-relaxed tracking-wide">
-                  Cada semana nuevos desafíos, minijuegos y predicciones. Gana puntos, sube en el ranking global y compite contra 100k+ jugadores. Los mejores de cada jornada y de la temporada ganan premios reales. Fantasy multiplayer, cromos P2P, duelos directos, logros temáticos. Todo en una app.
+                  Cada jornada nuevos desafíos, minijuegos y predicciones. Gana puntos, sube en el ranking global y compite contra otros jugadores en tiempo real. Los mejores de cada jornada y de la temporada ganan premios reales. Fantasy multiplayer, cromos P2P, duelos directos, logros temáticos. Todo en una app.
                 </p>
               </div>
 
@@ -482,7 +482,7 @@ export default function ZonaFutbolPreviewPage() {
                 </h2>
 
                 <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-lg mx-auto leading-relaxed tracking-wide drop-shadow">
-                  Entra gratis. Si no te gusta, te devolvemos el silencio. Juega cada jornada contra 100k+ usuarios globales y compite por premios reales.
+                  Entra gratis. Sé parte de la revolución del fútbol fantasy. Juega cada jornada, compite en tiempo real y gana premios reales con tu estrategia.
                 </p>
               </div>
 

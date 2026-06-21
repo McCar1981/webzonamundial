@@ -121,8 +121,8 @@ export const STEPS: StepItem[] = [
     number: 3,
     icon: "medal",
     title: "Sube en Rankings Globales",
-    desc: "Compite contra 100k+ jugadores. Premios semanales y de temporada. Reputación global.",
-    stat: 100,
-    suffix: "+ Mil Jugadores",
+    desc: "Compite contra otros jugadores. Premios semanales y de temporada. Construye tu reputación.",
+    stat: 6,
+    suffix: " Categorías de Rankings",
   },
 ];

@@ -209,8 +209,8 @@ export default function ZonaFutbolPreviewPage() {
       <section ref={heroRef} className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
         <div className="absolute inset-0 z-0">
           <ParallaxImage src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" alt="Estadio" className="h-full" speed={0.25} />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(6,11,20,0.4)] to-[rgba(6,11,20,0.95)]" />
-          <div className="absolute inset-0 opacity-50 mix-blend-screen">
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(6,11,20,0.6)] via-[rgba(6,11,20,0.7)] to-[rgba(6,11,20,0.95)]" />
+          <div className="absolute inset-0 opacity-30 mix-blend-screen">
             <FloatingElements />
           </div>
           {/* Multi-color glow radials */}
@@ -218,10 +218,10 @@ export default function ZonaFutbolPreviewPage() {
           <div className="absolute top-20 right-1/3 w-80 h-80 bg-gradient-radial from-[#D4AF37] via-transparent to-transparent opacity-15 blur-3xl" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto text-center">
+        <div className="relative z-20 max-w-7xl mx-auto text-center">
           <div className="animate-fade-in animate-slide-up space-y-8">
             <div className="inline-block">
-              <span className="text-xs font-black text-[#D4AF37] uppercase tracking-[0.3em] drop-shadow-lg">🌍 Experiencia Global Premium</span>
+              <span className="text-xs font-black text-[#D4AF37] uppercase tracking-[0.3em] drop-shadow-lg">Experiencia Global Premium</span>
             </div>
 
             <h1 className="font-black text-white leading-tight animate-slide-up tracking-tighter drop-shadow-xl" style={{fontSize: "clamp(48px, 8.5vw, 84px)", textShadow: "0 16px 40px rgba(0,0,0,0.4), 0 0 60px rgba(212,175,55,0.2)"}}>

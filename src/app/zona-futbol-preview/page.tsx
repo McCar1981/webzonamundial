@@ -8,6 +8,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { ParallaxImage } from "@/components/ParallaxImage";
 import FlagImage from "@/components/FlagImage";
 import { StatCounter } from "@/components/StatCounter";
+import { FloatingElements } from "@/components/FloatingElements";
 
 // ═══════════════════════════════════════════════════════════════════
 // ZONE FUTBOL PREVIEW — Página principal de Zona Futbol 2026/2027

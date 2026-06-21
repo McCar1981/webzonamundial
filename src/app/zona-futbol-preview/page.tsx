@@ -217,16 +217,22 @@ export default function ZonaFutbolPreviewPage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
-              Fantasy, Duelos, Minijuegos, Rankings Globales & Premios Reales. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
+              Fantasy, Duelos, Minijuegos, Rankings Globales & IA Coach 24/7. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
             </p>
 
             <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
               <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="/app">
-                Comenzar Ahora →
+                Regístrate Gratis
               </ShimmerButton>
-              <Link href="/registro" className="text-[#D4AF37] font-bold hover:text-[#ffc266] text-lg underline decoration-2 transition-all duration-300">
-                Ver Demo
+              <Link href="#como-funciona" className="text-[#D4AF37] font-bold hover:text-[#ffc266] text-lg underline decoration-2 transition-all duration-300">
+                Ver Cómo Funciona
               </Link>
+            </div>
+
+            <div className="pt-6">
+              <span className="inline-block px-4 py-2 rounded-full text-xs font-black text-[#D4AF37] bg-[#D4AF37]/15 border border-[#D4AF37]/40">
+                🏆 Plaza de Fundador Zona Futbol — Primera Temporada
+              </span>
             </div>
 
             <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#94A3B8] animate-fade-in" style={{animationDelay: "0.6s"}}>
@@ -236,6 +242,79 @@ export default function ZonaFutbolPreviewPage() {
               <span className="text-[#D4AF37]">•</span>
               <span>Premium UX</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOBRE ZONA FUTBOL — Narrativa Migracion */}
+      <section className="py-16 sm:py-20 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#0F1D32]/30" role="region" aria-label="Sobre Zona Futbol">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div>
+                <h2 className="font-black text-2xl sm:text-3xl text-white mb-4">La Misma Pasión, Ahora con Tu Liga</h2>
+                <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
+                  Zona Futbol es la evolución de Zona Mundial. Si jugaste el Mundial 2026 con nosotros, tu progreso viene integrado. Mismos logros, mismos puntos, mismos amigos. Ahora con tu liga favorita.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <div className="flex gap-3">
+                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-sm text-[#cbd5e1]"><strong>Tu progreso se migra:</strong> Puntos, logros, historial de predicciones</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-sm text-[#cbd5e1]"><strong>Bonus de fundador:</strong> Recompensas extras para migraciones tempranas</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-[#D4AF37] font-black">✓</span>
+                  <span className="text-sm text-[#cbd5e1]"><strong>Experiencia sin interrupciones:</strong> Continúa donde lo dejaste</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-transparent border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-xl">
+              <h4 className="font-black text-sm text-[#D4AF37] uppercase tracking-wider mb-4">Tu Progreso se Transfiere Así</h4>
+              <div className="space-y-3 text-sm text-[#cbd5e1]">
+                <div className="flex justify-between items-center pb-3 border-b border-[#D4AF37]/20">
+                  <span>Puntos de Zona Mundial</span>
+                  <span className="font-black text-[#D4AF37]">100%</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-[#D4AF37]/20">
+                  <span>Logros y Badges</span>
+                  <span className="font-black text-[#D4AF37]">100%</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-[#D4AF37]/20">
+                  <span>Ranking Global</span>
+                  <span className="font-black text-[#D4AF37]">Reseteado*</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Bonus Migracion</span>
+                  <span className="font-black text-[#D4AF37]">+1000 pts</span>
+                </div>
+                <p className="text-xs text-[#94A3B8] mt-2">*El ranking se reinicia cada temporada para todos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* METRICAS / SOCIAL PROOF */}
+      <section className="py-16 sm:py-20 px-3 sm:px-4 relative bg-gradient-to-b from-[#0F1D32]/30 via-[#0a0f1a]/40 to-[#060B14]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              {value: "18,500+", label: "Usuarios de Zona Mundial", icon: "👥"},
+              {value: "9,200", label: "Se Unen Cada Semana", icon: "📈"},
+              {value: "92,400", label: "Predicciones Diarias", icon: "⚽"},
+              {value: "100%", label: "Seguro y Gratuito", icon: "🔒"},
+            ].map((stat, idx) => (
+              <div key={idx} className="p-5 sm:p-6 rounded-xl bg-gradient-to-br from-[#0F1D32]/50 via-[#0a0f1a]/30 to-transparent backdrop-blur-sm border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 text-center group cursor-pointer">
+                <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
+                <div className="text-xl sm:text-2xl font-black text-[#D4AF37] group-hover:text-[#ffc266] transition-colors duration-300">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-[#94A3B8] mt-2">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -308,7 +387,7 @@ export default function ZonaFutbolPreviewPage() {
 
             <AnimatedSection className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" stagger={0.15} delay={0.2} y={-35}>
               {FEATURES.map((feature, idx) => (
-                <div key={feature.id} style={{animationDelay: `${idx * 0.1}s`}} className="group relative overflow-hidden rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 active:scale-95 bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent hover:from-[#0F1D32]/80 hover:to-[#D4AF37]/10">
+                <Link key={feature.id} href={`#${feature.id}`} style={{animationDelay: `${idx * 0.1}s`}} className="group relative overflow-hidden rounded-2xl p-8 backdrop-blur-xl transition-all duration-300 hover:shadow-2xl cursor-pointer shadow-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 active:scale-95 bg-gradient-to-br from-[#0F1D32]/60 via-[#0a0f1a]/40 to-transparent hover:from-[#0F1D32]/80 hover:to-[#D4AF37]/10 block">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-2xl" />
 
@@ -333,7 +412,7 @@ export default function ZonaFutbolPreviewPage() {
 
                     <div className="mt-auto pt-4 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                </div>
+                </Link>
               ))}
             </AnimatedSection>
 
@@ -359,7 +438,7 @@ export default function ZonaFutbolPreviewPage() {
       </section>
 
       {/* STEPS — Premium Journey */}
-      <section className="py-24 sm:py-32 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#060B14]" role="region" aria-label="Cómo jugar">
+      <section id="como-funciona" className="py-24 sm:py-32 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#060B14]" role="region" aria-label="Cómo jugar">
         <div className="absolute inset-0 opacity-25 pointer-events-none">
           <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-gradient-radial from-[#10824a]/20 to-transparent blur-3xl -translate-y-1/2" />
         </div>
@@ -434,6 +513,75 @@ export default function ZonaFutbolPreviewPage() {
         </div>
       </section>
 
+      {/* PROXIMO PARTIDO — Featured Match */}
+      <section className="py-20 sm:py-28 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#0F1D32]/30" role="region" aria-label="Próximo partido destacado">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-black text-2xl sm:text-3xl text-white mb-2">Haz tu Predicción</h2>
+            <p className="text-sm sm:text-base text-[#cbd5e1]">Cada partido es una oportunidad de ganar puntos y premios</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Featured Match */}
+            <div className="lg:col-span-2 p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-[#0F1D32]/80 via-[#0a0f1a]/60 to-transparent border border-[#D4AF37]/40 hover:border-[#D4AF37]/70 transition-all duration-300 shadow-2xl">
+              <div className="text-center space-y-6">
+                <div className="text-xs font-black text-[#94A3B8] uppercase tracking-wider">Jornada 25 • Premier League</div>
+
+                <div className="grid grid-cols-3 gap-4 items-center">
+                  <div className="text-right space-y-2">
+                    <div className="text-2xl font-black text-white">MAN CITY</div>
+                    <div className="text-3xl font-black text-[#D4AF37]">2</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-black text-[#94A3B8]">—</div>
+                    <div className="text-xs font-black text-[#94A3B8] mt-2">EN VIVO</div>
+                  </div>
+                  <div className="text-left space-y-2">
+                    <div className="text-2xl font-black text-white">ARSENAL</div>
+                    <div className="text-3xl font-black text-[#D4AF37]">1</div>
+                  </div>
+                </div>
+
+                <div className="space-y-3 pt-4">
+                  <p className="text-xs text-[#94A3B8]">¿Cuál será el resultado final?</p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {["Victoria MAN CITY", "Empate", "Victoria ARSENAL"].map((pred, i) => (
+                      <button key={i} className="py-3 px-4 rounded-lg bg-[#0F1D32]/60 border border-[#D4AF37]/30 hover:border-[#D4AF37]/70 hover:bg-[#D4AF37]/15 text-xs sm:text-sm font-black text-white transition-all duration-300 active:scale-95">
+                        {pred}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 text-xs text-[#94A3B8]">
+                  <span className="text-[#D4AF37] font-black">+47 puntos</span> si aciertas
+                </div>
+              </div>
+            </div>
+
+            {/* Proximos Partidos */}
+            <div className="space-y-3">
+              <h3 className="font-black text-sm text-white uppercase tracking-wider mb-4">Próximos Partidos</h3>
+              {[
+                {time: "18:30", home: "BARCELONA", away: "REAL MADRID", league: "LaLiga"},
+                {time: "20:45", home: "JUVENTUS", away: "INTER", league: "Serie A"},
+                {time: "19:00", home: "BAYERN", away: "DORTMUND", league: "Bundesliga"},
+                {time: "17:00", home: "LYON", away: "PSG", league: "Ligue 1"},
+              ].map((match, i) => (
+                <button key={i} className="w-full p-4 rounded-lg bg-[#0F1D32]/50 hover:bg-[#0F1D32]/70 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 text-left group cursor-pointer">
+                  <div className="text-xs text-[#94A3B8] font-black mb-2">{match.time} • {match.league}</div>
+                  <div className="text-sm font-black text-white group-hover:text-[#D4AF37]">{match.home}</div>
+                  <div className="text-xs text-[#cbd5e1] mt-1">vs {match.away}</div>
+                </button>
+              ))}
+              <Link href="#" className="w-full mt-4 py-3 px-4 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/50 hover:bg-[#D4AF37]/25 text-sm font-black text-[#D4AF37] text-center transition-all duration-300">
+                Ver Calendario Completo →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* IMPACT STATS */}
       <section className="py-20 sm:py-28 px-3 sm:px-4 relative bg-gradient-to-b from-[#0a0f1a] via-[#060B14] to-[#0a0f1a] overflow-hidden">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
@@ -460,6 +608,61 @@ export default function ZonaFutbolPreviewPage() {
         </div>
       </section>
 
+      {/* PWA INSTALLATION */}
+      <section className="py-20 sm:py-28 px-3 sm:px-4 relative bg-gradient-to-b from-[#0a0f1a] via-[#0F1D32]/30 to-[#060B14]">
+        <div className="max-w-7xl mx-auto">
+          <SectionCard>
+            <SectionHeader eyebrow="Descarga la App" title="Instala Zona Futbol en tu Móvil" subtitle="Acceso directo, notificaciones push, experiencia nativa. Sin instalar nada desde App Store." align="center" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+              {[
+                {icon: "📱", title: "Acceso Directo", desc: "Home screen, tap y juega al instante"},
+                {icon: "🔔", title: "Notificaciones Push", desc: "Alertas de partidos, resultados y recompensas"},
+                {icon: "⚡", title: "Experiencia Nativa", desc: "Rápido, fluido, funciona offline"},
+              ].map((benefit, i) => (
+                <div key={i} className="p-6 rounded-xl bg-[#0F1D32]/50 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 text-center transition-all duration-300 group cursor-pointer">
+                  <div className="text-4xl mb-3 group-hover:scale-125 transition-transform duration-300">{benefit.icon}</div>
+                  <h4 className="font-black text-sm text-white mb-2">{benefit.title}</h4>
+                  <p className="text-xs text-[#94A3B8]">{benefit.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-[#D4AF37] to-[#ffc266] text-[#060B14] font-black hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-95">
+                Instalar App
+              </button>
+              <p className="text-xs text-[#94A3B8] mt-4">Compatible con iOS, Android y navegador</p>
+            </div>
+          </SectionCard>
+        </div>
+      </section>
+
+      {/* EMAIL SIGNUP */}
+      <section className="py-16 sm:py-20 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#0F1D32]/20">
+        <div className="max-w-2xl mx-auto">
+          <div className="p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-[#0F1D32]/70 via-[#0a0f1a]/50 to-transparent border border-[#D4AF37]/30 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl">
+            <h3 className="font-black text-xl sm:text-2xl text-white text-center mb-2">No te Pierdas Nada</h3>
+            <p className="text-sm text-[#cbd5e1] text-center mb-6">Suscríbete y recibe alertas de convocatorias, lesiones, resultados y análisis de IA</p>
+
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <input
+                type="email"
+                placeholder="tu@email.com"
+                className="flex-1 px-4 py-3 rounded-lg bg-[#0a0f1a] border border-[#D4AF37]/30 text-white placeholder-[#94A3B8] focus:border-[#D4AF37] focus:outline-none transition-all duration-300"
+              />
+              <button className="px-6 py-3 rounded-lg bg-[#D4AF37] text-[#060B14] font-black hover:bg-[#ffc266] transition-all duration-300 active:scale-95">
+                Suscribirse
+              </button>
+            </div>
+
+            <p className="text-xs text-center text-[#94A3B8]">
+              <span className="text-[#D4AF37] font-black">9,284</span> aficionados ya suscritos • Sin spam • Sin compromiso
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CTA PRINCIPAL */}
       <section className="py-20 sm:py-28 px-3 sm:px-4 relative overflow-hidden" role="region" aria-label="Llamada a la acción">
         <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/8 via-transparent to-transparent" />
@@ -469,11 +672,11 @@ export default function ZonaFutbolPreviewPage() {
             <div className="text-center space-y-8">
               <div className="space-y-6">
                 <h2 className="font-black text-white tracking-tighter drop-shadow-lg" style={{fontSize: "clamp(32px, 5vw, 56px)", textShadow: "0 12px 36px rgba(0,0,0,0.3), 0 0 48px rgba(212,175,55,0.2)", letterSpacing: "-0.04em"}}>
-                  ¿Listo para el Desafío Global?
+                  Tu Liga te Necesita.<br/>No Dejes que Otro la Gane por Ti.
                 </h2>
 
                 <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-lg mx-auto leading-relaxed tracking-wide drop-shadow">
-                  Únete a 100k+ jugadores que ya están compitiendo. Cada partido, cada minijuego, cada predicción te acerca a premios reales.
+                  Entra gratis. Si no te gusta, te devolvemos el silencio. Juega cada jornada contra 100k+ usuarios globales y compite por premios reales.
                 </p>
               </div>
 
@@ -495,25 +698,18 @@ export default function ZonaFutbolPreviewPage() {
 
               {/* CTA Buttons */}
               <div className="pt-6 space-y-4">
-                <ShimmerButton className="px-14 py-6 text-xl sm:text-2xl font-black w-full sm:w-auto shadow-2xl hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] hover:scale-110 active:scale-95 transition-all duration-300" href="/app">
-                  Comenzar Ahora
+                <ShimmerButton className="px-14 py-6 text-xl sm:text-2xl font-black w-full sm:w-auto shadow-2xl hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] hover:scale-110 active:scale-95 transition-all duration-300" href="/registro">
+                  Registrarme Gratis
                 </ShimmerButton>
-
-                <div className="text-base text-[#cbd5e1]">
-                  ¿Sin cuenta?{" "}
-                  <Link href="/registro" className="text-[#D4AF37] font-black hover:text-[#ffc266] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D4AF37] rounded px-1">
-                    Regístrate gratis
-                  </Link>
-                </div>
               </div>
 
-              {/* Trust Badge */}
-              <div className="pt-4 flex items-center justify-center gap-3 text-xs text-[#94A3B8]">
-                <span>✓ Plataforma Verificada</span>
-                <span className="text-[#D4AF37]">•</span>
-                <span>100% Segura</span>
-                <span className="text-[#D4AF37]">•</span>
-                <span>Premios Reales</span>
+              {/* Trust Badges */}
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-[#94A3B8]">
+                <span>✓ 100% Gratis</span>
+                <span className="hidden sm:block text-[#D4AF37]">•</span>
+                <span>Sin Tarjeta</span>
+                <span className="hidden sm:block text-[#D4AF37]">•</span>
+                <span>Sin Compromiso</span>
               </div>
             </div>
           </SectionCard>
@@ -523,18 +719,19 @@ export default function ZonaFutbolPreviewPage() {
       {/* FOOTER */}
       <footer className="border-t border-[#D4AF37]/20 py-12 sm:py-16 px-3 sm:px-4 bg-gradient-to-b from-[#060B14] to-[#000000]" role="contentinfo">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 sm:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12">
             <div className="space-y-4">
-              <h3 className="font-black text-xl text-white tracking-tight">Zona Futbol</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">La plataforma de fútbol más completa de América Latina. Fantasy, duelos, predicciones, minijuegos, achievements y premios reales.</p>
+              <h3 className="font-black text-lg text-white tracking-tight">Zona Mundial</h3>
+              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">Hecha por fans, para fans. Fantasy, predicciones, duelos, minijuegos y premios reales.</p>
+              <p className="text-xs text-[#94A3B8]">Powered by <span className="text-[#D4AF37] font-black">Sprintmarkt</span></p>
             </div>
 
             <nav className="space-y-3">
-              <h4 className="font-black text-sm text-white uppercase tracking-wider">Producto</h4>
-              <ul className="space-y-2 text-sm text-[#94A3B8]">
-                {["Mi Cuenta", "Cromos", "Calendario"].map((link) => (
+              <h4 className="font-black text-xs text-white uppercase tracking-wider mb-4">Torneo</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#94A3B8]">
+                {["Ligas", "Calendario", "Clasificación", "Historia"].map((link) => (
                   <li key={link}>
-                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300">
                       {link}
                     </Link>
                   </li>
@@ -543,11 +740,11 @@ export default function ZonaFutbolPreviewPage() {
             </nav>
 
             <nav className="space-y-3">
-              <h4 className="font-black text-sm text-white uppercase tracking-wider">Recursos</h4>
-              <ul className="space-y-2 text-sm text-[#94A3B8]">
-                {["Tutoriales", "Contacto", "Términos"].map((link) => (
+              <h4 className="font-black text-xs text-white uppercase tracking-wider mb-4">Comunidad</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#94A3B8]">
+                {["Noticias", "Blog", "Tutoriales", "Creadores"].map((link) => (
                   <li key={link}>
-                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300">
                       {link}
                     </Link>
                   </li>
@@ -556,29 +753,36 @@ export default function ZonaFutbolPreviewPage() {
             </nav>
 
             <nav className="space-y-3">
-              <h4 className="font-black text-sm text-white uppercase tracking-wider">Síguenos</h4>
-              <ul className="space-y-2 text-sm text-[#94A3B8]">
-                {["Twitter/X", "Instagram", "Discord"].map((link) => (
+              <h4 className="font-black text-xs text-white uppercase tracking-wider mb-4">Legal</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-[#94A3B8]">
+                {["Sobre Nosotros", "Contacto", "Privacidad", "Términos"].map((link) => (
                   <li key={link}>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4AF37] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded px-1">
+                    <Link href="#" className="hover:text-[#D4AF37] hover:underline transition-all duration-300">
                       {link}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </nav>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-[#D4AF37]/20">
-            <p className="text-center text-xs sm:text-sm text-[#94A3B8]">
-              © 2026 Zona Futbol. Todos los derechos reservados. |{" "}
-              <Link href="#" className="hover:text-[#D4AF37] transition-colors">
-                Privacidad
-              </Link>{" "}
-              |{" "}
-              <Link href="#" className="hover:text-[#D4AF37] transition-colors">
-                Términos
-              </Link>
+          <div className="py-6 border-t border-b border-[#D4AF37]/20">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-sm text-[#94A3B8]">
+              <span>🌍 Síguenos:</span>
+              <a href="#" className="text-[#D4AF37] hover:text-[#ffc266] font-black transition-colors">Instagram</a>
+              <span className="hidden sm:block text-[#D4AF37]">•</span>
+              <a href="#" className="text-[#D4AF37] hover:text-[#ffc266] font-black transition-colors">Facebook</a>
+              <span className="hidden sm:block text-[#D4AF37]">•</span>
+              <a href="#" className="text-[#D4AF37] hover:text-[#ffc266] font-black transition-colors">TikTok</a>
+            </div>
+          </div>
+
+          <div className="mt-8 space-y-3 text-center text-xs text-[#94A3B8]">
+            <p>
+              © 2026 <span className="text-[#D4AF37] font-black">Sprintmarkt</span> · Valencia, España
+            </p>
+            <p className="max-w-2xl mx-auto leading-relaxed">
+              ⚠️ <strong>Aviso Legal:</strong> Zona Futbol es un juego 100% gratuito. No implica apuestas reales ni transacciones monetarias. Los Futcions y puntos no tienen valor monetario. Únicamente con fines de entretenimiento.
             </p>
           </div>
         </div>

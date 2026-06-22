@@ -35,6 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/grupos`, lastModified, changeFrequency: "daily", priority: 0.9 },
     // Tabla viva de mejores terceros: cambia con cada resultado de grupos.
     { url: `${BASE_URL}/grupos/mejores-terceros`, lastModified, changeFrequency: "daily", priority: 0.85 },
+    // Cuadro de dieciseisavos: los 16 cruces, fechas y sedes (ronda de 32).
+    { url: `${BASE_URL}/dieciseisavos-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
     { url: `${BASE_URL}/selecciones`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/sedes`, changeFrequency: "weekly", priority: 0.8 },
     // Landings de juego indexables (auditoría SEO 11-jun): quiniela = hueco

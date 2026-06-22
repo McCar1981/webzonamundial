@@ -26,14 +26,14 @@ const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Dieciseisavos del Mundial 2026: cuadro, cruces y fechas",
+  title: "Dieciseisavos Mundial 2026: cuadro y cruces",
   description:
-    "Cuadro de los dieciseisavos de final del Mundial 2026: los 16 cruces de la primera ronda eliminatoria con sus fechas y sedes. Se actualiza al cerrarse la fase de grupos.",
+    "Cuadro de los dieciseisavos del Mundial 2026: los 16 cruces de la ronda de 32 con sus fechas y sedes. Se actualiza al terminar la fase de grupos.",
   keywords: [
     "dieciseisavos mundial 2026",
     "cuadro dieciseisavos mundial 2026",
     "cruces dieciseisavos mundial 2026",
-    "eliminatorias mundial 2026",
+    "fechas dieciseisavos mundial 2026",
     "ronda de 32 mundial 2026",
   ],
   alternates: { canonical: "/dieciseisavos-mundial-2026" },

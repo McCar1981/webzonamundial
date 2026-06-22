@@ -15,6 +15,7 @@ import { WC_MATCHES } from "@/lib/calendario/time";
 import { FINISHED_STATUSES } from "@/lib/calendario/live";
 import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import StickyCta from "./StickyCta";
+import PremiosPopup from "./PremiosPopup";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -404,6 +405,7 @@ export default async function MejoresTercerosPage() {
       </div>
 
       <StickyCta />
+      <PremiosPopup />
     </main>
   );
 }

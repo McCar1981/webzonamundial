@@ -111,7 +111,7 @@ export const MATCHES: Match[] = [
   { "i": 82, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1G", "hf": "tbd", "a": "3AEHIJ", "af": "tbd", "d": "2026-07-01", "t": "16:00", "vn": "Lumen Field", "vc": "Seattle", "vf": "us" },
   { "i": 83, "g": "", "p": "Dieciseisavos", "j": 0, "h": "2K", "hf": "tbd", "a": "2L", "af": "tbd", "d": "2026-07-02", "t": "19:00", "vn": "BMO Field", "vc": "Toronto", "vf": "ca" },
   { "i": 84, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1H", "hf": "tbd", "a": "2J", "af": "tbd", "d": "2026-07-02", "t": "15:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
-  { "i": 85, "g": "", "p": "Dieciseisavos", "j": 0, "h": "2B", "hf": "tbd", "a": "3EFGIJ", "af": "tbd", "d": "2026-07-02", "t": "23:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
+  { "i": 85, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1B", "hf": "tbd", "a": "3EFGIJ", "af": "tbd", "d": "2026-07-02", "t": "23:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
   { "i": 86, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1J", "hf": "tbd", "a": "2H", "af": "tbd", "d": "2026-07-03", "t": "18:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
   { "i": 87, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1K", "hf": "tbd", "a": "3DEIJL", "af": "tbd", "d": "2026-07-03", "t": "21:30", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
   { "i": 88, "g": "", "p": "Dieciseisavos", "j": 0, "h": "2D", "hf": "tbd", "a": "2G", "af": "tbd", "d": "2026-07-03", "t": "14:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },

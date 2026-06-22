@@ -225,8 +225,8 @@ export default async function MejoresTercerosPage() {
 
         <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px" }}>
           En el Mundial 2026 quedar tercero no es quedar fuera. De los{" "}
-          <Link href="/grupos" style={{ color: GOLD, textDecoration: "none" }}>12 grupos</Link>, pasan a
-          dieciseisavos los dos primeros de cada uno <b style={{ color: "#fff" }}>y los 8 mejores
+          <Link href="/grupos" style={{ color: GOLD, textDecoration: "none" }}>12 grupos</Link>, pasan a{" "}
+          <Link href="/dieciseisavos-mundial-2026" style={{ color: GOLD, textDecoration: "none" }}>dieciseisavos</Link> los dos primeros de cada uno <b style={{ color: "#fff" }}>y los 8 mejores
           terceros</b>. Esta tabla compara a los terceros de todos los grupos y se actualiza con cada
           resultado de la fase de grupos (del 11 al 27 de junio): los 8 primeros estarían dentro hoy;
           los 4 últimos, eliminados.

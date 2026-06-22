@@ -232,6 +232,27 @@ export default async function MejoresTercerosPage() {
           los 4 últimos, eliminados.
         </p>
 
+        {/* Respuesta rápida (featured snippet): la consulta informacional de más
+            volumen es "cuántos mejores terceros pasan". Google extrae mejor un
+            bloque conciso y aislado que la frase dentro del párrafo. Visible
+            (no en <details>) para ganar la posición 0 y subir el dwell time. */}
+        <div style={{
+          margin: "0 0 14px", padding: "14px 18px", borderRadius: 12,
+          border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)",
+        }}>
+          <p style={{ margin: "0 0 6px", color: "#fff", fontSize: 16, fontWeight: 700, lineHeight: 1.4 }}>
+            Pasan <span style={{ color: GOLD2 }}>8 de los 12 terceros</span> a dieciseisavos.
+          </p>
+          <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: MID }}>
+            Se ordenan por <b style={{ color: "#fff" }}>puntos</b>, luego{" "}
+            <b style={{ color: "#fff" }}>diferencia de goles</b>,{" "}
+            <b style={{ color: "#fff" }}>goles a favor</b> y{" "}
+            <b style={{ color: "#fff" }}>fair play</b>; los 8 mejores acompañan a los
+            12 primeros y 12 segundos de grupo hasta completar los 32 de la{" "}
+            <Link href="/dieciseisavos-mundial-2026" style={{ color: GOLD, textDecoration: "none" }}>ronda eliminatoria</Link>.
+          </p>
+        </div>
+
         {/* CTA arriba (sobre la tabla): conversión visible sin scroll. La tabla
             es alta en móvil; el mini-juego de abajo "quedaba muy abajo", así que
             ponemos aquí una llamada compacta que no entierra la tabla (SEO). */}

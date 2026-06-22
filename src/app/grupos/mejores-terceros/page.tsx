@@ -232,6 +232,28 @@ export default async function MejoresTercerosPage() {
           los 4 últimos, eliminados.
         </p>
 
+        {/* CTA arriba (sobre la tabla): conversión visible sin scroll. La tabla
+            es alta en móvil; el mini-juego de abajo "quedaba muy abajo", así que
+            ponemos aquí una llamada compacta que no entierra la tabla (SEO). */}
+        <div style={{
+          display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between",
+          gap: "12px 16px", margin: "18px 0 4px", padding: "14px 18px", borderRadius: 14,
+          border: "1px solid rgba(201,168,76,0.28)",
+          background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03))",
+        }}>
+          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.45, color: MID, flex: "1 1 240px" }}>
+            <b style={{ color: "#fff" }}>Juega gratis:</b> predice qué 8 terceros pasan y compite por{" "}
+            <b style={{ color: GOLD2 }}>Gift Cards de 300/200/100 €</b>. Sin apuestas.
+          </p>
+          <Link href="/registro" style={{
+            display: "inline-block", whiteSpace: "nowrap",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+            fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none",
+          }}>
+            Crear mi cuenta gratis →
+          </Link>
+        </div>
+
         {/* Tabla en vivo */}
         <div style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, overflow: "auto", margin: "28px 0 10px" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 560 }}>

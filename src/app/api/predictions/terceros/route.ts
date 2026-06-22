@@ -13,6 +13,12 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getUserTerceros, saveUserTerceros } from "@/lib/predictions/terceros-store";
 
+// Igual que /api/predictions/bracket y todas las rutas por-usuario: lee cookies
+// de sesión, así que NUNCA debe optimizarse estáticamente (cachearía un 401
+// para todos y el sync nunca detectaría la sesión).
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const VALID_LETTERS = new Set(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]);
 const MAX_PICKS = 8;
 

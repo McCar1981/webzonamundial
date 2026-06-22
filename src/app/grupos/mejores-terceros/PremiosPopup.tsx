@@ -37,6 +37,21 @@ export default function PremiosPopup() {
     }
     if (dismissedRecently) return;
 
+    // No interrumpir el mini-juego: si el usuario tiene un pronóstico a medias
+    // (1..7 de 8 grupos elegidos) NO abrimos el popup, para no taparle el juego
+    // ni empujarle a registrarse antes de completar su pronóstico (que es justo
+    // el momento de máxima implicación). Con 0 (no ha empezado) u 8 (ya lo
+    // completó y vio el CTA) sí dejamos que aparezca.
+    try {
+      const raw = localStorage.getItem("zm:pronostico-terceros:v1");
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length >= 1 && arr.length < 8) return;
+      }
+    } catch {
+      /* ignore */
+    }
+
     const timer = setTimeout(() => setOpen(true), SHOW_AFTER_MS);
     return () => clearTimeout(timer);
   }, []);

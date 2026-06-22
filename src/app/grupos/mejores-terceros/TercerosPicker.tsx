@@ -194,39 +194,38 @@ export default function TercerosPicker({ terceros }: { terceros: TerceroOption[]
         })}
       </div>
 
-      {/* CTA: bloqueado hasta completar los 8 (mecánica que sube la interacción) */}
+      {/* CTA SIEMPRE VISIBLE: el registro no se esconde tras completar el juego;
+          se potencia ("Guárdalo y compite") cuando el pronóstico está completo. */}
       <div style={{ marginTop: 18 }}>
-        {complete ? (
-          <div>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GREEN, fontWeight: 800, fontSize: 14 }}>
-                <Check size={16} strokeWidth={3} aria-hidden /> Pronóstico completo
-              </span>
-              <Link
-                href="/registro"
-                style={{
-                  display: "inline-block",
-                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-                  color: "#0A1422",
-                  fontWeight: 800,
-                  fontSize: 15,
-                  padding: "12px 24px",
-                  borderRadius: 12,
-                  textDecoration: "none",
-                }}
-              >
-                Guárdalo y compite — crear cuenta gratis →
-              </Link>
-            </div>
-            <p style={{ margin: "10px 0 0", fontSize: 12.5, color: DIM }}>
-              ¿Cambiar? Toca un grupo marcado para soltarlo.
-            </p>
-          </div>
-        ) : (
-          <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>
-            Elige <b style={{ color: GOLD2 }}>{TARGET - picks.length}</b> más para desbloquear y guardar tu pronóstico.
-          </p>
-        )}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
+          {complete && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GREEN, fontWeight: 800, fontSize: 14 }}>
+              <Check size={16} strokeWidth={3} aria-hidden /> Pronóstico completo
+            </span>
+          )}
+          <Link
+            href="/registro"
+            style={{
+              display: "inline-block",
+              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+              color: "#0A1422",
+              fontWeight: 800,
+              fontSize: 15,
+              padding: "12px 26px",
+              borderRadius: 12,
+              textDecoration: "none",
+            }}
+          >
+            {complete ? "Guárdalo y compite — crear cuenta gratis →" : "Crear mi cuenta gratis →"}
+          </Link>
+        </div>
+        <p style={{ margin: "10px 0 0", fontSize: 12.5, color: DIM }}>
+          {complete
+            ? "¿Cambiar? Toca un grupo marcado para soltarlo."
+            : picks.length > 0
+              ? `Tienes ${picks.length}/${TARGET} elegidos — al registrarte guardamos tu pronóstico.`
+              : "Gratis y sin apuestas. Marca tus 8 y compite por las Gift Cards."}
+        </p>
       </div>
     </aside>
   );

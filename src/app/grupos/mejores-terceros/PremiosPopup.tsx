@@ -8,7 +8,7 @@
 // SEO: NO es un intersticial de entrada — aparece tras ~6 s de lectura, no al
 // cargar, para no caer en la penalización de Google por popup intrusivo en la
 // página que sostiene el tráfico. El contenido SEO es server-render y este
-// componente no lo toca. Descartable + reaparece a los 3 días (localStorage).
+// componente no lo toca. Descartable + reaparece a los 2 días (localStorage).
 //
 // Premio y marco legal: ver /legal/bases-gran-premio. Competir es GRATIS y
 // pagar NO da ventaja (gana quien más acierta), así que aquí no se vende nada:
@@ -22,7 +22,7 @@ import Link from "next/link";
 const NAVY = "#0F1D32", BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
 const DISMISS_KEY = "zm:premios-popup-terceros-at";
 const SHOW_AFTER_MS = 6000;
-const REAPPEAR_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
+const REAPPEAR_AFTER_MS = 2 * 24 * 60 * 60 * 1000;
 
 export default function PremiosPopup() {
   const [open, setOpen] = useState(false);

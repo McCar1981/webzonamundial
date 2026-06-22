@@ -16,6 +16,7 @@ import { FINISHED_STATUSES } from "@/lib/calendario/live";
 import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import StickyCta from "./StickyCta";
 import PremiosPopup from "./PremiosPopup";
+import TercerosPicker from "./TercerosPicker";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -185,8 +186,17 @@ export default async function MejoresTercerosPage() {
   const pendientes = terceros.filter((t) => t.row === null);
   const ranked = [...definidos].sort((a, b) => cmpRows(a.row, b.row));
 
+  // Datos serializables para el mini-juego (client island): los 12 grupos con
+  // su tercero ACTUAL como contexto. El pick es por grupo, así que esto vale
+  // aunque el tercero cambie con cada jornada.
+  const pickerData = terceros.map((t) => ({
+    letra: t.letra,
+    team: t.row?.team ?? null,
+    flag: t.row?.flag ?? null,
+  }));
+
   return (
-    <main style={{ background: BG, minHeight: "100vh", color: MID, padding: "80px 20px 60px" }}>
+    <main style={{ background: BG, minHeight: "100vh", color: MID, padding: "24px 20px 60px" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
@@ -300,40 +310,11 @@ export default async function MejoresTercerosPage() {
           goles a favor — el orden oficial añade fair play y, en último extremo, sorteo.
         </p>
 
-        {/* Conversión: insertada en el pico de intención — el lector acaba de ver
-            la carrera en vivo. El CTA original vivía solo al final de la página
-            (tras explicación + FAQ), donde casi nadie llega (rebote ~99%). */}
-        <aside
-          style={{
-            margin: "26px 0 8px",
-            padding: "22px 22px 24px",
-            borderRadius: 16,
-            border: "1px solid rgba(201,168,76,0.28)",
-            background: "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(201,168,76,0.02))",
-          }}
-        >
-          <p style={{ color: GOLD, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 8px" }}>
-            Juega gratis · sin apuestas
-          </p>
-          <p style={{ color: "#fff", fontSize: 22, fontWeight: 800, margin: "0 0 8px", lineHeight: 1.2 }}>
-            La tabla cambia con cada gol. ¿Tú lo verás venir?
-          </p>
-          <p style={{ fontSize: 15, lineHeight: 1.6, margin: "0 0 18px" }}>
-            Predice qué terceros acaban entre los 8 que pasan a dieciseisavos, compite con miles de
-            aficionados y sigue cada partido en vivo. Te lleva 20 segundos y es gratis.
-          </p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-            <Link
-              href="/registro"
-              style={{ display: "inline-block", background: GOLD, color: "#0B0F1A", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}
-            >
-              Crear mi cuenta gratis →
-            </Link>
-            <Link href="/app/predicciones" style={{ color: GOLD, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
-              Ver cómo se juega
-            </Link>
-          </div>
-        </aside>
+        {/* Conversión + interacción: mini-juego insertado en el pico de intención
+            — el lector acaba de ver la carrera en vivo. Sustituye al CTA estático
+            anterior: engancha (sube el tiempo de interacción) Y convierte (al
+            completar los 8, desbloquea el registro). 100% client-side. */}
+        <TercerosPicker terceros={pickerData} />
 
         {/* Explicación */}
         <h2 style={{ color: "#fff", fontSize: 26, fontWeight: 700, margin: "44px 0 12px" }}>

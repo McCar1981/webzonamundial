@@ -8,6 +8,7 @@
 
 import type { Metadata } from "next";
 import { amazonGoUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
+import AmazonTrackedLink from "@/components/affiliate/AmazonTrackedLink";
 
 export const metadata: Metadata = {
   title: "Camisetas del Mundial 2026 — dónde comprarlas | ZonaMundial",
@@ -64,11 +65,10 @@ export default function CamisetasPage() {
         {/* Rejilla de selecciones — se adapta sola al ancho (móvil = 2 columnas). */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10 }}>
           {TEAMS.map((t) => (
-            <a
+            <AmazonTrackedLink
               key={t.flag}
               href={amazonGoUrl(query(t.label))}
-              target="_blank"
-              rel="sponsored noopener noreferrer"
+              item={t.label}
               style={{
                 display: "flex", alignItems: "center", gap: 10,
                 padding: "12px 13px", borderRadius: 14, minHeight: 56,
@@ -83,16 +83,15 @@ export default function CamisetasPage() {
                 <span style={{ fontWeight: 800, fontSize: 14.5, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.label}</span>
                 <span style={{ fontSize: 11, fontWeight: 600, color: GOLD2, opacity: 0.9 }}>~90-110 € · Ver en Amazon</span>
               </span>
-            </a>
+            </AmazonTrackedLink>
           ))}
         </div>
 
         {/* Botón general */}
         <div style={{ textAlign: "center", marginTop: 22 }}>
-          <a
+          <AmazonTrackedLink
             href={amazonGoUrl("camiseta mundial 2026")}
-            target="_blank"
-            rel="sponsored noopener noreferrer"
+            item="generico"
             style={{
               display: "inline-block", padding: "14px 28px", borderRadius: 999,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#1a1206",
@@ -100,7 +99,7 @@ export default function CamisetasPage() {
             }}
           >
             Ver todas las camisetas en Amazon →
-          </a>
+          </AmazonTrackedLink>
         </div>
 
         {/* Nota de autenticidad */}

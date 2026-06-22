@@ -220,6 +220,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/n-zelanda-egipto-wide.webp",
     mobile: "/images/hero/n-zelanda-egipto-mobile.webp",
   },
+  // Argentina vs Austria (22 jun, Grupo J · J2).
+  "argentina-austria": {
+    wide: "/images/hero/argentina-austria-wide.webp",
+    mobile: "/images/hero/argentina-austria-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

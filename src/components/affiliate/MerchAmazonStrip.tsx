@@ -7,6 +7,10 @@
 // precios (los pone Amazon en destino). El redirector /go/amazon localiza por IP
 // (amazon.es tag -21 en Espana; amazon.com tag -20 en LATAM/resto).
 //
+// MEDICION: cada clic emite el evento GA4 `affiliate_click` (network=amazon,
+// placement=lobby|match, item=<seleccion o "generico">) para ver el
+// comportamiento en tiempo real en Analytics, sin depender del panel de Amazon.
+//
 // LOGO de Amazon: NO se reproduce su logo (el "smile" tiene uso muy restringido
 // y recrearlo arriesga la cuenta). Se usa el nombre "Amazon" (uso nominativo) +
 // un boton con su color reconocible. En el pie se muestra la insignia OFICIAL
@@ -16,6 +20,7 @@
 import type { CSSProperties } from "react";
 import { amazonGoUrl, AMAZON_DISCLOSURE } from "@/lib/affiliate/amazon";
 import { KIT_BY_ISO } from "@/data/kits-2026";
+import { trackEvent } from "@/lib/analytics/track-event";
 
 type Team = { name: string; flag: string };
 
@@ -50,6 +55,15 @@ export default function MerchAmazonStrip({
   const teams: Team[] = [home, away].filter(
     (t): t is Team => !!t && !!t.name && !!t.flag
   );
+
+  // Evento GA4 al clicar un enlace de Amazon (no rompe la navegacion: trackEvent
+  // es sincrono y fail-safe, y el enlace abre en pestana nueva).
+  const trackClick = (item: string) =>
+    trackEvent("affiliate_click", {
+      network: "amazon",
+      placement: variant,
+      item,
+    });
 
   const cardBg =
     variant === "lobby"
@@ -98,6 +112,7 @@ export default function MerchAmazonStrip({
           href={amazonGoUrl("camiseta mundial 2026")}
           target="_blank"
           rel="sponsored noopener noreferrer"
+          onClick={() => trackClick("generico")}
           style={{
             ...amazonBtn,
             display: "flex",
@@ -129,6 +144,7 @@ export default function MerchAmazonStrip({
                 href={amazonGoUrl(teamQuery(t.name))}
                 target="_blank"
                 rel="sponsored noopener noreferrer"
+                onClick={() => trackClick(t.name)}
                 style={{
                   display: "flex",
                   flexDirection: "column",

@@ -17,6 +17,7 @@ import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import StickyCta from "./StickyCta";
 import PremiosPopup from "./PremiosPopup";
 import TercerosPicker from "./TercerosPicker";
+import TercerosAccountSync from "./TercerosAccountSync";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -358,6 +359,11 @@ export default async function MejoresTercerosPage() {
             anterior: engancha (sube el tiempo de interacción) Y convierte (al
             completar los 8, desbloquea el registro). 100% client-side. */}
         <TercerosPicker terceros={pickerData} />
+
+        {/* Cierra el bucle de conversión: si el visitante YA tiene cuenta, su
+            pronóstico de localStorage se sube solo a su cuenta. Cero coste para
+            los anónimos (solo llama al endpoint si hay pronóstico que guardar). */}
+        <TercerosAccountSync />
 
         {/* Explicación */}
         <h2 style={{ color: "#fff", fontSize: 26, fontWeight: 700, margin: "44px 0 12px" }}>

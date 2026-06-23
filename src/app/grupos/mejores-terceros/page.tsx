@@ -409,10 +409,16 @@ export default async function MejoresTercerosPage() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA del pie: PIVOTA AL FUTURO. El gancho de los grupos (predecir
+            terceros) caduca el 27-jun; lo que sigue vivo y vale una cuenta es el
+            cuadro eliminatorio. Premio por delante para el buscador de datos. */}
         <div style={{ textAlign: "center", padding: "28px 16px 8px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <p style={{ color: "#fff", fontSize: 20, fontWeight: 700, margin: "0 0 16px" }}>
-            ¿Crees que sabes qué terceros pasarán? Demuéstralo.
+          <p style={{ color: "#fff", fontSize: 20, fontWeight: 700, margin: "0 0 8px", lineHeight: 1.25 }}>
+            Los grupos cierran el 27 de junio. Lo que viene: el cuadro hasta la final.
+          </p>
+          <p style={{ fontSize: 15, lineHeight: 1.6, margin: "0 0 18px" }}>
+            Predice las eliminatorias del Mundial 2026 y compite por{" "}
+            <b style={{ color: GOLD2 }}>Gift Cards de 300/200/100&nbsp;€</b>. Gratis y sin apuestas.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
             <Link
@@ -422,10 +428,10 @@ export default async function MejoresTercerosPage() {
               Crear mi cuenta gratis
             </Link>
             <Link
-              href="/quiniela-mundial-2026"
+              href="/bracket"
               style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}
             >
-              Cómo funciona la quiniela
+              Predice el cuadro hasta la final →
             </Link>
           </div>
         </div>

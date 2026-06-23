@@ -172,7 +172,8 @@ export default function PrediccionMundialPage() {
         <p style={{ fontSize: 13, color: DIM, margin: "10px 2px 0" }}>
           Tus aciertos se multiplican por <b style={{ color: MID }}>rachas</b>, por predecir con{" "}
           <b style={{ color: MID }}>antelación</b> y por el <b style={{ color: MID }}>Modo Underdog</b> (hasta el doble en
-          partidos desigualados).
+          partidos desigualados). Y si <b style={{ color: MID }}>clavas los 8 tipos en un mismo partido</b>, te llevas un{" "}
+          <b style={{ color: MID }}>bonus de 500 Fútcoins</b>.
         </p>
 
         {/* El premio / cómo se gana */}

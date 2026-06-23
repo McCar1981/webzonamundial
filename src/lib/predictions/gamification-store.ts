@@ -52,6 +52,8 @@ import type { CosmeticDisplay } from "./cosmetics";
 import { recordDuelResult } from "./rivalries-store";
 import { spendCoins, grantCoins } from "@/lib/economy/wallet";
 import { kv } from "@/lib/kv";
+import { PERFECT_MATCH_BONUS } from "./scoring";
+import { PREDICTION_TYPES } from "./types";
 
 // ── Check-in diario anclado en KV ────────────────────────────────────────────
 // El check-in diario usa Vercel KV como ANCLA de idempotencia (igual que la
@@ -267,12 +269,30 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
       .order("resolved_at", { ascending: true });
     const rows = (data ?? []) as (ResolvedRow & { resolved_at: string })[];
 
+    // Filas resueltas de ESTE partido (a lo sumo 8: una por tipo — unicidad de app).
+    const matchRows = rows.filter((r) => r.match_id === matchId);
+
     // XP/monedas SOLO de las predicciones de ESTE partido (rewarded una vez).
     let gainedXp = 0, gainedCoins = 0;
-    for (const r of rows) {
-      if (r.match_id !== matchId) continue;
+    for (const r of matchRows) {
       gainedXp += xpForResolved(r.points_earned ?? 0, Boolean(r.is_correct));
       gainedCoins += coinsForResolved(r.points_earned ?? 0, Boolean(r.is_correct));
+    }
+
+    // Bonus "Partido Perfecto": clavar los 8 TIPOS en este partido (los 8
+    // resueltos y TODOS acertados) otorga PERFECT_MATCH_BONUS Fútcoins, UNA vez.
+    // Idempotente por (usuario, partido): toda grantMatchRewards corre tras el
+    // candado prediction_match_rewards (una 2ª pasada hace `continue` en el 23505
+    // de arriba), así que el bonus se abona como mucho una vez por partido. Se
+    // computa desde las filas YA resueltas en BD —no desde una sola ejecución de
+    // resolveMatch—, con la MISMA definición que el stat perfectMatches y el logro
+    // "Partido Perfecto": 8 filas (= 8 tipos) y las 8 con is_correct=true.
+    const perfectMatch =
+      matchRows.length === PREDICTION_TYPES.length &&
+      matchRows.every((r) => r.is_correct === true);
+    const perfectBonusCoins = perfectMatch ? PERFECT_MATCH_BONUS : 0;
+    if (perfectMatch) {
+      console.log(`[gamification] partido perfecto (uid=${uid} match=${matchId}): +${PERFECT_MATCH_BONUS} Fútcoins`);
     }
 
     const prof = await readProfile(uid);
@@ -295,8 +315,8 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
     const { data: ach } = await admin.from("prediction_achievements").select("achievement_id").eq("user_id", uid);
     const unlocked = new Set((ach ?? []).map((a) => (a as { achievement_id: string }).achievement_id));
     const fresh = newlyUnlocked(stats, unlocked);
-    let totalCoins = gainedCoins;
-    let totalXp = gainedXp; // Fútcoins/XP totales ganados en esta resolución (+ logros).
+    let totalCoins = gainedCoins + perfectBonusCoins;
+    let totalXp = gainedXp; // Fútcoins/XP totales ganados en esta resolución (+ bonus partido perfecto + logros).
     for (const a of fresh) {
       await admin.from("prediction_achievements").insert({ user_id: uid, achievement_id: a.id }).then(() => {}, () => {});
       totalCoins += a.rewardCoins;

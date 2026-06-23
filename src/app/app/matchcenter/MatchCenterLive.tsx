@@ -21,7 +21,7 @@ import GroupStandingsTab from "./GroupStandingsTab";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
-import { templateNarration } from "@/lib/match-center/templates";
+import { actorSide, templateNarration } from "@/lib/match-center/templates";
 import FootballScoreboard from "@/components/FootballScoreboard";
 import { teamAbbr } from "@/lib/team-abbr";
 import { useEntitlements } from "@/components/pro/EntitlementsProvider";
@@ -679,8 +679,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
         setLastScorer({ side: e.side, player: e.player, minute: e.minute });
         lastGoalRef.current = e;
         if (animate) {
-          // El autogol lo celebra el RIVAL (beneficiario), no quien la mete en propia.
-          setGoalPulse({ side: e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
+          // La celebración la protagoniza el equipo BENEFICIADO (el que sube en el
+          // marcador). api-football acredita el gol —incluido el autogol— al lado
+          // que MARCA, así que e.side YA es el beneficiado: NO se invierte (igual
+          // que un gol normal). GoalNet muestra "En propia · jugador" con el actor. (#338)
+          setGoalPulse({ side: e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
           if (coords) {
             setShotFx({ key: Date.now(), x: coords.x, y: coords.y, raised: true });
           }
@@ -1181,7 +1184,9 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
     }
     const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
     if (isGoal && e.side !== "neutral") {
-      setGoalPulse({ side: e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
+      // e.side YA es el lado beneficiado (api-football acredita el autogol al que
+      // marca); NO se invierte. La etiqueta "En propia" de GoalNet marca al actor. (#338)
+      setGoalPulse({ side: e.side, key: Date.now(), player: e.player, ownGoal: e.type === "own_goal" });
       snd?.goal();
     } else if ((e.type === "yellow" || e.type === "second_yellow" || e.type === "red") && e.side !== "neutral") {
       setCardFx({ side: e.side, color: e.type === "red" ? "#ef4444" : "#eab308", key: Date.now(), player: e.player });
@@ -1436,7 +1441,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
             {/* Anuncio GLOBAL de evento clave (visible en TODAS las pestañas) */}
             {eventToast && (() => {
               const e = eventToast.e;
-              const teamName = e.side === "home" ? meta.home.name : e.side === "away" ? meta.away.name : "";
+              // El texto muestra al JUGADOR (actor): la selección que lo acompaña
+              // debe ser la SUYA (actorSide), no la beneficiada, para no atribuir el
+              // jugador del autogol al país equivocado. El rótulo ya dice "GOL EN PROPIA". (#338)
+              const tSide = actorSide(e);
+              const teamName = tSide === "home" ? meta.home.name : tSide === "away" ? meta.away.name : "";
               const min = `${e.minute}${e.extra ? `+${e.extra}` : ""}'`;
               let kind = ""; let color = GOLD2; let detail = e.player ?? "";
               if (e.type === "goal" || e.type === "penalty_goal") { kind = "GOL"; color = "#16c772"; detail = `${e.player ?? "Gol"}${e.type === "penalty_goal" ? " · de penalti" : ""}${e.assist ? ` · asist. ${e.assist}` : ""}`; }
@@ -1846,7 +1855,11 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
       {keyMoments.length > 0 && (
         <div className="mc-moments" style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 12, paddingRight: 30, marginBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           {keyMoments.map((e) => {
-            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            // actorSide: el chip se tinta con la selección del JUGADOR (en el
+            // autogol, el rival del beneficiado), coherente con la fila de abajo;
+            // en el resto de eventos coincide con e.side. (#338)
+            const aSide = actorSide(e);
+            const side = aSide === "home" ? meta.home : aSide === "away" ? meta.away : null;
             const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
             return (
               <button key={e.id} onClick={() => onRelive(e)} title="Revivir jugada"
@@ -1889,7 +1902,10 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
             [],
           )
           .map(({ e, count }) => {
-            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            // El nombre junto al jugador es SU selección (actorSide); en el autogol
+            // el jugador es del RIVAL del beneficiado. El detalle "Own Goal" lo marca. (#338)
+            const aSide = actorSide(e);
+            const side = aSide === "home" ? meta.home : aSide === "away" ? meta.away : null;
             const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
             const can = RELIVE_TYPES.has(e.type);
             return (
@@ -1997,9 +2013,10 @@ function MatchSummary({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
       const sd = side(e.side);
       if (!sd) continue;
       if (GOAL_TYPES.has(e.type)) {
-        // gol en propia: cuenta para el rival
-        const benef = e.type === "own_goal" ? (sd === "home" ? "away" : "home") : sd;
-        scorers[benef].push(e);
+        // El autogol cuenta para el equipo BENEFICIADO, que es e.side (= sd):
+        // api-football lo acredita al que MARCA, no se invierte. En su lista de
+        // goleadores se distingue con el sufijo "(p.p.)". (#338)
+        scorers[sd].push(e);
         if (e.assist) assists[sd].push({ name: lastNameShort(e.assist), minute: minuteLabel(e) });
       } else if (e.type === "yellow" || e.type === "second_yellow") {
         cards[sd].y++;
@@ -2154,7 +2171,10 @@ function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]
         {moments.length === 0 && <div style={{ color: DIM, fontSize: 14, textAlign: "center", padding: 20 }}>Sin goles ni tarjetas para destacar.</div>}
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {moments.map((e, i) => {
-            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            // La bandera y el nombre acompañan al JUGADOR: su selección es actorSide
+            // (en el autogol, el rival del beneficiado), no e.side. (#338)
+            const aSide = actorSide(e);
+            const side = aSide === "home" ? meta.home : aSide === "away" ? meta.away : null;
             const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
             return (
               <button key={e.id} onClick={() => onRelive(e)} style={{

@@ -230,6 +230,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/portugal-uzbekistan-wide.webp",
     mobile: "/images/hero/portugal-uzbekistan-mobile.webp",
   },
+  // Inglaterra vs Ghana (23 jun, Grupo L · J3).
+  "inglaterra-ghana": {
+    wide: "/images/hero/inglaterra-ghana-wide.webp",
+    mobile: "/images/hero/inglaterra-ghana-mobile.webp",
+  },
+  // Colombia vs RD Congo (23 jun, Grupo K · J3). (slug = home-away del calendario)
+  "colombia-rd-congo": {
+    wide: "/images/hero/colombia-rd-congo-wide.webp",
+    mobile: "/images/hero/colombia-rd-congo-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

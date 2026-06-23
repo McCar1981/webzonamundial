@@ -28,7 +28,9 @@ const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 
 // Caché de locución IA por partido (hash eventId -> frase). Permite narrar cada
 // evento UNA sola vez (la genera el cron) y servirla a todos los visitantes.
-const LIVENARR_PREFIX = "mc:livenarr:v1:";
+// v2: invalida la narración cacheada (la v1 podía decir "abre el marcador" en
+// goles posteriores o dar ventaja al equipo de un autogol) → re-narra corregido.
+const LIVENARR_PREFIX = "mc:livenarr:v2:";
 const LIVENARR_TTL = 6 * 60 * 60; // un partido entero con margen
 
 function kvEnabled(): boolean {
@@ -55,10 +57,28 @@ REGLAS:
 - Usa los nombres de equipo y jugador EXACTAMENTE como vienen.
 - EXPULSIONES (type "red" o "second_yellow"): si el evento trae el campo "situacion", DEBES reflejar ESA situación numérica exacta (p. ej. "se quedan diez contra diez, igualdad" si ambos van con uno menos). NUNCA digas que un equipo juega "con un hombre más" salvo que la "situacion" lo indique: el rival puede llevar ya sus propias expulsiones.
 - AUTOGOL (type "own_goal"): el gol cuenta SIEMPRE para el RIVAL del jugador. Quien se adelanta o suma es el equipo del campo "subeMarcadorPara"; NUNCA digas que el equipo del jugador ("team") se pone en ventaja, aunque sea quien la manda a su propia puerta.
+- GOLES (type "goal", "penalty_goal", "own_goal"): te doy el campo "marcador" con el RESULTADO TRAS el gol, a quién beneficia y si abre o no el marcador. DEBES respetarlo:
+  · Di "abre el marcador" o "inaugura el marcador" SOLO si el "marcador" indica que ESTE abre el marcador (1-0 o 0-1). Si NO es el primer gol del partido, está PROHIBIDO decir que abre o inaugura el marcador.
+  · NO digas que un equipo "se pone en ventaja" o "se adelanta" si NO queda por delante tras el gol: usa lo que diga el "marcador" (amplía, empata, recorta, sentencia).
+  · Puedes citar el resultado real ("pone el 3 a 0", "amplía a cuatro").
 - Devuelve SOLO un JSON: { "lines": { "<eventId>": "<frase>", ... } }`;
 
 interface RawNarration {
   lines?: Record<string, unknown>;
+}
+
+const GOAL_TYPES = new Set<MatchEvent["type"]>(["goal", "penalty_goal", "own_goal"]);
+
+/** Contexto por evento para el narrador IA. */
+export interface EventContext {
+  /** Situación numérica tras una expulsión (solo rojas). */
+  situacion?: string;
+  /** Resultado y encuadre TRAS un gol (solo goles). */
+  marcador?: string;
+  /** ¿Este gol ABRE el marcador (es el primero del partido)? — guard. */
+  first?: boolean;
+  /** ¿El equipo beneficiado queda POR DELANTE tras el gol? — guard. */
+  benAhead?: boolean;
 }
 
 /**
@@ -69,7 +89,7 @@ interface RawNarration {
 export async function aiNarrateBatch(
   events: MatchEvent[],
   meta: MatchMeta,
-  context?: Record<string, string>,
+  context?: Record<string, EventContext>,
 ): Promise<Record<string, string>> {
   const client = getClient();
   if (!client || events.length === 0) return {};
@@ -87,8 +107,12 @@ export async function aiNarrateBatch(
       detail: e.detail || null,
       // Situación numérica REAL tras una expulsión (cuando aplica), para que la
       // IA no asuma superioridad del rival si este ya iba con expulsados.
-      situacion: context?.[e.id] || null,
+      situacion: context?.[e.id]?.situacion || null,
     };
+    // GOL: marcador TRAS el gol + encuadre (abre/amplía/empata/recorta), para
+    // que la IA NO diga "abre el marcador" en el 3er gol ni "se pone en ventaja"
+    // a quien va perdiendo.
+    if (GOAL_TYPES.has(e.type)) row.marcador = context?.[e.id]?.marcador || null;
     // AUTOGOL: el gol sube al marcador del RIVAL. Se lo decimos explícito a la
     // IA para que NUNCA atribuya la ventaja al equipo del jugador.
     if (e.type === "own_goal") {
@@ -130,9 +154,26 @@ Devuelve SOLO el JSON con "lines".`;
 
   const out: Record<string, string> = {};
   for (const [id, val] of Object.entries(parsed.lines)) {
-    if (typeof val === "string" && val.trim()) {
-      out[id] = val.trim().slice(0, 200);
+    if (typeof val !== "string" || !val.trim()) continue;
+    const line = val.trim().slice(0, 200);
+    // Guarda determinista para GOLES: si la IA ignora el "marcador" y dice "abre
+    // el marcador" cuando NO es el primer gol, o "se pone en ventaja" a quien NO
+    // queda por delante (o atribuye un autogol al equipo del jugador), se
+    // descarta la frase → el llamador cae a la plantilla (neutra y correcta).
+    const ev = events.find((e) => e.id === id);
+    const gc = context?.[id];
+    if (ev && gc && GOAL_TYPES.has(ev.type)) {
+      const low = line.toLowerCase();
+      const saysOpener = /(abre|inaugura|estrena)\s+(el|la)\s+(marcador|lata|cuenta)|primer (gol|tanto)|adelanta el marcador/.test(low);
+      const saysLead = /se pone (en ventaja|por delante|por encima)|toma la delantera|pone por delante|se adelanta/.test(low);
+      const playerTeam = (teamName(meta, ev.side) || "").toLowerCase();
+      const ogWrongTeam = ev.type === "own_goal" && !!playerTeam && low.includes(playerTeam)
+        && /(ventaja|adelanta|por delante|delantera)/.test(low);
+      if ((saysOpener && gc.first === false) || (saysLead && gc.benAhead === false) || ogWrongTeam) {
+        continue;
+      }
     }
+    out[id] = line;
   }
   return out;
 }
@@ -155,6 +196,61 @@ export function numericalContext(
   return ctx;
 }
 
+/** Marcador acumulado + encuadre por cada GOL. DEBE computarse desde la lista
+ *  COMPLETA de eventos (en orden) para que el resultado sea real: los autogoles
+ *  cuentan para el RIVAL (beneficiarySide). Evita que la IA diga "abre el
+ *  marcador" en goles posteriores o "se pone en ventaja" a quien va perdiendo. */
+export function goalContext(
+  events: MatchEvent[],
+  meta: MatchMeta,
+): Record<string, { marcador: string; first: boolean; benAhead: boolean }> {
+  const ordered = [...events].sort(
+    (a, b) => a.minute - b.minute || (a.extra ?? 0) - (b.extra ?? 0) || a.t - b.t,
+  );
+  let h = 0, a = 0, n = 0;
+  const out: Record<string, { marcador: string; first: boolean; benAhead: boolean }> = {};
+  for (const e of ordered) {
+    if (!GOAL_TYPES.has(e.type)) continue;
+    const ben = beneficiarySide(e);
+    if (ben === "home") h += 1;
+    else if (ben === "away") a += 1;
+    else continue;
+    n += 1;
+    const benName = teamName(meta, ben) || (ben === "home" ? meta.home.name : meta.away.name);
+    const benScore = ben === "home" ? h : a;
+    const oppScore = ben === "home" ? a : h;
+    const first = n === 1;
+    const benAhead = benScore > oppScore;
+    const rel = benAhead
+      ? (first ? `${benName} se adelanta` : `${benName} amplia su ventaja`)
+      : benScore === oppScore
+        ? `${benName} empata el partido`
+        : `${benName} recorta pero sigue por detras`;
+    const marcador = `Resultado TRAS este gol: ${meta.home.name} ${h}-${a} ${meta.away.name}.`
+      + ` Beneficia a ${benName}. Es el gol numero ${n} del partido`
+      + (first ? " (este SI abre el marcador)" : " (NO abre el marcador: ya habia goles)")
+      + `. ${rel}.`;
+    out[e.id] = { marcador, first, benAhead };
+  }
+  return out;
+}
+
+/** Contexto combinado por evento (expulsiones + goles) para el narrador IA. */
+export function narrationContext(
+  events: MatchEvent[],
+  meta: MatchMeta,
+): Record<string, EventContext> {
+  const out: Record<string, EventContext> = {};
+  for (const [id, situacion] of Object.entries(numericalContext(events, meta))) {
+    (out[id] ??= {}).situacion = situacion;
+  }
+  for (const [id, g] of Object.entries(goalContext(events, meta))) {
+    const c = (out[id] ??= {});
+    c.marcador = g.marcador; c.first = g.first; c.benAhead = g.benAhead;
+  }
+  return out;
+}
+
 /**
  * Construye narración completa: IA donde se pueda, plantilla en el resto.
  * `contextEvents` (opcional) es el HISTORIAL COMPLETO del partido para el
@@ -173,7 +269,7 @@ export async function narrateAll(
   const ai = await aiNarrateBatch(
     events,
     meta,
-    numericalContext(contextEvents ?? events, meta),
+    narrationContext(contextEvents ?? events, meta),
   );
   return { ...base, ...ai };
 }
@@ -214,9 +310,9 @@ export async function liveNarration(
   const pending = events.filter((e) => !cached[e.id]);
   if (pending.length === 0) return lines;
   try {
-    // Contexto numérico desde TODOS los eventos (no solo los pendientes), para
-    // que la cuenta de expulsados/jugadores sea correcta.
-    const ai = await aiNarrateBatch(pending, meta, numericalContext(events, meta));
+    // Contexto desde TODOS los eventos (no solo los pendientes): la cuenta de
+    // expulsados Y el marcador acumulado por gol deben ser reales.
+    const ai = await aiNarrateBatch(pending, meta, narrationContext(events, meta));
     if (Object.keys(ai).length > 0) {
       Object.assign(lines, ai);
       if (kvEnabled()) {

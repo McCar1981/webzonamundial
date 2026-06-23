@@ -8,8 +8,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Trophy } from "lucide-react";
 
-const GOLD = "#c9a84c";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b";
 
 export default function StickyCta() {
   const [hidden, setHidden] = useState(false);
@@ -37,8 +38,11 @@ export default function StickyCta() {
         boxShadow: "0 -8px 24px rgba(0,0,0,0.35)",
       }}
     >
-      <span style={{ color: "#fff", fontSize: 13.5, fontWeight: 600 }}>
-        Predice quién pasa · gratis
+      <span style={{ color: "#fff", fontSize: 13.5, fontWeight: 600, display: "flex", alignItems: "center", gap: 7 }}>
+        <Trophy size={15} color={GOLD} aria-hidden style={{ flexShrink: 0 }} />
+        <span>
+          Gana <b style={{ color: GOLD2 }}>Gift Cards 300/200/100&nbsp;€</b> · gratis
+        </span>
       </span>
       <Link
         href="/registro"

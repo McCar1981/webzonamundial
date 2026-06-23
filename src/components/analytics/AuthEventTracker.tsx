@@ -31,7 +31,7 @@
 
 import { useEffect } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { trackEvent } from "@/lib/analytics/track-event";
+import { trackEvent, setGaUserId } from "@/lib/analytics/track-event";
 
 // Margen para considerar "alta nueva". El brief sugiere ~10 s, pero el viaje
 // magic-link/OAuth → verifyOtp → redirect → hidratación + el sesgo de reloj
@@ -88,6 +88,11 @@ export default function AuthEventTracker() {
         if (!user?.id) return;
         const uid = user.id;
         const method = methodFromProvider(user.app_metadata?.provider);
+
+        // Cose esta sesión (la 2.ª, tras el magic-link/OAuth) con la visita
+        // original del mismo usuario en GA4, para que la conversión se atribuya
+        // a la ola que la originó (hoy queda huérfana y se infravalora).
+        setGaUserId(uid);
 
         const createdMs = user.created_at ? new Date(user.created_at).getTime() : NaN;
         const isNewUser =

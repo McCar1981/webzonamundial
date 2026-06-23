@@ -8,6 +8,7 @@ import { SELECCIONES } from '@/data/selecciones';
 import { COUNTRIES } from '@/lib/countries';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
+import { trackEvent } from '@/lib/analytics/track-event';
 import FlagSelect, { type FlagSelectOption } from '@/components/FlagSelect';
 
 // País y selección favorita son datos críticos para producto:
@@ -318,6 +319,10 @@ export default function FormularioRegistro({
     const next = qs ? `/onboarding?${qs}` : '/onboarding';
     const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`;
 
+    // Embudo: el intento de alta por OAuth CAE EN ESTA sesión antes del redirect
+    // al proveedor (el sign_up real llega luego por /auth/callback).
+    trackEvent('registration_start', { method: provider });
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
@@ -522,6 +527,10 @@ export default function FormularioRegistro({
       return;
     }
 
+    // Embudo: "pidió alta por email" CAE EN ESTA sesión (la de la ola que lo
+    // trajo). El sign_up real se dispara después, en la 2.ª sesión tras pulsar
+    // el magic-link; el hueco entre ambos = pérdida del viaje al correo.
+    trackEvent('magic_link_sent', { method: 'email' });
     setSubmitted(true);
     setLoading(false);
   };

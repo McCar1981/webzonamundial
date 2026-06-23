@@ -815,10 +815,29 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
         // Siembra la locución con el último evento: al entrar a mitad de
         // partido el panel no se queda en "el relato aparecerá aquí…".
         const lastEv = data.events[data.events.length - 1];
-        const seedText = lastEv ? data.narration[lastEv.id] : "";
-        if (seedText) {
-          setNarration(seedText);
-          lastNarrAtRef.current = Date.now();
+        if (data.mode === "live" && isInPlay(data.status)) {
+          // EN VIVO: si hay un hito RECIENTE (gol/tarjeta/cambio/saque en los
+          // últimos ~3'), muéstralo; si no, muestra la SITUACIÓN ACTUAL (minuto +
+          // posesión) en vez de quedarse en el saque ("¡Rueda el balón!") aunque
+          // sea el minuto 35.
+          const mmNow = Math.floor(secRef.current / 60);
+          const recent = !!lastEv && mmNow - (lastEv.minute || 0) <= 3;
+          const possHome = data.stats?.possession?.[0] ?? 50;
+          const seedText = recent
+            ? (data.narration[lastEv.id] || templateNarration(lastEv, meta))
+            : ambientLine(meta, possHome, secRef.current, mmNow);
+          if (seedText) {
+            setNarration(seedText);
+            lastNarrAtRef.current = Date.now();
+          }
+        } else {
+          // NS/HT/FT o simulación: el último hito (saque/descanso/final) es lo
+          // correcto (en sim, el primer tick lo sobrescribe igualmente).
+          const seedText = lastEv ? data.narration[lastEv.id] : "";
+          if (seedText) {
+            setNarration(seedText);
+            lastNarrAtRef.current = Date.now();
+          }
         }
         // Partido EN JUEGO sin eventos mayores aún (típico primeros minutos):
         // siembra el hito real de saque para que la cronología no nazca vacía.

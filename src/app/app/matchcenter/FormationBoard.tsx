@@ -86,7 +86,14 @@ export default function FormationBoard({ team, lineup, allowPending, events, sid
       return s;
     };
     for (const e of events || []) {
-      if (side && e.side !== side) continue; // solo los de ESTE equipo
+      // El AUTOGOL llega acreditado por api-football al lado que se beneficia,
+      // pero el JUGADOR pertenece al RIVAL: su estadística (y su nombre) van en
+      // el once del rival, no en el del equipo beneficiado.
+      const owner: MatchEvent["side"] =
+        e.type === "own_goal"
+          ? (e.side === "home" ? "away" : e.side === "away" ? "home" : "neutral")
+          : e.side;
+      if (side && owner !== side) continue; // solo los de ESTE equipo
       const s = get(e.player);
       if (e.type === "goal" || e.type === "penalty_goal") { if (s) s.goals++; }
       else if (e.type === "own_goal") { if (s) s.ownGoals++; }

@@ -18,15 +18,30 @@ function who(e: MatchEvent): string {
   return e.player ? e.player : "el equipo";
 }
 
-/** Lado que SE BENEFICIA del evento. En un AUTOGOL el gol cuenta para el RIVAL
- *  del jugador que lo marca (la convención del feed es e.side = equipo del
- *  jugador, y zones/score dependen de ella). Para el resto coincide con e.side. */
+/** Lado RIVAL (contrario). El "neutral" se mantiene. */
+export function rivalSide(side: MatchEvent["side"]): MatchEvent["side"] {
+  if (side === "home") return "away";
+  if (side === "away") return "home";
+  return "neutral";
+}
+
+/** Lado que SE BENEFICIA del evento (suma en el marcador). api-football acredita
+ *  TODO gol —incluido el AUTOGOL— al lado que MARCA: en un autogol el evento ya
+ *  viene con team = equipo beneficiado (el rival del jugador), con player = el
+ *  jugador que la manda a su puerta. Por eso el beneficiario coincide SIEMPRE con
+ *  e.side; NO hay que invertir (verificado contra el feed real, fixture 1489404
+ *  Portugal–Uzbekistán: el autogol de A. Nematov llega con team=Portugal). */
 export function beneficiarySide(e: MatchEvent): MatchEvent["side"] {
-  if (e.type === "own_goal") {
-    if (e.side === "home") return "away";
-    if (e.side === "away") return "home";
-  }
   return e.side;
+}
+
+/** Lado del EQUIPO DEL JUGADOR del evento. Coincide con e.side salvo en el
+ *  AUTOGOL: ahí el jugador pertenece al RIVAL del lado acreditado (e.side es el
+ *  beneficiado), así que es el lado contrario. Útil para etiquetar al actor
+ *  (foto, "(País)", estadística del jugador) sin atribuirle el gol al equipo
+ *  equivocado. */
+export function actorSide(e: MatchEvent): MatchEvent["side"] {
+  return e.type === "own_goal" ? rivalSide(e.side) : e.side;
 }
 
 // Expulsión = roja directa o segunda amarilla. Para narrar la situación

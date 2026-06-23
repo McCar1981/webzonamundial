@@ -16,11 +16,12 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef6a6a";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef6a6a";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function AvisameTerceros() {
   const [email, setEmail] = useState("");
+  const [hp, setHp] = useState(""); // honeypot anti-bot (los humanos no lo ven)
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [msg, setMsg] = useState("");
 
@@ -38,7 +39,7 @@ export default function AvisameTerceros() {
       const res = await fetch("/api/terceros/avisame", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: clean }),
+        body: JSON.stringify({ email: clean, website: hp }),
       });
       if (res.ok) {
         setStatus("done");
@@ -77,10 +78,21 @@ export default function AvisameTerceros() {
             ¿Pasará tu selección? No te lo pierdas.
           </p>
           <p style={{ fontSize: 14.5, lineHeight: 1.55, margin: "0 0 14px" }}>
-            Déjanos tu email y te enviamos el <b style={{ color: "#fff" }}>resumen diario del Mundial</b>: te mantenemos al
-            tanto de la carrera por los mejores terceros hasta que se cierren los grupos el 27 de junio.
+            Déjanos tu email y recibe el <b style={{ color: "#fff" }}>resumen diario del Mundial</b>: lo importante del día
+            —incluida la carrera por los mejores terceros— hasta que se cierren los grupos el 27 de junio.
           </p>
           <form onSubmit={submit} style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {/* honeypot anti-bot: oculto; humanos no lo ven ni lo tabulan */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={hp}
+              onChange={(e) => setHp(e.target.value)}
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+            />
             <input
               type="email"
               inputMode="email"

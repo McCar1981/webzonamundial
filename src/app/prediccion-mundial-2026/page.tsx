@@ -56,13 +56,13 @@ export const metadata: Metadata = {
 
 // Los 8 tipos REALES (src/lib/predictions/types.ts) con puntos de scoring.ts.
 const TIPOS: Array<{ nombre: string; desc: string; pts: string }> = [
-  { nombre: "Resultado exacto", desc: "Acierta el marcador final del partido. El más difícil, el que más paga.", pts: "hasta 25 pts" },
+  { nombre: "Resultado exacto", desc: "Acierta el marcador final del partido. El más difícil de clavar.", pts: "hasta 25 pts" },
   { nombre: "Ganador con confianza", desc: "Local, empate o visitante — y cuánta confianza le pones (×1, ×2 o ×3).", pts: "10–30 pts" },
   { nombre: "Primer goleador", desc: "Quién marca el primer gol del partido.", pts: "hasta 30 pts" },
   { nombre: "Predicción encadenada", desc: "Combina varias predicciones en una sola jugada: más eslabones, más puntos.", pts: "hasta 100 pts" },
   { nombre: "Duelo de jugadores", desc: "Cuál de dos cracks rinde mejor: goles, asistencias, tarjetas…", pts: "15 pts" },
   { nombre: "Over / Under", desc: "Si el total de goles (o córners, o tarjetas) supera un número.", pts: "8–20 pts" },
-  { nombre: "Minuto del drama", desc: "En qué franja del partido caerá un gol clave.", pts: "hasta 20 pts" },
+  { nombre: "Minuto del drama", desc: "En qué franja del partido caerá un gol clave.", pts: "hasta 25 pts" },
   { nombre: "Modo manada", desc: "Ve con la mayoría para puntos seguros, o a contracorriente para llevarte más.", pts: "10–30 pts" },
 ];
 
@@ -172,7 +172,7 @@ export default function PrediccionMundialPage() {
         <p style={{ fontSize: 13, color: DIM, margin: "10px 2px 0" }}>
           Tus aciertos se multiplican por <b style={{ color: MID }}>rachas</b>, por predecir con{" "}
           <b style={{ color: MID }}>antelación</b> y por el <b style={{ color: MID }}>Modo Underdog</b> (hasta el doble en
-          partidos desigualados). Clavar los 8 tipos en un mismo partido suma un bonus de <b style={{ color: MID }}>+500</b>.
+          partidos desigualados).
         </p>
 
         {/* El premio / cómo se gana */}

@@ -63,7 +63,7 @@ const SCORING_POS: Array<{ accion: string; pts: string; good: boolean }> = [
   { accion: "Portería a cero (defensa)", pts: "+4", good: true },
   { accion: "Hat-trick (bonus)", pts: "+5", good: true },
   { accion: "Penalti parado (portero)", pts: "+8", good: true },
-  { accion: "Jugador del partido (bonus)", pts: "+3 / +2 / +1", good: true },
+  { accion: "Bonus a los 3 mejores del partido", pts: "+3 / +2 / +1", good: true },
 ];
 const SCORING_NEG: Array<{ accion: string; pts: string; good: boolean }> = [
   { accion: "Tarjeta amarilla", pts: "−1", good: false },

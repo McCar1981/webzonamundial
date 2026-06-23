@@ -33,6 +33,7 @@ import {
 } from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 import { clearFollowers, getFollowers } from "./followers";
+import { actorSide } from "./templates";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
 
 const PUSH_KIND = "tournament-key-events";
@@ -99,17 +100,16 @@ function scoreText(score: Pair): string {
  *  El agregado `goals` del fixture suele ir POR DETRÁS del evento de gol (el
  *  push salía "GOL ... 0-0" en amistosos hasta que se corrigió así, ver
  *  poll-friendlies). Además, con 2 goles en la misma pasada cada aviso muestra
- *  su marcador, no el final de ambos. El gol en propia suma al CONTRARIO. */
+ *  su marcador, no el final de ambos. El AUTOGOL ya viene acreditado por
+ *  api-football al lado que MARCA (e.side = beneficiado), así que suma igual que
+ *  un gol normal: NO se invierte (antes salía 3-1 en vez de 4-0). */
 function scoreUpTo(snap: LiveSnapshot, upto: MatchEvent): Pair {
   let home = 0;
   let away = 0;
   for (const e of snap.events) {
-    if (e.type === "goal" || e.type === "penalty_goal") {
+    if (e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal") {
       if (e.side === "home") home++;
       else if (e.side === "away") away++;
-    } else if (e.type === "own_goal") {
-      if (e.side === "home") away++;
-      else if (e.side === "away") home++;
     }
     if (e.id === upto.id) break;
   }
@@ -133,7 +133,11 @@ interface EventLabel {
  *  incluyen jugador + país (lo que pidió Carlos). Amarillas → null (no se
  *  notifican, igual que Google, para no saturar). */
 function eventLabel(e: MatchEvent, meta: MatchMeta, score: Pair): EventLabel | null {
-  const team = e.side === "home" ? meta.home.name : e.side === "away" ? meta.away.name : "";
+  // El paréntesis "(País)" identifica al JUGADOR del evento. En un AUTOGOL el
+  // jugador es del RIVAL del lado acreditado (actorSide), no del beneficiado:
+  // antes salía "en propia de A. Nematov (Portugal)" cuando Nematov es uzbeko.
+  const side = actorSide(e);
+  const team = side === "home" ? meta.home.name : side === "away" ? meta.away.name : "";
   const player = e.player?.trim() || "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const vs = vsText(meta);
@@ -297,13 +301,17 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     const label = eventLabel(e, meta, scoreUpTo(snap, e));
     if (!label) continue;
     // Foto del PROTAGONISTA (goleador/expulsado) cruzando su nombre con la
-    // convocatoria BIBLIA; respaldo: estrella del equipo / favorito.
+    // convocatoria BIBLIA; respaldo: estrella del equipo / favorito. En un
+    // AUTOGOL el protagonista es del RIVAL del lado acreditado (actorSide): se
+    // busca en SU selección, no en la beneficiada (si no, no se le encuentra y
+    // caía a una estrella aleatoria del equipo equivocado).
+    const actorTeamSide = actorSide(e);
     const teamName =
-      e.side === "home" ? meta.home.name : e.side === "away" ? meta.away.name : "";
+      actorTeamSide === "home" ? meta.home.name : actorTeamSide === "away" ? meta.away.name : "";
     const actorPhoto = e.player ? await playerPhoto(teamName, e.player, e.id) : null;
     // Cadena: foto del jugador → imagen variada del país → estrella/favorito.
     const eventImage =
-      actorPhoto || (await countryImage(teamName, e.id)) || photoFor(e.side);
+      actorPhoto || (await countryImage(teamName, e.id)) || photoFor(actorTeamSide);
     await send({
       title: label.title,
       body: label.body,

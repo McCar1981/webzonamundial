@@ -17,6 +17,7 @@ import {
   playersOnPitchByEvent,
   numericalSituation,
   beneficiarySide,
+  actorSide,
 } from "./templates";
 import type { MatchEvent, MatchMeta } from "./types";
 
@@ -28,9 +29,10 @@ const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 
 // Caché de locución IA por partido (hash eventId -> frase). Permite narrar cada
 // evento UNA sola vez (la genera el cron) y servirla a todos los visitantes.
-// v2: invalida la narración cacheada (la v1 podía decir "abre el marcador" en
-// goles posteriores o dar ventaja al equipo de un autogol) → re-narra corregido.
-const LIVENARR_PREFIX = "mc:livenarr:v2:";
+// v3: invalida la narración cacheada. v1 decía "abre el marcador" en goles
+// posteriores; v2 seguía con el marcador del autogol INVERTIDO (api-football lo
+// acredita al lado que marca, no al del jugador) → re-narra con el lado correcto.
+const LIVENARR_PREFIX = "mc:livenarr:v3:";
 const LIVENARR_TTL = 6 * 60 * 60; // un partido entero con margen
 
 function kvEnabled(): boolean {
@@ -100,7 +102,9 @@ export async function aiNarrateBatch(
       id: e.id,
       min: e.minute,
       type: e.type,
-      team: teamName(meta, e.side) ? teamName(meta, e.side) : "neutral",
+      // "team" = equipo del JUGADOR. En un autogol el jugador es del rival del
+      // lado acreditado (actorSide); "subeMarcadorPara" da el beneficiado.
+      team: teamName(meta, actorSide(e)) || "neutral",
       player: e.player || null,
       assist: e.assist || null,
       in: e.playerIn || null,
@@ -166,7 +170,7 @@ Devuelve SOLO el JSON con "lines".`;
       const low = line.toLowerCase();
       const saysOpener = /(abre|inaugura|estrena)\s+(el|la)\s+(marcador|lata|cuenta)|primer (gol|tanto)|adelanta el marcador/.test(low);
       const saysLead = /se pone (en ventaja|por delante|por encima)|toma la delantera|pone por delante|se adelanta/.test(low);
-      const playerTeam = (teamName(meta, ev.side) || "").toLowerCase();
+      const playerTeam = (teamName(meta, actorSide(ev)) || "").toLowerCase();
       const ogWrongTeam = ev.type === "own_goal" && !!playerTeam && low.includes(playerTeam)
         && /(ventaja|adelanta|por delante|delantera)/.test(low);
       if ((saysOpener && gc.first === false) || (saysLead && gc.benAhead === false) || ogWrongTeam) {

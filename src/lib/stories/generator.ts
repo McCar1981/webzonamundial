@@ -70,7 +70,13 @@ export function preMatchStory(snap: LiveSnapshot): CreateSystemStoryInput {
 /** Gol: micro-reto SÍ/NO "¿Habrá más goles?" tras marcar un equipo. */
 export function goalStory(snap: LiveSnapshot, ev: MatchEvent): CreateSystemStoryInput {
   const matchId = snap.matchId;
-  const scorer = ev.player ? ` de ${ev.player}` : "";
+  // Autogol: el evento llega acreditado al lado que MARCA (ev.side = el que suma
+  // en el marcador), pero lo marcó un rival → se etiqueta "en propia" para no
+  // dar a entender que el goleador es de ese equipo.
+  const isOwnGoal = ev.type === "own_goal";
+  const scorer = ev.player
+    ? `${isOwnGoal ? " en propia de" : " de"} ${ev.player}`
+    : isOwnGoal ? " en propia" : "";
   const score = `${snap.score[0]}-${snap.score[1]}`;
   const teamName = ev.side === "home" ? snap.meta.home.name : snap.meta.away.name;
   // goals_at: total de goles cuando se emite la Story. El resolutor compara

@@ -344,10 +344,11 @@ const CARD_TYPES: MatchEventType[] = ["yellow", "red", "second_yellow"];
 function isGoal(t: MatchEventType): boolean { return GOAL_TYPES.includes(t); }
 function isCard(t: MatchEventType): boolean { return CARD_TYPES.includes(t); }
 
-/** Lado al que se ACREDITA un gol (el gol en propia cuenta para el rival). */
+/** Lado al que se ACREDITA un gol. api-football ya acredita el autogol al lado
+ *  que MARCA (e.side = beneficiado; el jugador es del rival), así que coincide
+ *  SIEMPRE con e.side: no se invierte. */
 export function scoringSide(e: MatchEvent): Side | null {
   if (!isGoal(e.type) || e.side === "neutral") return null;
-  if (e.type === "own_goal") return e.side === "home" ? "away" : "home";
   return e.side;
 }
 

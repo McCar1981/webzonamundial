@@ -81,10 +81,12 @@ export function zoneForEvent(
     // --- Goles y ocasiones claras: área rival, lado CORRECTO ---
     case "goal":
     case "own_goal":
-      // Un autogol lo marca el rival en su propia portería: el balón acaba en
-      // la portería del equipo `side`, es decir en SU lado (x bajo para home).
+      // api-football acredita el autogol al lado que se BENEFICIA (`side`); el
+      // balón entra en la portería del RIVAL (el que encaja), es decir en SU
+      // propio lado del campo. Por eso el balón va al lado contrario a `side`.
       if (type === "own_goal") {
-        return { x: mirrorX(side, 0.04, 0.12, r), y: band(r2, 0.4, 0.6) };
+        const conceding: Side = side === "home" ? "away" : side === "away" ? "home" : "neutral";
+        return { x: mirrorX(conceding, 0.04, 0.12, r), y: band(r2, 0.4, 0.6) };
       }
       return { x: mirrorX(side, 0.86, 0.95, r), y: band(r2, 0.38, 0.62) };
     case "penalty_goal":

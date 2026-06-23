@@ -29,6 +29,7 @@ import {
 import type { DraftNoticia } from "@/lib/noticias-ingest";
 import type { NoticiaBlock } from "@/data/noticias";
 import { matchHeroImage } from "./heroImage";
+import { actorSide } from "./templates";
 import type { LiveSnapshot, MatchEvent, Pair } from "./types";
 
 const DEFAULT_MODEL = "claude-sonnet-4-6";
@@ -82,7 +83,10 @@ function compactFacts(snap: LiveSnapshot) {
       .map((e) => ({
         minuto: `${e.minute}${e.extra ? `+${e.extra}` : ""}`,
         tipo: EVENT_ES[e.type],
-        equipo: sideName(snap, e.side),
+        // "equipo" acompaña al "jugador": en un autogol el jugador es del rival
+        // del lado acreditado (actorSide), así el redactor IA no lo hace del
+        // equipo beneficiado. El marcador real lo da `resultado_final`.
+        equipo: sideName(snap, actorSide(e)),
         jugador: e.player ?? null,
         asistencia: e.assist ?? null,
         entra: e.playerIn ?? null,

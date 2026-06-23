@@ -225,6 +225,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/argentina-austria-wide.webp",
     mobile: "/images/hero/argentina-austria-mobile.webp",
   },
+  // Portugal vs Uzbekistán (23 jun, Grupo K · J3).
+  "portugal-uzbekistan": {
+    wide: "/images/hero/portugal-uzbekistan-wide.webp",
+    mobile: "/images/hero/portugal-uzbekistan-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

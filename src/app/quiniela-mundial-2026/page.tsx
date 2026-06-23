@@ -190,10 +190,10 @@ export default function QuinielaMundial2026Page() {
             Crear mi quiniela gratis
           </Link>
           <Link
-            href="/app/predicciones"
+            href="/prediccion-mundial-2026"
             style={{ border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 22px", borderRadius: 12, textDecoration: "none" }}
           >
-            Ver el juego de predicciones
+            Cómo funcionan las predicciones
           </Link>
         </div>
 

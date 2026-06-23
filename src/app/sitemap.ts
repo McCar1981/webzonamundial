@@ -42,6 +42,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Landings de juego indexables (auditoría SEO 11-jun): quiniela = hueco
     // transaccional con SERPs débiles; bracket ataca "simulador mundial 2026".
     { url: `${BASE_URL}/quiniela-mundial-2026`, changeFrequency: "weekly", priority: 0.9 },
+    // Landing pública de Predicciones: capta "predicción/pronóstico mundial 2026"
+    // (~24k impr/sem que hoy caen al home, GSC 22-jun). Es la vía del Gran Premio.
+    { url: `${BASE_URL}/prediccion-mundial-2026`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/bracket`, changeFrequency: "weekly", priority: 0.85 },
     // Landing pública del Fantasy: el juego vive en /app (noindex); esta capta
     // "fantasy mundial 2026" (~7,5k impr/sem que hoy no capturamos, GSC 22-jun).

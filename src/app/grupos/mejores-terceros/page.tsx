@@ -18,6 +18,7 @@ import StickyCta from "./StickyCta";
 import PremiosPopup from "./PremiosPopup";
 import TercerosPicker from "./TercerosPicker";
 import TercerosAccountSync from "./TercerosAccountSync";
+import AvisameTerceros from "./AvisameTerceros";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -353,6 +354,12 @@ export default async function MejoresTercerosPage() {
           Verde: hoy estarían clasificados (top 8). Desempates mostrados: puntos, diferencia de goles y
           goles a favor — el orden oficial añade fair play y, en último extremo, sorteo.
         </p>
+
+        {/* Captura de email SIN cuenta, en el pico de atención (acaban de ver su
+            fila). Es la única palanca para el ~98,7% que no se registra: pide lo
+            mínimo (1 campo) para algo que le importa AHORA. Reutiliza la lista
+            daily-digest (con baja). NO toca auth ni el formulario de alta. */}
+        <AvisameTerceros />
 
         {/* Conversión + interacción: mini-juego insertado en el pico de intención
             — el lector acaba de ver la carrera en vivo. Sustituye al CTA estático

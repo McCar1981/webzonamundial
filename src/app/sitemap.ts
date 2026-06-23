@@ -43,6 +43,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // transaccional con SERPs débiles; bracket ataca "simulador mundial 2026".
     { url: `${BASE_URL}/quiniela-mundial-2026`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/bracket`, changeFrequency: "weekly", priority: 0.85 },
+    // Landing pública del Fantasy: el juego vive en /app (noindex); esta capta
+    // "fantasy mundial 2026" (~7,5k impr/sem que hoy no capturamos, GSC 22-jun).
+    { url: `${BASE_URL}/fantasy-mundial-2026`, changeFrequency: "weekly", priority: 0.85 },
     // Hub /historia + 36 subpáginas temáticas (base de datos del Mundial)
     { url: `${BASE_URL}/historia`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/historia/2026`, changeFrequency: "weekly", priority: 0.85 },

@@ -886,6 +886,27 @@ export default function AppHubPage() {
     opening: { wide: heroImg.wide, mobile: heroImg.mobile, time: openingTime, alt: `${match.meta.home.name} vs ${match.meta.away.name}` },
   } : null;
 
+  // Doblete de horario: cuando juegan 2 partidos al MISMO saque (dualSlot), el
+  // hero ROTA entre sus piezas diseñadas — una por partido. Como comparten saque,
+  // hora/cuenta atrás/estado son idénticos, así que reusamos openingTime y
+  // openingCtaLabel. Solo se arma un slide por partido que tenga pieza en el mapa;
+  // si alguno no la tiene, se cae con elegancia al hero normal (heroOpening).
+  const slotHeroSlides: HeroCfg[] = dualSlot
+    ? slotMatches
+        .map((m): HeroCfg | null => {
+          const img = heroImageForSlug(m.slug);
+          if (!img) return null;
+          return {
+            id: `slot-${m.matchId}`, kind: live ? "live" : "base",
+            accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#08111f",
+            eyebrow: "", title: null, desc: "", art: "",
+            cta1: { label: openingCtaLabel, href: `/app/matchcenter/${m.slug}` },
+            opening: { wide: img.wide, mobile: img.mobile, time: openingTime, alt: `${m.home.name} vs ${m.away.name}` },
+          };
+        })
+        .filter((s): s is HeroCfg => s !== null)
+    : [];
+
   const heroLive: HeroCfg = {
     id: "live", kind: "live", accent: CORAL, accent2: "#ff9a4a", ctaInk: "#1a0d08",
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>,
@@ -932,7 +953,11 @@ export default function AppHubPage() {
   // Con ?hero= se bloquea a una sola pantalla (preview de diseño).
   const heroSlides: HeroCfg[] = heroOverride
     ? [heroOverride === "live" ? (heroOpening ?? heroLive) : heroOverride === "match" ? (heroOpening ?? heroMatch ?? heroBase) : heroOverride === "reto" ? heroReto : heroBase]
-    : [
+    : dualSlot && slotHeroSlides.length >= 2
+      // Doblete: el carrusel rota SOLO entre los 2 partidos del horario (cada uno
+      // con su pieza). Focalizado: nada de base/reto mientras hay doble cartel.
+      ? slotHeroSlides
+      : [
         // El juego inaugural (si es el partido del día) es la pieza protagonista y
         // cubre live/próximo/final; sustituye a los slides de texto live + partido.
         ...(heroOpening ? [heroOpening] : [
@@ -951,7 +976,10 @@ export default function AppHubPage() {
   const heroCount = heroSlides.length;
   const lastManualRef = useRef(0);
   useEffect(() => {
-    if (heroCount <= 1 || live) return;
+    // Con un solo partido en vivo no rota (el directo manda). PERO en doblete
+    // (dualSlot) SÍ rota para enseñar ambos partidos por turnos.
+    if (heroCount <= 1) return;
+    if (live && !dualSlot) return;
     const id = setInterval(() => {
       if (Date.now() - lastManualRef.current < 20_000) return;
       setHeroIdx((i) => (i + 1) % heroCount);
@@ -1100,7 +1128,7 @@ export default function AppHubPage() {
                 integramos la imagen correcta por viewport + una capa inferior
                 ligera con horario dinámico y un único CTA. ── */
             <>
-              <picture>
+              <picture key={hero.id}>
                 <source media="(max-width:640px)" srcSet={hero.opening.mobile} />
                 <img
                   src={hero.opening.wide}

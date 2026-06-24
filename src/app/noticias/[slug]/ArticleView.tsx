@@ -14,6 +14,7 @@ import type { Noticia, NoticiaBlock } from "@/data/noticias";
 import { getAuthor } from "@/data/noticias-authors";
 import AdInArticle from "@/components/ads/AdInArticle";
 import AdSidebar from "@/components/ads/AdSidebar";
+import { noticiaCardImage } from "@/lib/noticias-image";
 import styles from "./ArticleView.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -217,19 +218,19 @@ export function ArticleView({
         )}
       </header>
 
-      {/* HERO IMAGE */}
-      {noticia.realImage && (
-        <figure className={styles.heroImage}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={noticia.realImage} alt={noticia.imageCaption || noticia.title} />
-          {(noticia.imageCaption || noticia.imageSource) && (
-            <figcaption>
-              {noticia.imageCaption}
-              {noticia.imageSource && <span> · {noticia.imageSource}</span>}
-            </figcaption>
-          )}
-        </figure>
-      )}
+      {/* HERO IMAGE — siempre presente: foto del medio o respaldo propio.
+          El figcaption solo se muestra si hay pie/crédito reales (las fotos
+          de respaldo no llevan, para no atribuir falsamente). */}
+      <figure className={styles.heroImage}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={noticiaCardImage(noticia.realImage, noticia.id)} alt={noticia.imageCaption || noticia.title} />
+        {(noticia.imageCaption || noticia.imageSource) && (
+          <figcaption>
+            {noticia.imageCaption}
+            {noticia.imageSource && <span> · {noticia.imageSource}</span>}
+          </figcaption>
+        )}
+      </figure>
 
       {/* MAIN GRID: article + sidebar */}
       <div className={styles.grid}>

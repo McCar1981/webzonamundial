@@ -15,6 +15,7 @@
 import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import AdInFeed from "@/components/ads/AdInFeed";
+import { noticiaCardImage } from "@/lib/noticias-image";
 
 const BG = "#060B14";
 const CARD_BG = "#0F1D32";
@@ -178,7 +179,7 @@ export function LatestNewsSection() {
                 <Fragment key={n.slug}>
                   {/* Anuncio in-feed tras la primera fila (inerte sin slot). */}
                   {i === 3 && <AdInFeed />}
-                  <NewsCard n={n} />
+                  <NewsCard n={n} seed={i} />
                 </Fragment>
               ))}
         </div>
@@ -187,10 +188,11 @@ export function LatestNewsSection() {
   );
 }
 
-function NewsCard({ n }: { n: UltimaNoticia }) {
+function NewsCard({ n, seed }: { n: UltimaNoticia; seed: number }) {
   const color = CAT_COLORS[n.cat] || GOLD;
   const label = CAT_LABELS[n.cat] || n.cat;
   const when = relTime(n.ingestedAt || n.date);
+  const imgSrc = noticiaCardImage(n.realImage, seed);
 
   return (
     <Link
@@ -205,48 +207,27 @@ function NewsCard({ n }: { n: UltimaNoticia }) {
         textDecoration: "none",
       }}
     >
-      {/* Imagen o fallback elegante (degradado dorado tenue) */}
+      {/* Imagen: foto del medio o respaldo propio (siempre hay foto). */}
       <div
         style={{
           position: "relative",
           aspectRatio: "16 / 9",
-          background: n.realImage
-            ? "#0B1825"
-            : "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(11,24,37,0.65))",
+          background: "#0B1825",
           overflow: "hidden",
         }}
       >
-        {n.realImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={n.realImage}
-            alt={n.title}
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
-        ) : (
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "grid",
-              placeItems: "center",
-              color: "rgba(201,168,76,0.35)",
-              fontSize: 13,
-              fontWeight: 700,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-            }}
-          >
-            ZonaMundial
-          </div>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imgSrc}
+          alt={n.title}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
         {/* Pill de categoría sobre la imagen */}
         <span
           style={{

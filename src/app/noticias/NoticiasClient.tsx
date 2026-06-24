@@ -22,6 +22,7 @@ import type { Noticia } from "@/data/noticias";
 import AdSidebar from "@/components/ads/AdSidebar";
 import AdInFeed from "@/components/ads/AdInFeed";
 import { AD_SLOTS } from "@/lib/adsense";
+import { noticiaCardImage } from "@/lib/noticias-image";
 import styles from "./NoticiasIndex.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -457,10 +458,8 @@ export default function NoticiasClient({
             <section className={styles.topRow}>
               {top && (
                 <Link href={`/noticias/${top.slug}`} className={styles.topStory}>
-                  {top.realImage && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={top.realImage} alt={top.imageCaption || top.title} className={styles.topImg} />
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={noticiaCardImage(top.realImage, top.id)} alt={top.imageCaption || top.title} className={styles.topImg} />
                   <div className={styles.topOverlay} />
                   <div className={styles.topBody}>
                     <div className={styles.topMeta}>
@@ -485,11 +484,9 @@ export default function NoticiasClient({
 
               <div className={styles.topSecondary}>
                 {secondary.map((p) => (
-                  <Link key={p.id} href={`/noticias/${p.slug}`} className={`${styles.secCard} ${p.realImage ? "" : styles.secCardFull}`}>
-                    {p.realImage && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={p.realImage} alt="" className={styles.secImg} />
-                    )}
+                  <Link key={p.id} href={`/noticias/${p.slug}`} className={styles.secCard}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={noticiaCardImage(p.realImage, p.id)} alt="" className={styles.secImg} />
                     <div className={styles.secBody}>
                       <CatPill cat={p.cat} onClick={(e) => { e.preventDefault(); setCat(p.cat); }} />
                       <h3>{p.title}</h3>
@@ -526,11 +523,9 @@ export default function NoticiasClient({
                             </li>
                           )}
                           <li>
-                          <Link href={`/noticias/${p.slug}`} className={`${styles.listItem} ${p.realImage ? "" : styles.listItemFull}`}>
-                            {p.realImage && (
-                              // eslint-disable-next-line @next/next/no-img-element
-                              <img src={p.realImage} alt="" className={styles.listThumb} loading="lazy" />
-                            )}
+                          <Link href={`/noticias/${p.slug}`} className={styles.listItem}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={noticiaCardImage(p.realImage, p.id)} alt="" className={styles.listThumb} loading="lazy" />
                             <div className={styles.listBody}>
                               <div className={styles.listMeta}>
                                 <CatPill cat={p.cat} onClick={(e) => { e.preventDefault(); setCat(p.cat); }} />

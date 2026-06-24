@@ -240,6 +240,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/colombia-rd-congo-wide.webp",
     mobile: "/images/hero/colombia-rd-congo-mobile.webp",
   },
+  // Suiza vs Canadá (24 jun, Grupo B · J3).
+  "suiza-canada": {
+    wide: "/images/hero/suiza-canada-wide.webp",
+    mobile: "/images/hero/suiza-canada-mobile.webp",
+  },
+  // Bosnia vs Qatar (24 jun, Grupo B · J3).
+  "bosnia-qatar": {
+    wide: "/images/hero/bosnia-qatar-wide.webp",
+    mobile: "/images/hero/bosnia-qatar-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

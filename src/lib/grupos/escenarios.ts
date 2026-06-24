@@ -50,7 +50,7 @@ export interface GroupScenario {
   current: RowView[];
   finals: FinalMatchView[];
   badges: Record<string, Certeza>; // por flagCode
-  escenarios: Record<string, string>; // texto "qué necesita" por flagCode (seguro)
+  escenarios: Record<string, TeamScenario>; // "qué necesita" por flagCode (pasar / ser 1º)
   decided: boolean;
   cruces: { primero: CruceDest | null; segundo: CruceDest | null };
 }
@@ -133,41 +133,43 @@ function computeBadges(
 
 const OUTCOMES = [3, 1, 0] as const;
 
+export interface TeamScenario {
+  pass: string;  // qué necesita para PASAR (top-2)
+  first: string; // qué necesita para quedar 1º
+}
+
 /**
- * Texto "qué necesita {selección}" SEGURO (nunca afirma de más):
- * - insignia segura para primero/clasificado/fuera;
- * - para "decide", comprueba por PUNTOS (conservador, empates en contra) si
- *   GANAR o EMPATAR garantiza el top-2 en TODOS los resultados del otro partido.
- * Es el mismo criterio que las insignias (verificado por fuerza bruta).
+ * Textos "qué necesita {selección}" SEGUROS (nunca afirman de más). Mismo
+ * criterio conservador por PUNTOS que las insignias (verificado por fuerza
+ * bruta): los empates a puntos cuentan EN CONTRA del equipo.
+ * - PASS (top-2): ¿ganar/empatar garantiza ≤1 rival con pts ≥ los suyos?
+ * - FIRST (1º): ¿ganar/empatar garantiza 0 rivales con pts ≥ los suyos?, y si no,
+ *   ¿queda alguna vía (0 rivales estrictamente por encima en algún escenario)?
  */
-function scenarioText(
+function computeTeamScenario(
   t: TeamMeta,
   badge: Certeza,
   basePts: Map<string, number>,
   finals: Array<{ i: number; hf: string; af: string }>,
   live: LiveMap,
-): string {
+): TeamScenario {
   const n = t.nombre;
-  if (badge === "primero") return `${n} tiene el primer puesto asegurado: clasificada a dieciseisavos como cabeza de serie.`;
-  if (badge === "clasificado") return `${n} ya está clasificada a dieciseisavos (entre las dos primeras del grupo).`;
-  if (badge === "fuera") return `${n} no puede acabar entre las dos primeras; solo seguiría en el Mundial como una de las mejores terceras.`;
-
   const fin = (m: { i: number }) => !!live[m.i] && FINISHED_STATUSES.has(live[m.i].s);
   const myMatch = finals.find((m) => (m.hf === t.flagCode || m.af === t.flagCode) && !fin(m));
   const myPts = basePts.get(t.flagCode) ?? 0;
-  if (!myMatch) return `${n} suma ${myPts} ${myPts === 1 ? "punto" : "puntos"} y ya ha jugado su último partido: depende de los otros resultados.`;
+  const oppFlag = myMatch ? (myMatch.hf === t.flagCode ? myMatch.af : myMatch.hf) : null;
+  const others = finals.filter((m) => m.i !== myMatch?.i && !fin(m));
 
-  const oppFlag = myMatch.hf === t.flagCode ? myMatch.af : myMatch.hf;
-  const others = finals.filter((m) => m.i !== myMatch.i && !fin(m));
-
-  // ¿El resultado propio (delta a t y a su rival) garantiza top-2 en TODOS los
-  // escenarios del resto de partidos no jugados? (≤1 rival con pts ≥ los suyos).
-  const guarantees = (tDelta: number, oppDelta: number): boolean => {
+  // Con el delta propio (t y su rival), enumera el resto de partidos no jugados y
+  // devuelve el PEOR nº de rivales con pts ≥ los suyos y el MEJOR nº estrictamente
+  // por encima (minGt=0 ⇒ existe escenario en que nadie le supera = puede ser 1º).
+  const scan = (tDelta: number, oppDelta: number): { maxGe: number; minGt: number } => {
+    let maxGe = 0, minGt = Infinity;
     const total = Math.max(1, Math.pow(3, others.length));
     for (let mask = 0; mask < total; mask++) {
       const pts = new Map(basePts);
       pts.set(t.flagCode, (pts.get(t.flagCode) ?? 0) + tDelta);
-      pts.set(oppFlag, (pts.get(oppFlag) ?? 0) + oppDelta);
+      if (oppFlag) pts.set(oppFlag, (pts.get(oppFlag) ?? 0) + oppDelta);
       let rem = mask;
       for (const m of others) {
         const o = OUTCOMES[rem % 3]; rem = Math.floor(rem / 3);
@@ -176,16 +178,34 @@ function scenarioText(
         else { pts.set(m.hf, (pts.get(m.hf) ?? 0) + 1); pts.set(m.af, (pts.get(m.af) ?? 0) + 1); }
       }
       const my = pts.get(t.flagCode) ?? 0;
-      let ge = 0;
-      pts.forEach((p, fc) => { if (fc !== t.flagCode && p >= my) ge++; });
-      if (ge > 1) return false;
+      let ge = 0, gt = 0;
+      pts.forEach((p, fc) => { if (fc !== t.flagCode) { if (p >= my) ge++; if (p > my) gt++; } });
+      if (ge > maxGe) maxGe = ge;
+      if (gt < minGt) minGt = gt;
     }
-    return true;
+    return { maxGe, minGt };
   };
 
-  if (guarantees(1, 1)) return `A ${n} le vale el empate para clasificarse a dieciseisavos.`;
-  if (guarantees(3, 0)) return `${n} necesita ganar su último partido para asegurar el pase a dieciseisavos.`;
-  return `${n} necesita ganar y esperar otros resultados; si no, se jugaría el pase como mejor tercera.`;
+  // PASS (top-2)
+  let pass: string;
+  if (badge === "primero") pass = `${n} tiene el primer puesto asegurado: clasificada a dieciseisavos como cabeza de serie.`;
+  else if (badge === "clasificado") pass = `${n} ya está clasificada a dieciseisavos (entre las dos primeras del grupo).`;
+  else if (badge === "fuera") pass = `${n} no puede acabar entre las dos primeras; solo seguiría como una de las mejores terceras.`;
+  else if (!myMatch) pass = `${n} suma ${myPts} ${myPts === 1 ? "punto" : "puntos"} y ya ha jugado: depende de los otros resultados.`;
+  else if (scan(1, 1).maxGe <= 1) pass = `A ${n} le vale el empate para clasificarse a dieciseisavos.`;
+  else if (scan(3, 0).maxGe <= 1) pass = `${n} necesita ganar su último partido para asegurar el pase a dieciseisavos.`;
+  else pass = `${n} necesita ganar y esperar otros resultados; si no, se jugaría el pase como mejor tercera.`;
+
+  // FIRST (1º de grupo)
+  let first: string;
+  if (badge === "primero") first = `${n} ya tiene el primer puesto asegurado.`;
+  else if (!myMatch) first = `${n} ya ha jugado: el primer puesto depende de los otros resultados.`;
+  else if (scan(1, 1).maxGe === 0) first = `A ${n} le vale el empate para quedar primera de grupo.`;
+  else if (scan(3, 0).maxGe === 0) first = `${n} se asegura el primer puesto si gana su último partido.`;
+  else if (scan(3, 0).minGt === 0) first = `${n} puede quedar primera si gana y se dan otros resultados.`;
+  else first = `${n} ya no puede quedar primera de grupo.`;
+
+  return { pass, first };
 }
 
 async function buildGroup(letra: string, liveAll: LiveMap): Promise<GroupScenario> {
@@ -225,8 +245,8 @@ async function buildGroup(letra: string, liveAll: LiveMap): Promise<GroupScenari
   }
 
   const basePtsAll = new Map(current.map((r) => [r.flagCode, r.pts] as const));
-  const escenarios: Record<string, string> = {};
-  for (const t of teams) escenarios[t.flagCode] = scenarioText(t, badges[t.flagCode] ?? "decide", basePtsAll, finalsRaw, live);
+  const escenarios: Record<string, TeamScenario> = {};
+  for (const t of teams) escenarios[t.flagCode] = computeTeamScenario(t, badges[t.flagCode] ?? "decide", basePtsAll, finalsRaw, live);
 
   return {
     letra, teams, live, current, finals, badges, escenarios, decided,

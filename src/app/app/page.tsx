@@ -803,6 +803,12 @@ export default function AppHubPage() {
 
   const live = match ? IN_PLAY.has(match.status) : false;
   const finished = match ? FINISHED.has(match.status) : false;
+  // "Jornada simultánea": ≥2 partidos EN VIVO a la vez (típico en J3 de grupos).
+  // Cuando pasa, el lobby los muestra AMBOS en un bloque dual "EN VIVO AHORA" en
+  // lugar de la única tarjeta del partido del día (que mostraría solo uno). Todo
+  // va guardado tras dualLive → el flujo normal de 1 partido no cambia en nada.
+  const liveMatches = (todayMatches ?? []).filter((m) => m.live);
+  const dualLive = liveMatches.length >= 2;
   const matchHref = match ? `/app/matchcenter/${match.slug}` : "/app/matchcenter";
 
   // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
@@ -1267,12 +1273,53 @@ export default function AppHubPage() {
         {/* Mientras llega el featured, un skeleton RESERVA el hueco del bloque
             (~300px): antes el bloque aparecía async y empujaba los módulos
             hacia abajo en cada visita (CLS). */}
-        {match === undefined && (
+        {/* ═══ EN VIVO AHORA (jornada simultánea) ═══ Cuando hay ≥2 partidos en
+            vivo a la vez, los mostramos AMBOS como tarjetas grandes con su
+            marcador en directo, en lugar del único partido destacado. ═══ */}
+        {authed === true && dualLive && (
+          <section data-reveal style={{ marginBottom: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+              <span className="zm-live-dot" style={{ width: 9, height: 9, borderRadius: "50%", background: CORAL }} />
+              <h2 style={{ fontSize: 13, fontWeight: 900, letterSpacing: 1.5, textTransform: "uppercase", color: "#fff" }}>En vivo ahora</h2>
+              <span style={{ fontSize: 11.5, fontWeight: 800, color: CORAL }}>{liveMatches.length} partidos a la vez</span>
+            </div>
+            <div className="zm-live-grid">
+              {liveMatches.slice(0, 4).map((m) => (
+                <Link key={m.matchId} href={`/app/matchcenter/${m.slug}`} className="zm-mc zm-mc--live" style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 18, padding: "14px 14px 13px", overflow: "hidden", background: "linear-gradient(160deg,#221526 0%,#0a1a31 62%)", border: `2px solid ${CORAL}77`, boxShadow: `0 16px 40px rgba(0,0,0,0.42), 0 0 22px ${CORAL}22` }}>
+                  <span aria-hidden className="zm-mc-glow" style={{ position: "absolute", top: "52%", left: -30, width: 120, height: 120, transform: "translateY(-50%)", borderRadius: "50%", background: `radial-gradient(circle, ${CORAL}33, transparent 70%)`, pointerEvents: "none" }} />
+                  <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 11 }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 10.5, fontWeight: 900, letterSpacing: 0.5, color: "#fff", padding: "3px 9px", borderRadius: 999, background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 8px rgba(228,72,63,0.35)", animation: "zmpulse 1.6s infinite" }}>
+                      <span style={{ width: 6, height: 6, borderRadius: 99, background: "#fff" }} />EN VIVO
+                    </span>
+                    {m.group && <span style={{ fontSize: 10.5, fontWeight: 800, color: TXT_MUT }}>Grupo {m.group}</span>}
+                  </div>
+                  <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 7 }}>
+                      <img src={`https://flagcdn.com/w40/${m.home.flag}.png`} alt="" width={26} height={18} style={{ borderRadius: 3, flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.4)" }} />
+                      <span style={{ fontSize: 13.5, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.home.name}</span>
+                    </div>
+                    <span style={{ flexShrink: 0, fontSize: 23, fontWeight: 900, letterSpacing: 1, color: "#fff", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>{m.score[0] ?? 0}<span style={{ color: TXT_MUT, margin: "0 4px" }}>-</span>{m.score[1] ?? 0}</span>
+                    <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 7, justifyContent: "flex-end" }}>
+                      <span style={{ fontSize: 13.5, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textAlign: "right" }}>{m.away.name}</span>
+                      <img src={`https://flagcdn.com/w40/${m.away.flag}.png`} alt="" width={26} height={18} style={{ borderRadius: 3, flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.4)" }} />
+                    </div>
+                  </div>
+                  <span className="zm-cta-shine" style={{ position: "relative", marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "9px 0", borderRadius: 11, fontWeight: 800, fontSize: 13, color: "#1a0d08", background: `linear-gradient(135deg,${CORAL},#ff9a4a)`, boxShadow: "0 6px 16px rgba(255,107,90,0.3)" }}>
+                    Seguir en directo
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#1a0d08" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {match === undefined && !dualLive && (
           <div aria-hidden style={{ borderRadius: 22, height: 298, marginBottom: 12, border: "2px solid rgba(201,168,76,0.18)", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 60%)", animation: "zmpulse 1.8s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: TXT_MUT }}>Cargando partido del día…</span>
           </div>
         )}
-        {match && (
+        {match && !dualLive && (
           <Link href={matchHref} data-reveal className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
             {/* focos superiores */}
             <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(85% 55% at 50% -12%, ${mcAccent}26, transparent 60%)` }} />
@@ -1548,7 +1595,7 @@ export default function AppHubPage() {
             banderas + nombres truncados + hora local + estado (Predecir/Predicho/
             En vivo/Finalizado). Datos reales: /api/match-center/today + counts. ═══ */}
         {authed === true && todayMatches && (() => {
-          const others = todayMatches.filter((m) => m.matchId !== match?.matchId);
+          const others = todayMatches.filter((m) => m.matchId !== match?.matchId && !(dualLive && m.live));
           if (others.length === 0) return null;
           const pending = others.filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
           return (
@@ -1807,6 +1854,9 @@ export default function AppHubPage() {
         @media(min-width:560px){
           .zm-mod-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:13px; }
         }
+        /* "EN VIVO AHORA": apiladas en móvil, lado a lado en escritorio. */
+        .zm-live-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
+        @media(min-width:560px){ .zm-live-grid{ grid-template-columns:1fr 1fr; } }
         /* Feedback táctil: el tap "hunde" levemente la card. */
         .zm-mod-card:active{ transform:scale(0.97) !important; }
         .zm-mod-card--locked:active{ transform:none !important; }

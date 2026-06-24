@@ -21,7 +21,7 @@ const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Qué necesita cada selección para clasificar — Mundial 2026",
+  title: "Qué necesita cada selección para pasar a dieciseisavos — Mundial 2026",
   description:
     "Última jornada de grupos del Mundial 2026: la clasificación de cada grupo en vivo, qué necesita cada selección para pasar a dieciseisavos y quedar primera, y los posibles cruces. Con simulador interactivo.",
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/que-necesita-cada-seleccion-mundial-2026" },
   openGraph: {
-    title: "Qué necesita cada selección para clasificar — Mundial 2026",
+    title: "Qué necesita cada selección para pasar a dieciseisavos — Mundial 2026",
     description:
       "La situación de cada grupo en la última jornada: qué necesita cada equipo para pasar y los posibles cruces. Con simulador.",
     url: "/que-necesita-cada-seleccion-mundial-2026",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qué necesita cada selección para clasificar — Mundial 2026",
+    title: "Qué necesita cada selección para pasar a dieciseisavos — Mundial 2026",
     description: "Situación de cada grupo, qué necesita cada equipo y posibles cruces. Con simulador interactivo.",
   },
   robots: { index: true, follow: true, "max-image-preview": "large" },
@@ -212,7 +212,7 @@ export default async function EscenariosPage() {
           Última jornada · fase de grupos
         </p>
         <h1 style={{ color: GOLD2, fontSize: 40, fontWeight: 800, margin: "0 0 18px", letterSpacing: "-0.04em", lineHeight: 1.1 }}>
-          Qué necesita cada selección para clasificar al Mundial 2026
+          Qué necesita cada selección para pasar a dieciseisavos del Mundial 2026
         </h1>
 
         <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px" }}>

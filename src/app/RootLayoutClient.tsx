@@ -14,6 +14,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 import LiveMatchBar from "@/components/LiveMatchBar";
+import GoalCelebrationGlobal from "@/components/GoalCelebrationGlobal";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
 import AppBottomNav from "@/components/AppBottomNav";
 import UpdateToast from "@/components/UpdateToast";
@@ -300,6 +301,13 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           altura real en la variable CSS --zm-livebar-h para que el header se
           ancle justo debajo y no quede tapado mientras la barra está visible. */}
       <LiveMatchBar />
+
+      {/* ═══ CELEBRACIÓN DE GOL GLOBAL ═══
+          Dispara la escena 3D de gol (GoalNet) en TODA la plataforma cuando cae
+          un gol en cualquier partido EN VIVO, estés donde estés (noticias, un
+          módulo, el lobby…). No bloquea (pointer-events:none) y se auto-desvanece.
+          Excluye el partido que ya estés viendo (ese lo celebra su Match Center). */}
+      <GoalCelebrationGlobal />
 
       {/* ═══ HEADER ═══ */}
       <header style={{

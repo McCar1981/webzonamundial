@@ -15,6 +15,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { computeEscenarios, type Certeza, type GroupScenario } from "@/lib/grupos/escenarios";
 import EscenariosSimulador from "./EscenariosSimulador";
+import { matchInstant } from "@/lib/calendario/time";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
 
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
       "La situación de cada grupo en la última jornada: qué necesita cada equipo para pasar y los posibles cruces. Con simulador.",
     url: "/que-necesita-cada-seleccion-mundial-2026",
     siteName: "ZonaMundial",
+    locale: "es_MX",
     type: "website",
     images: ["/og-image.jpg"],
   },
@@ -57,6 +59,12 @@ function fmtFecha(d: string): string {
   const [y, m, day] = d.split("-").map(Number);
   const date = new Date(Date.UTC(y, m - 1, day));
   return `${DIAS[date.getUTCDay()]} ${day} ${MESES[m - 1]}`;
+}
+// Hora de saque en CDMX (80% del tráfico es MX-LATAM). El dato base es ET.
+function fmtHoraCDMX(d: string, t: string): string | null {
+  const inst = matchInstant({ d, t });
+  if (!inst) return null;
+  return new Intl.DateTimeFormat("es-MX", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "America/Mexico_City" }).format(inst);
 }
 
 const BADGE: Record<Certeza, { txt: string; color: string }> = {
@@ -85,11 +93,22 @@ const FAQ: Array<{ q: string; a: string }> = [
   },
 ];
 
-const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-};
+// FAQ schema = preguntas estáticas + 1 pregunta por grupo (coincide con el
+// acordeón visible de cada ficha → válido y apto para featured snippet long-tail).
+function buildFaqLd(groups: GroupScenario[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      ...FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      ...groups.map((g) => ({
+        "@type": "Question",
+        name: `¿Qué necesita cada selección del Grupo ${g.letra} para pasar a dieciseisavos?`,
+        acceptedAnswer: { "@type": "Answer", text: g.current.map((r) => `${r.nombre}: ${g.escenarios[r.flagCode] ?? ""}`).join(" ") },
+      })),
+    ],
+  };
+}
 const breadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -146,32 +165,35 @@ function GrupoCard({ g }: { g: GroupScenario }) {
         </tbody>
       </table>
 
-      {/* Partidos de la última jornada */}
-      {g.finals.length > 0 && (
-        <div style={{ marginTop: 12 }}>
-          <p style={{ fontSize: 10.5, color: DIM, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700, margin: "0 0 6px" }}>
-            Última jornada {g.decided ? "(jugada)" : ""}
-          </p>
-          <div style={{ display: "grid", gap: 5 }}>
-            {g.finals.map((f) => {
-              const sc = g.live[f.i]?.sc;
-              return (
-                <div key={f.i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, fontSize: 13 }}>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#fff", minWidth: 0 }}>
-                    <Flag code={f.hf} /> <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.hn}</span>
-                  </span>
-                  <span style={{ color: f.jugado ? "#fff" : DIM, fontWeight: 700, flexShrink: 0, fontSize: 12 }}>
-                    {f.jugado && sc ? `${sc[0]}–${sc[1]}` : fmtFecha(f.fecha)}
-                  </span>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#fff", minWidth: 0, justifyContent: "flex-end" }}>
-                    <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.an}</span> <Flag code={f.af} />
-                  </span>
-                </div>
-              );
-            })}
+      {/* Partidos de la última jornada (ambos a la misma hora → fecha+hora una vez) */}
+      {g.finals.length > 0 && (() => {
+        const hora = !g.decided ? fmtHoraCDMX(g.finals[0].fecha, g.finals[0].hora) : null;
+        return (
+          <div style={{ marginTop: 12 }}>
+            <p style={{ fontSize: 10.5, color: DIM, textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700, margin: "0 0 6px" }}>
+              Última jornada · {fmtFecha(g.finals[0].fecha)}{hora ? `, ${hora}h CDMX` : g.decided ? " (jugada)" : ""}
+            </p>
+            <div style={{ display: "grid", gap: 5 }}>
+              {g.finals.map((f) => {
+                const sc = g.live[f.i]?.sc;
+                return (
+                  <div key={f.i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, fontSize: 13 }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#fff", minWidth: 0 }}>
+                      <Flag code={f.hf} /> <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.hn}</span>
+                    </span>
+                    <span style={{ color: f.jugado ? "#fff" : DIM, fontWeight: 700, flexShrink: 0, fontSize: 12 }}>
+                      {f.jugado && sc ? `${sc[0]}–${sc[1]}` : "vs"}
+                    </span>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#fff", minWidth: 0, justifyContent: "flex-end" }}>
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.an}</span> <Flag code={f.af} />
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Cruces */}
       {(g.cruces.primero || g.cruces.segundo) && (
@@ -180,6 +202,21 @@ function GrupoCard({ g }: { g: GroupScenario }) {
           {g.cruces.segundo && <div><b style={{ color: GOLD2 }}>2º</b> → {g.cruces.segundo.rival}</div>}
         </div>
       )}
+
+      {/* Escenarios por selección: PLEGADO por defecto (UI limpia) pero en el HTML
+          → indexable por Google y apto para snippet "¿qué necesita {país}?". */}
+      <details style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <summary style={{ cursor: "pointer", color: GOLD, fontSize: 13, fontWeight: 700, listStyle: "none" }}>
+          ¿Qué necesita cada selección del Grupo {g.letra}? ▾
+        </summary>
+        <div style={{ display: "grid", gap: 7, marginTop: 8 }}>
+          {g.current.map((r) => (
+            <p key={r.flagCode} style={{ margin: 0, fontSize: 12.5, lineHeight: 1.5, color: MID }}>
+              <b style={{ color: "#fff" }}>{r.nombre}:</b> {g.escenarios[r.flagCode]}
+            </p>
+          ))}
+        </div>
+      </details>
 
       {!algo && (
         <p style={{ fontSize: 11.5, color: DIM, margin: "10px 0 0", fontStyle: "italic" }}>
@@ -198,6 +235,7 @@ export default async function EscenariosPage() {
   const actualizado = new Intl.DateTimeFormat("es-MX", {
     day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "America/Mexico_City",
   }).format(new Date());
+  const faqLd = buildFaqLd(groups);
 
   return (
     <main style={{ background: BG, minHeight: "100vh", color: MID, padding: "24px 20px 60px" }}>

@@ -50,6 +50,7 @@ export interface GroupScenario {
   current: RowView[];
   finals: FinalMatchView[];
   badges: Record<string, Certeza>; // por flagCode
+  escenarios: Record<string, string>; // texto "qué necesita" por flagCode (seguro)
   decided: boolean;
   cruces: { primero: CruceDest | null; segundo: CruceDest | null };
 }
@@ -130,6 +131,63 @@ function computeBadges(
   return out;
 }
 
+const OUTCOMES = [3, 1, 0] as const;
+
+/**
+ * Texto "qué necesita {selección}" SEGURO (nunca afirma de más):
+ * - insignia segura para primero/clasificado/fuera;
+ * - para "decide", comprueba por PUNTOS (conservador, empates en contra) si
+ *   GANAR o EMPATAR garantiza el top-2 en TODOS los resultados del otro partido.
+ * Es el mismo criterio que las insignias (verificado por fuerza bruta).
+ */
+function scenarioText(
+  t: TeamMeta,
+  badge: Certeza,
+  basePts: Map<string, number>,
+  finals: Array<{ i: number; hf: string; af: string }>,
+  live: LiveMap,
+): string {
+  const n = t.nombre;
+  if (badge === "primero") return `${n} tiene el primer puesto asegurado: clasificada a dieciseisavos como cabeza de serie.`;
+  if (badge === "clasificado") return `${n} ya está clasificada a dieciseisavos (entre las dos primeras del grupo).`;
+  if (badge === "fuera") return `${n} no puede acabar entre las dos primeras; solo seguiría en el Mundial como una de las mejores terceras.`;
+
+  const fin = (m: { i: number }) => !!live[m.i] && FINISHED_STATUSES.has(live[m.i].s);
+  const myMatch = finals.find((m) => (m.hf === t.flagCode || m.af === t.flagCode) && !fin(m));
+  const myPts = basePts.get(t.flagCode) ?? 0;
+  if (!myMatch) return `${n} suma ${myPts} ${myPts === 1 ? "punto" : "puntos"} y ya ha jugado su último partido: depende de los otros resultados.`;
+
+  const oppFlag = myMatch.hf === t.flagCode ? myMatch.af : myMatch.hf;
+  const others = finals.filter((m) => m.i !== myMatch.i && !fin(m));
+
+  // ¿El resultado propio (delta a t y a su rival) garantiza top-2 en TODOS los
+  // escenarios del resto de partidos no jugados? (≤1 rival con pts ≥ los suyos).
+  const guarantees = (tDelta: number, oppDelta: number): boolean => {
+    const total = Math.max(1, Math.pow(3, others.length));
+    for (let mask = 0; mask < total; mask++) {
+      const pts = new Map(basePts);
+      pts.set(t.flagCode, (pts.get(t.flagCode) ?? 0) + tDelta);
+      pts.set(oppFlag, (pts.get(oppFlag) ?? 0) + oppDelta);
+      let rem = mask;
+      for (const m of others) {
+        const o = OUTCOMES[rem % 3]; rem = Math.floor(rem / 3);
+        if (o === 3) pts.set(m.hf, (pts.get(m.hf) ?? 0) + 3);
+        else if (o === 0) pts.set(m.af, (pts.get(m.af) ?? 0) + 3);
+        else { pts.set(m.hf, (pts.get(m.hf) ?? 0) + 1); pts.set(m.af, (pts.get(m.af) ?? 0) + 1); }
+      }
+      const my = pts.get(t.flagCode) ?? 0;
+      let ge = 0;
+      pts.forEach((p, fc) => { if (fc !== t.flagCode && p >= my) ge++; });
+      if (ge > 1) return false;
+    }
+    return true;
+  };
+
+  if (guarantees(1, 1)) return `A ${n} le vale el empate para clasificarse a dieciseisavos.`;
+  if (guarantees(3, 0)) return `${n} necesita ganar su último partido para asegurar el pase a dieciseisavos.`;
+  return `${n} necesita ganar y esperar otros resultados; si no, se jugaría el pase como mejor tercera.`;
+}
+
 async function buildGroup(letra: string, liveAll: LiveMap): Promise<GroupScenario> {
   const sel = getSeleccionesByGrupo(letra);
   const teams: TeamMeta[] = sel.map((s) => ({ flagCode: s.flagCode, nombre: s.nombre, rankingFIFA: s.rankingFIFA }));
@@ -166,8 +224,12 @@ async function buildGroup(letra: string, liveAll: LiveMap): Promise<GroupScenari
     badges = computeBadges(teams, basePts, unfinished);
   }
 
+  const basePtsAll = new Map(current.map((r) => [r.flagCode, r.pts] as const));
+  const escenarios: Record<string, string> = {};
+  for (const t of teams) escenarios[t.flagCode] = scenarioText(t, badges[t.flagCode] ?? "decide", basePtsAll, finalsRaw, live);
+
   return {
-    letra, teams, live, current, finals, badges, decided,
+    letra, teams, live, current, finals, badges, escenarios, decided,
     cruces: { primero: destinoDe(`1${letra}`), segundo: destinoDe(`2${letra}`) },
   };
 }

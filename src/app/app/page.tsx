@@ -1323,9 +1323,9 @@ export default function AppHubPage() {
                 const mLive = m.live;
                 const accent = mLive ? CORAL : GOLD2;
                 const koLocal = m.kickoff ? new Date(m.kickoff).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: false }) : "";
-                const href = mLive ? `/app/matchcenter/${m.slug}` : `/app/predicciones/jugar?match=${m.matchId}`;
+                const mcHref = `/app/matchcenter/${m.slug}`;
                 return (
-                  <Link key={m.matchId} href={href} className={`zm-mc${mLive ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 18, padding: "14px 14px 13px", overflow: "hidden", background: mLive ? "linear-gradient(160deg,#221526 0%,#0a1a31 62%)" : "linear-gradient(160deg,#103060 0%,#0a1a31 62%)", border: `2px solid ${accent}77`, boxShadow: `0 16px 40px rgba(0,0,0,0.42), 0 0 22px ${accent}22` }}>
+                  <div key={m.matchId} className={`zm-mc${mLive ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", color: TXT, borderRadius: 18, padding: "14px 14px 13px", overflow: "hidden", background: mLive ? "linear-gradient(160deg,#221526 0%,#0a1a31 62%)" : "linear-gradient(160deg,#103060 0%,#0a1a31 62%)", border: `2px solid ${accent}77`, boxShadow: `0 16px 40px rgba(0,0,0,0.42), 0 0 22px ${accent}22` }}>
                     <span aria-hidden className={mLive ? "zm-mc-glow" : ""} style={{ position: "absolute", top: "52%", left: -30, width: 120, height: 120, transform: "translateY(-50%)", borderRadius: "50%", background: `radial-gradient(circle, ${accent}33, transparent 70%)`, pointerEvents: "none", opacity: mLive ? undefined : 0.6 }} />
                     <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 11 }}>
                       {mLive ? (
@@ -1353,11 +1353,25 @@ export default function AppHubPage() {
                         <img src={`https://flagcdn.com/w40/${m.away.flag}.png`} alt="" width={26} height={18} style={{ borderRadius: 3, flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.4)" }} />
                       </div>
                     </div>
-                    <span className="zm-cta-shine" style={{ position: "relative", marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "9px 0", borderRadius: 11, fontWeight: 800, fontSize: 13, color: mLive ? "#1a0d08" : NAVY, background: mLive ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: mLive ? "0 6px 16px rgba(255,107,90,0.3)" : "0 6px 16px rgba(201,168,76,0.28)" }}>
-                      {mLive ? "Seguir en directo" : "Predecir"}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={mLive ? "#1a0d08" : NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </span>
-                  </Link>
+                    {mLive ? (
+                      <Link href={mcHref} className="zm-cta-shine" style={{ position: "relative", marginTop: 12, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "9px 0", borderRadius: 11, fontWeight: 800, fontSize: 13, textDecoration: "none", color: "#1a0d08", background: `linear-gradient(135deg,${CORAL},#ff9a4a)`, boxShadow: "0 6px 16px rgba(255,107,90,0.3)" }}>
+                        Seguir en directo
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#1a0d08" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                      </Link>
+                    ) : (
+                      // Próximo: dos accesos → Predecir (acción) + Match Center (previa/info).
+                      <div style={{ position: "relative", marginTop: 12, display: "flex", gap: 8 }}>
+                        <Link href={`/app/predicciones/jugar?match=${m.matchId}`} className="zm-cta-shine" style={{ flex: 1.35, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "9px 0", borderRadius: 11, fontWeight: 800, fontSize: 13, textDecoration: "none", color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 6px 16px rgba(201,168,76,0.28)" }}>
+                          Predecir
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        </Link>
+                        <Link href={mcHref} style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 5, padding: "9px 0", borderRadius: 11, fontWeight: 800, fontSize: 12.5, textDecoration: "none", color: TXT, background: "rgba(255,255,255,0.06)", border: `1px solid ${LINE}` }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7" /><path d="M12 8v.01M11 12h1v4h1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                          Match Center
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>

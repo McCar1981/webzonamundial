@@ -353,6 +353,16 @@ export default function GruposIndex() {
           </div>
         </div>
 
+        <Link href="/que-necesita-cada-seleccion-mundial-2026" className="block mb-6 rounded-xl border border-[#c9a84c]/30 bg-gradient-to-br from-[#c9a84c]/10 to-transparent px-4 py-3 transition hover:border-[#c9a84c]/50">
+          <span className="text-sm text-[#8a94b0]">
+            <b className="text-white">{locale === 'en' ? 'Last matchday:' : 'Última jornada:'}</b>{' '}
+            {locale === 'en'
+              ? 'see what each team needs to reach the Round of 32 — with a simulator'
+              : 'mira qué necesita cada selección para pasar a dieciseisavos — con simulador'}{' '}
+            <span className="text-[#c9a84c] font-semibold">→</span>
+          </span>
+        </Link>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {gruposLetras.map((letra) => (
             <GrupoCard key={letra} letra={letra} liveMap={liveMap} />

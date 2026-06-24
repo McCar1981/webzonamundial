@@ -391,6 +391,9 @@
   border-color: rgba(201, 168, 76, 0.3);
   background: rgba(15, 29, 50, 0.85);
 }
+/* Sin imagen: el cuerpo ocupa toda la tarjeta en vez de colapsar en la
+   columna de 110px reservada para la miniatura. */
+.secCard.secCardFull { grid-template-columns: minmax(0, 1fr); gap: 0; }
 .secImg {
   width: 100%;
   height: 100%;
@@ -467,6 +470,10 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .listItem:hover { transform: translateX(4px); }
+/* Sin imagen: el cuerpo no debe quedar atrapado en la columna estrecha del
+   thumbnail. La clase compuesta (especificidad 0,2,0) gana a los overrides de
+   las media queries, así el titular ocupa el ancho completo en todos los breakpoints. */
+.listItem.listItemFull { grid-template-columns: minmax(0, 1fr); gap: 0; }
 .listThumb {
   width: 100%;
   aspect-ratio: 16 / 10;

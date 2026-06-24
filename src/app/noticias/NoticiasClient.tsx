@@ -485,7 +485,7 @@ export default function NoticiasClient({
 
               <div className={styles.topSecondary}>
                 {secondary.map((p) => (
-                  <Link key={p.id} href={`/noticias/${p.slug}`} className={styles.secCard}>
+                  <Link key={p.id} href={`/noticias/${p.slug}`} className={`${styles.secCard} ${p.realImage ? "" : styles.secCardFull}`}>
                     {p.realImage && (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={p.realImage} alt="" className={styles.secImg} />
@@ -526,7 +526,7 @@ export default function NoticiasClient({
                             </li>
                           )}
                           <li>
-                          <Link href={`/noticias/${p.slug}`} className={styles.listItem}>
+                          <Link href={`/noticias/${p.slug}`} className={`${styles.listItem} ${p.realImage ? "" : styles.listItemFull}`}>
                             {p.realImage && (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img src={p.realImage} alt="" className={styles.listThumb} loading="lazy" />

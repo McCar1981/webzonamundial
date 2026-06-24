@@ -15,6 +15,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { computeEscenarios, type Certeza, type GroupScenario } from "@/lib/grupos/escenarios";
 import EscenariosSimulador from "./EscenariosSimulador";
+import ConsultaSeleccion, { type TeamView } from "./ConsultaSeleccion";
 import { matchInstant } from "@/lib/calendario/time";
 
 const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
@@ -104,7 +105,7 @@ function buildFaqLd(groups: GroupScenario[]) {
       ...groups.map((g) => ({
         "@type": "Question",
         name: `¿Qué necesita cada selección del Grupo ${g.letra} para pasar a dieciseisavos?`,
-        acceptedAnswer: { "@type": "Answer", text: g.current.map((r) => `${r.nombre}: ${g.escenarios[r.flagCode] ?? ""}`).join(" ") },
+        acceptedAnswer: { "@type": "Answer", text: g.current.map((r) => `${r.nombre}: ${g.escenarios[r.flagCode]?.pass ?? ""}`).join(" ") },
       })),
     ],
   };
@@ -212,7 +213,7 @@ function GrupoCard({ g }: { g: GroupScenario }) {
         <div style={{ display: "grid", gap: 7, marginTop: 8 }}>
           {g.current.map((r) => (
             <p key={r.flagCode} style={{ margin: 0, fontSize: 12.5, lineHeight: 1.5, color: MID }}>
-              <b style={{ color: "#fff" }}>{r.nombre}:</b> {g.escenarios[r.flagCode]}
+              <b style={{ color: "#fff" }}>{r.nombre}:</b> {g.escenarios[r.flagCode]?.pass}
             </p>
           ))}
         </div>
@@ -236,6 +237,30 @@ export default async function EscenariosPage() {
     day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "America/Mexico_City",
   }).format(new Date());
   const faqLd = buildFaqLd(groups);
+
+  // Datos planos por selección (48) para el selector "Consulta tu selección".
+  const teamData: TeamView[] = groups.flatMap((g) =>
+    g.current.map((r, i) => {
+      const f = g.finals.find((x) => x.hf === r.flagCode || x.af === r.flagCode);
+      const sc = f && f.jugado ? g.live[f.i]?.sc : undefined;
+      const hora = f ? fmtHoraCDMX(f.fecha, f.hora) : null;
+      const rival = f ? (f.hf === r.flagCode ? f.an : f.hn) : null;
+      const cuando = f
+        ? sc
+          ? `Final ${sc[0]}–${sc[1]}`
+          : hora ? `${fmtFecha(f.fecha)}, ${hora}h CDMX` : fmtFecha(f.fecha)
+        : null;
+      const esc = g.escenarios[r.flagCode];
+      return {
+        flag: r.flagCode, nombre: r.nombre, grupo: g.letra,
+        pos: i + 1, pj: r.pj, pts: r.pts, gd: r.gd,
+        badge: g.badges[r.flagCode] ?? "decide",
+        pass: esc?.pass ?? "", first: esc?.first ?? "",
+        rival, cuando,
+        cruce1: g.cruces.primero?.rival ?? null, cruce2: g.cruces.segundo?.rival ?? null,
+      };
+    }),
+  );
 
   return (
     <main style={{ background: BG, minHeight: "100vh", color: MID, padding: "24px 20px 60px" }}>
@@ -280,6 +305,11 @@ export default async function EscenariosPage() {
             pase, una selección necesita acabar <b style={{ color: "#fff" }}>1ª o 2ª</b>; si queda 3ª, depende de los demás grupos. El orden
             se decide por <b style={{ color: "#fff" }}>puntos → diferencia de goles → goles a favor → mini-liga entre empatados → fair play</b>.
           </p>
+        </div>
+
+        {/* Consulta directa por selección (alta intención: "¿pasa mi equipo?") */}
+        <div style={{ margin: "20px 0 10px" }}>
+          <ConsultaSeleccion teams={teamData} />
         </div>
 
         {/* Simulador interactivo (isla cliente) */}

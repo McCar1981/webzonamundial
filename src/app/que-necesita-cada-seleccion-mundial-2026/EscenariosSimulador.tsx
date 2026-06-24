@@ -47,6 +47,10 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
     }
     return init;
   });
+  // Finales NO jugadas que el usuario HA tocado: solo esas se aplican a la tabla.
+  // La tabla parte de la clasificación REAL (igual que /grupos); un partido sin
+  // tocar no cuenta — así no aparece un PJ/puntos distinto al de la tabla real.
+  const [touched, setTouched] = useState<Record<string, Record<number, boolean>>>({});
 
   const group = groups.find((g) => g.letra === sel) ?? groups[0];
 
@@ -57,6 +61,7 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
       next[side] = Math.max(0, Math.min(19, next[side] + delta));
       return { ...prev, [sel]: { ...prev[sel], [mid]: next } };
     });
+    setTouched((prev) => ({ ...prev, [sel]: { ...prev[sel], [mid]: true } }));
   };
 
   const resetGroup = () => {
@@ -69,17 +74,21 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
       }
       return { ...prev, [g.letra]: reset };
     });
+    setTouched((prev) => ({ ...prev, [group.letra]: {} }));
   };
 
-  // Tabla simulada: motor FIFA real con los marcadores elegidos para las finales.
+  // Tabla simulada: motor FIFA real. Parte de la clasificación real (group.live)
+  // y SOLO inyecta como jugadas las finales que el usuario ha tocado.
   const ordered = useMemo(() => {
     const merged: LiveMap = { ...group.live };
     for (const f of group.finals) {
-      const sc = scores[group.letra]?.[f.i] ?? [0, 0];
-      merged[f.i] = { s: "FT", sc, el: 0 };
+      if (f.jugado) continue; // ya está en group.live con su resultado real
+      if (touched[group.letra]?.[f.i]) {
+        merged[f.i] = { s: "FT", sc: scores[group.letra]?.[f.i] ?? [0, 0], el: 0 };
+      }
     }
     return standingsOrder(group.letra, group.teams, merged).ordered;
-  }, [group, scores]);
+  }, [group, scores, touched]);
 
   const chip = (idx: number) => {
     if (idx <= 1) return { txt: "Clasifica", color: GREEN };
@@ -96,7 +105,7 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
         Ajusta los marcadores y mira quién pasa
       </p>
       <p style={{ fontSize: 14, lineHeight: 1.55, margin: "0 0 14px" }}>
-        Toca los marcadores de la última jornada del grupo y la tabla se reordena al instante con los criterios oficiales (puntos, diferencia de goles, goles a favor y mini-liga).
+        La tabla parte de la clasificación <b style={{ color: "#fff" }}>real</b>. Toca el marcador de un partido de la última jornada para simularlo: la tabla se reordena al instante con los criterios oficiales (puntos, diferencia de goles, goles a favor y mini-liga).
       </p>
 
       {/* Selector de grupo */}
@@ -108,8 +117,8 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
             onClick={() => setSel(g.letra)}
             aria-pressed={g.letra === sel}
             style={{
-              cursor: "pointer", fontFamily: "inherit", fontWeight: 800, fontSize: 13,
-              width: 38, height: 38, borderRadius: 10,
+              cursor: "pointer", fontFamily: "inherit", fontWeight: 800, fontSize: 14,
+              width: 44, height: 44, borderRadius: 10, touchAction: "manipulation",
               border: `1px solid ${g.letra === sel ? GOLD : "rgba(255,255,255,0.12)"}`,
               background: g.letra === sel ? "rgba(201,168,76,0.18)" : "rgba(255,255,255,0.03)",
               color: g.letra === sel ? GOLD2 : MID,
@@ -124,8 +133,9 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
       <div style={{ display: "grid", gap: 8, marginBottom: 14 }}>
         {group.finals.map((f) => {
           const sc = scores[group.letra]?.[f.i] ?? [0, 0];
+          const aplicado = f.jugado || !!touched[group.letra]?.[f.i];
           return (
-            <div key={f.i} style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "10px 12px", background: "rgba(255,255,255,0.02)" }}>
+            <div key={f.i} style={{ border: `1px solid ${aplicado && !f.jugado ? "rgba(201,168,76,0.35)" : "rgba(255,255,255,0.08)"}`, borderRadius: 12, padding: "10px 12px", background: "rgba(255,255,255,0.02)" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
                 <span style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", fontWeight: 600, fontSize: 14 }}>
                   <Flag code={f.hf} /> {f.hn}
@@ -138,7 +148,9 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
                 </span>
               </div>
               <div style={{ textAlign: "center", marginTop: 6, fontSize: 11.5, color: DIM }}>
-                {f.jugado ? "Resultado final" : "Por jugar · ajusta el marcador"} · {f.sede}
+                <span style={{ color: aplicado && !f.jugado ? GOLD2 : DIM, fontWeight: aplicado && !f.jugado ? 700 : 400 }}>
+                  {f.jugado ? "Resultado final" : aplicado ? "Simulado" : "Por jugar · ajusta el marcador"}
+                </span> · {f.sede}
               </div>
             </div>
           );
@@ -213,8 +225,8 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
 
 function Stepper({ value, onMinus, onPlus, disabled }: { value: number; onMinus: () => void; onPlus: () => void; disabled?: boolean }) {
   const btn: React.CSSProperties = {
-    cursor: disabled ? "default" : "pointer", fontFamily: "inherit", width: 26, height: 30, borderRadius: 8,
-    border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.04)", color: disabled ? DIM : "#fff", fontSize: 16, fontWeight: 700, lineHeight: 1,
+    cursor: disabled ? "default" : "pointer", fontFamily: "inherit", width: 36, height: 42, borderRadius: 8, touchAction: "manipulation",
+    border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.04)", color: disabled ? DIM : "#fff", fontSize: 18, fontWeight: 700, lineHeight: 1,
   };
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>

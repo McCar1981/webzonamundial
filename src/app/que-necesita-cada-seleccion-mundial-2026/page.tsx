@@ -193,6 +193,11 @@ function GrupoCard({ g }: { g: GroupScenario }) {
 export default async function EscenariosPage() {
   const groups = await computeEscenarios();
   const algunoJugado = groups.some((g) => g.current.some((r) => r.pj > 0));
+  // Sello de frescura (señal de CTR en queries 100% sensibles a la actualidad).
+  // Con revalidate=60 refleja la última regeneración (≤1 min). Hora CDMX (80% MX-LATAM).
+  const actualizado = new Intl.DateTimeFormat("es-MX", {
+    day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "America/Mexico_City",
+  }).format(new Date());
 
   return (
     <main style={{ background: BG, minHeight: "100vh", color: MID, padding: "24px 20px 60px" }}>
@@ -211,9 +216,13 @@ export default async function EscenariosPage() {
         <p style={{ color: GOLD, fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 24, marginBottom: 8, fontWeight: 600 }}>
           Última jornada · fase de grupos
         </p>
-        <h1 style={{ color: GOLD2, fontSize: 40, fontWeight: 800, margin: "0 0 18px", letterSpacing: "-0.04em", lineHeight: 1.1 }}>
+        <h1 style={{ color: GOLD2, fontSize: 40, fontWeight: 800, margin: "0 0 10px", letterSpacing: "-0.04em", lineHeight: 1.1 }}>
           Qué necesita cada selección para pasar a dieciseisavos del Mundial 2026
         </h1>
+        <p style={{ fontSize: 13, color: DIM, margin: "0 0 18px" }}>
+          <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: GREEN, marginRight: 6, verticalAlign: "middle" }} aria-hidden />
+          Datos en vivo · actualizado el {actualizado} (hora CDMX)
+        </p>
 
         <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px" }}>
           Llega la <b style={{ color: "#fff" }}>última jornada de grupos</b> (24–27 de junio) y todo se decide. Aquí tienes la{" "}

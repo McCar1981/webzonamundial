@@ -118,3 +118,32 @@ export function isLiveStatus(status: string): boolean {
 export function isFinishedStatus(status: string): boolean {
   return ["FT", "AET", "PEN"].includes(status);
 }
+
+// ───────────────────────── lado acreditado vs jugador ─────────────────────────
+// Misma convención que el Match Center (PR #338). api-football entrega `e.side`
+// (derivado de `team`) = lado que SE BENEFICIA del evento, incluido el AUTOGOL:
+// el autogol llega con team = equipo que MARCA (el rival del jugador) y player =
+// el jugador que la manda a su puerta. Verificado contra el feed real (fixture
+// 1489404 Portugal–Uzbekistán: el autogol de A. Nematov llega con team=Portugal).
+
+/** Lado RIVAL (contrario). El "neutral" se mantiene. */
+export function rivalSide(side: FriendlyEvent["side"]): FriendlyEvent["side"] {
+  if (side === "home") return "away";
+  if (side === "away") return "home";
+  return "neutral";
+}
+
+/** Lado que SE BENEFICIA del evento (suma en el marcador). Coincide SIEMPRE con
+ *  e.side —también en el autogol—, así que NO hay que invertir. Usar para el
+ *  marcador y la celebración. */
+export function beneficiarySide(e: FriendlyEvent): FriendlyEvent["side"] {
+  return e.side;
+}
+
+/** Lado del EQUIPO DEL JUGADOR del evento. Igual que e.side salvo en el AUTOGOL:
+ *  ahí el jugador pertenece al RIVAL del lado acreditado. Usar para la foto, el
+ *  "(País)" y la estadística del jugador, para no atribuir el gol al equipo
+ *  equivocado (antes salía "(Portugal)" por un jugador uzbeko). */
+export function actorSide(e: FriendlyEvent): FriendlyEvent["side"] {
+  return e.type === "own_goal" ? rivalSide(e.side) : e.side;
+}

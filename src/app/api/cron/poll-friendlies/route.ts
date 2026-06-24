@@ -25,6 +25,7 @@ import {
   saveFriendlyState,
 } from "@/lib/friendlies/store";
 import {
+  actorSide,
   isFinishedStatus,
   isLiveStatus,
   type FriendlyEvent,
@@ -61,10 +62,13 @@ function matchUrl(fixtureId: number): string {
   return `${PUSH_URL}?match=${fixtureId}`;
 }
 
-/** Escudo/bandera del equipo de un evento (para usar como icono del push). */
+/** Escudo/bandera del equipo PROTAGONISTA del evento (icono del push). En un
+ *  autogol el protagonista es el jugador del RIVAL del lado acreditado
+ *  (actorSide), no el beneficiado, igual que el "(País)" y la foto. */
 function eventIcon(e: FriendlyEvent, s: FriendlySnapshot): string {
-  if (e.side === "home") return s.home.logo || PUSH_ICON;
-  if (e.side === "away") return s.away.logo || PUSH_ICON;
+  const side = actorSide(e);
+  if (side === "home") return s.home.logo || PUSH_ICON;
+  if (side === "away") return s.away.logo || PUSH_ICON;
   return PUSH_ICON;
 }
 
@@ -128,17 +132,16 @@ function scoreText(goals: Score): string {
  *  (endpoint /fixtures/events) por SEPARADO, y el agregado suele ir por detrás del
  *  evento de gol → el push salía "0-0" justo en el aviso de GOL. Contar los goles
  *  del propio stream de eventos mantiene el marcador coherente con el aviso.
- *  El gol en propia suma al equipo CONTRARIO al del jugador que lo marca. */
+ *  El AUTOGOL ya viene acreditado por api-football al lado que MARCA (e.side =
+ *  beneficiado), así que suma igual que un gol normal: NO se invierte (antes
+ *  salía 3-1 en vez de 4-0). */
 function scoreUpTo(s: FriendlySnapshot, upto: FriendlyEvent): Score {
   let home = 0;
   let away = 0;
   for (const e of s.events) {
-    if (e.type === "goal" || e.type === "penalty_goal") {
+    if (e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal") {
       if (e.side === "home") home++;
       else if (e.side === "away") away++;
-    } else if (e.type === "own_goal") {
-      if (e.side === "home") away++;
-      else if (e.side === "away") home++;
     }
     if (e.id === upto.id) break;
   }
@@ -157,8 +160,11 @@ function eventLabel(
   body: string;
   icon: string;
 } | null {
-  // "country" del evento = la selección (en español). "player" = api-football.
-  const team = e.side === "home" ? homeEs : e.side === "away" ? awayEs : "";
+  // "(País)" del evento = la selección del JUGADOR (en español). En un AUTOGOL el
+  // jugador es del RIVAL del lado acreditado (actorSide), no del beneficiado:
+  // antes salía "en propia de A. Nematov (Portugal)" cuando Nematov es uzbeko.
+  const side = actorSide(e);
+  const team = side === "home" ? homeEs : side === "away" ? awayEs : "";
   const player = e.player?.trim() || "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const icon = eventIcon(e, s);
@@ -346,9 +352,12 @@ async function runPass(
       const label = eventLabel(e, snap, homeEs, awayEs, homeFlag, awayFlag);
       if (!label) continue;
       // Foto del PROTAGONISTA del evento (goleador/expulsado), cruzando su
-      // nombre con la convocatoria BIBLIA. Respaldo: la foto del partido.
+      // nombre con la convocatoria BIBLIA. En un AUTOGOL el protagonista es del
+      // RIVAL del lado acreditado (actorSide): se busca en SU selección, no en la
+      // beneficiada (si no, no se le encuentra). Respaldo: la foto del partido.
+      const actorTeamSide = actorSide(e);
       const teamName =
-        e.side === "home" ? snap.home.name : e.side === "away" ? snap.away.name : "";
+        actorTeamSide === "home" ? snap.home.name : actorTeamSide === "away" ? snap.away.name : "";
       const actorPhoto = e.player ? await playerPhoto(teamName, e.player, e.id) : null;
       // Cadena: foto del jugador → imagen variada del país → foto del partido.
       const eventImage =

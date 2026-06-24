@@ -20,7 +20,7 @@ import type {
   FriendlyStat,
   FriendlyTeam,
 } from "@/lib/friendlies/types";
-import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
+import { actorSide, beneficiarySide, isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 
 const BG = "#060B14";
 const PANEL = "#0B1A2D";
@@ -307,10 +307,9 @@ function minuteText(e: FriendlyEvent): string {
 
 /** Tarjeta destacada de gol con marcador del momento, autor y foto. */
 function GoalCard({ e, snap, score }: { e: FriendlyEvent; snap: FriendlySnapshot; score: [number, number] }) {
-  // Equipo beneficiado (en propia, el rival del que la metió).
-  const benef: "home" | "away" =
-    e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side === "away" ? "away" : "home";
-  const team = benef === "home" ? snap.home : snap.away;
+  // El nombre bajo el autor es la selección del JUGADOR (actorSide). En un
+  // autogol el jugador es del RIVAL del lado acreditado, no del beneficiado.
+  const team = actorSide(e) === "home" ? snap.home : snap.away;
   return (
     <div style={{ borderRadius: 14, overflow: "hidden", border: `1px solid ${GOLD}55` }}>
       <div style={{ background: `linear-gradient(135deg, ${BLUE}, #1b54b8)`, padding: "12px 14px", textAlign: "center" }}>
@@ -388,8 +387,9 @@ function Cronologia({ snap }: { snap: FriendlySnapshot }) {
   let a = 0;
   for (const e of snap.events) {
     if (GOAL_TYPES.has(e.type) && e.side !== "neutral") {
-      const benef = e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side;
-      if (benef === "home") h += 1;
+      // api-football ya acredita el autogol al lado que MARCA (e.side =
+      // beneficiado), igual que un gol normal: NO se invierte.
+      if (beneficiarySide(e) === "home") h += 1;
       else a += 1;
       running[e.id] = [h, a];
     }
@@ -584,14 +584,13 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
     const scoredHome = h > prev.h;
     const scoredAway = a > prev.a;
     if (!scoredHome && !scoredAway) return;
+    // El lado que sube en el marcador (del agregado fiable) es el beneficiado.
     const benef: "home" | "away" = scoredHome ? "home" : "away";
     const goalEvents = snap.events.filter(
       (e) => e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal",
     );
-    const last = [...goalEvents].reverse().find((e) => {
-      const b = e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side;
-      return b === benef;
-    });
+    // El último gol de ese lado: su beneficiario es e.side (sin invertir).
+    const last = [...goalEvents].reverse().find((e) => beneficiarySide(e) === benef);
     setGoalCeleb({
       team: benef === "home" ? snap.home : snap.away,
       player: last?.player,

@@ -111,6 +111,12 @@ export default function TodayLiveBoard() {
   if (!matches || matches.length === 0) return null;
 
   const anyLive = matches.some((m) => m.live);
+  // En jornadas simultáneas, los EN VIVO van primero (luego próximos, luego
+  // terminados); desempate por hora de saque. Así la vista lidera con lo que late.
+  const rank = (m: TodayMatch) => (m.live ? 0 : m.finished ? 2 : 1);
+  const ordered = [...matches].sort(
+    (a, b) => rank(a) - rank(b) || (a.kickoff || "").localeCompare(b.kickoff || ""),
+  );
 
   return (
     <section style={{ padding: "0 20px 8px" }}>
@@ -151,7 +157,7 @@ export default function TodayLiveBoard() {
             gap: 12,
           }}
         >
-          {matches.map((m) => {
+          {ordered.map((m) => {
             const [hg, ag] = m.score;
             const showScore = (m.live || m.finished || m.status === "HT") && hg != null && ag != null;
             const badge = m.live

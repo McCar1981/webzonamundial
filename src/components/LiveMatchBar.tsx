@@ -28,7 +28,7 @@
  * TodayLiveBoard.
  */
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { resolveMatchId } from "@/lib/match-center/slug";
@@ -207,17 +207,6 @@ export default function LiveMatchBar() {
 
   if (count === 0) return null;
 
-  const safeIdx = idx % count;
-  const m = visible[safeIdx];
-  if (!m) return null;
-
-  const hg = m.score[0] ?? 0;
-  const ag = m.score[1] ?? 0;
-  const label = liveLabel(m);
-  const aria = `Partido en directo: ${m.home.name} ${hg}, ${m.away.name} ${ag}. ${
-    m.status === "HT" ? "Descanso" : `Minuto ${m.elapsed}`
-  }.`;
-
   // Pausa de la rotación mientras el usuario mira/interactúa con la barra.
   const pauseRotation = () => {
     pausedRef.current = true;
@@ -234,6 +223,80 @@ export default function LiveMatchBar() {
       pausedRef.current = false;
     }, TAP_FREEZE_MS);
   };
+
+  // ════════ MODO DUAL: 2+ partidos EN JUEGO a la vez (jornada simultánea) ════════
+  // Se muestran AMBOS a la vez como chips compactos (banderas + marcador + minuto),
+  // cada uno enlaza a su Match Center. Si hubiera 3+, los 2 primeros + "+N" al hub.
+  if (count >= 2) {
+    const shown = visible.slice(0, 2);
+    const extra = count - 2;
+    return (
+      <div
+        ref={rootRef}
+        role="region"
+        aria-label="Marcadores en directo"
+        className="zm-mb-root"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1001,
+          background: `linear-gradient(90deg, ${BG} 0%, #0d1726 50%, ${BG} 100%)`,
+          borderBottom: "1px solid rgba(201,168,76,0.18)",
+          boxShadow: "0 6px 22px -8px rgba(0,0,0,0.6)",
+        }}
+      >
+        <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${RED}, transparent)`, opacity: 0.8 }} />
+        <div style={{ display: "flex", alignItems: "stretch", justifyContent: "center", maxWidth: 1100, margin: "0 auto", height: 38 }}>
+          {shown.map((mm, i) => {
+            const hg = mm.score[0] ?? 0;
+            const ag = mm.score[1] ?? 0;
+            const label = liveLabel(mm);
+            return (
+              <Fragment key={mm.matchId}>
+                {i > 0 && <span aria-hidden style={{ width: 1, alignSelf: "center", height: 20, background: "rgba(255,255,255,0.14)" }} />}
+                <Link
+                  href={`/app/matchcenter/${mm.slug}`}
+                  aria-label={`En directo: ${mm.home.name} ${hg}, ${mm.away.name} ${ag}, minuto ${mm.elapsed}`}
+                  className="zm-mb-chip"
+                  style={{ flex: "1 1 0", display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "0 8px", textDecoration: "none", color: "#fff", minWidth: 0 }}
+                >
+                  <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: RED, flexShrink: 0, boxShadow: `0 0 8px ${RED}`, animation: "zm-mb-pulse 1.2s ease-in-out infinite" }} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={flagUrl(mm.home.flag)} alt="" width={22} height={14} style={{ width: 22, height: 14, borderRadius: 2, objectFit: "cover", flexShrink: 0, boxShadow: "0 0 0 1px rgba(255,255,255,0.12)" }} />
+                  <span style={{ fontSize: 16, fontWeight: 900, fontVariantNumeric: "tabular-nums", minWidth: 12, textAlign: "right" }}>{hg}</span>
+                  <span style={{ fontSize: 9, fontWeight: 800, color: label === "DESC" || label === "INT" ? MID : GOLD2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(201,168,76,0.22)", borderRadius: 4, padding: "1px 4px", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{label}</span>
+                  <span style={{ fontSize: 16, fontWeight: 900, fontVariantNumeric: "tabular-nums", minWidth: 12, textAlign: "left" }}>{ag}</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={flagUrl(mm.away.flag)} alt="" width={22} height={14} style={{ width: 22, height: 14, borderRadius: 2, objectFit: "cover", flexShrink: 0, boxShadow: "0 0 0 1px rgba(255,255,255,0.12)" }} />
+                </Link>
+              </Fragment>
+            );
+          })}
+          {extra > 0 && (
+            <Link href="/app/matchcenter" aria-label={`Ver ${extra} partidos más en directo`} style={{ display: "inline-flex", alignItems: "center", padding: "0 10px", color: GOLD, fontSize: 11, fontWeight: 800, textDecoration: "none", flexShrink: 0 }}>+{extra}</Link>
+          )}
+        </div>
+        <style>{`
+          @keyframes zm-mb-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.65)} }
+          @keyframes zm-mb-in { from{opacity:0} to{opacity:1} }
+          .zm-mb-root { animation: zm-mb-in .3s ease both; }
+          @media (prefers-reduced-motion: reduce){ .zm-mb-root{animation:none!important} .zm-mb-chip span[aria-hidden]{animation:none!important} }
+        `}</style>
+      </div>
+    );
+  }
+
+  // ════════ MODO SIMPLE: un solo partido en juego → barra completa con nombres ════════
+  const safeIdx = idx % count;
+  const m = visible[safeIdx];
+  if (!m) return null;
+
+  const hg = m.score[0] ?? 0;
+  const ag = m.score[1] ?? 0;
+  const label = liveLabel(m);
+  const aria = `Partido en directo: ${m.home.name} ${hg}, ${m.away.name} ${ag}. ${
+    m.status === "HT" ? "Descanso" : `Minuto ${m.elapsed}`
+  }.`;
 
   return (
     <div

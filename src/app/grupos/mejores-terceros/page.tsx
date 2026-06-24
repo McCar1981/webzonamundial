@@ -355,6 +355,34 @@ export default async function MejoresTercerosPage() {
           goles a favor — el orden oficial añade fair play y, en último extremo, sorteo.
         </p>
 
+        {/* CTA destacado a la landing de escenarios: el lector acaba de ver la
+            tabla; el siguiente paso natural es "¿y qué necesita MI selección?".
+            Toda la tarjeta es clicable (tap target grande, 74% móvil). Sube
+            dwell + profundidad de página y alimenta la landing (que tiene sus
+            propios CTAs de registro). */}
+        <Link href="/que-necesita-cada-seleccion-mundial-2026" style={{ textDecoration: "none", display: "block", margin: "22px 0 6px" }}>
+          <div style={{
+            borderRadius: 16, padding: "20px 22px",
+            border: "1px solid rgba(201,168,76,0.45)",
+            background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.04))",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
+          }}>
+            <span style={{ display: "inline-block", fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 800, color: "#0A1422", background: GOLD2, padding: "3px 10px", borderRadius: 999, marginBottom: 10 }}>
+              Nuevo · Simulador
+            </span>
+            <p style={{ margin: "0 0 6px", color: "#fff", fontSize: 21, fontWeight: 800, lineHeight: 1.2 }}>
+              ¿Y tu selección? Mira qué necesita para pasar a dieciseisavos
+            </p>
+            <p style={{ margin: "0 0 14px", fontSize: 15, lineHeight: 1.55, color: MID }}>
+              La situación de cada grupo en la última jornada, qué necesita cada equipo para clasificar o quedar primero, y los posibles cruces — con un{" "}
+              <b style={{ color: GOLD2 }}>simulador</b> para mover los marcadores y ver quién pasa.
+            </p>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12 }}>
+              Ver qué necesita tu selección →
+            </span>
+          </div>
+        </Link>
+
         {/* Captura de email SIN cuenta, en el pico de atención (acaban de ver su
             fila). Es la única palanca para el ~98,7% que no se registra: pide lo
             mínimo (1 campo) para algo que le importa AHORA. Reutiliza la lista
@@ -393,7 +421,9 @@ export default async function MejoresTercerosPage() {
           La consecuencia práctica: <b style={{ color: "#fff" }}>casi nadie está eliminado tras dos
           jornadas</b>. Un equipo con 3 o 4 puntos llega vivo a la última fecha, y los goles de un
           7-0 ajeno pueden decidir tu clasificación. Por eso la tercera jornada se juega con la
-          calculadora en la mano — y por eso esta tabla existe.
+          calculadora en la mano — y por eso esta tabla existe. Mira{" "}
+          <Link href="/que-necesita-cada-seleccion-mundial-2026" style={{ color: GOLD, textDecoration: "none" }}>qué necesita cada selección para pasar a dieciseisavos</Link>{" "}
+          y simula los resultados de la última jornada.
         </p>
         <p style={{ fontSize: 16, lineHeight: 1.7, margin: "0 0 12px" }}>
           ¿Contra quién juega cada tercero? No hay cruce fijo: la FIFA aplica una tabla de asignación

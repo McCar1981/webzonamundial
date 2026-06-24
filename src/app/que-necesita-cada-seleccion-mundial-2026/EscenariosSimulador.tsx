@@ -76,7 +76,7 @@ export default function EscenariosSimulador({ groups }: { groups: SimGroup[] }) 
     const merged: LiveMap = { ...group.live };
     for (const f of group.finals) {
       const sc = scores[group.letra]?.[f.i] ?? [0, 0];
-      merged[f.i] = { s: "FT", sc };
+      merged[f.i] = { s: "FT", sc, el: 0 };
     }
     return standingsOrder(group.letra, group.teams, merged).ordered;
   }, [group, scores]);

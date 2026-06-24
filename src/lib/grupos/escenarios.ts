@@ -179,7 +179,7 @@ export async function computeEscenarios(): Promise<GroupScenario[]> {
   const liveAll: LiveMap = {};
   for (const id of groupMatchIds) {
     const snap = snaps[id];
-    if (snap && snap.status) liveAll[id] = { s: snap.status, sc: (snap.score ?? [0, 0]) as [number, number] };
+    if (snap && snap.status) liveAll[id] = { s: snap.status, sc: (snap.score ?? [0, 0]) as [number, number], el: 0 };
   }
   return Promise.all(GROUP_LETTERS.map((l) => buildGroup(l, liveAll)));
 }

@@ -31,7 +31,7 @@ import {
   winnerTeamPhoto,
   favoriteFlagUrl,
 } from "@/lib/friendlies/teamInfo";
-import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
+import { isInPlay, isFinished, isAnomalousTerminal, ANOMALOUS_TERMINAL_LABEL } from "./status";
 import { clearFollowers, getFollowers } from "./followers";
 import { actorSide } from "./templates";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
@@ -281,7 +281,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
 
   // INICIO/PREVIA del partido (excluye HT) → FOTO DEL JUGADOR MÁS IMPORTANTE
   // (mayor valor de mercado de las dos selecciones).
-  if (!prev.startSent && isLiveStatus(snap.status) && snap.status !== "HT") {
+  if (!prev.startSent && isInPlay(snap.status) && snap.status !== "HT") {
     const previaImage =
       (await topValuePhoto(meta.home.name, meta.away.name, `previa-${matchId}`)) || contextImage;
     await send({
@@ -291,6 +291,22 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
       image: previaImage,
     });
     next.startSent = true;
+  }
+
+  // RECTIFICACIÓN VAR: si el marcador RETROCEDE respecto al estado guardado, un
+  // gol fue anulado (api-football retira el evento del gol y baja el agregado,
+  // por eso no llega como un evento nuevo). Avisamos UNA vez con el marcador
+  // corregido y el mismo tag (la tarjeta del partido se actualiza). No se repite
+  // porque al guardar el estado `next.score` ya pasa a ser el corregido.
+  const goalAnnulled =
+    (snap.score[0] ?? 0) < (prev.score[0] ?? 0) || (snap.score[1] ?? 0) < (prev.score[1] ?? 0);
+  if (goalAnnulled) {
+    await send({
+      title: `Gol anulado por el VAR · ${vs}`,
+      body: `El VAR corrige el marcador: ${scoreText(snap.score)}.`,
+      icon: PUSH_ICON,
+      image: contextImage,
+    });
   }
 
   // Eventos nuevos: goles y tarjetas rojas llevan imagen (los más compartibles).
@@ -338,13 +354,31 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
   }
 
   // FINAL → CELEBRACIÓN DEL EQUIPO GANADOR (su foto de equipo); empate → ambiente.
-  if (!prev.ftSent && isFinishedStatus(snap.status)) {
-    const winner =
-      (snap.score[0] ?? 0) > (snap.score[1] ?? 0)
-        ? meta.home.name
-        : (snap.score[1] ?? 0) > (snap.score[0] ?? 0)
-        ? meta.away.name
-        : null;
+  if (!prev.ftSent && isFinished(snap.status)) {
+    // Ganador: por penaltis (status PEN) lo decide la TANDA, no el marcador de
+    // los 120' (que está empatado). En FT/AET, el marcador.
+    const pen = snap.penalty;
+    let winner: string | null;
+    let penText = ""; // sufijo "(4-2 pen)" cuando se decidió en los once metros
+    let body: string;
+    if (snap.status === "PEN" && pen) {
+      winner =
+        (pen[0] ?? 0) > (pen[1] ?? 0)
+          ? meta.home.name
+          : (pen[1] ?? 0) > (pen[0] ?? 0)
+          ? meta.away.name
+          : null;
+      penText = ` (${pen[0] ?? 0}-${pen[1] ?? 0} pen)`;
+      body = winner ? `Victoria de ${winner} en los penaltis.` : "Definido en la tanda de penaltis.";
+    } else {
+      winner =
+        (snap.score[0] ?? 0) > (snap.score[1] ?? 0)
+          ? meta.home.name
+          : (snap.score[1] ?? 0) > (snap.score[0] ?? 0)
+          ? meta.away.name
+          : null;
+      body = winner ? `¡Gana ${winner}! 🎉` : "¡Empate! Reparto de puntos.";
+    }
     // Solo foto de EQUIPO del GANADOR (celebración, camiseta nacional, horizontal).
     // Si no hay, SIN imagen: NO caemos al retrato del goleador ni al ambiente
     // (pueden ser de club, verticales o de aficionados). "¡Gana Francia!" mostraba
@@ -354,8 +388,8 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     // El final NO se fija (pin: false): así el seguidor puede descartarlo.
     await send(
       {
-        title: `🏁 Final · ${vs} ${scoreText(snap.score)}`,
-        body: winner ? `¡Gana ${winner}! 🎉` : "¡Empate! Reparto de puntos.",
+        title: `🏁 Final · ${vs} ${scoreText(snap.score)}${penText}`,
+        body,
         icon: PUSH_ICON,
         image: ftImage,
       },
@@ -367,6 +401,29 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     await clearFollowers(matchId);
   }
 
+  // CIERRE por estado TERMINAL ANÓMALO (cancelado, abandonado, adjudicado,
+  // walkover, aplazado): el partido NO continuará. Antes el push usaba solo
+  // isFinishedStatus (FT/AET/PEN) y estos estados nunca cerraban: el partido se
+  // seguía sondeando y los seguidores quedaban con el pin fijado para siempre.
+  // Mandamos un aviso apropiado y liberamos a los seguidores.
+  if (!prev.ftSent && isAnomalousTerminal(snap.status)) {
+    const label = ANOMALOUS_TERMINAL_LABEL[snap.status] ?? "Partido finalizado";
+    await send(
+      {
+        title: `${label} · ${vs}`,
+        body:
+          snap.status === "PST"
+            ? "El partido se ha aplazado."
+            : `El partido ha quedado ${label.toLowerCase()}.`,
+        icon: PUSH_ICON,
+        image: contextImage,
+      },
+      { pin: false, kind: WIDE_KIND },
+    );
+    next.ftSent = true;
+    await clearFollowers(matchId);
+  }
+
   // "Tick" de minuto para los seguidores: si el partido está en juego y no hubo
   // ningún aviso en esta pasada, refrescamos su tarjeta FIJADA con el marcador y
   // el minuto actuales, SIN sonido (silent) para no molestar. Así el pin imita
@@ -375,7 +432,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
   if (
     !sentThisPass &&
     followers.length > 0 &&
-    isLiveStatus(snap.status) &&
+    isInPlay(snap.status) &&
     snap.status !== "HT"
   ) {
     const homeLine = `${flagEmoji(meta.home.flag)} ${meta.home.name}`.trim();

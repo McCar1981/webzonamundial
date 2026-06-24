@@ -10,6 +10,7 @@ import { kv } from "@/lib/kv";
 import { MATCHES } from "@/data/matches";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import type { LiveSnapshot, MatchMeta, MatchTeamMeta } from "./types";
+import { IN_PLAY } from "./status";
 
 const SNAP_PREFIX = "mc:snap:v1:";
 // Última copia DURABLE del snapshot (sin TTL): sobrevive a la caducidad de la
@@ -19,8 +20,8 @@ const LAST_PREFIX = "mc:last:v1:";
 const FIXTURE_PREFIX = "mc:fixture:v1:";
 const SNAP_TTL_SECONDS = 25; // ligeramente por encima del intervalo de polling
 
-// Estados "en juego": el minuto avanza, así que un snapshot cacheado caduca.
-const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
+// Estados "en juego" (IN_PLAY de status.ts): el minuto avanza, así que un
+// snapshot cacheado de uno de estos estados caduca.
 // Guardia de frescura por `updatedAt`: si un snapshot EN JUEGO es más viejo que
 // esto, lo tratamos como caducado y forzamos refetch — aunque el TTL de KV
 // fallara. Como cada escritura buena renueva `updatedAt`, esto se autocura y

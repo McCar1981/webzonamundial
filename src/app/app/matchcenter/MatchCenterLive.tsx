@@ -22,6 +22,7 @@ import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
 import { templateNarration } from "@/lib/match-center/templates";
+import { isAnomalousTerminal, ANOMALOUS_TERMINAL_LABEL } from "@/lib/match-center/status";
 import FootballScoreboard from "@/components/FootballScoreboard";
 import { teamAbbr } from "@/lib/team-abbr";
 import { useEntitlements } from "@/components/pro/EntitlementsProvider";
@@ -197,7 +198,12 @@ function clockLabel(sec: number, finished: boolean, status: string): string {
   return `${mm}:${ss}`;
 }
 
-// Estados api-football en los que el balón rueda (el reloj corre).
+// Estados api-football en los que el balón rueda (el reloj corre). OJO: este
+// conjunto es DISTINTO del IN_PLAY compartido de @/lib/match-center/status a
+// propósito — aquí EXCLUYE el descanso (HT) y la suspensión (SUSP), donde el
+// reloj y la animación del balón deben PARAR aunque el partido siga "en juego"
+// a efectos de marcador/lista. No lo sustituyas por el compartido: rompería el
+// reloj en el descanso.
 const IN_PLAY = new Set(["1H", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 function isInPlay(status: string): boolean {
   return IN_PLAY.has(status);
@@ -544,6 +550,9 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
 
   const [sec, setSec] = useState(0);
   const [score, setScore] = useState<Pair>([0, 0]);
+  // Resultado de la TANDA de penaltis [local, visitante] (status P/PEN). El
+  // `score` mantiene el marcador de los 120'; la tanda se muestra aparte.
+  const [penalties, setPenalties] = useState<Pair | null>(null);
   const [stats, setStats] = useState<LiveStats>(EMPTY_STATS);
   const [log, setLog] = useState<MatchEvent[]>([]);
   const [narration, setNarration] = useState<string>("");
@@ -786,6 +795,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
         secRef.current = 0;
         setSec(0);
         setScore([0, 0]);
+        setPenalties(null);
         setStats(statAt(data.statKeyframes, 0));
         setLog([]);
         setFinished(false);
@@ -804,6 +814,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
         secRef.current = Math.min(Math.max(floor, restored), floor + 600);
         setSec(secRef.current);
         setScore(data.score);
+        setPenalties(data.penalty ?? null);
         setStats(data.stats);
         setLog([...data.events].reverse().slice(0, 60));
         setStatus(data.status);
@@ -1010,6 +1021,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
       );
       setLog(merged.reverse().slice(0, 60));
       setScore(data.score);
+      setPenalties(data.penalty ?? null);
       setStatus(data.status);
       setKickoff(data.kickoff);
       setSecondHalf(SECOND_HALF.has(data.status));
@@ -1022,12 +1034,21 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
 
   const liveMode = feed?.mode === "live";
   useEffect(() => {
-    if (!liveMode || finished) return;
+    // El sondeo se DETIENE en estados terminales: tanto los finales jugados
+    // (`finished` = FT/AET/PEN) como los anómalos (CANC/ABD/AWD/WO/PST). Antes un
+    // partido cancelado o abandonado se seguía sondeando indefinidamente cada 15s.
+    if (!liveMode || finished || isAnomalousTerminal(status)) return;
     let alive = true;
     let timer: ReturnType<typeof setTimeout> | null = null;
     let ctrl: AbortController | null = null;
 
-    const delayFor = () => (isInPlay(statusRef.current) ? 8000 : 15000);
+    // Cadencia: en juego 8s; SUSP/INT (pausa que puede durar) 20s; previa/descanso
+    // 15s. Suspendido/interrumpido sondea lento pero NO se detiene: puede reanudarse.
+    const delayFor = () => {
+      const s = statusRef.current;
+      if (s === "SUSP" || s === "INT") return 20000;
+      return isInPlay(s) ? 8000 : 15000;
+    };
 
     const poll = async () => {
       if (!alive) return;
@@ -1066,7 +1087,10 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
       ctrl?.abort();
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [liveMode, finished, matchId, applySnapshot]);
+    // `status` en deps: al transicionar a un terminal anómalo (CANC/ABD…) el
+    // efecto se reevalúa y la limpieza detiene el timer. Solo se recrea en un
+    // cambio REAL de estado (no en cada poll), así que no thrashea.
+  }, [liveMode, finished, status, matchId, applySnapshot]);
 
   // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
   // su intervalo en cada actualización de stats).
@@ -1226,6 +1250,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
       if (status === "ET" || status === "BT") return "Prórroga";
       if (status === "P" || status === "PEN") return "Penaltis";
       if (status === "1H") return "1º tiempo";
+      // Pausas que pueden reanudarse: marcador visible, no "previa".
+      if (status === "SUSP") return "Suspendido";
+      if (status === "INT") return "Interrumpido";
+      // Terminales anómalos (cancelado/abandonado/adjudicado/walkover/aplazado).
+      if (isAnomalousTerminal(status)) return ANOMALOUS_TERMINAL_LABEL[status] ?? "Finalizado";
       if (isInPlay(status)) return "En juego";
       return "Previa";
     }
@@ -1236,6 +1265,16 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
     if (mm >= 45 && !htFired) return "Descanso";
     return "1º tiempo";
   }, [sec, finished, log, feed?.mode, status]);
+
+  // PREVIA REAL = antes del saque (NS/TBD o sin estado todavía). Solo entonces se
+  // muestra la cabecera "VS + hora" sin marcador. ANTES esto se derivaba de
+  // `!isInPlay(status)`, lo que pintaba como "previa sin marcador" a un partido
+  // SUSPENDIDO/INTERRUMPIDO o en estado terminal anómalo (CANC/ABD…). Ahora esos
+  // estados muestran el marcador, y solo NS/TBD se consideran previa.
+  const preMatch =
+    feed?.mode === "live" &&
+    !finished &&
+    (status === "" || status === "NS" || status === "TBD");
 
   // Momentum: ventaja instantánea de un equipo (-1 visitante .. +1 local).
   // Combina los eventos recientes (peso por tipo y por frescura) con la
@@ -1390,7 +1429,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
           <>
             {/* Previa: cabecera con cuenta atrás antes de empezar. (La previa
                 editorial específica del amistoso se omite: cambia de rival.) */}
-            {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
+            {preMatch && (
               <PreMatchHero meta={meta} kickoff={kickoff} image={heroImage} />
             )}
 
@@ -1398,7 +1437,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
                 atrás (PreMatchHero) ya hace de marcador previo, así evitamos el
                 panel "VS / 21:00" duplicado. Aparece al arrancar (en juego),
                 en descanso y al final. */}
-            {!(feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT") && (
+            {!preMatch && (
             <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 {feed.mode === "live" && isInPlay(status) && <span className="mc-live-dot" />}
@@ -1409,7 +1448,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
                   {phase}
                 </span>
               </div>
-              {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" ? (
+              {preMatch ? (
                 // Antes del saque: layout con banderas + "VS" + hora (sin resultado).
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                   <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={null} />
@@ -1441,10 +1480,39 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
                     awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
                     homeScore={score[0]}
                     awayScore={score[1]}
-                    matchTime={finished ? "FINAL" : status === "HT" ? "HT" : clockLabel(sec, finished, status)}
+                    matchTime={
+                      finished
+                        ? "FINAL"
+                        : status === "HT"
+                        ? "HT"
+                        : status === "SUSP"
+                        ? "SUSP"
+                        : status === "INT"
+                        ? "INT"
+                        : isAnomalousTerminal(status)
+                        ? "—"
+                        : clockLabel(sec, finished, status)
+                    }
                     homeFlag={flagUrl(meta.home.flag)}
                     awayFlag={flagUrl(meta.away.flag)}
                   />
+                  {/* TANDA DE PENALTIS: durante (P) y tras decidirse (PEN) se
+                      muestra el resultado de la tanda bajo el marcador de 120'. */}
+                  {penalties && (status === "P" || status === "PEN") && (
+                    <div style={{ display: "flex", justifyContent: "center", marginTop: 10 }}>
+                      <span
+                        className="mc-num"
+                        style={{
+                          display: "inline-flex", alignItems: "center", gap: 8,
+                          background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}66`,
+                          borderRadius: 20, padding: "4px 14px", fontSize: 14, fontWeight: 800,
+                          letterSpacing: 0.5, color: GOLD2,
+                        }}
+                      >
+                        Penaltis <span style={{ color: "#fff" }}>{penalties[0] ?? 0}–{penalties[1] ?? 0}</span>
+                      </span>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -1493,7 +1561,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
             {/* Previa editorial del partido (acordeón, fotos reales de las dos
                 selecciones): SOLO antes del saque. Al arrancar el partido se
                 oculta para que el juego en vivo (campo + relato) suba y mande. */}
-            {feed.mode === "live" && matchId < 9000 && !isInPlay(status) && !finished && (
+            {preMatch && matchId < 9000 && (
               <PreviaAccordion matchId={matchId} home={meta.home} away={meta.away} />
             )}
             {/* Controles */}
@@ -1582,9 +1650,11 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
               {feed.mode === "live" && !isInPlay(status) && !finished && (
                 <div style={{ position: "absolute", inset: 0, zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(6,11,20,0.55)", borderRadius: 16, pointerEvents: "none" }}>
                   <span className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: GOLD2 }}>
-                    {status === "HT" ? "Descanso" : "Por comenzar"}
+                    {/* `phase` ya da Descanso / Suspendido / Interrumpido /
+                        Cancelado…; en la previa real (NS) mostramos "Por comenzar". */}
+                    {preMatch ? "Por comenzar" : phase}
                   </span>
-                  {status !== "HT" && (
+                  {preMatch && (
                     <span style={{ fontSize: 14, fontWeight: 600, color: "#cfd8ea" }}>
                       {(() => {
                         const ko = fmtKickoff(kickoff);

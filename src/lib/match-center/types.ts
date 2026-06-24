@@ -50,6 +50,12 @@ export interface MatchEvent {
    *  x: 0 = línea de fondo izquierda, 1 = derecha. y: 0 = arriba, 1 = abajo. */
   x?: number;
   y?: number;
+  /** Lanzamiento de la TANDA de penaltis (no del juego): api-football los emite
+   *  como eventos Goal/Penalty con comments "Penalty Shootout" y elapsed 120. El
+   *  adaptador los marca para que NO cuenten como goles del partido (ni en el
+   *  marcador, ni en el push, ni en la cronología). El resultado de la tanda
+   *  viaja aparte en LiveSnapshot.penalty. */
+  shootout?: boolean;
 }
 
 export interface LineupPlayer {

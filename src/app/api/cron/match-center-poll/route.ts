@@ -29,6 +29,7 @@ import { processMicroGeneration } from "@/lib/micro/engine";
 import type { MatchMeta } from "@/lib/match-center/types";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { sendOpsAlert } from "@/lib/ops/alert";
+import { IN_PLAY as LIVE_STATUSES, FINISHED as CHRONICLE_TERMINAL } from "@/lib/match-center/status";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -56,10 +57,8 @@ function kvEnabled(): boolean {
 // repetimos la pasada cada POLL_INTERVAL_MS para bajar la latencia del push de
 // ~1-4 min (drift/skips del cron de Vercel) a ~15s.
 const POLL_INTERVAL_MS = 15_000;
-// Estados de api-football que indican partido en curso (no NS/FT/PST/CANC...).
-const LIVE_STATUSES = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT", "SUSP"]);
-// Estados terminales con partido jugado: disparan la crónica editorial IA.
-const CHRONICLE_TERMINAL = new Set(["FT", "AET", "PEN"]);
+// LIVE_STATUSES (= IN_PLAY) y CHRONICLE_TERMINAL (= FINISHED) viven en
+// @/lib/match-center/status, compartidos con store/featured/push/cliente.
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));

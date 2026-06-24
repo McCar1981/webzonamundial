@@ -21,6 +21,7 @@ import {
   matchSlug,
 } from "@/lib/match-center/store";
 import { scheduledSnapshot } from "@/lib/match-center/apiFootball";
+import { IN_PLAY, FINISHED } from "@/lib/match-center/status";
 import type { LiveSnapshot } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -36,8 +37,7 @@ const POSTMATCH_MS = 210 * 60_000;
 // de esa franja un partido futuro no puede estar jugándose, así que lo damos por
 // "próximo" sin leer KV (clave para no hacer 100+ lecturas con el cuadro lleno).
 const PREKICK_MS = 30 * 60_000;
-const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
-const FINISHED = new Set(["FT", "AET", "PEN"]);
+// IN_PLAY / FINISHED: conjuntos compartidos en @/lib/match-center/status.
 
 // Slots de PRUEBA/amistosos (id >= 9000): se "montan" sobre KV con un fixture
 // real que cambia de día y de rival, así que su snapshot puede quedar guardado

@@ -67,10 +67,15 @@ export async function GET(
   }
 
   const url = new URL(req.url);
-  // Partidos que nunca simulan: los solo-reales (p.ej. Portugal-Chile) y TODOS
-  // los de fase de grupos. Antes del saque se quedan "por comenzar" con cuenta
-  // atrás; aunque se pida ?sim=1 desde el hub no simulan.
-  const realOnly = REAL_ONLY_IDS.has(matchId) || isGroupStage(meta.phase);
+  // Partidos que nunca simulan: TODO el torneo (cualquier id < 9000, octavos
+  // incluidos), además de los solo-reales y la fase de grupos. ANTI-CHEAT: una
+  // eliminatoria nunca debe caer a un partido INVENTADO con selecciones reales
+  // si api-football falla — violaría la regla de producto "nada inventado". Solo
+  // los slots de prueba (id >= 9000) admiten simulación. Antes del saque los del
+  // torneo se quedan "por comenzar" con cuenta atrás; aunque se pida ?sim=1 desde
+  // el hub no simulan.
+  const isTournamentMatch = matchId < 9000;
+  const realOnly = isTournamentMatch || REAL_ONLY_IDS.has(matchId) || isGroupStage(meta.phase);
   // ?demo=1: simulación de DEMO explícita (botón "Ver demo en vivo"). Fuerza la
   // simulación aunque el partido sea solo-real, para mostrar el Match Center
   // jugándose en vivo con equipos REALES. El cliente marca la pantalla como

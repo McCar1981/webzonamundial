@@ -64,10 +64,18 @@ export async function authoritativeState(matchId: string): Promise<MatchLiveStat
       const finished = FINISHED_STATUSES.includes(snap.status);
       return { live: !finished, minute: snap.elapsed, finished, source: "live", events: snap.events };
     }
-    // si la API falla, caemos a simulación
+    // si la API falla, NO simulamos para un partido del torneo (ver abajo).
   }
 
-  // --- Simulación determinista (minuto derivado del reloj) ---
+  // ANTI-CHEAT: para CUALQUIER partido del torneo (id < 9000) jamás devolvemos un
+  // estado SIMULADO. Las micro-predicciones pagan/retiran Fútcoins reales: pagar
+  // contra eventos inventados (porque la API falló o aún no hay fixture) sería
+  // hacer trampa. Devolvemos null → el endpoint responde "sin datos" y los crones
+  // de liquidación POSPONEN la resolución hasta que vuelva el feed real (mejor
+  // esperar que liquidar mal). Solo los slots de prueba (id >= 9000) simulan.
+  if (id < 9000) return null;
+
+  // --- Simulación determinista (minuto derivado del reloj) — solo slots de prueba ---
   const script = buildSimulation(meta);
   const elapsedSec = (now - kickoffMs) / 1000;
   const finished = elapsedSec >= script.durationSeconds;

@@ -81,6 +81,18 @@ interface RawEvent {
   assist: { name: string | null };
   type: string;
   detail: string;
+  // api-football marca los lanzamientos de la TANDA con comments "Penalty
+  // Shootout" (y elapsed 120). Lo leemos para excluirlos de la cronología.
+  comments?: string | null;
+}
+
+/** ¿Es un lanzamiento de la tanda de penaltis (no un gol del juego)? api-football
+ *  los emite como Goal/Penalty con comments "Penalty Shootout"; algunos feeds no
+ *  rellenan comments, así que reforzamos con elapsed 120 + tipo de penalti. */
+function isShootoutEvent(e: RawEvent): boolean {
+  const c = (e.comments ?? "").toLowerCase();
+  if (c.includes("penalty shootout") || c.includes("shootout")) return true;
+  return e.time.elapsed === 120 && e.type === "Goal" && /penalty/i.test(e.detail);
 }
 interface RawStatBlock {
   team: { id: number };
@@ -248,8 +260,13 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
   // ids de eventos ya vistos → push duplicados, micros duplicadas y
   // re-celebraciones en el cliente. Misma técnica ya probada en
   // src/lib/friendlies/api.ts (eventKey + sufijo #n para colisiones).
+  // Los lanzamientos de la TANDA de penaltis NO son goles del partido: se
+  // EXCLUYEN de la cronología (si no, llegan 5-10 "GOL 120'" que dispararían
+  // pushes engañosos, celebraciones en el campo y un falso 5-3 en el timeline
+  // cuando los 120' acabaron 1-1). El resultado de la tanda viaja aparte en
+  // LiveSnapshot.penalty (score.penalty), que se muestra en el marcador.
   const usedKeys = new Map<string, number>();
-  const events: MatchEvent[] = (rawEvents || []).map((e) => {
+  const events: MatchEvent[] = (rawEvents || []).filter((e) => !isShootoutEvent(e)).map((e) => {
     const minute = e.time.elapsed ?? 0;
     const extra = e.time.extra ?? undefined;
     const side = sideOf(e.team.id);

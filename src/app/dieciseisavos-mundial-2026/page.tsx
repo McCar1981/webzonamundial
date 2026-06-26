@@ -18,6 +18,7 @@ import Link from "next/link";
 import { WC_MATCHES } from "@/lib/calendario/time";
 import { FINISHED_STATUSES, IN_PLAY_STATUSES } from "@/lib/calendario/live";
 import { getLastSnapshotsBulk } from "@/lib/match-center/store";
+import { resolveKnockoutTeams } from "@/lib/grupos/bracket";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
 import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
@@ -146,7 +147,9 @@ function Lado({ name, flag, align }: { name: string; flag: string; align: "left"
 export default async function DieciseisavosPage() {
   const partidos = WC_MATCHES.filter((m) => m.p === "Dieciseisavos").sort((a, b) => a.i - b.i);
   const snaps = await getLastSnapshotsBulk(partidos.map((m) => m.i));
-  const algunoDefinido = partidos.some((m) => m.hf !== "tbd");
+  // Vuelca los 1º/2º reales de los grupos YA CERRADOS (se actualiza cada minuto).
+  const slots = await resolveKnockoutTeams();
+  const algunoDefinido = partidos.some((m) => m.hf !== "tbd" || slots[m.h] || slots[m.a]);
 
   // Agrupar por día (las cadenas YYYY-MM-DD ordenan bien lexicográficamente).
   const dias = [...new Set(partidos.map((m) => m.d))].sort();
@@ -211,10 +214,13 @@ export default async function DieciseisavosPage() {
                   const snap = snaps[m.i];
                   const showScore = !!snap && (FINISHED_STATUSES.has(snap.status) || IN_PLAY_STATUSES.has(snap.status)) && Array.isArray(snap.score);
                   const live = !!snap && IN_PLAY_STATUSES.has(snap.status);
+                  // Prioridad: fixture oficial (hf≠tbd) → volcado calculado → etiqueta de hueco.
+                  const home = m.hf !== "tbd" ? { nombre: m.h, flagCode: m.hf } : slots[m.h];
+                  const away = m.af !== "tbd" ? { nombre: m.a, flagCode: m.af } : slots[m.a];
                   return (
                     <div key={m.i} style={{ border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 14px", background: "rgba(255,255,255,0.02)" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <Lado name={m.h} flag={m.hf} align="left" />
+                        <Lado name={home?.nombre ?? m.h} flag={home?.flagCode ?? m.hf} align="left" />
                         <div style={{ flexShrink: 0, textAlign: "center", minWidth: 44 }}>
                           {showScore ? (
                             <span style={{ color: live ? GREEN : "#fff", fontWeight: 800, fontSize: 16 }}>
@@ -224,7 +230,7 @@ export default async function DieciseisavosPage() {
                             <span style={{ color: DIM, fontSize: 12, fontWeight: 700 }}>VS</span>
                           )}
                         </div>
-                        <Lado name={m.a} flag={m.af} align="right" />
+                        <Lado name={away?.nombre ?? m.a} flag={away?.flagCode ?? m.af} align="right" />
                       </div>
                       <div style={{ marginTop: 8, fontSize: 12, color: DIM, textAlign: "center" }}>
                         {m.vn} · {m.vc}
@@ -239,8 +245,8 @@ export default async function DieciseisavosPage() {
 
         <p style={{ fontSize: 13, color: DIM, margin: "0 0 6px" }}>
           {algunoDefinido
-            ? "Equipos confirmados según la clasificación de grupos; se actualiza con cada resultado."
-            : "Los equipos se confirman al cerrarse la fase de grupos (27 de junio). Hasta entonces verás la posición que ocupará cada hueco; esta página se actualiza sola."}{" "}
+            ? "Los 1º y 2º se confirman en cuanto cierra cada grupo (la página se actualiza sola con cada resultado). Los 8 mejores terceros se asignan a su hueco al terminar toda la fase de grupos."
+            : "Los equipos se confirman en cuanto cierra cada grupo; hasta entonces verás la posición que ocupará cada hueco. Esta página se actualiza sola con cada resultado."}{" "}
           Horarios de cada partido en tu zona horaria en el{" "}
           <Link href="/calendario" style={{ color: GOLD, textDecoration: "none" }}>calendario completo</Link>.
         </p>

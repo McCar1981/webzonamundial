@@ -132,7 +132,7 @@ const CATS: Cat[] = [
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
       { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
-      { icon: "bracket", title: "Bracket", desc: "Predice las llaves y elige tu campeón.", href: "/bracket", cta: "Jugar", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
+      { icon: "bracket", title: "Eliminatorias", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
       { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },

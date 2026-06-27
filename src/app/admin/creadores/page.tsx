@@ -220,13 +220,13 @@ export default async function AdminCreadoresPage() {
                 </select>
               </Field>
               <Field label="Rev share %">
-                <input name="rev_share_pct" type="number" step="0.5" min="0" max="100" defaultValue="40" className={INPUT} />
+                <input name="rev_share_pct" type="number" step="any" min="0" max="100" defaultValue="40" className={INPUT} />
               </Field>
               <Field label="Registros / bono">
                 <input name="bonus_threshold" type="number" min="1" defaultValue="250" className={INPUT} />
               </Field>
               <Field label="Techo mensual €">
-                <input name="bonus_cap_eur" type="number" step="50" min="0" defaultValue="600" className={INPUT} />
+                <input name="bonus_cap_eur" type="number" step="any" min="0" defaultValue="600" className={INPUT} />
               </Field>
             </div>
             <input type="hidden" name="bonus_unit_eur" value="150" />
@@ -384,16 +384,16 @@ function CreatorCard({
                 </select>
               </Field>
               <Field label="Rev share %">
-                <input name="rev_share_pct" type="number" step="0.5" min="0" max="100" defaultValue={String(c.rev_share_pct)} className={INPUT} />
+                <input name="rev_share_pct" type="number" step="any" min="0" max="100" defaultValue={String(c.rev_share_pct)} className={INPUT} />
               </Field>
               <Field label="Registros / bono">
                 <input name="bonus_threshold" type="number" min="1" defaultValue={String(c.bonus_threshold)} className={INPUT} />
               </Field>
               <Field label="Bono € / bloque">
-                <input name="bonus_unit_eur" type="number" step="10" min="1" defaultValue={String(c.bonus_unit_eur)} className={INPUT} />
+                <input name="bonus_unit_eur" type="number" step="any" min="1" defaultValue={String(c.bonus_unit_eur)} className={INPUT} />
               </Field>
               <Field label="Techo mensual €">
-                <input name="bonus_cap_eur" type="number" step="50" min="0" defaultValue={String(c.bonus_cap_eur)} className={INPUT} />
+                <input name="bonus_cap_eur" type="number" step="any" min="0" defaultValue={String(c.bonus_cap_eur)} className={INPUT} />
               </Field>
               <Field label="Ajuste registros (±)">
                 <input name="registros_ajuste" type="number" step="1" defaultValue={String(c.registros_ajuste)} className={INPUT} />
@@ -499,7 +499,7 @@ function CreatorCard({
                       </select>
                     </Field>
                     <Field label="Valor del deal €">
-                      <input name="valor_eur" type="number" step="100" min="0" defaultValue={s.valor_eur ?? ""} className={INPUT} />
+                      <input name="valor_eur" type="number" step="any" min="0" defaultValue={s.valor_eur ?? ""} className={INPUT} />
                     </Field>
                     <Field label="Notas">
                       <input name="notas" defaultValue={s.notas ?? ""} className={INPUT} />

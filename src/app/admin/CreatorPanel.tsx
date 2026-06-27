@@ -65,11 +65,13 @@ export default async function CreatorPanel({ creator }: { creator: CreatorProgra
 
   const mesActual = currentMadridMonth();
   const bonusMes = bonusForMonth(stats.registros_mes, creator);
-  const devengadoBono = totalBonusDevengado(
-    // El mes en curso puede no estar aún en la serie si no hay registros.
-    months.some((m) => m.mes === mesActual) ? months : [...months, { mes: mesActual, registros: stats.registros_mes }],
-    creator
-  );
+  // El mes en curso usa el valor AJUSTADO (reemplaza el real en la serie), para
+  // que el bono refleje el ajuste manual de registros y no los registros reales.
+  const mesesAjustados = [
+    ...months.filter((m) => m.mes !== mesActual),
+    { mes: mesActual, registros: stats.registros_mes },
+  ];
+  const devengadoBono = totalBonusDevengado(mesesAjustados, creator);
   const pagadoBono = sumPayments(payments, "bono");
   const pagadoTotal = sumPayments(payments);
   const pendienteBono = Math.max(0, devengadoBono - pagadoBono);
@@ -116,7 +118,8 @@ export default async function CreatorPanel({ creator }: { creator: CreatorProgra
     ? 100
     : Math.min(100, Math.round(((stats.registros_mes % creator.bonus_threshold) / creator.bonus_threshold) * 100));
 
-  const histBonus = bonusHistory(months, creator).reverse();
+  // Histórico con el mes en curso ajustado (coherente con el devengado/pendiente).
+  const histBonus = bonusHistory(mesesAjustados, creator).reverse();
 
   return (
     <div className="min-h-screen bg-[#060B14] text-white">

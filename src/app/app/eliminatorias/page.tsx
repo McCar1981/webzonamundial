@@ -30,9 +30,15 @@ type KoMatch = {
   kickoff: string | null;
   venue: string | null;
   city: string | null;
-  home: { name: string; flag: string };
-  away: { name: string; flag: string };
+  home: KoTeam;
+  away: KoTeam;
 };
+
+// El servidor ya resuelve el slot al equipo real cuando puede: `name` y `flag`
+// (flagCode) vienen rellenos y `provisional` avisa si el cruce aún puede cambiar
+// (queda jornada por jugar). Si no se ha podido resolver, `flag` es null y `slot`
+// trae la etiqueta cruda ("2A", "3ABCDF", "W74") que humanizamos.
+type KoTeam = { name: string; flag: string | null; slot: string; provisional: boolean };
 
 // Orden y etiqueta de las rondas (las claves coinciden con matches.ts `p`).
 const ROUNDS: { key: string; label: string }[] = [
@@ -44,10 +50,9 @@ const ROUNDS: { key: string; label: string }[] = [
   { key: "FINAL", label: "Final" },
 ];
 
-// Una selección ya clasificada trae bandera real; "tbd" = aún por definir, y el
-// nombre es una etiqueta de slot del calendario que humanizamos.
-function isReal(flag: string): boolean {
-  return !!flag && flag !== "tbd";
+// Hay bandera real cuando el servidor resolvió el slot a una selección.
+function isReal(t: KoTeam): boolean {
+  return !!t.flag;
 }
 function humanizeSlot(label: string): string {
   let m = label.match(/^1([A-L])$/);
@@ -59,8 +64,8 @@ function humanizeSlot(label: string): string {
   return label;
 }
 
-function teamLabel(t: { name: string; flag: string }) {
-  return isReal(t.flag) ? t.name : humanizeSlot(t.name);
+function teamLabel(t: KoTeam): string {
+  return t.flag ? t.name : humanizeSlot(t.slot);
 }
 
 function fmtKickoff(iso: string | null): string {
@@ -125,6 +130,18 @@ export default function EliminatoriasPage() {
           <div style={{ textAlign: "center", color: TXT_MUT, fontSize: 13, padding: "40px 0" }}>Cargando el cuadro…</div>
         )}
 
+        {/* Aviso: cruce calculado en vivo, provisional hasta cerrar los grupos */}
+        {matches !== null && (matches.some((m) => m.home.provisional || m.away.provisional)) && (
+          <div style={{ display: "flex", gap: 9, alignItems: "flex-start", padding: "10px 12px", marginBottom: 18, borderRadius: 12, background: "rgba(201,168,76,0.1)", border: `1px solid ${GOLD}3a` }}>
+            <span aria-hidden style={{ color: GOLD2, flexShrink: 0, marginTop: 1 }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7" /><path d="M12 8h.01M11 12h1v4h1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+            <p style={{ fontSize: 11.5, color: TXT_MUT, lineHeight: 1.5 }}>
+              Cruce calculado con las <strong style={{ color: TXT }}>clasificaciones en vivo</strong>. Los marcados con <span style={{ color: GOLD, fontWeight: 800 }}>*</span> son <strong style={{ color: TXT }}>provisionales</strong>: aún queda jornada y pueden cambiar. Se confirman al cerrar la fase de grupos.
+            </p>
+          </div>
+        )}
+
         {/* Rondas */}
         {matches !== null && ROUNDS.map(({ key, label }) => {
           const list = byRound(key);
@@ -164,10 +181,12 @@ export default function EliminatoriasPage() {
                       {/* equipos + marcador/vs */}
                       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 8 }}>
-                          {isReal(m.home.flag)
+                          {isReal(m.home)
                             ? <img src={`https://flagcdn.com/w40/${m.home.flag}.png`} alt="" width={24} height={16} style={{ borderRadius: 3, flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.4)" }} />
                             : <span aria-hidden style={{ width: 24, height: 16, borderRadius: 3, background: "rgba(255,255,255,0.08)", flexShrink: 0 }} />}
-                          <span style={{ fontSize: 13.5, fontWeight: 800, color: isReal(m.home.flag) ? TXT : TXT_MUT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{teamLabel(m.home)}</span>
+                          <span style={{ fontSize: 13.5, fontWeight: 800, color: isReal(m.home) ? TXT : TXT_MUT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            {teamLabel(m.home)}{m.home.provisional && <span style={{ color: GOLD, fontWeight: 700 }}>*</span>}
+                          </span>
                         </div>
                         {showScore ? (
                           <span style={{ flexShrink: 0, fontSize: 20, fontWeight: 900, letterSpacing: 1, color: "#fff" }}>{m.score[0] ?? 0}<span style={{ color: TXT_MUT, margin: "0 5px" }}>-</span>{m.score[1] ?? 0}</span>
@@ -175,8 +194,10 @@ export default function EliminatoriasPage() {
                           <span style={{ flexShrink: 0, fontSize: 15, fontWeight: 900, color: GOLD2 }}>VS</span>
                         )}
                         <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 8, justifyContent: "flex-end" }}>
-                          <span style={{ fontSize: 13.5, fontWeight: 800, color: isReal(m.away.flag) ? TXT : TXT_MUT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textAlign: "right" }}>{teamLabel(m.away)}</span>
-                          {isReal(m.away.flag)
+                          <span style={{ fontSize: 13.5, fontWeight: 800, color: isReal(m.away) ? TXT : TXT_MUT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textAlign: "right" }}>
+                            {m.away.provisional && <span style={{ color: GOLD, fontWeight: 700 }}>*</span>}{teamLabel(m.away)}
+                          </span>
+                          {isReal(m.away)
                             ? <img src={`https://flagcdn.com/w40/${m.away.flag}.png`} alt="" width={24} height={16} style={{ borderRadius: 3, flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.4)" }} />
                             : <span aria-hidden style={{ width: 24, height: 16, borderRadius: 3, background: "rgba(255,255,255,0.08)", flexShrink: 0 }} />}
                         </div>

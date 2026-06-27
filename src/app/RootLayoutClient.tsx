@@ -18,6 +18,7 @@ import GoalCelebrationGlobal from "@/components/GoalCelebrationGlobal";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
 import AppBottomNav from "@/components/AppBottomNav";
 import UpdateToast from "@/components/UpdateToast";
+import SprintmarktBanner from "@/components/SprintmarktBanner";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -490,6 +491,12 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ AVISO DE VERSIÓN NUEVA — la PWA puede quedarse en un deploy viejo ═══ */}
       <UpdateToast />
+
+      {/* ═══ BANNER DE CASA (Sprintmarkt) — imagen propia de Carlos ═══
+          Promo de la agencia que construye ZonaMundial. Responsive (móvil/
+          escritorio) vía <picture>, enlace a sprintmarkt.com. Solo en el sitio
+          editorial (oculto en /app), justo encima del footer. */}
+      {!pathname?.startsWith("/app") && <SprintmarktBanner />}
 
       {/* ═══ FOOTER ═══
           Solo en el sitio editorial. Dentro de la webapp (/app/*) el footer de

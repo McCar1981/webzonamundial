@@ -21,6 +21,7 @@ import PushPromptCard from "@/components/app/PushPromptCard";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
 import MerchAmazonStrip from "@/components/affiliate/MerchAmazonStrip";
+import SprintmarktBanner from "@/components/SprintmarktBanner";
 import { celebrate, celebratePop, haptic } from "@/lib/celebration";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
@@ -1903,6 +1904,12 @@ export default function AppHubPage() {
             </p>
           )}
         </section>
+
+        {/* ═══ Banner de casa Sprintmarkt en el lobby (petición de Carlos):
+               su agencia, al final del lobby, zona de extras. ═══ */}
+        <div data-reveal>
+          <SprintmarktBanner />
+        </div>
 
         {/* Volver a la portada editorial (escape del redirect por sesión) */}
         <div style={{ textAlign: "center" }}>

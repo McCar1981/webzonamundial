@@ -54,11 +54,24 @@ function cmpRow(a: StandingRow, b: StandingRow): number {
   return b.pts - a.pts || b.gd - a.gd || b.gf - a.gf;
 }
 
+/** Resultado de un partido KO con lo necesario para decidir el ganador. */
+export interface KoResult {
+  status: string;
+  score: [number, number];
+  /** Marcador de la tanda de penaltis si el partido se decidió así (status PEN). */
+  penalty?: [number, number];
+}
+
 /**
  * Construye el mapa etiqueta→selección real. `live` es el LiveMap de TODOS los
- * partidos (grupos + KO), keyed por matchId.
+ * partidos (grupos + KO), keyed por matchId, para las clasificaciones. `koResults`
+ * trae el resultado completo de cada KO (incluida la tanda de penaltis) para
+ * encadenar los ganadores W## correctamente.
  */
-export function resolveKnockoutSlots(live: LiveMap): Map<string, ResolvedTeam> {
+export function resolveKnockoutSlots(
+  live: LiveMap,
+  koResults: Record<number, KoResult> = {},
+): Map<string, ResolvedTeam> {
   const out = new Map<string, ResolvedTeam>();
 
   // 1) Clasificaciones por grupo.
@@ -83,11 +96,14 @@ export function resolveKnockoutSlots(live: LiveMap): Map<string, ResolvedTeam> {
   }
 
   // 3) Mejores terceros + asignación a sus slots.
-  const allDecided = GROUPS.every((g) => decided[g]);
   const thirds = GROUPS
     .filter((g) => played[g] && ordered[g][2])
     .map((g) => ({ group: g, row: ordered[g][2].row, team: ordered[g][2] }));
-  thirds.sort((a, b) => cmpRow(a.row, b.row));
+  // Ranking de terceros: pts → DG → GF y, como desempate determinístico, ranking
+  // FIFA (la FIFA usa fair-play y sorteo, fuera de alcance; el ranking aproxima).
+  thirds.sort(
+    (a, b) => cmpRow(a.row, b.row) || (a.team.rankingFIFA ?? 999) - (b.team.rankingFIFA ?? 999),
+  );
   const qualifiers = thirds.slice(0, 8); // los 8 mejores terceros clasifican
   const qualifierGroups = qualifiers.map((t) => t.group);
 
@@ -123,26 +139,35 @@ export function resolveKnockoutSlots(live: LiveMap): Map<string, ResolvedTeam> {
     const g = groupOfSlot[i];
     if (!g) return;
     const t = qualifiers.find((q) => q.group === g)!;
-    out.set(slot.label, { flagCode: t.team.flagCode, nombre: t.team.nombre, provisional: !allDecided });
+    // Siempre provisional: la selección clasificada es real, pero la asignación
+    // tercero→llave es un emparejamiento válido, no la tabla oficial FIFA. Cuando
+    // el cuadro sea oficial, matches.ts trae el equipo real y manda (provisional:false).
+    out.set(slot.label, { flagCode: t.team.flagCode, nombre: t.team.nombre, provisional: true });
   });
 
-  // 4) Ganadores de rondas KO ya jugadas (W##). Varias pasadas para propagar
-  //    a través de rondas. Solo si hay un ganador claro (sin empate).
+  // 4) Ganadores Y PERDEDORES de rondas KO ya jugadas. Varias pasadas para
+  //    propagar a través de rondas (un W/L puede depender de otro ya resuelto).
+  //    Necesitamos los perdedores (L##) porque el partido por el TERCER PUESTO
+  //    cruza a los perdedores de las semifinales (h:"L101" / a:"L102"). En KO no
+  //    hay empate: FT/AET se deciden por marcador y PEN por la tanda.
   const koMatches = MATCHES.filter((m) => m.i < 9000 && m.p !== "Fase de grupos");
   for (let pass = 0; pass < 6; pass++) {
+    let progressed = false;
     for (const m of koMatches) {
-      const key = `W${m.i}`;
-      if (out.has(key)) continue;
-      const l = live[m.i];
-      if (!l || !FINISHED_STATUSES.has(l.s)) continue;
+      if (out.has(`W${m.i}`)) continue;
+      const res = koResults[m.i];
+      if (!res || !FINISHED_STATUSES.has(res.status)) continue;
       const home = resolveLabel(m.h, out);
       const away = resolveLabel(m.a, out);
       if (!home || !away) continue;
-      const [hg, ag] = l.sc;
-      if (hg === ag) continue; // penaltis no determinables desde el marcador base
-      const win = hg > ag ? home : away;
-      out.set(key, { flagCode: win.flagCode, nombre: win.nombre, provisional: false });
+      const win = koWinner(res, home, away);
+      if (!win) continue; // dato insuficiente (p. ej. PEN sin marcador de tanda)
+      const lose = win.flagCode === home.flagCode ? away : home;
+      out.set(`W${m.i}`, { flagCode: win.flagCode, nombre: win.nombre, provisional: false });
+      out.set(`L${m.i}`, { flagCode: lose.flagCode, nombre: lose.nombre, provisional: false });
+      progressed = true;
     }
+    if (!progressed) break;
   }
 
   return out;
@@ -151,6 +176,19 @@ export function resolveKnockoutSlots(live: LiveMap): Map<string, ResolvedTeam> {
 // Resuelve una etiqueta concreta usando el mapa ya calculado (helper interno).
 function resolveLabel(label: string, map: Map<string, ResolvedTeam>): ResolvedTeam | null {
   return map.get(label) ?? null;
+}
+
+// Ganador de un partido KO terminado: PEN se decide por la tanda; FT/AET por el
+// marcador (en KO no hay empate). Devuelve null si falta el dato para decidir.
+function koWinner(res: KoResult, home: ResolvedTeam, away: ResolvedTeam): ResolvedTeam | null {
+  if (res.status === "PEN") {
+    const p = res.penalty;
+    if (!p || p[0] === p[1]) return null;
+    return p[0] > p[1] ? home : away;
+  }
+  const [hg, ag] = res.score;
+  if (hg === ag) return null;
+  return hg > ag ? home : away;
 }
 
 /** Aplica el mapa a una etiqueta para la respuesta: equipo real o la etiqueta cruda. */

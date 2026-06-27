@@ -23,6 +23,8 @@ export interface CreatorProgramRow {
   bonus_unit_eur: number;
   bonus_cap_eur: number;
   audience_label: string | null;
+  /** Offset manual aplicado al total y al mes (puede ser negativo). 0 = sin ajuste. */
+  registros_ajuste: number;
   active: boolean;
   notes: string | null;
   created_at: string;
@@ -101,6 +103,7 @@ function mapCreator(row: Record<string, unknown>): CreatorProgramRow {
     bonus_unit_eur: Number(row.bonus_unit_eur),
     bonus_cap_eur: Number(row.bonus_cap_eur),
     audience_label: (row.audience_label as string | null) ?? null,
+    registros_ajuste: Number(row.registros_ajuste ?? 0),
     active: Boolean(row.active),
     notes: (row.notes as string | null) ?? null,
     created_at: String(row.created_at),

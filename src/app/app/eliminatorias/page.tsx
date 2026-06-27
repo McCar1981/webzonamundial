@@ -118,12 +118,14 @@ export default function EliminatoriasPage() {
           </div>
         </div>
 
-        {/* CTA al simulador (lo otro, predicción) */}
-        <Link href="/bracket" style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", marginBottom: 18, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(162,121,240,0.18), rgba(255,255,255,0.02))", border: "1px solid rgba(162,121,240,0.4)" }}>
-          <span aria-hidden style={{ fontSize: 18 }}>🔮</span>
+        {/* CTA al predictor de KO sobre el cuadro REAL (no el simulador de grupos) */}
+        <Link href="/app/eliminatorias/predecir" style={{ display: "flex", alignItems: "center", gap: 11, padding: "12px 13px", marginBottom: 18, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(162,121,240,0.18), rgba(255,255,255,0.02))", border: "1px solid rgba(162,121,240,0.4)" }}>
+          <span aria-hidden style={{ flexShrink: 0, color: "#cdb2ff" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h5M9 6v6M9 12h5M4 18h5M9 18v-6M14 12h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </span>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13.5, fontWeight: 800 }}>¿Y tú? Predice el cuadro completo</div>
-            <div style={{ fontSize: 11.5, color: TXT_MUT }}>Simulador: arma las llaves y elige tu campeón</div>
+            <div style={{ fontSize: 13.5, fontWeight: 800 }}>¿Y tú? Predice los cruces</div>
+            <div style={{ fontSize: 11.5, color: TXT_MUT }}>Elige los ganadores: de 16avos a la final</div>
           </div>
           <span style={{ flexShrink: 0, color: GOLD2 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>

@@ -250,6 +250,40 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/bosnia-qatar-wide.webp",
     mobile: "/images/hero/bosnia-qatar-mobile.webp",
   },
+  // ── J3 (27 jun) · piezas SOLO-MÓVIL ─────────────────────────────────────────
+  //   Carlos las subió solo para responsive; aún no hay arte de escritorio, así
+  //   que `wide` reutiliza la cuadrada de móvil como respaldo (en escritorio se
+  //   recorta). Al recibir la pieza apaisada, basta cambiar `wide`.
+  // Jordania vs Argentina (Grupo J).
+  "jordania-argentina": {
+    wide: "/images/hero/jordania-argentina-mobile.webp",
+    mobile: "/images/hero/jordania-argentina-mobile.webp",
+  },
+  // Argelia vs Austria (Grupo J).
+  "argelia-austria": {
+    wide: "/images/hero/argelia-austria-mobile.webp",
+    mobile: "/images/hero/argelia-austria-mobile.webp",
+  },
+  // Colombia vs Portugal (Grupo K).
+  "colombia-portugal": {
+    wide: "/images/hero/colombia-portugal-mobile.webp",
+    mobile: "/images/hero/colombia-portugal-mobile.webp",
+  },
+  // RD Congo vs Uzbekistán (Grupo K).
+  "rd-congo-uzbekistan": {
+    wide: "/images/hero/rd-congo-uzbekistan-mobile.webp",
+    mobile: "/images/hero/rd-congo-uzbekistan-mobile.webp",
+  },
+  // Croacia vs Ghana (Grupo L).
+  "croacia-ghana": {
+    wide: "/images/hero/croacia-ghana-mobile.webp",
+    mobile: "/images/hero/croacia-ghana-mobile.webp",
+  },
+  // Panamá vs Inglaterra (Grupo L).
+  "panama-inglaterra": {
+    wide: "/images/hero/panama-inglaterra-mobile.webp",
+    mobile: "/images/hero/panama-inglaterra-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

@@ -51,6 +51,7 @@ const PATHS: Record<string, string> = {
   fantasy: "M6 3h12v4a6 6 0 0 1-12 0V3Z|M6 5H4a2 2 0 0 0 0 4h1M18 5h2a2 2 0 0 1 0 4h-1M9 21h6M10 13.5V17M14 13.5V17",
   carrera: "M6 3 2 7l2.5 2.5L6 8v13h12V8l1.5 1.5L20 7l-4-4h-2.5L12 5l-1.5-2H8Z",
   album: "M4 4h16v16H4zM4 9h16M9 9v11",
+  bracket: "M4 6h5M9 6v6M9 12h5|M4 18h5M9 18v-6|M14 12h6",
   penaltis: "M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z|M3 21c1.5-3 4.5-5 9-5s7.5 2 9 5",
   matchcenter: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z|M12 3v3l3 2M12 3 9 7l-4 3.5M12 21v-3l-3-2M12 21l3-4 4-3.5",
   micro: "M12 20a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z|M10 3h4M12 6v7l3 2",
@@ -131,6 +132,7 @@ const CATS: Cat[] = [
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
       { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
+      { icon: "bracket", title: "Bracket", desc: "Predice las llaves y elige tu campeón.", href: "/bracket", cta: "Jugar", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
       { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },

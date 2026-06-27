@@ -395,7 +395,14 @@ function CreatorCard({
               <Field label="Techo mensual €">
                 <input name="bonus_cap_eur" type="number" step="50" min="0" defaultValue={String(c.bonus_cap_eur)} className={INPUT} />
               </Field>
+              <Field label="Ajuste registros (±)">
+                <input name="registros_ajuste" type="number" step="1" defaultValue={String(c.registros_ajuste)} className={INPUT} />
+              </Field>
             </div>
+            <p className="text-[11px] text-gray-500 -mt-1 mb-2">
+              Ajuste = offset manual que se suma al total y al mes (y al bono), sin tocar usuarios reales. 0 = cifra
+              real. Ej.: −10 le resta 10 a lo que muestra el panel.
+            </p>
             <Field label="Notas internas">
               <textarea name="notes" rows={2} defaultValue={c.notes ?? ""} className={`${INPUT} w-full`} />
             </Field>

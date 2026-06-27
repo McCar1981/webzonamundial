@@ -53,6 +53,12 @@ function parseCreatorFields(formData: FormData): { fields: Record<string, unknow
     return { error: "El techo mensual no puede ser negativo." };
   }
 
+  // Ajuste manual de registros (offset, puede ser negativo). Ausente = 0.
+  const registros_ajuste = num(formData, "registros_ajuste");
+  if (!Number.isInteger(registros_ajuste) || Math.abs(registros_ajuste) > 100000) {
+    return { error: "Ajuste de registros no válido (entero, máx ±100000)." };
+  }
+
   return {
     fields: {
       display_name,
@@ -63,6 +69,7 @@ function parseCreatorFields(formData: FormData): { fields: Record<string, unknow
       bonus_unit_eur,
       bonus_cap_eur,
       audience_label: String(formData.get("audience_label") ?? "").trim().slice(0, 40) || null,
+      registros_ajuste,
       active: formData.get("active") === "on",
       notes: String(formData.get("notes") ?? "").trim().slice(0, 600) || null,
     },

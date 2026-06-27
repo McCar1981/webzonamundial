@@ -15,7 +15,7 @@ import { MATCHES } from "@/data/matches";
 import { getLastSnapshotsBulk, matchSlug } from "@/lib/match-center/store";
 import { etToDate } from "@/lib/bracket/match-time";
 import type { LiveMap } from "@/lib/calendario/live";
-import { resolveKnockoutSlots, applyResolution } from "@/lib/match-center/knockout-resolve";
+import { resolveKnockoutSlots, applyResolution, type KoResult } from "@/lib/match-center/knockout-resolve";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,7 +39,20 @@ export async function GET() {
     live[m.i] = { s: snap.status, sc: [snap.score?.[0] ?? 0, snap.score?.[1] ?? 0], el: snap.elapsed ?? 0 };
   }
 
-  const resolved = resolveKnockoutSlots(live);
+  // Resultado completo de cada KO (incluida la tanda de penaltis) para encadenar
+  // los ganadores W## correctamente.
+  const koResults: Record<number, KoResult> = {};
+  for (const m of KO) {
+    const snap = snaps[m.i];
+    if (!snap) continue;
+    koResults[m.i] = {
+      status: snap.status,
+      score: [snap.score?.[0] ?? 0, snap.score?.[1] ?? 0],
+      penalty: snap.penalty ? [snap.penalty[0] ?? 0, snap.penalty[1] ?? 0] : undefined,
+    };
+  }
+
+  const resolved = resolveKnockoutSlots(live, koResults);
 
   const matches = KO.map((m) => {
     const snap = snaps[m.i];

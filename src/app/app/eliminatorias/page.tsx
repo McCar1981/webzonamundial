@@ -60,7 +60,7 @@ function humanizeSlot(label: string): string {
   m = label.match(/^2([A-L])$/);
   if (m) return `2.º ${m[1]}`;
   if (/^3[A-L]+$/.test(label)) return "Mejor 3.º";
-  if (/^W\d+$/.test(label)) return "Por definir";
+  if (/^[WL]\d+$/.test(label)) return "Por definir"; // ganador/perdedor de ronda previa
   return label;
 }
 

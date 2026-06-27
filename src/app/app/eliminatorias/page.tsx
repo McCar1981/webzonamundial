@@ -78,6 +78,11 @@ function fmtKickoff(iso: string | null): string {
 export default function EliminatoriasPage() {
   const [matches, setMatches] = useState<KoMatch[] | null>(null);
 
+  // Al abrir, siempre arriba del todo (la navegación SPA puede conservar scroll).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     let on = true;
     const load = () =>
@@ -107,7 +112,7 @@ export default function EliminatoriasPage() {
           </Link>
           <div style={{ minWidth: 0 }}>
             <h1 style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-              Cuadro de <span style={{ color: GOLD2 }}>eliminatorias</span>
+              <span style={{ color: GOLD2 }}>Cruces</span>
             </h1>
             <p style={{ fontSize: 12.5, color: TXT_MUT, marginTop: 2 }}>Fase final del Mundial 2026 · resultados reales</p>
           </div>

@@ -27,7 +27,9 @@ import {
 import LogoutButton from "@/components/admin/LogoutButton";
 
 function withCurrentMonth(months: MonthlyPoint[], mes: string, registrosMes: number): MonthlyPoint[] {
-  return months.some((m) => m.mes === mes) ? months : [...months, { mes, registros: registrosMes }];
+  // Reemplaza el mes en curso con el valor AJUSTADO (no solo lo añade), para que
+  // el bono devengado refleje el ajuste manual de registros.
+  return [...months.filter((m) => m.mes !== mes), { mes, registros: registrosMes }];
 }
 
 const EMPTY_STATS: CreatorStats = {

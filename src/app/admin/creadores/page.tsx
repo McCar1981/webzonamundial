@@ -290,7 +290,10 @@ export default async function AdminCreadoresPage() {
 }
 
 function withCurrentMonth(months: MonthlyPoint[], mesActual: string, registrosMes: number): MonthlyPoint[] {
-  return months.some((m) => m.mes === mesActual) ? months : [...months, { mes: mesActual, registros: registrosMes }];
+  // REEMPLAZA (no solo añade) el mes en curso con el valor AJUSTADO, para que el
+  // bono devengado/pendiente refleje el ajuste manual de registros y no los
+  // registros reales del mes. registrosMes ya trae el offset aplicado.
+  return [...months.filter((m) => m.mes !== mesActual), { mes: mesActual, registros: registrosMes }];
 }
 
 function Card({ label, value, gold }: { label: string; value: string; gold?: boolean }) {

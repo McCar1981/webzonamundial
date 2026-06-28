@@ -54,10 +54,6 @@
       "schedule": "15 */6 * * *"
     },
     {
-      "path": "/api/cron/poll-friendlies",
-      "schedule": "* * * * *"
-    },
-    {
       "path": "/api/cron/match-center-poll",
       "schedule": "* * * * *"
     },

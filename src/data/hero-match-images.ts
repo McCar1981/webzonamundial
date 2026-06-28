@@ -284,6 +284,12 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/panama-inglaterra-mobile.webp",
     mobile: "/images/hero/panama-inglaterra-mobile.webp",
   },
+  // ── Eliminatorias ──────────────────────────────────────────────────────────
+  // Sudáfrica vs Canadá (16avos de final, 28 jun).
+  "sudafrica-canada": {
+    wide: "/images/hero/sudafrica-canada-wide.webp",
+    mobile: "/images/hero/sudafrica-canada-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

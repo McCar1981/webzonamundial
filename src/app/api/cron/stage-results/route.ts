@@ -21,6 +21,7 @@ import { getUnresolvedMatchIds, resolveMatch, type ResolveSummary } from "@/lib/
 import { notifyResolvedMatch } from "@/lib/predictions/engagement";
 import { stageMatchResult, clearStagedResult, resultStoreAvailable } from "@/lib/predictions/result-store";
 import { composeResultFromSnapshot, isFinishedRealSnapshot, ratingsForMatch } from "@/lib/predictions/auto-result";
+import { shouldRunSettlementCron } from "@/lib/match-center/live-window";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,6 +38,15 @@ export async function GET(req: Request) {
 
   const denied = requireCron(req);
   if (denied) return denied;
+
+  // Guarda de coste: las predicciones solo se resuelven alrededor de los partidos
+  // del Mundial (un partido no termina antes de saque+100min, y este puente cierra
+  // su trabajo dentro de la ventana en vivo -30/+210min). Sin ningún partido en
+  // ventana no hay nada que resolver: saltamos la lectura salvo un barrido cada
+  // 15 min. La red de seguridad resolve-predictions (cada 30 min) queda intacta.
+  if (!shouldRunSettlementCron(startMs)) {
+    return NextResponse.json({ ok: true, skipped: "idle" });
+  }
 
   if (!resultStoreAvailable()) {
     return NextResponse.json({ error: "kv_not_configured", message: "KV_REST_API_URL / KV_REST_API_TOKEN requeridos" }, { status: 500 });

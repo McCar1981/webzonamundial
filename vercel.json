@@ -75,7 +75,7 @@
     },
     {
       "path": "/api/stories/generate",
-      "schedule": "*/2 * * * *"
+      "schedule": "*/15 * * * *"
     }
   ]
 }

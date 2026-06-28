@@ -169,8 +169,11 @@ export async function GET() {
   const cdn = IN_PLAY.has(feed.status)
     ? "public, s-maxage=3, stale-while-revalidate=5"
     : "public, s-maxage=10, stale-while-revalidate=20";
+  // `meta` siempre desde matches.ts: un snapshot cacheado de un KO pudo hornearse
+  // con el slot viejo ("2A vs 2B") antes de fijar el rival; la fila actual manda.
+  const freshMeta = buildMeta(servedId);
   return NextResponse.json(
-    { matchId: servedId, slug: matchSlug(servedId), ...feed },
+    { matchId: servedId, slug: matchSlug(servedId), ...feed, ...(freshMeta ? { meta: freshMeta } : {}) },
     {
       headers: { "Cache-Control": cdn },
     },

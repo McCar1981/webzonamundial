@@ -29,7 +29,6 @@ function buildNav(t: Translations) {
       { id: "grupos",      label: t.nav.grupos,      href: "/grupos" },
       { id: "sedes",       label: t.nav.sedes,        href: "/sedes" },
       { id: "calendario",  label: t.nav.calendario,   href: "/calendario" },
-      { id: "amistosos",   label: t.nav.amistosos,    href: "/amistosos" },
       { id: "historia",    label: t.nav.historia,     href: "/historia" },
       { id: "formato",     label: t.nav.formato,      href: "/formato" },
     ]},

@@ -74,7 +74,16 @@ export const config = {
      *  - _next/static, _next/image (Next.js internals)
      *  - favicon, robots, sitemap, manifest, og-image (static assets)
      *  - .png, .jpg, .jpeg, .gif, .svg, .webp, .ico, .css, .js (other static)
+     *  - api/match-center/{live,comments,presence}: endpoints de datos PÚBLICOS
+     *    que el navegador sondea en bucle durante los partidos (snapshot, chat,
+     *    presencia). El middleware hace supabase.auth.getUser() en CADA request,
+     *    que en estos polls de alta frecuencia es coste puro (auth de Supabase +
+     *    invocación edge) sin aportar nada: estas rutas no usan la sesión y
+     *    resuelven su propia identidad cuando hace falta (getCurrentUser en el
+     *    POST de comentarios). La sesión de un usuario logueado SIGUE viva porque
+     *    MicroLive sondea /api/micro/match/[id]/active cada 2-4s (esa ruta NO se
+     *    excluye), refrescando la cookie de forma continua en el Match Center.
      */
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|manifest.json|og-image.jpg|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|manifest.json|og-image.jpg|api/match-center/(?:live|comments|presence)|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|css|js)$).*)",
   ],
 };

@@ -90,7 +90,10 @@ export async function GET(
     if (fixtureId) {
       const cached = await getCachedSnapshot(matchId);
       if (cached) {
-        return NextResponse.json(cached, {
+        // Refrescamos `meta` desde matches.ts: la identidad de los equipos la
+        // manda siempre la fila actual (un snapshot horneado antes de fijar el
+        // rival de un KO traería el slot viejo "2A vs 2B"). Se conserva el estado.
+        return NextResponse.json({ ...cached, meta }, {
           headers: { "Cache-Control": liveCacheHeader(cached.status) },
         });
       }
@@ -112,7 +115,7 @@ export async function GET(
       // API vuelva a responder.
       const last = await getLastSnapshot(matchId);
       if (last) {
-        return NextResponse.json(last, { headers: { "Cache-Control": "no-store" } });
+        return NextResponse.json({ ...last, meta }, { headers: { "Cache-Control": "no-store" } });
       }
       // si la API falla, caemos a simulación (salvo partidos solo-reales)
     }

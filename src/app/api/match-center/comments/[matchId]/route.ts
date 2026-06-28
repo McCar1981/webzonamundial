@@ -33,7 +33,16 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
   const matchId = resolveMatchId(params.matchId);
   if (matchId == null) return NextResponse.json({ error: "bad_id" }, { status: 400 });
   const comments = await getComments(matchId, 60);
-  return NextResponse.json({ comments }, { headers: { "Cache-Control": "no-store" } });
+  // Caché de borde compartida: la lista de comentarios es la MISMA para todos los
+  // espectadores. Con cientos sondeando cada 12s, sin caché cada poll iba a origen
+  // (Function Invocation + Edge Request + eventos de Observability). Con s-maxage=8
+  // se sirve 1 lectura por ventana y el resto desde el edge. swr=15 evita huecos.
+  // El POST escribe en KV al instante, así que cualquier lectura a origen tras
+  // comentar ya incluye el comentario (y el cliente lo añade de forma optimista).
+  return NextResponse.json(
+    { comments },
+    { headers: { "Cache-Control": "public, s-maxage=8, stale-while-revalidate=15" } },
+  );
 }
 
 export async function POST(req: Request, { params }: { params: { matchId: string } }) {

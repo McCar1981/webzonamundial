@@ -91,7 +91,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
   useEffect(() => {
     aliveRef.current = true;
     load();
-    const id = setInterval(load, open ? 12000 : 30000);
+    const id = setInterval(load, open ? 12000 : 60000);
     return () => {
       aliveRef.current = false;
       clearInterval(id);
@@ -139,8 +139,11 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
       }
       const data = (await res.json()) as { comment: Comment };
       setText("");
+      // Add optimista: el comentario se ve al instante. NO hacemos load() aquí:
+      // con la caché de borde (s-maxage=8) un refetch inmediato podría traer la
+      // lista cacheada SIN este comentario y hacerlo "parpadear". El siguiente
+      // poll (12s) ya reconcilia con la caché refrescada (que sí lo incluye).
       if (data.comment) setComments((prev) => [data.comment, ...prev].slice(0, 60));
-      load();
     } catch {
       setErr("Sin conexión. Inténtalo de nuevo.");
     } finally {

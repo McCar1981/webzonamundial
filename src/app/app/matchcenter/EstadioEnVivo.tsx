@@ -17,7 +17,7 @@ const MID = "#8a94b0";
 const RED = "#e63946";
 
 const EMOJIS = ["⚽", "🔥", "👏", "😱", "🙌"];
-const HEARTBEAT_MS = 22_000; // VIEWERS_TTL=60 da holgura (>2x); menos gasto KV
+const HEARTBEAT_MS = 45_000; // VIEWERS_TTL=60 da holgura (<60); ~mitad de POSTs vs 22s
 
 interface Float {
   key: number;

@@ -105,7 +105,20 @@ async function pickFeaturedId(now: number): Promise<number> {
     return m.i; // en juego o por empezar -> este
   }
 
-  return firstWorldCupMatchId();
+  // Ningún programado vigente: en vez de caer al inaugural (que haría parecer que
+  // el torneo "empieza de nuevo"), destacamos el PRÓXIMO partido real por saque
+  // que no haya pasado ya (incluye rondas KO aún sin rival fijado en MATCHES).
+  return nextUpcomingMatchId(now);
+}
+
+/** Próximo partido real por saque que aún no quedó atrás (defensa anti-inaugural). */
+function nextUpcomingMatchId(now: number): number {
+  const upcoming = MATCHES
+    .filter((m) => m.i < TEST_SLOT_MIN)
+    .map((m) => ({ id: m.i, ko: kickoffMs(m.d, m.t) }))
+    .filter((x) => !Number.isNaN(x.ko) && now <= x.ko + POSTMATCH_MS)
+    .sort((a, b) => a.ko - b.ko);
+  return upcoming[0]?.id ?? firstWorldCupMatchId();
 }
 
 /** Mejor feed disponible para un partido (cacheado > último conocido > por

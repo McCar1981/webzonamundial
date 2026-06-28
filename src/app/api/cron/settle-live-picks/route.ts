@@ -14,6 +14,7 @@ import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { adminClient } from "@/lib/predictions/admin";
 import { authoritativeState, settleDuePicks } from "@/lib/predictions/live-picks-store";
+import { shouldRunSettlementCron } from "@/lib/match-center/live-window";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,6 +27,13 @@ export async function GET(req: Request) {
 
   const denied = requireCron(req);
   if (denied) return denied;
+
+  // Guarda de coste: los live-picks solo existen en partidos del Mundial. Sin
+  // ninguno en ventana no hay nada que liquidar; saltamos la lectura a Supabase
+  // salvo el barrido de seguridad periódico (cada 15 min) para los rezagados.
+  if (!shouldRunSettlementCron(startMs)) {
+    return NextResponse.json({ ok: true, skipped: "idle" });
+  }
 
   const admin = adminClient();
   // Todas las parejas (usuario, partido) con picks pendientes.

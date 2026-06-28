@@ -21,6 +21,7 @@ import {
   type SettleSummary,
 } from "@/lib/micro/store";
 import { authoritativeState } from "@/lib/predictions/live-picks-store";
+import { shouldRunSettlementCron } from "@/lib/match-center/live-window";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -40,6 +41,13 @@ export async function GET(req: Request) {
     if (!headerOk && !queryOk) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
+  }
+
+  // Guarda de coste: las micros solo existen en partidos del Mundial. Sin ninguno
+  // en ventana, no hay nada que liquidar; saltamos la lectura a Supabase salvo el
+  // barrido de seguridad periódico (cada 15 min) que caza posibles rezagados.
+  if (!shouldRunSettlementCron(startMs)) {
+    return NextResponse.json({ ok: true, skipped: "idle" });
   }
 
   const due = await getDueMicros();

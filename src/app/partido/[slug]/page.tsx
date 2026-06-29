@@ -140,19 +140,27 @@ export default async function PartidoPage({ params }: { params: Promise<{ slug: 
   const hasStats = !!snap && (finished || inPlay) && snap.stats && (snap.stats.shots[0] + snap.stats.shots[1] > 0 || snap.stats.possession[0] !== 50);
 
   const kickoffIso = snap?.kickoff ?? matchInstant({ d: m.d, t: m.t })?.toISOString();
+  // endDate ≈ saque + 2h (partido + descanso). new Date(iso) es válido en runtime de app.
+  const endIso = kickoffIso ? new Date(new Date(kickoffIso).getTime() + 2 * 60 * 60 * 1000).toISOString() : undefined;
+  // NO usamos superEvent anidado: un SportsEvent exige startDate+location, y un
+  // "torneo padre" sin esos campos lo marca Google como inválido (2 errores
+  // críticos). El partido se describe entero por sí mismo.
   const sportsEventLd = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
     name: `${m.h} vs ${m.a}`,
+    description: `${m.h} vs ${m.a} en el Mundial 2026 (${m.p})${finished && sc ? `: resultado ${sc[0]}-${sc[1]}` : ""}. ${m.vn}, ${m.vc}.`,
     sport: "Soccer",
     ...(kickoffIso ? { startDate: kickoffIso } : {}),
+    ...(endIso ? { endDate: endIso } : {}),
+    eventStatus: "https://schema.org/EventScheduled",
     location: { "@type": "Place", name: m.vn, address: { "@type": "PostalAddress", addressLocality: m.vc } },
+    image: [`https://zonamundial.app${hero?.wide ?? "/og-image.jpg"}`],
+    organizer: { "@type": "Organization", name: "FIFA", url: "https://www.fifa.com" },
     competitor: [
       { "@type": "SportsTeam", name: m.h },
       { "@type": "SportsTeam", name: m.a },
     ],
-    superEvent: { "@type": "SportsEvent", name: "Copa Mundial de la FIFA 2026" },
-    ...(finished && sc ? { description: `${m.h} ${sc[0]}-${sc[1]} ${m.a}` } : {}),
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",

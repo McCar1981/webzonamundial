@@ -157,8 +157,8 @@ export function resolveKnockoutSlots(
       if (out.has(`W${m.i}`)) continue;
       const res = koResults[m.i];
       if (!res || !FINISHED_STATUSES.has(res.status)) continue;
-      const home = resolveLabel(m.h, out);
-      const away = resolveLabel(m.a, out);
+      const home = sideTeam(m.h, m.hf, out);
+      const away = sideTeam(m.a, m.af, out);
       if (!home || !away) continue;
       const win = koWinner(res, home, away);
       if (!win) continue; // dato insuficiente (p. ej. PEN sin marcador de tanda)
@@ -173,8 +173,13 @@ export function resolveKnockoutSlots(
   return out;
 }
 
-// Resuelve una etiqueta concreta usando el mapa ya calculado (helper interno).
-function resolveLabel(label: string, map: Map<string, ResolvedTeam>): ResolvedTeam | null {
+// Equipo de un lado de un partido KO. Si matches.ts ya trae el clasificado real
+// (flag != "tbd", p. ej. los 16avos ya rellenos), se usa ESE; si no, se resuelve
+// la etiqueta de slot ("W74", "1A"...) contra el mapa ya calculado. Sin esto, al
+// rellenar matches.ts con los nombres reales, el encadenado dejaba de encontrar
+// los equipos (buscaba "Sudáfrica" como clave de slot) y los ganadores no subían.
+function sideTeam(label: string, flag: string, map: Map<string, ResolvedTeam>): ResolvedTeam | null {
+  if (flag && flag !== "tbd") return { flagCode: flag, nombre: NOMBRE_BY_FLAG[flag] ?? label, provisional: false };
   return map.get(label) ?? null;
 }
 

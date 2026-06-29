@@ -73,6 +73,59 @@ export async function getGameweekScore(userId: string, gameweek: number): Promis
   return typeof pts === "number" ? pts : null;
 }
 
+// ─── Soporte / Admin (service role, bypassa RLS) ─────────────────────────────
+// Solo se invocan desde rutas /api/admin protegidas (cookie de admin o
+// ADMIN_TOKEN). Permiten reparar la cuenta de OTRO usuario (p. ej. una víctima de
+// un reinicio por error), algo que el cliente RLS no puede hacer.
+
+/** Resuelve userId por nombre de usuario (profiles.username). null si no existe. */
+export async function adminResolveUserId(username: string): Promise<string | null> {
+  const admin = adminClient();
+  const { data } = await admin.from("profiles").select("id").eq("username", username).maybeSingle();
+  return (data as { id?: string } | null)?.id ?? null;
+}
+
+/** Equipo guardado de un usuario, leído con service role (sin RLS). */
+export async function adminGetTeam(userId: string): Promise<FantasyTeamState | null> {
+  const admin = adminClient();
+  const { data } = await admin.from("fantasy_teams").select("state").eq("user_id", userId).maybeSingle();
+  const state = (data as { state?: FantasyTeamState } | null)?.state;
+  if (!state || !Array.isArray(state.slots)) return null;
+  return normalizeTeam(state);
+}
+
+/** Guarda el estado del equipo de un usuario (service role). */
+export async function adminSaveTeamState(userId: string, state: FantasyTeamState): Promise<void> {
+  const admin = adminClient();
+  const { error } = await admin.from("fantasy_teams").upsert(
+    {
+      user_id: userId,
+      team_name: (state.teamName || "Mi Selección").slice(0, 40),
+      state,
+      gameweek: state.gameweek ?? 1,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "user_id" },
+  );
+  if (error) throw error;
+}
+
+/**
+ * Fija los puntos de una jornada de un usuario (service role) y recalcula su
+ * total_points. Para compensaciones de soporte; devuelve el nuevo total.
+ */
+export async function adminSetGameweekScore(userId: string, gameweek: number, points: number): Promise<number> {
+  const admin = adminClient();
+  await admin.from("fantasy_gameweek_scores").upsert(
+    { user_id: userId, gameweek, points: Math.max(0, Math.round(points)), power_up: null },
+    { onConflict: "user_id,gameweek" },
+  );
+  const { data: scores } = await admin.from("fantasy_gameweek_scores").select("points").eq("user_id", userId);
+  const total = (scores ?? []).reduce((sum, s) => sum + ((s as { points?: number }).points ?? 0), 0);
+  await admin.from("fantasy_teams").update({ total_points: total }).eq("user_id", userId);
+  return total;
+}
+
 /**
  * Registra (o actualiza) los puntos de una jornada para el ranking semanal y la
  * auditoría. Lectura propia con RLS; un usuario solo escribe su fila.

@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { matchSlug } from "@/lib/match-center/slug";
 import FlagImage from "@/components/FlagImage";
 import { getPartidosByGrupo } from "@/data/calendario";
 import { getSeleccionBySlug } from "@/data/selecciones";
@@ -257,11 +259,19 @@ export default function CalendarioGrupo({ grupo, groupColor, liveMap = {} }: Pro
                       </div>
                     </div>
 
-                    {/* Stadium info */}
+                    {/* Stadium info + ficha del partido */}
                     <div className="mt-2 text-center">
                       <span className="text-[11px] text-gray-500">
                         {partido.estadio} &middot; {partido.ciudad}
                       </span>
+                      {matchSlug(partido.matchId) && (
+                        <>
+                          {" "}&middot;{" "}
+                          <Link href={`/partido/${matchSlug(partido.matchId)}`} className="text-[11px] font-semibold text-[#c9a84c] hover:underline">
+                            ficha del partido →
+                          </Link>
+                        </>
+                      )}
                     </div>
                   </div>
                 );

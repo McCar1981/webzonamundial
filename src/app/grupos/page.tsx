@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getSeleccionesByGrupo } from '@/data/selecciones';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { MATCHES } from '@/data/matches';
+import { matchSlug } from '@/lib/match-center/slug';
 import { SvgIcon } from '@/components/icons';
 import TablaClasificacion from '@/components/TablaClasificacion';
 import { useTournamentLive } from '@/lib/grupos/useTournamentLive';
@@ -52,9 +53,10 @@ function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string
           const playing = isLive(live);
           const ended = isFinished(live);
           return (
-          <div
+          <Link
             key={m.i}
-            className="rounded-xl border border-white/5 bg-[#060B14] p-3 transition hover:border-[#c9a84c]/20"
+            href={`/partido/${matchSlug(m.i)}`}
+            className="block no-underline rounded-xl border border-white/5 bg-[#060B14] p-3 transition hover:border-[#c9a84c]/20"
             style={playing ? { borderColor: 'rgba(255,107,87,0.30)' } : undefined}
           >
             <div className="flex items-center justify-between gap-2 mb-2">
@@ -89,7 +91,7 @@ function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string
               </span>
               <span className="truncate max-w-[60%]">{m.vc}</span>
             </div>
-          </div>
+          </Link>
           );
         })}
       </div>

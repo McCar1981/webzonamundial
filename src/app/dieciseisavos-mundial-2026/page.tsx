@@ -279,6 +279,7 @@ export default async function DieciseisavosPage() {
           <Link href="/grupos/mejores-terceros" style={{ color: GOLD, textDecoration: "none" }}>mejores terceros</Link> de
           toda la fase de grupos. Con esos 32 equipos arranca la eliminatoria directa: quien pierde, queda fuera.
           Mira <Link href="/que-necesita-cada-seleccion-mundial-2026" style={{ color: GOLD, textDecoration: "none" }}>qué necesita cada selección para pasar a dieciseisavos</Link> en la última jornada.
+          Los 16 ganadores avanzan a los <Link href="/octavos-de-final-mundial-2026" style={{ color: GOLD, textDecoration: "none" }}>octavos de final</Link>.
         </p>
         <p style={{ fontSize: 16, lineHeight: 1.7, margin: "0 0 12px" }}>
           El cuadro de cruces lo fija la FIFA de antemano —cada hueco tiene asignada una posición de grupo y una sede—,

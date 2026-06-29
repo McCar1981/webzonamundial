@@ -37,6 +37,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/grupos/mejores-terceros`, lastModified, changeFrequency: "daily", priority: 0.85 },
     // Cuadro de dieciseisavos: los 16 cruces, fechas y sedes (ronda de 32).
     { url: `${BASE_URL}/dieciseisavos-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
+    // Cuadro de octavos (ronda de 16): se vuelca con los ganadores de dieciseisavos.
+    { url: `${BASE_URL}/octavos-de-final-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
     // Escenarios de la última jornada: qué necesita cada selección + simulador.
     // Cambia con cada resultado de grupos; capta "qué necesita X para clasificar".
     { url: `${BASE_URL}/que-necesita-cada-seleccion-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },

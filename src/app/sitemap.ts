@@ -5,6 +5,8 @@ import { CREADORES } from "@/data/creadores";
 import { getAllMomentSlugs } from "@/data/momentos-iconicos";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 import { getAllPosts as getAllBlogPosts } from "@/lib/blog";
+import { MATCHES } from "@/data/matches";
+import { matchSlug } from "@/lib/match-center/slug";
 import {
   getAllEdiciones,
   getAllJugadoresLegendarios,
@@ -189,8 +191,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
+  // Rutas dinámicas: páginas públicas de partido (solo con equipos reales;
+  // los slots de cuadro aún sin asignar dan 404 y NO se listan).
+  const partidoRoutes: MetadataRoute.Sitemap = MATCHES
+    .filter((m) => m.i < 9000 && m.hf !== "tbd" && m.af !== "tbd")
+    .map((m) => matchSlug(m.i))
+    .filter((s): s is string => !!s)
+    .map((slug) => ({
+      url: `${BASE_URL}/partido/${slug}`,
+      lastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    }));
+
   return [
     ...staticRoutes,
+    ...partidoRoutes,
     ...seleccionRoutes,
     ...sedeRoutes,
     ...grupoRoutes,

@@ -5,7 +5,9 @@
 // de 1-2 partidos como dos tarjetitas flotando en un lienzo vacío.
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { matchSlug } from "@/lib/match-center/slug";
 import { PHASE_COLORS, flagUrl, GOLD } from "@/data/matches";
 import type { Match } from "@/data/matches";
 import { matchInstant, fmtTime } from "@/lib/calendario/time";
@@ -144,6 +146,15 @@ export function MatchRow({ m, tz, live, onClick }: MatchRowProps) {
           {m.vn}
           {m.vc ? ` · ${m.vc}` : ""}
         </span>
+        {m.hf !== "tbd" && m.af !== "tbd" && m.i < 9000 && matchSlug(m.i) && (
+          <Link
+            href={`/partido/${matchSlug(m.i)}`}
+            onClick={(e) => e.stopPropagation()}
+            className="flex-shrink-0 whitespace-nowrap text-[11px] font-bold text-[#c9a84c] hover:underline"
+          >
+            Ficha
+          </Link>
+        )}
         <svg
           className="h-3.5 w-3.5 flex-shrink-0 text-[#4a5570] transition-all group-hover:translate-x-0.5 group-hover:text-[#c9a84c]"
           fill="none"

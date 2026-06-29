@@ -290,6 +290,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/sudafrica-canada-wide.webp",
     mobile: "/images/hero/sudafrica-canada-mobile.webp",
   },
+  // Brasil vs Japón (16avos de final, 29 jun).
+  "brasil-japon": {
+    wide: "/images/hero/brasil-japon-wide.webp",
+    mobile: "/images/hero/brasil-japon-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

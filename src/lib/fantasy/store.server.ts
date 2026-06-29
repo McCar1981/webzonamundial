@@ -60,6 +60,19 @@ export async function saveTeam(userId: string, state: FantasyTeamState): Promise
   if (error) throw error;
 }
 
+/** Puntos ya registrados de una jornada (o null si no hay fila). Lectura propia (RLS). */
+export async function getGameweekScore(userId: string, gameweek: number): Promise<number | null> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("fantasy_gameweek_scores")
+    .select("points")
+    .eq("user_id", userId)
+    .eq("gameweek", gameweek)
+    .maybeSingle();
+  const pts = (data as { points?: number } | null)?.points;
+  return typeof pts === "number" ? pts : null;
+}
+
 /**
  * Registra (o actualiza) los puntos de una jornada para el ranking semanal y la
  * auditoría. Lectura propia con RLS; un usuario solo escribe su fila.

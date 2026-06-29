@@ -6,6 +6,7 @@
 import { getPlayerById, getPlayerPool } from "./players";
 import { buildSlots, getFormation } from "./rules";
 import { longevityFactor } from "./tournament";
+import { playerMatchLocked } from "./fixtures";
 import { BUDGET, MAX_PER_NATION, type FantasyPlayer, type FantasyPos, type SquadSlot } from "./types";
 
 export interface CoachTip {
@@ -88,11 +89,19 @@ export function bestAvailable(pos: FantasyPos, maxPrice: number, ownedIds: Set<s
     .slice(0, limit);
 }
 
-/** Auto-draft: arma un once válido (4-3-3) maximizando valor dentro del presupuesto. */
-export function autoDraft(formationCode = "4-3-3"): { slots: SquadSlot[]; captainId: string | null; viceId: string | null } {
+/**
+ * Auto-draft: arma un once válido (4-3-3) maximizando valor dentro del presupuesto.
+ * Si se pasa `gw`, EXCLUYE a los jugadores CERRADOS por el cierre de 3h de su
+ * partido (los que ya jugaron o están a <3h del saque): incluirlos generaría un
+ * equipo que el servidor rechaza al guardar. Así un usuario que reinicia a mitad
+ * de jornada obtiene un equipo válido y fichable con los jugadores aún disponibles.
+ */
+export function autoDraft(formationCode = "4-3-3", gw?: number): { slots: SquadSlot[]; captainId: string | null; viceId: string | null } {
   const f = getFormation(formationCode);
   const slots = buildSlots(formationCode);
-  const pool = [...getPlayerPool()].filter((p) => p.available).sort((a, b) => value(b) - value(a));
+  const pool = [...getPlayerPool()]
+    .filter((p) => p.available && (gw == null || !playerMatchLocked(p.flag, gw)))
+    .sort((a, b) => value(b) - value(a));
   const nationCount: Record<string, number> = {};
   const taken = new Set<string>();
   let spent = 0;

@@ -17,7 +17,7 @@ import { scoreGameweekLive, snapshotFinished, snapshotStarted } from "./scoring.
 import { validateTeam, transferCost } from "./rules";
 import { isValidGameweek } from "./fixtures";
 import { isFantasyLive } from "./season";
-import { recordGameweekScore } from "./store.server";
+import { recordGameweekScore, getGameweekScore } from "./store.server";
 import type { FantasyTeamState } from "./types";
 
 /** Ids de partido reales de la jornada en los que el equipo tiene jugadores. */
@@ -136,6 +136,12 @@ export async function scoreGameweekFromState(
  * awardGameweekCoins/sweepPendingGameweekCoins. Best-effort: devuelve null si no
  * aplica (pretemporada, equipo incompleto, jornada sin empezar) o si algo falla,
  * sin romper nunca la carga del equipo.
+ *
+ * NUNCA BAJA un puntaje ya registrado de la MISMA jornada: dentro del cierre de
+ * 3h por partido el score solo puede subir (los jugadores que ya jugaron quedan
+ * bloqueados), así que un equipo degradado a media jornada — p. ej. tras un
+ * "Reiniciar" por error — no debe borrar los puntos ya ganados. Conserva el
+ * máximo. La confirmación final (recordGameweekScore directo) sigue mandando.
  */
 export async function recordProvisionalGameweek(
   userId: string,
@@ -147,8 +153,10 @@ export async function recordProvisionalGameweek(
   try {
     const sc = await scoreGameweekFromState(team, gw);
     if (!sc.anyStarted) return null;
-    await recordGameweekScore(userId, gw, sc.net, team.gwLock?.powerUp ?? team.powerUp ?? null);
-    return { gw, points: sc.net };
+    const prevPts = await getGameweekScore(userId, gw);
+    const best = prevPts != null ? Math.max(prevPts, sc.net) : sc.net;
+    await recordGameweekScore(userId, gw, best, team.gwLock?.powerUp ?? team.powerUp ?? null);
+    return { gw, points: best };
   } catch {
     return null;
   }

@@ -61,6 +61,7 @@ export default function FantasyGame() {
   const [toast, setToast] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showCreatorPicker, setShowCreatorPicker] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
   const [authed, setAuthed] = useState<boolean | null>(null);
   // Puntos PROVISIONALES de la jornada en curso (server-authoritative, del GET de
@@ -389,17 +390,34 @@ export default function FantasyGame() {
   );
 
   const doAutoDraft = useCallback(() => {
-    const { slots, captainId, viceId } = autoDraft(team.formation);
+    // Pasa la jornada para que el auto-draft EXCLUYA a los jugadores cerrados por
+    // el cierre de 3h (los que ya jugaron): así el equipo generado es válido y se
+    // puede guardar, incluso reconstruyendo a mitad de jornada.
+    const { slots, captainId, viceId } = autoDraft(team.formation, team.gameweek);
     update((t) => ({ ...t, slots, captainId, viceId }));
     flash("Auto-draft IA completado.");
     setTab("equipo");
-  }, [team.formation, update, flash]);
+  }, [team.formation, team.gameweek, update, flash]);
 
+  // "Reiniciar" SOLO limpia el borrador editable (alineación, capitán, formación,
+  // chip armado). PRESERVA el progreso del torneo: puntos, historial, plantilla
+  // confirmada, chips ya gastados y la jornada. Así un reinicio (sobre todo si es
+  // por error) nunca cuesta puntos ni la posición en el ranking. Pasa por una
+  // confirmación previa (ver confirmReset).
   const resetTeam = useCallback(() => {
+    const fresh = defaultTeam();
     clearTeam();
-    setTeam({ ...defaultTeam(), teamName: team.teamName, creatorSlug: team.creatorSlug ?? null });
-    flash("Equipo reiniciado.");
-  }, [team.teamName, team.creatorSlug, flash]);
+    setTeam((t) => ({
+      ...t,
+      slots: fresh.slots,
+      captainId: null,
+      viceId: null,
+      formation: fresh.formation,
+      powerUp: null,
+    }));
+    setConfirmReset(false);
+    flash("Borrador reiniciado · tus puntos y posición están a salvo.");
+  }, [flash]);
 
   // Elegir creador más adelante (quien no lo hizo al registrarse). Opcional:
   // a quien no elige a nadie no se le marca nada. Marca el equipo y lo persiste.
@@ -629,7 +647,7 @@ export default function FantasyGame() {
             onSetFormation={setFormation}
             onSetPowerUp={setPowerUp}
             onAutoDraft={doAutoDraft}
-            onReset={resetTeam}
+            onReset={() => setConfirmReset(true)}
             formations={FORMATIONS}
             wide={isWide}
           />
@@ -657,6 +675,29 @@ export default function FantasyGame() {
       {showOnboarding && <Onboarding onClose={dismissOnboarding} onAutoDraft={doAutoDraft} />}
 
       {showCreatorPicker && <CreatorPicker onClose={() => setShowCreatorPicker(false)} onPick={chooseCreator} />}
+
+      {confirmReset && (
+        <div onClick={() => setConfirmReset(false)} style={{ position: "fixed", inset: 0, zIndex: 60, background: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: 380, width: "100%", background: BG2, border: `1px solid ${GOLD}44`, borderRadius: 18, padding: 22, boxShadow: "0 20px 60px rgba(0,0,0,0.6)" }}>
+            <div style={{ fontSize: 18, fontWeight: 900, color: "#fff", marginBottom: 8 }}>¿Reiniciar tu alineación?</div>
+            <p style={{ fontSize: 13, lineHeight: 1.6, color: MID, margin: "0 0 8px" }}>
+              Esto vacía tu <b>alineación actual</b> para que la rearmes desde cero.
+            </p>
+            <p style={{ fontSize: 13, lineHeight: 1.6, color: GREEN, fontWeight: 700, margin: "0 0 18px" }}>
+              ✓ Tus <b>puntos</b>, tu <b>historial</b> y tu <b>posición en el ranking</b> NO se pierden.
+            </p>
+            {liveGw && liveGw.gw === team.gameweek && (
+              <p style={{ fontSize: 12, lineHeight: 1.55, color: GOLD2, margin: "0 0 18px" }}>
+                Ojo: la jornada está en juego. Los jugadores cuyo partido ya empezó quedan cerrados y no podrás volver a alinearlos hasta la próxima jornada.
+              </p>
+            )}
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => setConfirmReset(false)} style={{ flex: 1, padding: "11px 0", borderRadius: 10, border: "1px solid rgba(255,255,255,0.18)", background: "transparent", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer" }}>Cancelar</button>
+              <button onClick={resetTeam} style={{ flex: 1, padding: "11px 0", borderRadius: 10, border: "none", background: RED, color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer" }}>Reiniciar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

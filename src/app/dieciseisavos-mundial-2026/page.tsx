@@ -19,6 +19,7 @@ import { WC_MATCHES } from "@/lib/calendario/time";
 import { FINISHED_STATUSES, IN_PLAY_STATUSES } from "@/lib/calendario/live";
 import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import { resolveKnockoutTeams } from "@/lib/grupos/bracket";
+import { matchSlug } from "@/lib/match-center/slug";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
 import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
@@ -234,6 +235,9 @@ export default async function DieciseisavosPage() {
                       </div>
                       <div style={{ marginTop: 8, fontSize: 12, color: DIM, textAlign: "center" }}>
                         {m.vn} · {m.vc}
+                        {m.hf !== "tbd" && m.af !== "tbd" && matchSlug(m.i) ? (
+                          <> · <Link href={`/partido/${matchSlug(m.i)}`} style={{ color: GOLD, textDecoration: "none" }}>ficha del partido →</Link></>
+                        ) : null}
                       </div>
                     </div>
                   );

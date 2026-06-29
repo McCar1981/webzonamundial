@@ -55,7 +55,9 @@ function resolveOr404(slug: string) {
   const id = resolveMatchId(slug);
   if (id == null) return null;
   const m = MATCHES.find((x) => x.i === id);
-  if (!m || m.hf === "tbd" || m.af === "tbd") return null; // slot sin asignar → no indexable
+  // Excluir partidos de prueba/amistosos (i>=9000) y slots de cuadro sin asignar:
+  // NO deben ser páginas públicas indexables del Mundial (mismo criterio que el sitemap).
+  if (!m || m.i >= 9000 || m.hf === "tbd" || m.af === "tbd") return null;
   return m;
 }
 
@@ -144,7 +146,6 @@ export default async function PartidoPage({ params }: { params: Promise<{ slug: 
     name: `${m.h} vs ${m.a}`,
     sport: "Soccer",
     ...(kickoffIso ? { startDate: kickoffIso } : {}),
-    eventStatus: inPlay ? "https://schema.org/EventScheduled" : "https://schema.org/EventScheduled",
     location: { "@type": "Place", name: m.vn, address: { "@type": "PostalAddress", addressLocality: m.vc } },
     competitor: [
       { "@type": "SportsTeam", name: m.h },

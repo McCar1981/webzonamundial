@@ -76,6 +76,22 @@ export function gameweekFirstKickoff(gw: number): Date | null {
 }
 
 /**
+ * Jornada Fantasy VIGENTE del torneo según el calendario real: la mayor jornada
+ * cuyo primer partido ya empezó. Sirve para AUTO-AVANZAR a los usuarios que se
+ * quedaron en una jornada antigua (el avance manual por "Confirmar" dejaba a casi
+ * todos atascados). Antes del pitido inicial devuelve 1; con el torneo acabado,
+ * TOTAL_GAMEWEEKS.
+ */
+export function currentGameweek(ref: Date = new Date()): number {
+  let cur = 1;
+  for (let gw = 1; gw <= TOTAL_GAMEWEEKS; gw++) {
+    const first = gameweekFirstKickoff(gw);
+    if (first && ref.getTime() >= first.getTime()) cur = gw;
+  }
+  return cur;
+}
+
+/**
  * Bloqueo del plan Free: la plantilla se congela desde `lockHours` horas antes
  * del primer kickoff de la jornada hasta que la jornada termina (Pro hace
  * sustituciones en vivo). Si el calendario no es resoluble, no bloquea.

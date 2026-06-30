@@ -177,6 +177,65 @@ export async function adminSetGameweekScore(userId: string, gameweek: number, po
 }
 
 /**
+ * BARRIDO (service role): desatasca de golpe a TODOS los usuarios que se quedaron
+ * en una jornada antigua, llevándolos a la VIGENTE. Mismo criterio seguro que
+ * autoAdvanceGameweeks: NO recalcula puntos (anti-retrovisor), solo ARRASTRA el
+ * score ya registrado de cada jornada saltada; las Fútcoins las paga el barrido
+ * por usuario (sweepPendingGameweekCoins) en su próximo GET. Idempotente: a quien
+ * ya está en la jornada vigente no lo toca. Devuelve cuántos avanzó.
+ */
+export async function adminAutoAdvanceAll(): Promise<{ scanned: number; advanced: number; target: number }> {
+  const target = currentGameweek();
+  if (!isFantasyLive()) return { scanned: 0, advanced: 0, target };
+  const admin = adminClient();
+  const { data: teams } = await admin.from("fantasy_teams").select("user_id,state").lt("gameweek", target);
+  const rows = (teams ?? []) as { user_id: string; state: FantasyTeamState | null }[];
+
+  // Scores ya registrados (user → gw → puntos) para arrastrar sin recalcular.
+  const { data: scoreRows } = await admin.from("fantasy_gameweek_scores").select("user_id,gameweek,points");
+  const scoreMap = new Map<string, Map<number, number>>();
+  for (const s of (scoreRows ?? []) as { user_id: string; gameweek: number; points: number }[]) {
+    let m = scoreMap.get(s.user_id);
+    if (!m) { m = new Map(); scoreMap.set(s.user_id, m); }
+    m.set(s.gameweek, s.points ?? 0);
+  }
+
+  let advanced = 0;
+  for (const row of rows) {
+    if (!row.state || !Array.isArray(row.state.slots)) continue;
+    let t = normalizeTeam(row.state);
+    const userScores = scoreMap.get(row.user_id);
+    let guard = 0;
+    let changed = false;
+    while (t.gameweek < target && isValidGameweek(t.gameweek) && gameweekIsOver(t.gameweek) && guard++ < TOTAL_GAMEWEEKS) {
+      const gw = t.gameweek;
+      const already = t.history.some((h) => h.gw === gw);
+      const pts = already ? 0 : userScores?.get(gw) ?? 0;
+      t = {
+        ...t,
+        history: already ? t.history : [...t.history, { gw, points: pts, powerUp: null }],
+        gameweek: Math.min(TOTAL_GAMEWEEKS, gw + 1),
+        committedSlots: t.slots.map((s) => ({ ...s })),
+        freeTransfers: FREE_TRANSFERS,
+        powerUp: null,
+        gwLock: null,
+      };
+      changed = true;
+    }
+    if (changed) {
+      t = { ...t, totalPoints: t.history.reduce((a, h) => a + (h.points || 0), 0) };
+      try {
+        await adminSaveTeamState(row.user_id, t);
+        advanced++;
+      } catch {
+        /* sigue con el resto de usuarios */
+      }
+    }
+  }
+  return { scanned: rows.length, advanced, target };
+}
+
+/**
  * Registra (o actualiza) los puntos de una jornada para el ranking semanal y la
  * auditoría. Lectura propia con RLS; un usuario solo escribe su fila.
  *

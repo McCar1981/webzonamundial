@@ -295,6 +295,21 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/brasil-japon-wide.webp",
     mobile: "/images/hero/brasil-japon-mobile.webp",
   },
+  // Francia vs Suecia (16avos, 30 jun).
+  "francia-suecia": {
+    wide: "/images/hero/francia-suecia-wide.webp",
+    mobile: "/images/hero/francia-suecia-mobile.webp",
+  },
+  // C. de Marfil vs Noruega (16avos, 30 jun).
+  "c-de-marfil-noruega": {
+    wide: "/images/hero/c-de-marfil-noruega-wide.webp",
+    mobile: "/images/hero/c-de-marfil-noruega-mobile.webp",
+  },
+  // México vs Ecuador (16avos, 30 jun).
+  "mexico-ecuador": {
+    wide: "/images/hero/mexico-ecuador-wide.webp",
+    mobile: "/images/hero/mexico-ecuador-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

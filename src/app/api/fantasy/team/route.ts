@@ -8,7 +8,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
+import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, autoAdvanceGameweeks, getFavCreator } from "@/lib/fantasy/store.server";
 import { scoreGameweekFromState, recordProvisionalGameweek } from "@/lib/fantasy/scoring.server";
 import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff, playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
 import { isFantasyLive } from "@/lib/fantasy/season";
@@ -79,12 +79,17 @@ export async function GET() {
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   // favCreator permite marcar el equipo con el creador del registro: el cliente
   // lo aplica al crear el equipo (o lo backfillea si aún no lo tenía).
-  const [team, favCreator] = await Promise.all([getTeam(user.id), getFavCreator(user.id)]);
-  // Total PROVISIONAL en vivo: puntúa la jornada en curso con datos reales y la
-  // registra como provisional, para que el header, el ranking y las ligas se
-  // muevan SIN esperar a confirmar la jornada entera (que dura varios días). Va
-  // ANTES del barrido de Fútcoins para que, si la jornada acaba de cerrar, las
-  // monedas se abonen sobre el provisional ya registrado. Best-effort.
+  const [teamRaw, favCreator] = await Promise.all([getTeam(user.id), getFavCreator(user.id)]);
+  // AUTO-AVANCE: si el usuario se quedó atascado en una jornada antigua (el
+  // avance era manual y casi nadie confirmaba), lo lleva a la jornada VIGENTE del
+  // torneo arrastrando los puntos ya registrados. Va PRIMERO para que todo lo de
+  // abajo (provisional, monedas) opere sobre la jornada correcta. Best-effort.
+  const team = teamRaw ? await autoAdvanceGameweeks(user.id, teamRaw).catch(() => teamRaw) : null;
+  // Total PROVISIONAL en vivo: puntúa la jornada EN CURSO (ya avanzada) con datos
+  // reales y la registra como provisional, para que el header, el ranking y las
+  // ligas se muevan SIN esperar a confirmar la jornada entera. Va ANTES del
+  // barrido de Fútcoins para que, si la jornada acaba de cerrar, las monedas se
+  // abonen sobre el provisional ya registrado. Best-effort.
   const liveGameweek = team ? await recordProvisionalGameweek(user.id, team) : null;
   // Al abrir el juego, abona cualquier Fútcoin pendiente de una jornada ya cerrada
   // que se confirmó "pronto" (sus partidos acabaron antes que el cierre de ventana).

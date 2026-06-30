@@ -9,10 +9,11 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { fantasyGameweekReward } from "@/lib/economy/earn";
-import { isValidGameweek, gameweekIsOver } from "./fixtures";
+import { isValidGameweek, gameweekIsOver, currentGameweek, TOTAL_GAMEWEEKS } from "./fixtures";
+import { isFantasyLive } from "./season";
 import { excludedInClause } from "@/lib/ranking-exclusions";
 import { normalizeTeam } from "./store";
-import type { FantasyTeamState } from "./types";
+import { FREE_TRANSFERS, type FantasyTeamState } from "./types";
 
 // ─── Equipo del usuario ──────────────────────────────────────────────────────
 export async function getTeam(userId: string): Promise<FantasyTeamState | null> {
@@ -71,6 +72,55 @@ export async function getGameweekScore(userId: string, gameweek: number): Promis
     .maybeSingle();
   const pts = (data as { points?: number } | null)?.points;
   return typeof pts === "number" ? pts : null;
+}
+
+/**
+ * AUTO-AVANCE de jornada. El avance era 100% manual (el usuario pulsaba
+ * "Confirmar"), así que la inmensa mayoría se quedaba clavada en una jornada
+ * antigua mientras el torneo avanzaba. Esto lleva el puntero del usuario desde su
+ * jornada actual hasta la VIGENTE del torneo, saltando las jornadas ya cerradas.
+ *
+ * SEGURO ANTE RETROVISOR: NO recalcula puntos de jornadas pasadas (eso permitiría
+ * a un usuario nuevo fichar a los goleadores de ayer y cobrar retroactivamente).
+ * Solo ARRASTRA el score YA REGISTRADO de cada jornada (el provisional que quedó
+ * grabado mientras esa jornada estuvo vigente para él); las jornadas sin registro
+ * cuentan 0. Las Fútcoins las paga sweepPendingGameweekCoins (idempotente). Por
+ * cada jornada saltada replica el "advance" del cliente: fija committedSlots,
+ * repone fichajes, desarma el chip y limpia el lock. Idempotente y best-effort:
+ * si nada cambia, no escribe. Devuelve el equipo (avanzado o el mismo).
+ */
+export async function autoAdvanceGameweeks(userId: string, team: FantasyTeamState): Promise<FantasyTeamState> {
+  if (!isFantasyLive()) return team;
+  const target = currentGameweek();
+  let t = team;
+  let guard = 0;
+  while (
+    t.gameweek < target &&
+    isValidGameweek(t.gameweek) &&
+    gameweekIsOver(t.gameweek) &&
+    guard++ < TOTAL_GAMEWEEKS
+  ) {
+    const gw = t.gameweek;
+    const already = t.history.some((h) => h.gw === gw);
+    // Arrastra el score ya registrado de esa jornada (provisional → final); nunca
+    // lo recalcula con la alineación actual.
+    const recorded = already ? null : await getGameweekScore(userId, gw).catch(() => null);
+    t = {
+      ...t,
+      history: already ? t.history : [...t.history, { gw, points: recorded ?? 0, powerUp: null }],
+      gameweek: Math.min(TOTAL_GAMEWEEKS, gw + 1),
+      committedSlots: t.slots.map((s) => ({ ...s })),
+      freeTransfers: FREE_TRANSFERS,
+      powerUp: null,
+      gwLock: null,
+    };
+  }
+  if (t !== team) {
+    // Mantiene el total del cliente coherente con la suma de jornadas registradas.
+    t = { ...t, totalPoints: t.history.reduce((a, h) => a + (h.points || 0), 0) };
+    await saveTeam(userId, t);
+  }
+  return t;
 }
 
 // ─── Soporte / Admin (service role, bypassa RLS) ─────────────────────────────

@@ -104,7 +104,7 @@ export const MATCHES: Match[] = [
   { "i": 75, "g": "", "p": "Dieciseisavos", "j": 0, "h": "P. Bajos", "hf": "nl", "a": "Marruecos", "af": "ma", "d": "2026-06-29", "t": "21:00", "vn": "Estadio BBVA", "vc": "Monterrey", "vf": "mx" },
   { "i": 76, "g": "", "p": "Dieciseisavos", "j": 0, "h": "Brasil", "hf": "br", "a": "Japón", "af": "jp", "d": "2026-06-29", "t": "13:00", "vn": "NRG Stadium", "vc": "Houston", "vf": "us" },
   { "i": 77, "g": "", "p": "Dieciseisavos", "j": 0, "h": "Francia", "hf": "fr", "a": "Suecia", "af": "se", "d": "2026-06-30", "t": "17:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
-  { "i": 78, "g": "", "p": "Dieciseisavos", "j": 0, "h": "C. de Marfil", "hf": "ci", "a": "Noruega", "af": "no", "d": "2026-06-30", "t": "14:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
+  { "i": 78, "g": "", "p": "Dieciseisavos", "j": 0, "h": "C. de Marfil", "hf": "ci", "a": "Noruega", "af": "no", "d": "2026-06-30", "t": "13:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
   { "i": 79, "g": "", "p": "Dieciseisavos", "j": 0, "h": "México", "hf": "mx", "a": "Ecuador", "af": "ec", "d": "2026-06-30", "t": "21:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
   { "i": 80, "g": "", "p": "Dieciseisavos", "j": 0, "h": "Inglaterra", "hf": "gb-eng", "a": "RD Congo", "af": "cd", "d": "2026-07-01", "t": "12:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
   { "i": 81, "g": "", "p": "Dieciseisavos", "j": 0, "h": "EE.UU.", "hf": "us", "a": "Bosnia", "af": "ba", "d": "2026-07-01", "t": "20:00", "vn": "Levi's Stadium", "vc": "Bay Area", "vf": "us" },

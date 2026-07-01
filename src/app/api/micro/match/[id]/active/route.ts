@@ -7,15 +7,35 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getActiveMicro, latestClosedMicro, myMicroResponses, currentFireChain, latestResolvedResult } from "@/lib/micro/store";
+import { getActiveMicro, latestClosedMicro, myMicroResponses, currentFireChain, latestResolvedResult, type MicroRow } from "@/lib/micro/store";
 import { fireTier } from "@/lib/micro/micro";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// Caché EN MEMORIA (por instancia) de la micro ACTIVA. Es la parte COMPARTIDA del
+// endpoint: la misma para todos los espectadores del partido. Sin esto, cada poll
+// de cada navegador (cada 2-4s) hacía una lectura a Supabase — y para un usuario
+// anónimo era su ÚNICA lectura. Con las instancias de Vercel calientes durante un
+// partido, cientos de polls/seg se sirven de memoria y solo 1 por ventana toca
+// Supabase. Coste cero (no usa KV/Upstash). Desfase máx 2s: imperceptible (la
+// ventana de respuesta es 15s y el aviso llega antes por push). El cliente calcula
+// su cuenta atrás desde closes_at (absoluto), así que 2s de antigüedad no la altera.
+const ACTIVE_TTL_MS = 2000;
+const activeCache = new Map<string, { at: number; value: MicroRow | null }>();
+
+async function getActiveMicroCached(matchId: string): Promise<MicroRow | null> {
+  const now = Date.now();
+  const hit = activeCache.get(matchId);
+  if (hit && now - hit.at < ACTIVE_TTL_MS) return hit.value;
+  const value = await getActiveMicro(matchId);
+  activeCache.set(matchId, { at: now, value });
+  return value;
+}
+
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   const matchId = params.id;
-  const micro = await getActiveMicro(matchId);
+  const micro = await getActiveMicroCached(matchId);
 
   // ?arrival=1 → primer sondeo tras cargar la página (típicamente al tocar el
   // push). Si la ventana ya venció, devolvemos la última micro cerrada para que

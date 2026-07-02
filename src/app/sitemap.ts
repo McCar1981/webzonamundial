@@ -32,6 +32,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`, lastModified, changeFrequency: "daily", priority: 1.0 },
     { url: `${BASE_URL}/registro`, changeFrequency: "monthly", priority: 0.9 },
+    // Landing del plan Pro (la única página que vende suscripciones). Con su
+    // canonical propio ya no es duplicado de la home; entra al sitemap para
+    // captar búsqueda transaccional ("app predicciones pro", etc.).
+    { url: `${BASE_URL}/pro`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/creadores`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/calendario`, lastModified, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE_URL}/grupos`, lastModified, changeFrequency: "daily", priority: 0.9 },

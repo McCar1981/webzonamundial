@@ -13,7 +13,10 @@ import ProPanel from "./ProPanel";
 export const metadata: Metadata = {
   title: "Plan Pro: juega sin límites | ZonaMundial",
   description:
-    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 15 €/año.",
+    "Predicciones sin límites, IA Coach ilimitada, fantasy en vivo, Modo Carrera infinito, ligas privadas, sin anuncios y estadísticas avanzadas. Desde 20 €/año.",
+  // Canonical propio: sin esto hereda "/" del layout raíz y Google la trata
+  // como duplicado de la home (es la única página que vende suscripciones).
+  alternates: { canonical: "/pro" },
 };
 
 export const dynamic = "force-dynamic";

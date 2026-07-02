@@ -26,6 +26,16 @@ import { grantCoins } from "@/lib/economy/wallet";
 import { isPro } from "@/lib/pro/entitlement";
 import { consumeDailyQuota } from "@/lib/pro/quota";
 import { FREE_LIMITS } from "@/lib/pro/limits";
+import { monedasPorCalificacion, puntosPorCalificacion } from "@/lib/draft/simulacion";
+
+// Tope de recompensa por partida que sostiene la economía única de Fútcoins.
+// El cliente manda `coins`/`xp`, pero NUNCA se acreditan a ciegas: se acotan al
+// máximo legítimo derivado de la calificación (server-authoritative), igual que
+// hacen el resto de módulos. calcularBonusCampana da como mucho 30 (campeón) y
+// solo la campaña SUMA monedas; el XP solo se reduce por penalización, así que
+// el techo de XP es puntosPorCalificacion. Con esto, minar Fútcoins infinitas
+// vía POST deja de ser posible: el peor caso es el máximo de un jugador legítimo.
+const MAX_BONUS_CAMPANA_COINS = 30;
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -103,9 +113,16 @@ export async function POST(req: Request) {
   }
 
   // ── 2) Acreditar monedas (solo usuarios autenticados y dentro del tope) ─
+  // Anti-exploit: se acotan las monedas/XP entrantes al máximo legítimo de la
+  // calificación server-side. Nunca se confía en el `coins`/`xp` del cliente.
+  const maxCoins = monedasPorCalificacion(calificacion) + MAX_BONUS_CAMPANA_COINS;
+  const maxXp = puntosPorCalificacion(calificacion);
+  const safeCoins = Math.min(Math.max(0, Math.floor(Number(coins) || 0)), maxCoins);
+  const safeXp = Math.min(Math.max(0, Math.floor(Number(xp) || 0)), maxXp);
+
   let grant: { coinsAwarded: number; xpAwarded: number } | null = null;
 
-  if (user && !limiteAgotado && coins > 0) {
+  if (user && !limiteAgotado && safeCoins > 0) {
     // Idempotencia: un solo claim por resultado
     const { data: existingClaim } = await admin
       .from("draft_claims")
@@ -115,8 +132,8 @@ export async function POST(req: Request) {
       .maybeSingle();
 
     if (!existingClaim) {
-      // Acreditar
-      grant = await grantCoins(user.id, coins, xp, {
+      // Acreditar (importe acotado server-side, no el del cliente)
+      grant = await grantCoins(user.id, safeCoins, safeXp, {
         module: "draft-mundial",
         seasonXp: true,
       });

@@ -14,7 +14,12 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { COMPETITIONS, getCompetition } from "@/data/competitions";
-import { getCompetitionFixtures, type CompetitionFixture } from "@/lib/competitions/api";
+import {
+  getCompetitionFixtures,
+  getCompetitionStandings,
+  type CompetitionFixture,
+  type StandingsGroup,
+} from "@/lib/competitions/api";
 import LocalTime from "./LocalTime";
 
 export const revalidate = 60;
@@ -97,16 +102,59 @@ function groupByDay(fixtures: CompetitionFixture[]): { day: string; sample: stri
   return [...map.entries()].map(([day, items]) => ({ day, sample: items[0].kickoff, items }));
 }
 
+function StandingsTable({ groups }: { groups: StandingsGroup[] }) {
+  return (
+    <section style={{ marginTop: 34 }}>
+      <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Clasificación</h2>
+      {groups.map((g) => (
+        <div key={g.group} style={{ marginTop: 14 }}>
+          {groups.length > 1 && (
+            <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, marginBottom: 4 }}>{g.group}</div>
+          )}
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, tableLayout: "fixed" }}>
+            <thead>
+              <tr style={{ color: DIM, fontSize: 11 }}>
+                <th style={{ textAlign: "left", padding: "6px 4px", fontWeight: 500, width: 24 }}>#</th>
+                <th style={{ textAlign: "left", padding: "6px 4px", fontWeight: 500 }}>Equipo</th>
+                <th style={{ textAlign: "center", padding: "6px 2px", fontWeight: 500, width: 30 }}>PJ</th>
+                <th style={{ textAlign: "center", padding: "6px 2px", fontWeight: 500, width: 38 }}>DG</th>
+                <th style={{ textAlign: "center", padding: "6px 2px", fontWeight: 500, width: 34 }}>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {g.rows.map((r) => (
+                <tr key={r.team.id} style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  <td style={{ padding: "8px 4px", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.rank}</td>
+                  <td style={{ padding: "8px 4px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 7, maxWidth: "100%" }}>
+                      {r.team.logo ? <img src={r.team.logo} alt="" width={18} height={18} loading="lazy" style={{ width: 18, height: 18, objectFit: "contain", flexShrink: 0 }} /> : null}
+                      <span style={{ color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{r.team.name}</span>
+                    </span>
+                  </td>
+                  <td style={{ padding: "8px 2px", textAlign: "center", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.played}</td>
+                  <td style={{ padding: "8px 2px", textAlign: "center", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.goalsDiff > 0 ? `+${r.goalsDiff}` : r.goalsDiff}</td>
+                  <td style={{ padding: "8px 2px", textAlign: "center", color: "#fff", fontWeight: 500, fontVariantNumeric: "tabular-nums" }}>{r.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </section>
+  );
+}
+
 export default async function LigaPage({ params }: { params: { slug: string } }) {
   const comp = getCompetition(params.slug);
   if (!comp) notFound();
 
-  const [upcoming, recent] = await Promise.all([
+  const [upcoming, recent, standings] = await Promise.all([
     getCompetitionFixtures(comp.apiFootballId, { next: 15 }),
     getCompetitionFixtures(comp.apiFootballId, { last: 8 }),
+    getCompetitionStandings(comp.apiFootballId),
   ]);
   const days = groupByDay(upcoming);
-  const hasData = upcoming.length > 0 || recent.length > 0;
+  const hasData = upcoming.length > 0 || recent.length > 0 || standings.length > 0;
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
@@ -134,6 +182,8 @@ export default async function LigaPage({ params }: { params: { slug: string } })
                 ))}
               </section>
             )}
+
+            {standings.length > 0 && <StandingsTable groups={standings} />}
 
             {recent.length > 0 && (
               <section style={{ marginTop: 34 }}>

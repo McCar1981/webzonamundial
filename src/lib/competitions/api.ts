@@ -175,3 +175,73 @@ export async function getCompetitionFixtures(
   const rows = await apiGet<RawFixtureRow[]>(`/fixtures?${params.toString()}`);
   return (rows ?? []).map(mapFixture);
 }
+
+// ─── Clasificación por competición ───────────────────────────────────────────
+// api-football devuelve `standings` como array de GRUPOS (cada uno un array de
+// filas): las ligas de tabla única traen 1 grupo ("Serie A"), MLS 2 conferencias,
+// las copas varios grupos ("Group A"…). El mapper es agnóstico al nº de grupos.
+// Puede venir vacío (offseason —Liga MX entre Clausura y Apertura— o fase KO sin
+// tabla): en ese caso [] y la UI oculta la sección.
+
+export interface StandingRow {
+  rank: number;
+  team: CompetitionTeam;
+  points: number;
+  played: number;
+  win: number;
+  draw: number;
+  lose: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalsDiff: number;
+  form: string | null; // "WWDLW" (últimos resultados), null si la API no lo trae
+  group: string; // "Serie A" / "Western Conference" / "Group A"
+}
+
+export interface StandingsGroup {
+  group: string;
+  rows: StandingRow[];
+}
+
+interface RawStandingRow {
+  rank: number;
+  team: { id: number; name: string; logo: string };
+  points: number;
+  goalsDiff: number;
+  group: string;
+  form: string | null;
+  all: { played: number; win: number; draw: number; lose: number; goals: { for: number; against: number } };
+}
+interface RawStandingsLeague {
+  league: { standings: RawStandingRow[][] };
+}
+
+function mapStandingRow(r: RawStandingRow): StandingRow {
+  return {
+    rank: r.rank,
+    team: r.team,
+    points: r.points,
+    played: r.all.played,
+    win: r.all.win,
+    draw: r.all.draw,
+    lose: r.all.lose,
+    goalsFor: r.all.goals.for,
+    goalsAgainst: r.all.goals.against,
+    goalsDiff: r.goalsDiff,
+    form: r.form,
+    group: r.group,
+  };
+}
+
+export async function getCompetitionStandings(
+  apiFootballId: number,
+  season?: number,
+): Promise<StandingsGroup[]> {
+  const s = season ?? (await resolveCurrentSeason(apiFootballId));
+  if (s == null) return [];
+  const rows = await apiGet<RawStandingsLeague[]>(`/standings?league=${apiFootballId}&season=${s}`);
+  const groups = rows?.[0]?.league?.standings ?? [];
+  return groups
+    .filter((g) => g.length > 0)
+    .map((g) => ({ group: g[0].group, rows: g.map(mapStandingRow) }));
+}

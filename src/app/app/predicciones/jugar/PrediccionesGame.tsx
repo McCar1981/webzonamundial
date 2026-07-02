@@ -912,6 +912,7 @@ function QuickActionsNav() {
         <Link href="/app/predicciones/jugar/ranking" style={pillLink}><Trophy size={13} /> Ranking</Link>
         <Link href="/app/predicciones/jugar/ligas" style={pillLink}><Users size={13} /> Ligas</Link>
         <Link href="/app/predicciones/jugar/stats" style={pillLink}><TrendingUp size={13} /> Mis stats</Link>
+        <Link href="/app/tu-mundial" style={pillLink}>Tu Mundial</Link>
       </nav>
     </section>
   );

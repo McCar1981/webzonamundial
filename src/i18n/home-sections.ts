@@ -54,7 +54,7 @@ export const homeSections = {
       title3b: "no la que",
       title4: "necesita.",
       para:
-        "En ZonaMundial no hacemos lo mínimo. Hacemos lo máximo. Predicciones, fantasy, trivia, streaming, IA coach y una comunidad de millones. Todo en un solo lugar. Todo gratis.",
+        "En ZonaMundial no hacemos lo mínimo. Hacemos lo máximo. Predicciones, fantasy, trivia, streaming, IA coach y una comunidad que vive el fútbol. Todo en un solo lugar. Todo gratis.",
       highlight1: "Sin anuncios intrusivos.",
       highlight2: "Sin letra pequeña.",
       highlight3: "Solo fútbol puro.",
@@ -177,7 +177,7 @@ export const homeSections = {
         { title: "Directos en vivo", desc: "Sigue transmisiones en vivo con tus creadores favoritos." },
         { title: "Reacciones reales", desc: "Vive cada jugada con reacciones auténticas y sin filtros." },
         { title: "Análisis experto", desc: "Estadísticas, tácticas y opiniones de quienes más saben." },
-        { title: "Comunidad única", desc: "Conecta con millones de fanáticos que comparten tu pasión." },
+        { title: "Comunidad única", desc: "Conecta con aficionados que comparten tu pasión." },
       ],
       creatorsTitle: "Conoce a los creadores",
       creatorsSubA: "creadores oficiales. Elige tu favorito y vive el Mundial con su comunidad.",
@@ -420,9 +420,9 @@ export const homeSections = {
         after: "con el Founders Pass",
       },
       proof: {
-        boldCount: "8.642 aficionados",
-        afterBold: "ya están jugando",
-        sub: "Se suman ~180 cada día",
+        boldCount: "Juega gratis",
+        afterBold: "con la comunidad de ZonaMundial",
+        sub: "Sin tarjeta · sin descargas",
         avatarAlt: "Creador",
       },
       slider: {
@@ -496,7 +496,7 @@ export const homeSections = {
       title3b: "not the one",
       title4: "it needs.",
       para:
-        "At ZonaMundial we don't do the bare minimum. We do the maximum. Predictions, fantasy, trivia, streaming, an AI coach and a community of millions. All in one place. All free.",
+        "At ZonaMundial we don't do the bare minimum. We do the maximum. Predictions, fantasy, trivia, streaming, an AI coach and a community that lives football. All in one place. All free.",
       highlight1: "No intrusive ads.",
       highlight2: "No fine print.",
       highlight3: "Just pure football.",
@@ -616,7 +616,7 @@ export const homeSections = {
         { title: "Live broadcasts", desc: "Follow live streams with your favorite creators." },
         { title: "Real reactions", desc: "Live every play with authentic, unfiltered reactions." },
         { title: "Expert analysis", desc: "Stats, tactics and opinions from those who know best." },
-        { title: "Unique community", desc: "Connect with millions of fans who share your passion." },
+        { title: "Unique community", desc: "Connect with fans who share your passion." },
       ],
       creatorsTitle: "Meet the creators",
       creatorsSubA:
@@ -853,9 +853,9 @@ export const homeSections = {
         after: "with the Founders Pass",
       },
       proof: {
-        boldCount: "8,642 fans",
-        afterBold: "are already playing",
-        sub: "~180 join every day",
+        boldCount: "Play free",
+        afterBold: "with the ZonaMundial community",
+        sub: "No card · no downloads",
         avatarAlt: "Creator",
       },
       slider: {

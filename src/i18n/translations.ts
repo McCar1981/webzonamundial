@@ -653,7 +653,7 @@ const translations = {
       featuresTitle: "Features Premium detalladas",
       cta: {
         title: "¿Listo para el máximo potencial?",
-        desc: "Únete a miles de usuarios que ya disfrutan de la experiencia Premium completa.",
+        desc: "Desbloquea la experiencia Premium completa del Mundial 2026, hasta la final.",
         btn: "Hazte Pro →",
         hint: "Cancela cuando quieras · Pago seguro con Stripe",
       },
@@ -2590,7 +2590,7 @@ const translations = {
       featuresTitle: "Detailed Premium features",
       cta: {
         title: "Ready to unlock your full potential?",
-        desc: "Join thousands of users already enjoying the full Premium experience.",
+        desc: "Unlock the full Premium World Cup 2026 experience, all the way to the final.",
         btn: "Go Pro →",
         hint: "Cancel anytime · Secure payment with Stripe",
       },

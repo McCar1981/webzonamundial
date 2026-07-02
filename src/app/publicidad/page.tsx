@@ -40,11 +40,11 @@ export default function PublicidadPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14, marginTop: 20 }}>
             <Stat value="LATAM + ES" label="Mercado principal de la afición" />
             <Stat value="Diario" label="Frecuencia de uso durante el Mundial" />
-            <Stat value="[X usuarios activos/mes — completar]" label="Audiencia propia (MAU)" />
-            <Stat value="[X usuarios activos/día — completar]" label="Audiencia propia (DAU)" />
+            <Stat value="Orgánico" label="Origen principal del tráfico (búsqueda Google)" />
+            <Stat value="Móvil" label="Dispositivo mayoritario de la audiencia" />
           </div>
           <p style={{ color: DIM, fontSize: 13, marginTop: 14 }}>
-            Las cifras de audiencia propia (DAU/MAU) se facilitan bajo demanda con datos actualizados en el momento de la propuesta.
+            Las cifras exactas de audiencia (usuarios activos, impresiones y clics de Search Console) se facilitan bajo demanda con datos actualizados al momento de la propuesta.
           </p>
         </Section>
 

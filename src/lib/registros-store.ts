@@ -21,9 +21,9 @@
  *  - `registros:records:list` — List of JSON records (LPUSH = latest first).
  *    Source of truth for export.
  *
- * The number shown to visitors uses BASE_COUNT (1247) + unique-emails
- * count, matching the prior /api/waitlist contract so the home banner
- * doesn't visually regress.
+ * The number shown to visitors is the real unique-emails count. BASE_COUNT
+ * was a hardcoded vanity floor (8642) that inflated the public counter; set
+ * to 0 so the counter never claims more registrations than there really are.
  */
 
 import { promises as fs } from "node:fs";
@@ -33,7 +33,7 @@ import { kv } from "@vercel/kv";
 // Public counter baseline. Anything stored as a real email will be added
 // on top of this number when /api/waitlist and /api/registro return the
 // public count.
-export const BASE_COUNT = 8642;
+export const BASE_COUNT = 0;
 
 export type RegistroKind = "full" | "waitlist";
 

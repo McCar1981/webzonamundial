@@ -444,10 +444,9 @@ function StatsBar() {
   const { locale } = useLanguage();
   const t = homeSections[locale].hero.stats;
   const stats: Array<{ ic: keyof typeof ICON_PATHS; n: string; l: string }> = [
-    // Cifra real y coherente con el bloque "8.642 aficionados ya están en la
-    // lista". El "+2.5M usuarios activos" anterior era falso y contradecía
-    // esa cifra en la misma pantalla (hallazgo de la auditoría AdSense).
-    { ic: "users", n: "+8.6k", l: t.users },
+    // Solo datos verificables del torneo. Se retiró la stat de "usuarios
+    // registrados" (+8.6k) por ser una cifra fabricada (venía del vanity
+    // BASE_COUNT=8642, ahora 0); no mostramos números de audiencia inventados.
     { ic: "shield", n: "16", l: t.venues },
     { ic: "globe", n: "48", l: t.teams },
     { ic: "target", n: "12", l: t.groups },

@@ -126,10 +126,10 @@ function StandingsTable({ groups }: { groups: StandingsGroup[] }) {
                 <tr key={r.team.id} style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                   <td style={{ padding: "8px 4px", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.rank}</td>
                   <td style={{ padding: "8px 4px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 7, maxWidth: "100%" }}>
+                    <Link href={`/ligas/equipo/${r.team.id}`} style={{ display: "inline-flex", alignItems: "center", gap: 7, maxWidth: "100%", textDecoration: "none" }}>
                       {r.team.logo ? <img src={r.team.logo} alt="" width={18} height={18} loading="lazy" style={{ width: 18, height: 18, objectFit: "contain", flexShrink: 0 }} /> : null}
                       <span style={{ color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{r.team.name}</span>
-                    </span>
+                    </Link>
                   </td>
                   <td style={{ padding: "8px 2px", textAlign: "center", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.played}</td>
                   <td style={{ padding: "8px 2px", textAlign: "center", color: DIM, fontVariantNumeric: "tabular-nums" }}>{r.goalsDiff > 0 ? `+${r.goalsDiff}` : r.goalsDiff}</td>

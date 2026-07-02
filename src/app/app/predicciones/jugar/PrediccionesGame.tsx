@@ -258,12 +258,19 @@ export default function PrediccionesGame() {
   // de authed); este flag lo garantiza.
   const deepLinkDone = useRef(false);
 
-  // Partidos seleccionables (fase de grupos, en orden de calendario).
-  const groupMatches = useMemo(
-    () => MATCHES.filter((m) => m.p === "Fase de grupos").sort((a, b) => a.i - b.i),
+  // Partidos seleccionables: fase de grupos + eliminatorias con equipos ya
+  // definidos (los cruces aún "tbd" y el amistoso demo quedan fuera). El backend
+  // ya resuelve KO (prórroga/penaltis) y el cupo Free cuenta por día natural en
+  // cualquier fase (allMatchIdsOnDate), así que aquí basta con abrir la UI a las
+  // rondas jugables; las siguientes aparecen solas al rellenarse sus cruces.
+  const playableMatches = useMemo(
+    () =>
+      MATCHES.filter(
+        (m) => m.p !== "Amistoso" && m.hf !== "tbd" && m.af !== "tbd",
+      ).sort((a, b) => a.i - b.i),
     [],
   );
-  const selectedMatch = useMemo(() => groupMatches.find((m) => String(m.i) === matchId) ?? null, [groupMatches, matchId]);
+  const selectedMatch = useMemo(() => playableMatches.find((m) => String(m.i) === matchId) ?? null, [playableMatches, matchId]);
 
   useEffect(() => {
     const supa = createSupabaseBrowserClient();
@@ -463,7 +470,7 @@ export default function PrediccionesGame() {
           Logros, Tienda) plegada al fondo como "Misiones y recompensas" para no
           tapar el partido. El flujo prioriza llegar rápido a "Predecir ahora". */}
       {!selectedMatch && (
-        <LandingView matches={groupMatches} onPick={selectMatch} />
+        <LandingView matches={playableMatches} onPick={selectMatch} />
       )}
 
       {/* Vista de detalle: flujo enfocado de predicción del partido */}
@@ -833,7 +840,8 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
   }, [matches, nowMs]);
 
   const groupLetters = useMemo(() => {
-    const set = new Set(matches.map((m) => m.g));
+    // Solo letras de grupo (A-L); los KO tienen g="" y se ven en "Todos".
+    const set = new Set(matches.map((m) => m.g).filter(Boolean));
     return [...set].sort();
   }, [matches]);
 
@@ -1415,17 +1423,31 @@ function GroupGrid({ matches, onPick, mine, live }: { matches: Match[]; onPick: 
     for (const r of mine?.recent_results ?? []) map.set(r.match_id, r);
     return map;
   }, [mine]);
-  const groups = useMemo(() => {
-    const map = new Map<string, Match[]>();
+  // Secciones: grupos (A-L) primero y luego las rondas de eliminatorias en orden
+  // de cuadro. Los KO no tienen letra de grupo (g===""), así que se agrupan por
+  // fase y se titulan con su nombre ("Dieciseisavos", "Octavos de final"…).
+  const sections = useMemo(() => {
+    const KO_ORDER: Record<string, number> = {
+      "Dieciseisavos": 1, "Octavos de final": 2, "Cuartos de final": 3,
+      "Semifinal": 4, "Tercer puesto": 5, "FINAL": 6,
+    };
+    const map = new Map<string, { label: string; letter: string; order: number; ms: Match[] }>();
     for (const m of matches) {
-      const arr = map.get(m.g) ?? [];
-      arr.push(m);
-      map.set(m.g, arr);
+      const isGroup = m.p === "Fase de grupos";
+      const key = isGroup ? `G:${m.g}` : `K:${m.p}`;
+      const entry = map.get(key) ?? {
+        label: isGroup ? `Grupo ${m.g}` : m.p,
+        letter: isGroup ? m.g : "",
+        order: isGroup ? 0 : (KO_ORDER[m.p] ?? 9),
+        ms: [] as Match[],
+      };
+      entry.ms.push(m);
+      map.set(key, entry);
     }
-    return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    return [...map.values()].sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
   }, [matches]);
 
-  if (!groups.length) {
+  if (!sections.length) {
     return (
       <section className="pj-wrap" style={{ paddingTop: 16 }}>
         <div style={{ textAlign: "center", color: DIM, fontSize: 14, padding: "40px 16px", background: BG3, border: CARD_BORDER, borderRadius: 16 }}>
@@ -1439,17 +1461,19 @@ function GroupGrid({ matches, onPick, mine, live }: { matches: Match[]; onPick: 
     <section className="pj-wrap" style={{ paddingTop: 16 }}>
       <h2 style={sectionTitle}>Más partidos para predecir</h2>
       <div className="group-grid">
-        {groups.map(([g, ms]) => (
-          <div key={g} className="group-card" style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
+        {sections.map((sec) => (
+          <div key={sec.label} className="group-card" style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 13 }}>
               <span style={{ fontSize: 14, fontWeight: 900, color: GOLD, letterSpacing: 0.5, display: "inline-flex", alignItems: "center", gap: 8 }}>
-                <span style={{ width: 26, height: 26, borderRadius: 8, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{g}</span>
-                Grupo {g}
+                {sec.letter && (
+                  <span style={{ width: 26, height: 26, borderRadius: 8, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{sec.letter}</span>
+                )}
+                {sec.label}
               </span>
-              <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
+              <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{sec.ms.length} {sec.ms.length === 1 ? "partido" : "partidos"}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} live={live[String(m.i)]} result={resultByMatch.get(String(m.i))} />)}
+              {sec.ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} live={live[String(m.i)]} result={resultByMatch.get(String(m.i))} />)}
             </div>
           </div>
         ))}

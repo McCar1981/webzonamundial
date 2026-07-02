@@ -176,6 +176,39 @@ export async function getCompetitionFixtures(
   return (rows ?? []).map(mapFixture);
 }
 
+// ─── Partidos del catálogo en vivo / de una fecha (portada) ───────────────────
+// Una SOLA llamada a api-football (todas las ligas) filtrada a nuestro catálogo,
+// para la franja "En vivo y de hoy" del hub. Cada fixture lleva el slug de su
+// competición para poder enlazar a su Centro de Partido.
+
+export interface CatalogFixture extends CompetitionFixture {
+  competitionSlug: string;
+  competitionShort: string;
+}
+
+async function catalogFixturesFrom(query: string): Promise<CatalogFixture[]> {
+  const { COMPETITIONS } = await import("@/data/competitions");
+  const byId = new Map(COMPETITIONS.map((c) => [c.apiFootballId, c]));
+  const rows = await apiGet<RawFixtureRow[]>(`/fixtures?${query}`);
+  const out: CatalogFixture[] = [];
+  for (const r of rows ?? []) {
+    const comp = byId.get(r.league.id);
+    if (!comp) continue;
+    out.push({ ...mapFixture(r), competitionSlug: comp.slug, competitionShort: comp.short });
+  }
+  return out;
+}
+
+/** Partidos del catálogo EN VIVO ahora mismo. */
+export async function getCatalogLiveFixtures(): Promise<CatalogFixture[]> {
+  return catalogFixturesFrom("live=all");
+}
+
+/** Partidos del catálogo de una fecha (YYYY-MM-DD, UTC). */
+export async function getCatalogFixturesOnDate(dateIso: string): Promise<CatalogFixture[]> {
+  return catalogFixturesFrom(`date=${dateIso}`);
+}
+
 // ─── Clasificación por competición ───────────────────────────────────────────
 // api-football devuelve `standings` como array de GRUPOS (cada uno un array de
 // filas): las ligas de tabla única traen 1 grupo ("Serie A"), MLS 2 conferencias,

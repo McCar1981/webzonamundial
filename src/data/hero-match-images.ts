@@ -310,6 +310,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/mexico-ecuador-wide.webp",
     mobile: "/images/hero/mexico-ecuador-mobile.webp",
   },
+  // España vs Austria (16avos, 2 jul).
+  "espana-austria": {
+    wide: "/images/hero/espana-austria-wide.webp",
+    mobile: "/images/hero/espana-austria-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

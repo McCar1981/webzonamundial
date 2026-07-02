@@ -7,6 +7,7 @@ import { getAllPublicNoticias } from "@/lib/noticias-store";
 import { getAllPosts as getAllBlogPosts } from "@/lib/blog";
 import { MATCHES } from "@/data/matches";
 import { matchSlug } from "@/lib/match-center/slug";
+import { COMPETITIONS } from "@/data/competitions";
 import {
   getAllEdiciones,
   getAllJugadoresLegendarios,
@@ -211,8 +212,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
+  // Zona de Ligas: pantalla pública por competición (activo SEO programático del
+  // pivote — "liga mx calendario", "brasileirão resultados"…). Datos del catálogo.
+  const ligaRoutes: MetadataRoute.Sitemap = COMPETITIONS.map((c) => ({
+    url: `${BASE_URL}/ligas/${c.slug}`,
+    changeFrequency: "daily",
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
+    ...ligaRoutes,
     ...partidoRoutes,
     ...seleccionRoutes,
     ...sedeRoutes,

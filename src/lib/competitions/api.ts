@@ -245,3 +245,90 @@ export async function getCompetitionStandings(
     .filter((g) => g.length > 0)
     .map((g) => ({ group: g[0].group, rows: g.map(mapStandingRow) }));
 }
+
+// ─── Detalle de un partido (Centro de Partido) ───────────────────────────────
+// api-football embebe eventos + alineaciones + estadísticas en /fixtures?id= (1
+// request en vez de 4). Sirve para previa (sin eventos), en vivo y post-partido.
+
+export interface FixtureEvent {
+  minute: number | null;
+  type: string; // Goal, Card, subst, Var
+  detail: string; // "Normal Goal", "Yellow Card", "Substitution 1"…
+  teamId: number;
+  player: string | null;
+  assist: string | null;
+}
+
+export interface FixtureLineup {
+  teamId: number;
+  teamName: string;
+  formation: string | null;
+  startXI: string[]; // nombres del once
+}
+
+export interface FixtureStat {
+  teamId: number;
+  items: { type: string; value: string | number | null }[];
+}
+
+export interface FixtureDetail {
+  fixture: CompetitionFixture;
+  events: FixtureEvent[];
+  lineups: FixtureLineup[];
+  stats: FixtureStat[];
+}
+
+interface RawEvent {
+  time: { elapsed: number | null };
+  team: { id: number };
+  player: { name: string | null };
+  assist: { name: string | null };
+  type: string;
+  detail: string;
+}
+interface RawLineup {
+  team: { id: number; name: string };
+  formation: string | null;
+  startXI: { player: { name: string | null } }[];
+}
+interface RawStatBlock {
+  team: { id: number };
+  statistics: { type: string; value: string | number | null }[];
+}
+interface RawFixtureDetailRow extends RawFixtureRow {
+  events?: RawEvent[];
+  lineups?: RawLineup[];
+  statistics?: RawStatBlock[];
+}
+
+export async function getFixtureDetail(fixtureId: number): Promise<FixtureDetail | null> {
+  const rows = await apiGet<RawFixtureDetailRow[]>(`/fixtures?id=${fixtureId}`);
+  const r = rows?.[0];
+  if (!r) return null;
+  return {
+    fixture: mapFixture(r),
+    events: (r.events ?? []).map((e) => ({
+      minute: e.time.elapsed,
+      type: e.type,
+      detail: e.detail,
+      teamId: e.team.id,
+      player: e.player?.name ?? null,
+      assist: e.assist?.name ?? null,
+    })),
+    lineups: (r.lineups ?? []).map((l) => ({
+      teamId: l.team.id,
+      teamName: l.team.name,
+      formation: l.formation,
+      startXI: (l.startXI ?? []).map((p) => p.player?.name ?? "—"),
+    })),
+    stats: (r.statistics ?? []).map((s) => ({
+      teamId: s.team.id,
+      items: (s.statistics ?? []).map((x) => ({ type: x.type, value: x.value })),
+    })),
+  };
+}
+
+// ─── Detalle de un partido (Centro de Partido read-only) ─────────────────────
+// /fixtures?id= devuelve los bloques EMBEBIDOS (eventos + alineaciones + stats)
+// en UNA sola request — el mismo truco de cuota que usa el Match Center del
+// Mundial. Verificado en vivo (Cruzeiro-Fluminense: 16 eventos, 2 lineups,

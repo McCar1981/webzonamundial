@@ -68,7 +68,7 @@ function TeamName({ name, logo, align }: { name: string; logo: string; align: "l
   );
 }
 
-function FixtureRow({ f }: { f: CompetitionFixture }) {
+function FixtureRow({ f, slug }: { f: CompetitionFixture; slug: string }) {
   const finished = FINISHED.has(f.status);
   const live = LIVE.has(f.status);
   let center: ReactNode;
@@ -85,11 +85,11 @@ function FixtureRow({ f }: { f: CompetitionFixture }) {
     center = <span style={{ fontSize: 13.5, color: DIM, fontVariantNumeric: "tabular-nums" }}><LocalTime iso={f.kickoff} mode="time" fallback={timeFallback(f.kickoff)} /></span>;
   }
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <Link href={`/ligas/${slug}/${f.fixtureId}`} style={{ display: "flex", alignItems: "center", gap: 8, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none", color: "inherit" }}>
       <TeamName name={f.home.name} logo={f.home.logo} align="right" />
       <div style={{ minWidth: 64, textAlign: "center" }}>{center}</div>
       <TeamName name={f.away.name} logo={f.away.logo} align="left" />
-    </div>
+    </Link>
   );
 }
 
@@ -177,7 +177,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
                     <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: "capitalize" }}>
                       <LocalTime iso={g.sample} mode="date" fallback={dateFallback(g.sample)} />
                     </div>
-                    {g.items.map((f) => <FixtureRow key={f.fixtureId} f={f} />)}
+                    {g.items.map((f) => <FixtureRow key={f.fixtureId} f={f} slug={comp.slug} />)}
                   </div>
                 ))}
               </section>
@@ -189,7 +189,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
               <section style={{ marginTop: 34 }}>
                 <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Resultados recientes</h2>
                 <div style={{ marginTop: 8 }}>
-                  {recent.slice().reverse().map((f) => <FixtureRow key={f.fixtureId} f={f} />)}
+                  {recent.slice().reverse().map((f) => <FixtureRow key={f.fixtureId} f={f} slug={comp.slug} />)}
                 </div>
               </section>
             )}

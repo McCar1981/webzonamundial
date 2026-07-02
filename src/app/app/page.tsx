@@ -132,6 +132,7 @@ const CATS: Cat[] = [
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
+      { icon: "matchcenter", title: "Zona de Ligas", desc: "Ligas y copas del mundo en vivo. Predice cada partido y gana Fútcoins.", href: "/ligas", cta: "Explorar", estado: "Nuevo", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "bracket", title: "Cruces", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },

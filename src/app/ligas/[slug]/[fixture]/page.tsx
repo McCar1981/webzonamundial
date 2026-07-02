@@ -17,6 +17,7 @@ import { getCompetition } from "@/data/competitions";
 import { getFixtureDetail, type FixtureDetail } from "@/lib/competitions/api";
 import LocalTime from "../LocalTime";
 import MatchPoll from "./MatchPoll";
+import MatchSummary from "./MatchSummary";
 
 export const revalidate = 30;
 
@@ -124,6 +125,8 @@ export default async function CentroPartido({ params }: { params: Params }) {
           </div>
           <Team name={f.away.name} logo={f.away.logo} side="away" />
         </div>
+
+        <MatchSummary fixtureId={f.fixtureId} />
 
         {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} />}
 

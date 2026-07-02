@@ -13,6 +13,7 @@ import { League, Feature, StepItem } from "./types";
 import { LEAGUES, FEATURES, STEPS } from "./data";
 import { getIconComponent, getLeagueIcon } from "./utils";
 import { Hero, GlobalStyles } from "./components";
+import ReservarSitio from "./components/ReservarSitio";
 
 export default function ZonaFutbolPreviewPage() {
 
@@ -20,6 +21,8 @@ export default function ZonaFutbolPreviewPage() {
     <div className="min-h-screen bg-gradient-to-b from-[#060B14] via-[#0a0f1a] to-[#060B14] text-[#E2E8F0]" style={{fontFamily: "'Outfit', system-ui, sans-serif"}}>
 
       <Hero />
+
+      <ReservarSitio />
 
       {/* SOBRE ZONA FUTBOL — Narrativa Migracion */}
       <section className="py-16 sm:py-20 px-3 sm:px-4 relative bg-gradient-to-b from-[#060B14] via-[#0a0f1a]/40 to-[#0F1D32]/30" role="region" aria-label="Sobre Zona Futbol">
@@ -111,7 +114,7 @@ export default function ZonaFutbolPreviewPage() {
 
             <AnimatedSection className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8" stagger={0.18} delay={0.25} y={-40}>
               {LEAGUES.map((league, idx) => (
-                <div key={league.name} style={{animationDelay: `${idx * 0.12}s`}} className="group relative overflow-hidden rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl cursor-pointer active:scale-95 border shadow-xl" style={{background: `linear-gradient(135deg, ${league.color}20 0%, ${league.accent}08 100%)`, borderColor: league.color, boxShadow: `0 0 24px ${league.color}20, 0 8px 32px rgba(0,0,0,0.35)`, borderWidth: "1.5px"}}>
+                <div key={league.name} className="group relative overflow-hidden rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl cursor-pointer active:scale-95 border shadow-xl" style={{animationDelay: `${idx * 0.12}s`, background: `linear-gradient(135deg, ${league.color}20 0%, ${league.accent}08 100%)`, borderColor: league.color, boxShadow: `0 0 24px ${league.color}20, 0 8px 32px rgba(0,0,0,0.35)`, borderWidth: "1.5px"}}>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-25 transition-opacity duration-300 bg-gradient-to-br from-[#D4AF37] to-transparent" />
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-40 blur-xl" style={{background: `radial-gradient(circle, ${league.color}40 0%, transparent 70%)`}} />
 
@@ -476,7 +479,7 @@ export default function ZonaFutbolPreviewPage() {
                 </h2>
 
                 <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-lg mx-auto leading-relaxed tracking-wide drop-shadow">
-                  Entra gratis. Sé parte de la revolución del fútbol fantasy. Juega cada jornada, compite en tiempo real y gana premios reales con tu estrategia.
+                  Zona Futbol llega para la temporada 26/27. Reserva tu sitio ahora y sé de los primeros en entrar, con tu progreso del Mundial y ventajas de fundador.
                 </p>
               </div>
 
@@ -498,8 +501,8 @@ export default function ZonaFutbolPreviewPage() {
 
               {/* CTA Buttons */}
               <div className="pt-6 space-y-4">
-                <ShimmerButton className="px-14 py-6 text-xl sm:text-2xl font-black w-full sm:w-auto shadow-2xl hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] hover:scale-110 active:scale-95 transition-all duration-300" href="/registro">
-                  Registrarme Gratis
+                <ShimmerButton className="px-14 py-6 text-xl sm:text-2xl font-black w-full sm:w-auto shadow-2xl hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] hover:scale-110 active:scale-95 transition-all duration-300" href="#reservar">
+                  Reserva tu sitio
                 </ShimmerButton>
               </div>
 

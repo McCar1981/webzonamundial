@@ -36,6 +36,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // canonical propio ya no es duplicado de la home; entra al sitemap para
     // captar búsqueda transaccional ("app predicciones pro", etc.).
     { url: `${BASE_URL}/pro`, changeFrequency: "monthly", priority: 0.8 },
+    // Puente a la próxima temporada de ligas de clubes: capta búsqueda de marca
+    // ("zona futbol") y da destino al tráfico del Mundial cuando acabe (waitlist).
+    { url: `${BASE_URL}/zona-futbol-preview`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/creadores`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/calendario`, lastModified, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE_URL}/grupos`, lastModified, changeFrequency: "daily", priority: 0.9 },

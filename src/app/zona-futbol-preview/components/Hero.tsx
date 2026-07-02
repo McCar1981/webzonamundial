@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
       <div className="absolute inset-0 z-0">
-        <ParallaxImage src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" alt="Estadio" className="h-full" speed={0.25} />
+        <ParallaxImage src="/og-image.jpg" alt="Zona Futbol" className="h-full" speed={0.25} />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(6,11,20,0.6)] via-[rgba(6,11,20,0.7)] to-[rgba(6,11,20,0.95)]" />
         <div className="absolute inset-0 opacity-30 mix-blend-screen">
           <FloatingElements />
@@ -32,12 +32,12 @@ export function Hero() {
           </h1>
 
           <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
-            Fantasy, Duelos, Minijuegos, Rankings Globales & IA Coach 24/7. La plataforma más completa de futbol de liga. Juega cada jornada contra 100k+ jugadores del mundo.
+            Fantasy, duelos, cromos, predicciones e IA Coach para las grandes ligas de clubes. La evolución de ZonaMundial, ahora con tu liga. Muy pronto.
           </p>
 
           <div className="pt-8 flex flex-col items-center justify-center gap-4 animate-slide-up">
-            <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="/app">
-              Regístrate Gratis
+            <ShimmerButton className="px-10 py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] hover:scale-110 transition-all duration-300 active:scale-95" href="#reservar">
+              Reserva tu sitio
             </ShimmerButton>
             <Link href="#como-funciona" className="text-[#D4AF37] font-bold hover:text-[#ffc266] text-lg underline decoration-2 transition-all duration-300">
               Ver Cómo Funciona

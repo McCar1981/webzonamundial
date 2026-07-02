@@ -125,7 +125,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
           <Team name={f.away.name} logo={f.away.logo} side="away" />
         </div>
 
-        {!finished && <MatchPoll fixtureId={f.fixtureId} homeName={f.home.name} awayName={f.away.name} />}
+        {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} />}
 
         <Link href="/registro" style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>
           <span style={{ display: "block", fontSize: 15, fontWeight: 500, color: "#fff" }}>No leas el partido. Júgalo.</span>

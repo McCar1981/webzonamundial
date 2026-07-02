@@ -33,9 +33,10 @@ export async function GET(request: Request) {
   const user = await getCurrentUser();
   const id = normFixtureId(new URL(request.url).searchParams.get("fixtureId"));
   if (!id) return NextResponse.json({ error: "invalid_fixture" }, { status: 400 });
-  if (!user) return NextResponse.json({ pick: null }, { headers: { "Cache-Control": "private, no-store" } });
+  const noStore = { headers: { "Cache-Control": "private, no-store" } };
+  if (!user) return NextResponse.json({ pick: null, authed: false }, noStore);
   const pick = await getUserPick(user.id, id);
-  return NextResponse.json({ pick }, { headers: { "Cache-Control": "private, no-store" } });
+  return NextResponse.json({ pick, authed: true }, noStore);
 }
 
 export async function POST(request: Request) {

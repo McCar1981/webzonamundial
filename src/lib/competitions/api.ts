@@ -405,3 +405,33 @@ export async function getTeamFixtures(
     score: { home: r.goals.home, away: r.goals.away },
   }));
 }
+
+// ─── Detalle de partido cacheado ─────────────────────────────────────────────
+// Wrapper KV de getFixtureDetail para superficies POR USUARIO que no pueden usar
+// ISR (p.ej. "Mis predicciones"): N usuarios/vistas comparten 1 llamada por
+// fixture por ventana (corta si en vivo, larga si terminó). Fail-soft.
+
+const detailKey = (id: number) => `zl:detail:${id}`;
+
+export async function getFixtureDetailCached(fixtureId: number): Promise<FixtureDetail | null> {
+  try {
+    const cached = await kv.get<FixtureDetail>(detailKey(fixtureId));
+    if (cached) return cached;
+  } catch {
+    // sin KV: seguimos
+  }
+  const d = await getFixtureDetail(fixtureId);
+  if (!d) return null;
+  const s = d.fixture.status;
+  const ttl = ["FT", "AET", "PEN"].includes(s)
+    ? 60 * 60 * 24 * 3 // terminado: 3 días
+    : ["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"].includes(s)
+      ? 60 // en vivo: 60s
+      : 300; // por comenzar
+  try {
+    await kv.set(detailKey(fixtureId), d, { ex: ttl });
+  } catch {
+    // caché best-effort
+  }
+  return d;
+}

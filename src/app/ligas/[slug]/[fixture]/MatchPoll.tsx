@@ -156,6 +156,11 @@ export default function MatchPoll({
         </p>
       )}
       {error ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a", textAlign: "center" }}>{error}</p> : null}
+      {authed && rewarded && (
+        <p style={{ margin: "12px 0 0", textAlign: "center" }}>
+          <a href="/ligas/mis-predicciones" style={{ fontSize: 12.5, color: GOLD, textDecoration: "none" }}>Ver mis predicciones</a>
+        </p>
+      )}
     </section>
   );
 }

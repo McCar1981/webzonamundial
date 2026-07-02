@@ -52,3 +52,43 @@ export async function getUserPick(userId: string, fixtureId: number): Promise<Li
   if (error) return null; // incluye tabla ausente: la UI cae a la encuesta anónima
   return (data as { pick?: LigaPick } | null)?.pick ?? null;
 }
+
+export type LigaPredictionStatus = "pending" | "won" | "lost" | "void";
+
+export interface LigaPredictionRow {
+  fixtureId: number;
+  competitionSlug: string;
+  pick: LigaPick;
+  status: LigaPredictionStatus;
+  kickoff: string;
+  resolvedAt: string | null;
+}
+
+// Historial de predicciones de ligas del usuario (RLS: solo las suyas). Fail-soft
+// a [] (incluye tabla ausente). Ordenadas de más reciente a más antigua.
+export async function getUserLigaPredictions(userId: string, limit = 30): Promise<LigaPredictionRow[]> {
+  const supa = createSupabaseServerClient();
+  const { data, error } = await supa
+    .from("liga_predictions")
+    .select("fixture_id,competition_slug,pick,status,kickoff,resolved_at")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error || !data) return [];
+  const rows = data as {
+    fixture_id: number;
+    competition_slug: string;
+    pick: LigaPick;
+    status: LigaPredictionStatus;
+    kickoff: string;
+    resolved_at: string | null;
+  }[];
+  return rows.map((r) => ({
+    fixtureId: r.fixture_id,
+    competitionSlug: r.competition_slug,
+    pick: r.pick,
+    status: r.status,
+    kickoff: r.kickoff,
+    resolvedAt: r.resolved_at,
+  }));
+}

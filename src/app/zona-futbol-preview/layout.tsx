@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 const ZONA_FUTBOL_URL = "https://zonamundial.app/zona-futbol-preview";
-const HERO_IMAGE = "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=630&fit=crop";
+const HERO_IMAGE = "https://zonamundial.app/og-image.jpg";
 
 export const metadata: Metadata = {
-  title: "Zona Futbol — Temporada 2026/2027",
-  description: "Fantasy, Predicciones, Duelos, Cromos. Todo el fútbol de liga en una app. Juega en Zona Futbol 2026/2027 con minijuegos interactivos, rankings globales y premios reales.",
+  title: "Zona Futbol 26/27 — Reserva tu sitio",
+  description: "Fantasy, predicciones, duelos y cromos para las grandes ligas de clubes (Premier, LaLiga, Serie A, Liga MX, Champions, Libertadores). La evolución de ZonaMundial. Reserva tu sitio: muy pronto.",
   keywords: [
     "zona futbol",
     "fantasy fútbol 2026",

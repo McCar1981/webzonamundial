@@ -1,9 +1,11 @@
 "use client";
 
-// Encuesta de comunidad "¿Quién ganará?" del Centro de Partido. Anónima, 1 voto
-// por partido (guarda en localStorage). Antes de votar: tres botones; después:
-// barras con el % de la comunidad, resaltando tu voto. Sin emojis.
-// Datos: GET/POST /api/ligas/vote (KV, rate-limit por IP).
+// "¿Quién ganará?" del Centro de Partido, con dos caminos:
+//  - LOGUEADO: predicción real -> POST /api/ligas/predict (se guarda a tu nombre y
+//    cobras Fútcoins si aciertas) + cuenta también en la barra de comunidad.
+//  - ANÓNIMO: encuesta de comunidad -> POST /api/ligas/vote (KV), con empujón a
+//    registrarse para jugar por Fútcoins.
+// 1 interacción por partido (localStorage + unique en BD). Sin emojis.
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -12,29 +14,47 @@ type Counts = { home: number; draw: number; away: number; total: number };
 
 const GOLD = "#c9a84c";
 const DIM = "#9db0c9";
+const REWARD = 10;
 
 export default function MatchPoll({
   fixtureId,
+  slug,
   homeName,
   awayName,
 }: {
   fixtureId: number;
+  slug: string;
   homeName: string;
   awayName: string;
 }) {
   const storeKey = `zl-voted-${fixtureId}`;
   const [counts, setCounts] = useState<Counts | null>(null);
   const [myPick, setMyPick] = useState<Pick | null>(null);
+  const [authed, setAuthed] = useState<boolean | null>(null); // null = aún no sabido
+  const [rewarded, setRewarded] = useState(false); // hay predicción con Fútcoins guardada
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storeKey);
-      if (saved === "home" || saved === "draw" || saved === "away") setMyPick(saved);
-    } catch {
-      // localStorage no disponible: se puede votar igual
-    }
+    // Estado de sesión + predicción guardada del usuario.
+    fetch(`/api/ligas/predict?fixtureId=${fixtureId}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        if (!j) return;
+        setAuthed(!!j.authed);
+        if (j.pick === "home" || j.pick === "draw" || j.pick === "away") {
+          setMyPick(j.pick);
+          setRewarded(true);
+        } else if (!j.authed) {
+          // anónimo: respeta el guardado local de esta sesión
+          try {
+            const saved = localStorage.getItem(storeKey);
+            if (saved === "home" || saved === "draw" || saved === "away") setMyPick(saved);
+          } catch { /* ignore */ }
+        }
+      })
+      .catch(() => setAuthed(false));
+
     fetch(`/api/ligas/vote?fixtureId=${fixtureId}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => { if (j) setCounts(j); })
@@ -43,30 +63,37 @@ export default function MatchPoll({
 
   const vote = useCallback(
     async (pick: Pick) => {
-      if (busy || myPick) return;
+      if (busy || myPick || authed === null) return;
       setBusy(true);
       setError("");
       try {
-        const r = await fetch("/api/ligas/vote", {
+        if (authed) {
+          // Predicción con Fútcoins (server valida que el partido no ha empezado).
+          const pr = await fetch("/api/ligas/predict", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fixtureId, slug, pick }),
+          });
+          const pj = await pr.json().catch(() => ({}));
+          if (pr.ok || pj?.error === "already_predicted") setRewarded(true);
+          // si el partido ya empezó / no disponible, seguimos solo con la encuesta
+        }
+        // Voto de comunidad (para la barra; cuenta anónimos y logueados).
+        const vr = await fetch("/api/ligas/vote", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ fixtureId, pick }),
         });
-        if (r.ok) {
-          setCounts(await r.json());
-          setMyPick(pick);
-          try { localStorage.setItem(storeKey, pick); } catch { /* ignore */ }
-        } else {
-          const j = await r.json().catch(() => ({}));
-          setError(j?.error === "rate_limited" ? "Demasiados votos. Prueba en unos minutos." : "No se pudo registrar tu voto.");
-        }
+        if (vr.ok) setCounts(await vr.json());
+        setMyPick(pick);
+        try { localStorage.setItem(storeKey, pick); } catch { /* ignore */ }
       } catch {
         setError("Sin conexión. Inténtalo de nuevo.");
       } finally {
         setBusy(false);
       }
     },
-    [busy, myPick, fixtureId, storeKey],
+    [busy, myPick, authed, fixtureId, slug, storeKey],
   );
 
   const options: { key: Pick; label: string }[] = [
@@ -74,12 +101,16 @@ export default function MatchPoll({
     { key: "draw", label: "Empate" },
     { key: "away", label: awayName },
   ];
-
   const pct = (n: number) => (counts && counts.total > 0 ? Math.round((n / counts.total) * 100) : 0);
 
   return (
     <section style={{ marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.28)" }}>
-      <h2 style={{ fontSize: 14.5, fontWeight: 500, color: "#fff", margin: "0 0 12px", textAlign: "center" }}>¿Quién ganará?</h2>
+      <h2 style={{ fontSize: 14.5, fontWeight: 500, color: "#fff", margin: "0 0 4px", textAlign: "center" }}>¿Quién ganará?</h2>
+      {!myPick && (
+        <p style={{ margin: "0 0 12px", fontSize: 12, color: authed ? GOLD : DIM, textAlign: "center" }}>
+          {authed ? `Predice y gana ${REWARD} Fútcoins si aciertas` : "Vota y mira la opinión de la comunidad"}
+        </p>
+      )}
 
       {!myPick ? (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
@@ -87,8 +118,8 @@ export default function MatchPoll({
             <button
               key={o.key}
               onClick={() => vote(o.key)}
-              disabled={busy}
-              style={{ border: `1px solid rgba(201,168,76,0.4)`, background: "rgba(201,168,76,0.06)", color: "#fff", fontSize: 13, fontWeight: 500, padding: "12px 6px", borderRadius: 10, cursor: busy ? "default" : "pointer", opacity: busy ? 0.7 : 1, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}
+              disabled={busy || authed === null}
+              style={{ border: `1px solid rgba(201,168,76,0.4)`, background: "rgba(201,168,76,0.06)", color: "#fff", fontSize: 13, fontWeight: 500, padding: "12px 6px", borderRadius: 10, cursor: busy || authed === null ? "default" : "pointer", opacity: busy || authed === null ? 0.6 : 1, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}
             >
               {o.label}
             </button>
@@ -102,7 +133,7 @@ export default function MatchPoll({
             return (
               <div key={o.key}>
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, marginBottom: 3, color: mine ? GOLD : "#cbd5e1" }}>
-                  <span style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: mine ? 600 : 400 }}>{o.label}{mine ? " · tu voto" : ""}</span>
+                  <span style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: mine ? 600 : 400 }}>{o.label}{mine ? " · tu apuesta" : ""}</span>
                   <span style={{ fontVariantNumeric: "tabular-nums" }}>{p}%</span>
                 </div>
                 <div style={{ height: 8, borderRadius: 99, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
@@ -111,12 +142,19 @@ export default function MatchPoll({
               </div>
             );
           })}
-          <p style={{ margin: "4px 0 0", fontSize: 11.5, color: DIM, textAlign: "center" }}>
-            {counts ? counts.total.toLocaleString("es") : 0} {counts && counts.total === 1 ? "voto" : "votos"} de la comunidad
+          <p style={{ margin: "4px 0 0", fontSize: 11.5, color: rewarded ? GOLD : DIM, textAlign: "center" }}>
+            {rewarded
+              ? `Predicción guardada. +${REWARD} Fútcoins si aciertas.`
+              : `${counts ? counts.total.toLocaleString("es") : 0} ${counts && counts.total === 1 ? "voto" : "votos"} de la comunidad`}
           </p>
         </div>
       )}
 
+      {!myPick && authed === false && (
+        <p style={{ margin: "12px 0 0", fontSize: 12, color: DIM, textAlign: "center" }}>
+          <a href="/registro" style={{ color: GOLD, textDecoration: "none" }}>Inicia sesión</a> para predecir y ganar Fútcoins.
+        </p>
+      )}
       {error ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a", textAlign: "center" }}>{error}</p> : null}
     </section>
   );

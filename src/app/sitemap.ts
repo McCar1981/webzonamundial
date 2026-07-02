@@ -214,11 +214,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Zona de Ligas: pantalla pública por competición (activo SEO programático del
   // pivote — "liga mx calendario", "brasileirão resultados"…). Datos del catálogo.
-  const ligaRoutes: MetadataRoute.Sitemap = COMPETITIONS.map((c) => ({
-    url: `${BASE_URL}/ligas/${c.slug}`,
-    changeFrequency: "daily",
-    priority: 0.7,
-  }));
+  const ligaRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/ligas`, changeFrequency: "daily", priority: 0.85 },
+    ...COMPETITIONS.map((c) => ({
+      url: `${BASE_URL}/ligas/${c.slug}`,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+  ];
 
   return [
     ...staticRoutes,

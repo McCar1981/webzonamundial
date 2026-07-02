@@ -160,7 +160,8 @@ const CATS: Cat[] = [
       { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible", accent: "#ff6b5a", accent2: "#ff9a4a" },
       { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo", accent: "#ff8a3c", accent2: "#ffb46a" },
       { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories/feed", cta: "Ver", estado: "Disponible", accent: "#e0567a", accent2: "#f78fa8" },
-      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible", accent: "#7c5cff", accent2: "#a98fff" },
+      // Sin href → card "Próximamente" no navegable (no mandamos al usuario logueado a una maqueta con CTA de registro). Reactivar con href cuando exista el módulo real.
+      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", cta: "Avisarme", estado: "Próximamente", accent: "#7c5cff", accent2: "#a98fff" },
     ],
   },
   {
@@ -178,7 +179,8 @@ const CATS: Cat[] = [
     mods: [
       { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings#tablero", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
-      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible", accent: "#5b8def", accent2: "#8db1ff" },
+      // Sin href → card "Próximamente" no navegable (el chat aún no tiene backend). Reactivar con href cuando exista el módulo real.
+      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", cta: "Avisarme", estado: "Próximamente", accent: "#5b8def", accent2: "#8db1ff" },
       { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo", accent: "#36c98f", accent2: "#7ce0b3" },
     ],
   },

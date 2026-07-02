@@ -365,3 +365,43 @@ export async function getFixtureDetail(fixtureId: number): Promise<FixtureDetail
 // /fixtures?id= devuelve los bloques EMBEBIDOS (eventos + alineaciones + stats)
 // en UNA sola request — el mismo truco de cuota que usa el Match Center del
 // Mundial. Verificado en vivo (Cruzeiro-Fluminense: 16 eventos, 2 lineups,
+
+// ─── Partidos de un equipo (Pantalla de Equipo) ──────────────────────────────
+// /fixtures?team=X&last/next= — SIN season: devuelve los partidos del equipo a
+// través de todas sus competiciones (verificado: Flamengo trae Brasileirão y
+// Libertadores). Se incluye el nombre de la competición por partido.
+
+export interface TeamFixture {
+  fixtureId: number;
+  kickoff: string;
+  status: string;
+  elapsed: number | null;
+  leagueName: string;
+  home: CompetitionTeam;
+  away: CompetitionTeam;
+  score: { home: number | null; away: number | null };
+}
+
+interface RawTeamFixtureRow extends RawFixtureRow {
+  league: { id: number; season: number; round: string; name: string };
+}
+
+export async function getTeamFixtures(
+  teamId: number,
+  opts: { last?: number; next?: number } = {},
+): Promise<TeamFixture[]> {
+  const params = new URLSearchParams({ team: String(teamId) });
+  if (opts.last) params.set("last", String(opts.last));
+  if (opts.next) params.set("next", String(opts.next));
+  const rows = await apiGet<RawTeamFixtureRow[]>(`/fixtures?${params.toString()}`);
+  return (rows ?? []).map((r) => ({
+    fixtureId: r.fixture.id,
+    kickoff: r.fixture.date,
+    status: r.fixture.status.short,
+    elapsed: r.fixture.status.elapsed,
+    leagueName: r.league.name,
+    home: r.teams.home,
+    away: r.teams.away,
+    score: { home: r.goals.home, away: r.goals.away },
+  }));
+}

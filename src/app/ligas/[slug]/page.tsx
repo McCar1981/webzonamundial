@@ -195,6 +195,14 @@ export default async function LigaPage({ params }: { params: { slug: string } })
           </Link>
         )}
 
+        <Link href={`/ligas/${comp.slug}/fantasy`} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, padding: "13px 16px", borderRadius: 12, textDecoration: "none", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.3)" }}>
+          <span>
+            <span style={{ display: "block", fontSize: 14, fontWeight: 500, color: "#fff" }}>Fantasy: monta tu once de la jornada</span>
+            <span style={{ display: "block", fontSize: 12, color: DIM }}>Elige 5 jugadores, marca tu capitán y gana Fútcoins por su rendimiento real.</span>
+          </span>
+          <span aria-hidden style={{ color: GOLD, fontSize: 18 }}>&rsaquo;</span>
+        </Link>
+
         {!hasData ? (
           <div style={{ marginTop: 28, padding: 24, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)", textAlign: "center", color: DIM, fontSize: 14 }}>
             Aún no hay partidos disponibles para esta competición. Vuelve cuando arranque la jornada.

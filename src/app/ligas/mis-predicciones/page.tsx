@@ -12,6 +12,7 @@ import { getCurrentUser } from "@/lib/auth-helpers";
 import { getUserLigaPredictions, type LigaPredictionRow } from "@/lib/ligas/predictions";
 import { getFixtureDetailCached, type FixtureDetail } from "@/lib/competitions/api";
 import LocalTime from "../[slug]/LocalTime";
+import RachaWidget from "./RachaWidget";
 
 export const dynamic = "force-dynamic";
 
@@ -88,6 +89,8 @@ export default async function MisPrediccionesPage() {
           <span aria-hidden>&larr;</span> Zona de Ligas
         </Link>
         <h1 style={{ margin: "14px 0 16px", fontSize: 26, fontWeight: 500, color: "#fff" }}>Mis predicciones</h1>
+
+        <div style={{ marginBottom: 20 }}><RachaWidget /></div>
 
         {preds.length === 0 ? (
           <div style={{ padding: 24, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)", textAlign: "center" }}>

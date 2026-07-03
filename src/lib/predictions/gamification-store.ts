@@ -70,7 +70,7 @@ const dailyStreakKey = (uid: string) => `daily:streak:${uid}`;
 interface DailyStreakRec { day: string; streak: number }
 
 /** Estado del check-in desde KV: si ya reclamó hoy y la racha consecutiva. */
-async function readDailyState(uid: string): Promise<{ claimedToday: boolean; streak: number; lastDay: string | null }> {
+export async function readDailyState(uid: string): Promise<{ claimedToday: boolean; streak: number; lastDay: string | null }> {
   try {
     const [mark, rec] = await Promise.all([
       kv.get(dailyClaimKey(uid, utcDayKey())),

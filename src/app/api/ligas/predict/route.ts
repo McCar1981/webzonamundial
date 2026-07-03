@@ -17,6 +17,7 @@ import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { savePick, getUserPick, type LigaPick } from "@/lib/ligas/predictions";
+import { isBoosted } from "@/lib/ligas/boost";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,9 +35,9 @@ export async function GET(request: Request) {
   const id = normFixtureId(new URL(request.url).searchParams.get("fixtureId"));
   if (!id) return NextResponse.json({ error: "invalid_fixture" }, { status: 400 });
   const noStore = { headers: { "Cache-Control": "private, no-store" } };
-  if (!user) return NextResponse.json({ pick: null, authed: false }, noStore);
-  const pick = await getUserPick(user.id, id);
-  return NextResponse.json({ pick, authed: true }, noStore);
+  if (!user) return NextResponse.json({ pick: null, authed: false, boosted: false }, noStore);
+  const [pick, boosted] = await Promise.all([getUserPick(user.id, id), isBoosted(user.id, id)]);
+  return NextResponse.json({ pick, authed: true, boosted }, noStore);
 }
 
 export async function POST(request: Request) {

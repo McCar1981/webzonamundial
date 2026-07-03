@@ -13,6 +13,7 @@ import { getUserLigaPredictions, type LigaPredictionRow } from "@/lib/ligas/pred
 import { getFixtureDetailCached, type FixtureDetail } from "@/lib/competitions/api";
 import LocalTime from "../[slug]/LocalTime";
 import RachaWidget from "./RachaWidget";
+import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 
 export const dynamic = "force-dynamic";
 
@@ -85,9 +86,12 @@ export default async function MisPrediccionesPage() {
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
-        <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
-          <span aria-hidden>&larr;</span> Zona de Ligas
-        </Link>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+          <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
+            <span aria-hidden>&larr;</span> Zona de Ligas
+          </Link>
+          <FutcoinsBadge />
+        </div>
         <h1 style={{ margin: "14px 0 16px", fontSize: 26, fontWeight: 500, color: "#fff" }}>Mis predicciones</h1>
 
         <div style={{ marginBottom: 20 }}><RachaWidget /></div>

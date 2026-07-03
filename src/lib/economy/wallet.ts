@@ -140,3 +140,15 @@ export async function spendCoins(uid: string, coins: number): Promise<WalletSpen
   await admin.from("profiles").update({ coins: newCoins }).eq("id", uid);
   return { ok: true, coins: newCoins };
 }
+
+/** Saldo actual de Fútcoins del usuario (profiles.coins). Fail-soft a 0 — solo
+ *  lectura para pintar el saldo en la UI. */
+export async function getWalletBalance(uid: string): Promise<number> {
+  try {
+    const admin = adminClient();
+    const { data } = await admin.from("profiles").select("coins").eq("id", uid).maybeSingle();
+    return (data as { coins?: number } | null)?.coins ?? 0;
+  } catch {
+    return 0;
+  }
+}

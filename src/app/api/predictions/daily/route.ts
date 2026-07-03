@@ -5,10 +5,22 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
-import { claimDaily } from "@/lib/predictions/gamification-store";
+import { claimDaily, readDailyState } from "@/lib/predictions/gamification-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// GET → estado de la racha SIN reclamar (para pintar el widget: ¿reclamada hoy?,
+// ¿cuántos días de racha?). Sin sesión devuelve estado neutro (no 401) para que
+// la UI degrade a "inicia sesión".
+export async function GET() {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ authed: false, claimedToday: false, streak: 0 }, { headers: { "Cache-Control": "private, no-store" } });
+  }
+  const state = await readDailyState(user.id);
+  return NextResponse.json({ authed: true, ...state }, { headers: { "Cache-Control": "private, no-store" } });
+}
 
 export async function POST() {
   const user = await getCurrentUser();

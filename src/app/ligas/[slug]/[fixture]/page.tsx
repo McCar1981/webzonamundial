@@ -14,7 +14,7 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompetition } from "@/data/competitions";
-import { getFixtureDetail, type FixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetail, type FixtureDetail, type FixtureEvent } from "@/lib/competitions/api";
 import LocalTime from "../LocalTime";
 import MatchPoll from "./MatchPoll";
 import MatchSummary from "./MatchSummary";
@@ -54,6 +54,54 @@ function eventLabel(type: string, detail: string): string {
   if (ty === "subst") return "Cambio";
   if (ty === "var") return "VAR";
   return detail || type;
+}
+
+// Línea de tiempo visual del partido: goles (dorado) y rojas (rojo) posicionados
+// por minuto sobre el eje 0'-90'+, local arriba y visitante abajo. Solo eventos
+// de impacto; el detalle completo va en la lista de abajo. Presentacional (sin
+// datos nuevos): la señal de "app seria" que tienen FotMob/SofaScore.
+function MatchTimeline({ events, homeId }: { events: FixtureEvent[]; homeId: number }) {
+  const marks = events
+    .filter((e) => {
+      const t = e.type.toLowerCase();
+      return t === "goal" || (t === "card" && e.detail.toLowerCase().includes("red"));
+    })
+    .map((e) => ({
+      pct: Math.min(97, Math.max(3, ((e.minute ?? 0) / 95) * 100)),
+      home: e.teamId === homeId,
+      goal: e.type.toLowerCase() === "goal",
+      minute: e.minute ?? 0,
+      player: e.player,
+    }));
+  if (!marks.length) return null;
+  return (
+    <div style={{ position: "relative", height: 62, margin: "10px 0 4px" }}>
+      {/* eje */}
+      <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 2, background: "rgba(255,255,255,0.1)", transform: "translateY(-50%)" }} />
+      <span style={{ position: "absolute", top: "50%", left: 0, transform: "translateY(-50%)", fontSize: 9.5, color: DIM }}>0&apos;</span>
+      <span style={{ position: "absolute", top: "50%", right: 0, transform: "translateY(-50%)", fontSize: 9.5, color: DIM }}>90&apos;</span>
+      {marks.map((m, i) => (
+        <div
+          key={i}
+          title={`${m.minute}'${m.player ? ` ${m.player}` : ""}`}
+          style={{
+            position: "absolute",
+            left: `${m.pct}%`,
+            top: m.home ? "50%" : "auto",
+            bottom: m.home ? "auto" : "50%",
+            transform: m.home ? "translate(-50%, -100%)" : "translate(-50%, 100%)",
+            display: "flex",
+            flexDirection: m.home ? "column" : "column-reverse",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          <span style={{ fontSize: 9, color: m.goal ? GOLD : "#cf5b5b", fontVariantNumeric: "tabular-nums" }}>{m.minute}&apos;</span>
+          <span style={{ width: 9, height: 9, borderRadius: 99, background: m.goal ? GOLD : "#cf5b5b", flexShrink: 0 }} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function Team({ name, logo, side }: { name: string; logo: string; side: "home" | "away" }) {
@@ -142,6 +190,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
         {d.events.length > 0 && (
           <section style={{ marginTop: 28 }}>
             <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Lo que pasó</h2>
+            <MatchTimeline events={d.events} homeId={homeId} />
             {d.events.map((e, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 13, flexDirection: e.teamId === homeId ? "row" : "row-reverse", textAlign: e.teamId === homeId ? "left" : "right" }}>
                 <span style={{ color: DIM, width: 34, fontVariantNumeric: "tabular-nums", flexShrink: 0 }}>{e.minute != null ? `${e.minute}'` : ""}</span>

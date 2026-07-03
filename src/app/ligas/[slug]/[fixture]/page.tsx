@@ -223,9 +223,13 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
         {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} notStarted={f.status === "NS" || f.status === "TBD"} />}
 
-        <Link href="/registro" style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>
+        <Link href={finished ? `/ligas/${comp.slug}` : "/registro"} style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>
           <span style={{ display: "block", fontSize: 15, fontWeight: 500, color: "#fff" }}>No leas el partido. Júgalo.</span>
-          <span style={{ display: "block", fontSize: 13, color: "#cbd5e1", marginTop: 4 }}>Predice este partido y compite por Fútcoins con tus amigos. Sin apuestas.</span>
+          <span style={{ display: "block", fontSize: 13, color: "#cbd5e1", marginTop: 4 }}>
+            {finished
+              ? `Este partido terminó. Predice los próximos de ${comp.short} y gana Fútcoins. Sin apuestas.`
+              : "Predice este partido y compite por Fútcoins con tus amigos. Sin apuestas."}
+          </span>
         </Link>
 
         {d.events.length > 0 && (

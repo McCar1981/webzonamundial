@@ -18,6 +18,7 @@ import { getFixtureDetail, type FixtureDetail } from "@/lib/competitions/api";
 import LocalTime from "../LocalTime";
 import MatchPoll from "./MatchPoll";
 import MatchSummary from "./MatchSummary";
+import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 
 export const revalidate = 30;
 
@@ -107,9 +108,12 @@ export default async function CentroPartido({ params }: { params: Params }) {
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "20px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
-        <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
-          <span aria-hidden>&larr;</span> {comp.name}
-        </Link>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+          <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
+            <span aria-hidden>&larr;</span> {comp.name}
+          </Link>
+          <FutcoinsBadge />
+        </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 18 }}>
           <Team name={f.home.name} logo={f.home.logo} side="home" />

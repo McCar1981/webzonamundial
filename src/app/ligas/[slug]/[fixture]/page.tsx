@@ -112,6 +112,34 @@ function Team({ name, logo, side }: { name: string; logo: string; side: "home" |
   );
 }
 
+// Nombres de estadística de api-football (inglés) -> español.
+const STAT_LABEL: Record<string, string> = {
+  "Ball Possession": "Posesión",
+  "Total Shots": "Tiros totales",
+  "Shots on Goal": "Tiros a puerta",
+  "Shots off Goal": "Tiros fuera",
+  "Blocked Shots": "Tiros bloqueados",
+  "Shots insidebox": "Tiros dentro del área",
+  "Shots outsidebox": "Tiros fuera del área",
+  "Corner Kicks": "Córners",
+  "Offsides": "Fueras de juego",
+  "Fouls": "Faltas",
+  "Yellow Cards": "Amarillas",
+  "Red Cards": "Rojas",
+  "Goalkeeper Saves": "Paradas",
+  "Total passes": "Pases",
+  "Passes accurate": "Pases acertados",
+  "Passes %": "Precisión de pase",
+  "expected_goals": "Goles esperados (xG)",
+};
+
+function statNum(v: string | number | null): number | null {
+  if (v == null) return null;
+  if (typeof v === "number") return v;
+  const n = parseFloat(String(v).replace(",", ".").replace("%", ""));
+  return Number.isFinite(n) ? n : null;
+}
+
 function StatBars({ d }: { d: FixtureDetail }) {
   const homeId = d.fixture.home.id;
   const byType = new Map<string, { home: string | number | null; away: string | number | null }>();
@@ -127,14 +155,30 @@ function StatBars({ d }: { d: FixtureDetail }) {
   if (!rows.length) return null;
   return (
     <section style={{ marginTop: 30 }}>
-      <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 10px" }}>Estadísticas</h2>
-      {rows.map(([type, v]) => (
-        <div key={type} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0", fontSize: 13, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <span style={{ width: 54, textAlign: "left", color: "#fff", fontVariantNumeric: "tabular-nums" }}>{v.home ?? "—"}</span>
-          <span style={{ flex: 1, textAlign: "center", color: DIM }}>{type}</span>
-          <span style={{ width: 54, textAlign: "right", color: "#fff", fontVariantNumeric: "tabular-nums" }}>{v.away ?? "—"}</span>
-        </div>
-      ))}
+      <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 12px" }}>Estadísticas</h2>
+      {rows.map(([type, v]) => {
+        const hn = statNum(v.home);
+        const an = statNum(v.away);
+        const sum = (hn ?? 0) + (an ?? 0);
+        const hasBar = hn != null && an != null && sum > 0;
+        const hPct = hasBar ? Math.round(((hn as number) / sum) * 100) : 50;
+        const homeLeads = (hn ?? 0) >= (an ?? 0);
+        return (
+          <div key={type} style={{ padding: "9px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, marginBottom: hasBar ? 6 : 0 }}>
+              <span style={{ width: 54, textAlign: "left", color: "#fff", fontWeight: homeLeads ? 600 : 400, fontVariantNumeric: "tabular-nums" }}>{v.home ?? "—"}</span>
+              <span style={{ flex: 1, textAlign: "center", color: DIM }}>{STAT_LABEL[type] ?? type}</span>
+              <span style={{ width: 54, textAlign: "right", color: "#fff", fontWeight: !homeLeads ? 600 : 400, fontVariantNumeric: "tabular-nums" }}>{v.away ?? "—"}</span>
+            </div>
+            {hasBar && (
+              <div style={{ display: "flex", height: 6, borderRadius: 99, overflow: "hidden", background: "rgba(255,255,255,0.06)" }}>
+                <div style={{ width: `${hPct}%`, background: homeLeads ? "linear-gradient(90deg, #c9a84c, #e8d48b)" : "rgba(201,168,76,0.45)" }} />
+                <div style={{ width: `${100 - hPct}%`, background: !homeLeads ? "linear-gradient(90deg, #e8d48b, #c9a84c)" : "rgba(201,168,76,0.45)" }} />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </section>
   );
 }

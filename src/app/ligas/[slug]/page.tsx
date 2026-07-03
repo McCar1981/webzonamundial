@@ -156,12 +156,11 @@ export default async function LigaPage({ params }: { params: { slug: string } })
   ]);
   const days = groupByDay(upcoming);
   const hasData = upcoming.length > 0 || recent.length > 0 || standings.length > 0;
-  // Partido destacado: el jugado más reciente (para enseñar el detalle completo) o,
-  // si no hay ninguno, el próximo. Es el gancho que anuncia lo que hay DENTRO del
-  // partido (resumen IA, predicción, estadísticas) desde la portada de la liga.
-  const featured = recent.length
-    ? [...recent].sort((a, b) => b.kickoff.localeCompare(a.kickoff))[0]
-    : (upcoming[0] ?? null);
+  // Partido destacado: preferimos el PRÓXIMO (jugable: ahí se predice y se ganan
+  // Fútcoins, que es el diferenciador); si no hay próximos, el jugado más reciente
+  // (rico en datos). Así la portada de la liga lleva a lo que nos hace distintos.
+  const featured = upcoming[0]
+    ?? (recent.length ? [...recent].sort((a, b) => b.kickoff.localeCompare(a.kickoff))[0] : null);
   const featPlayed = featured ? FINISHED.has(featured.status) || LIVE.has(featured.status) : false;
 
   return (

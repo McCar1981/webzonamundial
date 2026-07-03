@@ -38,11 +38,19 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!d) return { title: `${comp.name} — ZonaMundial` };
   const t = `${d.fixture.home.name} vs ${d.fixture.away.name} — ${comp.name} | ZonaMundial`;
   const desc = `Sigue ${d.fixture.home.name} - ${d.fixture.away.name} de ${comp.name} en ZonaMundial: marcador, alineaciones, estadísticas y predicciones.`;
+  // Imagen de compartir dinámica (branded) con equipos + marcador/estado.
+  const st = d.fixture.status;
+  const isFin = ["FT", "AET", "PEN"].includes(st);
+  const isLive = ["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"].includes(st);
+  const score = isFin || isLive ? `${d.fixture.score.home ?? 0} - ${d.fixture.score.away ?? 0}` : "vs";
+  const sub = isLive ? "EN VIVO" : isFin ? "Final" : comp.name;
+  const ogUrl = `https://zonamundial.app/api/og/ligas-partido?comp=${encodeURIComponent(comp.short)}&home=${encodeURIComponent(d.fixture.home.name)}&away=${encodeURIComponent(d.fixture.away.name)}&score=${encodeURIComponent(score)}&sub=${encodeURIComponent(sub)}`;
   return {
     title: t,
     description: desc,
     alternates: { canonical: `https://zonamundial.app/ligas/${comp.slug}/${id}` },
-    openGraph: { title: t, description: desc, images: ["https://zonamundial.app/og-image.jpg"] },
+    openGraph: { title: t, description: desc, images: [{ url: ogUrl, width: 1200, height: 630, alt: t }] },
+    twitter: { card: "summary_large_image", title: t, description: desc, images: [ogUrl] },
   };
 }
 

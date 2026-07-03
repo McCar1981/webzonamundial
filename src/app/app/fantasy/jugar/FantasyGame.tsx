@@ -10,7 +10,7 @@ import { getPlayerById, applyRealStats } from "@/lib/fantasy/players";
 import { remapFormation, validateTeam, transferCost, refundForElimination } from "@/lib/fantasy/rules";
 import { isEliminated } from "@/lib/fantasy/tournament";
 import { isFantasyLive } from "@/lib/fantasy/season";
-import { playerMatchLocked, MATCH_LOCK_HOURS, gameweekLockedForFree } from "@/lib/fantasy/fixtures";
+import { playerMatchLocked, MATCH_LOCK_HOURS, gameweekLockedForFree, isKnockoutGameweek } from "@/lib/fantasy/fixtures";
 import { FREE_LIMITS } from "@/lib/pro/limits";
 import { openProPaywall } from "@/lib/pro/paywall-client";
 import { autoDraft } from "@/lib/fantasy/coach";
@@ -203,8 +203,8 @@ export default function FantasyGame() {
   // Coste de fichajes de la jornada respecto a la plantilla confirmada (Fase 2).
   // El comodín ("comodin") deja todos los fichajes gratis.
   const transfers = useMemo(
-    () => transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin"),
-    [team.committedSlots, team.slots, team.freeTransfers, team.powerUp],
+    () => transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin" || isKnockoutGameweek(team.gameweek)),
+    [team.committedSlots, team.slots, team.freeTransfers, team.powerUp, team.gameweek],
   );
 
   const setFormation = useCallback(
@@ -224,6 +224,11 @@ export default function FantasyGame() {
       if (!p) return;
       if (ownedIds.has(playerId)) {
         flash("Ya tienes a ese jugador.");
+        return;
+      }
+      // No se ficha a jugadores de selecciones ya eliminadas (no volverán a puntuar).
+      if (isEliminated(p.teamSlug, team.gameweek)) {
+        flash(`${p.teamName} está eliminada del Mundial.`);
         return;
       }
       // Cierre por partido: no entra nadie cuyo partido esté a <3h o en juego.
@@ -445,7 +450,7 @@ export default function FantasyGame() {
       // Evita reconfirmar una jornada ya cerrada (sobre todo la 8, que no avanza
       // más): sin esto, cada clic volvería a sumar puntos al total local.
       if (team.history.some((h) => h.gw === gwBeing)) { flash("Esta jornada ya está confirmada."); return; }
-      const tc = transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin");
+      const tc = transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin" || isKnockoutGameweek(gwBeing));
       const usedPU = team.powerUp;
       // Construye el estado de la próxima jornada con los puntos NETOS confirmados.
       const advance = (net: number): FantasyTeamState => ({
@@ -562,10 +567,17 @@ export default function FantasyGame() {
             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
               <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/8</span>
               {/* Capitán como chip compacto → libera la fila de stats y sube el campo */}
-              <span title="Capitán" style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 800, padding: "4px 9px", borderRadius: 999, border: "1px solid " + (team.captainId ? GOLD : "rgba(255,255,255,0.14)"), background: team.captainId ? `${GOLD}1f` : "rgba(255,255,255,0.04)", color: team.captainId ? GOLD2 : MID, whiteSpace: "nowrap" }}>
-                ⭐ {team.captainId ? short(getPlayerById(team.captainId)?.name) : "Sin capitán"}
-                {team.captainId && team.viceId && <span style={{ color: MID, fontWeight: 700 }}>· V: {short(getPlayerById(team.viceId)?.name)}</span>}
-              </span>
+              {(() => {
+                const capP = team.captainId ? getPlayerById(team.captainId) : null;
+                const capElim = !!capP && isEliminated(capP.teamSlug, team.gameweek);
+                return (
+                  <span title={capElim ? "Tu capitán está eliminado: reasígnalo o su ×2 será sobre 0" : "Capitán"} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 800, padding: "4px 9px", borderRadius: 999, border: "1px solid " + (capElim ? RED : team.captainId ? GOLD : "rgba(255,255,255,0.14)"), background: capElim ? `${RED}1f` : team.captainId ? `${GOLD}1f` : "rgba(255,255,255,0.04)", color: capElim ? RED : team.captainId ? GOLD2 : MID, whiteSpace: "nowrap" }}>
+                    ⭐ {team.captainId ? short(capP?.name) : "Sin capitán"}
+                    {capElim && <span style={{ fontWeight: 900 }}> ⚠️ eliminado</span>}
+                    {team.captainId && team.viceId && <span style={{ color: MID, fontWeight: 700 }}>· V: {short(getPlayerById(team.viceId)?.name)}</span>}
+                  </span>
+                );
+              })()}
             </div>
           </div>
 
@@ -657,6 +669,7 @@ export default function FantasyGame() {
             ownedIds={ownedIds}
             nationCounts={nationCounts}
             budgetRemaining={budgetRemaining}
+            gameweek={team.gameweek}
             selectingSlot={selectingSlot ? team.slots.find((s) => s.slot === selectingSlot) ?? null : null}
             onPick={assignPlayer}
           />

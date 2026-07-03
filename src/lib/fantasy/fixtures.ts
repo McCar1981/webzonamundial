@@ -51,6 +51,19 @@ export function isValidGameweek(gw: number): boolean {
 }
 
 /**
+ * ¿La jornada `gw` es de ELIMINATORIAS (16avos en adelante)? En cada ronda KO cae
+ * la mitad de las selecciones, así que muchos jugadores quedan eliminados y TODOS
+ * deben reconstruir. Por eso las jornadas de eliminatorias llevan "wildcard de
+ * transición": los fichajes van SIN penalización (nadie paga por reemplazar a
+ * quien fue eliminado, que no es culpa suya). En grupos (J1-3) la penalización de
+ * fichajes normal sí aplica (mismo pool, cambios opcionales).
+ */
+export function isKnockoutGameweek(gw: number): boolean {
+  const round = GW_TO_ROUND[gw];
+  return !!round && round.phases != null;
+}
+
+/**
  * ¿La jornada `gw` ya se disputó por completo? Es cobrable solo cuando su último
  * partido real quedó atrás (al menos el día siguiente, en UTC), de modo que NUNCA
  * se pagan Fútcoins por la simulación de pretemporada ni por jornadas futuras.

@@ -6,7 +6,7 @@
 
 import { useMemo, useState } from "react";
 import { getPlayerPool } from "@/lib/fantasy/players";
-import { getTeamRun, STAGE_SHORT } from "@/lib/fantasy/tournament";
+import { getTeamRun, STAGE_SHORT, isEliminated } from "@/lib/fantasy/tournament";
 import type { FantasyPos, FantasyPlayer, PlayerStatus, SquadSlot } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, marketValueLabel, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
 import PlayerModal from "./PlayerModal";
@@ -29,6 +29,7 @@ interface Props {
   ownedIds: Set<string>;
   nationCounts: Record<string, number>;
   budgetRemaining: number;
+  gameweek: number;
   selectingSlot: SquadSlot | null;
   onPick: (playerId: string, slotId?: string) => void;
 }
@@ -57,7 +58,7 @@ function signedDelta(p: FantasyPlayer): number {
   return p.priceTrend === "up" ? p.priceDelta : p.priceTrend === "down" ? -p.priceDelta : 0;
 }
 
-export default function MarketView({ ownedIds, nationCounts, budgetRemaining, selectingSlot, onPick }: Props) {
+export default function MarketView({ ownedIds, nationCounts, budgetRemaining, gameweek, selectingSlot, onPick }: Props) {
   const pool = useMemo(() => getPlayerPool(), []);
   const teams = useMemo(() => {
     const seen = new Map<string, string>();
@@ -167,9 +168,10 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 10 }}>
         {list.map((p) => {
           const owned = ownedIds.has(p.id);
+          const eliminated = isEliminated(p.teamSlug, gameweek);
           const tooPricey = p.price > budgetRemaining + 1e-6;
           const nationFull = (nationCounts[p.teamSlug] ?? 0) >= 3 && !owned;
-          const disabled = owned || tooPricey || nationFull || !p.available;
+          const disabled = owned || eliminated || tooPricey || nationFull || !p.available;
           const picked = compareMode && !!compareSel.find((x) => x.id === p.id);
           return (
             <div key={p.id} style={{ background: BG2, border: "1px solid " + (picked ? GOLD : "rgba(255,255,255,0.07)"), borderRadius: 12, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
@@ -213,8 +215,10 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", fontSize: 11 }}>
-                {(() => { const sm = startMeta(p); return <span title="Probabilidad de ser titular (simulada)" style={{ fontWeight: 800, color: sm.color, background: `${sm.color}1e`, borderRadius: 6, padding: "3px 7px" }}>{sm.label}</span>; })()}
-                {STATUS_META[p.status] && <span style={{ fontWeight: 800, color: STATUS_META[p.status]!.color }}>⛔ {STATUS_META[p.status]!.label}</span>}
+                {eliminated
+                  ? <span title="Su selección quedó eliminada del Mundial" style={{ fontWeight: 900, color: RED, background: `${RED}1e`, borderRadius: 6, padding: "3px 7px" }}>❌ ELIMINADO</span>
+                  : (() => { const sm = startMeta(p); return <span title="Probabilidad de ser titular (simulada)" style={{ fontWeight: 800, color: sm.color, background: `${sm.color}1e`, borderRadius: 6, padding: "3px 7px" }}>{sm.label}</span>; })()}
+                {!eliminated && STATUS_META[p.status] && <span style={{ fontWeight: 800, color: STATUS_META[p.status]!.color }}>⛔ {STATUS_META[p.status]!.label}</span>}
               </div>
 
               <button
@@ -222,7 +226,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 disabled={disabled}
                 style={{ marginTop: "auto", padding: "8px 10px", borderRadius: 9, border: "none", fontWeight: 800, fontSize: 13, cursor: disabled ? "not-allowed" : "pointer", background: disabled ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: disabled ? MID : "#060B14" }}
               >
-                {owned ? "✓ En tu equipo" : nationFull ? "Máx. 3 de su país" : tooPricey ? "Fuera de presupuesto" : "＋ Fichar"}
+                {owned ? "✓ En tu equipo" : eliminated ? "Selección eliminada" : nationFull ? "Máx. 3 de su país" : tooPricey ? "Fuera de presupuesto" : "＋ Fichar"}
               </button>
             </div>
           );

@@ -15,6 +15,7 @@ import { requireCron } from "@/lib/auth-helpers";
 import { adminClient } from "@/lib/predictions/admin";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
+import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -79,11 +80,11 @@ export async function GET(req: Request) {
   let paid = 0;
   const { data: toReward } = await admin
     .from("liga_predictions")
-    .select("id,user_id")
+    .select("id,user_id,fixture_id")
     .eq("status", "won")
     .eq("rewarded", false)
     .limit(300);
-  for (const row of (toReward ?? []) as { id: string; user_id: string }[]) {
+  for (const row of (toReward ?? []) as { id: string; user_id: string; fixture_id: number }[]) {
     const { data: claimed } = await admin
       .from("liga_predictions")
       .update({ rewarded: true })
@@ -92,8 +93,11 @@ export async function GET(req: Request) {
       .select("id")
       .maybeSingle();
     if (!claimed) continue; // otra ejecución ya lo reclamó
+    // Boost: si el usuario pagó por amplificar este partido, paga el premio mayor.
+    const boosted = await consumeBoost(row.user_id, row.fixture_id);
+    const coins = boosted ? BOOST_REWARD : REWARD_COINS;
     try {
-      await grantCoins(row.user_id, REWARD_COINS, REWARD_XP, { module: "otros" });
+      await grantCoins(row.user_id, coins, REWARD_XP, { module: "otros" });
       paid++;
     } catch (err) {
       console.error("[resolve-liga] grant failed, rollback", row.id, err);

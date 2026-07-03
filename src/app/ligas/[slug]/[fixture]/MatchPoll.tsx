@@ -21,17 +21,21 @@ export default function MatchPoll({
   slug,
   homeName,
   awayName,
+  notStarted = false,
 }: {
   fixtureId: number;
   slug: string;
   homeName: string;
   awayName: string;
+  notStarted?: boolean;
 }) {
   const storeKey = `zl-voted-${fixtureId}`;
   const [counts, setCounts] = useState<Counts | null>(null);
   const [myPick, setMyPick] = useState<Pick | null>(null);
   const [authed, setAuthed] = useState<boolean | null>(null); // null = aún no sabido
   const [rewarded, setRewarded] = useState(false); // hay predicción con Fútcoins guardada
+  const [boosted, setBoosted] = useState(false); // premio amplificado (x3) comprado
+  const [boostBusy, setBoostBusy] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -42,6 +46,7 @@ export default function MatchPoll({
       .then((j) => {
         if (!j) return;
         setAuthed(!!j.authed);
+        setBoosted(!!j.boosted);
         if (j.pick === "home" || j.pick === "draw" || j.pick === "away") {
           setMyPick(j.pick);
           setRewarded(true);
@@ -95,6 +100,33 @@ export default function MatchPoll({
     },
     [busy, myPick, authed, fixtureId, slug, storeKey],
   );
+
+  const doBoost = useCallback(async () => {
+    if (boostBusy || boosted) return;
+    setBoostBusy(true);
+    setError("");
+    try {
+      const r = await fetch("/api/ligas/predict/boost", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fixtureId }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok || j?.error === "already_boosted") {
+        setBoosted(true);
+      } else if (j?.error === "insufficient_coins") {
+        setError("No tienes Fútcoins suficientes para el boost.");
+      } else if (j?.error === "match_started") {
+        setError("El partido ya empezó: el boost cierra al saque.");
+      } else {
+        setError("No se pudo activar el boost.");
+      }
+    } catch {
+      setError("Sin conexión. Inténtalo de nuevo.");
+    } finally {
+      setBoostBusy(false);
+    }
+  }, [boostBusy, boosted, fixtureId]);
 
   const options: { key: Pick; label: string }[] = [
     { key: "home", label: homeName },
@@ -154,6 +186,22 @@ export default function MatchPoll({
         <p style={{ margin: "12px 0 0", fontSize: 12, color: DIM, textAlign: "center" }}>
           <a href="/registro" style={{ color: GOLD, textDecoration: "none" }}>Inicia sesión</a> para predecir y ganar Fútcoins.
         </p>
+      )}
+      {/* Boost: sumidero de Fútcoins. Solo si ya predijo y el partido no ha empezado. */}
+      {authed && rewarded && notStarted && (
+        boosted ? (
+          <p style={{ margin: "12px 0 0", fontSize: 12.5, fontWeight: 500, color: GOLD, textAlign: "center" }}>
+            Premio ×3 activado. Si aciertas, ganas 30 Fútcoins.
+          </p>
+        ) : (
+          <button
+            onClick={doBoost}
+            disabled={boostBusy}
+            style={{ display: "block", width: "100%", marginTop: 12, border: "1px solid rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)", color: "#fff", fontSize: 13, fontWeight: 500, padding: "10px 12px", borderRadius: 10, cursor: boostBusy ? "default" : "pointer", opacity: boostBusy ? 0.7 : 1 }}
+          >
+            {boostBusy ? "Activando…" : "Sube tu premio de 10 a 30 Fútcoins · cuesta 10"}
+          </button>
+        )
       )}
       {error ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a", textAlign: "center" }}>{error}</p> : null}
       {authed && rewarded && (

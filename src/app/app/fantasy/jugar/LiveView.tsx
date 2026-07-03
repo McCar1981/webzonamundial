@@ -217,7 +217,7 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
         {transfers.transfers > 0 && (
           <div style={{ fontSize: 12, marginTop: 8, fontWeight: 700, color: transfers.penalty > 0 ? RED : GREEN }}>
             {transfers.wildcard
-              ? `Comodín activo: ${transfers.transfers} fichajes gratis.`
+              ? `Fichajes libres esta jornada: ${transfers.transfers} sin coste.`
               : transfers.penalty > 0
                 ? `${transfers.transfers} fichajes · ${transfers.free} gratis · ${transfers.paid} con coste = −${transfers.penalty} pts`
                 : `${transfers.transfers} fichajes (gratis).`}

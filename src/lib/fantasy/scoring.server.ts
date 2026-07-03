@@ -15,7 +15,7 @@ import { getPlayerById } from "./players";
 import { matchForFlag } from "./fixtures";
 import { scoreGameweekLive, snapshotFinished, snapshotStarted } from "./scoring.live";
 import { validateTeam, transferCost } from "./rules";
-import { isValidGameweek } from "./fixtures";
+import { isValidGameweek, isKnockoutGameweek } from "./fixtures";
 import { isFantasyLive } from "./season";
 import { recordGameweekScore, getGameweekScore } from "./store.server";
 import type { FantasyTeamState } from "./types";
@@ -114,11 +114,13 @@ export async function scoreGameweekFromState(
   const result = scoreGameweekLive(team.slots, captainId, viceId, powerUp, gw, snapshots);
   const gross = valid ? result.total : 0;
 
+  // Wildcard de transición: en eliminatorias los fichajes de reemplazo NO
+  // penalizan (media liga queda eliminada; reconstruir no es culpa del usuario).
   const tc = transferCost(
     team.committedSlots ?? [],
     team.slots,
     team.freeTransfers ?? 0,
-    powerUp === "comodin",
+    powerUp === "comodin" || isKnockoutGameweek(gw),
   );
   const net = Math.max(0, gross - tc.penalty);
 

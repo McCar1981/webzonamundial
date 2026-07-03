@@ -15,9 +15,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompetition } from "@/data/competitions";
 import { getFixtureDetail, type FixtureDetail, type FixtureEvent } from "@/lib/competitions/api";
-import LocalTime from "../LocalTime";
 import MatchPoll from "./MatchPoll";
 import MatchSummary from "./MatchSummary";
+import LiveScore from "./LiveScore";
 import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 
 export const revalidate = 30;
@@ -27,7 +27,6 @@ const loadDetail = cache((id: number) => getFixtureDetail(id));
 const GOLD = "#c9a84c";
 const DIM = "#9db0c9";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
-const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
 type Params = { slug: string; fixture: string };
 
@@ -150,7 +149,6 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
   const f = d.fixture;
   const finished = FINISHED.has(f.status);
-  const live = LIVE.has(f.status);
   const homeId = f.home.id;
 
   return (
@@ -165,16 +163,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 18 }}>
           <Team name={f.home.name} logo={f.home.logo} side="home" />
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-            {finished || live ? (
-              <span style={{ fontSize: 34, fontWeight: 500, fontVariantNumeric: "tabular-nums", color: "#fff" }}>{f.score.home ?? 0} - {f.score.away ?? 0}</span>
-            ) : (
-              <span style={{ fontSize: 20, fontWeight: 500, color: "#fff" }}><LocalTime iso={f.kickoff} mode="time" fallback={f.kickoff.slice(11, 16)} /></span>
-            )}
-            <span style={{ fontSize: 11.5, fontWeight: 500, color: live ? "#d85a30" : DIM }}>
-              {live ? (f.elapsed != null ? `EN VIVO ${f.elapsed}'` : "EN VIVO") : finished ? "Final" : <LocalTime iso={f.kickoff} mode="date" fallback={f.kickoff.slice(0, 10)} />}
-            </span>
-          </div>
+          <LiveScore fixtureId={f.fixtureId} status={f.status} elapsed={f.elapsed} scoreHome={f.score.home} scoreAway={f.score.away} kickoff={f.kickoff} />
           <Team name={f.away.name} logo={f.away.logo} side="away" />
         </div>
 

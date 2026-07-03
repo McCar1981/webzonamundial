@@ -156,6 +156,13 @@ export default async function LigaPage({ params }: { params: { slug: string } })
   ]);
   const days = groupByDay(upcoming);
   const hasData = upcoming.length > 0 || recent.length > 0 || standings.length > 0;
+  // Partido destacado: el jugado más reciente (para enseñar el detalle completo) o,
+  // si no hay ninguno, el próximo. Es el gancho que anuncia lo que hay DENTRO del
+  // partido (resumen IA, predicción, estadísticas) desde la portada de la liga.
+  const featured = recent.length
+    ? [...recent].sort((a, b) => b.kickoff.localeCompare(a.kickoff))[0]
+    : (upcoming[0] ?? null);
+  const featPlayed = featured ? FINISHED.has(featured.status) || LIVE.has(featured.status) : false;
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
@@ -163,6 +170,31 @@ export default async function LigaPage({ params }: { params: { slug: string } })
         <p style={{ margin: 0, fontSize: 12, fontWeight: 500, letterSpacing: 2, color: GOLD }}>ZONA DE LIGAS</p>
         <h1 style={{ margin: "4px 0 2px", fontSize: 28, fontWeight: 500, color: "#fff" }}>{comp.name}</h1>
         <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>{comp.country} · Calendario y resultados en vivo</p>
+
+        {featured && (
+          <Link href={`/ligas/${comp.slug}/${featured.fixtureId}`} style={{ display: "block", marginTop: 18, padding: 16, borderRadius: 16, textDecoration: "none", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.02))", border: "1px solid rgba(201,168,76,0.34)" }}>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1.5, color: GOLD, marginBottom: 10 }}>PARTIDO DESTACADO</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, justifyContent: "flex-end", minWidth: 0 }}>
+                <span style={{ fontSize: 15, color: "#fff", fontWeight: 500, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{featured.home.name}</span>
+                {featured.home.logo ? <img src={featured.home.logo} alt="" width={26} height={26} loading="lazy" style={{ width: 26, height: 26, objectFit: "contain", flexShrink: 0 }} /> : null}
+              </span>
+              <span style={{ fontSize: 20, fontWeight: 600, color: "#fff", fontVariantNumeric: "tabular-nums", minWidth: 44, textAlign: "center" }}>
+                {featPlayed ? `${featured.score.home ?? 0}-${featured.score.away ?? 0}` : "vs"}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+                {featured.away.logo ? <img src={featured.away.logo} alt="" width={26} height={26} loading="lazy" style={{ width: 26, height: 26, objectFit: "contain", flexShrink: 0 }} /> : null}
+                <span style={{ fontSize: 15, color: "#fff", fontWeight: 500, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{featured.away.name}</span>
+              </span>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
+              {(featPlayed ? ["Resumen con IA", "Estadísticas", "Alineaciones", "Línea de tiempo"] : ["Resumen con IA", "Predice y gana Fútcoins"]).map((chip) => (
+                <span key={chip} style={{ fontSize: 11, color: "#cbd5e1", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(201,168,76,0.24)", borderRadius: 99, padding: "4px 10px" }}>{chip}</span>
+              ))}
+            </div>
+            <div style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: GOLD }}>Ver partido &rsaquo;</div>
+          </Link>
+        )}
 
         {!hasData ? (
           <div style={{ marginTop: 28, padding: 24, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)", textAlign: "center", color: DIM, fontSize: 14 }}>

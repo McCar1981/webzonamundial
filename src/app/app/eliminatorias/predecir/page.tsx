@@ -9,7 +9,7 @@
 // adelante el cuadro lo arma el usuario. Se guarda en el dispositivo.
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const NAVY = "#0a1729";
 const GOLD = "#c9a84c";
@@ -20,7 +20,7 @@ const TXT_MUT = "#93a1bd";
 const LINE = "rgba(255,255,255,0.08)";
 
 type Side = { name: string; flag: string | null; slot: string };
-type KoMatch = { matchId: number; phase: string; home: Side; away: Side };
+type KoMatch = { matchId: number; phase: string; finished?: boolean; home: Side; away: Side };
 type Team = { name: string; flag: string };
 
 const ROUNDS: { key: string; label: string }[] = [
@@ -83,7 +83,18 @@ export default function PredecirCrucesPage() {
   const [picks, setPicks] = useState<Record<number, string>>({});
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  // Al abrir, saltar a la RONDA ACTIVA que se predice (la primera con partidos sin
+  // terminar): hoy Octavos, luego Cuartos… Se hace una vez tras cargar el cuadro.
+  const jumpedRef = useRef(false);
+  useEffect(() => {
+    if (jumpedRef.current || !matches || matches.length === 0) return;
+    jumpedRef.current = true;
+    const active = ROUNDS.find((r) => matches.some((m) => m.phase === r.key && !m.finished));
+    if (!active) { window.scrollTo(0, 0); return; }
+    setTimeout(() => {
+      document.getElementById(`pred-ronda-${active.key.replace(/\s+/g, "-")}`)?.scrollIntoView({ block: "start", behavior: "auto" });
+    }, 90);
+  }, [matches]);
 
   // Cargar picks guardados.
   useEffect(() => {
@@ -189,7 +200,7 @@ export default function PredecirCrucesPage() {
           const list = byRound(key);
           if (list.length === 0) return null;
           return (
-            <section key={key} style={{ marginBottom: 24 }}>
+            <section key={key} id={`pred-ronda-${key.replace(/\s+/g, "-")}`} style={{ marginBottom: 24, scrollMarginTop: 10 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 11 }}>
                 <span style={{ width: 5, height: 22, borderRadius: 3, background: `linear-gradient(180deg, ${PURP}, #cdb2ff)`, flexShrink: 0, boxShadow: `0 0 10px ${PURP}66` }} />
                 <h2 style={{ fontSize: 16, fontWeight: 800 }}>{label}</h2>

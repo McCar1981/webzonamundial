@@ -8,7 +8,7 @@
 // Distinto del simulador /bracket (ahí el usuario PREDICE; aquí es lo REAL).
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAVY = "#0a1729";
 const GOLD = "#c9a84c";
@@ -78,10 +78,19 @@ function fmtKickoff(iso: string | null): string {
 export default function EliminatoriasPage() {
   const [matches, setMatches] = useState<KoMatch[] | null>(null);
 
-  // Al abrir, siempre arriba del todo (la navegación SPA puede conservar scroll).
+  // Al abrir, posicionar en la RONDA ACTIVA (la primera con algún partido sin
+  // terminar): hoy Octavos, luego Cuartos, Semis… Se adapta solo y se hace una
+  // única vez tras cargar los datos. Si todo está terminado, se queda arriba.
+  const jumpedRef = useRef(false);
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (jumpedRef.current || !matches || matches.length === 0) return;
+    jumpedRef.current = true;
+    const active = ROUNDS.find((r) => matches.some((m) => m.phase === r.key && !m.finished));
+    if (!active) { window.scrollTo(0, 0); return; }
+    setTimeout(() => {
+      document.getElementById(`ronda-${active.key.replace(/\s+/g, "-")}`)?.scrollIntoView({ block: "start", behavior: "auto" });
+    }, 90);
+  }, [matches]);
 
   useEffect(() => {
     let on = true;
@@ -154,7 +163,7 @@ export default function EliminatoriasPage() {
           const list = byRound(key);
           if (list.length === 0) return null;
           return (
-            <section key={key} style={{ marginBottom: 26 }}>
+            <section key={key} id={`ronda-${key.replace(/\s+/g, "-")}`} style={{ marginBottom: 26, scrollMarginTop: 10 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 12 }}>
                 <span style={{ width: 5, height: 22, borderRadius: 3, background: `linear-gradient(180deg, ${GOLD}, ${GOLD2})`, flexShrink: 0, boxShadow: `0 0 10px ${GOLD}66` }} />
                 <h2 style={{ fontSize: 16, fontWeight: 800 }}>{label}</h2>

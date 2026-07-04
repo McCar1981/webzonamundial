@@ -27,7 +27,15 @@ export async function GET(req: NextRequest) {
     // cadencia de 10 min: ambos seleccionan por ventana de saque y deduplican en
     // KV, así que cada partido recibe su aviso y su previa una sola vez. La
     // previa no bloquea el recordatorio si falla.
-    const reminders = await runMatchReminders();
+    // AMBOS se ejecutan de forma independiente: un fallo en los recordatorios NO
+    // debe impedir que se generen las PREVIAS (antes, si runMatchReminders lanzaba,
+    // la ruta hacía 500 y las previas ni se intentaban → partidos sin previa).
+    let reminders: Awaited<ReturnType<typeof runMatchReminders>> | { error: string };
+    try {
+      reminders = await runMatchReminders();
+    } catch (err) {
+      reminders = { error: (err as Error).message };
+    }
     let previas: Awaited<ReturnType<typeof runMatchPrevias>> | { error: string };
     try {
       previas = await runMatchPrevias();

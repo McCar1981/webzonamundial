@@ -624,8 +624,14 @@ export interface PreviaRunResult {
  */
 export async function runMatchPrevias(now: Date = new Date()): Promise<PreviaRunResult> {
   const result: PreviaRunResult = { checked: 0, due: 0, published: 0, skipped: 0 };
-  const lowMs = (PREVIA_LEAD_MINUTES - PREVIA_WINDOW_MINUTES) * 60_000;
-  const highMs = (PREVIA_LEAD_MINUTES + PREVIA_WINDOW_MINUTES) * 60_000;
+  // Ventana AMPLIA (de ~85 a ~30 min antes del saque) en vez de un pico estrecho
+  // alrededor de los 60 min: el cron corre cada 10 min y Vercel NO garantiza que
+  // cada tick se dispare exacto; con una ventana estrecha (±8 min) bastaba un
+  // tick saltado —o que los equipos de una eliminatoria se confirmen tarde en el
+  // calendario— para quedarse SIN previa. Con la ventana amplia hay ~5 intentos y
+  // el SETNX (reservePrevia) garantiza que se publique UNA sola vez.
+  const lowMs = 30 * 60_000;
+  const highMs = 85 * 60_000;
   const slugMap = await isoToSlug();
 
   for (const m of MATCHES as Match[]) {

@@ -320,6 +320,17 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/australia-egipto-wide.webp",
     mobile: "/images/hero/australia-egipto-mobile.webp",
   },
+  // ── Octavos de final ───────────────────────────────────────────────────────
+  // Canadá vs Marruecos (octavos, 4 jul).
+  "canada-marruecos": {
+    wide: "/images/hero/canada-marruecos-wide.webp",
+    mobile: "/images/hero/canada-marruecos-mobile.webp",
+  },
+  // Paraguay vs Francia (octavos, 4 jul).
+  "paraguay-francia": {
+    wide: "/images/hero/paraguay-francia-wide.webp",
+    mobile: "/images/hero/paraguay-francia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

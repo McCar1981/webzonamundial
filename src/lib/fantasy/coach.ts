@@ -5,7 +5,7 @@
 
 import { getPlayerById, getPlayerPool } from "./players";
 import { buildSlots, getFormation } from "./rules";
-import { longevityFactor } from "./tournament";
+import { longevityFactor, isEliminated } from "./tournament";
 import { playerMatchLocked } from "./fixtures";
 import { BUDGET, MAX_PER_NATION, type FantasyPlayer, type FantasyPos, type SquadSlot } from "./types";
 
@@ -100,7 +100,9 @@ export function autoDraft(formationCode = "4-3-3", gw?: number): { slots: SquadS
   const f = getFormation(formationCode);
   const slots = buildSlots(formationCode);
   const pool = [...getPlayerPool()]
-    .filter((p) => p.available && (gw == null || !playerMatchLocked(p.flag, gw)))
+    // Ni jugadores cerrados por el partido (retrovisor) ni de selecciones ya
+    // eliminadas: el auto-draft debe armar un equipo VIVO y jugable.
+    .filter((p) => p.available && (gw == null || (!playerMatchLocked(p.flag, gw) && !isEliminated(p.teamSlug, gw))))
     .sort((a, b) => value(b) - value(a));
   const nationCount: Record<string, number> = {};
   const taken = new Set<string>();

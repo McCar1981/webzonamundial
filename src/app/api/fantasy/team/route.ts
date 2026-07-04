@@ -13,6 +13,7 @@ import { scoreGameweekFromState, recordProvisionalGameweek } from "@/lib/fantasy
 import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff, playerMatchLocked, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
 import { isFantasyLive } from "@/lib/fantasy/season";
 import { getPlayerById } from "@/lib/fantasy/players";
+import { isEliminated } from "@/lib/fantasy/tournament";
 import type { FantasyTeamState, GameweekLock, SquadSlot } from "@/lib/fantasy/types";
 import { isPro } from "@/lib/pro/entitlement";
 import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
@@ -74,6 +75,32 @@ function firstLockedIn(slots: SquadSlot[], gw: number): string | null {
   return null;
 }
 
+/**
+ * ¿El guardado de un Free es una SUSTITUCIÓN EN VIVO (perk Pro) y no una
+ * construcción/reparación del equipo? Solo cuenta como sustitución si un jugador
+ * VIVO que YA estaba alineado sale o cambia de campo↔banquillo. Está PERMITIDO:
+ * rellenar huecos vacíos (completar la plantilla) y quitar/reemplazar a jugadores
+ * ELIMINADOS. El "retrovisor" lo sigue evitando el cierre por partido de 3h. Sin
+ * esto, un Free sin equipo (o con el equipo lleno de eliminados) no podía ni
+ * fichar durante la jornada. La capitanía/chip queda congelada por gwLock, así que
+ * cambiarla no afecta a la puntuación y no hace falta bloquearla aquí.
+ */
+function freeInPlaySub(prev: FantasyTeamState, next: FantasyTeamState, gw: number): boolean {
+  const statusOf = (slots: SquadSlot[]) => {
+    const m = new Map<string, "field" | "bench">();
+    for (const s of slots) if (s.playerId) m.set(s.playerId, s.bench ? "bench" : "field");
+    return m;
+  };
+  const before = statusOf(prev.slots);
+  const after = statusOf(next.slots);
+  for (const [id, st] of before) {
+    const p = getPlayerById(id);
+    if (p && isEliminated(p.teamSlug, gw)) continue; // reemplazar eliminados: permitido
+    if (after.get(id) !== st) return true; // un jugador VIVO salió o cambió de línea
+  }
+  return false;
+}
+
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
@@ -123,10 +150,11 @@ export async function PUT(req: Request) {
   // cierre por partido de abajo (no pueden alinear a quien ya jugó).
   if (gameweekLockedForFree(state.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) &&
       !(await isPro(user.id, user.email))) {
-    const lineup = (s: FantasyTeamState) =>
-      JSON.stringify({ slots: s.slots, captain: s.captainId, vice: s.viceId, formation: s.formation });
-    const lineupChanged = prev ? lineup(prev) !== lineup(state) : false;
-    if (lineupChanged) {
+    // Solo se bloquea una SUSTITUCIÓN EN VIVO de un jugador VIVO ya alineado (el
+    // perk Pro). Construir el equipo (rellenar huecos) y reemplazar eliminados NO
+    // se bloquea — el cierre por partido de abajo evita el retrovisor.
+    const inPlaySub = prev ? freeInPlaySub(prev, state, state.gameweek) : false;
+    if (inPlaySub) {
       trackLimitHit("fantasy_lock");
       const payload: ProRequiredPayload = {
         error: `Tu plantilla está cerrada desde ${FREE_LIMITS.fantasy.lockHoursBeforeGameweek} h antes de la jornada. Con Pro haces sustituciones en vivo.`,

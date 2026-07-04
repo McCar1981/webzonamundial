@@ -117,14 +117,14 @@ export const MATCHES: Match[] = [
   { "i": 88, "g": "", "p": "Dieciseisavos", "j": 0, "h": "Australia", "hf": "au", "a": "Egipto", "af": "eg", "d": "2026-07-03", "t": "14:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
 
   // OCTAVOS DE FINAL
-  { "i": 89, "g": "", "p": "Octavos de final", "j": 0, "h": "W74", "hf": "tbd", "a": "W77", "af": "tbd", "d": "2026-07-04", "t": "17:00", "vn": "Lincoln Financial Field", "vc": "Filadelfia", "vf": "us" },
-  { "i": 90, "g": "", "p": "Octavos de final", "j": 0, "h": "W73", "hf": "tbd", "a": "W75", "af": "tbd", "d": "2026-07-04", "t": "13:00", "vn": "NRG Stadium", "vc": "Houston", "vf": "us" },
-  { "i": 91, "g": "", "p": "Octavos de final", "j": 0, "h": "W76", "hf": "tbd", "a": "W78", "af": "tbd", "d": "2026-07-05", "t": "16:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
-  { "i": 92, "g": "", "p": "Octavos de final", "j": 0, "h": "W79", "hf": "tbd", "a": "W80", "af": "tbd", "d": "2026-07-05", "t": "20:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
-  { "i": 93, "g": "", "p": "Octavos de final", "j": 0, "h": "W83", "hf": "tbd", "a": "W84", "af": "tbd", "d": "2026-07-06", "t": "15:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
-  { "i": 94, "g": "", "p": "Octavos de final", "j": 0, "h": "W81", "hf": "tbd", "a": "W82", "af": "tbd", "d": "2026-07-06", "t": "20:00", "vn": "Lumen Field", "vc": "Seattle", "vf": "us" },
-  { "i": 95, "g": "", "p": "Octavos de final", "j": 0, "h": "W86", "hf": "tbd", "a": "W88", "af": "tbd", "d": "2026-07-07", "t": "12:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
-  { "i": 96, "g": "", "p": "Octavos de final", "j": 0, "h": "W85", "hf": "tbd", "a": "W87", "af": "tbd", "d": "2026-07-07", "t": "16:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
+  { "i": 89, "g": "", "p": "Octavos de final", "j": 0, "h": "Paraguay", "hf": "py", "a": "Francia", "af": "fr", "d": "2026-07-04", "t": "17:00", "vn": "Lincoln Financial Field", "vc": "Filadelfia", "vf": "us" },
+  { "i": 90, "g": "", "p": "Octavos de final", "j": 0, "h": "Canadá", "hf": "ca", "a": "Marruecos", "af": "ma", "d": "2026-07-04", "t": "13:00", "vn": "NRG Stadium", "vc": "Houston", "vf": "us" },
+  { "i": 91, "g": "", "p": "Octavos de final", "j": 0, "h": "Brasil", "hf": "br", "a": "Noruega", "af": "no", "d": "2026-07-05", "t": "16:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
+  { "i": 92, "g": "", "p": "Octavos de final", "j": 0, "h": "México", "hf": "mx", "a": "Inglaterra", "af": "gb-eng", "d": "2026-07-05", "t": "20:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
+  { "i": 93, "g": "", "p": "Octavos de final", "j": 0, "h": "Portugal", "hf": "pt", "a": "España", "af": "es", "d": "2026-07-06", "t": "15:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
+  { "i": 94, "g": "", "p": "Octavos de final", "j": 0, "h": "EE.UU.", "hf": "us", "a": "Bélgica", "af": "be", "d": "2026-07-06", "t": "20:00", "vn": "Lumen Field", "vc": "Seattle", "vf": "us" },
+  { "i": 95, "g": "", "p": "Octavos de final", "j": 0, "h": "Argentina", "hf": "ar", "a": "Egipto", "af": "eg", "d": "2026-07-07", "t": "12:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
+  { "i": 96, "g": "", "p": "Octavos de final", "j": 0, "h": "Suiza", "hf": "ch", "a": "Colombia", "af": "co", "d": "2026-07-07", "t": "16:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
 
   // CUARTOS DE FINAL
   { "i": 97, "g": "", "p": "Cuartos de final", "j": 0, "h": "W89", "hf": "tbd", "a": "W90", "af": "tbd", "d": "2026-07-09", "t": "16:00", "vn": "Gillette Stadium", "vc": "Boston", "vf": "us" },

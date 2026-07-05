@@ -331,6 +331,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/paraguay-francia-wide.webp",
     mobile: "/images/hero/paraguay-francia-mobile.webp",
   },
+  // Brasil vs Noruega (octavos).
+  "brasil-noruega": {
+    wide: "/images/hero/brasil-noruega-wide.webp",
+    mobile: "/images/hero/brasil-noruega-mobile.webp",
+  },
+  // México vs Inglaterra (octavos).
+  "mexico-inglaterra": {
+    wide: "/images/hero/mexico-inglaterra-wide.webp",
+    mobile: "/images/hero/mexico-inglaterra-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

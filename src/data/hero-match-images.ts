@@ -341,6 +341,26 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/mexico-inglaterra-wide.webp",
     mobile: "/images/hero/mexico-inglaterra-mobile.webp",
   },
+  // Portugal vs España (octavos). Clave = slug del partido (home-away).
+  "portugal-espana": {
+    wide: "/images/hero/portugal-espana-wide.webp",
+    mobile: "/images/hero/portugal-espana-mobile.webp",
+  },
+  // EE.UU. vs Bélgica (octavos).
+  "ee-uu-belgica": {
+    wide: "/images/hero/ee-uu-belgica-wide.webp",
+    mobile: "/images/hero/ee-uu-belgica-mobile.webp",
+  },
+  // Argentina vs Egipto (octavos).
+  "argentina-egipto": {
+    wide: "/images/hero/argentina-egipto-wide.webp",
+    mobile: "/images/hero/argentina-egipto-mobile.webp",
+  },
+  // Suiza vs Colombia (octavos).
+  "suiza-colombia": {
+    wide: "/images/hero/suiza-colombia-wide.webp",
+    mobile: "/images/hero/suiza-colombia-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

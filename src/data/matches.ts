@@ -127,10 +127,10 @@ export const MATCHES: Match[] = [
   { "i": 96, "g": "", "p": "Octavos de final", "j": 0, "h": "Suiza", "hf": "ch", "a": "Colombia", "af": "co", "d": "2026-07-07", "t": "16:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
 
   // CUARTOS DE FINAL
-  { "i": 97, "g": "", "p": "Cuartos de final", "j": 0, "h": "W89", "hf": "tbd", "a": "W90", "af": "tbd", "d": "2026-07-09", "t": "16:00", "vn": "Gillette Stadium", "vc": "Boston", "vf": "us" },
-  { "i": 98, "g": "", "p": "Cuartos de final", "j": 0, "h": "W93", "hf": "tbd", "a": "W94", "af": "tbd", "d": "2026-07-10", "t": "15:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
-  { "i": 99, "g": "", "p": "Cuartos de final", "j": 0, "h": "W91", "hf": "tbd", "a": "W92", "af": "tbd", "d": "2026-07-11", "t": "17:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
-  { "i": 100, "g": "", "p": "Cuartos de final", "j": 0, "h": "W95", "hf": "tbd", "a": "W96", "af": "tbd", "d": "2026-07-11", "t": "21:00", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
+  { "i": 97, "g": "", "p": "Cuartos de final", "j": 0, "h": "Francia", "hf": "fr", "a": "Marruecos", "af": "ma", "d": "2026-07-09", "t": "16:00", "vn": "Gillette Stadium", "vc": "Boston", "vf": "us" },
+  { "i": 98, "g": "", "p": "Cuartos de final", "j": 0, "h": "España", "hf": "es", "a": "Bélgica", "af": "be", "d": "2026-07-10", "t": "15:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
+  { "i": 99, "g": "", "p": "Cuartos de final", "j": 0, "h": "Noruega", "hf": "no", "a": "Inglaterra", "af": "gb-eng", "d": "2026-07-11", "t": "17:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
+  { "i": 100, "g": "", "p": "Cuartos de final", "j": 0, "h": "Argentina", "hf": "ar", "a": "Suiza", "af": "ch", "d": "2026-07-11", "t": "21:00", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
 
   // SEMIFINAL
   { "i": 101, "g": "", "p": "Semifinal", "j": 0, "h": "W97", "hf": "tbd", "a": "W98", "af": "tbd", "d": "2026-07-14", "t": "15:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },

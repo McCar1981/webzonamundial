@@ -6,6 +6,10 @@
       "schedule": "*/15 * * * *"
     },
     {
+      "path": "/api/cron/resolve-liga-fantasy",
+      "schedule": "*/30 * * * *"
+    },
+    {
       "path": "/api/cron/monitor",
       "schedule": "*/2 * * * *"
     },

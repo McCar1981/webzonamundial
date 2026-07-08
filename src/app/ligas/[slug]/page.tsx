@@ -31,7 +31,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const comp = getCompetition(params.slug);
   if (!comp) return { title: "Competición no encontrada — ZonaMundial" };
-  const title = `${comp.name}: calendario, resultados y en vivo | ZonaMundial`;
+  // El <title> lleva la marca por la plantilla del layout; OG/Twitter no la heredan y la llevan explícita.
+  const title = `${comp.name}: calendario, resultados y en vivo`;
+  const ogTitle = `${title} | ZonaMundial`;
   const description = `Sigue ${comp.name} en ZonaMundial: próximos partidos, resultados y la jornada en vivo. Predice cada partido, juega y compite con tus amigos, sin apuestas.`;
   const url = `https://zonamundial.app/ligas/${comp.slug}`;
   const ogUrl = `https://zonamundial.app/api/og/ligas-competicion?comp=${encodeURIComponent(comp.name)}&country=${encodeURIComponent(comp.country)}`;
@@ -39,8 +41,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: "ZonaMundial", type: "website", images: [{ url: ogUrl, width: 1200, height: 630, alt: title }] },
-    twitter: { card: "summary_large_image", title, description, images: [ogUrl] },
+    openGraph: { title: ogTitle, description, url, siteName: "ZonaMundial", type: "website", images: [{ url: ogUrl, width: 1200, height: 630, alt: ogTitle }] },
+    twitter: { card: "summary_large_image", title: ogTitle, description, images: [ogUrl] },
   };
 }
 

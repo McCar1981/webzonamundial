@@ -11,7 +11,8 @@ import LiveStrip from "./LiveStrip";
 import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
 
 export const metadata: Metadata = {
-  title: "Zona de Ligas: todas las ligas y copas en vivo | ZonaMundial",
+  // Sin "| ZonaMundial": lo añade la plantilla del layout raíz (evita el sufijo duplicado).
+  title: "Zona de Ligas: todas las ligas y copas en vivo",
   description: "Calendario, resultados y clasificación en vivo de LaLiga, Premier, Liga MX, Libertadores, Champions y más. Predice cada jornada y compite con tus amigos, sin apuestas.",
   alternates: { canonical: "https://zonamundial.app/ligas" },
 };

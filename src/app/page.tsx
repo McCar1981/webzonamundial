@@ -32,6 +32,7 @@ import { AppRevealSection } from "./_home/sections/AppRevealSection";
 import { CinematicDivider } from "./_home/sections/CinematicDivider";
 import { CalendarBanner } from "./_home/sections/CalendarBanner";
 import { BracketBanner } from "./_home/sections/BracketBanner";
+import { LigasBanner } from "./_home/sections/LigasBanner";
 import { HomeTriviaPlaySection } from "./_home/sections/HomeTriviaPlaySection";
 import { HomeMatchPredictSection } from "./_home/sections/HomeMatchPredictSection";
 import AdBanner from "@/components/ads/AdBanner";
@@ -97,6 +98,13 @@ export default function HomePage() {
       <HomeTriviaPlaySection />
       <CalendarBanner />
       <BracketBanner />
+      {/*
+        Puente a Zona de Ligas: el tráfico del Mundial caduca con la final; este
+        banner (estático, sin JS) es el desvío hacia el producto de temporada
+        completa. También aporta enlazado interno SEO desde la página con más
+        autoridad hacia /ligas.
+      */}
+      <LigasBanner />
       {/*
         Contenido editorial PRIMERO (tras el hero y los banners contextuales
         del Mundial). Antes estaba al final del home, lo que hacía que un

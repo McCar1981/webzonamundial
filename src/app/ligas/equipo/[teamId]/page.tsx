@@ -40,13 +40,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const [last, next] = await load(id);
   const team = teamOf([...last, ...next], id);
   if (!team) return { title: "Equipo — ZonaMundial" };
-  const title = `${team.name}: calendario, resultados y forma | ZonaMundial`;
+  // El <title> lleva la marca por la plantilla del layout; OG no la hereda y la lleva explícita.
+  const title = `${team.name}: calendario, resultados y forma`;
+  const ogTitle = `${title} | ZonaMundial`;
   const description = `Sigue a ${team.name} en ZonaMundial: próximos partidos, últimos resultados y forma en todas sus competiciones. Predice cada partido y compite con tus amigos.`;
   return {
     title,
     description,
     alternates: { canonical: `https://zonamundial.app/ligas/equipo/${id}` },
-    openGraph: { title, description, images: ["https://zonamundial.app/og-image.jpg"] },
+    openGraph: { title: ogTitle, description, images: ["https://zonamundial.app/og-image.jpg"] },
   };
 }
 

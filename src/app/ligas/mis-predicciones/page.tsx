@@ -18,7 +18,7 @@ import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Mis predicciones — Zona de Ligas | ZonaMundial",
+  title: "Mis predicciones — Zona de Ligas",
   description: "Tu historial de predicciones de ligas: aciertos, resultados y Fútcoins ganados.",
   robots: { index: false, follow: false },
 };

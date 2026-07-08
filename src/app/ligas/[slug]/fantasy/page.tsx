@@ -23,7 +23,7 @@ const DIM = "#9db0c9";
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const comp = getCompetition(params.slug);
   return {
-    title: comp ? `Fantasy ${comp.name} — monta tu once | ZonaMundial` : "Fantasy — ZonaMundial",
+    title: comp ? `Fantasy ${comp.name} — monta tu once` : "Fantasy — ZonaMundial",
     robots: { index: false, follow: true },
   };
 }

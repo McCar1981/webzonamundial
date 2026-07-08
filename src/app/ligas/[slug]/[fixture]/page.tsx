@@ -36,7 +36,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!comp || !Number.isFinite(id)) return { title: "Partido no encontrado — ZonaMundial" };
   const d = await loadDetail(id);
   if (!d) return { title: `${comp.name} — ZonaMundial` };
-  const t = `${d.fixture.home.name} vs ${d.fixture.away.name} — ${comp.name} | ZonaMundial`;
+  // El <title> lleva la marca por la plantilla del layout; OG/Twitter no la heredan y la llevan explícita.
+  const t = `${d.fixture.home.name} vs ${d.fixture.away.name} — ${comp.name}`;
+  const ogT = `${t} | ZonaMundial`;
   const desc = `Sigue ${d.fixture.home.name} - ${d.fixture.away.name} de ${comp.name} en ZonaMundial: marcador, alineaciones, estadísticas y predicciones.`;
   // Imagen de compartir dinámica (branded) con equipos + marcador/estado.
   const st = d.fixture.status;
@@ -49,8 +51,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     title: t,
     description: desc,
     alternates: { canonical: `https://zonamundial.app/ligas/${comp.slug}/${id}` },
-    openGraph: { title: t, description: desc, images: [{ url: ogUrl, width: 1200, height: 630, alt: t }] },
-    twitter: { card: "summary_large_image", title: t, description: desc, images: [ogUrl] },
+    openGraph: { title: ogT, description: desc, images: [{ url: ogUrl, width: 1200, height: 630, alt: ogT }] },
+    twitter: { card: "summary_large_image", title: ogT, description: desc, images: [ogUrl] },
   };
 }
 

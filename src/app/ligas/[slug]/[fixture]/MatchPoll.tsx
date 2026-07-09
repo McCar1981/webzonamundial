@@ -202,7 +202,7 @@ export default function MatchPoll({
             return (
               <div key={o.key}>
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, marginBottom: 3, color: mine ? GOLD : "#cbd5e1" }}>
-                  <span style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: mine ? 600 : 400 }}>{o.label}{mine ? " · tu apuesta" : ""}</span>
+                  <span style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: mine ? 600 : 400 }}>{o.label}{mine ? " · tu pronóstico" : ""}</span>
                   <span style={{ fontVariantNumeric: "tabular-nums" }}>{p}%</span>
                 </div>
                 <div style={{ height: 8, borderRadius: 99, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
@@ -219,9 +219,13 @@ export default function MatchPoll({
         </div>
       )}
 
-      {!myPick && authed === false && (
+      {authed === false && (
         <p style={{ margin: "12px 0 0", fontSize: 12, color: DIM, textAlign: "center" }}>
-          <a href="/registro" style={{ color: GOLD, textDecoration: "none" }}>Inicia sesión</a> para predecir y ganar Fútcoins.
+          {myPick ? (
+            <>Tu pronóstico ya está hecho. <a href="/registro?next=/ligas" style={{ color: GOLD, textDecoration: "none" }}>Crea tu cuenta gratis</a> para guardarlo a tu nombre y ganar Fútcoins si aciertas.</>
+          ) : (
+            <><a href="/registro?next=/ligas" style={{ color: GOLD, textDecoration: "none" }}>Inicia sesión</a> para predecir y ganar Fútcoins.</>
+          )}
         </p>
       )}
       {/* Boost: sumidero de Fútcoins. Solo si ya predijo y el partido no ha empezado. */}

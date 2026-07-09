@@ -18,6 +18,7 @@ import {
   adminGetTeam,
   adminSaveTeamState,
   adminSetGameweekScore,
+  adminMakeLeagueFirst,
 } from "@/lib/fantasy/store.server";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam } from "@/lib/fantasy/store";
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
     username?: string;
     autodraft?: boolean;
     setGameweekScore?: { gw: number; points: number };
+    leagueFirst?: boolean | { margin?: number };
   };
   try {
     body = await req.json();
@@ -82,6 +84,14 @@ export async function POST(req: NextRequest) {
       const total = await adminSetGameweekScore(userId, gw, points);
       result.setGameweekScore = { gw, points: Math.max(0, Math.round(points)), nuevoTotal: total };
     }
+  }
+
+  // 3) Dejarlo 1.º en TODAS sus ligas privadas (supera al mejor rival + margen).
+  if (body.leagueFirst) {
+    const margin = typeof body.leagueFirst === "object" && typeof body.leagueFirst.margin === "number"
+      ? body.leagueFirst.margin
+      : 10;
+    result.leagueFirst = await adminMakeLeagueFirst(userId, margin);
   }
 
   return NextResponse.json(result);

@@ -6,11 +6,10 @@
 // catálogo es fijo. Indexable y en el sitemap.
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import LiveStrip from "./LiveStrip";
 import HabitStrip from "@/components/ligas/HabitStrip";
 import MiClubCard from "@/components/ligas/MiClubCard";
-import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
+import LigasDirectory from "./LigasDirectory";
 
 export const metadata: Metadata = {
   // Sin "| ZonaMundial": lo añade la plantilla del layout raíz (evita el sufijo duplicado).
@@ -18,37 +17,6 @@ export const metadata: Metadata = {
   description: "Calendario, resultados y clasificación en vivo de LaLiga, Premier, Liga MX, Libertadores, Champions y más. Predice cada jornada y compite con tus amigos, sin apuestas.",
   alternates: { canonical: "https://zonamundial.app/ligas" },
 };
-
-const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
-
-const REGION_LABEL: Record<CompetitionRegion, string> = {
-  americas: "América",
-  europa: "Europa",
-  global: "Internacional",
-};
-const REGION_ORDER: CompetitionRegion[] = ["americas", "europa", "global"];
-
-function CompCard({ c }: { c: Competition }) {
-  return (
-    <Link
-      href={`/ligas/${c.slug}`}
-      className="zl-card zl-tap"
-      style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", textDecoration: "none" }}
-    >
-      {c.flag ? (
-        <img src={`https://flagcdn.com/32x24/${c.flag}.png`} alt="" width={28} height={21} loading="lazy" style={{ width: 28, height: 21, objectFit: "cover", borderRadius: 3, flexShrink: 0 }} />
-      ) : (
-        <span style={{ width: 28, height: 21, borderRadius: 3, background: "rgba(201,168,76,0.18)", flexShrink: 0 }} aria-hidden />
-      )}
-      <span style={{ flex: 1, minWidth: 0 }}>
-        <span style={{ display: "block", fontSize: 14.5, fontWeight: 600, color: "var(--zl-text)" }}>{c.name}</span>
-        <span style={{ display: "block", fontSize: 12, color: "var(--zl-muted)" }}>{c.country}</span>
-      </span>
-      <span aria-hidden className="zl-chev" style={{ color: GOLD, fontSize: 18 }}>&rsaquo;</span>
-    </Link>
-  );
-}
 
 export default function LigasHub() {
   return (
@@ -67,18 +35,8 @@ export default function LigasHub() {
 
         <LiveStrip />
 
-        {REGION_ORDER.map((region) => {
-          const comps = COMPETITIONS.filter((c) => c.region === region);
-          if (!comps.length) return null;
-          return (
-            <section key={region} style={{ marginTop: 28 }}>
-              <h2 className="zl-h2">{REGION_LABEL[region]}</h2>
-              <div style={{ display: "grid", gap: 10 }}>
-                {comps.map((c) => <CompCard key={c.slug} c={c} />)}
-              </div>
-            </section>
-          );
-        })}
+        {/* Directorio del catalogo que se vuelve feed personal ("Mis ligas"). */}
+        <LigasDirectory />
       </div>
     </main>
   );

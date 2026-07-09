@@ -21,6 +21,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
 import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
+import { notifyResolvedLigaFixtures, type ResolvedLigaFixtureMeta } from "@/lib/ligas/notify";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -73,6 +74,8 @@ export async function GET(req: Request) {
 
   const fixtureIds = [...new Set(pending.map((p) => p.fixture_id))].slice(0, MAX_FIXTURES_PER_RUN);
   let resolvedFixtures = 0;
+  // Fixtures resueltos en ESTA pasada (para el push de payoff al final).
+  const resolvedMeta = new Map<number, ResolvedLigaFixtureMeta>();
   for (const fid of fixtureIds) {
     const d = await getFixtureDetail(fid);
     if (!d || !FINISHED.has(d.fixture.status)) continue; // aún no terminado (o feed caído): se reintenta
@@ -96,6 +99,7 @@ export async function GET(req: Request) {
         .eq("fixture_id", fid).eq("status", "pending").eq("market", "exact")
         .or(`score_home.neq.${h},score_away.neq.${a}`);
     }
+    resolvedMeta.set(fid, { label: `${d.fixture.home.name} ${d.fixture.score.home ?? 0}-${d.fixture.score.away ?? 0} ${d.fixture.away.name}` });
     resolvedFixtures++;
   }
 
@@ -103,6 +107,9 @@ export async function GET(req: Request) {
   //    se reclama la fila (rewarded=true) de forma atómica ANTES de abonar; si el
   //    abono falla, se hace rollback (rewarded=false) para reintentar sin doble pago.
   let paid = 0;
+  // Lo realmente abonado en esta pasada ("uid:fixtureId" -> coins), para que el
+  // push de payoff diga la cifra exacta (10, 30 con boost o 40 por exacto).
+  const paidCoins = new Map<string, number>();
   type RewardRow = { id: string; user_id: string; fixture_id: number; market?: string | null };
   const { data: toReward } = await admin
     .from("liga_predictions")
@@ -130,10 +137,20 @@ export async function GET(req: Request) {
     try {
       await grantCoins(row.user_id, coins, REWARD_XP, { module: "otros" });
       paid++;
+      const k = `${row.user_id}:${row.fixture_id}`;
+      paidCoins.set(k, (paidCoins.get(k) ?? 0) + coins);
     } catch (err) {
       console.error("[resolve-liga] grant failed, rollback", row.id, err);
       await admin.from("liga_predictions").update({ rewarded: false }).eq("id", row.id);
     }
+  }
+
+  // 3) Push de payoff (aislado: un fallo aquí jamás toca resolución ni pagos).
+  let notifyStats: Awaited<ReturnType<typeof notifyResolvedLigaFixtures>> | null = null;
+  try {
+    notifyStats = await notifyResolvedLigaFixtures(resolvedMeta, paidCoins);
+  } catch (err) {
+    console.error("[resolve-liga] notify failed (ignorado)", err);
   }
 
   try {
@@ -141,5 +158,5 @@ export async function GET(req: Request) {
   } catch {
     // heartbeat best-effort
   }
-  return NextResponse.json({ ok: true, resolvedFixtures, paid });
+  return NextResponse.json({ ok: true, resolvedFixtures, paid, notify: notifyStats });
 }

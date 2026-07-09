@@ -52,7 +52,7 @@ export async function GET(request: Request) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ fontSize: 30, fontWeight: 700, color: "#dbe4f0" }}>No leas el partido. Júgalo.</span>
+          <span style={{ fontSize: 30, fontWeight: 700, color: "#dbe4f0" }}>No leas el partido. Juégalo.</span>
         </div>
       </div>
     ),

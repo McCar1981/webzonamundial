@@ -110,6 +110,10 @@ export default function LigasDirectory() {
   const [sel, setSel] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  // Puerta de bienvenida (patrón de arquetipo de OneFootball): al usuario nuevo
+  // le hacemos UNA pregunta amable en vez de soltarle 21 chips. Se descarta al
+  // responder o al omitir.
+  const [gateDone, setGateDone] = useState(false);
 
   const loadFeed = useCallback(() => {
     fetch("/api/ligas/mi-feed")
@@ -246,14 +250,50 @@ export default function LigasDirectory() {
     );
   }
 
-  // Logueado editando o sin selección: editor + catálogo completo.
-  if (authed) {
+  // Logueado editando: el editor de chips (abierto desde el gate o desde "Editar").
+  if (authed && editing) {
+    return <>{editor}</>;
+  }
+
+  // Logueado nuevo (sin club ni ligas): la puerta de arquetipo antes del catálogo.
+  if (authed && ligas.length === 0 && !gateDone) {
+    const openEditor = (preset: string[]) => { setSel(new Set(preset)); setEditing(true); };
+    const gotoClub = () => {
+      try { document.getElementById("zl-mi-club")?.scrollIntoView({ behavior: "smooth", block: "center" }); } catch { /* ok */ }
+      setGateDone(true);
+    };
+    const opciones: { label: string; sub: string; onClick: () => void }[] = [
+      { label: "Tengo un club favorito", sub: "Lo sigues a todo: su calendario, resultados y noticias arriba del todo.", onClick: gotoClub },
+      { label: "Sigo varios clubes, sin uno favorito", sub: "Elige las ligas que te importan y verás solo esas.", onClick: () => openEditor([]) },
+      { label: "Disfruto del fútbol en general", sub: "Te mostramos lo que se juega hoy en todas las ligas.", onClick: () => setGateDone(true) },
+      { label: "Sobre todo fútbol internacional", sub: "Champions, Libertadores, Sudamericana y Mundial de Clubes.", onClick: () => openEditor(["champions-league", "libertadores", "sudamericana", "club-world-cup"]) },
+    ];
     return (
       <>
-        {editor}
-        {!editing && ligas.length === 0 && <Catalogo />}
+        <section className="zl-card--raised" style={{ marginTop: 16 }}>
+          <h2 className="zl-h3">¿Cómo vives el fútbol de clubes?</h2>
+          <p style={{ margin: "4px 0 12px", fontSize: 12.5, color: "var(--zl-muted)" }}>Una pregunta y dejamos este espacio a tu gusto. Podrás cambiarlo cuando quieras.</p>
+          <div style={{ display: "grid", gap: 10 }}>
+            {opciones.map((o) => (
+              <button key={o.label} onClick={o.onClick} className="zl-card zl-tap" style={{ textAlign: "left", cursor: "pointer", padding: "13px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: "block", fontSize: 14, fontWeight: 600, color: "var(--zl-text)" }}>{o.label}</span>
+                  <span style={{ display: "block", fontSize: 12, color: "var(--zl-muted)", marginTop: 2 }}>{o.sub}</span>
+                </span>
+                <span aria-hidden className="zl-chev" style={{ color: GOLD, fontSize: 18, flexShrink: 0 }}>&rsaquo;</span>
+              </button>
+            ))}
+          </div>
+          <button onClick={() => setGateDone(true)} style={{ marginTop: 12, border: "none", background: "none", color: "var(--zl-muted)", fontSize: 12.5, cursor: "pointer", padding: 0 }}>Omitir por ahora</button>
+        </section>
+        <Catalogo />
       </>
     );
+  }
+
+  // Logueado que omitió el gate y no tiene selección: catálogo completo.
+  if (authed) {
+    return <Catalogo />;
   }
 
   // SSR / cargando / anónimo: catálogo completo (SEO intacto) + gancho si anónimo.

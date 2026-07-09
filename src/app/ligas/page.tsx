@@ -27,8 +27,12 @@ export default function LigasHub() {
         <p className="zl-sub">Calendario, resultados y clasificación en vivo. No leas el partido: juégalo.</p>
 
         {/* Mi club: el ancla de la temporada — su próximo partido, su último
-            resultado y sus noticias, siempre arriba del todo. */}
-        <MiClubCard />
+            resultado y sus noticias, siempre arriba del todo. El id es el
+            destino del scroll cuando el usuario elige "Tengo un club favorito"
+            en la puerta de arquetipo de LigasDirectory. */}
+        <div id="zl-mi-club">
+          <MiClubCard />
+        </div>
 
         {/* Hábito visible en la puerta: racha + cofre del día 7 + Fútcoins. */}
         <HabitStrip />

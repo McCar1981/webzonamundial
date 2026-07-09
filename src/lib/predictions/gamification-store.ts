@@ -67,6 +67,38 @@ const DAILY_CLAIM_TTL = 60 * 60 * 48;        // 48 h: cubre el día con holgura
 const DAILY_STREAK_TTL = 60 * 60 * 24 * 10;  // 10 días: ventana de racha viva
 const dailyClaimKey = (uid: string, day: string) => `daily:claim:${uid}:${day}`;
 const dailyStreakKey = (uid: string) => `daily:streak:${uid}`;
+// Índice de quién reclamó cada día (SET por día). Es la fuente que necesita el
+// recordatorio "tu racha expira": la columna profiles.last_checkin depende de la
+// migración 2026-07 (quizá no aplicada) y sin este índice el cron no ve a nadie.
+const dailyClaimedSetKey = (day: string) => `daily:claimed:${day}`;
+
+/** uids que reclamaron el check-in un día dado (índice KV; [] si no hay datos). */
+export async function claimedUidsOn(dayKey: string): Promise<string[]> {
+  try {
+    const members = await kv.smembers(dailyClaimedSetKey(dayKey));
+    return (members ?? []).map(String).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+/** Racha viva en KV por uid (Map uid→streak). Lote con mget; fail-soft a vacío. */
+export async function readDailyStreaks(uids: string[]): Promise<Map<string, number>> {
+  const out = new Map<string, number>();
+  for (let i = 0; i < uids.length; i += 100) {
+    const chunk = uids.slice(i, i + 100);
+    try {
+      const recs = await kv.mget<(DailyStreakRec | null)[]>(...chunk.map(dailyStreakKey));
+      chunk.forEach((uid, j) => {
+        const r = recs?.[j];
+        if (r && typeof r.streak === "number") out.set(uid, r.streak);
+      });
+    } catch {
+      // sin KV: el llamador usa su fallback
+    }
+  }
+  return out;
+}
 interface DailyStreakRec { day: string; streak: number }
 
 /** Estado del check-in desde KV: si ya reclamó hoy y la racha consecutiva. */
@@ -599,6 +631,13 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
   // Persiste la racha en KV (fuente de verdad robusta a la migración pendiente).
   if (kvOk) {
     await kv.set(dailyStreakKey(uid), { day: today, streak: newDays } as DailyStreakRec, { ex: DAILY_STREAK_TTL }).catch(() => {});
+    // Índice del día para el recordatorio de racha (best-effort).
+    try {
+      await kv.sadd(dailyClaimedSetKey(today), uid);
+      await kv.expire(dailyClaimedSetKey(today), DAILY_CLAIM_TTL);
+    } catch {
+      // sin índice, el recordatorio cae al fallback por columnas
+    }
   }
 
   // Best-effort: si las columnas/tabla de 2026-07 YA existen, mantenlas al día

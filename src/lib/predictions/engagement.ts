@@ -13,6 +13,7 @@
 
 import { adminClient } from "./admin";
 import { utcDayKey, dailyCheckinReward, COIN_NAME } from "./gamification";
+import { claimedUidsOn, readDailyStreaks } from "./gamification-store";
 import { getMatchMeta } from "./match-data";
 import { sendPushToSubscription, type PushPayload } from "@/lib/push-notifications";
 import { sendEmail, brandedEmail, escapeHtml } from "@/lib/email";
@@ -24,7 +25,12 @@ const CATEGORY = "predictions-reminder";
 // (día 1→2). Con el umbral en 2, el usuario nuevo NUNCA recibía el empujón
 // del día 1 (era estructuralmente imposible). Retención día-1.
 const STREAK_REMINDER_MIN_DAYS = 1;
-const PLAY_URL = `${SITE}/app/predicciones/jugar`;
+// Tras la final del Mundial (19-jul) el destino del hábito diario es Zona de
+// Ligas: el deep-link del recordatorio cambia solo.
+const MUNDIAL_FINAL_MS = Date.parse("2026-07-20T00:00:00Z");
+function playUrl(now = new Date()): string {
+  return now.getTime() >= MUNDIAL_FINAL_MS ? `${SITE}/ligas` : `${SITE}/app/predicciones/jugar`;
+}
 
 /** YYYY-MM-DD UTC del día anterior a `ref`. */
 function utcYesterdayKey(ref = new Date()): string {
@@ -34,8 +40,10 @@ function utcYesterdayKey(ref = new Date()): string {
 // Criterio de canal: solo se bloquea si hay una fila EXPLÍCITA enabled=false
 // (igual que el resto de crons). Sin fila = legacy/compat = permitido.
 
-/** user_ids que han desactivado un canal concreto para esta categoría. */
-async function optedOutUserIds(channel: "push" | "email"): Promise<Set<string>> {
+/** user_ids que han desactivado un canal concreto para esta categoría.
+ *  Exportado: el push de payoff de Zona de Ligas (src/lib/ligas/notify.ts)
+ *  reutiliza esta misma infraestructura. */
+export async function optedOutUserIds(channel: "push" | "email"): Promise<Set<string>> {
   const admin = adminClient();
   const { data } = await admin
     .from("notification_preferences")
@@ -89,7 +97,7 @@ async function demotePushSub(id: string, failures: number, gone: boolean): Promi
  * existía); false si ya estaba (ya se notificó en esta ventana). El INSERT con
  * PK (user_id, dedup_key) es atómico: si choca, devolvemos false sin enviar.
  */
-async function reserveDedup(uid: string, kind: string, dedupKey: string): Promise<boolean> {
+export async function reserveDedup(uid: string, kind: string, dedupKey: string): Promise<boolean> {
   const admin = adminClient();
   const { error } = await admin
     .from("prediction_notifications")
@@ -102,7 +110,7 @@ async function reserveDedup(uid: string, kind: string, dedupKey: string): Promis
 }
 
 /** Envía un push a todas las subs del usuario. Devuelve nº de envíos OK. */
-async function pushToUser(uid: string, payload: PushPayload): Promise<number> {
+export async function pushToUser(uid: string, payload: PushPayload): Promise<number> {
   const subs = await pushSubsForUser(uid);
   let ok = 0;
   for (const s of subs) {
@@ -141,15 +149,44 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
   const kind = "streak-reminder";
   const dedupKey = `${kind}:${today}`;
 
-  // Candidatos: check-in ayer, cadena >= umbral. (last_checkin != hoy implícito
-  // porque last_checkin = ayer.)
-  const { data: rows } = await admin
+  // Candidatos por DOS fuentes unidas (la que exista):
+  // 1) Índice KV daily:claimed:<día> — la fuente de verdad real del check-in
+  //    (claimDaily escribe en KV; las columnas dependen de la migración 2026-07,
+  //    que puede no estar aplicada: con solo columnas el cron veía 0 candidatos).
+  // 2) Columnas profiles.last_checkin/checkin_days — fallback legado.
+  const [kvYesterday, kvToday] = await Promise.all([
+    claimedUidsOn(yesterday),
+    claimedUidsOn(today),
+  ]);
+  const todaySet = new Set(kvToday);
+  const kvCandidateIds = kvYesterday.filter((uid) => !todaySet.has(uid));
+
+  const { data: legacyRows } = await admin
     .from("profiles")
     .select("id, username, checkin_days")
     .eq("last_checkin", yesterday)
     .gte("checkin_days", STREAK_REMINDER_MIN_DAYS);
 
-  const candidates = rows ?? [];
+  // Unión dedupe por uid; perfiles de los uids solo-KV en un lote.
+  const byId = new Map<string, { id: string; username: string | null; checkin_days: number }>();
+  for (const r of (legacyRows ?? []) as { id: string; username: string | null; checkin_days: number }[]) {
+    byId.set(r.id, r);
+  }
+  const kvOnly = kvCandidateIds.filter((uid) => !byId.has(uid));
+  if (kvOnly.length) {
+    const [streaks, { data: profs }] = await Promise.all([
+      readDailyStreaks(kvOnly),
+      admin.from("profiles").select("id, username, checkin_days").in("id", kvOnly.slice(0, 500)),
+    ]);
+    const nameById = new Map(((profs ?? []) as { id: string; username: string | null; checkin_days: number | null }[]).map((p) => [p.id, p]));
+    for (const uid of kvOnly) {
+      const streak = streaks.get(uid) ?? nameById.get(uid)?.checkin_days ?? 0;
+      if (streak < STREAK_REMINDER_MIN_DAYS) continue;
+      byId.set(uid, { id: uid, username: nameById.get(uid)?.username ?? null, checkin_days: streak });
+    }
+  }
+
+  const candidates = [...byId.values()];
   const [pushOut, emailOut] = await Promise.all([
     optedOutUserIds("push"),
     optedOutUserIds("email"),
@@ -180,7 +217,7 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
       const sent = await pushToUser(uid, {
         title: pushTitle,
         body: `Haz tu check-in de hoy y súbela a ${nextDays}. Te esperan ${reward.coins} ${COIN_NAME}.`,
-        url: PLAY_URL,
+        url: playUrl(now),
         tag: "predictions-streak",
         pushId: dedupKey,
       });
@@ -203,7 +240,7 @@ export async function runStreakReminders(now = new Date()): Promise<StreakRemind
               <p style="margin:0;color:#6b7280;font-size:13px;">Solo te toma unos segundos.</p>
             `,
             ctaLabel: "Hacer mi check-in",
-            ctaHref: PLAY_URL,
+            ctaHref: playUrl(now),
           }),
         });
         if (ok) { emails += 1; touched = true; }

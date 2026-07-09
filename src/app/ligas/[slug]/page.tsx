@@ -110,7 +110,7 @@ function groupByDay(fixtures: CompetitionFixture[]): { day: string; sample: stri
 function StandingsTable({ groups }: { groups: StandingsGroup[] }) {
   return (
     <section style={{ marginTop: 34 }}>
-      <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Clasificación</h2>
+      <h2 className="zl-h2">Clasificación</h2>
       {groups.map((g) => (
         <div key={g.group} style={{ marginTop: 14 }}>
           {groups.length > 1 && (
@@ -176,19 +176,18 @@ export default async function LigaPage({ params }: { params: { slug: string } })
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
-        <p style={{ margin: 0, fontSize: 12, fontWeight: 500, letterSpacing: 2, color: GOLD }}>ZONA DE LIGAS</p>
-        <h1 style={{ margin: "4px 0 2px", fontSize: 28, fontWeight: 500, color: "#fff" }}>{comp.name}</h1>
-        <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>{comp.country} · Calendario y resultados en vivo</p>
+        <p className="zl-eyebrow">Zona de Ligas</p>
+        <h1 className="zl-h1">{comp.name}</h1>
+        <p className="zl-sub">{comp.country} · Calendario y resultados en vivo</p>
 
         {/* Hábito visible también en la página de liga (aterrizaje SEO). */}
         <HabitStrip />
 
         {liveNow.length > 0 && (
           <section style={{ marginTop: 18 }}>
-            {/* Pulso EN VIVO: CSS puro, se apaga con prefers-reduced-motion. */}
-            <style>{`@keyframes zlPulse{0%,100%{opacity:1}50%{opacity:.35}}.zl-live-dot{animation:zlPulse 1.6s ease-in-out infinite}@media (prefers-reduced-motion: reduce){.zl-live-dot{animation:none}}`}</style>
-            <h2 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 2px" }}>
-              <span className="zl-live-dot" aria-hidden style={{ width: 8, height: 8, borderRadius: 99, background: "#d85a30", flexShrink: 0 }} />
+            {/* El anillo del dot vive en el layout de /ligas (zl-live-ring). */}
+            <h2 className="zl-h2" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span className="zl-live-dot" aria-hidden />
               En vivo ahora
             </h2>
             {liveNow.map((f) => <FixtureRow key={f.fixtureId} f={f} slug={comp.slug} />)}
@@ -196,8 +195,8 @@ export default async function LigaPage({ params }: { params: { slug: string } })
         )}
 
         {featured && (
-          <Link href={`/ligas/${comp.slug}/${featured.fixtureId}`} style={{ display: "block", marginTop: 18, padding: 16, borderRadius: 16, textDecoration: "none", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.02))", border: "1px solid rgba(201,168,76,0.34)" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1.5, color: featLive ? "#d85a30" : GOLD, marginBottom: 10 }}>{featLive ? "EN VIVO AHORA" : "PARTIDO DESTACADO"}</div>
+          <Link href={`/ligas/${comp.slug}/${featured.fixtureId}`} className={featLive ? "zl-card--featured zl-card--live zl-tap" : "zl-card--featured zl-tap"} style={{ display: "block", marginTop: 18, textDecoration: "none" }}>
+            <div className="zl-label" style={{ color: featLive ? "var(--zl-live)" : GOLD, marginBottom: 10 }}>{featLive ? "EN VIVO AHORA" : "PARTIDO DESTACADO"}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, justifyContent: "flex-end", minWidth: 0 }}>
                 <span style={{ fontSize: 15, color: "#fff", fontWeight: 500, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{featured.home.name}</span>
@@ -216,7 +215,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
                 <span key={chip} style={{ fontSize: 11, color: "#cbd5e1", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(201,168,76,0.24)", borderRadius: 99, padding: "4px 10px" }}>{chip}</span>
               ))}
             </div>
-            <div style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: GOLD }}>Ver partido &rsaquo;</div>
+            <div style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: GOLD }}>Ver partido <span className="zl-chev">&rsaquo;</span></div>
           </Link>
         )}
 
@@ -233,12 +232,12 @@ export default async function LigaPage({ params }: { params: { slug: string } })
           />
         )}
 
-        <Link href={`/ligas/${comp.slug}/fantasy`} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, padding: "13px 16px", borderRadius: 12, textDecoration: "none", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.3)" }}>
+        <Link href={`/ligas/${comp.slug}/fantasy`} className="zl-card zl-tap" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, padding: "13px 16px", textDecoration: "none" }}>
           <span>
-            <span style={{ display: "block", fontSize: 14, fontWeight: 500, color: "#fff" }}>Fantasy: monta tu once de la jornada</span>
-            <span style={{ display: "block", fontSize: 12, color: DIM }}>Elige 5 jugadores, marca tu capitán y gana Fútcoins por su rendimiento real.</span>
+            <span style={{ display: "block", fontSize: 14, fontWeight: 600, color: "var(--zl-text)" }}>Fantasy: monta tu once de la jornada</span>
+            <span style={{ display: "block", fontSize: 12, color: "var(--zl-muted)" }}>Elige 5 jugadores, marca tu capitán y gana Fútcoins por su rendimiento real.</span>
           </span>
-          <span aria-hidden style={{ color: GOLD, fontSize: 18 }}>&rsaquo;</span>
+          <span aria-hidden className="zl-chev" style={{ color: GOLD, fontSize: 18 }}>&rsaquo;</span>
         </Link>
 
         {!hasData ? (
@@ -249,7 +248,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
           <>
             {days.length > 0 && (
               <section style={{ marginTop: 26 }}>
-                <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Próximos partidos</h2>
+                <h2 className="zl-h2">Próximos partidos</h2>
                 {days.map((g) => (
                   <div key={g.day} style={{ marginTop: 14 }}>
                     <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: "capitalize" }}>
@@ -265,7 +264,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
 
             {recent.length > 0 && (
               <section style={{ marginTop: 34 }}>
-                <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Resultados recientes</h2>
+                <h2 className="zl-h2">Resultados recientes</h2>
                 <div style={{ marginTop: 8 }}>
                   {recent.slice().reverse().map((f) => <FixtureRow key={f.fixtureId} f={f} slug={comp.slug} />)}
                 </div>
@@ -274,9 +273,9 @@ export default async function LigaPage({ params }: { params: { slug: string } })
           </>
         )}
 
-        <div style={{ marginTop: 34, padding: 18, borderRadius: 14, background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.28)", textAlign: "center" }}>
-          <p style={{ margin: "0 0 12px", fontSize: 14.5, color: "#cbd5e1" }}>No leas el partido. Juégalo. Predice cada jornada de {comp.short} y compite con tus amigos.</p>
-          <Link href={`/registro?next=/ligas/${comp.slug}`} style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0A1422", fontWeight: 500, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
+        <div className="zl-card--raised" style={{ marginTop: 34, textAlign: "center" }}>
+          <p style={{ margin: "0 0 12px", fontSize: 14.5, color: "var(--zl-body)" }}>No leas el partido. Juégalo. Predice cada jornada de {comp.short} y compite con tus amigos.</p>
+          <Link href={`/registro?next=/ligas/${comp.slug}`} className="zl-cta">
             Entrar a ZonaMundial
           </Link>
         </div>

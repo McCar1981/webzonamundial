@@ -173,7 +173,7 @@ export default function MatchPoll({
   const pct = (n: number) => (counts && counts.total > 0 ? Math.round((n / counts.total) * 100) : 0);
 
   return (
-    <section style={{ marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.28)" }}>
+    <section className="zl-card--raised" style={{ marginTop: 22 }}>
       <h2 style={{ fontSize: 14.5, fontWeight: 500, color: "#fff", margin: "0 0 4px", textAlign: "center" }}>¿Quién ganará?</h2>
       {!myPick && (
         <p style={{ margin: "0 0 12px", fontSize: 12, color: authed ? GOLD : DIM, textAlign: "center" }}>

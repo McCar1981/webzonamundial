@@ -60,7 +60,8 @@ export default function LiveStrip() {
 
   return (
     <section style={{ marginTop: 22 }}>
-      <h2 style={{ fontSize: 13, fontWeight: 500, letterSpacing: 1, color: data.mode === "live" ? "#d85a30" : GOLD, margin: "0 0 10px" }}>
+      <h2 className="zl-label" style={{ display: "flex", alignItems: "center", gap: 8, color: data.mode === "live" ? "var(--zl-live)" : GOLD, margin: "0 0 10px" }}>
+        {data.mode === "live" && <span className="zl-live-dot" aria-hidden />}
         {data.mode === "live" ? "EN VIVO" : "HOY"}
       </h2>
       <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 4 }}>
@@ -71,7 +72,8 @@ export default function LiveStrip() {
             <Link
               key={f.fixtureId}
               href={`/ligas/${f.competitionSlug}/${f.fixtureId}`}
-              style={{ flex: "0 0 auto", width: 190, padding: 12, borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)", textDecoration: "none" }}
+              className={t.live ? "zl-card zl-card--live zl-tap" : "zl-card zl-tap"}
+              style={{ flex: "0 0 auto", width: 190, padding: 12, textDecoration: "none" }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                 <span style={{ fontSize: 10.5, color: DIM, fontWeight: 500 }}>{f.competitionShort}</span>

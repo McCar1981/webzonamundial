@@ -104,19 +104,19 @@ export default function MiClubCard() {
     }
   }, [busy, pickLiga, load]);
 
-  const box: React.CSSProperties = { marginTop: 14, padding: 16, borderRadius: 14, background: "linear-gradient(135deg, rgba(201,168,76,0.14), rgba(201,168,76,0.03))", border: "1px solid rgba(201,168,76,0.36)" };
+  const box: React.CSSProperties = { marginTop: 14 };
 
   if (authed === null) return <div aria-hidden style={{ height: 72, marginTop: 14, borderRadius: 14, background: "rgba(255,255,255,0.02)" }} />;
 
   // Anónimo: el club como gancho de registro.
   if (!authed) {
     return (
-      <a href="/registro?next=/ligas" style={{ ...box, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, textDecoration: "none" }}>
+      <a href="/registro?next=/ligas" className="zl-card--featured zl-tap" style={{ ...box, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, textDecoration: "none" }}>
         <span style={{ minWidth: 0 }}>
           <span style={{ display: "block", fontSize: 14.5, fontWeight: 600, color: "#fff" }}>Elige tu club y no te pierdas nada</span>
           <span style={{ display: "block", fontSize: 12.5, color: DIM, marginTop: 2 }}>Su próximo partido, sus resultados y sus noticias, siempre arriba.</span>
         </span>
-        <span style={{ flexShrink: 0, background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0A1422", fontWeight: 600, fontSize: 13, padding: "9px 14px", borderRadius: 10 }}>Empezar</span>
+        <span className="zl-cta" style={{ flexShrink: 0, fontSize: 13, padding: "9px 14px" }}>Empezar</span>
       </a>
     );
   }
@@ -124,7 +124,7 @@ export default function MiClubCard() {
   // Logueado sin club (o cambiando): selector liga -> club.
   if (!club || picking) {
     return (
-      <section style={box}>
+      <section className="zl-card--featured" style={box}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
           <h2 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#fff" }}>{club ? "Cambiar mi club" : "Elige tu club"}</h2>
           {picking && club && (
@@ -171,7 +171,7 @@ export default function MiClubCard() {
   // Logueado con club: la tarjeta viva.
   const lastPlayed = last && (FINISHED.has(last.status) || LIVE.has(last.status));
   return (
-    <section style={box}>
+    <section className="zl-card--featured" style={box}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         {club.clubLogo ? <img src={club.clubLogo} alt="" width={38} height={38} style={{ width: 38, height: 38, objectFit: "contain", flexShrink: 0 }} /> : null}
         <div style={{ flex: 1, minWidth: 0 }}>

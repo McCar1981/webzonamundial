@@ -74,13 +74,14 @@ export default function HabitStrip() {
     return (
       <a
         href="/registro?next=/ligas"
-        style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 16, padding: "13px 16px", borderRadius: 14, textDecoration: "none", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.02))", border: "1px solid rgba(201,168,76,0.32)" }}
+        className="zl-card--raised zl-tap"
+        style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 16, padding: "13px 16px", textDecoration: "none" }}
       >
         <span style={{ minWidth: 0 }}>
           <span style={{ display: "block", fontSize: 14, fontWeight: 500, color: "#fff" }}>Arranca tu racha diaria</span>
           <span style={{ display: "block", fontSize: 12, color: DIM }}>Cuenta gratis: Fútcoins cada día, más premio a más racha.</span>
         </span>
-        <span style={{ flexShrink: 0, background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0A1422", fontWeight: 600, fontSize: 13, padding: "9px 14px", borderRadius: 10 }}>Empezar</span>
+        <span className="zl-cta" style={{ flexShrink: 0, fontSize: 13, padding: "9px 14px" }}>Empezar</span>
       </a>
     );
   }
@@ -91,7 +92,7 @@ export default function HabitStrip() {
   const dots = Array.from({ length: CYCLE }, (_, i) => i < (claimed ? doneInCycle : Math.min(doneInCycle, CYCLE - 1)));
 
   return (
-    <section style={{ marginTop: 16, padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.02))", border: "1px solid rgba(201,168,76,0.32)" }}>
+    <section className={gain != null ? "zl-card--raised zl-reward" : "zl-card--raised"} style={{ marginTop: 16, padding: "13px 16px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1, minWidth: 150 }}>
           <div style={{ textAlign: "center", minWidth: 40 }}>
@@ -125,12 +126,13 @@ export default function HabitStrip() {
           <button
             onClick={claim}
             disabled={busy}
-            style={{ flexShrink: 0, border: "none", cursor: busy ? "default" : "pointer", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0A1422", fontWeight: 600, fontSize: 13, padding: "9px 14px", borderRadius: 10, opacity: busy ? 0.7 : 1 }}
+            className="zl-cta"
+            style={{ flexShrink: 0, fontSize: 13, padding: "9px 14px" }}
           >
             {busy ? "…" : "Reclamar hoy"}
           </button>
         ) : (
-          <span style={{ flexShrink: 0, fontSize: 12, color: gain != null ? GOLD : DIM, fontWeight: gain != null ? 600 : 400 }}>
+          <span className={gain != null ? "zl-gain" : undefined} style={{ flexShrink: 0, fontSize: 12, color: gain != null ? GOLD : DIM, fontWeight: gain != null ? 600 : 400 }}>
             {gain != null ? `+${gain} Fútcoins` : claimed ? "Hecho hoy" : ""}
           </span>
         )}

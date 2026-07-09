@@ -43,9 +43,9 @@ function pickLabel(p: LigaPredictionRow, d: FixtureDetail | null): string {
 
 function Stat({ n, label, accent }: { n: string; label: string; accent?: boolean }) {
   return (
-    <div style={{ flex: 1, textAlign: "center", padding: "14px 6px", borderRadius: 12, background: accent ? "rgba(201,168,76,0.1)" : "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)" }}>
-      <div style={{ fontSize: 24, fontWeight: 600, color: "#fff", lineHeight: 1 }}>{n}</div>
-      <div style={{ fontSize: 11.5, color: DIM, marginTop: 4 }}>{label}</div>
+    <div className={accent ? "zl-card--raised" : "zl-card"} style={{ flex: 1, textAlign: "center", padding: "14px 6px" }}>
+      <div className="zl-num" style={{ fontSize: 26, fontWeight: 800, color: "var(--zl-text)", lineHeight: 1 }}>{n}</div>
+      <div className="zl-label" style={{ marginTop: 4 }}>{label}</div>
     </div>
   );
 }
@@ -99,7 +99,7 @@ export default async function MisPrediccionesPage() {
           </Link>
           <FutcoinsBadge />
         </div>
-        <h1 style={{ margin: "14px 0 16px", fontSize: 26, fontWeight: 500, color: "#fff" }}>Mis predicciones</h1>
+        <h1 className="zl-h1" style={{ margin: "14px 0 16px" }}>Mis predicciones</h1>
 
         <div style={{ marginBottom: 20 }}><RachaWidget /></div>
 
@@ -118,14 +118,14 @@ export default async function MisPrediccionesPage() {
 
             {pending.length > 0 && (
               <section style={{ marginTop: 26 }}>
-                <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 4px" }}>Pendientes</h2>
+                <h2 className="zl-h2">Pendientes</h2>
                 {pending.map((r) => <Row key={`${r.p.fixtureId}-${r.p.market}`} p={r.p} d={r.d} />)}
               </section>
             )}
 
             {done.length > 0 && (
               <section style={{ marginTop: 26 }}>
-                <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 4px" }}>Resueltas</h2>
+                <h2 className="zl-h2">Resueltas</h2>
                 {done.map((r) => <Row key={`${r.p.fixtureId}-${r.p.market}`} p={r.p} d={r.d} />)}
               </section>
             )}

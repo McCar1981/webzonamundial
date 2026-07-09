@@ -132,7 +132,7 @@ export default async function TeamPage({ params }: { params: Params }) {
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 16 }}>
           {team.logo ? <img src={team.logo} alt="" width={48} height={48} loading="lazy" style={{ width: 48, height: 48, objectFit: "contain" }} /> : null}
           <div style={{ flex: 1, minWidth: 0 }}>
-            <h1 style={{ margin: 0, fontSize: 26, fontWeight: 500, color: "#fff" }}>{team.name}</h1>
+            <h1 className="zl-h1" style={{ margin: 0 }}>{team.name}</h1>
             {form.length > 0 && (
               <div style={{ display: "flex", gap: 5, marginTop: 6 }}>
                 {form.map((r, i) => (
@@ -146,14 +146,14 @@ export default async function TeamPage({ params }: { params: Params }) {
 
         {next.length > 0 && (
           <section style={{ marginTop: 28 }}>
-            <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Próximos partidos</h2>
+            <h2 className="zl-h2">Próximos partidos</h2>
             {next.map((f) => <Row key={f.fixtureId} f={f} teamId={id} />)}
           </section>
         )}
 
         {last.length > 0 && (
           <section style={{ marginTop: 30 }}>
-            <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Últimos resultados</h2>
+            <h2 className="zl-h2">Últimos resultados</h2>
             {last.slice().reverse().map((f) => <Row key={f.fixtureId} f={f} teamId={id} />)}
           </section>
         )}
@@ -163,7 +163,7 @@ export default async function TeamPage({ params }: { params: Params }) {
         {squad.length > 0 && (
           <section style={{ marginTop: 30 }}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-              <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: 0 }}>Plantilla</h2>
+              <h2 className="zl-h2" style={{ marginBottom: 0 }}>Plantilla</h2>
               {stats && <span style={{ fontSize: 11.5, color: DIM }}>Temporada {stats.season} · PJ / G / A / Nota</span>}
             </div>
             {POS_ORDER.map((pos) => {

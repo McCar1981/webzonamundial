@@ -26,8 +26,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
-  gap: clamp(32px, 3.5vw, 56px);
+  /* marca + 5 columnas de enlaces (Torneo, Zona de Ligas, Plataforma, Comunidad, Legal) */
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr;
+  gap: clamp(24px, 2.6vw, 44px);
   margin-bottom: clamp(40px, 5vw, 56px);
 }
 

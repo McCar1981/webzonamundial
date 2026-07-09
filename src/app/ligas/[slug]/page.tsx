@@ -22,6 +22,7 @@ import {
 } from "@/lib/competitions/api";
 import LocalTime from "./LocalTime";
 import MatchPoll from "./[fixture]/MatchPoll";
+import HabitStrip from "@/components/ligas/HabitStrip";
 
 export const revalidate = 60;
 
@@ -178,6 +179,9 @@ export default async function LigaPage({ params }: { params: { slug: string } })
         <p style={{ margin: 0, fontSize: 12, fontWeight: 500, letterSpacing: 2, color: GOLD }}>ZONA DE LIGAS</p>
         <h1 style={{ margin: "4px 0 2px", fontSize: 28, fontWeight: 500, color: "#fff" }}>{comp.name}</h1>
         <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>{comp.country} · Calendario y resultados en vivo</p>
+
+        {/* Hábito visible también en la página de liga (aterrizaje SEO). */}
+        <HabitStrip />
 
         {liveNow.length > 0 && (
           <section style={{ marginTop: 18 }}>

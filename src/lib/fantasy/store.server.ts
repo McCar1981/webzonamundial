@@ -236,6 +236,53 @@ export async function adminAutoAdvanceAll(): Promise<{ scanned: number; advanced
 }
 
 /**
+ * SOPORTE: deja a un usuario 1.º en TODAS sus ligas privadas, ajustando su total
+ * para superar al mejor rival + `margin`. El total del usuario es global (una
+ * sola cifra que rige todas sus ligas), así que se sube por encima del rival más
+ * alto de cualquiera de sus ligas. El ajuste se aplica en una jornada de grupos
+ * ya cerrada (persistente; el provisional solo toca la jornada en curso). Service
+ * role. Devuelve el desglose por liga y el nuevo total.
+ */
+export async function adminMakeLeagueFirst(
+  userId: string,
+  margin = 10,
+): Promise<{ ok: boolean; error?: string; ligas?: { name: string; maxRival: number; rivales: number }[]; target?: number; nuevoTotal?: number }> {
+  const admin = adminClient();
+  const { data: mem } = await admin.from("fantasy_league_members").select("league_id").eq("user_id", userId);
+  const leagueIds = [...new Set(((mem ?? []) as { league_id: string }[]).map((m) => m.league_id))];
+  if (leagueIds.length === 0) return { ok: false, error: "el usuario no está en ninguna liga privada" };
+
+  const { data: leagues } = await admin.from("fantasy_leagues").select("id,name").in("id", leagueIds);
+  const { data: allMem } = await admin.from("fantasy_league_members").select("league_id,user_id").in("league_id", leagueIds);
+  const members = (allMem ?? []) as { league_id: string; user_id: string }[];
+  const rivalIds = [...new Set(members.map((m) => m.user_id).filter((id) => id !== userId))];
+
+  const { data: teams } = rivalIds.length
+    ? await admin.from("fantasy_teams").select("user_id,total_points").in("user_id", rivalIds)
+    : { data: [] };
+  const totalById = new Map(((teams ?? []) as { user_id: string; total_points: number }[]).map((t) => [t.user_id, t.total_points ?? 0]));
+
+  const ligas = ((leagues ?? []) as { id: string; name: string }[]).map((l) => {
+    const rivals = members.filter((m) => m.league_id === l.id && m.user_id !== userId).map((m) => totalById.get(m.user_id) ?? 0);
+    return { name: l.name, maxRival: rivals.length ? Math.max(...rivals) : 0, rivales: rivals.length };
+  });
+  const overallMax = Math.max(0, ...ligas.map((l) => l.maxRival));
+  const target = overallMax + margin;
+
+  // Ajuste en la última jornada de GRUPOS ya cerrada (persistente): fija su valor
+  // para que la SUMA de jornadas sea exactamente `target`.
+  const ADJ_GW = 3;
+  const { data: myScores } = await admin.from("fantasy_gameweek_scores").select("gameweek,points").eq("user_id", userId);
+  const scores = (myScores ?? []) as { gameweek: number; points: number }[];
+  const currentTotal = scores.reduce((a, s) => a + (s.points ?? 0), 0);
+  const adjCurrent = scores.find((s) => s.gameweek === ADJ_GW)?.points ?? 0;
+  const newAdj = Math.max(0, target - (currentTotal - adjCurrent));
+  const nuevoTotal = await adminSetGameweekScore(userId, ADJ_GW, newAdj);
+
+  return { ok: true, ligas, target, nuevoTotal };
+}
+
+/**
  * Registra (o actualiza) los puntos de una jornada para el ranking semanal y la
  * auditoría. Lectura propia con RLS; un usuario solo escribe su fila.
  *

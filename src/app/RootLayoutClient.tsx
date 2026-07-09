@@ -42,6 +42,10 @@ function buildNav(t: Translations) {
       { id: "streaming",    label: t.nav.streaming,    href: "/app/streaming" },
       { id: "album",        label: t.nav.album,        href: "/app/album" },
     ]},
+    // Zona de Ligas: el producto de temporada completa (post 19-jul). Nombre
+    // propio, mismo precedente i18n que "Camisetas". La entrada "Ligas Privadas"
+    // del grupo plataforma es otra cosa (ligas de amigos del fantasy).
+    { id: "zonaLigas",  label: "Ligas",           href: "/ligas" },
     { id: "noticias",   label: t.nav.noticias,   href: "/noticias" },
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
     { id: "camisetas",  label: "Camisetas",       href: "/camisetas" },
@@ -71,6 +75,17 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.modoCarrera,   href: "/app/modo-carrera" },
       { label: t.footer.premium,       href: "/pro" },
       { label: t.footer.bares,         href: "/bares" },
+    ],
+    // Enlazado interno SEO hacia el producto evergreen desde todas las páginas.
+    // Nombres propios de competición: válidos en ambos idiomas.
+    "Zona de Ligas": [
+      { label: "Todas las ligas",  href: "/ligas" },
+      { label: "Liga MX",          href: "/ligas/liga-mx" },
+      { label: "Liga MX Femenil",  href: "/ligas/liga-mx-femenil" },
+      { label: "LigaPro Ecuador",  href: "/ligas/ligapro-ecuador" },
+      { label: "Libertadores",     href: "/ligas/libertadores" },
+      { label: "LaLiga",           href: "/ligas/laliga" },
+      { label: "Champions League", href: "/ligas/champions-league" },
     ],
     [t.footer.comunidad]: [
       { label: t.footer.noticias,   href: "/noticias" },

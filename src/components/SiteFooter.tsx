@@ -47,12 +47,28 @@ const SOCIALS = [
   { label: "TikTok", href: "https://www.tiktok.com/@zonamundialfutbol", Icon: IconTikTok },
 ];
 
+// Zona de Ligas: el producto evergreen post-Mundial. Enlazado interno SEO hacia
+// /ligas desde todas las páginas con autoridad. Nombres propios de competición
+// (válidos en ambos idiomas), por eso vive aquí y no en el diccionario.
+const ZONA_LIGAS_COL = {
+  title: "Zona de Ligas",
+  links: [
+    { label: "Todas las ligas", href: "/ligas" },
+    { label: "Liga MX", href: "/ligas/liga-mx" },
+    { label: "Liga MX Femenil", href: "/ligas/liga-mx-femenil" },
+    { label: "LigaPro Ecuador", href: "/ligas/ligapro-ecuador" },
+    { label: "Libertadores", href: "/ligas/libertadores" },
+    { label: "LaLiga", href: "/ligas/laliga" },
+    { label: "Champions League", href: "/ligas/champions-league" },
+  ],
+};
+
 export function SiteFooter() {
   const { locale } = useLanguage();
   const t = homeSections[locale].footer;
   const tSocial = homeSections[locale].socialDock;
 
-  const columns = [t.columns.torneo, t.columns.plataforma, t.columns.comunidad, t.columns.legal];
+  const columns = [t.columns.torneo, ZONA_LIGAS_COL, t.columns.plataforma, t.columns.comunidad, t.columns.legal];
 
   return (
     <footer className={styles.footer}>

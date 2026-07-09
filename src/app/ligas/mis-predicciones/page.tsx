@@ -68,7 +68,7 @@ function Row({ p, d }: { p: LigaPredictionRow; d: FixtureDetail | null }) {
         <span style={{ fontSize: 12, fontWeight: 500, color: tag.color, flexShrink: 0 }}>{tag.text}</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 3, fontSize: 12, color: DIM }}>
-        <span>Tu apuesta: <span style={{ color: "#cbd5e1" }}>{pickLabel(p, d)}</span></span>
+        <span>Tu pronóstico: <span style={{ color: "#cbd5e1" }}>{pickLabel(p, d)}</span></span>
         <span>{result ? `Resultado ${result}` : <LocalTime iso={p.kickoff} mode="date" fallback={p.kickoff.slice(0, 10)} />}</span>
       </div>
     </div>

@@ -21,6 +21,7 @@ import {
   type StandingsGroup,
 } from "@/lib/competitions/api";
 import LocalTime from "./LocalTime";
+import MatchPoll from "./[fixture]/MatchPoll";
 
 export const revalidate = 60;
 
@@ -151,19 +152,25 @@ export default async function LigaPage({ params }: { params: { slug: string } })
   const comp = getCompetition(params.slug);
   if (!comp) notFound();
 
-  const [upcoming, recent, standings] = await Promise.all([
+  const [upcoming, recent, standings, liveNow] = await Promise.all([
     getCompetitionFixtures(comp.apiFootballId, { next: 15 }),
     getCompetitionFixtures(comp.apiFootballId, { last: 8 }),
     getCompetitionStandings(comp.apiFootballId),
+    // Lo que se juega AHORA: con ISR 60 cuesta ~1 req/min/liga, dentro del gate.
+    getCompetitionFixtures(comp.apiFootballId, { live: true }),
   ]);
-  const days = groupByDay(upcoming);
-  const hasData = upcoming.length > 0 || recent.length > 0 || standings.length > 0;
-  // Partido destacado: preferimos el PRÓXIMO (jugable: ahí se predice y se ganan
-  // Fútcoins, que es el diferenciador); si no hay próximos, el jugado más reciente
-  // (rico en datos). Así la portada de la liga lleva a lo que nos hace distintos.
-  const featured = upcoming[0]
+  const liveIds = new Set(liveNow.map((f) => f.fixtureId));
+  const days = groupByDay(upcoming.filter((f) => !liveIds.has(f.fixtureId)));
+  const hasData = upcoming.length > 0 || recent.length > 0 || standings.length > 0 || liveNow.length > 0;
+  // Partido destacado: lo que se juega AHORA manda (FOMO real); si no, el PRÓXIMO
+  // (jugable: ahí se predice y se ganan Fútcoins, que es el diferenciador); si no
+  // hay próximos, el jugado más reciente (rico en datos).
+  const featured = liveNow[0]
+    ?? upcoming[0]
     ?? (recent.length ? [...recent].sort((a, b) => b.kickoff.localeCompare(a.kickoff))[0] : null);
   const featPlayed = featured ? FINISHED.has(featured.status) || LIVE.has(featured.status) : false;
+  const featLive = featured ? LIVE.has(featured.status) : false;
+  const featOpen = featured ? featured.status === "NS" || featured.status === "TBD" : false;
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
@@ -172,9 +179,21 @@ export default async function LigaPage({ params }: { params: { slug: string } })
         <h1 style={{ margin: "4px 0 2px", fontSize: 28, fontWeight: 500, color: "#fff" }}>{comp.name}</h1>
         <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>{comp.country} · Calendario y resultados en vivo</p>
 
+        {liveNow.length > 0 && (
+          <section style={{ marginTop: 18 }}>
+            {/* Pulso EN VIVO: CSS puro, se apaga con prefers-reduced-motion. */}
+            <style>{`@keyframes zlPulse{0%,100%{opacity:1}50%{opacity:.35}}.zl-live-dot{animation:zlPulse 1.6s ease-in-out infinite}@media (prefers-reduced-motion: reduce){.zl-live-dot{animation:none}}`}</style>
+            <h2 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 2px" }}>
+              <span className="zl-live-dot" aria-hidden style={{ width: 8, height: 8, borderRadius: 99, background: "#d85a30", flexShrink: 0 }} />
+              En vivo ahora
+            </h2>
+            {liveNow.map((f) => <FixtureRow key={f.fixtureId} f={f} slug={comp.slug} />)}
+          </section>
+        )}
+
         {featured && (
           <Link href={`/ligas/${comp.slug}/${featured.fixtureId}`} style={{ display: "block", marginTop: 18, padding: 16, borderRadius: 16, textDecoration: "none", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.02))", border: "1px solid rgba(201,168,76,0.34)" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1.5, color: GOLD, marginBottom: 10 }}>PARTIDO DESTACADO</div>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: 1.5, color: featLive ? "#d85a30" : GOLD, marginBottom: 10 }}>{featLive ? "EN VIVO AHORA" : "PARTIDO DESTACADO"}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, justifyContent: "flex-end", minWidth: 0 }}>
                 <span style={{ fontSize: 15, color: "#fff", fontWeight: 500, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{featured.home.name}</span>
@@ -195,6 +214,19 @@ export default async function LigaPage({ params }: { params: { slug: string } })
             </div>
             <div style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: GOLD }}>Ver partido &rsaquo;</div>
           </Link>
+        )}
+
+        {/* La encuesta/predicción del destacado, embebida: el visitante de Google
+            juega AQUÍ mismo, sin un clic extra. Fuera del Link (nada interactivo
+            anidado en un anchor). MatchPoll ya gestiona anónimo vs logueado. */}
+        {featured && featOpen && (
+          <MatchPoll
+            fixtureId={featured.fixtureId}
+            slug={comp.slug}
+            homeName={featured.home.name}
+            awayName={featured.away.name}
+            notStarted
+          />
         )}
 
         <Link href={`/ligas/${comp.slug}/fantasy`} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12, padding: "13px 16px", borderRadius: 12, textDecoration: "none", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.3)" }}>

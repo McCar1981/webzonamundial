@@ -198,7 +198,7 @@ export default function LigasDirectory() {
         })}
       </div>
       <button onClick={save} disabled={busy} className="zl-cta" style={{ marginTop: 14, fontSize: 13, padding: "10px 18px" }}>
-        {busy ? "Guardando…" : sel.size ? `Guardar (${sel.size})` : "Guardar sin selección"}
+        {busy ? "Guardando…" : sel.size ? `Guardar (${sel.size})` : "Quitar mi selección"}
       </button>
       {error ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a" }}>{error}</p> : null}
     </div>

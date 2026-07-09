@@ -276,7 +276,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
 
         <div style={{ marginTop: 34, padding: 18, borderRadius: 14, background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.28)", textAlign: "center" }}>
           <p style={{ margin: "0 0 12px", fontSize: 14.5, color: "#cbd5e1" }}>No leas el partido. Juégalo. Predice cada jornada de {comp.short} y compite con tus amigos.</p>
-          <Link href="/registro" style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0A1422", fontWeight: 500, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
+          <Link href={`/registro?next=/ligas/${comp.slug}`} style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0A1422", fontWeight: 500, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
             Entrar a ZonaMundial
           </Link>
         </div>

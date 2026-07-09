@@ -59,6 +59,19 @@ export default function FormularioRegistro({
   // de creador) y se envía directo desde el paso 1.
   const isCodeFlow = !!(pedirCodigo || codigoPreseleccionado);
 
+  // Destino tras completar registro + onboarding (?next=/ligas/liga-mx): el que
+  // quiso jugar el fantasy de Liga MX debe aterrizar jugando, no en un lobby
+  // genérico. Se lee del query en cliente (sin useSearchParams: no exige
+  // Suspense) y se valida contra open-redirect (ruta interna, nunca "//").
+  // El OnboardingWizard ya lee y respeta este mismo parámetro al terminar.
+  const [nextDestino, setNextDestino] = useState<string | null>(null);
+  useEffect(() => {
+    try {
+      const n = new URLSearchParams(window.location.search).get('next');
+      if (n && n.startsWith('/') && !n.startsWith('//')) setNextDestino(n);
+    } catch { /* sin query: destino por defecto */ }
+  }, []);
+
   // Feedback de validez del código (para enseñar el bono de bienvenida antes
   // de registrarse). null = sin comprobar todavía.
   const [codeInfo, setCodeInfo] = useState<
@@ -315,6 +328,7 @@ export default function FormularioRegistro({
     const params = new URLSearchParams();
     if (creadorPreseleccionado) params.set('creador', creadorPreseleccionado);
     if (codeForUrl) params.set('codigo', codeForUrl);
+    if (nextDestino) params.set('next', nextDestino); // el wizard lo respeta al terminar
     const qs = params.toString();
     const next = qs ? `/onboarding?${qs}` : '/onboarding';
     const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`;
@@ -461,7 +475,10 @@ export default function FormularioRegistro({
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       (typeof window !== 'undefined' ? window.location.origin : '');
-    const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent('/onboarding')}`;
+    const onboardingUrl = nextDestino
+      ? `/onboarding?next=${encodeURIComponent(nextDestino)}`
+      : '/onboarding';
+    const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(onboardingUrl)}`;
 
     let signUpError: { message: string } | null = null;
     try {

@@ -13,15 +13,31 @@ const MAX_LIGAS = 8; // suficiente para un fan multi-liga; evita "seleccionar to
 
 export async function getMisLigas(userId: string): Promise<string[]> {
   const supa = createSupabaseServerClient();
+
+  // SEMILLA: si el usuario aún no eligió ligas pero SÍ tiene club ("Mi Club",
+  // migración 2026-45), la liga de su club cuenta como su liga elegida — no se
+  // le pregunta dos veces por lo mismo. fav_ligas explícito (2026-46) manda.
   const { data, error } = await supa
     .from("profiles")
-    .select("fav_ligas")
+    .select("fav_ligas,fav_liga_slug")
     .eq("id", userId)
     .maybeSingle();
-  if (error || !data) return []; // incluye columna ausente
-  const raw = (data as { fav_ligas: unknown }).fav_ligas;
-  if (!Array.isArray(raw)) return [];
-  return raw.filter((s): s is string => typeof s === "string" && !!getCompetition(s)).slice(0, MAX_LIGAS);
+
+  if (error) {
+    if (!isMissingColumn(error)) return [];
+    // 2026-46 sin aplicar: probamos solo con la liga del club (2026-45).
+    const legacy = await supa.from("profiles").select("fav_liga_slug").eq("id", userId).maybeSingle();
+    const slug = (legacy.data as { fav_liga_slug?: string | null } | null)?.fav_liga_slug;
+    return slug && getCompetition(slug) ? [slug] : [];
+  }
+  if (!data) return [];
+
+  const row = data as { fav_ligas: unknown; fav_liga_slug: string | null };
+  const explicit = Array.isArray(row.fav_ligas)
+    ? row.fav_ligas.filter((s): s is string => typeof s === "string" && !!getCompetition(s)).slice(0, MAX_LIGAS)
+    : [];
+  if (explicit.length) return explicit;
+  return row.fav_liga_slug && getCompetition(row.fav_liga_slug) ? [row.fav_liga_slug] : [];
 }
 
 export type SetMisLigasResult = { ok: boolean; reason?: "not_available" | "error" };

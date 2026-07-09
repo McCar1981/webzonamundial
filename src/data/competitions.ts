@@ -52,6 +52,11 @@ export interface Competition {
 export const COMPETITIONS: Competition[] = [
   // ── OLA 1 — punta de lanza LATAM (México núcleo, Ecuador 50% del tráfico) ──
   { slug: "liga-mx", name: "Liga MX", short: "Liga MX", apiFootballId: 262, country: "México", flag: "mx", scope: "domestic", region: "americas", format: "split-playoff", wave: 1 },
+  // Liga MX Femenil: la liga femenina más vista del mundo (20,5M espectadores Apertura 2025)
+  // y sin plataforma seria de datos/juego que la cubra — hueco de mercado nº1.
+  // IDs validados en vivo contra /leagues?search= el 2026-07-09.
+  { slug: "liga-mx-femenil", name: "Liga MX Femenil", short: "Liga MX Fem", apiFootballId: 673, country: "México", flag: "mx", scope: "domestic", region: "americas", format: "split-playoff", wave: 1 },
+  { slug: "liga-expansion-mx", name: "Liga de Expansión MX", short: "Expansión MX", apiFootballId: 263, country: "México", flag: "mx", scope: "domestic", region: "americas", format: "split-playoff", wave: 1 },
   { slug: "ligapro-ecuador", name: "LigaPro Serie A (Ecuador)", short: "LigaPro EC", apiFootballId: 242, country: "Ecuador", flag: "ec", scope: "domestic", region: "americas", format: "split-playoff", wave: 1 },
   { slug: "libertadores", name: "CONMEBOL Libertadores", short: "Libertadores", apiFootballId: 13, country: "CONMEBOL", flag: null, scope: "continental", region: "americas", format: "groups-knockout", wave: 1 },
   { slug: "laliga", name: "LaLiga", short: "LaLiga", apiFootballId: 140, country: "España", flag: "es", scope: "domestic", region: "europa", format: "league", wave: 1 },

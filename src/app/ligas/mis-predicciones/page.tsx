@@ -24,15 +24,21 @@ export const metadata = {
 };
 
 const REWARD = 10;
+const EXACT_REWARD = 40;
 const GOLD = "#c9a84c";
 const DIM = "#9db0c9";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
-function pickLabel(pick: string, d: FixtureDetail | null): string {
-  if (pick === "draw") return "Empate";
-  if (!d) return pick === "home" ? "Local" : "Visitante";
-  return pick === "home" ? d.fixture.home.name : d.fixture.away.name;
+function rewardOf(p: LigaPredictionRow): number {
+  return p.market === "exact" ? EXACT_REWARD : REWARD;
+}
+
+function pickLabel(p: LigaPredictionRow, d: FixtureDetail | null): string {
+  if (p.market === "exact") return `Marcador ${p.scoreHome ?? 0}-${p.scoreAway ?? 0}`;
+  if (p.pick === "draw") return "Empate";
+  if (!d) return p.pick === "home" ? "Local" : "Visitante";
+  return p.pick === "home" ? d.fixture.home.name : d.fixture.away.name;
 }
 
 function Stat({ n, label, accent }: { n: string; label: string; accent?: boolean }) {
@@ -50,7 +56,7 @@ function Row({ p, d }: { p: LigaPredictionRow; d: FixtureDetail | null }) {
     ? `${d.fixture.score.home ?? 0}-${d.fixture.score.away ?? 0}`
     : null;
   let tag: { text: string; color: string };
-  if (p.status === "won") tag = { text: `Acertaste · +${REWARD}`, color: "#3fbf6a" };
+  if (p.status === "won") tag = { text: `Acertaste · +${rewardOf(p)}`, color: "#3fbf6a" };
   else if (p.status === "lost") tag = { text: "Fallaste", color: "#cf5b5b" };
   else if (p.status === "void") tag = { text: "Anulado", color: DIM };
   else tag = { text: "Pendiente", color: GOLD };
@@ -62,7 +68,7 @@ function Row({ p, d }: { p: LigaPredictionRow; d: FixtureDetail | null }) {
         <span style={{ fontSize: 12, fontWeight: 500, color: tag.color, flexShrink: 0 }}>{tag.text}</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 3, fontSize: 12, color: DIM }}>
-        <span>Tu apuesta: <span style={{ color: "#cbd5e1" }}>{pickLabel(p.pick, d)}</span></span>
+        <span>Tu apuesta: <span style={{ color: "#cbd5e1" }}>{pickLabel(p, d)}</span></span>
         <span>{result ? `Resultado ${result}` : <LocalTime iso={p.kickoff} mode="date" fallback={p.kickoff.slice(0, 10)} />}</span>
       </div>
     </div>
@@ -80,6 +86,7 @@ export default async function MisPrediccionesPage() {
   const won = preds.filter((p) => p.status === "won").length;
   const resolved = preds.filter((p) => p.status === "won" || p.status === "lost").length;
   const accuracy = resolved > 0 ? Math.round((won / resolved) * 100) : 0;
+  const coinsWon = preds.filter((p) => p.status === "won").reduce((sum, p) => sum + rewardOf(p), 0);
   const pending = rows.filter((r) => r.p.status === "pending");
   const done = rows.filter((r) => r.p.status !== "pending");
 
@@ -106,20 +113,20 @@ export default async function MisPrediccionesPage() {
             <div style={{ display: "flex", gap: 10 }}>
               <Stat n={String(won)} label="Aciertos" accent />
               <Stat n={`${accuracy}%`} label="Precisión" />
-              <Stat n={String(won * REWARD)} label="Fútcoins" />
+              <Stat n={String(coinsWon)} label="Fútcoins" />
             </div>
 
             {pending.length > 0 && (
               <section style={{ marginTop: 26 }}>
                 <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 4px" }}>Pendientes</h2>
-                {pending.map((r) => <Row key={r.p.fixtureId} p={r.p} d={r.d} />)}
+                {pending.map((r) => <Row key={`${r.p.fixtureId}-${r.p.market}`} p={r.p} d={r.d} />)}
               </section>
             )}
 
             {done.length > 0 && (
               <section style={{ marginTop: 26 }}>
                 <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 4px" }}>Resueltas</h2>
-                {done.map((r) => <Row key={r.p.fixtureId} p={r.p} d={r.d} />)}
+                {done.map((r) => <Row key={`${r.p.fixtureId}-${r.p.market}`} p={r.p} d={r.d} />)}
               </section>
             )}
           </>

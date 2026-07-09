@@ -15,6 +15,7 @@ type Counts = { home: number; draw: number; away: number; total: number };
 const GOLD = "#c9a84c";
 const DIM = "#9db0c9";
 const REWARD = 10;
+const EXACT_REWARD = 40;
 
 export default function MatchPoll({
   fixtureId,
@@ -38,6 +39,12 @@ export default function MatchPoll({
   const [boostBusy, setBoostBusy] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  // Mercado "marcador exacto" (segunda oportunidad de ganar en el mismo partido).
+  const [exact, setExact] = useState<{ home: number; away: number } | null>(null);
+  const [eh, setEh] = useState(1);
+  const [ea, setEa] = useState(0);
+  const [exactBusy, setExactBusy] = useState(false);
+  const [exactError, setExactError] = useState("");
 
   useEffect(() => {
     // Estado de sesión + predicción guardada del usuario.
@@ -47,6 +54,9 @@ export default function MatchPoll({
         if (!j) return;
         setAuthed(!!j.authed);
         setBoosted(!!j.boosted);
+        if (j.exact && typeof j.exact.home === "number" && typeof j.exact.away === "number") {
+          setExact(j.exact);
+        }
         if (j.pick === "home" || j.pick === "draw" || j.pick === "away") {
           setMyPick(j.pick);
           setRewarded(true);
@@ -128,6 +138,33 @@ export default function MatchPoll({
     }
   }, [boostBusy, boosted, fixtureId]);
 
+  const saveExact = useCallback(async () => {
+    if (exactBusy || exact) return;
+    setExactBusy(true);
+    setExactError("");
+    try {
+      const r = await fetch("/api/ligas/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fixtureId, slug, market: "exact", scoreHome: eh, scoreAway: ea }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok || j?.error === "already_predicted") {
+        setExact({ home: eh, away: ea });
+      } else if (j?.error === "match_started") {
+        setExactError("El partido ya empezó: el marcador cierra al saque.");
+      } else if (j?.error === "not_available") {
+        setExactError("El marcador exacto estará disponible en breve.");
+      } else {
+        setExactError("No se pudo guardar. Inténtalo de nuevo.");
+      }
+    } catch {
+      setExactError("Sin conexión. Inténtalo de nuevo.");
+    } finally {
+      setExactBusy(false);
+    }
+  }, [exactBusy, exact, fixtureId, slug, eh, ea]);
+
   const options: { key: Pick; label: string }[] = [
     { key: "home", label: homeName },
     { key: "draw", label: "Empate" },
@@ -204,11 +241,68 @@ export default function MatchPoll({
         )
       )}
       {error ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a", textAlign: "center" }}>{error}</p> : null}
-      {authed && rewarded && (
+
+      {/* Marcador exacto: segunda oportunidad de ganar en el mismo partido (x4 premio). */}
+      {authed && notStarted && (
+        <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          {exact ? (
+            <p style={{ margin: 0, fontSize: 12.5, fontWeight: 500, color: GOLD, textAlign: "center" }}>
+              Marcador exacto guardado: {exact.home}-{exact.away}. +{EXACT_REWARD} Fútcoins si lo clavas.
+            </p>
+          ) : (
+            <>
+              <p style={{ margin: "0 0 10px", fontSize: 12.5, color: "#cbd5e1", textAlign: "center" }}>
+                ¿Te atreves con el marcador exacto? <span style={{ color: GOLD, fontWeight: 500 }}>+{EXACT_REWARD} Fútcoins</span> si lo clavas
+              </p>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
+                <Stepper label={homeName} value={eh} onChange={setEh} disabled={exactBusy} />
+                <span style={{ fontSize: 18, color: DIM, paddingTop: 16 }}>-</span>
+                <Stepper label={awayName} value={ea} onChange={setEa} disabled={exactBusy} />
+              </div>
+              <button
+                onClick={saveExact}
+                disabled={exactBusy}
+                style={{ display: "block", width: "100%", marginTop: 12, border: "1px solid rgba(201,168,76,0.5)", background: "rgba(201,168,76,0.08)", color: "#fff", fontSize: 13, fontWeight: 500, padding: "10px 12px", borderRadius: 10, cursor: exactBusy ? "default" : "pointer", opacity: exactBusy ? 0.7 : 1 }}
+              >
+                {exactBusy ? "Guardando…" : `Predecir ${eh}-${ea}`}
+              </button>
+            </>
+          )}
+          {exactError ? <p style={{ margin: "10px 0 0", fontSize: 12, color: "#ef6a6a", textAlign: "center" }}>{exactError}</p> : null}
+        </div>
+      )}
+
+      {authed && (rewarded || exact) && (
         <p style={{ margin: "12px 0 0", textAlign: "center" }}>
           <a href="/ligas/mis-predicciones" style={{ fontSize: 12.5, color: GOLD, textDecoration: "none" }}>Ver mis predicciones</a>
         </p>
       )}
     </section>
+  );
+}
+
+// Contador táctil 0-9 (botones grandes para pulgares; 87% móvil).
+function Stepper({ label, value, onChange, disabled }: { label: string; value: number; onChange: (n: number) => void; disabled: boolean }) {
+  const btn: React.CSSProperties = {
+    width: 34,
+    height: 34,
+    borderRadius: 9,
+    border: "1px solid rgba(201,168,76,0.4)",
+    background: "rgba(201,168,76,0.06)",
+    color: "#fff",
+    fontSize: 17,
+    lineHeight: 1,
+    cursor: disabled ? "default" : "pointer",
+    opacity: disabled ? 0.6 : 1,
+  };
+  return (
+    <div style={{ textAlign: "center" }}>
+      <div style={{ fontSize: 11, color: DIM, marginBottom: 5, maxWidth: 96, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{label}</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <button type="button" aria-label={`Menos goles ${label}`} style={btn} disabled={disabled || value <= 0} onClick={() => onChange(Math.max(0, value - 1))}>-</button>
+        <span style={{ fontSize: 22, fontWeight: 600, color: "#fff", minWidth: 22, fontVariantNumeric: "tabular-nums" }}>{value}</span>
+        <button type="button" aria-label={`Más goles ${label}`} style={btn} disabled={disabled || value >= 9} onClick={() => onChange(Math.min(9, value + 1))}>+</button>
+      </div>
+    </div>
   );
 }

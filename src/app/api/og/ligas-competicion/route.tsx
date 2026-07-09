@@ -44,7 +44,7 @@ export async function GET(request: Request) {
           <span style={{ fontSize: 30, fontWeight: 600, color: "#dbe4f0", marginTop: 18 }}>Calendario, resultados y clasificación en vivo</span>
         </div>
 
-        <span style={{ fontSize: 30, fontWeight: 700, color: GOLD }}>No leas el partido. Júgalo.</span>
+        <span style={{ fontSize: 30, fontWeight: 700, color: GOLD }}>No leas el partido. Juégalo.</span>
       </div>
     ),
     { width: 1200, height: 630 },

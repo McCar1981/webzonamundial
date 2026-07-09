@@ -3,7 +3,7 @@
 // Centro de Partido de Zona de Ligas: previa / en vivo / post-partido de un
 // fixture (marcador, timeline de eventos, alineaciones, estadísticas), más el
 // gancho a la capa jugable (predecir el partido — el diferencial "No leas el
-// partido, júgalo"). Reutiliza getFixtureDetail (1 request embebido).
+// partido, juégalo"). Reutiliza getFixtureDetail (1 request embebido).
 //
 // ISR revalidate 30: en vivo se refresca cada 30 s y se cachea en el edge, así
 // que N espectadores cuestan ~1 request/30s/partido (respeta el gate de coste).
@@ -226,7 +226,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
         {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} notStarted={f.status === "NS" || f.status === "TBD"} />}
 
         <Link href={finished ? `/ligas/${comp.slug}` : "/registro"} style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>
-          <span style={{ display: "block", fontSize: 15, fontWeight: 500, color: "#fff" }}>No leas el partido. Júgalo.</span>
+          <span style={{ display: "block", fontSize: 15, fontWeight: 500, color: "#fff" }}>No leas el partido. Juégalo.</span>
           <span style={{ display: "block", fontSize: 13, color: "#cbd5e1", marginTop: 4 }}>
             {finished
               ? `Este partido terminó. Predice los próximos de ${comp.short} y gana Fútcoins. Sin apuestas.`

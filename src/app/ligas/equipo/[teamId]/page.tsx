@@ -11,6 +11,8 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, type TeamFixture } from "@/lib/competitions/api";
+import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
+import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
 import LocalTime from "../../[slug]/LocalTime";
 import SeguirClub from "./SeguirClub";
 
@@ -26,6 +28,24 @@ const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const load = cache((id: number) =>
   Promise.all([getTeamFixtures(id, { last: 6 }), getTeamFixtures(id, { next: 6 })]),
 );
+
+// Plantilla + estadísticas: BAJO DEMANDA (la visita dispara la sincronización;
+// KV cachea la plantilla 7 días y las stats 24 h). Fail-soft: sin datos, la
+// sección se oculta.
+const loadPlantilla = cache((id: number) =>
+  Promise.all([
+    getTeamSquad(id).catch(() => [] as FantasyPlayer[]),
+    getTeamSeasonStats(id).catch(() => null),
+  ]),
+);
+
+const POS_LABEL: Record<Position, string> = {
+  GK: "Porteros",
+  DEF: "Defensas",
+  MID: "Centrocampistas",
+  FWD: "Delanteros",
+};
+const POS_ORDER: Position[] = ["GK", "DEF", "MID", "FWD"];
 
 function teamOf(fixtures: TeamFixture[], teamId: number): { name: string; logo: string } | null {
   for (const f of fixtures) {
@@ -84,9 +104,10 @@ export default async function TeamPage({ params }: { params: Params }) {
   const id = Number(params.teamId);
   if (!Number.isFinite(id) || id <= 0) notFound();
 
-  const [last, next] = await load(id);
+  const [[last, next], [squad, stats]] = await Promise.all([load(id), loadPlantilla(id)]);
   const team = teamOf([...last, ...next], id);
   if (!team) notFound();
+  const statById = new Map<number, PlayerSeasonStats>((stats?.players ?? []).map((p) => [p.playerId, p]));
 
   // Forma: últimos resultados terminados (más reciente primero).
   const form = last
@@ -134,6 +155,49 @@ export default async function TeamPage({ params }: { params: Params }) {
           <section style={{ marginTop: 30 }}>
             <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: "0 0 6px" }}>Últimos resultados</h2>
             {last.slice().reverse().map((f) => <Row key={f.fixtureId} f={f} teamId={id} />)}
+          </section>
+        )}
+
+        {/* Plantilla + rendimiento: sincronizada bajo demanda con api-football
+            (la visita del primer usuario la trae; KV la sirve al resto). */}
+        {squad.length > 0 && (
+          <section style={{ marginTop: 30 }}>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
+              <h2 style={{ fontSize: 15, fontWeight: 500, color: "#fff", margin: 0 }}>Plantilla</h2>
+              {stats && <span style={{ fontSize: 11.5, color: DIM }}>Temporada {stats.season} · PJ / G / A / Nota</span>}
+            </div>
+            {POS_ORDER.map((pos) => {
+              const players = squad.filter((p) => p.position === pos);
+              if (!players.length) return null;
+              return (
+                <div key={pos} style={{ marginTop: 14 }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, marginBottom: 2 }}>{POS_LABEL[pos]}</div>
+                  {players.map((p) => {
+                    const s = statById.get(p.id);
+                    return (
+                      <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 4px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                        <span style={{ width: 24, fontSize: 12, color: DIM, fontVariantNumeric: "tabular-nums", flexShrink: 0, textAlign: "right" }}>{p.number ?? ""}</span>
+                        <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{p.name}</span>
+                        {s ? (
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0, fontSize: 12.5, color: "#cbd5e1", fontVariantNumeric: "tabular-nums" }}>
+                            <span title="Partidos jugados">{s.apps}</span>
+                            <span title="Goles" style={{ color: s.goals > 0 ? "#fff" : DIM, fontWeight: s.goals > 0 ? 600 : 400 }}>{s.goals}</span>
+                            <span title="Asistencias" style={{ color: s.assists > 0 ? "#fff" : DIM }}>{s.assists}</span>
+                            {s.rating != null ? (
+                              <span title="Nota media" style={{ minWidth: 34, textAlign: "center", fontWeight: 600, fontSize: 11.5, color: "#0A1422", background: s.rating >= 7 ? "linear-gradient(135deg, #c9a84c, #e8d48b)" : "rgba(255,255,255,0.55)", borderRadius: 6, padding: "2px 5px" }}>{s.rating.toFixed(2)}</span>
+                            ) : (
+                              <span style={{ minWidth: 34, textAlign: "center", color: DIM }}>-</span>
+                            )}
+                          </span>
+                        ) : (
+                          <span style={{ flexShrink: 0, fontSize: 12, color: DIM }}>sin minutos</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </section>
         )}
 

@@ -8,9 +8,16 @@
 //  · Tira de próximos partidos, cada uno enlaza a su Match Center.
 // Datos 100% estáticos (src/data/matches.ts) — sin auth, sin API.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { MATCHES, type Match } from "@/data/matches";
+
+// Cruces KO sin resolver (h/a = "W97"/"L101", banderas "tbd"): no son jugables ni
+// legibles como equipos — se excluyen de la sección para no romper la primera
+// impresión con placeholders crudos.
+function hasRealTeams(m: Match): boolean {
+  return m.hf !== "tbd" && m.af !== "tbd";
+}
 
 const BG2 = "#0F1D32",
   BG3 = "#0B1825",
@@ -26,9 +33,9 @@ function upcomingMatches(limit: number): Match[] {
   today.setHours(0, 0, 0, 0);
   const future = MATCHES.filter((m) => {
     const d = new Date(`${m.d}T00:00:00`);
-    return d.getTime() >= today.getTime();
+    return d.getTime() >= today.getTime() && hasRealTeams(m);
   });
-  const pool = future.length > 0 ? future : MATCHES;
+  const pool = future.length > 0 ? future : MATCHES.filter(hasRealTeams);
   return [...pool]
     .sort((a, b) => (a.d === b.d ? a.t.localeCompare(b.t) : a.d.localeCompare(b.d)))
     .slice(0, limit);
@@ -62,6 +69,22 @@ export function HomeMatchPredictSection() {
   const featured = matches[0];
   const rest = matches.slice(1);
   const [pick, setPick] = useState<Pick | null>(null);
+
+  // El pick sobrevive a la navegación: la sección promete que acertar suma, así
+  // que guardarlo solo en memoria era una promesa rota al primer refresh.
+  useEffect(() => {
+    if (!featured) return;
+    try {
+      const saved = localStorage.getItem(`zm-home-pick-${featured.i}`);
+      if (saved === "home" || saved === "draw" || saved === "away") setPick(saved);
+    } catch { /* sin storage */ }
+  }, [featured]);
+  const choose = (p: Pick) => {
+    setPick(p);
+    if (featured) {
+      try { localStorage.setItem(`zm-home-pick-${featured.i}`, p); } catch { /* ignore */ }
+    }
+  };
 
   if (!featured) return null;
 
@@ -109,7 +132,7 @@ export function HomeMatchPredictSection() {
           <div className="relative z-10">
             {/* Meta */}
             <div style={{ textAlign: "center", fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 14 }}>
-              {featured.p} · Grupo {featured.g} · {fmtDate(featured.d)} · {featured.t} ET · {featured.vc}
+              {featured.p}{featured.g ? ` · Grupo ${featured.g}` : ""} · {fmtDate(featured.d)} · {featured.t} ET · {featured.vc}
             </div>
 
             {/* Equipos */}
@@ -132,7 +155,7 @@ export function HomeMatchPredictSection() {
                 return (
                   <button
                     key={o.key}
-                    onClick={() => setPick(o.key)}
+                    onClick={() => choose(o.key)}
                     style={{
                       padding: "13px 8px",
                       borderRadius: 12,
@@ -162,7 +185,7 @@ export function HomeMatchPredictSection() {
                   ¡Anotado! En la app, acertar este resultado te suma puntos.
                 </p>
                 <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-                  <Link href={`/app/predicciones/jugar?match=${featured.i}`} style={primaryBtn}>
+                  <Link href={`/app/predicciones/jugar?match=${featured.i}&pick=${pick}`} style={primaryBtn}>
                     Predecir en serio →
                   </Link>
                   <Link href={`/app/matchcenter/${featured.i}`} style={secondaryBtn}>
@@ -201,7 +224,7 @@ export function HomeMatchPredictSection() {
                   }}
                 >
                   <div style={{ fontSize: 10.5, color: DIM, fontWeight: 700, letterSpacing: 0.5, marginBottom: 9, textTransform: "uppercase" }}>
-                    {fmtDate(m.d)} · {m.t} ET · Gr. {m.g}
+                    {fmtDate(m.d)} · {m.t} ET · {m.g ? `Gr. ${m.g}` : m.p}
                   </div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 7, flex: 1, minWidth: 0 }}>

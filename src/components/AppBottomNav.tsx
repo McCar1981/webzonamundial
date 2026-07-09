@@ -50,10 +50,13 @@ const ITEMS: Item[] = [
     icon: stroke("M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"),
   },
   {
-    href: "/app/matchcenter",
-    label: "En vivo",
-    match: (p) => p.startsWith("/app/matchcenter") || p.startsWith("/app/streaming"),
-    icon: stroke("M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 3v3l3 2M12 3l-3 4M9 7l-4 3.5M12 21v-3l-3-2M12 21l3-4M15 17l4-3.5"),
+    // Zona de Ligas es el producto de temporada completa (post 19-jul): merece
+    // pestaña propia. El Match Center del Mundial sigue contando como "activo"
+    // en esta pestaña lo que queda de torneo.
+    href: "/ligas",
+    label: "Ligas",
+    match: (p) => p.startsWith("/ligas") || p.startsWith("/app/matchcenter") || p.startsWith("/app/streaming"),
+    icon: stroke("M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4ZM7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"),
   },
   {
     href: "/trivia",
@@ -72,10 +75,28 @@ const ITEMS: Item[] = [
 // Páginas-módulo que viven FUERA de /app pero forman parte de la webapp:
 // son destino directo de las cards del hub y de la propia barra inferior.
 // Aquí la barra debe seguir presente para no romper la sensación de app.
-const WEBAPP_ROUTES = ["/trivia", "/calendario", "/grupos", "/formato", "/historia"];
+const WEBAPP_ROUTES = ["/trivia", "/calendario", "/grupos", "/formato", "/historia", "/ligas"];
 
 export default function AppBottomNav() {
   const pathname = usePathname() || "";
+
+  // Punto de "hay futbol EN VIVO ahora" sobre la pestaña Ligas. Sondeo suave:
+  // al montar y cada 2 min SOLO con la pestaña visible; /api/ligas/live va
+  // cacheado en KV (30s) + CDN, así que el coste por usuario es mínimo.
+  const [ligaLive, setLigaLive] = useState(false);
+  useEffect(() => {
+    let on = true;
+    const check = () => {
+      if (document.visibilityState !== "visible") return;
+      fetch("/api/ligas/live")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((j) => { if (on && j) setLigaLive(j.mode === "live"); })
+        .catch(() => {});
+    };
+    check();
+    const t = setInterval(check, 120_000);
+    return () => { on = false; clearInterval(t); };
+  }, []);
 
   // ¿Hay sesión? Si el usuario ya entró a la app, la barra lo acompaña por
   // cualquier página (es una webapp). Patrón robusto: getUser() inicial +
@@ -165,6 +186,13 @@ export default function AppBottomNav() {
                 }}
               />
               {it.icon}
+              {/* Punto coral: hay partido de ligas EN VIVO ahora mismo. */}
+              {it.href === "/ligas" && ligaLive && (
+                <span
+                  aria-hidden
+                  style={{ position: "absolute", top: 8, left: "calc(50% + 9px)", width: 7, height: 7, borderRadius: 99, background: "#d85a30" }}
+                />
+              )}
               <span style={{ fontSize: 11.5, fontWeight: active ? 800 : 600, letterSpacing: 0.2 }}>
                 {it.label}
               </span>

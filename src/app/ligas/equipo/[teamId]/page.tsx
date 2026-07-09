@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, type TeamFixture } from "@/lib/competitions/api";
 import LocalTime from "../../[slug]/LocalTime";
+import SeguirClub from "./SeguirClub";
 
 export const revalidate = 300;
 
@@ -109,7 +110,7 @@ export default async function TeamPage({ params }: { params: Params }) {
 
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 16 }}>
           {team.logo ? <img src={team.logo} alt="" width={48} height={48} loading="lazy" style={{ width: 48, height: 48, objectFit: "contain" }} /> : null}
-          <div>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <h1 style={{ margin: 0, fontSize: 26, fontWeight: 500, color: "#fff" }}>{team.name}</h1>
             {form.length > 0 && (
               <div style={{ display: "flex", gap: 5, marginTop: 6 }}>
@@ -119,6 +120,7 @@ export default async function TeamPage({ params }: { params: Params }) {
               </div>
             )}
           </div>
+          <SeguirClub teamId={id} teamName={team.name} teamLogo={team.logo ?? null} />
         </div>
 
         {next.length > 0 && (

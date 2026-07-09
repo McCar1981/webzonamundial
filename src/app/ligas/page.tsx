@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LiveStrip from "./LiveStrip";
 import HabitStrip from "@/components/ligas/HabitStrip";
+import MiClubCard from "@/components/ligas/MiClubCard";
 import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
 
 export const metadata: Metadata = {
@@ -64,6 +65,10 @@ export default function LigasHub() {
         <p style={{ margin: 0, fontSize: 12, fontWeight: 500, letterSpacing: 2, color: GOLD }}>ZONA DE LIGAS</p>
         <h1 style={{ margin: "4px 0 2px", fontSize: 28, fontWeight: 500, color: "#fff" }}>Todas las ligas y copas</h1>
         <p style={{ margin: 0, fontSize: 13.5, color: DIM }}>Calendario, resultados y clasificación en vivo. No leas el partido: júgalo.</p>
+
+        {/* Mi club: el ancla de la temporada — su próximo partido, su último
+            resultado y sus noticias, siempre arriba del todo. */}
+        <MiClubCard />
 
         {/* Hábito visible en la puerta: racha + cofre del día 7 + Fútcoins. */}
         <HabitStrip />

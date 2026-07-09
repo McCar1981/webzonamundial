@@ -31,12 +31,29 @@ interface Club { ligaSlug: string | null; clubId: number; clubName: string; club
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
-function fmtKickoff(iso: string): string {
+function fmtFecha(iso: string): string {
   try {
-    return new Date(iso).toLocaleString("es", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+    return new Date(iso).toLocaleDateString("es", { weekday: "short", day: "numeric", month: "short" });
   } catch {
-    return iso.slice(0, 16).replace("T", " ");
+    return iso.slice(0, 10);
   }
+}
+function fmtHora(iso: string): string {
+  try {
+    return new Date(iso).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" });
+  } catch {
+    return iso.slice(11, 16);
+  }
+}
+
+// Lado de la tarjeta visual del próximo partido (escudo grande + nombre).
+function LadoEquipo({ t }: { t: Team }) {
+  return (
+    <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+      {t.logo ? <img src={t.logo} alt="" width={38} height={38} loading="lazy" style={{ width: 38, height: 38, objectFit: "contain" }} /> : <span style={{ width: 38, height: 38 }} aria-hidden />}
+      <span style={{ fontSize: 12, fontWeight: 600, color: "var(--zl-text)", maxWidth: "100%", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", textAlign: "center" }}>{t.name}</span>
+    </div>
+  );
 }
 
 export default function MiClubCard() {
@@ -184,22 +201,28 @@ export default function MiClubCard() {
         </button>
       </div>
 
-      {(next || last) && (
-        <div style={{ display: "grid", gridTemplateColumns: next && last ? "1fr 1fr" : "1fr", gap: 10, marginTop: 12 }}>
-          {next && (
-            <a href={`/ligas/equipo/${club.clubId}`} style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", textDecoration: "none" }}>
-              <div style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: 1, color: DIM, marginBottom: 4 }}>PRÓXIMO · {next.leagueName}</div>
-              <div style={{ fontSize: 13, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{next.home.name} vs {next.away.name}</div>
-              <div style={{ fontSize: 11.5, color: GOLD, marginTop: 2 }}>{fmtKickoff(next.kickoff)}</div>
-            </a>
-          )}
-          {last && lastPlayed && (
-            <a href={`/ligas/equipo/${club.clubId}`} style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", textDecoration: "none" }}>
-              <div style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: 1, color: DIM, marginBottom: 4 }}>ÚLTIMO · {last.leagueName}</div>
-              <div style={{ fontSize: 13, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{last.home.name} {last.score.home ?? 0}-{last.score.away ?? 0} {last.away.name}</div>
-            </a>
-          )}
-        </div>
+      {/* Próximo partido: tarjeta VISUAL (escudos grandes + hora protagonista). */}
+      {next && (
+        <a href={`/ligas/equipo/${club.clubId}`} className="zl-card zl-tap" style={{ display: "block", marginTop: 12, textDecoration: "none" }}>
+          <div className="zl-label" style={{ textAlign: "center", marginBottom: 10 }}>Próximo · {next.leagueName}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <LadoEquipo t={next.home} />
+            <div style={{ flexShrink: 0, textAlign: "center", minWidth: 76 }}>
+              <div style={{ fontSize: 11.5, color: "var(--zl-muted)" }}>{fmtFecha(next.kickoff)}</div>
+              <div className="zl-num" style={{ fontSize: 24, fontWeight: 800, color: GOLD, lineHeight: 1.15 }}>{fmtHora(next.kickoff)}</div>
+            </div>
+            <LadoEquipo t={next.away} />
+          </div>
+        </a>
+      )}
+
+      {last && lastPlayed && (
+        <a href={`/ligas/equipo/${club.clubId}`} style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 10, padding: "9px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", textDecoration: "none" }}>
+          <span style={{ fontSize: 12.5, color: "var(--zl-muted)", flexShrink: 0 }}>Último</span>
+          <span className="zl-num" style={{ fontSize: 12.5, color: "var(--zl-text)", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
+            {last.home.name} {last.score.home ?? 0}-{last.score.away ?? 0} {last.away.name}
+          </span>
+        </a>
       )}
 
       {news.length > 0 && (

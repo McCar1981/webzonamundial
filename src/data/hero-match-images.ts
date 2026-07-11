@@ -371,6 +371,16 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/espana-belgica-wide.webp",
     mobile: "/images/hero/espana-belgica-mobile.webp",
   },
+  // Noruega vs Inglaterra (cuartos).
+  "noruega-inglaterra": {
+    wide: "/images/hero/noruega-inglaterra-wide.webp",
+    mobile: "/images/hero/noruega-inglaterra-mobile.webp",
+  },
+  // Argentina vs Suiza (cuartos).
+  "argentina-suiza": {
+    wide: "/images/hero/argentina-suiza-wide.webp",
+    mobile: "/images/hero/argentina-suiza-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

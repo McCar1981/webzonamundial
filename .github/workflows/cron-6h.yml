@@ -1,0 +1,43 @@
+name: Cron every 6h
+
+# Free alternative to Vercel Pro crons for the low-frequency endpoints
+# (fixture sync + bracket scoring). Runs every 6 hours.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   - SITE_URL      e.g. https://www.zonamundial.app
+#   - CRON_SECRET   must match the env var on the Vercel deploy
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger 6h cron endpoints
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
+            echo "::error::Missing SITE_URL or CRON_SECRET secrets"
+            exit 1
+          fi
+          endpoints=(
+            "/api/cron/sync-fixtures"
+            "/api/cron/score-brackets"
+          )
+          for ep in "${endpoints[@]}"; do
+            echo "--- $ep"
+            code=$(curl -sS -m 180 -o /tmp/resp -w "%{http_code}" \
+              -H "Authorization: Bearer $CRON_SECRET" \
+              "$SITE_URL$ep" || echo "000")
+            echo "HTTP $code"
+            head -c 400 /tmp/resp 2>/dev/null || true
+            echo ""
+            if [ "$code" != "200" ]; then
+              echo "::warning::$ep returned $code"
+            fi
+          done

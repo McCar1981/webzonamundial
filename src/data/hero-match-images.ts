@@ -381,6 +381,18 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/argentina-suiza-wide.webp",
     mobile: "/images/hero/argentina-suiza-mobile.webp",
   },
+  // ── Semifinales ──────────────────────────────────────────────────────────
+  // Francia vs España (semifinal 101).
+  "francia-espana": {
+    wide: "/images/hero/francia-espana-wide.webp",
+    mobile: "/images/hero/francia-espana-mobile.webp",
+  },
+  // Inglaterra vs Argentina (semifinal 102). Clave = slug del partido (home-away):
+  // home = Inglaterra, aunque el arte diga "Argentina vs Inglaterra".
+  "inglaterra-argentina": {
+    wide: "/images/hero/inglaterra-argentina-wide.webp",
+    mobile: "/images/hero/inglaterra-argentina-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

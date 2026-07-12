@@ -2,22 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
-      "path": "/api/cron/resolve-liga-predictions",
-      "schedule": "*/15 * * * *"
-    },
-    {
-      "path": "/api/cron/resolve-liga-fantasy",
-      "schedule": "*/30 * * * *"
-    },
-    {
-      "path": "/api/cron/monitor",
-      "schedule": "*/2 * * * *"
-    },
-    {
-      "path": "/api/cron/ingest-news",
-      "schedule": "0 7,13,19 * * *"
-    },
-    {
       "path": "/api/cron/daily-previa",
       "schedule": "0 6 * * *"
     },
@@ -46,44 +30,8 @@
       "schedule": "0 5 * * *"
     },
     {
-      "path": "/api/cron/resolve-predictions",
-      "schedule": "*/30 * * * *"
-    },
-    {
-      "path": "/api/cron/stage-results",
-      "schedule": "*/2 * * * *"
-    },
-    {
       "path": "/api/cron/predictions-engagement",
       "schedule": "0 20 * * *"
-    },
-    {
-      "path": "/api/cron/score-brackets",
-      "schedule": "15 */6 * * *"
-    },
-    {
-      "path": "/api/cron/match-center-poll",
-      "schedule": "* * * * *"
-    },
-    {
-      "path": "/api/cron/resolve-micro",
-      "schedule": "* * * * *"
-    },
-    {
-      "path": "/api/cron/settle-live-picks",
-      "schedule": "* * * * *"
-    },
-    {
-      "path": "/api/cron/sync-fixtures",
-      "schedule": "0 */6 * * *"
-    },
-    {
-      "path": "/api/cron/match-reminders",
-      "schedule": "*/10 * * * *"
-    },
-    {
-      "path": "/api/stories/generate",
-      "schedule": "*/15 * * * *"
     }
   ]
 }

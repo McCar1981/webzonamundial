@@ -81,6 +81,33 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array {
 }
 
 /**
+ * ¿La suscripción existente se creó con la MISMA VAPID public key que la actual?
+ *
+ * Si el servidor rota las claves VAPID (p.ej. tras migrar de hosting y no poder
+ * recuperar la privada anterior), las suscripciones viejas quedan atadas a la
+ * clave antigua y el push les falla en SILENCIO (mismatch de clave en el push
+ * service). Comparamos byte a byte la applicationServerKey con la clave actual.
+ *
+ * Devuelve true si coinciden o si el navegador no expone la clave (para no
+ * forzar churn innecesario en navegadores que no la publican).
+ */
+function subscriptionMatchesCurrentKey(sub: PushSubscription): boolean {
+  try {
+    const existing = sub.options?.applicationServerKey;
+    if (!existing) return true; // el navegador no la expone → no tocar
+    const existingBytes = new Uint8Array(existing);
+    const current = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+    if (existingBytes.length !== current.length) return false;
+    for (let i = 0; i < current.length; i++) {
+      if (existingBytes[i] !== current[i]) return false;
+    }
+    return true;
+  } catch {
+    return true; // ante la duda, no forzar re-suscripción
+  }
+}
+
+/**
  * Pide permiso al usuario, suscribe al PushManager y manda la subscription al backend.
  * Devuelve la subscription si todo fue bien, null si el user denegó o algo falló.
  */
@@ -100,8 +127,18 @@ export async function subscribeToPush(opts?: {
   const permission = await Notification.requestPermission();
   if (permission !== "granted") return null;
 
-  // Reusa subscription si ya existe.
+  // Reusa subscription si ya existe... salvo que se creara con OTRA VAPID key
+  // (rotación de claves): en ese caso hay que desecharla y re-suscribir con la
+  // clave actual, o el push seguiría fallando en silencio por mismatch.
   let sub = await reg.pushManager.getSubscription();
+  if (sub && !subscriptionMatchesCurrentKey(sub)) {
+    try {
+      await sub.unsubscribe();
+    } catch {
+      /* ignore */
+    }
+    sub = null;
+  }
   if (!sub) {
     // Retry una vez si AbortError (SW aún transitando a activated).
     const subscribeOpts = {
@@ -143,6 +180,62 @@ export async function subscribeToPush(opts?: {
   }
 
   return sub;
+}
+
+/**
+ * Migra la suscripción push a la VAPID key ACTUAL si se creó con una distinta
+ * (el servidor rotó las claves). Silenciosa: requiere permiso ya concedido, así
+ * que NO muestra ningún prompt. Preserva las preferencias (kinds) reutilizando
+ * /resubscribe con el endpoint viejo, para que el backend traslade la metadata
+ * de la suscripción antigua a la nueva.
+ *
+ * Devuelve:
+ *  - "migrated": había mismatch de clave y se re-suscribió con la nueva.
+ *  - "ok": la suscripción ya usaba la clave actual (nada que hacer).
+ *  - "skip": sin soporte / sin permiso / sin suscripción.
+ */
+export async function migratePushKeyIfChanged(): Promise<"migrated" | "ok" | "skip"> {
+  if (!isPushSupported() || !VAPID_PUBLIC_KEY) return "skip";
+  if (typeof Notification === "undefined" || Notification.permission !== "granted") return "skip";
+
+  const reg = await navigator.serviceWorker.getRegistration("/sw.js");
+  if (!reg) return "skip";
+  const oldSub = await reg.pushManager.getSubscription();
+  if (!oldSub) return "skip";
+  if (subscriptionMatchesCurrentKey(oldSub)) return "ok";
+
+  // Mismatch de clave → re-suscribir con la actual, conservando el endpoint
+  // viejo para que el backend migre las preferencias del usuario.
+  const oldEndpoint = oldSub.endpoint;
+  try {
+    await oldSub.unsubscribe();
+  } catch {
+    /* ignore */
+  }
+
+  let newSub: PushSubscription | null = null;
+  try {
+    newSub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as BufferSource,
+    });
+  } catch (err) {
+    console.warn("[push-client] re-subscribe on key change failed:", (err as Error)?.message);
+    return "skip";
+  }
+  if (!newSub) return "skip";
+
+  try {
+    await fetch("/api/notifications/push/resubscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ oldEndpoint, subscription: newSub.toJSON() }),
+    });
+  } catch (err) {
+    console.warn("[push-client] resubscribe POST on key change failed:", (err as Error)?.message);
+  }
+
+  return "migrated";
 }
 
 /**

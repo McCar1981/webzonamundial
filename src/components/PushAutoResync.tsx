@@ -13,7 +13,7 @@
 // Se monta en RootLayoutClient para correr en TODAS las páginas.
 
 import { useEffect } from "react";
-import { isPushSupported, ensureServiceWorker } from "@/lib/push-client";
+import { isPushSupported, ensureServiceWorker, migratePushKeyIfChanged } from "@/lib/push-client";
 
 const RESYNC_KEY = "zm.push.lastResyncAt";
 const RESYNC_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24h
@@ -50,6 +50,21 @@ export default function PushAutoResync() {
         // concedido pero el SW perdió la subscription (común en móvil).
         // No intentamos re-suscribir silenciosamente — el banner lo
         // pedirá explícitamente la próxima vez que el user lo vea.
+        return;
+      }
+
+      // Rotación de VAPID keys: si la suscripción se creó con una clave
+      // distinta a la actual (p.ej. tras migrar de hosting y regenerar el par
+      // VAPID), re-suscribir con la nueva — silencioso, el permiso ya está
+      // concedido. Preserva las preferencias del usuario vía /resubscribe.
+      const migration = await migratePushKeyIfChanged();
+      if (cancelled) return;
+      if (migration === "migrated") {
+        try {
+          localStorage.setItem(RESYNC_KEY, String(Date.now()));
+        } catch {
+          /* ignore */
+        }
         return;
       }
 

@@ -133,8 +133,8 @@ export const MATCHES: Match[] = [
   { "i": 100, "g": "", "p": "Cuartos de final", "j": 0, "h": "Argentina", "hf": "ar", "a": "Suiza", "af": "ch", "d": "2026-07-11", "t": "21:00", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
 
   // SEMIFINAL
-  { "i": 101, "g": "", "p": "Semifinal", "j": 0, "h": "W97", "hf": "tbd", "a": "W98", "af": "tbd", "d": "2026-07-14", "t": "15:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
-  { "i": 102, "g": "", "p": "Semifinal", "j": 0, "h": "W99", "hf": "tbd", "a": "W100", "af": "tbd", "d": "2026-07-15", "t": "15:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
+  { "i": 101, "g": "", "p": "Semifinal", "j": 0, "h": "Francia", "hf": "fr", "a": "España", "af": "es", "d": "2026-07-14", "t": "15:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
+  { "i": 102, "g": "", "p": "Semifinal", "j": 0, "h": "Inglaterra", "hf": "gb-eng", "a": "Argentina", "af": "ar", "d": "2026-07-15", "t": "15:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
 
   // TERCER PUESTO
   { "i": 103, "g": "", "p": "Tercer puesto", "j": 0, "h": "L101", "hf": "tbd", "a": "L102", "af": "tbd", "d": "2026-07-18", "t": "17:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },

@@ -300,6 +300,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   // así evitamos el parpadeo de mostrarlo y ocultarlo a quien sí tiene cuenta.
   const showAppCta = authed === false;
 
+  // ponytail: visor oculto del cómic — pantalla completa, sin header/nav/footer
+  if (pathname === "/preview-comic-x9k2m7") {
+    return <>{children}</>;
+  }
+
   return (
     <div
       ref={containerRef}

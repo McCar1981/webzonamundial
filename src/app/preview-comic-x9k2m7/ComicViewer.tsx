@@ -16,10 +16,13 @@ export default function ComicViewer({ totalPages }: { totalPages: number }) {
       style={{
         position: "fixed",
         inset: 0,
+        width: "100vw",
+        height: "100vh",
         background: "#000",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 2000,
       }}
       tabIndex={0}
       onKeyDown={(e) => {
@@ -38,7 +41,7 @@ export default function ComicViewer({ totalPages }: { totalPages: number }) {
       <img
         src={`/comic-preview/${page}.jpg`}
         alt={`Página ${page}`}
-        style={{ maxWidth: "100%", maxHeight: "100%", userSelect: "none" }}
+        style={{ maxWidth: "100vw", maxHeight: "100vh", userSelect: "none" }}
         draggable={false}
       />
       <div

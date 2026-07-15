@@ -8,6 +8,7 @@
 // el crudo deja que el Data Cache de Next congele las lecturas (ver lib/kv.ts).
 import { kv } from "@/lib/kv";
 import { MATCHES } from "@/data/matches";
+import { etToDate } from "@/lib/bracket/match-time";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import type { LiveSnapshot, MatchMeta, MatchTeamMeta } from "./types";
 import { IN_PLAY } from "./status";
@@ -27,11 +28,37 @@ const SNAP_TTL_SECONDS = 25; // ligeramente por encima del intervalo de polling
 // fallara. Como cada escritura buena renueva `updatedAt`, esto se autocura y
 // mantiene el throttle (a lo sumo 1 refetch por ventana).
 const LIVE_FRESH_MS = 45_000;
+// Un snapshot "por comenzar" (NS) SÍ cambia: cuando el partido arranca. Si ya
+// pasó la hora del saque, un NS cacheado está obsoleto por definición y hay que
+// refetchear — sin esto el Match Center se queda clavado en "por comenzar" todo
+// el partido si el poller no lo sobrescribe (p. ej. el cron se retrasa). Se
+// mantiene un throttle por `updatedAt` para no machacar api-football.
+const NS_FRESH_MS = 20_000;
 
 function isSnapshotStale(snap: LiveSnapshot): boolean {
-  if (!IN_PLAY.has(snap.status)) return false; // NS/FT/AET/PEN no cambian de minuto
   const age = Date.now() - (snap.updatedAt ?? 0);
-  return age > LIVE_FRESH_MS;
+  if (IN_PLAY.has(snap.status)) return age > LIVE_FRESH_MS;
+  // NS: caduca en cuanto el saque ya debería haberse producido (el partido pudo
+  // arrancar y el snapshot no se ha enterado). Antes del saque sigue "fresco".
+  if (snap.status === "NS") {
+    const kickoffMs = kickoffMsOf(snap);
+    if (kickoffMs != null && Date.now() >= kickoffMs) return age > NS_FRESH_MS;
+    return false;
+  }
+  return false; // FT/AET/PEN: terminados, ya no cambian
+}
+
+/** Instante del saque del snapshot (ISO del feed o, si falta, la hora oficial
+ *  ET del calendario). Devuelve null si no se puede determinar. */
+function kickoffMsOf(snap: LiveSnapshot): number | null {
+  const iso = snap.kickoff;
+  if (iso) {
+    const t = Date.parse(iso);
+    if (!Number.isNaN(t)) return t;
+  }
+  const m = MATCHES.find((x) => x.i === snap.matchId);
+  if (!m) return null;
+  return etToDate(m.d, m.t)?.getTime() ?? null;
 }
 
 function isKvEnabled(): boolean {

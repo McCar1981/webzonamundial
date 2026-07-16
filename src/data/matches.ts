@@ -137,10 +137,10 @@ export const MATCHES: Match[] = [
   { "i": 102, "g": "", "p": "Semifinal", "j": 0, "h": "Inglaterra", "hf": "gb-eng", "a": "Argentina", "af": "ar", "d": "2026-07-15", "t": "15:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
 
   // TERCER PUESTO
-  { "i": 103, "g": "", "p": "Tercer puesto", "j": 0, "h": "L101", "hf": "tbd", "a": "L102", "af": "tbd", "d": "2026-07-18", "t": "17:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
+  { "i": 103, "g": "", "p": "Tercer puesto", "j": 0, "h": "Francia", "hf": "fr", "a": "Inglaterra", "af": "gb-eng", "d": "2026-07-18", "t": "17:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
 
   // FINAL
-  { "i": 104, "g": "", "p": "FINAL", "j": 0, "h": "W101", "hf": "tbd", "a": "W102", "af": "tbd", "d": "2026-07-19", "t": "15:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
+  { "i": 104, "g": "", "p": "FINAL", "j": 0, "h": "España", "hf": "es", "a": "Argentina", "af": "ar", "d": "2026-07-19", "t": "15:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
   // ── PRUEBA Match Center con datos reales de un amistoso (no se lista: j=99).
   //    El fixture real se autoresuelve desde api-football (liga 10) por nombres.
   //    t en ET: 15:45 ET = 20:45 (hora de Portugal, WEST) del miércoles 10/6/2026.

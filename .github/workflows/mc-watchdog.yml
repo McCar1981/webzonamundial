@@ -3,18 +3,22 @@ name: Match center watchdog (1 min en partido)
 # POR QUÉ EXISTE
 # Los crons programados de GitHub Actions en repos gratuitos se retrasan MUCHO:
 # medimos pasadas de 70-140 min con `*/5 * * * *`. El 15-jul eso dejó la
-# semifinal congelada en "por comenzar" (el poller no corría). Este workflow NO
-# depende del scheduler: arranca un job largo que sondea cada 60 s y, antes de
-# agotar su límite, SE RE-LANZA a sí mismo -> cobertura continua de verdad.
+# semifinal congelada en "por comenzar" (el poller no corrió en 1 h). Este
+# workflow NO depende del scheduler: arranca un job largo que sondea cada 60 s
+# y, antes de agotar su límite, SE RE-LANZA -> cobertura continua de verdad.
 #
-# COSTE: el repo es PÚBLICO, así que los minutos de Actions son gratis e
-# ilimitados. Para no gastar invocaciones de Vercel (plan Hobby) en balde, el
-# bucle SOLO sondea dentro de la ventana de partido (en vivo, o desde 2 h antes
-# del saque para que salgan recordatorio ~90 min y previa ~60 min); fuera de
-# ella solo consulta /today, que va cacheado en CDN.
+# COSTE: el repo es PÚBLICO -> minutos de Actions gratis e ilimitados. Para no
+# gastar invocaciones de Vercel (Hobby) en balde, el bucle SOLO sondea en
+# ventana de partido (en vivo, o desde 2 h antes del saque para que salgan
+# recordatorio ~90 min y previa ~60 min); fuera de ella solo consulta /today,
+# que va cacheado en CDN.
 #
-# El `schedule` de abajo es solo RED DE SEGURIDAD: si la cadena se rompiera
-# (fallo del runner), lo reanuda. `concurrency` impide que corran dos a la vez.
+# El `schedule` es solo RED DE SEGURIDAD por si la cadena se rompiera.
+# `concurrency` impide que corran dos a la vez.
+#
+# AUTO-TEST: `workflow_dispatch` con selftest=true valida el gate contra casos
+# sintéticos y sale. Existe porque un fallo de sintaxis en el jq del gate sería
+# SILENCIOSO (devolvería 0 -> el watchdog dormiría para siempre sin avisar).
 #
 # Secrets necesarios: SITE_URL, CRON_SECRET.
 
@@ -22,6 +26,11 @@ on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
+    inputs:
+      selftest:
+        description: "Solo validar el gate y salir (no sondea)"
+        type: boolean
+        default: false
 
 concurrency:
   group: mc-watchdog
@@ -30,8 +39,73 @@ concurrency:
 permissions:
   actions: write # para re-lanzarse
 
+env:
+  # FUENTE ÚNICA del gate: lo usan IGUAL el bucle y el auto-test, así el test
+  # prueba el código real y no una copia que puede divergir.
+  # Cuenta los partidos "en ventana": sin terminar y (EN VIVO o con saque entre
+  # hace 4 h y dentro de 2 h).
+  GATE_JQ: |
+    [ .matches[]?
+      | select(.finished != true)
+      | . as $m
+      | (($m.kickoff // "") | sub("\\+00:00$"; "Z")) as $k
+      | ((try ($k | fromdateiso8601) catch null)) as $ts
+      | select(($m.live == true)
+               or ($ts != null and ($ts - $now) <= 7200 and ($ts - $now) >= -14400))
+    ] | length
+
 jobs:
+  selftest:
+    if: inputs.selftest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validar el gate (sintaxis + casos límite)
+        run: |
+          set -euo pipefail
+          NOW=$(date -u +%s)
+          iso() { date -u -d "@$(( NOW + $1 ))" +%Y-%m-%dT%H:%M:%SZ; }
+          # gate SIN swallow: si el jq no compila, el test FALLA (que es el punto).
+          gate() { jq -r --argjson now "$NOW" "$GATE_JQ"; }
+
+          fails=0
+          check() { # nombre, json, esperado(>0|0)
+            local name="$1" json="$2" want="$3" got ok
+            got=$(printf '%s' "$json" | gate)
+            ok="FALLO"
+            if [ "$want" = ">0" ] && [ "$got" -gt 0 ]; then ok="OK"; fi
+            if [ "$want" = "0" ] && [ "$got" -eq 0 ]; then ok="OK"; fi
+            [ "$ok" = "OK" ] || fails=$((fails+1))
+            printf '%-5s | %-46s esperado=%-3s obtenido=%s\n' "$ok" "$name" "$want" "$got"
+          }
+
+          check "EN VIVO -> sondear" \
+            "{\"matches\":[{\"live\":true,\"finished\":false,\"kickoff\":\"$(iso -1800)\"}]}" ">0"
+          check "kickoff con +00:00 y EN VIVO (valida sub)" \
+            "{\"matches\":[{\"live\":true,\"finished\":false,\"kickoff\":\"$(date -u -d "@$((NOW-1800))" +%Y-%m-%dT%H:%M:%S)+00:00\"}]}" ">0"
+          check "empieza en 90 min -> sondear (previa/recordatorio)" \
+            "{\"matches\":[{\"live\":false,\"finished\":false,\"kickoff\":\"$(iso 5400)\"}]}" ">0"
+          check "empieza en 5 h -> NO sondear" \
+            "{\"matches\":[{\"live\":false,\"finished\":false,\"kickoff\":\"$(iso 18000)\"}]}" "0"
+          check "TERMINADO -> NO sondear" \
+            "{\"matches\":[{\"live\":false,\"finished\":true,\"kickoff\":\"$(iso -7200)\"}]}" "0"
+          check "sin partidos -> NO sondear" \
+            '{"matches":[]}' "0"
+          check "kickoff nulo, no en vivo -> NO sondear" \
+            '{"matches":[{"live":false,"finished":false,"kickoff":null}]}' "0"
+
+          echo ""
+          echo "--- /today REAL (informativo) ---"
+          real=$(curl -sS -m 25 "https://zonamundial.app/api/match-center/today" || echo '{"matches":[]}')
+          echo "partidos en ventana ahora: $(printf '%s' "$real" | gate)"
+
+          echo ""
+          if [ "$fails" -gt 0 ]; then
+            echo "::error::$fails caso(s) del gate fallaron"; exit 1
+          fi
+          echo "Gate validado: todos los casos OK"
+
   watch:
+    if: ${{ !inputs.selftest }}
     runs-on: ubuntu-latest
     timeout-minutes: 350 # el límite duro de un job son 360
     steps:
@@ -45,29 +119,18 @@ jobs:
             echo "::error::Faltan los secrets SITE_URL o CRON_SECRET"
             exit 1
           fi
-          END=$(( $(date -u +%s) + 330 * 60 ))   # 5 h 30 min, deja margen al timeout
+          END=$(( $(date -u +%s) + 330 * 60 )) # 5 h 30, deja margen al timeout
           EPS="/api/cron/match-center-poll /api/cron/resolve-micro /api/cron/settle-live-picks /api/cron/stage-results /api/cron/match-reminders /api/cron/monitor"
-          active_cycles=0
+          active=0
 
           while [ "$(date -u +%s)" -lt "$END" ]; do
             NOW=$(date -u +%s)
             TODAY=$(curl -sS -m 25 "$SITE_URL/api/match-center/today" 2>/dev/null || echo '')
-
-            # ¿Ventana de partido? = algún partido sin terminar que esté EN VIVO
-            # o cuyo saque caiga entre hace 4 h y dentro de 2 h.
-            GATE=$(printf '%s' "$TODAY" | jq -r --argjson now "$NOW" '
-              [ .matches[]?
-                | select(.finished != true)
-                | . as $m
-                | (($m.kickoff // "") | sub("\\+00:00$"; "Z")) as $k
-                | ((try ($k | fromdateiso8601) catch null)) as $ts
-                | select(($m.live == true)
-                         or ($ts != null and ($ts - $now) <= 7200 and ($ts - $now) >= -14400))
-              ] | length' 2>/dev/null || echo 0)
+            GATE=$(printf '%s' "$TODAY" | jq -r --argjson now "$NOW" "$GATE_JQ" 2>/dev/null || echo 0)
             [ -z "$GATE" ] && GATE=0
 
             if [ "$GATE" -gt 0 ]; then
-              active_cycles=$((active_cycles + 1))
+              active=$((active + 1))
               echo "--- $(date -u +%H:%M:%S) ventana ACTIVA ($GATE partido/s) — sondeando"
               for ep in $EPS; do
                 code=$(curl -sS -m 60 -o /dev/null -w "%{http_code}" \
@@ -80,7 +143,7 @@ jobs:
               sleep 120
             fi
           done
-          echo "Ciclos con partido: $active_cycles"
+          echo "Ciclos con partido: $active"
 
       - name: Encadenar la siguiente vuelta (cobertura continua)
         if: always()

@@ -393,6 +393,11 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/inglaterra-argentina-wide.webp",
     mobile: "/images/hero/inglaterra-argentina-mobile.webp",
   },
+  // Francia vs Inglaterra (tercer puesto, 18 jul).
+  "francia-inglaterra": {
+    wide: "/images/hero/francia-inglaterra-wide.webp",
+    mobile: "/images/hero/francia-inglaterra-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

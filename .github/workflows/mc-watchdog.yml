@@ -32,10 +32,6 @@ on:
         type: boolean
         default: false
 
-concurrency:
-  group: mc-watchdog
-  cancel-in-progress: false
-
 permissions:
   actions: write # para re-lanzarse
 
@@ -107,6 +103,13 @@ jobs:
   watch:
     if: ${{ !inputs.selftest }}
     runs-on: ubuntu-latest
+    # El grupo va en el JOB, no en el workflow: si estuviera arriba, el
+    # `selftest` compartiría grupo con el vigilante y nunca podría ejecutarse
+    # mientras la cadena viva (nos pasó: el test se quedó en cola y lo desplazó
+    # el re-lanzamiento de la cadena).
+    concurrency:
+      group: mc-watchdog
+      cancel-in-progress: false
     timeout-minutes: 350 # el límite duro de un job son 360
     steps:
       - name: Sondear el Match Center mientras haya partido
@@ -145,8 +148,11 @@ jobs:
           done
           echo "Ciclos con partido: $active"
 
+      # `success() || failure()` y NO `always()`: así una CANCELACIÓN manual para
+      # la cadena de verdad. Con always() se re-lanzaba al cancelarlo y era
+      # imposible detenerlo (nos pasó). Un fallo del runner sí se reencadena.
       - name: Encadenar la siguiente vuelta (cobertura continua)
-        if: always()
+        if: success() || failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

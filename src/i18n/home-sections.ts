@@ -450,6 +450,35 @@ export const homeSections = {
       phoneAlt: "Pantalla de la app ZonaMundial",
     },
 
+    /* ============ Modo Ligas (post-final): overrides del hero ============
+       El 20-jul (final jugada) la home pasa a vender Zona de Ligas. Solo se
+       listan las piezas que CAMBIAN respecto a `hero`; el resto se hereda. */
+    heroLigas: {
+      pill: "Zona de Ligas · Liga MX, LaLiga, Champions y más",
+      headlines: {
+        juegaL1: "El fútbol",
+        fantasyL2: "once de la jornada",
+      },
+      sub: {
+        before: "Predice en tiempo real, compite en",
+        bold1: "ligas privadas",
+        middle: ", monta tu once de la jornada y juega con",
+        chip: "IA Coach",
+        afterChip: "en",
+        bold2: "19 ligas y copas",
+        end: "todo el año.",
+      },
+      pillarMatches: { n: "19", label1: "Ligas y copas", label2: "en directo" },
+      ctaGhost: "Explorar Zona de Ligas",
+      stats: {
+        ligas: "Ligas y copas",
+        dias: "Días de fútbol",
+        apuestas: "Casas de apuestas",
+        purity: "Fútbol puro",
+      },
+      chipLive: "AME 1 – 0 GDL",
+    },
+
     /* ============ Countdown label shared with Hero ============ */
     countdownLabel: "Copa del Mundo · EE.UU · México · Canadá",
     countdownLive: "EN JUEGO",
@@ -881,6 +910,33 @@ export const homeSections = {
       },
       stadiumAlt: "World Cup stadium",
       phoneAlt: "ZonaMundial app screen",
+    },
+
+    /* ============ Liga mode (post-final): hero overrides ============ */
+    heroLigas: {
+      pill: "Zona de Ligas · Liga MX, LaLiga, Champions & more",
+      headlines: {
+        juegaL1: "Football",
+        fantasyL2: "matchday XI",
+      },
+      sub: {
+        before: "Predict in real time, compete in",
+        bold1: "private leagues",
+        middle: ", build your matchday XI and play with",
+        chip: "AI Coach",
+        afterChip: "across",
+        bold2: "19 leagues & cups",
+        end: "all year round.",
+      },
+      pillarMatches: { n: "19", label1: "Leagues & cups", label2: "live" },
+      ctaGhost: "Explore Zona de Ligas",
+      stats: {
+        ligas: "Leagues & cups",
+        dias: "Days of football",
+        apuestas: "Betting houses",
+        purity: "Pure football",
+      },
+      chipLive: "AME 1 – 0 GDL",
     },
 
     countdownLabel: "World Cup · USA · Mexico · Canada",

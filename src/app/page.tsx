@@ -8,6 +8,7 @@ import { GoldParticles } from "@/components/GoldParticles";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useGSAPAnimations } from "@/hooks/useGSAPAnimations";
 import { useCountdown } from "./_home/hooks/useCountdown";
+import { usePostMundial } from "./_home/hooks/usePostMundial";
 import { BG, IMGS } from "./_home/constants";
 import { MODULES_BASE } from "./_home/data";
 
@@ -48,6 +49,10 @@ export default function HomePage() {
   }));
 
   const cd = useCountdown("2026-06-11T00:00:00-05:00");
+  // Pivote post-Mundial: desde el lunes 20-jul (o con ?zm-ligas=1) la home
+  // vende Zona de Ligas — hero en modo Ligas y banners del torneo retirados.
+  // El contenido editorial del Mundial se CONSERVA: sigue rentando SEO.
+  const postMundial = usePostMundial();
   const {
     heroRef,
     statsRef,
@@ -80,6 +85,7 @@ export default function HomePage() {
         h={h}
         cd={cd}
         IMGS={IMGS}
+        post={postMundial}
       />
       {/* Banner de instalación PWA: justo bajo el hero, máxima visibilidad.
           Se autooculta si la app ya está instalada o si el navegador no es
@@ -96,8 +102,11 @@ export default function HomePage() {
         scroll para enganchar, pero SIN desplazar el contenido editorial.
       */}
       <HomeTriviaPlaySection />
-      <CalendarBanner />
-      <BracketBanner />
+      {/* Post-final se retiran: "añade el Mundial a tu calendario" y
+          "construye tu bracket" son CTAs de un torneo que ya terminó. El
+          LigasBanner ocupa su hueco como banner contextual principal. */}
+      {!postMundial && <CalendarBanner />}
+      {!postMundial && <BracketBanner />}
       {/*
         Puente a Zona de Ligas: el tráfico del Mundial caduca con la final; este
         banner (estático, sin JS) es el desvío hacia el producto de temporada
@@ -132,8 +141,10 @@ export default function HomePage() {
         Match Center + Predicciones (teaser interactivo): debajo del editorial.
         Próximo partido jugable "¿quién gana?" + tira de próximos partidos que
         enlazan a su Match Center. Aditivo, no reemplaza prosa.
+        Post-final se retira: su fuente (matches.ts) ya no tiene partidos
+        futuros y el fallback mostraría partidos PASADOS como "próximos".
       */}
-      <HomeMatchPredictSection />
+      {!postMundial && <HomeMatchPredictSection />}
       {/* AdSense: banner entre contenido editorial y vitrina de producto. */}
       <AdBanner />
       {/* Vitrina de producto: debajo del contenido editorial. */}

@@ -4,7 +4,8 @@
 // aplicando la REGLA FIJA (ver src/lib/match-center/programmed.ts):
 //   1. Recorre los partidos programados en orden cronológico.
 //   2. Salta los que ya terminaron; devuelve el que está en juego o el próximo.
-//   3. Si no queda ninguno por jugar, cae al PRIMER partido del Mundial.
+//   3. Si no queda ninguno por jugar (torneo terminado), cae al ÚLTIMO partido
+//      jugado: la final con su marcador, no el inaugural.
 //
 // La respuesta es un LiveSnapshot (mismo shape que /live/[id]) enriquecido con
 // `matchId` y `slug`, de modo que el banner lo pinta y enlaza con una sola
@@ -113,12 +114,19 @@ async function pickFeaturedId(now: number): Promise<number> {
 
 /** Próximo partido real por saque que aún no quedó atrás (defensa anti-inaugural). */
 function nextUpcomingMatchId(now: number): number {
-  const upcoming = MATCHES
+  const real = MATCHES
     .filter((m) => m.i < TEST_SLOT_MIN)
     .map((m) => ({ id: m.i, ko: kickoffMs(m.d, m.t) }))
-    .filter((x) => !Number.isNaN(x.ko) && now <= x.ko + POSTMATCH_MS)
+    .filter((x) => !Number.isNaN(x.ko));
+  const upcoming = real
+    .filter((x) => now <= x.ko + POSTMATCH_MS)
     .sort((a, b) => a.ko - b.ko);
-  return upcoming[0]?.id ?? firstWorldCupMatchId();
+  if (upcoming[0]) return upcoming[0].id;
+  // Torneo TERMINADO: destacamos el último partido jugado (la final, con su
+  // marcador) — caer al inaugural hacía parecer que el Mundial volvía a
+  // empezar y servía un partido de hace un mes como "destacado".
+  const played = [...real].sort((a, b) => b.ko - a.ko);
+  return played[0]?.id ?? firstWorldCupMatchId();
 }
 
 /** Mejor feed disponible para un partido (cacheado > último conocido > por

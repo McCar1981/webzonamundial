@@ -6,6 +6,7 @@ import { CREADORES } from "@/data/creadores";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
 import { MatchCenterBanner } from "./MatchCenterBanner";
+import { LigaLiveBanner } from "./LigaLiveBanner";
 import styles from "./HeroSection.module.css";
 
 type Props = {
@@ -14,6 +15,8 @@ type Props = {
   h: any;
   cd: { d: number; h: number; m: number; s: number };
   IMGS: Record<string, string>;
+  /** Modo Ligas (post-final del Mundial): el hero vende Zona de Ligas. */
+  post?: boolean;
 };
 
 type Variant = "juega" | "ia" | "fantasy";
@@ -54,7 +57,27 @@ function Icon({ name, size = 18 }: { name: keyof typeof ICON_PATHS; size?: numbe
   );
 }
 
-type HeroT = (typeof homeSections)["es"]["hero"] | (typeof homeSections)["en"]["hero"];
+/* Literales de `as const` ensanchados a string: el modo Ligas (post-final)
+   sobreescribe piezas del copy y los literales exactos no lo permitirían. */
+type DeepString<T> = { [K in keyof T]: T[K] extends string ? string : DeepString<T[K]> };
+type HeroT = DeepString<(typeof homeSections)["es"]["hero"]>;
+
+/** Copy del hero: base del Mundial o, en modo Ligas, base + overrides. */
+function heroCopy(locale: keyof typeof homeSections, post: boolean): HeroT {
+  const base: HeroT = homeSections[locale].hero;
+  if (!post) return base;
+  const lz = homeSections[locale].heroLigas;
+  return {
+    ...base,
+    headlines: {
+      ...base.headlines,
+      juega: { ...base.headlines.juega, l1: lz.headlines.juegaL1 },
+      fantasy: { ...base.headlines.fantasy, l2: lz.headlines.fantasyL2 },
+    },
+    sub: lz.sub,
+    ctaGhost: lz.ctaGhost,
+  };
+}
 
 /* ---------- Variants for headlines (single variant renderer) ---------- */
 function HeadlineVariant({ variant, t, active }: { variant: Variant; t: HeroT; active: boolean }) {
@@ -130,13 +153,16 @@ function HeroLeft({
   cd,
   variant,
   showCountdown,
+  post,
 }: {
   cd: Props["cd"];
   variant: Variant;
   showCountdown: boolean;
+  post: boolean;
 }) {
   const { locale } = useLanguage();
-  const t = homeSections[locale].hero;
+  const t = heroCopy(locale, post);
+  const lz = homeSections[locale].heroLigas;
   const countdownLabel = homeSections[locale].countdownLabel;
   const countdownLive = homeSections[locale].countdownLive;
   const dd = cd.d;
@@ -154,20 +180,29 @@ function HeroLeft({
 
   return (
     <div className={styles.zmLeft}>
-      {showCountdown && (
+      {/* Modo Ligas: la pill deja de ser un countdown del torneo (terminó) y
+          pasa a anunciar el producto de temporada. */}
+      {post ? (
         <div className={styles.zmCountdown}>
           <span className={styles.zmLiveDot} />
-          {countdownLabel}
-          <span className={styles.zmTimer}>
-            {kickedOff ? (
-              <b>{countdownLive}</b>
-            ) : (
-              <>
-                <b>{dd}</b>d <b>{hh}</b>h <b>{mm}</b>m
-              </>
-            )}
-          </span>
+          {lz.pill}
         </div>
+      ) : (
+        showCountdown && (
+          <div className={styles.zmCountdown}>
+            <span className={styles.zmLiveDot} />
+            {countdownLabel}
+            <span className={styles.zmTimer}>
+              {kickedOff ? (
+                <b>{countdownLive}</b>
+              ) : (
+                <>
+                  <b>{dd}</b>d <b>{hh}</b>h <b>{mm}</b>m
+                </>
+              )}
+            </span>
+          </div>
+        )
       )}
 
       <div className={styles.zmH1Wrap}>
@@ -185,13 +220,14 @@ function HeroLeft({
           <div className={styles.zmPillarIc}>
             <Icon name="zap" size={16} />
           </div>
+          {/* Mundial: 104 partidos. Ligas: 19 competiciones del catálogo. */}
           <div className={styles.zmPillarN}>
-            104<small>×</small>
+            {post ? lz.pillarMatches.n : <>104<small>×</small></>}
           </div>
           <div className={styles.zmPillarL}>
-            {t.pillars.matches.label1}
+            {post ? lz.pillarMatches.label1 : t.pillars.matches.label1}
             <br />
-            {t.pillars.matches.label2}
+            {post ? lz.pillarMatches.label2 : t.pillars.matches.label2}
           </div>
         </div>
         <div className={styles.zmPillar}>
@@ -228,7 +264,8 @@ function HeroLeft({
             <Icon name="arrow" size={14} />
           </span>
         </Link>
-        <Link href="/la-app" className={styles.zmCtaGhost}>
+        {/* Modo Ligas: el secundario es la puerta al producto de temporada. */}
+        <Link href={post ? "/ligas" : "/la-app"} className={styles.zmCtaGhost}>
           <span className={styles.zmCtaGhostPlay}>
             <Icon name="play" size={10} />
           </span>
@@ -271,9 +308,10 @@ function HeroLeft({
 const PLAY_BEATS = 4;
 const BEAT_MS = 4000;
 
-function HeroRight() {
+function HeroRight({ post }: { post: boolean }) {
   const { locale } = useLanguage();
   const t = homeSections[locale].hero;
+  const lz = homeSections[locale].heroLigas;
   const [beat, setBeat] = useState(0);
   const [motionOk, setMotionOk] = useState(true);
 
@@ -317,7 +355,8 @@ function HeroRight() {
             <div className={styles.zmChipSub}>{t.chips.liveLabel}</div>
             <div className={styles.zmChipVal}>
               <span className={styles.zmPulseDotRed} />
-              MEX 1 – 0 RSA
+              {/* Ligas: el clásico nacional como demo en vez del inaugural. */}
+              {post ? lz.chipLive : "MEX 1 – 0 RSA"}
             </div>
           </div>
         </div>
@@ -440,18 +479,28 @@ function SliderDots({
 }
 
 /* ---------- STATS BAR (bottom of hero) ---------- */
-function StatsBar() {
+function StatsBar({ post }: { post: boolean }) {
   const { locale } = useLanguage();
   const t = homeSections[locale].hero.stats;
-  const stats: Array<{ ic: keyof typeof ICON_PATHS; n: string; l: string }> = [
-    // Solo datos verificables del torneo. Se retiró la stat de "usuarios
-    // registrados" (+8.6k) por ser una cifra fabricada (venía del vanity
-    // BASE_COUNT=8642, ahora 0); no mostramos números de audiencia inventados.
-    { ic: "shield", n: "16", l: t.venues },
-    { ic: "globe", n: "48", l: t.teams },
-    { ic: "target", n: "12", l: t.groups },
-    { ic: "soccer", n: "100%", l: t.purity },
-  ];
+  const tl = homeSections[locale].heroLigas.stats;
+  // Solo datos verificables. Se retiró la stat de "usuarios registrados"
+  // (+8.6k) por ser una cifra fabricada (venía del vanity BASE_COUNT=8642,
+  // ahora 0); no mostramos números de audiencia inventados.
+  // Ligas: 19 competiciones del catálogo real y "0 casas de apuestas" (el
+  // diferencial verificable frente a FlashScore/365Scores).
+  const stats: Array<{ ic: keyof typeof ICON_PATHS; n: string; l: string }> = post
+    ? [
+        { ic: "shield", n: "19", l: tl.ligas },
+        { ic: "globe", n: "365", l: tl.dias },
+        { ic: "target", n: "0", l: tl.apuestas },
+        { ic: "soccer", n: "100%", l: tl.purity },
+      ]
+    : [
+        { ic: "shield", n: "16", l: t.venues },
+        { ic: "globe", n: "48", l: t.teams },
+        { ic: "target", n: "12", l: t.groups },
+        { ic: "soccer", n: "100%", l: t.purity },
+      ];
   return (
     <div className={styles.zmStats}>
       <div className={styles.zmStatsInner}>
@@ -473,7 +522,7 @@ function StatsBar() {
 const VARIANTS: Variant[] = ["juega", "ia", "fantasy"];
 const AUTO_ROTATE_MS = 5000;
 
-export function HeroSection({ heroRef, titleRef, cd }: Props) {
+export function HeroSection({ heroRef, titleRef, cd, post = false }: Props) {
   const { locale } = useLanguage();
   const tHero = homeSections[locale].hero;
   const [variant, setVariant] = useState<Variant>("juega");
@@ -526,8 +575,8 @@ export function HeroSection({ heroRef, titleRef, cd }: Props) {
 
       <div className={styles.zmHero}>
         <div ref={titleRef as unknown as RefObject<HTMLDivElement>} style={{ display: "contents" }}>
-          <HeroLeft cd={cd} variant={variant} showCountdown={showCountdown} />
-          <HeroRight />
+          <HeroLeft cd={cd} variant={variant} showCountdown={showCountdown} post={post} />
+          <HeroRight post={post} />
         </div>
       </div>
 
@@ -542,11 +591,12 @@ export function HeroSection({ heroRef, titleRef, cd }: Props) {
         setPaused={setPaused}
       />
 
-      <StatsBar />
+      <StatsBar post={post} />
 
-      {/* Banner del Match Center: SIEMPRE muestra un partido (regla fija en
-          /api/match-center/featured). Cierra el hero como tira en directo. */}
-      <MatchCenterBanner />
+      {/* Cierre del hero como tira en directo. Mundial: banner del Match
+          Center (regla fija en /api/match-center/featured). Modo Ligas: el
+          partido del catálogo en vivo/hoy, o CTA a /ligas si no hay jornada. */}
+      {post ? <LigaLiveBanner /> : <MatchCenterBanner />}
     </section>
   );
 }

@@ -398,6 +398,13 @@ export const HERO_MATCH_IMAGES: Record<string, HeroMatchImage> = {
     wide: "/images/hero/francia-inglaterra-wide.webp",
     mobile: "/images/hero/francia-inglaterra-mobile.webp",
   },
+  // ── FINAL ────────────────────────────────────────────────────────────────
+  // España vs Argentina (FINAL, 19 jul · MetLife, id 104). El destacado toma
+  // el relevo cuando termina el tercer puesto (18 jul).
+  "espana-argentina": {
+    wide: "/images/hero/espana-argentina-wide.webp",
+    mobile: "/images/hero/espana-argentina-mobile.webp",
+  },
   // Siguientes partidos: añade aquí su pieza cuando esté lista. Ej.:
   // "argentina-...": { wide: "/images/hero/argentina-...-wide.webp", mobile: "/images/hero/argentina-...-mobile.webp" },
 };

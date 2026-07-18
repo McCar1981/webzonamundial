@@ -7,6 +7,7 @@ import GranPremioOffer from "@/components/pro/GranPremioOffer";
 import HomeInstallBanner from "@/components/HomeInstallBanner";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getGateStatus } from "@/lib/ligas/football-prefs";
+import { isPostMundial } from "@/lib/season-gate";
 
 /**
  * Group layout for /app/* internal modules.
@@ -41,10 +42,16 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
   // (getGateStatus nunca devuelve needsGate=true en esos casos), así que esto
   // jamás deja el lobby inaccesible. La ruta del gate vive FUERA de /app, por
   // lo que este layout no la intercepta → sin bucle de redirección.
-  const user = await getCurrentUser();
-  if (user) {
-    const gate = await getGateStatus(user.id);
-    if (gate.needsGate) redirect("/elige-tu-futbol");
+  //
+  // SOLO desde el pivote del lunes (isPostMundial): durante el Mundial nadie es
+  // forzado a elegir club/ligas — la app sigue siendo del Mundial. El gate se
+  // enciende a la vez que la portada y la sección "Tu fútbol", el lunes 20-jul.
+  if (isPostMundial()) {
+    const user = await getCurrentUser();
+    if (user) {
+      const gate = await getGateStatus(user.id);
+      if (gate.needsGate) redirect("/elige-tu-futbol");
+    }
   }
 
   const ctx = await getBarContext();

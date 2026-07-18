@@ -12,8 +12,10 @@
 // (para revisar la home del lunes antes del lunes, o enseñarla en reuniones).
 
 import { useEffect, useState } from "react";
+import { MUNDIAL_OVER_MS } from "@/lib/season-gate";
 
-export const MUNDIAL_OVER_MS = Date.parse("2026-07-20T06:00:00Z");
+// Re-export para consumidores que ya lo importaban desde aquí.
+export { MUNDIAL_OVER_MS };
 
 export function usePostMundial(): boolean {
   const [post, setPost] = useState(false);

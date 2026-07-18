@@ -14,6 +14,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePostMundial } from "@/app/_home/hooks/usePostMundial";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
@@ -170,11 +171,16 @@ function Side({ team, goals }: { team: CTeam; goals: number | null }) {
 }
 
 export default function MiFutbolSection() {
+  // Solo desde el pivote del lunes (o ?zm-ligas=1 para demo): durante el Mundial
+  // el lobby sigue siendo del Mundial; "Tu fútbol" aparece a la vez que el gate.
+  const post = usePostMundial();
   const [club, setClub] = useState<ClubResp | null>(null);
   const [feed, setFeed] = useState<FeedResp | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    // Antes del lunes no pedimos nada (ahorra 2 llamadas por carga del lobby).
+    if (!post) return;
     let alive = true;
     Promise.all([
       fetch("/api/ligas/mi-club").then((r) => (r.ok ? r.json() : null)).catch(() => null),
@@ -188,7 +194,10 @@ export default function MiFutbolSection() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [post]);
+
+  // Antes del pivote del lunes: el lobby es del Mundial, no mostramos "Tu fútbol".
+  if (!post) return null;
 
   // Hasta tener respuesta no renderiza nada (evita salto de layout).
   if (!loaded) return null;

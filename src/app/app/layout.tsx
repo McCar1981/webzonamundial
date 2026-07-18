@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import BarContextBanner from "@/components/bars/BarContextBanner";
 import { BarContextProvider } from "@/components/bars/BarContextProvider";
 import { getBarContext, barThemeCssVars } from "@/lib/bars/context";
 import GranPremioOffer from "@/components/pro/GranPremioOffer";
 import HomeInstallBanner from "@/components/HomeInstallBanner";
+import { getCurrentUser } from "@/lib/auth-helpers";
+import { getGateStatus } from "@/lib/ligas/football-prefs";
 
 /**
  * Group layout for /app/* internal modules.
@@ -31,6 +34,19 @@ export const metadata: Metadata = {
 };
 
 export default async function AppGroupLayout({ children }: { children: React.ReactNode }) {
+  // GATE DE FÚTBOL: un usuario LOGUEADO debe haber elegido liga(s) y club antes
+  // de ver el lobby. Si no, se le manda primero a /elige-tu-futbol. Los
+  // invitados no se bloquean (no tienen perfil donde guardar; se les invita a
+  // registrarse en el propio lobby). Fail-open ante migración ausente o error
+  // (getGateStatus nunca devuelve needsGate=true en esos casos), así que esto
+  // jamás deja el lobby inaccesible. La ruta del gate vive FUERA de /app, por
+  // lo que este layout no la intercepta → sin bucle de redirección.
+  const user = await getCurrentUser();
+  if (user) {
+    const gate = await getGateStatus(user.id);
+    if (gate.needsGate) redirect("/elige-tu-futbol");
+  }
+
   const ctx = await getBarContext();
 
   // Sin contexto de bar: experiencia ZM intacta para el resto de usuarios.

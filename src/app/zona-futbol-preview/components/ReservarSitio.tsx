@@ -60,7 +60,7 @@ export default function ReservarSitio() {
         <h2 className="font-black text-2xl sm:text-3xl text-white mb-3">
           Reserva tu sitio en Zona Futbol
         </h2>
-        <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed mb-8 max-w-xl mx-auto">
+        <p className="text-sm sm:text-base text-[#e6decb] leading-relaxed mb-8 max-w-xl mx-auto">
           Estamos construyendo la temporada de ligas de clubes. Déjanos tu email y
           serás de los primeros en entrar al abrir, con ventajas de fundador.
           Mientras tanto te llega el resumen del fútbol. Sin cuenta, baja en un clic.
@@ -104,7 +104,7 @@ export default function ReservarSitio() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="whitespace-nowrap rounded-xl font-black text-[15px] px-7 py-3 text-[#0A1422] disabled:opacity-70"
+                className="whitespace-nowrap rounded-xl font-black text-[15px] px-7 py-3 text-[#0a0906] disabled:opacity-70"
                 style={{ background: "linear-gradient(135deg, #D4AF37, #ffd699)", cursor: status === "sending" ? "default" : "pointer" }}
               >
                 {status === "sending" ? "Guardando…" : "Reservar mi sitio"}
@@ -112,7 +112,7 @@ export default function ReservarSitio() {
             </form>
             <p
               className="mt-3 text-xs"
-              style={{ color: status === "error" ? "#ef6a6a" : "#6a7a9a" }}
+              style={{ color: status === "error" ? "#ef6a6a" : "#6e6552" }}
             >
               {status === "error" ? msg : "Sin cuenta, sin spam. Baja en un clic cuando quieras."}
             </p>

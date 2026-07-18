@@ -10,12 +10,12 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-const BG = "#060B14";
-const CARD = "#0F1D32";
+const BG = "#000000";
+const CARD = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TEXT = "#E2E8F0";
-const MID = "#94A3B8";
+const MID = "#a69a82";
 const GREEN = "#22c55e";
 const RED = "#ef4444";
 
@@ -130,7 +130,7 @@ function ComodinReturnInner() {
           style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
             marginTop: 22, width: "100%", padding: "12px 16px", borderRadius: 12, boxSizing: "border-box",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0B1220",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
             fontWeight: 900, fontSize: 14.5, textDecoration: "none",
           }}
         >

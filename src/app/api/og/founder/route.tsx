@@ -28,7 +28,7 @@ export async function GET(request: Request) {
           display: "flex",
           flexDirection: "column",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 70%), linear-gradient(180deg, #060B14, #0B1825)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 70%), linear-gradient(180deg, #000000, #0a0906)",
           color: "#fff",
           fontFamily: "sans-serif",
           padding: "60px 80px",
@@ -73,7 +73,7 @@ export async function GET(request: Request) {
             <div
               style={{
                 fontSize: 14,
-                color: "#94a3b8",
+                color: "#a69a82",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 fontWeight: 600,
@@ -126,7 +126,7 @@ export async function GET(request: Request) {
           <div
             style={{
               fontSize: 28,
-              color: "#cbd5e1",
+              color: "#e6decb",
               marginTop: 24,
               maxWidth: 800,
               lineHeight: 1.4,
@@ -147,7 +147,7 @@ export async function GET(request: Request) {
             borderTop: "1px solid rgba(201,168,76,0.25)",
           }}
         >
-          <div style={{ fontSize: 18, color: "#94a3b8", display: "flex" }}>
+          <div style={{ fontSize: 18, color: "#a69a82", display: "flex" }}>
             Únete al equipo Founders →
           </div>
           <div

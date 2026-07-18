@@ -1,11 +1,11 @@
 .page {
-  --mr-bg: #060B14;
-  --mr-surface: #0F1D32;
+  --mr-bg: #000000;
+  --mr-surface: #14110a;
   --mr-surface-glass: rgba(255, 255, 255, 0.03);
   --mr-gold: #c9a84c;
   --mr-gold-2: #e8d48b;
   --mr-text: #eef2fb;
-  --mr-muted: #93a1bd;
+  --mr-muted: #a69a82;
   --mr-line: rgba(255, 255, 255, 0.08);
   --mr-radius: 16px;
   --mr-radius-sm: 12px;
@@ -700,7 +700,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 11, 20, 0.94);
+  background: rgba(0,0,0, 0.94);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -716,7 +716,7 @@
 }
 
 .modal {
-  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.7));
+  background: linear-gradient(135deg, var(--mr-surface), rgba(20,17,10, 0.7));
   border: 1px solid var(--mr-line);
   border-radius: var(--mr-radius);
   width: 100%;
@@ -1130,7 +1130,7 @@
 }
 
 .shareModal {
-  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.7));
+  background: linear-gradient(135deg, var(--mr-surface), rgba(20,17,10, 0.7));
   border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: var(--mr-radius);
   padding: 20px;
@@ -1419,7 +1419,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 11, 20, 0.92);
+  background: rgba(0,0,0, 0.92);
   backdrop-filter: blur(12px);
   z-index: 1000;
   padding: 20px;
@@ -1427,7 +1427,7 @@
 }
 
 .passportWrapper {
-  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.8));
+  background: linear-gradient(135deg, var(--mr-surface), rgba(20,17,10, 0.8));
   border: 1px solid rgba(201, 168, 76, 0.25);
   border-radius: 24px;
   padding: 0;
@@ -1701,7 +1701,7 @@
 
 /* Roast & Praise Modal */
 .roastPraiseModal {
-  background: linear-gradient(135deg, var(--mr-surface), rgba(15, 29, 50, 0.7));
+  background: linear-gradient(135deg, var(--mr-surface), rgba(20,17,10, 0.7));
   border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 20px;
   padding: 28px;

@@ -1,10 +1,10 @@
 .theme {
-  --album-navy: #0a1729;
-  --album-navy-light: #0f1d32;
+  --album-navy: #0a0906;
+  --album-navy-light: #14110a;
   --album-gold: #c9a84c;
   --album-gold-2: #e8d48b;
   --album-text: #eef2fb;
-  --album-muted: #93a1bd;
+  --album-muted: #a69a82;
   --album-line: rgba(255, 255, 255, 0.08);
 }
 
@@ -13,7 +13,7 @@
   min-height: 100vh;
   background-color: var(--album-navy);
   background-image:
-    radial-gradient(1200px 600px at 50% -10%, #12284a 0%, var(--album-navy) 55%),
+    radial-gradient(1200px 600px at 50% -10%, #1b160d 0%, var(--album-navy) 55%),
     radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.022) 1px, transparent 1.6px);
   background-size: 100% 100%, 22px 22px;
   color: var(--album-text);
@@ -475,7 +475,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(6, 11, 20, 0.94);
+  background: rgba(0,0,0, 0.94);
   backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
@@ -620,7 +620,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(10, 23, 41, 0.5), rgba(10, 23, 41, 0.8));
+  background: linear-gradient(180deg, rgba(10,9,6, 0.5), rgba(10,9,6, 0.8));
 }
 
 .cromoMissing {
@@ -761,7 +761,7 @@
   border-radius: 8px;
   padding: 2px;
   border: 2px solid transparent;
-  background: #060b14;
+  background: #000000;
   cursor: pointer;
 }
 
@@ -1084,7 +1084,7 @@
   gap: 10px;
   flex: 1 1 220px;
   min-width: 220px;
-  background: rgba(6, 11, 20, 0.5);
+  background: rgba(0,0,0, 0.5);
   border: 1px solid var(--album-line);
   border-radius: 14px;
   padding: 10px 12px;
@@ -1182,7 +1182,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(6, 11, 20, 0.5);
+  background: rgba(0,0,0, 0.5);
   border: 1px solid var(--album-line);
   border-radius: 12px;
   padding: 8px 12px;
@@ -1385,7 +1385,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 11, 20, 0.5);
+  background: rgba(0,0,0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.65);
   cursor: pointer;
@@ -1479,7 +1479,7 @@
   position: fixed;
   inset: 0;
   z-index: 1002;
-  background: rgba(6, 11, 20, 0.96);
+  background: rgba(0,0,0, 0.96);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1696,7 +1696,7 @@
   padding: 10px;
   margin: 0 0 24px;
   border-radius: 16px;
-  background: rgba(10, 23, 41, 0.82);
+  background: rgba(10,9,6, 0.82);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(201, 168, 76, 0.18);
@@ -1735,7 +1735,7 @@
   margin: 0 0 22px;
   padding: 22px 20px 20px;
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(15, 29, 50, 0.6), rgba(10, 23, 41, 0.35));
+  background: linear-gradient(180deg, rgba(20,17,10, 0.6), rgba(10,9,6, 0.35));
   border: 1px solid var(--album-line);
   scroll-margin-top: 76px;
 }
@@ -1992,7 +1992,7 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  background: rgba(4, 8, 16, 0.78);
+  background: rgba(0, 0, 0, 0.78);
   cursor: pointer;
 }
 .celSeal {

@@ -78,7 +78,7 @@ export default function SecurityPanel({ email }: { email: string }) {
               setEmailFeedback(null);
             }}
             placeholder="nuevo@email.com"
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
           />
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm">
@@ -92,7 +92,7 @@ export default function SecurityPanel({ email }: { email: string }) {
             <button
               type="submit"
               disabled={emailSending || !newEmail}
-              className="px-5 py-2.5 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 transition-all"
+              className="px-5 py-2.5 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 transition-all"
               style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
             >
               {emailSending ? "Enviando…" : "Solicitar cambio"}
@@ -102,7 +102,7 @@ export default function SecurityPanel({ email }: { email: string }) {
       </section>
 
       {/* Eliminar cuenta */}
-      <section className="pt-8 border-t border-[#1E293B]/40">
+      <section className="pt-8 border-t border-[#241e12]/40">
         <h3 className="text-lg font-bold text-red-400 mb-2">Eliminar cuenta</h3>
         <p className="text-gray-500 text-xs mb-5">
           Esto borra <strong className="text-gray-300">de forma permanente</strong> tu cuenta, perfil, preferencias y predicciones. Acción irreversible.
@@ -127,7 +127,7 @@ export default function SecurityPanel({ email }: { email: string }) {
               setDeleteError("");
             }}
             placeholder="ELIMINAR"
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/40 mb-3"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/40 mb-3"
           />
           {deleteError && (
             <div className="text-red-400 text-sm mb-3">✗ {deleteError}</div>

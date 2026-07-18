@@ -53,7 +53,7 @@ import {
 import { useLiveScores } from "./_components/useLiveScores";
 import CalendarExportButton from "@/components/CalendarExportButton";
 
-const BG = "#060B14";
+const BG = "#000000";
 
 const COUNTRY_ORDER: Record<string, number> = { us: 0, mx: 1, ca: 2 };
 const COUNTRY_LABELS: Record<string, string> = {
@@ -321,7 +321,7 @@ export default function CalendarioPage() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(6,11,20,0.72) 0%, rgba(6,11,20,0.25) 42%, transparent 65%), linear-gradient(180deg, rgba(6,11,20,0.18) 0%, rgba(6,11,20,0.38) 55%, #060B14 100%)",
+              "linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 42%, transparent 65%), linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.38) 55%, #000000 100%)",
           }}
         />
         <div
@@ -336,11 +336,11 @@ export default function CalendarioPage() {
           <div className="mb-3 flex items-center gap-2">
             <Link
               href="/"
-              className="text-[13px] text-[#8a94b0] no-underline transition-colors hover:text-white"
+              className="text-[13px] text-[#a69a82] no-underline transition-colors hover:text-white"
             >
               {nav.inicio}
             </Link>
-            <span className="text-[#6a7a9a]">/</span>
+            <span className="text-[#6e6552]">/</span>
             <span className="text-[13px] font-semibold text-[#c9a84c]">
               {nav.calendario}
             </span>
@@ -363,7 +363,7 @@ export default function CalendarioPage() {
                   {cT.badge}
                 </span>
               </div>
-              <p className="mt-2 text-[13px] text-[#8a94b0]">
+              <p className="mt-2 text-[13px] text-[#a69a82]">
                 <strong className="font-bold text-[#e6e9f2]">{WC_MATCHES.length}</strong>{" "}
                 {cT.partidos.toLowerCase()} ·{" "}
                 <strong className="font-bold text-[#e6e9f2]">{WC_VENUES.length}</strong>{" "}
@@ -412,7 +412,7 @@ export default function CalendarioPage() {
 
         {/* Resumen de filtros activos */}
         {activeFilterCount > 0 && (
-          <div className="mb-4 flex items-center gap-3 text-[13px] text-[#6a7a9a]">
+          <div className="mb-4 flex items-center gap-3 text-[13px] text-[#6e6552]">
             <span>
               <strong className="text-white">{filtered.length}</strong> {cT.encontrados}
             </span>
@@ -439,7 +439,7 @@ export default function CalendarioPage() {
               style={{ scrollMarginTop: 64 }}
             >
               <DateHeader instant={day.instant} tz={tz} count={day.matches.length} />
-              <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0c1626]/60">
+              <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0906]/60">
                 {day.matches.map((m) => (
                   <MatchRow
                     key={m.i}
@@ -457,9 +457,9 @@ export default function CalendarioPage() {
         {/* Empty state */}
         {filtered.length === 0 && (
           <div className="py-20 text-center">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/5 bg-[#0B1825]">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/5 bg-[#0a0906]">
               <svg
-                className="h-10 w-10 text-[#6a7a9a]"
+                className="h-10 w-10 text-[#6e6552]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -473,7 +473,7 @@ export default function CalendarioPage() {
               </svg>
             </div>
             <h3 className="mb-2 text-xl font-bold text-white">{cT.noPartidos}</h3>
-            <p className="mb-4 text-[#6a7a9a]">{cT.ajustaFiltros}</p>
+            <p className="mb-4 text-[#6e6552]">{cT.ajustaFiltros}</p>
             <button
               onClick={clearFilters}
               className="text-sm font-semibold text-[#c9a84c] hover:underline"
@@ -492,12 +492,12 @@ export default function CalendarioPage() {
         >
           <SvgIcon name="predicciones" size={48} className="mx-auto mb-4 block" />
           <h2 className="mb-3 text-2xl font-black sm:text-[28px]">{cT.ctaTitle}</h2>
-          <p className="mx-auto mb-6 max-w-lg text-base text-[#8a94b0]">
+          <p className="mx-auto mb-6 max-w-lg text-base text-[#a69a82]">
             {cT.ctaDesc}
           </p>
           <Link
             href="/app/predicciones"
-            className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-8 py-4 text-base font-extrabold text-[#060B14] no-underline shadow-[0_8px_32px_rgba(201,168,76,0.3)] transition-transform hover:scale-[1.02]"
+            className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-8 py-4 text-base font-extrabold text-[#000000] no-underline shadow-[0_8px_32px_rgba(201,168,76,0.3)] transition-transform hover:scale-[1.02]"
           >
             {cT.ctaBtn}
           </Link>

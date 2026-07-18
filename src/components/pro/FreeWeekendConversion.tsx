@@ -22,7 +22,7 @@ import { X } from "lucide-react";
 import { isFreeWeekendActive, isFreeWeekendUrgency } from "@/lib/pro/free-weekend";
 import { featureForPath, getFeaturesUsed, recordFeatureUse } from "@/lib/pro/free-weekend-usage";
 
-const NAVY = "#0F1D32", BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#8a94b0", RED = "#f0727a";
+const NAVY = "#14110a", BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#a69a82", RED = "#f0727a";
 const MILESTONE_KEY = "zm:fw-milestone-shown";
 const URGENCY_KEY = "zm:fw-urgency-shown";
 
@@ -141,7 +141,7 @@ export default function FreeWeekendConversion() {
               href="/pro"
               onClick={closeMilestone}
               className="zm-fc-cta"
-              style={{ display: "block", textAlign: "center", padding: "11px 14px", borderRadius: 12, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontSize: 14, fontWeight: 900, textDecoration: "none" }}
+              style={{ display: "block", textAlign: "center", padding: "11px 14px", borderRadius: 12, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontSize: 14, fontWeight: 900, textDecoration: "none" }}
             >
               Mantener Pro con precio fundador
             </Link>
@@ -156,7 +156,7 @@ export default function FreeWeekendConversion() {
             onClick={closeUrgency}
             style={{
               position: "fixed", inset: 0, zIndex: 9998,
-              background: "rgba(4,8,15,0.82)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+              background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
               display: "flex", alignItems: "center", justifyContent: "center", padding: 18,
             }}
           >
@@ -192,7 +192,7 @@ export default function FreeWeekendConversion() {
                   href="/pro"
                   onClick={closeUrgency}
                   className="zm-fc-cta"
-                  style={{ display: "block", padding: "15px 18px", borderRadius: 14, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontSize: 16, fontWeight: 900, textDecoration: "none", boxShadow: "0 10px 34px rgba(201,168,76,0.3)" }}
+                  style={{ display: "block", padding: "15px 18px", borderRadius: 14, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontSize: 16, fontWeight: 900, textDecoration: "none", boxShadow: "0 10px 34px rgba(201,168,76,0.3)" }}
                 >
                   Mantener Pro ahora
                 </Link>

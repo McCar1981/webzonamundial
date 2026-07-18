@@ -67,7 +67,7 @@ export default function Mundial2026Page() {
           {e.sede.paises.map((p) => (
             <span
               key={p.iso3}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0F1D32] border border-[#1E293B] text-sm"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#14110a] border border-[#241e12] text-sm"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -222,7 +222,7 @@ export default function Mundial2026Page() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           ¿Quién será el campeón #23?
         </h2>
-        <div className="p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80">
+        <div className="p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80">
           <p className="text-sm sm:text-base text-gray-200 leading-relaxed mb-4">
             Argentina llega como vigente bicampeón consecutivo tras 2022. Brasil busca
             la sexta estrella. Francia (Mbappé) y Alemania querrán recuperar protagonismo.
@@ -232,7 +232,7 @@ export default function Mundial2026Page() {
           <div className="flex gap-3 flex-wrap">
             <Link
               href="/grupos"
-              className="px-5 py-2.5 rounded-lg font-bold text-sm text-[#060B14] no-underline"
+              className="px-5 py-2.5 rounded-lg font-bold text-sm text-[#000000] no-underline"
               style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }}
             >
               Ver los 12 Grupos →
@@ -253,7 +253,7 @@ export default function Mundial2026Page() {
 
 function MegaStat({ n, label, small }: { n: string; label: string; small?: boolean }) {
   return (
-    <div className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60">
       <div className={`font-black tabular-nums ${small ? "text-2xl" : "text-3xl sm:text-4xl"}`} style={{ color: GOLD }}>
         {n}
       </div>
@@ -277,15 +277,15 @@ function CalendarRow({
 }) {
   return (
     <div
-      className="grid items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border bg-[#0F1D32]/60"
+      className="grid items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border bg-[#14110a]/60"
       style={{
         gridTemplateColumns: "auto 1fr",
-        borderColor: highlight ? "rgba(201,168,76,0.3)" : "#1E293B",
+        borderColor: highlight ? "rgba(201,168,76,0.3)" : "#241e12",
       }}
     >
       <div
         className="text-xs sm:text-sm font-bold tabular-nums whitespace-nowrap"
-        style={{ color: highlight ? GOLD : "#94A3B8" }}
+        style={{ color: highlight ? GOLD : "#a69a82" }}
       >
         {fecha}
       </div>
@@ -305,7 +305,7 @@ function RecordCard({
   descripcion: string;
 }) {
   return (
-    <div className="p-4 rounded-xl border border-[#C9A84C]/20 bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#C9A84C]/20 bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: GOLD }}>
         Récord
       </div>
@@ -325,7 +325,7 @@ function Debutante({
   detalle: string;
 }) {
   return (
-    <div className="p-4 rounded-xl border border-[#22C55E]/30 bg-[#0F1D32]/60 text-center">
+    <div className="p-4 rounded-xl border border-[#22C55E]/30 bg-[#14110a]/60 text-center">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`https://flagcdn.com/w80/${iso2}.png`}
@@ -349,7 +349,7 @@ function IdentidadCard({
   detalle: string;
 }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-1">
         {label}
       </div>

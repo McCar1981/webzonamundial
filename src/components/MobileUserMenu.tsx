@@ -8,8 +8,8 @@ import type { User } from "@supabase/supabase-js";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const BG = "#060B14";
-const DARK = "#4a5570";
+const BG = "#000000";
+const DARK = "#a69a82";
 
 interface ProfileMini {
   username: string | null;
@@ -265,7 +265,7 @@ export default function MobileUserMenu({
           </div>
           <div
             style={{
-              color: "#6a7a9a",
+              color: "#6e6552",
               fontSize: 11,
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -343,7 +343,7 @@ const mobileItemStyle: React.CSSProperties = {
   fontSize: 14,
   fontWeight: 500,
   textDecoration: "none",
-  background: "rgba(15,29,50,0.5)",
+  background: "rgba(20,17,10,0.5)",
   border: "1px solid rgba(255,255,255,0.04)",
   marginBottom: 6,
   textAlign: "left" as const,

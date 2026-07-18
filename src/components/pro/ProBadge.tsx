@@ -16,7 +16,7 @@ export function ProBadge({ size = 11 }: { size?: number }) {
       style={{
         display: "inline-block",
         background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-        color: "#060B14",
+        color: "#000000",
         fontWeight: 900,
         fontSize: size,
         letterSpacing: 0.6,

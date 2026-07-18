@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AdminPanelPage() {
   return (
-    <div className="min-h-screen bg-[#060B14] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <div className="px-6 py-10 max-w-5xl mx-auto">
         <header className="mb-8">
           <div className="text-3xl font-black tracking-tight">

@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 
 interface OddsData {
   found: boolean;
@@ -69,7 +69,7 @@ export default function WinProbability({
   return (
     <section
       style={{
-        background: "#0F1D32",
+        background: "#14110a",
         borderRadius: 16,
         border: "1px solid rgba(255,255,255,0.08)",
         padding: "14px 16px",

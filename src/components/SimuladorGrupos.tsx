@@ -208,9 +208,9 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
   };
 
   return (
-    <div className="bg-[#0B1825] border border-[#1a2a3f] rounded-xl overflow-hidden">
+    <div className="bg-[#0a0906] border border-[#1b160d] rounded-xl overflow-hidden">
       {/* Tabs */}
-      <div className="flex border-b border-[#1a2a3f]">
+      <div className="flex border-b border-[#1b160d]">
         <button
           onClick={() => setActiveTab('fixture')}
           className={`flex-1 py-3 text-sm font-semibold transition-colors ${
@@ -240,7 +240,7 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
             {matches.map((match, idx) => (
               <div 
                 key={match.id} 
-                className="flex items-center gap-3 p-3 bg-[#0F1D32] rounded-lg"
+                className="flex items-center gap-3 p-3 bg-[#14110a] rounded-lg"
               >
                 <span className="text-xs text-gray-500 w-6">J{Math.floor(idx / 2) + 1}</span>
                 
@@ -260,7 +260,7 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
                     max="99"
                     value={match.homeScore ?? ''}
                     onChange={(e) => updateScore(match.id, e.target.value === '' ? null : parseInt(e.target.value), match.awayScore)}
-                    className="w-12 h-10 text-center bg-[#0B1825] border border-[#1a2a3f] rounded text-white text-lg font-bold focus:border-[#C9A84C] focus:outline-none"
+                    className="w-12 h-10 text-center bg-[#0a0906] border border-[#1b160d] rounded text-white text-lg font-bold focus:border-[#C9A84C] focus:outline-none"
                     placeholder="-"
                   />
                   <span className="text-gray-500">:</span>
@@ -270,7 +270,7 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
                     max="99"
                     value={match.awayScore ?? ''}
                     onChange={(e) => updateScore(match.id, match.homeScore, e.target.value === '' ? null : parseInt(e.target.value))}
-                    className="w-12 h-10 text-center bg-[#0B1825] border border-[#1a2a3f] rounded text-white text-lg font-bold focus:border-[#C9A84C] focus:outline-none"
+                    className="w-12 h-10 text-center bg-[#0a0906] border border-[#1b160d] rounded text-white text-lg font-bold focus:border-[#C9A84C] focus:outline-none"
                     placeholder="-"
                   />
                 </div>
@@ -297,7 +297,7 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-gray-400 border-b border-[#1a2a3f]">
+                <tr className="text-gray-400 border-b border-[#1b160d]">
                   <th className="text-left py-2 px-2">#</th>
                   <th className="text-left py-2 px-2">Equipo</th>
                   <th className="text-center py-2 px-2">PJ</th>
@@ -314,14 +314,14 @@ export default function SimuladorGrupos({ initialGroup }: { initialGroup: string
                 {standings.map((team, idx) => (
                   <tr 
                     key={team.name} 
-                    className={`border-b border-[#1a2a3f] ${
+                    className={`border-b border-[#1b160d] ${
                       idx < 2 ? 'bg-[#C9A84C08]' : ''
                     }`}
                   >
                     <td className="py-3 px-2">
                       <span className={`inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold ${
                         idx < 2 
-                          ? 'bg-[#C9A84C] text-[#030712]' 
+                          ? 'bg-[#C9A84C] text-[#000000]' 
                           : idx === 2 
                             ? 'bg-blue-500/20 text-blue-400'
                             : 'text-gray-500'

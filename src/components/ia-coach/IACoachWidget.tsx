@@ -25,8 +25,8 @@ import { useCoachIdentity } from "./useCoachIdentity";
 import { IconRobot, IconWhistle, IconCrystalBall, IconDebate } from "./icons";
 
 // Paleta alineada con el resto de la web (dorado ZonaMundial).
-const BG = "#0A0E15";
-const BG2 = "#12161D";
+const BG = "#000000";
+const BG2 = "#14110a";
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
 const MID = "#C7CEDA";
@@ -110,7 +110,7 @@ export default function IACoachWidget() {
               border: "none",
               cursor: "pointer",
               background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-              color: "#0C0F14",
+              color: "#000000",
               fontSize: 22,
               boxShadow: "0 6px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.28)",
               display: "flex",
@@ -208,7 +208,7 @@ export default function IACoachWidget() {
                   style={{
                     flex: 1,
                     background: active ? GOLD : "transparent",
-                    color: active ? "#0C0F14" : MID,
+                    color: active ? "#000000" : MID,
                     border: active ? "none" : `1px solid ${GOLD}33`,
                     borderRadius: 9,
                     padding: "7px 4px",

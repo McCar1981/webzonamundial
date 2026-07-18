@@ -11,12 +11,12 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const PURP = "#a279f0";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
+const TXT_MUT = "#a69a82";
 const LINE = "rgba(255,255,255,0.08)";
 
 type Side = { name: string; flag: string | null; slot: string };
@@ -231,7 +231,7 @@ export default function PredecirCrucesPage() {
                           {team ? team.name : "Por definir"}
                         </span>
                         {isPicked && (
-                          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10" fill={GOLD} /><path d="M7 12.5l3.2 3.2L17 9" stroke="#0a1729" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10" fill={GOLD} /><path d="M7 12.5l3.2 3.2L17 9" stroke="#0a0906" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
                         )}
                       </button>
                     );

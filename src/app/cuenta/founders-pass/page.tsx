@@ -107,7 +107,7 @@ function ActiveFounderCard({
       style={{
         borderColor: "rgba(201,168,76,0.45)",
         background:
-          "radial-gradient(ellipse 60% 80% at 100% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+          "radial-gradient(ellipse 60% 80% at 100% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
       }}
     >
       <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
@@ -179,7 +179,7 @@ function BuyCard() {
       className="rounded-2xl border p-6 sm:p-8"
       style={{
         borderColor: "rgba(201,168,76,0.25)",
-        background: "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+        background: "linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
       }}
     >
       <h3 className="text-xl font-extrabold text-white mb-2">

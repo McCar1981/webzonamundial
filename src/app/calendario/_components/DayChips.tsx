@@ -68,14 +68,14 @@ export function DayChips({
     <div
       className="sticky top-0 z-30 -mx-6 mb-5 border-b border-white/5 px-3 backdrop-blur-md sm:px-4"
       style={{
-        background: "linear-gradient(180deg, rgba(6,11,20,0.96) 0%, rgba(6,11,20,0.88) 100%)",
+        background: "linear-gradient(180deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.88) 100%)",
       }}
     >
       <div className="mx-auto flex h-[52px] max-w-6xl items-center gap-2">
         {todayKey && (
           <button
             onClick={() => onDay(todayKey)}
-            className="flex-shrink-0 rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-3 py-1.5 text-[11px] font-black tracking-wide text-[#060B14] transition-transform hover:scale-[1.04]"
+            className="flex-shrink-0 rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-3 py-1.5 text-[11px] font-black tracking-wide text-[#000000] transition-transform hover:scale-[1.04]"
           >
             {cT.hoy}
           </button>
@@ -108,7 +108,7 @@ export function DayChips({
               >
                 <span
                   className={`text-[8px] font-bold uppercase tracking-wider ${
-                    active ? "text-[#e8d48b]" : "text-[#6a7a9a]"
+                    active ? "text-[#e8d48b]" : "text-[#6e6552]"
                   }`}
                 >
                   {wd}
@@ -130,7 +130,7 @@ export function DayChips({
           className={`relative flex flex-shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-bold transition-colors ${
             filterCount > 0
               ? "border-[#c9a84c]/50 bg-[#c9a84c]/10 text-[#c9a84c]"
-              : "border-white/10 bg-white/[0.03] text-[#8a94b0] hover:border-white/20 hover:text-white"
+              : "border-white/10 bg-white/[0.03] text-[#a69a82] hover:border-white/20 hover:text-white"
           }`}
         >
           <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ export function DayChips({
           </svg>
           {cT.filtros}
           {filterCount > 0 && (
-            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#c9a84c] text-[9px] font-black text-[#060B14]">
+            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#c9a84c] text-[9px] font-black text-[#000000]">
               {filterCount}
             </span>
           )}

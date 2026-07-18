@@ -48,8 +48,8 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
           className="absolute inset-0 w-full h-full object-cover opacity-30 blur-[4px] scale-125"
         />
         {/* Multiple overlay layers for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/80 to-[#060B14]/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060B14]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/80 to-[#000000]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/60 to-transparent" />
         <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 70% 20%, ${moment.color}18 0%, transparent 60%)` }} />
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: `linear-gradient(90deg, ${moment.color}, ${moment.color}80, transparent)` }} />
@@ -127,7 +127,7 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
               </div>
               <h2 className="text-xl sm:text-2xl font-black text-white">{isEN ? 'The Story' : 'La Historia'}</h2>
             </div>
-            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-[#0F1D32]/90 to-[#0B1220]/90 p-6 sm:p-8 md:p-10">
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-[#14110a]/90 to-[#0a0906]/90 p-6 sm:p-8 md:p-10">
               <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-[1.8]">
                 <span className="text-4xl font-black float-left mr-3 mt-1 leading-none" style={{ color: moment.color }}>{moment.description.charAt(0)}</span>
                 {moment.description.slice(1)}
@@ -149,7 +149,7 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
               {moment.details.map((detail, i) => (
                 <div
                   key={i}
-                  className="group flex items-start gap-4 p-4 sm:p-5 rounded-2xl border border-white/[0.04] bg-[#0F1D32]/60 hover:bg-[#0F1D32]/90 hover:border-white/10 transition-all duration-300"
+                  className="group flex items-start gap-4 p-4 sm:p-5 rounded-2xl border border-white/[0.04] bg-[#14110a]/60 hover:bg-[#14110a]/90 hover:border-white/10 transition-all duration-300"
                 >
                   <span
                     className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black border transition-colors duration-300"
@@ -179,7 +179,7 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
               </div>
               <h2 className="text-xl sm:text-2xl font-black text-white">{isEN ? 'Protagonists' : 'Protagonistas'}</h2>
             </div>
-            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-[#0F1D32]/90 to-[#0B1220]/90 p-6 sm:p-8">
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-[#14110a]/90 to-[#0a0906]/90 p-6 sm:p-8">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {moment.protagonists.map((name, i) => (
                   <div
@@ -209,7 +209,7 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
           {prevMoment ? (
             <Link
               href={`/historia/momentos-iconicos/${prevSlug}`}
-              className="group relative flex items-center gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#0F1D32]/60 hover:bg-[#0F1D32]/90 hover:border-white/15 transition-all duration-300 overflow-hidden"
+              className="group relative flex items-center gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#14110a]/60 hover:bg-[#14110a]/90 hover:border-white/15 transition-all duration-300 overflow-hidden"
             >
               <img
                 src={`https://flagcdn.com/w320/${prevMoment.flag}.png`}
@@ -233,7 +233,7 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
           {nextMoment ? (
             <Link
               href={`/historia/momentos-iconicos/${nextSlug}`}
-              className="group relative flex items-center justify-end gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#0F1D32]/60 hover:bg-[#0F1D32]/90 hover:border-white/15 transition-all duration-300 overflow-hidden text-right"
+              className="group relative flex items-center justify-end gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#14110a]/60 hover:bg-[#14110a]/90 hover:border-white/15 transition-all duration-300 overflow-hidden text-right"
             >
               <img
                 src={`https://flagcdn.com/w320/${nextMoment.flag}.png`}

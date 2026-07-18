@@ -2,7 +2,7 @@ import { GOLD } from "../constants";
 
 export function GuaranteesBar({ items }: { items: string[] }) {
   return (
-    <div className="w-full border-y border-white/5 py-6 relative overflow-hidden" style={{ background: "#050a12" }}>
+    <div className="w-full border-y border-white/5 py-6 relative overflow-hidden" style={{ background: "#000000" }}>
       <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}33, transparent)` }} />
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4">

@@ -166,7 +166,7 @@ export default function SeleccionClient({ team, companeros }: Props) {
       }));
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#000000]">
       {/* Barra superior con color de la bandera */}
       <div className={`h-2 bg-gradient-to-r ${getBarGradient()}`} />
 

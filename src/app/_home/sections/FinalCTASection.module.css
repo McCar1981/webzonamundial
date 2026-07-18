@@ -6,7 +6,7 @@
 .section {
   position: relative;
   padding: clamp(60px, 7vw, 100px) clamp(16px, 3vw, 40px);
-  background: #06060E;
+  background: #000000;
   overflow: hidden;
   font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
 }
@@ -32,7 +32,7 @@
   content: "";
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, transparent 0%, rgba(6, 6, 14, 0.2) 35%, rgba(10, 10, 22, 0.7) 55%, rgba(6, 6, 14, 0.92) 80%),
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0, 0.2) 35%, rgba(10,9,6, 0.7) 55%, rgba(0,0,0, 0.92) 80%),
     radial-gradient(ellipse 50% 60% at 20% 60%, rgba(212, 168, 83, 0.25), transparent 70%);
   pointer-events: none;
 }
@@ -112,7 +112,7 @@
   border-radius: 14px;
   border: 0; cursor: pointer; text-decoration: none;
   background: linear-gradient(135deg, #F5D07A 0%, #D4A853 50%, #B8913F 100%);
-  color: #0F2A44;
+  color: #14110a;
   font-family: var(--zm-font-display, "Syne", sans-serif);
   font-weight: 800;
   font-size: 15px;
@@ -185,7 +185,7 @@
   }
   .card::before {
     background:
-      linear-gradient(180deg, transparent 0%, rgba(6, 6, 14, 0.2) 18%, rgba(6, 6, 14, 0.85) 38%, #06060E 60%);
+      linear-gradient(180deg, transparent 0%, rgba(0,0,0, 0.2) 18%, rgba(0,0,0, 0.85) 38%, #000000 60%);
   }
 }
 @media (max-width: 560px) {

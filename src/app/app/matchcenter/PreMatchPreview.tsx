@@ -9,9 +9,9 @@
 import { useState } from "react";
 
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
-const BG2 = "#0F1D32";
+const MID = "#a69a82";
+const DIM = "#6e6552";
+const BG2 = "#14110a";
 
 export default function PreMatchPreview() {
   // Colapsada por defecto para no empujar la cancha hacia abajo.

@@ -1,9 +1,9 @@
 // src/app/app/modo-carrera/jugar/fx.ts
 // Constantes de estilo y utilidades compartidas por el Modo Carrera jugable.
 
-export const BG = "#060B14";
-export const BG2 = "#0F1D32";
-export const BG3 = "#0B1825";
+export const BG = "#000000";
+export const BG2 = "#14110a";
+export const BG3 = "#0a0906";
 export const GOLD = "#c9a84c";
 export const GOLD2 = "#e8d48b";
 export const MID = "#9aa4be";

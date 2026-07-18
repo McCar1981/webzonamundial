@@ -23,7 +23,7 @@ export function MagneticButton({
     "relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 overflow-hidden";
   const variantClasses =
     variant === "primary"
-      ? "bg-gradient-to-r from-[#C9A84C] to-[#E8D48B] text-[#030712] hover:shadow-[0_0_40px_rgba(201,168,76,0.4)] hover:scale-105"
+      ? "bg-gradient-to-r from-[#C9A84C] to-[#E8D48B] text-[#000000] hover:shadow-[0_0_40px_rgba(201,168,76,0.4)] hover:scale-105"
       : "border-2 border-[#C9A84C]/30 text-[#C9A84C] hover:bg-[#C9A84C]/10 hover:border-[#C9A84C]/60 hover:scale-105";
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {

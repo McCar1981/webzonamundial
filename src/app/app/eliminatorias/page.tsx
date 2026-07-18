@@ -10,11 +10,11 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
+const TXT_MUT = "#a69a82";
 const LINE = "rgba(255,255,255,0.08)";
 const CORAL = "#ff6b5a";
 
@@ -109,7 +109,7 @@ export default function EliminatoriasPage() {
   const byRound = (key: string) => (matches ?? []).filter((m) => m.phase === key);
 
   return (
-    <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
+    <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #1b160d 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
       <span aria-hidden style={{ position: "fixed", top: 0, left: 0, right: 0, height: 2, zIndex: 60, background: `linear-gradient(90deg, transparent, ${GOLD}aa 30%, ${GOLD2} 50%, ${GOLD}aa 70%, transparent)`, pointerEvents: "none" }} />
 
@@ -175,7 +175,7 @@ export default function EliminatoriasPage() {
                   const showScore = m.live || m.finished;
                   const ko = fmtKickoff(m.kickoff);
                   return (
-                    <Link key={m.matchId} href={`/app/matchcenter/${m.slug}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 14, padding: "12px 13px", background: m.live ? "linear-gradient(160deg,#221526 0%,#0a1a31 62%)" : "linear-gradient(160deg,#102a4d 0%,#0a1a31 70%)", border: `1px solid ${m.live ? CORAL + "77" : LINE}`, boxShadow: "0 10px 26px rgba(0,0,0,0.32)" }}>
+                    <Link key={m.matchId} href={`/app/matchcenter/${m.slug}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 14, padding: "12px 13px", background: m.live ? "linear-gradient(160deg,#221526 0%,#0a0906 62%)" : "linear-gradient(160deg,#14110a 0%,#0a0906 70%)", border: `1px solid ${m.live ? CORAL + "77" : LINE}`, boxShadow: "0 10px 26px rgba(0,0,0,0.32)" }}>
                       {/* fila superior: estado + hora */}
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 9, gap: 8 }}>
                         {m.live ? (

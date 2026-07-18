@@ -103,7 +103,7 @@ export default function LineupEditor({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(6,11,20,0.94)",
+        background: "rgba(0,0,0,0.94)",
         padding: 14,
         animation: "mcBannerIn .25s ease both",
       }}
@@ -277,7 +277,7 @@ const btnGold: React.CSSProperties = {
   borderRadius: 12,
   border: "none",
   background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-  color: "#060B14",
+  color: "#000000",
   fontWeight: 900,
   fontSize: 13.5,
   cursor: "pointer",

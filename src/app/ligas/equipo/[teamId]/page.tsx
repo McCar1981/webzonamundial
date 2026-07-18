@@ -21,7 +21,7 @@ export const revalidate = 300;
 type Params = { teamId: string };
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
@@ -123,7 +123,7 @@ export default async function TeamPage({ params }: { params: Params }) {
   const formColor: Record<string, string> = { G: "#3fbf6a", E: "#8a94a6", P: "#cf5b5b" };
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
           <span aria-hidden>&larr;</span> Zona de Ligas
@@ -136,7 +136,7 @@ export default async function TeamPage({ params }: { params: Params }) {
             {form.length > 0 && (
               <div style={{ display: "flex", gap: 5, marginTop: 6 }}>
                 {form.map((r, i) => (
-                  <span key={i} title={r === "G" ? "Ganó" : r === "E" ? "Empató" : "Perdió"} style={{ width: 20, height: 20, borderRadius: 6, background: formColor[r], color: "#0A1422", fontSize: 11, fontWeight: 600, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>{r}</span>
+                  <span key={i} title={r === "G" ? "Ganó" : r === "E" ? "Empató" : "Perdió"} style={{ width: 20, height: 20, borderRadius: 6, background: formColor[r], color: "#0a0906", fontSize: 11, fontWeight: 600, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>{r}</span>
                 ))}
               </div>
             )}
@@ -179,12 +179,12 @@ export default async function TeamPage({ params }: { params: Params }) {
                         <span style={{ width: 24, fontSize: 12, color: DIM, fontVariantNumeric: "tabular-nums", flexShrink: 0, textAlign: "right" }}>{p.number ?? ""}</span>
                         <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{p.name}</span>
                         {s ? (
-                          <span style={{ display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0, fontSize: 12.5, color: "#cbd5e1", fontVariantNumeric: "tabular-nums" }}>
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0, fontSize: 12.5, color: "#e6decb", fontVariantNumeric: "tabular-nums" }}>
                             <span title="Partidos jugados">{s.apps}</span>
                             <span title="Goles" style={{ color: s.goals > 0 ? "#fff" : DIM, fontWeight: s.goals > 0 ? 600 : 400 }}>{s.goals}</span>
                             <span title="Asistencias" style={{ color: s.assists > 0 ? "#fff" : DIM }}>{s.assists}</span>
                             {s.rating != null ? (
-                              <span title="Nota media" style={{ minWidth: 34, textAlign: "center", fontWeight: 600, fontSize: 11.5, color: "#0A1422", background: s.rating >= 7 ? "linear-gradient(135deg, #c9a84c, #e8d48b)" : "rgba(255,255,255,0.55)", borderRadius: 6, padding: "2px 5px" }}>{s.rating.toFixed(2)}</span>
+                              <span title="Nota media" style={{ minWidth: 34, textAlign: "center", fontWeight: 600, fontSize: 11.5, color: "#0a0906", background: s.rating >= 7 ? "linear-gradient(135deg, #c9a84c, #e8d48b)" : "rgba(255,255,255,0.55)", borderRadius: 6, padding: "2px 5px" }}>{s.rating.toFixed(2)}</span>
                             ) : (
                               <span style={{ minWidth: 34, textAlign: "center", color: DIM }}>-</span>
                             )}

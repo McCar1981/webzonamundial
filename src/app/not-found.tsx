@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const BG="#060B14",BG2="#0F1D32",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
+const BG="#000000",BG2="#14110a",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#a69a82",DIM="#6e6552",DARK="#a69a82";
 
 const QUICK_LINKS = [
   { href: "/calendario", label: "Calendario" },

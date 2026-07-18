@@ -43,8 +43,8 @@ export function ExploreSection({
               href={item.href}
               className={`explore-card group p-6 sm:p-7 rounded-3xl border transition-all duration-500 hover:-translate-y-1 ${
                 item.featured
-                  ? "border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/10 to-[#0F1D32] hover:border-[#ff6b35]/60"
-                  : "border-white/5 bg-[#0F1D32] hover:border-[#C9A84C]/30"
+                  ? "border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/10 to-[#14110a] hover:border-[#ff6b35]/60"
+                  : "border-white/5 bg-[#14110a] hover:border-[#C9A84C]/30"
               }`}
               style={{
                 boxShadow: `0 0 0 0 transparent`,

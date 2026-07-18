@@ -61,7 +61,7 @@ export default async function BarCartelPage({
   const origin = siteOrigin();
   const qrTarget = qrCode ? `${origin}/r/${qrCode}` : `${origin}/b/${bar.slug}`;
   const qrDataUrl = await QRCode.toDataURL(qrTarget, {
-    width: 900, margin: 1, color: { dark: "#0A0A0A", light: "#FFFFFF" }, errorCorrectionLevel: "M",
+    width: 900, margin: 1, color: { dark: "#000000", light: "#FFFFFF" }, errorCorrectionLevel: "M",
   });
   const shortUrl = qrTarget.replace(/^https?:\/\//, "");
 

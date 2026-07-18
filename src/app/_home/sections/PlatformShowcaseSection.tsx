@@ -171,7 +171,7 @@ const IconShield = () => (
     <path d="M8 6 L56 6 L56 48 L32 60 L8 48 Z" fill="url(#ps-shield-g)" stroke="#6B4E1A" strokeWidth="1.2" />
     <path d="M8 6 L2 0 L8 14 Z" fill="#8B6A2E" />
     <path d="M56 6 L62 0 L56 14 Z" fill="#8B6A2E" />
-    <rect x="12" y="12" width="40" height="32" rx="2" fill="#0E1028" stroke="#D4A853" strokeWidth="0.8" />
+    <rect x="12" y="12" width="40" height="32" rx="2" fill="#000000" stroke="#D4A853" strokeWidth="0.8" />
     <path d="M8 6 L56 6 L56 20 L8 20 Z" fill="url(#ps-shield-shine)" opacity="0.5" />
     <text
       x="32"
@@ -208,7 +208,7 @@ const IconBall = () => (
     <circle cx="32" cy="32" r="25" fill="url(#ps-ball-g)" stroke="#6B4E1A" strokeWidth="0.8" />
     <path
       d="M32 18.5 L41.5 25.4 L37.9 36.6 L26.1 36.6 L22.5 25.4 Z"
-      fill="#0A0A14"
+      fill="#000000"
       stroke="#8B6A2E"
       strokeWidth="0.6"
     />
@@ -219,35 +219,35 @@ const IconBall = () => (
     <line x1="22.5" y1="25.4" x2="12" y2="22" stroke="#8B6A2E" strokeWidth="0.8" />
     <path
       d="M32 7 L35.5 9 L35.5 13 L32 15 L28.5 13 L28.5 9 Z"
-      fill="#0A0A14"
+      fill="#000000"
       opacity="0.85"
       stroke="#8B6A2E"
       strokeWidth="0.4"
     />
     <path
       d="M51 21 L52.5 24 L50 27 L47 26 L46.5 23 L49 20 Z"
-      fill="#0A0A14"
+      fill="#000000"
       opacity="0.85"
       stroke="#8B6A2E"
       strokeWidth="0.4"
     />
     <path
       d="M46 50 L49 48.5 L50 45 L47 44 L44 46 L44 49 Z"
-      fill="#0A0A14"
+      fill="#000000"
       opacity="0.85"
       stroke="#8B6A2E"
       strokeWidth="0.4"
     />
     <path
       d="M18 50 L15 48.5 L14 45 L17 44 L20 46 L20 49 Z"
-      fill="#0A0A14"
+      fill="#000000"
       opacity="0.85"
       stroke="#8B6A2E"
       strokeWidth="0.4"
     />
     <path
       d="M13 21 L11.5 24 L14 27 L17 26 L17.5 23 L15 20 Z"
-      fill="#0A0A14"
+      fill="#000000"
       opacity="0.85"
       stroke="#8B6A2E"
       strokeWidth="0.4"
@@ -287,7 +287,7 @@ const IconTrophy = () => (
     />
     <path
       d="M32 18 L34.3 23.5 L40 24.2 L35.8 28 L37 33.8 L32 30.8 L27 33.8 L28.2 28 L24 24.2 L29.7 23.5 Z"
-      fill="#0E1028"
+      fill="#000000"
       stroke="#F7DE90"
       strokeWidth="0.6"
     />

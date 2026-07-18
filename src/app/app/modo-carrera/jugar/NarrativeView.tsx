@@ -100,7 +100,7 @@ export default function NarrativeView({
         @keyframes mcDots { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
         .mc-dot { animation: mcDots 1.2s infinite both; }
         .mc-prensa-head {
-          background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.webp');
+          background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.webp');
           background-size: cover; background-position: center;
         }
         .mc-titular-paper {
@@ -109,7 +109,7 @@ export default function NarrativeView({
         }
         @media (max-width: 640px) {
           .mc-prensa-head {
-            background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg-mobile.webp');
+            background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.88)), url('/img/modo-carrera/narrativa/prensa-bg-mobile.webp');
           }
           .mc-titular-paper {
             background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture-mobile.webp');
@@ -247,7 +247,7 @@ export default function NarrativeView({
                     padding: 18,
                     borderRadius: 14,
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(6,11,20,0.72), rgba(6,11,20,0.92)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
+                      "linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.92)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.08)"}`,

@@ -8,9 +8,9 @@ import type { User } from "@supabase/supabase-js";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const BG = "#060B14";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const BG = "#000000";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 
 interface ProfileMini {
   username: string | null;
@@ -385,7 +385,7 @@ export default function HeaderUserMenu({
             top: "calc(100% + 8px)",
             right: 0,
             minWidth: 220,
-            background: "#0F1D32",
+            background: "#14110a",
             border: "1px solid rgba(201,168,76,0.15)",
             borderRadius: 12,
             boxShadow: "0 16px 48px rgba(0,0,0,0.4)",

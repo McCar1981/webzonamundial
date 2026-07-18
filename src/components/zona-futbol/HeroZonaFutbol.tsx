@@ -71,7 +71,7 @@ export default function HeroZonaFutbol({
       style={{
         background: backgroundImage
           ? `url(${backgroundImage})`
-          : "linear-gradient(135deg, #060B14 0%, #0F1D32 50%, #0B1825 100%)",
+          : "linear-gradient(135deg, #000000 0%, #14110a 50%, #0a0906 100%)",
         backgroundSize: backgroundImage ? "cover" : "auto",
         backgroundPosition: "center",
         backgroundAttachment: backgroundImage ? "fixed" : "initial",
@@ -83,9 +83,9 @@ export default function HeroZonaFutbol({
         className="absolute inset-0"
         style={{
           background: `linear-gradient(180deg,
-            rgba(6,11,20,0.6) 0%,
-            rgba(6,11,20,0.8) 60%,
-            rgba(6,11,20,1) 100%)`,
+            rgba(0,0,0,0.6) 0%,
+            rgba(0,0,0,0.8) 60%,
+            rgba(0,0,0,1) 100%)`,
         }}
       />
 
@@ -157,7 +157,7 @@ export default function HeroZonaFutbol({
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm transition-all group bb-touch hover:shadow-lg"
                 style={{
                   background: "linear-gradient(135deg, #c9a84c, #e8d48b)",
-                  color: "#030712",
+                  color: "#000000",
                   boxShadow:
                     "0 0 0 1px rgba(232,212,139,0.55), 0 12px 30px -8px rgba(201,168,76,0.45)",
                 }}

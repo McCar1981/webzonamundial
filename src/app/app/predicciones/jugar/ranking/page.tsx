@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Globe, Star, Trophy } from "../icons";
 import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 
 interface Entry {

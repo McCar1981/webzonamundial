@@ -27,13 +27,13 @@ export function AppScreenshotsSection({
         {/* Grid de screenshots */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* Screenshot grande izquierda */}
-          <ShimmerCard className="screenshot-card lg:row-span-2 relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
+          <ShimmerCard className="screenshot-card lg:row-span-2 relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0906] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
               src="/img/capturas/Captura de pantalla 2026-04-13 132229.webp"
               alt={h.appScreenshots.screenshots.predicciones.label}
               className="w-full h-full object-cover min-h-[280px] lg:min-h-[420px] opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <span className="text-[#C9A84C] text-xs font-bold tracking-widest uppercase">
                 {h.appScreenshots.screenshots.predicciones.label}
@@ -45,13 +45,13 @@ export function AppScreenshotsSection({
           </ShimmerCard>
 
           {/* Screenshot fantasy */}
-          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
+          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0906] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
               src="/img/zonamundial-images/imagenes/alineacion fantasy.jpeg"
               alt={h.appScreenshots.screenshots.fantasy.label}
               className="w-full h-48 sm:h-56 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <span className="text-[#C9A84C] text-xs font-bold tracking-widest uppercase">
                 {h.appScreenshots.screenshots.fantasy.label}
@@ -61,13 +61,13 @@ export function AppScreenshotsSection({
           </ShimmerCard>
 
           {/* Screenshot trivia */}
-          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
+          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0906] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
               src="/img/zonamundial-images/imagenes/pregunta trivia para portada.jpeg"
               alt={h.appScreenshots.screenshots.trivia.label}
               className="w-full h-48 sm:h-56 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <span className="text-[#C9A84C] text-xs font-bold tracking-widest uppercase">
                 {h.appScreenshots.screenshots.trivia.label}
@@ -77,13 +77,13 @@ export function AppScreenshotsSection({
           </ShimmerCard>
 
           {/* Screenshot IA */}
-          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
+          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0906] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
               src="/img/zonamundial-images/imagenes/ia mundial.jpeg"
               alt={h.appScreenshots.screenshots.ia.label}
               className="w-full h-48 sm:h-56 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <span className="text-[#C9A84C] text-xs font-bold tracking-widest uppercase">
                 {h.appScreenshots.screenshots.ia.label}
@@ -93,13 +93,13 @@ export function AppScreenshotsSection({
           </ShimmerCard>
 
           {/* Screenshot streaming */}
-          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
+          <ShimmerCard className="screenshot-card relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0906] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
               src="/img/zonamundial-images/imagenes/streaming zona mundial.jpeg"
               alt={h.appScreenshots.screenshots.streaming.label}
               className="w-full h-48 sm:h-56 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <span className="text-[#C9A84C] text-xs font-bold tracking-widest uppercase">
                 {h.appScreenshots.screenshots.streaming.label}

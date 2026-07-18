@@ -14,15 +14,15 @@ export const BRAND = {
 } as const;
 
 export const COLORS = {
-  bg: "#060B14",
-  surface: "#0F1D32",
-  surface2: "#0B1825",
+  bg: "#000000",
+  surface: "#14110a",
+  surface2: "#0a0906",
   gold: "#c9a84c",
   goldLight: "#e8d48b",
   goldDark: "#a88a3d",
   text: "#E2E8F0",
-  textMuted: "#94A3B8",
-  border: "#1E293B",
+  textMuted: "#a69a82",
+  border: "#241e12",
 } as const;
 
 // ══════════════════════════════════════

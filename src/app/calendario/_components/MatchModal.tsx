@@ -114,7 +114,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
       aria-label={`${m.h} vs ${m.a}`}
       className="fixed inset-0 z-[100] flex items-center justify-center p-5 transition-opacity duration-300"
       style={{
-        background: "rgba(6,11,20,0.95)",
+        background: "rgba(0,0,0,0.95)",
         backdropFilter: "blur(10px)",
         opacity: anim ? 1 : 0,
       }}
@@ -151,7 +151,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
             <span
               className={`rounded-lg px-4 py-2 text-xs font-extrabold ${
                 isFinal
-                  ? "bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] text-[#060B14]"
+                  ? "bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] text-[#000000]"
                   : "border border-[#c9a84c]/30 bg-[#c9a84c]/15 text-[#c9a84c]"
               }`}
             >
@@ -180,17 +180,17 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
-              <span className="text-lg font-semibold text-[#8a94b0]">{localDate}</span>
+              <span className="text-lg font-semibold text-[#a69a82]">{localDate}</span>
               <span className="text-white/20">|</span>
               <span className="rounded-[10px] bg-[#c9a84c]/10 px-4 py-1.5 text-xl font-extrabold text-[#c9a84c]">
                 {localTime}
               </span>
             </div>
             {/* Hora local del usuario + referencia ET de la fuente oficial */}
-            <p className="text-xs text-[#6a7a9a]">
+            <p className="text-xs text-[#6e6552]">
               {tzCityLabel(tz)} · {cT.tuHora}
               {showSourceTime && instant && (
-                <span className="ml-2 text-[#4a5570]">
+                <span className="ml-2 text-[#a69a82]">
                   ({fmtTime(instant, SOURCE_TZ)} ET)
                 </span>
               )}
@@ -206,12 +206,12 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
                   <Image src={flagUrl(m.hf, 320)!} alt="" width={100} height={70} className="object-cover" unoptimized />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-white/5">
-                    <span className="text-3xl text-[#6a7a9a]">?</span>
+                    <span className="text-3xl text-[#6e6552]">?</span>
                   </div>
                 )}
               </div>
               <h2 className="mb-1 text-xl font-black sm:text-2xl">{m.h}</h2>
-              <span className="text-[13px] text-[#6a7a9a]">{cT.local}</span>
+              <span className="text-[13px] text-[#6e6552]">{cT.local}</span>
             </div>
 
             {/* Marcador o VS */}
@@ -235,7 +235,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
                   </div>
                   <span
                     className="text-[11px] font-extrabold uppercase tracking-wider"
-                    style={{ color: playing ? LIVE_RED : "#8a94b0" }}
+                    style={{ color: playing ? LIVE_RED : "#a69a82" }}
                   >
                     {statusLabel}
                   </span>
@@ -254,12 +254,12 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
                   <Image src={flagUrl(m.af, 320)!} alt="" width={100} height={70} className="object-cover" unoptimized />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-white/5">
-                    <span className="text-3xl text-[#6a7a9a]">?</span>
+                    <span className="text-3xl text-[#6e6552]">?</span>
                   </div>
                 )}
               </div>
               <h2 className="mb-1 text-xl font-black sm:text-2xl">{m.a}</h2>
-              <span className="text-[13px] text-[#6a7a9a]">{cT.visitante}</span>
+              <span className="text-[13px] text-[#6e6552]">{cT.visitante}</span>
             </div>
           </div>
 
@@ -281,11 +281,11 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
           )}
 
           {/* Estadio */}
-          <div className="mb-8 flex items-center justify-center gap-3 rounded-2xl border border-white/5 bg-[#0B1825] px-6 py-4">
+          <div className="mb-8 flex items-center justify-center gap-3 rounded-2xl border border-white/5 bg-[#0a0906] px-6 py-4">
             <SvgIcon name="match center" size={24} />
             <div>
               <p className="text-base font-bold text-white">{m.vn}</p>
-              <p className="text-sm text-[#8a94b0]">{m.vc}</p>
+              <p className="text-sm text-[#a69a82]">{m.vc}</p>
             </div>
           </div>
 
@@ -303,14 +303,14 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-white/8 bg-white/[0.03] p-4 text-center transition-all hover:bg-white/5"
             >
               <SvgIcon name="match center" size={28} />
-              <span className="font-bold text-[#8a94b0]">{cT.equipos}</span>
+              <span className="font-bold text-[#a69a82]">{cT.equipos}</span>
             </Link>
             <Link
               href="/sedes"
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-white/8 bg-white/[0.03] p-4 text-center transition-all hover:bg-white/5"
             >
               <SvgIcon name="match center" size={28} />
-              <span className="font-bold text-[#8a94b0]">{cT.sede}</span>
+              <span className="font-bold text-[#a69a82]">{cT.sede}</span>
             </Link>
           </div>
 
@@ -329,17 +329,17 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
                     <div
                       key={x.i}
                       onClick={() => onNav(x.i)}
-                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/[0.04] bg-[#0B1825] px-4 py-3 transition-all hover:border-[#c9a84c]/20 hover:bg-[#c9a84c]/[0.03]"
+                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/[0.04] bg-[#0a0906] px-4 py-3 transition-all hover:border-[#c9a84c]/20 hover:bg-[#c9a84c]/[0.03]"
                     >
                       <span className="rounded-md bg-[#c9a84c]/10 px-2.5 py-1 text-[11px] font-extrabold text-[#c9a84c]">
                         J{x.j}
                       </span>
                       <div className="flex flex-1 items-center gap-2">
                         <span className="font-semibold">{x.h}</span>
-                        <span className="text-[#4a5570]">vs</span>
+                        <span className="text-[#a69a82]">vs</span>
                         <span className="font-semibold">{x.a}</span>
                       </div>
-                      <span className="text-[13px] text-[#6a7a9a]">
+                      <span className="text-[13px] text-[#6e6552]">
                         {at ? fmtTime(at, tz) : x.t}
                       </span>
                     </div>
@@ -354,7 +354,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
             {idx > 0 ? (
               <button
                 onClick={() => onNav(WC_MATCHES[idx - 1].i)}
-                className="flex items-center gap-2 bg-transparent text-sm text-[#8a94b0] transition-colors hover:text-white"
+                className="flex items-center gap-2 bg-transparent text-sm text-[#a69a82] transition-colors hover:text-white"
               >
                 ← {WC_MATCHES[idx - 1].h} vs {WC_MATCHES[idx - 1].a}
               </button>
@@ -364,7 +364,7 @@ export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
             {idx >= 0 && idx < WC_MATCHES.length - 1 && (
               <button
                 onClick={() => onNav(WC_MATCHES[idx + 1].i)}
-                className="flex items-center gap-2 bg-transparent text-sm text-[#8a94b0] transition-colors hover:text-white"
+                className="flex items-center gap-2 bg-transparent text-sm text-[#a69a82] transition-colors hover:text-white"
               >
                 {WC_MATCHES[idx + 1].h} vs {WC_MATCHES[idx + 1].a} →
               </button>

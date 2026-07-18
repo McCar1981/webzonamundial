@@ -101,7 +101,7 @@ export default function CalendarioGrupo({ grupo, groupColor, liveMap = {} }: Pro
   return (
     <div
       className="rounded-3xl border border-white/5 overflow-hidden"
-      style={{ background: "#0B0F1A" }}
+      style={{ background: "#0a0906" }}
     >
       {/* Header */}
       <div className="px-6 py-5 border-b border-white/5">
@@ -186,7 +186,7 @@ export default function CalendarioGrupo({ grupo, groupColor, liveMap = {} }: Pro
                           <span className="text-[10px] font-bold uppercase tracking-wide">· {labels.live}</span>
                         </span>
                       ) : ended ? (
-                        <span className="text-sm font-black uppercase tracking-wide" style={{ color: "#6a7a9a" }}>
+                        <span className="text-sm font-black uppercase tracking-wide" style={{ color: "#6e6552" }}>
                           {live!.s === "PEN" ? labels.pen : labels.finished}
                         </span>
                       ) : mounted ? (

@@ -48,7 +48,7 @@ export default async function BarTvPage({ params }: { params: { barSlug: string 
   const origin = siteOrigin();
   const qrTarget = mainQr ? `${origin}/r/${mainQr.code}` : `${origin}/b/${bar.slug}`;
   const qrDataUrl = await QRCode.toDataURL(qrTarget, {
-    width: 420, margin: 1, color: { dark: "#0A0A0A", light: "#FFFFFF" }, errorCorrectionLevel: "M",
+    width: 420, margin: 1, color: { dark: "#000000", light: "#FFFFFF" }, errorCorrectionLevel: "M",
   });
   const shortUrl = qrTarget.replace(/^https?:\/\//, "");
   const medal = (pos: number) => (pos === 1 ? "#FFD54A" : pos === 2 ? "#C7CDD6" : pos === 3 ? "#D89B6A" : t.text);

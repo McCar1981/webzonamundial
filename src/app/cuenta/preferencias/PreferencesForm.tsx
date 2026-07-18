@@ -89,7 +89,7 @@ export default function PreferencesForm({ initial }: { initial: Prefs }) {
             <button
               type="button"
               onClick={requestPushPermission}
-              className="px-4 py-2 rounded-lg text-[#030712] text-xs font-bold"
+              className="px-4 py-2 rounded-lg text-[#000000] text-xs font-bold"
               style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
             >
               Activar
@@ -107,7 +107,7 @@ export default function PreferencesForm({ initial }: { initial: Prefs }) {
           </div>
         )}
         {pushPermission === "unsupported" && (
-          <div className="mb-5 p-4 rounded-xl border border-[#1E293B] bg-[#0B1825]/50 text-sm">
+          <div className="mb-5 p-4 rounded-xl border border-[#241e12] bg-[#0a0906]/50 text-sm">
             <div className="text-gray-300 font-semibold">
               Tu navegador no soporta avisos push
             </div>
@@ -150,7 +150,7 @@ export default function PreferencesForm({ initial }: { initial: Prefs }) {
       </Section>
 
       {/* Feedback + submit */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#1E293B]/40">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#241e12]/40">
         <div className="text-sm">
           {feedback?.type === "ok" && (
             <span className="text-green-400">✓ {feedback.msg}</span>
@@ -162,7 +162,7 @@ export default function PreferencesForm({ initial }: { initial: Prefs }) {
         <button
           type="submit"
           disabled={pending}
-          className="px-6 py-3 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 transition-all"
+          className="px-6 py-3 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 transition-all"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           {pending ? "Guardando…" : "Guardar preferencias"}
@@ -207,9 +207,9 @@ function Toggle({
 }) {
   return (
     <label
-      className="flex items-center justify-between gap-4 p-4 rounded-xl border border-[#1E293B]/60 cursor-pointer transition-all hover:border-[#C9A84C]/30"
+      className="flex items-center justify-between gap-4 p-4 rounded-xl border border-[#241e12]/60 cursor-pointer transition-all hover:border-[#C9A84C]/30"
       style={{
-        background: "rgba(11,24,37,0.4)",
+        background: "rgba(10,9,6,0.4)",
         opacity: disabled ? 0.5 : 1,
         cursor: disabled ? "not-allowed" : "pointer",
       }}
@@ -228,7 +228,7 @@ function Toggle({
         style={{
           background: checked
             ? "linear-gradient(135deg, #C9A84C, #A8893D)"
-            : "#1E293B",
+            : "#241e12",
         }}
       >
         <span

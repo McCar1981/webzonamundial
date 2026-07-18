@@ -21,14 +21,14 @@ export function SedesTravelTabs({ sedes }: Props) {
   const imageUrl = STADIUM_IMAGES[sede.slug];
 
   return (
-    <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-[#0B1825] to-[#0F1D32] p-5 md:p-6">
+    <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-[#0a0906] to-[#14110a] p-5 md:p-6">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
           <svg className="w-5 h-5 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">{sT.travelTitle}</h3>
-          <p className="text-xs text-[#6a7a9a]">{sT.travelSub}</p>
+          <p className="text-xs text-[#6e6552]">{sT.travelSub}</p>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ export function SedesTravelTabs({ sedes }: Props) {
               className={`rounded-xl border px-3 py-2 text-sm font-semibold transition-all ${
                 isActive
                   ? 'border-[#c9a84c]/40 bg-[#c9a84c]/15 text-[#c9a84c]'
-                  : 'border-white/10 bg-[#060B14] text-[#8a94b0] hover:border-white/20 hover:text-white'
+                  : 'border-white/10 bg-[#000000] text-[#a69a82] hover:border-white/20 hover:text-white'
               }`}
             >
               {s.nombre}
@@ -62,11 +62,11 @@ export function SedesTravelTabs({ sedes }: Props) {
               className="h-full w-full object-cover"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0F1D32] to-[#1a2a3f]">
-              <svg className="w-10 h-10 text-[#6a7a9a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" /></svg>
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#14110a] to-[#1b160d]">
+              <svg className="w-10 h-10 text-[#6e6552]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" /></svg>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 to-transparent" />
           <div className="absolute bottom-3 left-3">
             <p className="text-lg font-black text-white">{sede.estadio}</p>
             <p className="text-sm text-[#c9a84c]">{sede.ciudad}</p>
@@ -74,28 +74,28 @@ export function SedesTravelTabs({ sedes }: Props) {
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{ssT.labelVisa}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{ssT.labelVisa}</p>
             <p className="text-sm font-medium text-white">{sede.guiaViaje.visa}</p>
           </div>
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{ssT.labelIdioma}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{ssT.labelIdioma}</p>
             <p className="text-sm font-medium text-white">{sede.guiaViaje.idioma}</p>
           </div>
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{ssT.labelMoneda}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{ssT.labelMoneda}</p>
             <p className="text-sm font-medium text-white">{sede.guiaViaje.moneda}</p>
           </div>
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{ssT.labelAlEstadio}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{ssT.labelAlEstadio}</p>
             <p className="text-sm font-medium text-white">{sede.transporte.distanciaEstadio}</p>
           </div>
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{ssT.labelAeropuerto}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{ssT.labelAeropuerto}</p>
             <p className="text-sm font-medium text-white">{sede.transporte.aeropuerto}</p>
           </div>
-          <div className="rounded-xl border border-white/5 bg-[#060B14] p-3">
-            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6a7a9a]">{sT.guiaFanZone}</p>
+          <div className="rounded-xl border border-white/5 bg-[#000000] p-3">
+            <p className="mb-1 text-[10px] uppercase tracking-wider text-[#6e6552]">{sT.guiaFanZone}</p>
             <p className="text-sm font-medium text-white">{sede.guiaViaje.fanZone}</p>
           </div>
         </div>

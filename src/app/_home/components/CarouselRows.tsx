@@ -101,7 +101,7 @@ export function CarouselRows({
                 <div
                   className="relative h-full p-5 rounded-2xl overflow-hidden transition-all duration-400 hover:border-opacity-60"
                   style={{
-                    background: `linear-gradient(135deg, ${m.color}0D 0%, #0B1825 60%)`,
+                    background: `linear-gradient(135deg, ${m.color}0D 0%, #0a0906 60%)`,
                     border: `1px solid ${m.color}22`,
                   }}
                 >
@@ -134,8 +134,8 @@ export function CarouselRows({
               </Link>
             ))}
           </div>
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#060B14] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#060B14] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#000000] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#000000] to-transparent z-10 pointer-events-none" />
         </div>
       </div>
 
@@ -182,7 +182,7 @@ export function CarouselRows({
                 <div
                   className="relative h-full p-5 rounded-2xl overflow-hidden transition-all duration-400 hover:border-opacity-60"
                   style={{
-                    background: `linear-gradient(135deg, ${m.color}0D 0%, #0B1825 60%)`,
+                    background: `linear-gradient(135deg, ${m.color}0D 0%, #0a0906 60%)`,
                     border: `1px solid ${m.color}22`,
                   }}
                 >
@@ -215,8 +215,8 @@ export function CarouselRows({
               </Link>
             ))}
           </div>
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#060B14] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#060B14] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#000000] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#000000] to-transparent z-10 pointer-events-none" />
         </div>
       </div>
 

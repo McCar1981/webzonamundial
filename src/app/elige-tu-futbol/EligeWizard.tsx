@@ -137,7 +137,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
             <>Elige tu <span style={{ color: GOLD2 }}>club</span></>
           )}
         </h1>
-        <p className="mx-auto mt-2 max-w-lg text-sm text-[#9db0c9]">
+        <p className="mx-auto mt-2 max-w-lg text-sm text-[#a69a82]">
           {step === 1
             ? "Selecciona las ligas y copas que quieres seguir. Tu lobby se arma con lo que elijas — y podrás cambiarlo cuando quieras."
             : "Tu equipo del alma. Marcaremos sus partidos y noticias en tu inicio."}
@@ -202,7 +202,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
                         >
                           {on && (
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-                              <path d="M20 6L9 17l-5-5" stroke="#0B1825" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                              <path d="M20 6L9 17l-5-5" stroke="#0a0906" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                           )}
                         </span>
@@ -227,11 +227,11 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
             onClick={goToClubStep}
             disabled={selected.length === 0}
             className="mt-5 flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold transition-transform active:scale-[0.99] disabled:opacity-40"
-            style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0B1825" }}
+            style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906" }}
           >
             Continuar
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="#0B1825" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="#0a0906" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>
@@ -252,7 +252,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
                   className="shrink-0 rounded-full border px-3.5 py-1.5 text-[12px] font-semibold transition-colors"
                   style={{
                     borderColor: on ? GOLD : "rgba(255,255,255,0.12)",
-                    color: on ? "#0B1825" : "#cbd5e1",
+                    color: on ? "#0a0906" : "#e6decb",
                     background: on ? GOLD : "rgba(255,255,255,0.03)",
                   }}
                 >
@@ -271,7 +271,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
                 ))}
               </div>
             ) : teamsError ? (
-              <p className="py-10 text-center text-sm text-[#9db0c9]">
+              <p className="py-10 text-center text-sm text-[#a69a82]">
                 No pudimos cargar los equipos de esta liga. Prueba con otra pestaña.
               </p>
             ) : activeTeams && activeTeams.length > 0 ? (
@@ -317,14 +317,14 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
                 })}
               </div>
             ) : (
-              <p className="py-10 text-center text-sm text-[#9db0c9]">
+              <p className="py-10 text-center text-sm text-[#a69a82]">
                 Esta competición no tiene equipos disponibles ahora. Prueba con otra pestaña.
               </p>
             )}
           </div>
 
           {club && (
-            <p className="mt-4 text-center text-sm text-[#cbd5e1]">
+            <p className="mt-4 text-center text-sm text-[#e6decb]">
               Tu club: <b style={{ color: GOLD2 }}>{club.clubName}</b>
             </p>
           )}
@@ -337,7 +337,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
                 setError(null);
                 setStep(1);
               }}
-              className="rounded-full border px-5 py-3.5 text-sm font-semibold text-[#cbd5e1]"
+              className="rounded-full border px-5 py-3.5 text-sm font-semibold text-[#e6decb]"
               style={{ borderColor: "rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.03)" }}
             >
               Atrás
@@ -347,12 +347,12 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
               onClick={finish}
               disabled={!club || saving}
               className="flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold transition-transform active:scale-[0.99] disabled:opacity-40"
-              style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0B1825" }}
+              style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906" }}
             >
               {saving ? "Guardando…" : "Entrar a mi lobby"}
               {!saving && (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="#0B1825" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="#0a0906" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
             </button>

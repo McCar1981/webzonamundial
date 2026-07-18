@@ -10,7 +10,7 @@ import { SELECCIONES } from "@/data/selecciones";
 import TablaClasificacion from "@/components/TablaClasificacion";
 import type { LiveMap } from "@/lib/calendario/live";
 
-const MID = "#8a94b0";
+const MID = "#a69a82";
 
 export default function GroupStandingsTab({ group }: { group?: string }) {
   const [liveMap, setLiveMap] = useState<LiveMap>({});
@@ -29,7 +29,7 @@ export default function GroupStandingsTab({ group }: { group?: string }) {
 
   if (selecciones.length === 0) {
     return (
-      <div style={{ background: "#0F1D32", borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: "26px 18px", textAlign: "center", color: MID, fontSize: 13.5, lineHeight: 1.6 }}>
+      <div style={{ background: "#14110a", borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: "26px 18px", textAlign: "center", color: MID, fontSize: 13.5, lineHeight: 1.6 }}>
         La clasificación se mostrará cuando el partido pertenezca a un grupo del Mundial.
       </div>
     );

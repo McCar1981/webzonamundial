@@ -31,7 +31,7 @@ const CAT_LABELS: Record<string, { label: string; color: string }> = {
   protesta: { label: "Protesta", color: "#22C55E" },
   ddhh: { label: "DDHH", color: "#DC2626" },
   lgtb: { label: "LGTBQ+", color: "#A78BFA" },
-  politica: { label: "Política", color: "#94A3B8" },
+  politica: { label: "Política", color: "#a69a82" },
   tragedia: { label: "Tragedia", color: "#9333EA" },
 };
 
@@ -66,9 +66,9 @@ export default function SociopoliticaPage() {
       <section>
         <div className="space-y-4">
           {eventos.map((e, i) => {
-            const meta = CAT_LABELS[e.categoria] ?? { label: e.categoria, color: "#94A3B8" };
+            const meta = CAT_LABELS[e.categoria] ?? { label: e.categoria, color: "#a69a82" };
             const inner = (
-              <div className="p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all">
+              <div className="p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all">
                 <div className="flex items-baseline gap-3 mb-2 flex-wrap">
                   <span
                     className="text-base font-black tabular-nums"

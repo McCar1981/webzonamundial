@@ -119,7 +119,7 @@ export default function PromoPopup() {
 
         <div
           style={{
-            background: "linear-gradient(180deg, #0F1D32 0%, #060B14 100%)",
+            background: "linear-gradient(180deg, #14110a 0%, #000000 100%)",
             border: "1px solid rgba(201,168,76,0.2)",
             borderTop: "none",
             borderRadius: "0 0 24px 24px",
@@ -143,7 +143,7 @@ export default function PromoPopup() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "#6a7a9a",
+              color: "#6e6552",
               fontSize: 16,
               transition: "all 0.2s",
             }}
@@ -153,7 +153,7 @@ export default function PromoPopup() {
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-              e.currentTarget.style.color = "#6a7a9a";
+              e.currentTarget.style.color = "#6e6552";
             }}
           >
             ✕
@@ -216,7 +216,7 @@ export default function PromoPopup() {
           <p
             style={{
               textAlign: "center",
-              color: "#8a94b0",
+              color: "#a69a82",
               fontSize: 14,
               lineHeight: 1.6,
               marginBottom: 24,
@@ -252,7 +252,7 @@ export default function PromoPopup() {
                   fontWeight: 700,
                   textTransform: "uppercase",
                   letterSpacing: 1.5,
-                  color: "#6a7a9a",
+                  color: "#6e6552",
                   marginBottom: 8,
                 }}
               >
@@ -269,7 +269,7 @@ export default function PromoPopup() {
                   -2€
                 </span>
               </div>
-              <p style={{ fontSize: 12, color: "#8a94b0" }}>
+              <p style={{ fontSize: 12, color: "#a69a82" }}>
                 {isEs ? "en tu suscripción" : "on your subscription"}
               </p>
             </div>
@@ -290,7 +290,7 @@ export default function PromoPopup() {
                   fontWeight: 700,
                   textTransform: "uppercase",
                   letterSpacing: 1.5,
-                  color: "#6a7a9a",
+                  color: "#6e6552",
                   marginBottom: 8,
                 }}
               >
@@ -307,7 +307,7 @@ export default function PromoPopup() {
                   -2$
                 </span>
               </div>
-              <p style={{ fontSize: 12, color: "#8a94b0" }}>
+              <p style={{ fontSize: 12, color: "#a69a82" }}>
                 {isEs ? "en tu suscripción" : "on your subscription"}
               </p>
             </div>
@@ -323,7 +323,7 @@ export default function PromoPopup() {
               border: "none",
               background: "linear-gradient(135deg, #c9a84c 0%, #e8d48b 50%, #c9a84c 100%)",
               backgroundSize: "200% 200%",
-              color: "#060B14",
+              color: "#000000",
               fontSize: 15,
               fontWeight: 800,
               cursor: "pointer",
@@ -347,7 +347,7 @@ export default function PromoPopup() {
             style={{
               textAlign: "center",
               fontSize: 11,
-              color: "#4a5570",
+              color: "#a69a82",
               marginTop: 12,
             }}
           >

@@ -99,7 +99,7 @@ export function AlbumSection({
           {/* Image */}
           <div className="flex-shrink-0 relative group">
             <div className="absolute -inset-4 bg-[#C9A84C]/15 blur-[80px] rounded-full pointer-events-none" />
-            <div className="relative rounded-3xl border-2 border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32] to-[#0B1825] p-4 sm:p-5 shadow-[0_0_60px_rgba(201,168,76,0.15)] group-hover:border-[#C9A84C]/60 group-hover:shadow-[0_0_80px_rgba(201,168,76,0.3)] transition-all duration-500">
+            <div className="relative rounded-3xl border-2 border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a] to-[#0a0906] p-4 sm:p-5 shadow-[0_0_60px_rgba(201,168,76,0.15)] group-hover:border-[#C9A84C]/60 group-hover:shadow-[0_0_80px_rgba(201,168,76,0.3)] transition-all duration-500">
               <img
                 src="/img/zonamundial-images/4250c5f8-7831-4fcd-bd97-7a82a51df125.webp"
                 alt="Álbum Mundial 2026"
@@ -127,7 +127,7 @@ export function AlbumSection({
           {texts.map((t, i) => (
             <div
               key={i}
-              className="album-card group relative p-7 sm:p-8 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-[#0F1D32] to-[#0B1825] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+              className="album-card group relative p-7 sm:p-8 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-[#14110a] to-[#0a0906] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
               style={{
                 boxShadow: "0 0 0 0 transparent",
               }}
@@ -165,7 +165,7 @@ export function AlbumSection({
         </div>
 
         {/* Founder offer + countdown */}
-        <div className="relative rounded-3xl border border-dashed border-[#C9A84C]/30 bg-gradient-to-b from-[#0F1D32] to-[#0B1825] p-8 sm:p-10 overflow-hidden">
+        <div className="relative rounded-3xl border border-dashed border-[#C9A84C]/30 bg-gradient-to-b from-[#14110a] to-[#0a0906] p-8 sm:p-10 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/5 to-transparent pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center text-center">
@@ -178,7 +178,7 @@ export function AlbumSection({
             <div className="flex gap-3 sm:gap-4 mb-8">
               {units.map((u, idx) => (
                 <div key={idx} className="text-center">
-                  <div className="relative w-[64px] sm:w-[80px] h-[64px] sm:h-[80px] rounded-2xl bg-gradient-to-br from-[#0F1D32] to-[#0B1825] border border-[#C9A84C]/20 flex items-center justify-center shadow-lg">
+                  <div className="relative w-[64px] sm:w-[80px] h-[64px] sm:h-[80px] rounded-2xl bg-gradient-to-br from-[#14110a] to-[#0a0906] border border-[#C9A84C]/20 flex items-center justify-center shadow-lg">
                     <span className="text-2xl sm:text-3xl font-black text-[#C9A84C] tabular-nums">
                       {String(u.v).padStart(2, "0")}
                     </span>
@@ -193,7 +193,7 @@ export function AlbumSection({
             {/* CTA */}
             <Link
               href="/registro"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg bg-gradient-to-r from-[#C9A84C] to-[#E8D48B] text-[#030712] hover:shadow-[0_0_50px_rgba(201,168,76,0.45)] hover:scale-105 transition-all duration-300 mb-4"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg bg-gradient-to-r from-[#C9A84C] to-[#E8D48B] text-[#000000] hover:shadow-[0_0_50px_rgba(201,168,76,0.45)] hover:scale-105 transition-all duration-300 mb-4"
             >
               {h.albumSection.cta}
               <span className="text-xl">→</span>

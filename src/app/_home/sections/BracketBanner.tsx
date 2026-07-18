@@ -14,7 +14,7 @@ export function BracketBanner() {
           style={{
             borderColor: "rgba(201,168,76,0.25)",
             background:
-              "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+              "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
           {/* Glows decorativos */}
@@ -54,13 +54,13 @@ export function BracketBanner() {
                   Bracket Mundial 2026
                 </span>
               </h2>
-              <p className="text-sm text-[#cbd5e1] leading-relaxed max-w-2xl">
+              <p className="text-sm text-[#e6decb] leading-relaxed max-w-2xl">
                 Predice los 104 partidos: 48 selecciones, 12 grupos, fase de
                 grupos, 32avos hasta la final. Dos vistas: clásica tipo árbol o{" "}
                 <b className="text-[#FDE68A]">cósmica Supernova</b>. Anónimo,
                 sin registro, se guarda en tu dispositivo.
               </p>
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#94a3b8]">
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#a69a82]">
                 <span>104 partidos</span>
                 <span>Vista clásica + cósmica</span>
                 <span>Sin login</span>

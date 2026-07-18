@@ -8,9 +8,9 @@
 /* ============== TOKENS LOCALES ============== */
 .root {
   --bg-0: #07070C;
-  --bg-1: #0A0A14;
-  --bg-2: #131328;
-  --bg-3: #1A1A2E;
+  --bg-1: #000000;
+  --bg-2: #1b160d;
+  --bg-3: #1b160d;
 
   --gold: #D4A853;
   --gold-2: #E0BD73;
@@ -732,7 +732,7 @@
 }
 .navBtns button:hover {
   background: var(--c, var(--gold));
-  color: #0A0A14;
+  color: #000000;
   border-color: var(--c, var(--gold));
 }
 @media (max-width: 640px) {
@@ -1203,7 +1203,7 @@
   cursor: pointer;
 }
 .chip:hover { color: var(--fg-1); border-color: var(--fg-3); }
-.chipOn { background: var(--fg-1); color: #0A0A14; border-color: var(--fg-1); }
+.chipOn { background: var(--fg-1); color: #000000; border-color: var(--fg-1); }
 .chipSwatch { width: 8px; height: 8px; border-radius: 50%; }
 
 @media (max-width: 768px) {

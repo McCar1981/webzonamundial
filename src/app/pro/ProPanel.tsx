@@ -225,7 +225,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
       className="min-h-screen px-5 py-12 sm:py-16"
       style={{
         background:
-          "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
       }}
     >
       <div className="max-w-3xl mx-auto">
@@ -262,7 +262,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         )}
 
         {isPro ? (
-          <div className="rounded-2xl border border-[#C9A84C]/40 bg-[#0F1D32] px-6 py-8 text-center">
+          <div className="rounded-2xl border border-[#C9A84C]/40 bg-[#14110a] px-6 py-8 text-center">
             <Sparkles className="mx-auto mb-3" size={28} color={GOLD} />
             <div className="text-xl font-black text-white mb-2">
               {source === "founder" ? "Tu Founders Pass incluye todo el plan Pro" : "Ya tienes el plan Pro activo"}
@@ -302,8 +302,8 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                 className="rounded-xl px-5 py-2.5 text-sm font-bold transition-all"
                 style={
                   interval === "monthly"
-                    ? { background: `linear-gradient(135deg,${GOLD},#e8d48b)`, color: "#060B14" }
-                    : { background: "rgba(255,255,255,0.05)", color: "#8a94b0", border: "1px solid rgba(255,255,255,0.1)" }
+                    ? { background: `linear-gradient(135deg,${GOLD},#e8d48b)`, color: "#000000" }
+                    : { background: "rgba(255,255,255,0.05)", color: "#a69a82", border: "1px solid rgba(255,255,255,0.1)" }
                 }
               >
                 Mensual · {prices.monthly.display}
@@ -313,14 +313,14 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                 className="relative rounded-xl px-5 py-2.5 text-sm font-bold transition-all"
                 style={
                   interval === "yearly"
-                    ? { background: `linear-gradient(135deg,${GOLD},#e8d48b)`, color: "#060B14" }
-                    : { background: "rgba(255,255,255,0.05)", color: "#8a94b0", border: "1px solid rgba(255,255,255,0.1)" }
+                    ? { background: `linear-gradient(135deg,${GOLD},#e8d48b)`, color: "#000000" }
+                    : { background: "rgba(255,255,255,0.05)", color: "#a69a82", border: "1px solid rgba(255,255,255,0.1)" }
                 }
               >
                 Anual · {prices.yearly.display}
                 <span
                   className="absolute -top-2.5 -right-2 rounded-full px-2 py-0.5 text-[10px] font-black"
-                  style={{ background: "#22c55e", color: "#060B14" }}
+                  style={{ background: "#22c55e", color: "#000000" }}
                 >
                   {monthlyEquivalent}
                 </span>
@@ -351,7 +351,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                 className="w-full sm:w-auto rounded-2xl px-10 py-4 text-base font-black transition-all disabled:opacity-60"
                 style={{
                   background: `linear-gradient(135deg,${GOLD},#e8d48b)`,
-                  color: "#060B14",
+                  color: "#000000",
                   boxShadow: "0 8px 30px rgba(201,168,76,0.25)",
                 }}
               >
@@ -370,7 +370,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         <div className="rounded-2xl overflow-hidden border border-white/10">
           <div
             className="grid grid-cols-[1.1fr_1fr_1.2fr] px-5 py-3 text-[11px] font-black uppercase tracking-wider"
-            style={{ background: "#0F1D32" }}
+            style={{ background: "#14110a" }}
           >
             <div className="text-gray-400">Funcionalidad</div>
             <div className="text-gray-400">Free</div>

@@ -145,22 +145,22 @@ const CSS = `
 @keyframes fxCardFloat{0%,100%{transform:rotateY(0) rotateZ(-8deg) translateY(0)}50%{transform:rotateY(10deg) rotateZ(-8deg) translateY(-6px)}}
 .fx-card-sheen{position:absolute;inset:0;border-radius:12px;background:linear-gradient(120deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 65%);background-size:250% 100%;animation:fxSheen 1.6s ease .4s 2}
 @keyframes fxSheen{0%{background-position:160% 0}100%{background-position:-60% 0}}
-.fx-card-lower{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 12px;max-width:92vw;text-align:center;background:rgba(11,24,37,.95);border:1px solid rgba(255,255,255,.14);border-left:6px solid var(--team);border-radius:10px;padding:8px 14px;backdrop-filter:blur(4px);box-shadow:0 12px 30px rgba(0,0,0,.5);animation:fxLowerIn .5s .3s cubic-bezier(.2,1,.3,1) both, fxDim 2.6s ease forwards}
+.fx-card-lower{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 12px;max-width:92vw;text-align:center;background:rgba(10,9,6,.95);border:1px solid rgba(255,255,255,.14);border-left:6px solid var(--team);border-radius:10px;padding:8px 14px;backdrop-filter:blur(4px);box-shadow:0 12px 30px rgba(0,0,0,.5);animation:fxLowerIn .5s .3s cubic-bezier(.2,1,.3,1) both, fxDim 2.6s ease forwards}
 .fx-card-kind{font-size:clamp(10px,1.7vw,13px);font-weight:900;letter-spacing:1px;padding:4px 9px;border-radius:6px;white-space:nowrap}
 .fx-card-name{font-size:clamp(16px,3vw,26px);font-weight:900;color:#fff}
 .fx-card-team{font-size:clamp(11px,1.8vw,14px);font-weight:800;color:var(--team);text-transform:uppercase;letter-spacing:1px}
 
 /* ---- CAMBIO ---- */
 .fx-sub{align-items:flex-start;justify-content:center;padding-top:6%}
-.fx-sub-card{min-width:min(78%,360px);background:linear-gradient(180deg, rgba(15,29,50,.97), rgba(11,24,37,.97));border:1px solid rgba(255,255,255,.12);border-top:3px solid var(--team);border-radius:14px;padding:12px 16px;backdrop-filter:blur(6px);box-shadow:0 16px 40px rgba(0,0,0,.55);animation:fxLowerIn .5s cubic-bezier(.2,1,.3,1) both, fxDim 3s ease forwards}
-.fx-sub-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:2px;color:#8a94b0;text-transform:uppercase;margin-bottom:8px}
+.fx-sub-card{min-width:min(78%,360px);background:linear-gradient(180deg, rgba(20,17,10,.97), rgba(10,9,6,.97));border:1px solid rgba(255,255,255,.12);border-top:3px solid var(--team);border-radius:14px;padding:12px 16px;backdrop-filter:blur(6px);box-shadow:0 16px 40px rgba(0,0,0,.55);animation:fxLowerIn .5s cubic-bezier(.2,1,.3,1) both, fxDim 3s ease forwards}
+.fx-sub-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:2px;color:#a69a82;text-transform:uppercase;margin-bottom:8px}
 .fx-sub-icon{color:#c9a84c;display:inline-flex;align-items:center}
 .fx-sub-team{margin-left:auto;letter-spacing:1px}
 .fx-sub-row{display:flex;align-items:center;gap:10px;font-size:clamp(15px,2.6vw,20px);padding:3px 0}
 .fx-sub-row b{font-weight:900;color:#fff}
 .fx-sub-in{font-size:12px;font-weight:900;color:#22c55e;min-width:78px;display:inline-flex;align-items:center;gap:4px}
 .fx-sub-out{font-size:12px;font-weight:900;color:#ef4444;min-width:78px;display:inline-flex;align-items:center;gap:4px}
-.fx-sub-dim{color:#8a94b0!important}
+.fx-sub-dim{color:#a69a82!important}
 
 @media (prefers-reduced-motion: reduce){
   .fx-card,.fx-card-sheen{animation-duration:.01s!important}

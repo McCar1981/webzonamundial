@@ -87,7 +87,7 @@ export default function MiniNav({ sections }: { sections: Section[] }) {
     >
       <div
         style={{
-          background: "rgba(11,24,37,0.85)",
+          background: "rgba(10,9,6,0.85)",
           backdropFilter: "blur(18px) saturate(180%)",
           WebkitBackdropFilter: "blur(18px) saturate(180%)",
           borderTop: "1px solid rgba(201,168,76,0.08)",
@@ -109,7 +109,7 @@ export default function MiniNav({ sections }: { sections: Section[] }) {
                     aria-current={isActive ? "true" : undefined}
                     className="bb-focusable px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
                     style={{
-                      color: isActive ? "#030712" : "var(--bb-text-soft)",
+                      color: isActive ? "#000000" : "var(--bb-text-soft)",
                       background: isActive
                         ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                         : "transparent",

@@ -6,7 +6,7 @@ import React from "react";
    ═══════════════════════════════════════════════════════════════════ */
 
 const GOLD = "#c9a84c";
-const BG_DARK = "#060B14";
+const BG_DARK = "#000000";
 
 /* ─── Componente base para iconos de trazo simple ─── */
 export const ZmIcon = ({

@@ -20,7 +20,7 @@ import TercerosPicker from "./TercerosPicker";
 import TercerosAccountSync from "./TercerosAccountSync";
 import AvisameTerceros from "./AvisameTerceros";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 export const revalidate = 60;
 
@@ -270,7 +270,7 @@ export default async function MejoresTercerosPage() {
           </p>
           <Link href="/registro" style={{
             display: "inline-block", whiteSpace: "nowrap",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
             fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none",
           }}>
             Crear mi cuenta gratis →
@@ -367,7 +367,7 @@ export default async function MejoresTercerosPage() {
             background: "linear-gradient(135deg, rgba(201,168,76,0.20), rgba(201,168,76,0.04))",
             boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
           }}>
-            <span style={{ display: "inline-block", fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 800, color: "#0A1422", background: GOLD2, padding: "3px 10px", borderRadius: 999, marginBottom: 10 }}>
+            <span style={{ display: "inline-block", fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 800, color: "#0a0906", background: GOLD2, padding: "3px 10px", borderRadius: 999, marginBottom: 10 }}>
               Nuevo · Simulador
             </span>
             <p style={{ margin: "0 0 6px", color: "#fff", fontSize: 21, fontWeight: 800, lineHeight: 1.2 }}>
@@ -377,7 +377,7 @@ export default async function MejoresTercerosPage() {
               La situación de cada grupo en la última jornada, qué necesita cada equipo para clasificar o quedar primero, y los posibles cruces — con un{" "}
               <b style={{ color: GOLD2 }}>simulador</b> para mover los marcadores y ver quién pasa.
             </p>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 8, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12 }}>
               Ver qué necesita tu selección →
             </span>
           </div>
@@ -460,7 +460,7 @@ export default async function MejoresTercerosPage() {
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
             <Link
               href="/registro"
-              style={{ display: "inline-block", background: GOLD, color: "#0B0F1A", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}
+              style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}
             >
               Crear mi cuenta gratis
             </Link>

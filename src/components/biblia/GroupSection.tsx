@@ -54,7 +54,7 @@ export default function GroupSection({ team }: { team: NationalTeam }) {
             <div className="flex items-center gap-3">
               <span
                 className="w-12 h-9 rounded-md overflow-hidden flex-shrink-0 border border-white/5"
-                style={{ background: "#0B1825" }}
+                style={{ background: "#0a0906" }}
                 aria-hidden
               >
                 <img

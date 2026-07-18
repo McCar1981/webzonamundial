@@ -48,7 +48,7 @@ const IconLock = () => (
       </linearGradient>
     </defs>
     <path d="M14 20v-4a10 10 0 0 1 20 0v4" fill="none" stroke="url(#wl-lock-g)" strokeWidth="3" strokeLinecap="round" />
-    <rect x="10" y="20" width="28" height="22" rx="3" fill="#0F2A44" stroke="url(#wl-lock-g)" strokeWidth="1.5" />
+    <rect x="10" y="20" width="28" height="22" rx="3" fill="#14110a" stroke="url(#wl-lock-g)" strokeWidth="1.5" />
     <rect x="12" y="22" width="24" height="18" rx="2" fill="url(#wl-lock-g)" opacity="0.15" />
     <circle cx="24" cy="30" r="3" fill="url(#wl-lock-g)" />
     <rect x="23" y="30" width="2" height="6" fill="url(#wl-lock-g)" />
@@ -63,8 +63,8 @@ const IconGift = () => (
         <stop offset="100%" stopColor="#2E86AB" />
       </linearGradient>
     </defs>
-    <rect x="8" y="18" width="32" height="8" rx="1" fill="url(#wl-gift-g)" stroke="#0F2A44" strokeWidth="1" />
-    <rect x="10" y="26" width="28" height="18" rx="2" fill="url(#wl-gift-g)" stroke="#0F2A44" strokeWidth="1" />
+    <rect x="8" y="18" width="32" height="8" rx="1" fill="url(#wl-gift-g)" stroke="#14110a" strokeWidth="1" />
+    <rect x="10" y="26" width="28" height="18" rx="2" fill="url(#wl-gift-g)" stroke="#14110a" strokeWidth="1" />
     <rect x="21" y="18" width="6" height="26" fill="#F5D07A" stroke="#8B6A2E" strokeWidth="0.8" />
     <path d="M18 14c-2-4 1-7 4-5s2 9 2 9-6 0-6-4zM30 14c2-4-1-7-4-5s-2 9-2 9 6 0 6-4z" fill="#F5D07A" stroke="#8B6A2E" strokeWidth="0.8" />
   </svg>
@@ -81,7 +81,7 @@ const IconTrophy = () => (
     </defs>
     <path d="M14 8h20l-1 16c0 4-4 7-9 7s-9-3-9-7z" fill="url(#wl-tro-g)" stroke="#6B4E1A" strokeWidth="1" />
     <path d="M14 10c-4 0-6 2-6 6s3 8 6 8M34 10c4 0 6 2 6 6s-3 8-6 8" fill="none" stroke="url(#wl-tro-g)" strokeWidth="2" strokeLinecap="round" />
-    <path d="M19 14l2 5 5 1-4 3.5 1 5-4-2.5-4 2.5 1-5L12 20l5-1z" fill="#0F2A44" stroke="#F5D07A" strokeWidth="0.5" />
+    <path d="M19 14l2 5 5 1-4 3.5 1 5-4-2.5-4 2.5 1-5L12 20l5-1z" fill="#14110a" stroke="#F5D07A" strokeWidth="0.5" />
     <rect x="21" y="31" width="6" height="5" fill="#8B6A2E" />
     <rect x="14" y="36" width="20" height="4" rx="1" fill="url(#wl-tro-g)" stroke="#6B4E1A" strokeWidth="1" />
   </svg>

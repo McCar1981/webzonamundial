@@ -10,7 +10,7 @@ import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BG="#060B14", BG2="#0F1D32", BG3="#0B1825", GOLD="#c9a84c", GOLD2="#e8d48b", MID="#8a94b0", DIM="#6a7a9a", DARK="#4a5570";
+const BG="#000000", BG2="#14110a", BG3="#0a0906", GOLD="#c9a84c", GOLD2="#e8d48b", MID="#a69a82", DIM="#6e6552", DARK="#a69a82";
 
 const FORMACION_CODES = ["4-3-3","4-4-2","4-2-3-1","3-5-2","3-4-3","5-3-2","5-4-1"];
 const FORMACION_DESCS = [

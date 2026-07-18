@@ -584,7 +584,7 @@ export default function FormularioRegistro({
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[#030712] font-bold text-sm no-underline"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[#000000] font-bold text-sm no-underline"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >
             {labels.explore}
@@ -710,10 +710,10 @@ export default function FormularioRegistro({
           {/* Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-[#1E293B]" />
+              <div className="w-full border-t border-[#241e12]" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="px-3 bg-[#0F1D32] text-gray-500 uppercase tracking-wider">
+              <span className="px-3 bg-[#14110a] text-gray-500 uppercase tracking-wider">
                 {labels.oauthDivider}
               </span>
             </div>
@@ -734,7 +734,7 @@ export default function FormularioRegistro({
                 required
                 value={formData.email}
                 onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setError(''); }}
-                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#241e12] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                 placeholder={labels.emailPlaceholder}
               />
             </div>
@@ -756,7 +756,7 @@ export default function FormularioRegistro({
                   required
                   value={formData.firstName}
                   onChange={(e) => { setFormData({ ...formData, firstName: e.target.value }); setError(''); }}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#241e12] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                   placeholder={labels.firstNamePlaceholder}
                   maxLength={50}
                   autoComplete="given-name"
@@ -777,7 +777,7 @@ export default function FormularioRegistro({
                   required
                   value={formData.lastName}
                   onChange={(e) => { setFormData({ ...formData, lastName: e.target.value }); setError(''); }}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#241e12] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                   placeholder={labels.lastNamePlaceholder}
                   maxLength={50}
                   autoComplete="family-name"
@@ -801,7 +801,7 @@ export default function FormularioRegistro({
                 required
                 value={formData.nombre}
                 onChange={(e) => { setFormData({ ...formData, nombre: e.target.value.replace(/\s/g, '') }); setError(''); }}
-                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#241e12] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                 placeholder={labels.usernamePlaceholder}
                 maxLength={30}
                 autoComplete="username"
@@ -870,9 +870,9 @@ export default function FormularioRegistro({
               />
               <label
                 htmlFor="terms"
-                className="w-5 h-5 rounded border border-[#1E293B] bg-[#0B1825] cursor-pointer flex items-center justify-center transition-all peer-checked:bg-[#C9A84C] peer-checked:border-[#C9A84C]"
+                className="w-5 h-5 rounded border border-[#241e12] bg-[#0a0906] cursor-pointer flex items-center justify-center transition-all peer-checked:bg-[#C9A84C] peer-checked:border-[#C9A84C]"
               >
-                <svg className="w-3.5 h-3.5 text-[#030712] opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-3.5 h-3.5 text-[#000000] opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </label>
@@ -895,7 +895,7 @@ export default function FormularioRegistro({
               !formData.fav_team ||
               !formData.acceptTerms
             }
-            className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-4 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >
             {loading ? (
@@ -919,7 +919,7 @@ export default function FormularioRegistro({
       )}
 
       {/* Login link */}
-      <div className="text-center pt-4 border-t border-[#1E293B]/50">
+      <div className="text-center pt-4 border-t border-[#241e12]/50">
         <span className="text-xs text-gray-500">
           {labels.alreadyAccount}{' '}
           <Link href="/login" className="text-[#C9A84C] hover:underline font-bold transition-colors">

@@ -20,7 +20,7 @@ import { matchInstant } from "@/lib/calendario/time";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
 import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e";
 
 export const revalidate = 60;
 
@@ -232,7 +232,7 @@ export default async function OctavosPage() {
           </p>
           <Link href="/registro" style={{
             display: "inline-block", whiteSpace: "nowrap",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
             fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none",
           }}>
             Crear mi cuenta gratis →
@@ -298,7 +298,7 @@ export default async function OctavosPage() {
             Rellena tú el cuadro hasta la final en nuestro simulador, guárdalo y compite con tu pronóstico. Gratis.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link href="/bracket" style={{ display: "inline-block", background: GOLD, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none" }}>
+            <Link href="/bracket" style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none" }}>
               Simular el cuadro →
             </Link>
             <Link href="/registro" style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none" }}>
@@ -344,7 +344,7 @@ export default async function OctavosPage() {
             Vive los octavos jugando, no solo mirando.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0A1422", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
+            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
               Crear mi cuenta gratis
             </Link>
             <Link href="/dieciseisavos-mundial-2026" style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>

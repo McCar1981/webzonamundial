@@ -59,7 +59,7 @@ export default function ErasPage() {
           {eras.map((era) => (
             <article
               key={era.slug}
-              className="rounded-2xl border bg-[#0F1D32]/60 overflow-hidden"
+              className="rounded-2xl border bg-[#14110a]/60 overflow-hidden"
               style={{ borderColor: `${era.color}33` }}
             >
               {/* Banda de color superior */}
@@ -110,7 +110,7 @@ export default function ErasPage() {
                         <Link
                           key={slug}
                           href={`/historia/${slug}`}
-                          className="px-3 py-1.5 rounded-full bg-[#0B1825] border border-[#1E293B] text-xs text-gray-300 hover:text-white hover:border-[#C9A84C]/40 no-underline transition-all"
+                          className="px-3 py-1.5 rounded-full bg-[#0a0906] border border-[#241e12] text-xs text-gray-300 hover:text-white hover:border-[#C9A84C]/40 no-underline transition-all"
                         >
                           {ed.meta.nombreCorto}
                         </Link>

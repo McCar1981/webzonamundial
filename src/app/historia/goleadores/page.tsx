@@ -95,22 +95,22 @@ export default function GoleadoresPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           Top goleadores all-time
         </h2>
-        <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+        <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
           {r.topGoleadoresAllTime.map((g, i) => {
             const isPodium = i < 3;
             return (
               <div
                 key={g.nombre}
-                className="grid items-center gap-3 px-3 sm:px-5 py-3.5 border-b border-[#0F172A] last:border-b-0"
+                className="grid items-center gap-3 px-3 sm:px-5 py-3.5 border-b border-[#14110a] last:border-b-0"
                 style={{
                   gridTemplateColumns: "40px 36px 1fr auto",
-                  background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                  background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
                 }}
               >
                 <div className="text-center">
                   <span
                     className="text-base sm:text-xl font-black tabular-nums"
-                    style={{ color: isPodium ? GOLD : "#64748B" }}
+                    style={{ color: isPodium ? GOLD : "#8b8168" }}
                   >
                     {i + 1}
                   </span>
@@ -153,15 +153,15 @@ export default function GoleadoresPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           Botas de Oro · 1930–2022
         </h2>
-        <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+        <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
           {botasOro.map((b, i) => (
             <Link
               key={b.anio}
               href={`/historia/${b.slug}`}
-              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#0F172A] last:border-b-0 hover:bg-white/5 no-underline transition-colors"
+              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#14110a] last:border-b-0 hover:bg-white/5 no-underline transition-colors"
               style={{
                 gridTemplateColumns: "60px 32px 1fr auto",
-                background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
               }}
             >
               <span
@@ -199,7 +199,7 @@ export default function GoleadoresPage() {
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
         <Link
           href="/historia/records"
-          className="p-4 rounded-xl border border-[#1E293B] bg-[#0B1825] hover:border-[#C9A84C] hover:text-[#C9A84C] text-gray-300 transition-all no-underline"
+          className="p-4 rounded-xl border border-[#241e12] bg-[#0a0906] hover:border-[#C9A84C] hover:text-[#C9A84C] text-gray-300 transition-all no-underline"
         >
           <div className="font-bold text-sm mb-1">📊 Récords absolutos</div>
           <div className="text-xs text-gray-500">
@@ -208,7 +208,7 @@ export default function GoleadoresPage() {
         </Link>
         <Link
           href="/historia"
-          className="p-4 rounded-xl border border-[#1E293B] bg-[#0B1825] hover:border-[#C9A84C] hover:text-[#C9A84C] text-gray-300 transition-all no-underline"
+          className="p-4 rounded-xl border border-[#241e12] bg-[#0a0906] hover:border-[#C9A84C] hover:text-[#C9A84C] text-gray-300 transition-all no-underline"
         >
           <div className="font-bold text-sm mb-1">🏆 Las 23 ediciones</div>
           <div className="text-xs text-gray-500">Cronología completa</div>

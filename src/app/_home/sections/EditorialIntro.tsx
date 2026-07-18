@@ -21,7 +21,7 @@ export function EditorialIntro() {
     <section
       style={{
         background:
-          "linear-gradient(180deg, transparent 0%, rgba(15,29,50,0.35) 40%, rgba(15,29,50,0.45) 60%, transparent 100%)",
+          "linear-gradient(180deg, transparent 0%, rgba(20,17,10,0.35) 40%, rgba(20,17,10,0.45) 60%, transparent 100%)",
         padding: "72px 18px",
         position: "relative",
       }}
@@ -119,7 +119,7 @@ export function EditorialIntro() {
             style={{
               padding: "10px 16px",
               background: GOLD,
-              color: "#060B14",
+              color: "#000000",
               fontWeight: 600,
               fontSize: 13,
               textDecoration: "none",
@@ -201,7 +201,7 @@ function Stat({ n, l }: { n: string; l: string }) {
   return (
     <div
       style={{
-        background: "rgba(11,24,37,0.6)",
+        background: "rgba(10,9,6,0.6)",
         border: "1px solid rgba(212,168,83,0.18)",
         borderRadius: 8,
         padding: "12px 8px",

@@ -47,7 +47,7 @@ export default function ShareButton({ query }: { query: string }) {
         border: "none",
         cursor: "pointer",
         background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-        color: "#0A1422",
+        color: "#0a0906",
         fontWeight: 800,
         fontSize: 16,
         padding: "14px 28px",

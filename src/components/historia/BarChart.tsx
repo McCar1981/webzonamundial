@@ -29,7 +29,7 @@ export default function BarChart({ data, unit = "", decimals = 0, maxOverride }:
             <div className="w-16 sm:w-20 text-right text-gray-400 tabular-nums shrink-0">
               {d.label}
             </div>
-            <div className="flex-1 h-7 bg-[#0B1825] rounded-md overflow-hidden border border-[#1E293B] relative">
+            <div className="flex-1 h-7 bg-[#0a0906] rounded-md overflow-hidden border border-[#241e12] relative">
               <div
                 className="h-full rounded-md transition-all"
                 style={{
@@ -41,7 +41,7 @@ export default function BarChart({ data, unit = "", decimals = 0, maxOverride }:
               />
               <div
                 className="absolute inset-0 flex items-center px-2 text-[10px] sm:text-xs font-bold tabular-nums"
-                style={{ color: pct > 30 ? "#fff" : d.highlight ? GOLD : "#94A3B8" }}
+                style={{ color: pct > 30 ? "#fff" : d.highlight ? GOLD : "#a69a82" }}
               >
                 {fmt(d.value)}
                 {unit && <span className="text-[9px] ml-1 opacity-80">{unit}</span>}

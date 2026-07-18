@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageContext"
 import { SvgIcon } from '@/components/icons'
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras"
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a"
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552"
 
 const LEAGUE_TYPE_ICONS = ["predicciones","match center","ia coach"];
 const FEATURE_ICONS = ["ligas privadas","ranking","chat en vivo","fantasy","ranking","micro-predicciones"];

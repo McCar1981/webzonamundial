@@ -22,7 +22,7 @@ const STORAGE_KEY = "zm:pronostico-terceros:v1";
 const SESSION_FLAG = "zm:terceros-synced";
 const VALID = new Set(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]);
 const TARGET = 8;
-const GREEN = "#22c55e", MID = "#8a94b0";
+const GREEN = "#22c55e", MID = "#a69a82";
 
 function readLocal(): string[] | null {
   try {

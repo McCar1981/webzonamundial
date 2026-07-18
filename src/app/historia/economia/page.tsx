@@ -73,7 +73,7 @@ export default function EconomiaPage() {
         <h2 className="text-lg sm:text-xl font-bold text-white mb-3">
           Premio al campeón (millones USD)
         </h2>
-        <div className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/40">
+        <div className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/40">
           <BarChart data={evolucionPremio} unit="M$" decimals={1} />
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function EconomiaPage() {
         <h2 className="text-lg sm:text-xl font-bold text-white mb-3">
           Bolsa total FIFA (millones USD)
         </h2>
-        <div className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/40">
+        <div className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/40">
           <BarChart data={evolucionTotal} unit="M$" decimals={1} />
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function EconomiaPage() {
             <Link
               key={p.anio}
               href={`/historia/${p.edicionSlug}`}
-              className="block p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
+              className="block p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
             >
               <div className="flex items-baseline gap-3 mb-2 flex-wrap">
                 <span className="text-xl font-black tabular-nums" style={{ color: GOLD }}>
@@ -129,7 +129,7 @@ export default function EconomiaPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {Object.entries(dg).map(([k, v]) => (
-            <div key={k} className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+            <div key={k} className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
               <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-2">
                 {k.replace(/([A-Z])/g, " $1").replace(/_/g, " ")}
               </div>

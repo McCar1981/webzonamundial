@@ -19,7 +19,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BG = '#060B14';
+const BG = '#000000';
 
 export default function SedesIndex() {
   const { t } = useLanguage();
@@ -118,7 +118,7 @@ export default function SedesIndex() {
         <Sparkles className="absolute bottom-10 right-10 w-28 h-28 opacity-[0.06] rotate-[15deg] pointer-events-none hero-emoji-2 text-white" strokeWidth={1} />
 
         <div className="max-w-6xl mx-auto relative">
-          <nav className="hero-breadcrumb flex items-center gap-2 text-sm text-[#6a7a9a] mb-6">
+          <nav className="hero-breadcrumb flex items-center gap-2 text-sm text-[#6e6552] mb-6">
             <Link href="/" className="hover:text-[#c9a84c] transition-colors">{nav.inicio}</Link>
             <span>/</span>
             <span className="text-[#c9a84c]">{nav.sedes}</span>
@@ -131,27 +131,27 @@ export default function SedesIndex() {
             <h1 className="hero-title text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a84c] to-[#e8d48b]">16</span> {sT.heroTitle}
             </h1>
-            <p className="hero-subtitle text-lg text-[#8a94b0] mb-8">
+            <p className="hero-subtitle text-lg text-[#a69a82] mb-8">
               {sT.heroSubtitle}
             </p>
 
             <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-              <div className="hero-stat bg-[#0B1825] rounded-2xl p-4 border border-white/5 hover:border-blue-500/30 transition-colors">
+              <div className="hero-stat bg-[#0a0906] rounded-2xl p-4 border border-white/5 hover:border-blue-500/30 transition-colors">
                 <img src="https://flagcdn.com/w80/us.png" alt="USA" className="w-12 h-8 object-cover rounded mx-auto mb-2 shadow-lg" />
                 <p className="text-2xl font-black text-white">10</p>
-                <p className="text-xs text-[#6a7a9a]">Estados Unidos</p>
+                <p className="text-xs text-[#6e6552]">Estados Unidos</p>
                 <p className="text-xs text-blue-400 mt-1">78 partidos</p>
               </div>
-              <div className="hero-stat bg-[#0B1825] rounded-2xl p-4 border border-white/5 hover:border-green-500/30 transition-colors">
+              <div className="hero-stat bg-[#0a0906] rounded-2xl p-4 border border-white/5 hover:border-green-500/30 transition-colors">
                 <img src="https://flagcdn.com/w80/mx.png" alt="México" className="w-12 h-8 object-cover rounded mx-auto mb-2 shadow-lg" />
                 <p className="text-2xl font-black text-white">3</p>
-                <p className="text-xs text-[#6a7a9a]">México</p>
+                <p className="text-xs text-[#6e6552]">México</p>
                 <p className="text-xs text-green-400 mt-1">13 partidos</p>
               </div>
-              <div className="hero-stat bg-[#0B1825] rounded-2xl p-4 border border-white/5 hover:border-red-500/30 transition-colors">
+              <div className="hero-stat bg-[#0a0906] rounded-2xl p-4 border border-white/5 hover:border-red-500/30 transition-colors">
                 <img src="https://flagcdn.com/w80/ca.png" alt="Canadá" className="w-12 h-8 object-cover rounded mx-auto mb-2 shadow-lg" />
                 <p className="text-2xl font-black text-white">3</p>
-                <p className="text-xs text-[#6a7a9a]">Canadá</p>
+                <p className="text-xs text-[#6e6552]">Canadá</p>
                 <p className="text-xs text-red-400 mt-1">13 partidos</p>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function SedesIndex() {
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-white">{sT.destacadas}</h2>
-              <p className="text-sm text-[#6a7a9a]">{sT.destacadasSub}</p>
+              <p className="text-sm text-[#6e6552]">{sT.destacadasSub}</p>
             </div>
           </div>
 
@@ -216,7 +216,7 @@ export default function SedesIndex() {
                 <img src={`https://flagcdn.com/w80/${flagCode}.png`} alt={pais} className="w-14 h-10 object-cover rounded-lg shadow-lg" />
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white">{pais}</h2>
-                  <p className="text-sm text-[#6a7a9a]">{sedesPais.length} sede{sedesPais.length === 1 ? '' : 's'}</p>
+                  <p className="text-sm text-[#6e6552]">{sedesPais.length} sede{sedesPais.length === 1 ? '' : 's'}</p>
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -241,7 +241,7 @@ export default function SedesIndex() {
 
       {/* CTA Final */}
       <section ref={ctaRef} className="max-w-4xl mx-auto px-4 mb-16">
-        <div className="cta-container relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#c9a84c]/10 via-[#0B1825] to-[#0F1D32] border border-[#c9a84c]/20 p-8 md:p-12 text-center">
+        <div className="cta-container relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#c9a84c]/10 via-[#0a0906] to-[#14110a] border border-[#c9a84c]/20 p-8 md:p-12 text-center">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a84c]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#c9a84c]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           <div className="relative">
@@ -249,15 +249,15 @@ export default function SedesIndex() {
             <h2 className="cta-title text-3xl md:text-4xl font-black text-white mb-4">
               {sT.ctaTitle}
             </h2>
-            <p className="text-[#8a94b0] mb-8 max-w-xl mx-auto">
+            <p className="text-[#a69a82] mb-8 max-w-xl mx-auto">
               {sT.ctaDesc}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/calendario" className="cta-button inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#060B14] font-bold rounded-xl hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)] transition-all hover:-translate-y-0.5">
+              <Link href="/calendario" className="cta-button inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#000000] font-bold rounded-xl hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)] transition-all hover:-translate-y-0.5">
                 <Calendar className="w-5 h-5" />
                 {sT.ctaBtn1}
               </Link>
-              <Link href="/grupos" className="cta-button inline-flex items-center gap-2 px-6 py-3 bg-[#060B14] border border-[#c9a84c]/30 text-[#c9a84c] font-bold rounded-xl hover:bg-[#c9a84c]/10 transition-all">
+              <Link href="/grupos" className="cta-button inline-flex items-center gap-2 px-6 py-3 bg-[#000000] border border-[#c9a84c]/30 text-[#c9a84c] font-bold rounded-xl hover:bg-[#c9a84c]/10 transition-all">
                 <LayoutGrid className="w-5 h-5" />
                 {sT.ctaBtn2}
               </Link>

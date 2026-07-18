@@ -25,14 +25,14 @@ import SprintmarktBanner from "@/components/SprintmarktBanner";
 import { celebrate, celebratePop, haptic } from "@/lib/celebration";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
+const TXT_MUT = "#a69a82";
 const LIGHT = "#f3f5fb";      // blanco roto — fondo card
 const LIGHT2 = "#e7ecf6";     // gris frío — variante
-const INK = "#0e1c33";        // texto sobre card clara
+const INK = "#0a0906";        // texto sobre card clara
 const INK_MUT = "#5a6885";    // texto secundario sobre card clara
 const LINE = "rgba(255,255,255,0.08)";
 
@@ -130,7 +130,7 @@ const CATS: Cat[] = [
     border: "rgba(218,190,95,0.55)", borderHov: "rgba(218,190,95,0.95)",
     glow: "rgba(80,200,120,0.5)", wash: "rgba(54,201,143,0.18)",
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
-    ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
+    ctaColor: "#000000", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
       { icon: "matchcenter", title: "Zona de Ligas", desc: "Ligas y copas del mundo en vivo. Predice cada partido y gana Fútcoins.", href: "/ligas", cta: "Explorar", estado: "Nuevo", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
@@ -273,7 +273,7 @@ function badgeStyle(e: Estado): React.CSSProperties {
     fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase",
     borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap",
     // Brillo interior + sombra fina → relieve "pastilla", no etiqueta plana.
-    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(10,9,6,0.12)",
     backdropFilter: "saturate(140%)",
   };
   if (e === "Disponible") return { ...base, color: "#0a7d52", backgroundImage: "linear-gradient(180deg,#e4faee,#cdf1df)", border: "1px solid #aee9cd" };
@@ -292,7 +292,7 @@ function cardBackground(tint: string, tint2: string, lift: boolean): React.CSSPr
     backgroundImage: `
       radial-gradient(135px 100px at 100% 0%, ${tint}${lift ? "33" : "22"}, transparent 72%),
       radial-gradient(120px 120px at 0% 100%, ${tint2}${lift ? "26" : "16"}, transparent 70%),
-      radial-gradient(circle at 1px 1px, rgba(14,28,51,0.05) 1px, transparent 1.4px)
+      radial-gradient(circle at 1px 1px, rgba(20,17,10,0.05) 1px, transparent 1.4px)
     `,
     backgroundSize: "100% 100%, 100% 100%, 16px 16px",
   };
@@ -400,7 +400,7 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
       </div>
-      <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, letterSpacing: "-0.02em", color: "#071426", marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.title}</h3>
+      <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, letterSpacing: "-0.02em", color: "#000000", marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.title}</h3>
       <p style={{ position: "relative", zIndex: 2, fontSize: 12.5, fontWeight: 500, color: "#344154", lineHeight: 1.35, marginBottom: 14, minHeight: 34, textShadow: "0 1px 1px rgba(255,255,255,0.55)" }}>{mod.desc}</p>
       {/* CTA con identidad del MODO (acento propio) sobre la base de categoría.
           Con accent propio: degradado del acento del modo + texto oscuro legible →
@@ -411,7 +411,7 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
           display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           width: "100%",
           fontSize: 13, fontWeight: 800,
-          color: disabled ? "#4f6394" : (mod.accent ? "#0a1422" : ctaColor),
+          color: disabled ? "#4f6394" : (mod.accent ? "#0a0906" : ctaColor),
           // Placa blanca translúcida bajo el degradado → el CTA se lee nítido aunque
           // el arte sea fuerte justo debajo. Frosted sutil para acabado premium.
           background: disabled
@@ -885,7 +885,7 @@ export default function AppHubPage() {
   // live/próximo/final. Solo se arma si ese partido tiene pieza en el mapa.
   const heroOpening: HeroCfg | null = heroImg && match ? {
     id: "opening", kind: live ? "live" : "base",
-    accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#08111f",
+    accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#000000",
     eyebrow: "", title: null, desc: "", art: "",
     cta1: { label: openingCtaLabel, href: matchHref },
     opening: { wide: heroImg.wide, mobile: heroImg.mobile, time: openingTime, alt: `${match.meta.home.name} vs ${match.meta.away.name}` },
@@ -903,7 +903,7 @@ export default function AppHubPage() {
           if (!img) return null;
           return {
             id: `slot-${m.matchId}`, kind: live ? "live" : "base",
-            accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#08111f",
+            accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#000000",
             eyebrow: "", title: null, desc: "", art: "",
             cta1: { label: openingCtaLabel, href: `/app/matchcenter/${m.slug}` },
             opening: { wide: img.wide, mobile: img.mobile, time: openingTime, alt: `${m.home.name} vs ${m.away.name}` },
@@ -1021,7 +1021,7 @@ export default function AppHubPage() {
   const heroStatusColor = heroStatus.tone === "live" ? CORAL : heroStatus.tone === "done" ? GREEN : heroStatus.tone === "todo" ? GOLD2 : "#fff";
 
   return (
-    <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.022) 1px, transparent 1.6px)`, backgroundSize: "100% 100%, 22px 22px", color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
+    <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #1b160d 0%, ${NAVY} 55%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.022) 1px, transparent 1.6px)`, backgroundSize: "100% 100%, 22px 22px", color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       {/* filo dorado superior: marca premium de la app */}
       <span aria-hidden style={{ position: "fixed", top: 0, left: 0, right: 0, height: 2, zIndex: 60, background: `linear-gradient(90deg, transparent, ${GOLD}aa 30%, ${GOLD2} 50%, ${GOLD}aa 70%, transparent)`, pointerEvents: "none" }} />
       {/* luces ambientales: dos glows enormes que derivan lentísimo tras el contenido
@@ -1038,7 +1038,7 @@ export default function AppHubPage() {
         {/* ═══ 1. HEADER COMPACTO (sticky, cristal) ═══
             Se queda pegado arriba al hacer scroll: la identidad (saldo, nivel,
             perfil) siempre visible sin robar altura — blur + navy translúcido. */}
-        <div style={{ position: "sticky", top: 8, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "10px 14px", borderRadius: 14, background: "rgba(12,27,50,0.78)", backdropFilter: "blur(14px) saturate(140%)", WebkitBackdropFilter: "blur(14px) saturate(140%)", border: `1px solid ${LINE}`, boxShadow: "0 10px 30px rgba(0,0,0,0.28)", marginBottom: 18 }}>
+        <div style={{ position: "sticky", top: 8, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "10px 14px", borderRadius: 14, background: "rgba(10,9,6,0.78)", backdropFilter: "blur(14px) saturate(140%)", WebkitBackdropFilter: "blur(14px) saturate(140%)", border: `1px solid ${LINE}`, boxShadow: "0 10px 30px rgba(0,0,0,0.28)", marginBottom: 18 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
             <span style={{ width: 30, height: 30, borderRadius: 8, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={NAVY} strokeWidth="1.6" /><path d="M12 3v4l3 2M12 3 9 7" stroke={NAVY} strokeWidth="1.4" strokeLinecap="round" /></svg>
@@ -1094,7 +1094,7 @@ export default function AppHubPage() {
                   <span className="zm-hide-sm">Instalar</span>
                 </button>
                 {iosHelpOpen && (
-                  <div role="dialog" aria-label="Cómo instalar la app" style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, zIndex: 60, width: 248, padding: "13px 14px", borderRadius: 14, background: "rgba(12,27,50,0.97)", border: `1px solid ${GOLD}55`, boxShadow: "0 14px 36px rgba(0,0,0,0.5)" }}>
+                  <div role="dialog" aria-label="Cómo instalar la app" style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, zIndex: 60, width: 248, padding: "13px 14px", borderRadius: 14, background: "rgba(10,9,6,0.97)", border: `1px solid ${GOLD}55`, boxShadow: "0 14px 36px rgba(0,0,0,0.5)" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                       <span style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2 }}>Instala ZonaMundial</span>
                       <button onClick={() => setIosHelpOpen(false)} aria-label="Cerrar" style={{ background: "none", border: "none", color: TXT_MUT, fontSize: 16, cursor: "pointer", padding: 0, lineHeight: 1 }}>×</button>
@@ -1122,7 +1122,7 @@ export default function AppHubPage() {
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
             animado + chispas muy discretas. Estado por el partido (live/base). */}
-        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: hero.opening ? 0 : "0 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: hero.opening ? 0 : "0 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#14110a 0%,#0a0906 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
           {hero.opening ? (
             /* ── Slide del JUEGO INAUGURAL: la imagen ya trae todo el texto
                 ("11 JUNIO · JUEGO INAUGURAL", MEXICO, VS, SUDAFRICA). Solo
@@ -1149,8 +1149,8 @@ export default function AppHubPage() {
                     {!live && !finished && <span style={{ fontSize: 10.5, fontWeight: 700, color: "rgba(255,255,255,0.75)", letterSpacing: 0.4 }}>hora local</span>}
                   </span>
                   {openingCountdown
-                    ? <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 13px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>{openingCountdown}</span>
-                    : <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, letterSpacing: 0.3, color: "#fff", background: "rgba(8,16,30,0.5)", border: `1px solid ${heroStatusColor}88`, backdropFilter: "blur(4px)" }}>{heroStatus.label}</span>}
+                    ? <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 13px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a0906", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>{openingCountdown}</span>
+                    : <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 12px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, letterSpacing: 0.3, color: "#fff", background: "rgba(10,9,6,0.5)", border: `1px solid ${heroStatusColor}88`, backdropFilter: "blur(4px)" }}>{heroStatus.label}</span>}
                 </div>
                 {/* Hero = portada limpia: SIN CTAs. La acción vive justo debajo
                     (Tu siguiente jugada · Match Center restaurado · Otros partidos).
@@ -1171,7 +1171,7 @@ export default function AppHubPage() {
             }}
           />
           {/* velo navy sobre el arte para asegurar contraste del título */}
-          <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(100deg, #0c2143 0%, rgba(12,33,67,0.78) 38%, rgba(10,27,51,0.30) 70%, rgba(10,27,51,0.1) 100%)" }} />
+          <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(100deg, #14110a 0%, rgba(20,17,10,0.78) 38%, rgba(10,9,6,0.30) 70%, rgba(10,9,6,0.1) 100%)" }} />
           {/* glow radial animado */}
           <span aria-hidden className="zm-hero-glow" style={{ position: "absolute", top: -70, right: -50, width: 290, height: 290, borderRadius: "50%", background: `radial-gradient(circle, ${hero.accent}30, transparent 70%)`, pointerEvents: "none" }} />
           {/* textura deportiva (rayado de cancha en diagonal, sutil) */}
@@ -1287,7 +1287,7 @@ export default function AppHubPage() {
           if (!act) return null;
           const u = act.urgent;
           return (
-            <Link href={act.href} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 16, borderRadius: 16, textDecoration: "none", color: TXT, background: u ? "linear-gradient(135deg,#f25a50,#dc3f36)" : "linear-gradient(135deg, rgba(201,168,76,0.20), #102a4d 72%)", border: `1px solid ${u ? "#f4aaa4" : GOLD + "66"}`, boxShadow: "0 12px 28px rgba(0,0,0,0.32)" }}>
+            <Link href={act.href} className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 16, borderRadius: 16, textDecoration: "none", color: TXT, background: u ? "linear-gradient(135deg,#f25a50,#dc3f36)" : "linear-gradient(135deg, rgba(201,168,76,0.20), #14110a 72%)", border: `1px solid ${u ? "#f4aaa4" : GOLD + "66"}`, boxShadow: "0 12px 28px rgba(0,0,0,0.32)" }}>
               <span aria-hidden style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>{act.icon}</span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: u ? "rgba(255,255,255,0.85)" : GOLD }}>Tu siguiente jugada</div>
@@ -1332,7 +1332,7 @@ export default function AppHubPage() {
                 const koLocal = m.kickoff ? new Date(m.kickoff).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: false }) : "";
                 const mcHref = `/app/matchcenter/${m.slug}`;
                 return (
-                  <div key={m.matchId} className={`zm-mc${mLive ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", color: TXT, borderRadius: 18, padding: "14px 14px 13px", overflow: "hidden", background: mLive ? "linear-gradient(160deg,#221526 0%,#0a1a31 62%)" : "linear-gradient(160deg,#103060 0%,#0a1a31 62%)", border: `2px solid ${accent}77`, boxShadow: `0 16px 40px rgba(0,0,0,0.42), 0 0 22px ${accent}22` }}>
+                  <div key={m.matchId} className={`zm-mc${mLive ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", color: TXT, borderRadius: 18, padding: "14px 14px 13px", overflow: "hidden", background: mLive ? "linear-gradient(160deg,#221526 0%,#0a0906 62%)" : "linear-gradient(160deg,#1b160d 0%,#0a0906 62%)", border: `2px solid ${accent}77`, boxShadow: `0 16px 40px rgba(0,0,0,0.42), 0 0 22px ${accent}22` }}>
                     <span aria-hidden className={mLive ? "zm-mc-glow" : ""} style={{ position: "absolute", top: "52%", left: -30, width: 120, height: 120, transform: "translateY(-50%)", borderRadius: "50%", background: `radial-gradient(circle, ${accent}33, transparent 70%)`, pointerEvents: "none", opacity: mLive ? undefined : 0.6 }} />
                     <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 11 }}>
                       {mLive ? (
@@ -1386,12 +1386,12 @@ export default function AppHubPage() {
         )}
 
         {match === undefined && !dualSlot && (
-          <div aria-hidden style={{ borderRadius: 22, height: 298, marginBottom: 12, border: "2px solid rgba(201,168,76,0.18)", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 60%)", animation: "zmpulse 1.8s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div aria-hidden style={{ borderRadius: 22, height: 298, marginBottom: 12, border: "2px solid rgba(201,168,76,0.18)", background: "linear-gradient(160deg,#1b160d 0%,#0a0906 60%)", animation: "zmpulse 1.8s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: TXT_MUT }}>Cargando partido del día…</span>
           </div>
         )}
         {match && !dualSlot && (
-          <Link href={matchHref} data-reveal className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
+          <Link href={matchHref} data-reveal className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#1b160d 0%,#0a0906 58%,#1b160d 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
             {/* focos superiores */}
             <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(85% 55% at 50% -12%, ${mcAccent}26, transparent 60%)` }} />
             {/* césped/líneas inferiores del estadio */}
@@ -1415,7 +1415,7 @@ export default function AppHubPage() {
                     tabIndex={0}
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push("/app/predicciones/jugar"); }}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); router.push("/app/predicciones/jugar"); } }}
-                    style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap", color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", textDecoration: "none", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)", flexShrink: 0, cursor: "pointer" }}
+                    style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap", color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", textDecoration: "none", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(10,9,6,0.12)", flexShrink: 0, cursor: "pointer" }}
                   >
                     Predicciones
                   </span>
@@ -1483,7 +1483,7 @@ export default function AppHubPage() {
           // en la visita anterior (rank MENOR = subiste). Solo si hay previo y cambió.
           const delta = rankDelta;
           return (
-          <section data-reveal style={{ marginBottom: 16, borderRadius: 16, padding: "12px 14px 10px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+          <section data-reveal style={{ marginBottom: 16, borderRadius: 16, padding: "12px 14px 10px", background: LIGHT, border: "1px solid rgba(20,17,10,0.06)", boxShadow: "0 12px 28px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
             {/* Cabecera compacta: título + chips de síntesis emocional en una línea. */}
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 9 }}>
               <h2 style={{ fontSize: 13.5, fontWeight: 800, color: INK, display: "inline-flex", alignItems: "center", gap: 6, marginRight: 2 }}>
@@ -1494,7 +1494,7 @@ export default function AppHubPage() {
                 {totalPts >= 0 ? "+" : ""}{totalPts} pts
               </span>
               {totalAns > 0 && (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#4d5a70", background: "#fff", border: "1px solid rgba(14,28,51,0.1)" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 10px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#4d5a70", background: "#fff", border: "1px solid rgba(20,17,10,0.1)" }}>
                   {totalCorrect}/{totalAns} aciertos
                 </span>
               )}
@@ -1510,7 +1510,7 @@ export default function AppHubPage() {
                 const m = MATCHES.find((x) => String(x.i) === r.match_id);
                 const win = r.points > 0 && r.correct > 0;
                 return (
-                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 9, padding: "7px 10px", borderRadius: 10, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.24)" : "rgba(14,28,51,0.08)"}` }}>
+                  <Link key={r.match_id} href={`/app/predicciones/jugar?match=${r.match_id}`} style={{ display: "flex", alignItems: "center", gap: 9, padding: "7px 10px", borderRadius: 10, textDecoration: "none", background: "#fff", border: `1px solid ${win ? "rgba(22,163,74,0.24)" : "rgba(20,17,10,0.08)"}` }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 800, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                         {m ? `${m.h} vs ${m.a}` : "Tu predicción"}
@@ -1550,7 +1550,7 @@ export default function AppHubPage() {
             : 0;
           const missionsTotal = authed ? 3 : 0;
           return (
-        <section data-reveal style={{ marginBottom: 16, borderRadius: 18, padding: "16px 16px 13px", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 60%)", border: `1px solid ${GOLD}33`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
+        <section data-reveal style={{ marginBottom: 16, borderRadius: 18, padding: "16px 16px 13px", background: "linear-gradient(160deg,#1b160d 0%,#0a0906 60%)", border: `1px solid ${GOLD}33`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: TXT, display: "flex", alignItems: "center", gap: 8 }}>
               <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}44,${GOLD2}22)`, border: `1px solid ${GOLD}66`, fontSize: 13 }}>🎯</span>
@@ -1573,7 +1573,7 @@ export default function AppHubPage() {
                   ref={streakBadgeRef}
                   style={atRisk
                     ? { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }
-                    : { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#8a6a13", background: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 4px rgba(8,16,30,0.1)" }}
+                    : { display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#8a6a13", background: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 4px rgba(10,9,6,0.1)" }}
                 >
                   {atRisk
                     ? <>🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(hl as number))}h</>
@@ -1670,7 +1670,7 @@ export default function AppHubPage() {
           if (others.length === 0) return null;
           const pending = others.filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
           return (
-            <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "15px 14px 12px", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 62%)", border: `1px solid ${LINE}`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+            <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "15px 14px 12px", background: "linear-gradient(160deg,#1b160d 0%,#0a0906 62%)", border: `1px solid ${LINE}`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 11, flexWrap: "wrap" }}>
                 <h2 style={{ fontSize: 15.5, fontWeight: 800, color: TXT, display: "flex", alignItems: "center", gap: 8 }}>
                   <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}44,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>⚽</span>
@@ -1746,7 +1746,7 @@ export default function AppHubPage() {
             </p>
           </section>
         ) : (
-          <section data-reveal style={{ position: "relative", overflow: "hidden", marginBottom: 26, borderRadius: 18, padding: "22px 20px", background: "linear-gradient(135deg, #fff 0%, #eef2fb 100%)", border: `1px solid ${GOLD}55`, boxShadow: "0 6px 22px rgba(8,16,30,0.22)" }}>
+          <section data-reveal style={{ position: "relative", overflow: "hidden", marginBottom: 26, borderRadius: 18, padding: "22px 20px", background: "linear-gradient(135deg, #fff 0%, #eef2fb 100%)", border: `1px solid ${GOLD}55`, boxShadow: "0 6px 22px rgba(10,9,6,0.22)" }}>
             <div style={{ position: "absolute", top: -30, right: -20, width: 150, height: 150, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.22), transparent 70%)", pointerEvents: "none" }} />
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <span style={{ width: 52, height: 52, borderRadius: 15, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD},${GOLD2})` }}>
@@ -1758,7 +1758,7 @@ export default function AppHubPage() {
                   Crea tu cuenta gratis para guardar puntos, rachas y entrar al ranking.
                 </p>
               </div>
-              <Link href="/registro" style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: NAVY, color: GOLD2, fontWeight: 800, fontSize: 14.5, textDecoration: "none", boxShadow: "0 6px 18px rgba(10,23,41,0.3)" }}>
+              <Link href="/registro" style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: NAVY, color: GOLD2, fontWeight: 800, fontSize: 14.5, textDecoration: "none", boxShadow: "0 6px 18px rgba(10,9,6,0.3)" }}>
                 Crear cuenta gratis
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </Link>
@@ -1826,7 +1826,7 @@ export default function AppHubPage() {
             borderRadius: 18,
             padding: "18px 20px",
             border: "1px solid rgba(201,168,76,0.32)",
-            background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(11,24,37,0.6))",
+            background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(10,9,6,0.6))",
             display: "flex",
             alignItems: "center",
             gap: 14,
@@ -1846,7 +1846,7 @@ export default function AppHubPage() {
         </section>
 
         {/* ═══ 7. RANKING GLOBAL (card clara, top 5) ═══ */}
-        <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+        <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(20,17,10,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Ranking global</h2>
             <Link href="/app/rankings#tablero" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
@@ -1866,16 +1866,16 @@ export default function AppHubPage() {
                 e.rank === 2 ? { bg: "linear-gradient(135deg,#eef2f8,#c4cedd)", c: "#4d5a70", ring: "#cdd7e5" } :
                 e.rank === 3 ? { bg: "linear-gradient(135deg,#f0cfae,#cf9054)", c: "#6e3f12", ring: "#dca873" } : null;
               return (
-                <div key={e.userId} className="zm-rank-row" style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: e.rank === 1 && filled ? "linear-gradient(90deg,#fffdf4,#fff)" : "#fff", border: e.rank === 1 && filled ? "1px solid #eddfae" : "1px solid rgba(14,28,51,0.05)" }}>
+                <div key={e.userId} className="zm-rank-row" style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: e.rank === 1 && filled ? "linear-gradient(90deg,#fffdf4,#fff)" : "#fff", border: e.rank === 1 && filled ? "1px solid #eddfae" : "1px solid rgba(20,17,10,0.05)" }}>
                   {medal ? (
-                    <span style={{ width: 22, height: 22, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 11.5, color: medal.c, background: medal.bg, border: `1px solid ${medal.ring}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(8,16,30,0.15)" }}>{e.rank}</span>
+                    <span style={{ width: 22, height: 22, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 11.5, color: medal.c, background: medal.bg, border: `1px solid ${medal.ring}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(10,9,6,0.15)" }}>{e.rank}</span>
                   ) : (
                     <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: "#9aa6bd", fontSize: 14 }}>{e.rank}</span>
                   )}
                   <span style={{
                     width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
                     background: e.avatarUrl ? `url(${e.avatarUrl}) center/cover no-repeat` : "#e2e8f3",
-                    color: "#0e1c33", fontWeight: 800, fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "#0a0906", fontWeight: 800, fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center",
                   }} aria-hidden>{filled && !e.avatarUrl ? nm.charAt(0).toUpperCase() : ""}</span>
                   {filled && e.country && /^[a-z]{2}$/i.test(e.country) && (
                     <img src={`https://flagcdn.com/w40/${e.country.toLowerCase()}.png`} alt="" width={20} height={13} style={{ borderRadius: 2, objectFit: "cover", flexShrink: 0 }} />
@@ -1949,19 +1949,19 @@ export default function AppHubPage() {
           animation: zm-skel-shine 1.4s ease-in-out infinite;
         }
         .zm-skel--dark{
-          background:linear-gradient(90deg, rgba(14,28,51,0.06) 25%, rgba(14,28,51,0.13) 50%, rgba(14,28,51,0.06) 75%);
+          background:linear-gradient(90deg, rgba(20,17,10,0.06) 25%, rgba(20,17,10,0.13) 50%, rgba(20,17,10,0.06) 75%);
           background-size:200% 100%;
         }
         @media (prefers-reduced-motion: reduce){
           .zm-skel{ animation:none; background:rgba(232,212,139,0.26); }
-          .zm-skel--dark{ background:rgba(14,28,51,0.09); }
+          .zm-skel--dark{ background:rgba(20,17,10,0.09); }
         }
 
         /* ── Micro-interacciones de las piezas claras ── */
         .zm-stat{ transition: transform .2s ease, box-shadow .2s ease; }
-        .zm-stat:hover{ transform: translateY(-2px); box-shadow: 0 8px 18px rgba(8,16,30,0.1); }
+        .zm-stat:hover{ transform: translateY(-2px); box-shadow: 0 8px 18px rgba(10,9,6,0.1); }
         .zm-rank-row{ transition: transform .18s ease, box-shadow .2s ease; }
-        .zm-rank-row:hover{ transform: translateX(3px); box-shadow: 0 4px 14px rgba(8,16,30,0.08); }
+        .zm-rank-row:hover{ transform: translateX(3px); box-shadow: 0 4px 14px rgba(10,9,6,0.08); }
         .zm-quick:hover{ border-color: rgba(201,168,76,0.5); background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(255,255,255,0.03)); transform: translateY(-1px); }
         .zm-back:hover{ color: #eef2fb; border-color: rgba(201,168,76,0.45); background: rgba(201,168,76,0.08); }
 
@@ -2149,7 +2149,7 @@ function MissionRow({ done, label, sub, href, action, doneLabel = "Hecho", dark 
     : {
         display: "flex", alignItems: "center", gap: 11, padding: "10px 12px", borderRadius: 11,
         background: done ? "#f4f9f4" : "#fff",
-        border: done ? "1px solid #cdeedd" : "1px solid rgba(14,28,51,0.06)",
+        border: done ? "1px solid #cdeedd" : "1px solid rgba(20,17,10,0.06)",
         textDecoration: "none",
       };
   if (!done && href) {

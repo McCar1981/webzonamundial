@@ -15,7 +15,7 @@ export function LigasBanner() {
           style={{
             borderColor: "rgba(201,168,76,0.25)",
             background:
-              "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+              "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
           {/* Glows decorativos */}
@@ -55,14 +55,14 @@ export function LigasBanner() {
                   juega tus ligas todo el año
                 </span>
               </h2>
-              <p className="text-sm text-[#cbd5e1] leading-relaxed max-w-2xl">
+              <p className="text-sm text-[#e6decb] leading-relaxed max-w-2xl">
                 Liga MX, LaLiga, Libertadores, Premier, Champions y más:
                 calendario, clasificación en vivo y cada partido con resumen de
                 IA. Predice el resultado, monta tu once de la jornada y gana{" "}
                 <b className="text-[#FDE68A]">Fútcoins</b> — con la misma cuenta
                 y la misma cartera que ya usas en el Mundial.
               </p>
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#94a3b8]">
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#a69a82]">
                 <span>19 ligas y copas</span>
                 <span>Predicciones con Fútcoins</span>
                 <span>Fantasy de jornada</span>

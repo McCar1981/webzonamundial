@@ -159,7 +159,7 @@ export function MatchCenterBanner() {
   } else if (status === "HT") {
     badge = { text: "DESCANSO", color: GOLD2, pulse: false };
   } else if (finished) {
-    badge = { text: "FINAL", color: "#8a94b0", pulse: false };
+    badge = { text: "FINAL", color: "#a69a82", pulse: false };
   } else if (countdown) {
     // En lugar de "POR COMENZAR" mostramos la cuenta atrás viva.
     badge = { text: `FALTAN ${countdown}`, color: GOLD2, pulse: true };
@@ -177,7 +177,7 @@ export function MatchCenterBanner() {
           style={{
             borderColor: "rgba(201,168,76,0.35)",
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(15,29,50,0.85) 45%, rgba(11,24,37,0.95) 100%)",
+              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(20,17,10,0.85) 45%, rgba(10,9,6,0.95) 100%)",
           }}
         >
           {/* glow decorativo */}
@@ -218,7 +218,7 @@ export function MatchCenterBanner() {
                     className="inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide sm:px-3 sm:text-[10px] sm:tracking-wider"
                     style={{
                       background: "rgba(0,0,0,0.35)",
-                      color: "#aeb8cf",
+                      color: "#b8ac93",
                       border: "1px solid rgba(174,184,207,0.3)",
                     }}
                   >
@@ -254,7 +254,7 @@ export function MatchCenterBanner() {
               {kickoffText && (
                 <span
                   className="whitespace-nowrap text-[12px] font-semibold leading-tight"
-                  style={{ color: "#aeb8cf" }}
+                  style={{ color: "#b8ac93" }}
                 >
                   {kickoffText}
                 </span>
@@ -262,7 +262,7 @@ export function MatchCenterBanner() {
               {venueText && (
                 <span
                   className="inline-flex items-center gap-1 text-[11px] font-medium leading-tight"
-                  style={{ color: "#8a94b0" }}
+                  style={{ color: "#a69a82" }}
                 >
                   <svg
                     width="11"
@@ -289,7 +289,7 @@ export function MatchCenterBanner() {
             <div className="flex shrink-0 flex-col items-center gap-1.5 sm:items-end">
               <span
                 className="text-[11px] font-semibold uppercase tracking-[0.2em]"
-                style={{ color: "#8a94b0" }}
+                style={{ color: "#a69a82" }}
               >
                 Match Center
               </span>
@@ -297,7 +297,7 @@ export function MatchCenterBanner() {
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors"
                 style={{
                   background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
-                  color: "#0B1825",
+                  color: "#0a0906",
                 }}
               >
                 Seguir en directo
@@ -311,7 +311,7 @@ export function MatchCenterBanner() {
                 >
                   <path
                     d="M5 12h14M13 6l6 6-6 6"
-                    stroke="#0B1825"
+                    stroke="#0a0906"
                     strokeWidth="2.4"
                     strokeLinecap="round"
                     strokeLinejoin="round"

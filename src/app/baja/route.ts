@@ -14,10 +14,10 @@ export const dynamic = "force-dynamic";
 function page(title: string, msg: string): NextResponse {
   const esc = (s: string) => s.replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c] as string));
   const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} · ZonaMundial</title></head>
-<body style="margin:0;background:#060B14;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px;">
-  <div style="max-width:460px;text-align:center;background:#0F1D32;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px 28px;">
+<body style="margin:0;background:#000000;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px;">
+  <div style="max-width:460px;text-align:center;background:#14110a;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px 28px;">
     <h1 style="font-size:22px;font-weight:800;margin:0;">${esc(title)}</h1>
-    <p style="color:#8a94b0;margin:12px 0 0;font-size:15px;line-height:1.6;">${esc(msg)}</p>
+    <p style="color:#a69a82;margin:12px 0 0;font-size:15px;line-height:1.6;">${esc(msg)}</p>
     <a href="https://zonamundial.app" style="display:inline-block;margin-top:20px;color:#c9a84c;font-size:14px;text-decoration:none;">Volver a ZonaMundial</a>
   </div>
 </body></html>`;

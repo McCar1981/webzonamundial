@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const DIM = "#6a7a9a";
+const DIM = "#6e6552";
 
 type Side = "home" | "away";
 
@@ -45,7 +45,7 @@ function posLabel(pos: string | null): string {
 function ratingColor(r: number): string {
   if (r >= 8) return "#2fbf6e";
   if (r >= 7) return GOLD;
-  return "#8a94b0";
+  return "#a69a82";
 }
 
 export default function MatchMVP({
@@ -103,7 +103,7 @@ export default function MatchMVP({
   };
 
   return (
-    <section style={{ background: "#0F1D32", borderRadius: 16, border: `1px solid ${GOLD}2e`, padding: "14px 16px", marginBottom: 14 }}>
+    <section style={{ background: "#14110a", borderRadius: 16, border: `1px solid ${GOLD}2e`, padding: "14px 16px", marginBottom: 14 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 11 }}>
         <span style={{ fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, display: "inline-flex", alignItems: "center", gap: 6 }}>
           <span aria-hidden style={{ color: GOLD2 }}>★</span>
@@ -122,7 +122,7 @@ export default function MatchMVP({
             boxShadow: "0 6px 18px rgba(201,168,76,0.35)",
           }}
         >
-          <span style={{ fontSize: 21, fontWeight: 900, color: "#0b1018", fontVariantNumeric: "tabular-nums" }}>{mvp.rating.toFixed(1)}</span>
+          <span style={{ fontSize: 21, fontWeight: 900, color: "#000000", fontVariantNumeric: "tabular-nums" }}>{mvp.rating.toFixed(1)}</span>
         </div>
         <div style={{ minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

@@ -54,7 +54,7 @@ export default function ArbitrosPage() {
           {arbitros.map((a) => (
             <article
               key={a.nombre}
-              className="p-4 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 flex-wrap mb-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -87,7 +87,7 @@ export default function ArbitrosPage() {
               </div>
               <p className="text-sm text-gray-200 leading-relaxed mb-4">{a.datoClave}</p>
               {a.anecdotas.length > 0 && (
-                <div className="space-y-2 pt-3 border-t border-[#1E293B]">
+                <div className="space-y-2 pt-3 border-t border-[#241e12]">
                   <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: GOLD }}>
                     Anécdotas
                   </div>

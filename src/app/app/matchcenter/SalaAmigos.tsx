@@ -8,12 +8,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ensureAnonId } from "@/lib/anon-id";
 
-const BG2 = "#0F1D32";
-const BG3 = "#0B1825";
+const BG2 = "#14110a";
+const BG3 = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 
 interface Msg { id: string; name: string; text?: string; gif?: string; ts: number }
 interface View { room: { code: string; matchId: number }; members: string[]; messages: Msg[] }

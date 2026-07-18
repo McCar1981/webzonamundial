@@ -18,8 +18,8 @@ import {
 } from "./components/DraftIcons";
 import FlagImage from "@/components/FlagImage";
 
-const NAVY = "#0a1729", GOLD = "#c9a84c", GOLD2 = "#e8d48b";
-const TXT = "#eef2fb", TXT_MUT = "#93a1bd", CARD = "#111d32", LINE = "rgba(255,255,255,0.08)";
+const NAVY = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b";
+const TXT = "#eef2fb", TXT_MUT = "#a69a82", CARD = "#14110a", LINE = "rgba(255,255,255,0.08)";
 
 const LEYENDAS: { sel: string; year: number; iso: string }[] = [
   { sel: "Brasil", year: 1970, iso: "br" },

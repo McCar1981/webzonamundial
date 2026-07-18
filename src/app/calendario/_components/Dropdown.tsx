@@ -41,21 +41,21 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
 
   return (
     <div ref={ref} className="relative">
-      <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6a7a9a]">
+      <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#6e6552]">
         {label}
       </span>
       <button
         onClick={() => setOpen(!open)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="flex w-full items-center gap-2 rounded-xl border border-white/8 bg-[#0B1825] px-3 py-2 text-sm font-medium text-white transition-all hover:border-[#c9a84c]/30"
+        className="flex w-full items-center gap-2 rounded-xl border border-white/8 bg-[#0a0906] px-3 py-2 text-sm font-medium text-white transition-all hover:border-[#c9a84c]/30"
       >
         {selected?.icon && (
           <img src={selected.icon} alt="" width={20} height={14} className="h-3.5 w-5 rounded object-cover" />
         )}
         <span className="truncate">{selected?.label}</span>
         <svg
-          className={`ml-auto h-4 w-4 text-[#6a7a9a] transition-transform ${open ? "rotate-180" : ""}`}
+          className={`ml-auto h-4 w-4 text-[#6e6552] transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export function Dropdown({ label, value, options, onChange }: DropdownProps) {
       {open && (
         <div
           role="listbox"
-          className="absolute z-20 mt-1 max-h-56 w-full overflow-y-auto rounded-xl border border-white/10 bg-[#0B1825] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+          className="absolute z-20 mt-1 max-h-56 w-full overflow-y-auto rounded-xl border border-white/10 bg-[#0a0906] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
         >
           {options.map((o) =>
             o.value.startsWith("__header_") ? (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 export const metadata: Metadata = {
   title: "Sobre ZonaMundial: quiénes somos y qué hacemos",
@@ -74,7 +74,7 @@ export default function SobrePage() {
           La plataforma del Mundial 2026, hecha por fans, para fans.
         </h1>
 
-        <p style={{ fontSize: 19, lineHeight: 1.55, color: "#94A3B8", maxWidth: 720, marginBottom: 48 }}>
+        <p style={{ fontSize: 19, lineHeight: 1.55, color: "#a69a82", maxWidth: 720, marginBottom: 48 }}>
           ZonaMundial nace en Valencia con una idea simple: que el Mundial 2026 no se viva solo en la televisión, sino
           también en el teléfono. Predicciones gratis, fantasy de selecciones, trivia diaria, streaming con creadores
           hispanos y un IA Coach que te ayuda a tomar decisiones cuando la cabeza ya no da más. Todo en español,
@@ -215,7 +215,7 @@ export default function SobrePage() {
           </ul>
         </Section>
 
-        <div style={{ marginTop: 48, padding: 28, background: "#0B1825", border: "1px solid rgba(212,168,83,0.3)", borderRadius: 10 }}>
+        <div style={{ marginTop: 48, padding: 28, background: "#0a0906", border: "1px solid rgba(212,168,83,0.3)", borderRadius: 10 }}>
           <h3 style={{ color: GOLD2, fontSize: 20, fontWeight: 700, margin: "0 0 8px" }}>¿Quieres saber más?</h3>
           <p style={{ color: MID, fontSize: 14, margin: "0 0 16px", lineHeight: 1.6 }}>
             Para colaboraciones editoriales, partnerships comerciales, prensa o cualquier consulta corporativa,
@@ -227,7 +227,7 @@ export default function SobrePage() {
               display: "inline-block",
               padding: "10px 18px",
               background: GOLD,
-              color: "#060B14",
+              color: "#000000",
               fontWeight: 600,
               fontSize: 14,
               textDecoration: "none",

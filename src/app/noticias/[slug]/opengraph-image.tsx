@@ -64,7 +64,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           display: "flex",
           flexDirection: "column",
           background:
-            "linear-gradient(135deg, #060B14 0%, #0F1D32 50%, #1a1130 100%)",
+            "linear-gradient(135deg, #000000 0%, #14110a 50%, #1a1130 100%)",
           color: "#fff",
           fontFamily: "Inter, system-ui, sans-serif",
           padding: 64,

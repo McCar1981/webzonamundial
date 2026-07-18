@@ -19,7 +19,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef6a6a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", RED = "#ef6a6a";
 
 export const metadata: Metadata = {
   title: "Fantasy Mundial 2026: arma tu equipo gratis",
@@ -143,7 +143,7 @@ function ScoreTable({ rows, title }: { rows: typeof SCORING_POS; title: string }
 }
 
 const primaryCta: CSSProperties = {
-  display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+  display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
   fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none", whiteSpace: "nowrap",
 };
 const secondaryCta: CSSProperties = {

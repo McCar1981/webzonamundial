@@ -71,8 +71,8 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
               style={{
                 background: isActive
                   ? "linear-gradient(135deg, #C9A84C, #A8893D)"
-                  : "rgba(11,24,37,0.5)",
-                color: isActive ? "#030712" : "var(--bb-text-soft)",
+                  : "rgba(10,9,6,0.5)",
+                color: isActive ? "#000000" : "var(--bb-text-soft)",
                 borderColor: isActive ? "#C9A84C" : "var(--bb-border-subtle)",
               }}
             >
@@ -84,7 +84,7 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
                     background: isActive
                       ? "rgba(0,0,0,0.18)"
                       : "rgba(201,168,76,0.1)",
-                    color: isActive ? "#030712" : "#C9A84C",
+                    color: isActive ? "#000000" : "#C9A84C",
                   }}
                 >
                   {t.count}
@@ -205,13 +205,13 @@ function WCEdition({ edition }: { edition: WorldCupParticipation }) {
         borderColor: isChampion
           ? "rgba(201,168,76,0.3)"
           : "rgba(255,255,255,0.06)",
-        background: isChampion ? "rgba(201,168,76,0.04)" : "rgba(11,24,37,0.4)",
+        background: isChampion ? "rgba(201,168,76,0.04)" : "rgba(10,9,6,0.4)",
       }}
     >
       <header className="w-full p-4 flex items-center gap-3 text-left">
         <div
           className="font-black text-lg flex-shrink-0 w-16"
-          style={{ color: isChampion ? "#C9A84C" : "#cbd5e1" }}
+          style={{ color: isChampion ? "#C9A84C" : "#e6decb" }}
         >
           {edition.year}
         </div>
@@ -283,10 +283,10 @@ function PalmaresPanel({ team }: { team: NationalTeam }) {
       ) : null}
 
       {list.length > 0 ? (
-        <div className="overflow-x-auto rounded-xl border border-[#1E293B]/60">
+        <div className="overflow-x-auto rounded-xl border border-[#241e12]/60">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
+              <tr className="bg-[#0a0906]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
                 <th className="text-left font-semibold py-3 px-3">Competición</th>
                 <th className="text-left font-semibold py-3 px-3">Año</th>
                 <th className="text-left font-semibold py-3 px-3">Posición</th>
@@ -310,7 +310,7 @@ function PalmaresPanel({ team }: { team: NationalTeam }) {
 function PalmaresRow({ t }: { t: Trophy }) {
   const isChamp = t.position === "Campeón";
   return (
-    <tr className="border-t border-[#1E293B]/40">
+    <tr className="border-t border-[#241e12]/40">
       <td className="py-2.5 px-3 text-white font-semibold">{t.competition}</td>
       <td className="py-2.5 px-3 text-[var(--bb-text-muted)] font-mono">{t.year}</td>
       <td className="py-2.5 px-3">
@@ -318,7 +318,7 @@ function PalmaresRow({ t }: { t: Trophy }) {
           className="text-xs font-bold px-2 py-0.5 rounded"
           style={{
             background: isChamp ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)",
-            color: isChamp ? "#C9A84C" : "#cbd5e1",
+            color: isChamp ? "#C9A84C" : "#e6decb",
           }}
         >
           {t.position}
@@ -358,7 +358,7 @@ function RecordsPanel({ team }: { team: NationalTeam }) {
 
 function RecordCard({ label, rec }: { label: string; rec: PlayerRecord }) {
   return (
-    <div className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-4">
+    <div className="rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-4">
       <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-2">
         {label}
       </div>
@@ -428,7 +428,7 @@ function IconicosPanel({ team }: { team: NationalTeam }) {
 
 function IconicCard({ m }: { m: IconicMatch }) {
   return (
-    <article className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-5">
+    <article className="rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-5">
       <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
         <div>
           <h3 className="text-base font-black text-white mb-1">{m.title}</h3>
@@ -486,7 +486,7 @@ function CuriosityCard({ c }: { c: Trivia }) {
       style={{
         borderColor: "rgba(201,168,76,0.15)",
         background: "rgba(201,168,76,0.03)",
-        color: "#cbd5e1",
+        color: "#e6decb",
       }}
     >
       <div className="flex items-start gap-2">
@@ -522,7 +522,7 @@ function Stat({
           : "rgba(255,255,255,0.05)",
         background: accent
           ? "rgba(201,168,76,0.06)"
-          : "rgba(11,24,37,0.5)",
+          : "rgba(10,9,6,0.5)",
       }}
     >
       <div

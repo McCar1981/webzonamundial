@@ -11,12 +11,12 @@ import Link from "next/link";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { MatchMeta } from "@/lib/match-center/types";
 
-const BG2 = "#0F1D32";
-const BG3 = "#0B1825";
+const BG2 = "#14110a";
+const BG3 = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 
 const MAX_LEN = 280;
 
@@ -223,7 +223,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
               padding: "0 5px",
               borderRadius: 999,
               background: GOLD,
-              color: "#0B1825",
+              color: "#0a0906",
               fontSize: 11,
               fontWeight: 800,
               display: "flex",
@@ -250,7 +250,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
             // Sobre la barra de navegación (950) y el lanzador del Coach (1200):
             // antes, con 70, la bottom-nav se dibujaba ENCIMA del panel abierto.
             zIndex: 1300,
-            background: "rgba(3,7,14,0.62)",
+            background: "rgba(0,0,0,0.62)",
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",
@@ -441,7 +441,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M12 20V5M5 12l7-7 7 7" stroke="#0B1825" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M12 20V5M5 12l7-7 7 7" stroke="#0a0906" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </form>
@@ -466,7 +466,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
                   href={loginHref}
                   style={{
                     background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
-                    color: "#0B1825",
+                    color: "#0a0906",
                     borderRadius: 999,
                     fontSize: 13,
                     fontWeight: 800,

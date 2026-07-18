@@ -30,7 +30,7 @@ function Stat({ label, value }: { label: string; value: string }) {
       }}
     >
       <span style={{ fontSize: 52, fontWeight: 900, color: "#fff", lineHeight: 1 }}>{value}</span>
-      <span style={{ fontSize: 20, color: "#9db0c9", fontWeight: 600 }}>{label}</span>
+      <span style={{ fontSize: 20, color: "#a69a82", fontWeight: 600 }}>{label}</span>
     </div>
   );
 }
@@ -48,7 +48,7 @@ export async function GET(request: Request) {
           display: "flex",
           flexDirection: "column",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 65%), linear-gradient(180deg, #060B14, #0B1825)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 65%), linear-gradient(180deg, #000000, #0a0906)",
           color: "#fff",
           fontFamily: "sans-serif",
           padding: "56px 72px",
@@ -60,12 +60,12 @@ export async function GET(request: Request) {
           <span style={{ fontSize: 26, fontWeight: 900, letterSpacing: 6, color: GOLD }}>
             TU MUNDIAL 2026
           </span>
-          <span style={{ fontSize: 24, fontWeight: 800, color: "#cbd5e1" }}>zonamundial.app</span>
+          <span style={{ fontSize: 24, fontWeight: 800, color: "#e6decb" }}>zonamundial.app</span>
         </div>
 
         {/* Nombre */}
         <div style={{ display: "flex", flexDirection: "column", marginTop: 34 }}>
-          <span style={{ fontSize: 34, color: "#9db0c9", fontWeight: 600 }}>El Mundial de</span>
+          <span style={{ fontSize: 34, color: "#a69a82", fontWeight: 600 }}>El Mundial de</span>
           <span style={{ fontSize: 76, fontWeight: 900, color: "#fff", lineHeight: 1.05 }}>{s.name}</span>
         </div>
 
@@ -85,7 +85,7 @@ export async function GET(request: Request) {
             gap: 40,
             marginTop: "auto",
             fontSize: 26,
-            color: "#cbd5e1",
+            color: "#e6decb",
             fontWeight: 700,
           }}
         >

@@ -15,7 +15,7 @@ export function CalendarBanner() {
           style={{
             borderColor: "rgba(201,168,76,0.25)",
             background:
-              "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+              "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
           {/* Glow dorado decorativo */}
@@ -56,13 +56,13 @@ export function CalendarBanner() {
                 </span>{" "}
                 a tu calendario
               </h2>
-              <p className="text-sm text-[#cbd5e1] leading-relaxed max-w-2xl">
+              <p className="text-sm text-[#e6decb] leading-relaxed max-w-2xl">
                 104 partidos, 16 sedes, recordatorios automáticos antes del
                 kickoff, link al estadio y hasta el himno de cada selección en
                 Spotify. Apple, Google y Outlook. Se actualiza solo cuando
                 cambian fechas.
               </p>
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#94a3b8]">
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#a69a82]">
                 <span>Recordatorios 24h / 2h / 15min</span>
                 <span>Mapas integrados</span>
                 <span>Himnos en Spotify</span>

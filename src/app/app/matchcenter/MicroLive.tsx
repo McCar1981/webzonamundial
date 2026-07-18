@@ -13,8 +13,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
-const BG = "#060B14";
-const SURFACE = "#0F1D32";
+const BG = "#000000";
+const SURFACE = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD_LIGHT = "#e8d48b";
 

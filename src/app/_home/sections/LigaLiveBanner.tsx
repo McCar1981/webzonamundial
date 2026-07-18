@@ -90,33 +90,33 @@ function FallbackCta() {
           style={{
             borderColor: "rgba(201,168,76,0.35)",
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(15,29,50,0.85) 45%, rgba(11,24,37,0.95) 100%)",
+              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(20,17,10,0.85) 45%, rgba(10,9,6,0.95) 100%)",
           }}
         >
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <span
                 className="text-[11px] font-semibold uppercase tracking-[0.2em]"
-                style={{ color: "#8a94b0" }}
+                style={{ color: "#a69a82" }}
               >
                 Zona de Ligas
               </span>
               <div className="mt-1 text-lg font-bold text-white sm:text-xl">
                 El fútbol no se acaba: Liga MX, LaLiga, Champions y 16 más
               </div>
-              <div className="mt-1 text-[13px]" style={{ color: "#aeb8cf" }}>
+              <div className="mt-1 text-[13px]" style={{ color: "#b8ac93" }}>
                 Calendario, clasificación en vivo, predicciones con Fútcoins y fantasy de jornada.
               </div>
             </div>
             <span
               className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold"
-              style={{ background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`, color: "#0B1825" }}
+              style={{ background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`, color: "#0a0906" }}
             >
               Explorar ligas
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
                 <path
                   d="M5 12h14M13 6l6 6-6 6"
-                  stroke="#0B1825"
+                  stroke="#0a0906"
                   strokeWidth="2.4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -176,7 +176,7 @@ export function LigaLiveBanner() {
     const min = fixture.elapsed != null ? `${fixture.elapsed}'` : "";
     badge = { text: `EN VIVO ${min}`.trim(), color: "#e63946", pulse: true };
   } else if (finished) {
-    badge = { text: "FINAL", color: "#8a94b0", pulse: false };
+    badge = { text: "FINAL", color: "#a69a82", pulse: false };
   } else {
     badge = { text: "HOY", color: GOLD2, pulse: true };
   }
@@ -193,7 +193,7 @@ export function LigaLiveBanner() {
           style={{
             borderColor: "rgba(201,168,76,0.35)",
             background:
-              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(15,29,50,0.85) 45%, rgba(11,24,37,0.95) 100%)",
+              "linear-gradient(135deg, rgba(201,168,76,0.14) 0%, rgba(20,17,10,0.85) 45%, rgba(10,9,6,0.95) 100%)",
           }}
         >
           <span
@@ -230,7 +230,7 @@ export function LigaLiveBanner() {
                   className="inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide sm:px-3 sm:text-[10px] sm:tracking-wider"
                   style={{
                     background: "rgba(0,0,0,0.35)",
-                    color: "#aeb8cf",
+                    color: "#b8ac93",
                     border: "1px solid rgba(174,184,207,0.3)",
                   }}
                 >
@@ -256,7 +256,7 @@ export function LigaLiveBanner() {
               {kickoffText && (
                 <span
                   className="whitespace-nowrap text-[12px] font-semibold leading-tight"
-                  style={{ color: "#aeb8cf" }}
+                  style={{ color: "#b8ac93" }}
                 >
                   {kickoffText}
                 </span>
@@ -266,7 +266,7 @@ export function LigaLiveBanner() {
             <div className="flex shrink-0 flex-col items-center gap-1.5 sm:items-end">
               <span
                 className="text-[11px] font-semibold uppercase tracking-[0.2em]"
-                style={{ color: "#8a94b0" }}
+                style={{ color: "#a69a82" }}
               >
                 Zona de Ligas
               </span>
@@ -274,7 +274,7 @@ export function LigaLiveBanner() {
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-colors"
                 style={{
                   background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
-                  color: "#0B1825",
+                  color: "#0a0906",
                 }}
               >
                 {live ? "Seguir en directo" : "Centro de Partido"}
@@ -288,7 +288,7 @@ export function LigaLiveBanner() {
                 >
                   <path
                     d="M5 12h14M13 6l6 6-6 6"
-                    stroke="#0B1825"
+                    stroke="#0a0906"
                     strokeWidth="2.4"
                     strokeLinecap="round"
                     strokeLinejoin="round"

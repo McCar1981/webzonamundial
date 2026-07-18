@@ -12,7 +12,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const CYCLE = 7; // la curva de premio del check-in va en ciclos de 7 días (día 7 = cofre)
 
 export default function HabitStrip() {

@@ -13,7 +13,7 @@ import { Lock } from "lucide-react";
 import { useEntitlements } from "./EntitlementsProvider";
 import { PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
 
-const BG2 = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
+const BG2 = "#14110a", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82";
 
 interface ProGateProps {
   /** Qué desbloquea Pro aquí, p.ej. "Los 8 tipos de predicción". */
@@ -77,7 +77,7 @@ export default function ProGate({ title, description, compact, children }: ProGa
         style={{
           display: "inline-block",
           background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-          color: "#060B14", fontWeight: 800, fontSize: 13.5,
+          color: "#000000", fontWeight: 800, fontSize: 13.5,
           padding: "9px 18px", borderRadius: 10, textDecoration: "none",
         }}
       >

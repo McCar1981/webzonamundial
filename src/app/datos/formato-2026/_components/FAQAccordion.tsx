@@ -16,7 +16,7 @@ export function FAQAccordion({ title, items }: Props) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-[#0B1825] p-5 sm:p-8">
+    <div className="rounded-3xl border border-white/5 bg-[#0a0906] p-5 sm:p-8">
       <h3 className="mb-6 text-xl sm:text-2xl font-black text-white">{title}</h3>
       <div className="space-y-3">
         {items.map((item, idx) => {
@@ -24,7 +24,7 @@ export function FAQAccordion({ title, items }: Props) {
           return (
             <div
               key={idx}
-              className={`rounded-2xl border transition-colors ${isOpen ? 'border-[#c9a84c]/30 bg-[#060B14]' : 'border-white/5 bg-[#060B14] hover:border-white/10'}`}
+              className={`rounded-2xl border transition-colors ${isOpen ? 'border-[#c9a84c]/30 bg-[#000000]' : 'border-white/5 bg-[#000000] hover:border-white/10'}`}
             >
               <button
                 onClick={() => setOpen(isOpen ? null : idx)}
@@ -41,7 +41,7 @@ export function FAQAccordion({ title, items }: Props) {
                 className="overflow-hidden transition-all"
                 style={{ maxHeight: isOpen ? 200 : 0, opacity: isOpen ? 1 : 0 }}
               >
-                <p className="px-4 pb-4 text-sm leading-relaxed text-[#8a94b0]">{item.a}</p>
+                <p className="px-4 pb-4 text-sm leading-relaxed text-[#a69a82]">{item.a}</p>
               </div>
             </div>
           );

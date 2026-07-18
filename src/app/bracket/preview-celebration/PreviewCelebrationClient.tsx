@@ -73,7 +73,7 @@ export default function PreviewCelebrationClient({
     <div
       style={{
         minHeight: "100vh",
-        background: "#060B14",
+        background: "#000000",
         color: "#fff",
         fontFamily:
           "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
@@ -194,7 +194,7 @@ export default function PreviewCelebrationClient({
             background: show
               ? "rgba(255,255,255,0.06)"
               : "linear-gradient(135deg, #C9A84C, #E8C76B)",
-            color: show ? "#fff" : "#0a0a0a",
+            color: show ? "#fff" : "#000000",
             border: show ? "1px solid rgba(255,255,255,0.15)" : "none",
             borderRadius: 8,
             fontSize: 13,

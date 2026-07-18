@@ -136,8 +136,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   other: {
-    "msapplication-TileColor": "#0b0b0f",
-    "theme-color": "#0b0b0f",
+    "msapplication-TileColor": "#000000",
+    "theme-color": "#000000",
   },
 };
 
@@ -145,7 +145,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0b0b0f",
+  themeColor: "#000000",
   colorScheme: "dark light",
 };
 

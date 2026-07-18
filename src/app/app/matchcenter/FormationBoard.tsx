@@ -20,9 +20,9 @@ import { kitColors } from "@/data/kits-2026";
 interface PlayerStatus { goals: number; ownGoals: number; yellow: boolean; red: boolean; subOff: boolean; subOn: boolean; }
 const normKey = (name?: string): string => lastName(name || "").toLowerCase().trim();
 
-const BG2 = "#0F1D32";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const BG2 = "#14110a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 const GOLD2 = "#e8d48b";
 
 // Silueta de camiseta (misma que el campo animado), centrada en (0,0).
@@ -40,7 +40,7 @@ function lum(hex: string): number {
 }
 /** Texto legible sobre la camiseta (negro o blanco según luminancia). */
 function inkOn(fill: string): string {
-  return lum(fill) > 0.6 ? "#10202c" : "#ffffff";
+  return lum(fill) > 0.6 ? "#0a0906" : "#ffffff";
 }
 
 interface KitPair {
@@ -55,7 +55,7 @@ function teamKit(flag: string, fallback: string): KitPair {
   const primary = real?.primary || fallback || "#3b82f6";
   // Aclara primarios muy oscuros para que se lean sobre el césped.
   const out = lum(primary) < 0.16 ? "#2b3a52" : primary;
-  const trim = real?.secondary || (lum(out) > 0.6 ? "#10202c" : "#ffffff");
+  const trim = real?.secondary || (lum(out) > 0.6 ? "#0a0906" : "#ffffff");
   // Portero: alto contraste con la camiseta de campo.
   const gk = lum(out) > 0.5 ? "#1f2d44" : "#16e0a8";
   return { out, gk, trim };
@@ -110,7 +110,7 @@ export default function FormationBoard({ team, lineup, allowPending, events, sid
   // color. El dorsal va superpuesto sobre el pecho con contraste automático.
   const kc = kitColors(team.flag);
   const jersey = kc?.image ?? null;
-  const numInk = kc && lum(kc.primary) > 0.6 ? "#0b1825" : "#ffffff";
+  const numInk = kc && lum(kc.primary) > 0.6 ? "#0a0906" : "#ffffff";
   const numStroke = numInk === "#ffffff" ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.7)";
 
   // viewBox vertical; la selección ataca hacia ARRIBA (portero abajo).
@@ -185,7 +185,7 @@ export default function FormationBoard({ team, lineup, allowPending, events, sid
                 ) : (
                   // Respaldo (no debería ocurrir: las 48 tienen PNG).
                   <g transform="scale(0.92)">
-                    <path d={SHIRT} fill={fill} stroke="#0b1825" strokeWidth="1.2" />
+                    <path d={SHIRT} fill={fill} stroke="#0a0906" strokeWidth="1.2" />
                     <path d="M-3,-8 Q0,-6 3,-8 L2,-5 Q0,-3.6 -2,-5 Z" fill={kit.trim} opacity="0.95" />
                   </g>
                 )}
@@ -195,7 +195,7 @@ export default function FormationBoard({ team, lineup, allowPending, events, sid
                   paintOrder="stroke" fontFamily="'Oswald','Outfit',sans-serif">{p.num}</text>
                 {/* nombre */}
                 <g transform="translate(0,28)">
-                  <rect x="-31" y="-9" width="62" height="16" rx="4" fill="rgba(6,15,24,0.78)" />
+                  <rect x="-31" y="-9" width="62" height="16" rx="4" fill="rgba(10,9,6,0.78)" />
                   <text x="0" y="2.5" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#eef2f9">{label.length > 11 ? label.slice(0, 10) + "…" : label}</text>
                 </g>
                 {/* distintivos: gol / tarjeta / sustituido */}
@@ -245,10 +245,10 @@ function PlayerBadges({ st }: { st?: PlayerStatus }) {
       {/* GOL(es): balón arriba-izquierda */}
       {st.goals > 0 && (
         <g transform="translate(-13,-11)">
-          <circle r="5.2" fill="#fff" stroke="#0b1825" strokeWidth="0.7" />
-          <circle r="1.7" fill="#16202c" />
+          <circle r="5.2" fill="#fff" stroke="#0a0906" strokeWidth="0.7" />
+          <circle r="1.7" fill="#14110a" />
           {st.goals > 1 && (
-            <text x="0" y="12.5" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fff" stroke="#0b1825" strokeWidth="0.5" paintOrder="stroke">×{st.goals}</text>
+            <text x="0" y="12.5" textAnchor="middle" fontSize="7" fontWeight="900" fill="#fff" stroke="#0a0906" strokeWidth="0.5" paintOrder="stroke">×{st.goals}</text>
           )}
         </g>
       )}
@@ -256,21 +256,21 @@ function PlayerBadges({ st }: { st?: PlayerStatus }) {
       {st.ownGoals > 0 && (
         <g transform="translate(-13,-11)">
           <circle r="5.2" fill="#fff" stroke="#e5484d" strokeWidth="1.2" />
-          <circle r="1.7" fill="#16202c" />
+          <circle r="1.7" fill="#14110a" />
         </g>
       )}
       {/* TARJETAS: arriba-derecha (amarilla detrás, roja delante para 2ª amarilla) */}
       {st.yellow && !st.red && (
-        <rect x="9" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 12.2 -10)" />
+        <rect x="9" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0a0906" strokeWidth="0.5" transform="rotate(9 12.2 -10)" />
       )}
       {st.red && (
         <>
-          {st.yellow && <rect x="6.8" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 10 -10)" />}
-          <rect x="10" y="-14" width="6.4" height="9" rx="1.2" fill="#e5484d" stroke="#0b1825" strokeWidth="0.5" transform="rotate(9 13.2 -9.5)" />
+          {st.yellow && <rect x="6.8" y="-14.5" width="6.4" height="9" rx="1.2" fill="#f6c700" stroke="#0a0906" strokeWidth="0.5" transform="rotate(9 10 -10)" />}
+          <rect x="10" y="-14" width="6.4" height="9" rx="1.2" fill="#e5484d" stroke="#0a0906" strokeWidth="0.5" transform="rotate(9 13.2 -9.5)" />
         </>
       )}
       {/* SUSTITUIDO: flecha roja hacia abajo, abajo-derecha */}
-      {st.subOff && <path d="M9.5,5.5 h7 l-3.5,6.2 z" fill="#e5484d" stroke="#0b1825" strokeWidth="0.5" />}
+      {st.subOff && <path d="M9.5,5.5 h7 l-3.5,6.2 z" fill="#e5484d" stroke="#0a0906" strokeWidth="0.5" />}
     </g>
   );
 }
@@ -283,7 +283,7 @@ function SubBadges({ st }: { st?: PlayerStatus }) {
     <svg key="on" width="9" height="9" viewBox="0 0 10 10" aria-label="entró"><path d="M5 1 L9 8 L1 8 Z" fill="#22c55e" /></svg>
   );
   if (st.goals > 0) items.push(
-    <span key="g" title="Gol" style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "#fff", border: "1px solid #0b1825" }} />
+    <span key="g" title="Gol" style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "#fff", border: "1px solid #0a0906" }} />
   );
   if (st.ownGoals > 0) items.push(
     <span key="og" title="Gol en propia" style={{ display: "inline-block", width: 9, height: 9, borderRadius: "50%", background: "#fff", border: "1.5px solid #e5484d" }} />

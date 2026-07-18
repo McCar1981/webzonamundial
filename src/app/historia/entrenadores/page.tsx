@@ -60,7 +60,7 @@ export default function EntrenadoresPage() {
           {sorted.map((e) => (
             <article
               key={e.slug}
-              className="p-4 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
               style={e.titulos.length > 0 ? { borderColor: "rgba(201,168,76,0.2)" } : undefined}
             >
               <div className="flex items-baseline gap-3 flex-wrap mb-2">
@@ -88,7 +88,7 @@ export default function EntrenadoresPage() {
               <p className="italic text-sm text-gray-300 mb-3">«{e.subtitulo}»</p>
               <p className="text-sm text-gray-200 leading-relaxed mb-3">{e.datoClave}</p>
               {e.anecdotas.length > 0 && (
-                <div className="space-y-1.5 pt-3 border-t border-[#1E293B]">
+                <div className="space-y-1.5 pt-3 border-t border-[#241e12]">
                   <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: GOLD }}>
                     Anécdotas
                   </div>

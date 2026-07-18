@@ -24,7 +24,7 @@ export function EstadioCard({ sede }: Props) {
   return (
     <Link
       href={`/sedes/${sede.slug}`}
-      className="group relative block overflow-hidden rounded-2xl border border-white/5 bg-[#0B1825] transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/30 hover:shadow-[0_8px_32px_rgba(201,168,76,0.12)]"
+      className="group relative block overflow-hidden rounded-2xl border border-white/5 bg-[#0a0906] transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/30 hover:shadow-[0_8px_32px_rgba(201,168,76,0.12)]"
     >
       {/* Imagen del estadio */}
       <div className="relative h-44 overflow-hidden">
@@ -36,21 +36,21 @@ export function EstadioCard({ sede }: Props) {
             loading="lazy"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0F1D32] to-[#1a2a3f]">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#14110a] to-[#1b160d]">
             <SvgIcon name="match center" size={48} className="inline-block opacity-50" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent" />
 
         {/* Badges */}
         <div className="absolute right-3 top-3 flex flex-col gap-1.5">
           {isFinal && (
-            <span className="rounded-full bg-[#c9a84c] px-2.5 py-1 text-[10px] font-black text-[#060B14] shadow-lg">
+            <span className="rounded-full bg-[#c9a84c] px-2.5 py-1 text-[10px] font-black text-[#000000] shadow-lg">
               FINAL
             </span>
           )}
           {isSemifinal && !isFinal && (
-            <span className="rounded-full bg-[#c9a84c]/90 px-2.5 py-1 text-[10px] font-black text-[#060B14] shadow-lg">
+            <span className="rounded-full bg-[#c9a84c]/90 px-2.5 py-1 text-[10px] font-black text-[#000000] shadow-lg">
               SEMIFINAL
             </span>
           )}
@@ -81,20 +81,20 @@ export function EstadioCard({ sede }: Props) {
         <h3 className="text-base font-bold leading-tight text-white transition-colors group-hover:text-[#c9a84c]">
           {sede.nombre}
         </h3>
-        <p className="mt-0.5 text-sm text-[#6a7a9a]">{sede.estadio}</p>
+        <p className="mt-0.5 text-sm text-[#6e6552]">{sede.estadio}</p>
 
         {/* Stats grid */}
         <div className="mt-3 grid grid-cols-3 gap-2">
-          <div className="rounded-lg bg-[#060B14] p-2 text-center">
-            <p className="text-[10px] uppercase text-[#6a7a9a]">{sT.capacidad}</p>
+          <div className="rounded-lg bg-[#000000] p-2 text-center">
+            <p className="text-[10px] uppercase text-[#6e6552]">{sT.capacidad}</p>
             <p className="text-sm font-bold text-[#c9a84c]">{sede.capacidad.toLocaleString()}</p>
           </div>
-          <div className="rounded-lg bg-[#060B14] p-2 text-center">
-            <p className="text-[10px] uppercase text-[#6a7a9a]">{sT.partidos}</p>
+          <div className="rounded-lg bg-[#000000] p-2 text-center">
+            <p className="text-[10px] uppercase text-[#6e6552]">{sT.partidos}</p>
             <p className="text-sm font-bold text-white">{sede.totalPartidos}</p>
           </div>
-          <div className="rounded-lg bg-[#060B14] p-2 text-center">
-            <p className="text-[10px] uppercase text-[#6a7a9a]">{sT.clima}</p>
+          <div className="rounded-lg bg-[#000000] p-2 text-center">
+            <p className="text-[10px] uppercase text-[#6e6552]">{sT.clima}</p>
             <p className="text-sm font-bold text-white">{sede.clima.tempMedia}</p>
           </div>
         </div>
@@ -107,14 +107,14 @@ export function EstadioCard({ sede }: Props) {
               className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
                 fase === 'FINAL' || fase === 'Semifinal'
                   ? 'border border-[#c9a84c]/30 bg-[#c9a84c]/15 text-[#c9a84c]'
-                  : 'bg-white/5 text-[#8a94b0]'
+                  : 'bg-white/5 text-[#a69a82]'
               }`}
             >
               {fase}
             </span>
           ))}
           {sede.fasesQueAlberga.length > 3 && (
-            <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-[#6a7a9a]">
+            <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-[#6e6552]">
               +{sede.fasesQueAlberga.length - 3}
             </span>
           )}
@@ -122,7 +122,7 @@ export function EstadioCard({ sede }: Props) {
 
         {/* Hover indicator */}
         <div className="mt-2 flex items-center justify-between border-t border-white/5 pt-2">
-          <span className="text-xs text-[#6a7a9a] transition-colors group-hover:text-[#c9a84c]">
+          <span className="text-xs text-[#6e6552] transition-colors group-hover:text-[#c9a84c]">
             {sT.verGuia}
           </span>
           <span className="text-[#c9a84c] transition-transform group-hover:translate-x-1">→</span>

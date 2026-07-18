@@ -70,7 +70,7 @@ interface Kit { fill: string; txt: string; line: string }
 function kitFrom(fill: string): Kit {
   return {
     fill,
-    txt: lumOf(fill) > 0.62 ? "#10202c" : "#ffffff",
+    txt: lumOf(fill) > 0.62 ? "#0a0906" : "#ffffff",
     line: lumOf(fill) > 0.62 ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.55)",
   };
 }
@@ -218,15 +218,15 @@ function Player({
       <ellipse cx={2} cy={20} rx={13} ry={4} fill="rgba(0,0,0,0.32)" />
       {/* Piernas con micro-animación de carrera */}
       <g>
-        <rect className="mc-leg" x={-5} y={15} width={3.6} height={9} rx={1.6} fill={kit.fill} stroke="#0b1825" strokeWidth={0.8}
+        <rect className="mc-leg" x={-5} y={15} width={3.6} height={9} rx={1.6} fill={kit.fill} stroke="#0a0906" strokeWidth={0.8}
           style={{ transformBox: "fill-box", transformOrigin: "top", animationDelay: legDelay } as React.CSSProperties} />
-        <rect className="mc-leg mc-leg2" x={1.4} y={15} width={3.6} height={9} rx={1.6} fill={kit.fill} stroke="#0b1825" strokeWidth={0.8}
+        <rect className="mc-leg mc-leg2" x={1.4} y={15} width={3.6} height={9} rx={1.6} fill={kit.fill} stroke="#0a0906" strokeWidth={0.8}
           style={{ transformBox: "fill-box", transformOrigin: "top", animationDelay: legDelay } as React.CSSProperties} />
       </g>
       {/* Cabeza */}
       <circle cx={0} cy={-14} r={5.6} fill="#e8c8a6" stroke="rgba(0,0,0,0.3)" strokeWidth={1} />
       {/* Camiseta (color de la selección) */}
-      <path d={SHIRT} fill={kit.fill} stroke="#0b1825" strokeWidth={1.3} />
+      <path d={SHIRT} fill={kit.fill} stroke="#0a0906" strokeWidth={1.3} />
       {/* Relieve de la camiseta */}
       <path d={SHIRT} fill="url(#kitShade)" />
       {/* Dorsal */}
@@ -236,7 +236,7 @@ function Player({
       </text>
       {/* Nombre */}
       {node.label && (
-        <text x={0} y={32} textAnchor="middle" fontSize={11.5} fontWeight={700} fill="#fff" stroke="#0b1825"
+        <text x={0} y={32} textAnchor="middle" fontSize={11.5} fontWeight={700} fill="#fff" stroke="#0a0906"
           strokeWidth={2.8} paintOrder="stroke" style={{ pointerEvents: "none", fontFamily: "'Rajdhani','Outfit',sans-serif" }}>
           {node.label}
         </text>
@@ -555,7 +555,7 @@ export default function Pitch({
   const night = weather.tod === "night";
   const dusk = weather.tod === "dusk";
   const floodOp = night ? 1 : dusk ? 0.6 : 0.25;
-  const skyTint = night ? "rgba(8,14,30,0.55)" : dusk ? "rgba(40,24,60,0.3)" : "rgba(0,0,0,0)";
+  const skyTint = night ? "rgba(10,9,6,0.55)" : dusk ? "rgba(40,24,60,0.3)" : "rgba(0,0,0,0)";
   const crowdGlow = clamp(0.05 + intensity * 0.14, 0.05, 0.22);
   const ch = FH / HY, cwh = FW / HX;
 
@@ -621,8 +621,8 @@ export default function Pitch({
         </linearGradient>
         <pattern id="seats" width="12" height="9" patternUnits="userSpaceOnUse">
           <rect width="12" height="9" fill="#11161f" />
-          <circle cx="3" cy="3" r="1.3" fill="#1d2733" />
-          <circle cx="9" cy="7" r="1.3" fill="#1d2733" />
+          <circle cx="3" cy="3" r="1.3" fill="#14110a" />
+          <circle cx="9" cy="7" r="1.3" fill="#14110a" />
         </pattern>
         <clipPath id="fieldClip">
           <rect x={PAD} y={PAD} width={FW} height={FH} rx={8} />
@@ -633,7 +633,7 @@ export default function Pitch({
       </defs>
 
       {/* Estadio: base oscura */}
-      <rect x={0} y={0} width={W} height={H} fill="#0a0e15" />
+      <rect x={0} y={0} width={W} height={H} fill="#000000" />
 
       {/* Gradas + público + focos: solo en escritorio (en móvil se recorta al campo) */}
       {!compact && (
@@ -651,7 +651,7 @@ export default function Pitch({
             <path key={`cf-${shakeKey}`} className="mc-crowd-flash" d={STANDS_PATH} fillRule="evenodd" fill="#fff7d6" />
           )}
           {/* Muro perimetral del campo */}
-          <rect x={PAD - 8} y={PAD - 8} width={FW + 16} height={FH + 16} rx={6} fill="#0c1118" stroke="rgba(255,255,255,0.06)" strokeWidth={2} />
+          <rect x={PAD - 8} y={PAD - 8} width={FW + 16} height={FH + 16} rx={6} fill="#000000" stroke="rgba(255,255,255,0.06)" strokeWidth={2} />
           {/* Focos de las esquinas (intensidad según hora) */}
           {lights.map((l, i) => (
             <g key={`fl-${i}`}>
@@ -756,15 +756,15 @@ export default function Pitch({
           {/* Balón realista (pentágonos que rotan con el balón) */}
           <g ref={ballRef} transform={`translate(${px(0.5)},${py(0.5)})`} style={{ willChange: "transform" }}>
             <circle r={BALL_R + 5} fill="#fff" opacity={0.14} />
-            <circle r={BALL_R} fill="url(#ballG)" stroke="#0b1825" strokeWidth={1.4} />
+            <circle r={BALL_R} fill="url(#ballG)" stroke="#0a0906" strokeWidth={1.4} />
             <g stroke="#1a2733" strokeWidth={1} fill="none" opacity={0.85}>
               {OUTER_PENTS.map((o, i) => (
                 <line key={`seam-${i}`} x1={0} y1={0} x2={o.cx} y2={o.cy} />
               ))}
             </g>
-            <polygon points={CENTRAL_PENT} fill="#10202c" />
+            <polygon points={CENTRAL_PENT} fill="#0a0906" />
             {OUTER_PENTS.map((o, i) => (
-              <polygon key={`op-${i}`} points={pentPoints(3.4, o.rot)} transform={`translate(${o.cx},${o.cy})`} fill="#10202c" opacity={0.92} />
+              <polygon key={`op-${i}`} points={pentPoints(3.4, o.rot)} transform={`translate(${o.cx},${o.cy})`} fill="#0a0906" opacity={0.92} />
             ))}
             <ellipse cx={-4} cy={-5} rx={4} ry={2.6} fill="rgba(255,255,255,0.85)" />
           </g>

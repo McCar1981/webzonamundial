@@ -69,7 +69,7 @@ export default function BarPlanActions({ barId, paid }: { barId: string; paid: b
           className="bg-white/5 border border-white/10 rounded px-1.5 py-1 text-xs text-white"
         >
           {PLAN_OPTIONS.map((p) => (
-            <option key={p.id} value={p.id} className="bg-[#0F1D32]">{p.label}</option>
+            <option key={p.id} value={p.id} className="bg-[#14110a]">{p.label}</option>
           ))}
         </select>
         <button

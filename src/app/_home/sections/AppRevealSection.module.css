@@ -6,7 +6,7 @@
 .section {
   position: relative;
   padding: clamp(80px, 9vw, 130px) clamp(20px, 4vw, 56px) clamp(40px, 5vw, 64px);
-  background: #06060E;
+  background: #000000;
   overflow: hidden;
   font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
   color: #fff;
@@ -37,8 +37,8 @@
   background:
     radial-gradient(ellipse 70% 60% at 70% 50%, rgba(212, 168, 83, 0.32), transparent 60%),
     radial-gradient(ellipse 60% 60% at 30% 80%, rgba(155, 81, 224, 0.18), transparent 65%),
-    linear-gradient(180deg, rgba(6, 6, 14, 0.55) 0%, rgba(6, 6, 14, 0.25) 30%, rgba(6, 6, 14, 0.4) 70%, #06060E 100%),
-    linear-gradient(90deg, rgba(6, 6, 14, 0.7) 0%, rgba(6, 6, 14, 0.1) 40%, rgba(6, 6, 14, 0) 70%);
+    linear-gradient(180deg, rgba(0,0,0, 0.55) 0%, rgba(0,0,0, 0.25) 30%, rgba(0,0,0, 0.4) 70%, #000000 100%),
+    linear-gradient(90deg, rgba(0,0,0, 0.7) 0%, rgba(0,0,0, 0.1) 40%, rgba(0,0,0, 0) 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -134,7 +134,7 @@
   padding: 10px 18px;
   border-radius: 999px;
   border: 1px solid rgba(212, 168, 83, 0.55);
-  background: rgba(10, 10, 22, 0.55);
+  background: rgba(10,9,6, 0.55);
   color: #F5D07A;
   font-family: var(--zm-font-mono, "JetBrains Mono", monospace);
   font-size: 11px;
@@ -174,7 +174,7 @@
   color: #fff;
   margin: 0 0 22px;
   text-wrap: balance;
-  text-shadow: 0 4px 28px rgba(6, 6, 14, 0.7);
+  text-shadow: 0 4px 28px rgba(0,0,0, 0.7);
 }
 .titleGold {
   font-style: normal;
@@ -216,7 +216,7 @@
   gap: 16px;
   padding: 16px 22px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(20, 14, 38, 0.7), rgba(10, 10, 22, 0.6));
+  background: linear-gradient(135deg, rgba(20, 14, 38, 0.7), rgba(10,9,6, 0.6));
   border: 1px solid rgba(212, 168, 83, 0.32);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -234,7 +234,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: rgba(10, 10, 22, 0.7);
+  background: rgba(10,9,6, 0.7);
   border: 1px solid rgba(212, 168, 83, 0.5);
   color: #F5D07A;
   box-shadow: 0 0 18px -4px rgba(212, 168, 83, 0.55);
@@ -279,7 +279,7 @@
   padding: 12px 20px;
   border-radius: 12px;
   border: 1px solid rgba(212, 168, 83, 0.48);
-  background: rgba(10, 10, 22, 0.7);
+  background: rgba(10,9,6, 0.7);
   color: #fff;
   cursor: pointer;
   transition:
@@ -478,7 +478,7 @@
   border-radius: 30px;
   background:
     radial-gradient(ellipse 80% 60% at 50% 35%, rgba(155, 81, 224, 0.2), transparent 70%),
-    linear-gradient(180deg, #06060E 0%, #0A0A18 100%);
+    linear-gradient(180deg, #000000 0%, #000000 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -565,7 +565,7 @@
   gap: 0;
   padding: clamp(22px, 2.4vw, 30px);
   border-radius: 22px;
-  background: rgba(10, 10, 22, 0.55);
+  background: rgba(10,9,6, 0.55);
   border: 1px solid rgba(212, 168, 83, 0.22);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -595,7 +595,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 10, 22, 0.7);
+  background: rgba(10,9,6, 0.7);
   border: 1.5px solid rgba(212, 168, 83, 0.52);
   color: #F5D07A;
   margin-bottom: 14px;

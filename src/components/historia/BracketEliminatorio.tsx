@@ -13,7 +13,7 @@ interface Props {
 
 function MatchCard({ p, fase }: { p: Partido; fase?: string }) {
   return (
-    <div className="rounded-lg border border-[#1E293B] bg-[#0F1D32]/60 p-2 sm:p-2.5 text-[11px] sm:text-xs">
+    <div className="rounded-lg border border-[#241e12] bg-[#14110a]/60 p-2 sm:p-2.5 text-[11px] sm:text-xs">
       {fase && (
         <div className="text-[9px] font-bold uppercase tracking-wider text-gray-500 mb-1">
           {fase}
@@ -42,7 +42,7 @@ function MatchCard({ p, fase }: { p: Partido; fase?: string }) {
         </span>
       </div>
       <div
-        className="text-center font-black tabular-nums text-sm border-t border-[#1E293B] pt-1"
+        className="text-center font-black tabular-nums text-sm border-t border-[#241e12] pt-1"
         style={{ color: GOLD }}
       >
         {p.marcador}
@@ -101,7 +101,7 @@ export default function BracketEliminatorio({
           ))}
         </div>
         {partido3 && (
-          <div className="mt-6 pt-4 border-t border-[#1E293B]">
+          <div className="mt-6 pt-4 border-t border-[#241e12]">
             <div
               className="text-[10px] font-bold uppercase tracking-wider mb-2 text-center"
               style={{ color: GOLD }}

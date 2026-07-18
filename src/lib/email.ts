@@ -110,7 +110,7 @@ export async function sendWelcomeEmail(opts: {
   const summaryHtml = summaryRows
     .map((row, i) => {
       const topBorder = i === 0 ? '' : 'border-top:1px solid #e5e7eb;';
-      const valueColor = row.gold ? '#C9A84C' : '#111827';
+      const valueColor = row.gold ? '#C9A84C' : '#14110a';
       return `
         <tr>
           <td style="padding:10px 14px;font-size:13px;color:#6b7280;width:42%;${topBorder}">${escapeHtml(row.label)}</td>
@@ -131,8 +131,8 @@ export async function sendWelcomeEmail(opts: {
     preheader: 'Tu cuenta está lista. Aquí tienes el resumen de tu registro.',
     heading: `¡Bienvenido, @${escapeHtml(opts.username)}!`,
     bodyHtml: `
-      <p style="line-height:1.7;margin:0 0 18px;font-size:16px;color:#1f2937;">
-        Tu cuenta en <strong style="color:#0f172a;">ZonaMundial</strong> ya está lista. 🎉
+      <p style="line-height:1.7;margin:0 0 18px;font-size:16px;color:#241e12;">
+        Tu cuenta en <strong style="color:#14110a;">ZonaMundial</strong> ya está lista. 🎉
         El <strong>Mundial 2026</strong> ya está en marcha: la fase de grupos rueda HOY y tú ya estás dentro para vivirla como nunca antes.
       </p>
       ${creatorLine}
@@ -163,7 +163,7 @@ export async function sendWelcomeEmail(opts: {
       </table>
 
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:26px 0 4px;">
-        <tr><td style="background:linear-gradient(135deg,#0f172a,#13233A);border-radius:12px;padding:18px 20px;text-align:center;">
+        <tr><td style="background:linear-gradient(135deg,#14110a,#14110a);border-radius:12px;padding:18px 20px;text-align:center;">
           <p style="margin:0;color:#E7D9A8;font-size:14px;line-height:1.5;">
             El Mundial ya está en juego y hay partidos hoy.<br>
             <strong style="color:#FDE68A;">Haz tu primera predicción antes del pitido inicial.</strong>
@@ -197,7 +197,7 @@ function featureCard(emoji: string, title: string, claim: string): string {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;background:#FFFBF0;border:1px solid #F0E2BF;border-radius:12px;">
     <tr><td style="padding:14px;">
       <div style="font-size:22px;line-height:1;">${emoji}</div>
-      <div style="font-weight:700;color:#111827;font-size:14px;margin-top:8px;">${escapeHtml(title)}</div>
+      <div style="font-weight:700;color:#14110a;font-size:14px;margin-top:8px;">${escapeHtml(title)}</div>
       <div style="font-size:12px;color:#6b7280;margin-top:3px;line-height:1.4;">${escapeHtml(claim)}</div>
     </td></tr>
   </table>`;
@@ -265,19 +265,19 @@ export function brandedEmail(opts: {
   return `<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#0B1825;">
+<body style="margin:0;padding:0;background:#0a0906;">
 ${preheader}
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0B1825;padding:24px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0906;padding:24px 12px;">
   <tr><td align="center">
-    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#1f2937;">
-      <tr><td style="background:linear-gradient(135deg,#13233A,#0B1825 55%,#0E1A2B);padding:30px 32px 24px;text-align:center;border-radius:16px 16px 0 0;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#241e12;">
+      <tr><td style="background:linear-gradient(135deg,#14110a,#0a0906 55%,#0E1A2B);padding:30px 32px 24px;text-align:center;border-radius:16px 16px 0 0;">
         <img src="${siteUrl}/img/email/logo-zonamundial.png" width="132" alt="ZonaMundial" style="display:inline-block;width:132px;max-width:132px;height:auto;border:0;outline:none;text-decoration:none;">
         <p style="color:#C9A84C;margin:14px 0 0;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">Mundial 2026</p>
         <p style="color:#7E94AD;margin:4px 0 0;font-size:12px;letter-spacing:0.08em;">USA · México · Canadá</p>
       </td></tr>
       <tr><td style="padding:32px;background:#ffffff;border-radius:0 0 16px 16px;">
-        <h2 style="margin:0 0 16px;color:#111827;font-size:22px;letter-spacing:-0.02em;">${escapeHtml(opts.heading)}</h2>
-        <div style="line-height:1.6;color:#1f2937;font-size:15px;">${opts.bodyHtml}</div>
+        <h2 style="margin:0 0 16px;color:#14110a;font-size:22px;letter-spacing:-0.02em;">${escapeHtml(opts.heading)}</h2>
+        <div style="line-height:1.6;color:#241e12;font-size:15px;">${opts.bodyHtml}</div>
         ${cta}
         <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
         <p style="font-size:12px;color:#6b7280;text-align:center;margin:0;">
@@ -337,21 +337,21 @@ export async function sendNewRegistrationNotification(opts: {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f9fafb;border-radius:10px;padding:4px;">
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;width:40%;">Nombre</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;">${escapeHtml(fullName)}</td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;">${escapeHtml(fullName)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Usuario</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">@${escapeHtml(opts.username)}</td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">@${escapeHtml(opts.username)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Email</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">
               <a href="mailto:${escapeHtml(opts.email)}" style="color:#C9A84C;text-decoration:none;">${escapeHtml(opts.email)}</a>
             </td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">País</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(country)}</td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(country)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Selección favorita</td>
@@ -359,15 +359,15 @@ export async function sendNewRegistrationNotification(opts: {
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Creador elegido</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;text-transform:capitalize;">${escapeHtml(favCreator)}</td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;text-transform:capitalize;">${escapeHtml(favCreator)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Código de captación</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:700;text-align:right;border-top:1px solid #e5e7eb;letter-spacing:0.05em;">${escapeHtml(signupCode)}</td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:700;text-align:right;border-top:1px solid #e5e7eb;letter-spacing:0.05em;">${escapeHtml(signupCode)}</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Fecha</td>
-            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(fechaLegible)} <span style="color:#9ca3af;font-weight:400;font-size:11px;">(Madrid)</span></td>
+            <td style="padding:10px 14px;font-size:14px;color:#14110a;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(fechaLegible)} <span style="color:#9ca3af;font-weight:400;font-size:11px;">(Madrid)</span></td>
           </tr>
         </table>
         <p style="margin:18px 0 0;font-size:12px;color:#6b7280;">
@@ -430,7 +430,7 @@ export async function sendDailyDigest(opts: {
     const rows = fixtures
       .map((f) => `
         <tr>
-          <td style="padding:9px 12px;font-size:14px;color:#111827;border-top:1px solid #EDE3CC;">
+          <td style="padding:9px 12px;font-size:14px;color:#14110a;border-top:1px solid #EDE3CC;">
             ${flag(f.homeFlag)} <strong style="font-weight:700;">${escapeHtml(f.home)}</strong>
             <span style="color:#9ca3af;font-weight:400;"> vs </span>
             <strong style="font-weight:700;">${escapeHtml(f.away)}</strong> ${flag(f.awayFlag)}
@@ -468,8 +468,8 @@ export async function sendDailyDigest(opts: {
           <p style="margin:0 0 6px;font-family:Georgia,serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#8C7437;font-weight:700;">
             ${escapeHtml(a.cat)}
           </p>
-          <h3 style="margin:0 0 8px;font-size:18px;line-height:1.3;color:#111827;font-weight:700;letter-spacing:-0.01em;">
-            <a href="${url}" style="color:#111827;text-decoration:none;">${escapeHtml(a.title)}</a>
+          <h3 style="margin:0 0 8px;font-size:18px;line-height:1.3;color:#14110a;font-weight:700;letter-spacing:-0.01em;">
+            <a href="${url}" style="color:#14110a;text-decoration:none;">${escapeHtml(a.title)}</a>
           </h3>
           <p style="margin:0 0 10px;font-size:14px;line-height:1.55;color:#3D3D5C;">
             ${escapeHtml(a.excerpt)}
@@ -567,7 +567,7 @@ export async function sendBarPlanConfirmationEmail(opts: {
         <p>El pago de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> para
         <strong>${escapeHtml(opts.barName)}</strong> se ha procesado correctamente.</p>
         <p>Ya tienes activo el plan <strong>${escapeHtml(opts.planName)}</strong>. Desde tu panel puedes:</p>
-        <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
+        <ul style="line-height:1.8;padding-left:20px;color:#241e12;">
           <li>Publicar la página de tu bar y compartir el QR.</li>
           <li>Configurar incentivos y personalizar el aspecto.</li>
           <li>Abrir la pantalla TV para el local.</li>
@@ -613,20 +613,20 @@ export async function sendBarPorraWelcomeEmail(opts: {
   // Avatar del bar: logo si lo hay, si no la inicial sobre el acento.
   const avatar = opts.logoUrl
     ? `<img src="${escapeHtml(opts.logoUrl)}" width="84" height="84" alt="${barName}" style="display:block;width:84px;height:84px;border-radius:18px;object-fit:cover;border:3px solid ${accent};">`
-    : `<div style="width:84px;height:84px;border-radius:18px;border:3px solid ${accent};background:#0F1D32;color:${accent};font-size:38px;font-weight:800;line-height:84px;text-align:center;">${escapeHtml(opts.barName.charAt(0).toUpperCase())}</div>`;
+    : `<div style="width:84px;height:84px;border-radius:18px;border:3px solid ${accent};background:#14110a;color:${accent};font-size:38px;font-weight:800;line-height:84px;text-align:center;">${escapeHtml(opts.barName.charAt(0).toUpperCase())}</div>`;
 
   const prizeBlock = opts.prizeTitle
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:18px 0 0;">
          <tr><td style="background:#FFFBF0;border:1px solid #F0E2BF;border-radius:12px;padding:14px 18px;">
            <div style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#8C7437;">Incentivo del local</div>
-           <div style="font-size:16px;font-weight:700;color:#111827;margin-top:4px;">${escapeHtml(opts.prizeTitle)}</div>
+           <div style="font-size:16px;font-weight:700;color:#14110a;margin-top:4px;">${escapeHtml(opts.prizeTitle)}</div>
          </td></tr>
        </table>`
     : '';
 
   const feeBlock = opts.entryFeeNote && opts.entryFeeNote.trim()
     ? `<p style="margin:16px 0 0;font-size:13px;color:#6b7280;line-height:1.5;">
-         <strong style="color:#111827;">Inscripción:</strong> ${escapeHtml(opts.entryFeeNote.trim())}<br>
+         <strong style="color:#14110a;">Inscripción:</strong> ${escapeHtml(opts.entryFeeNote.trim())}<br>
          <span style="font-size:12px;">La inscripción la cobra y la gestiona ${barName} directamente en el local. ZonaMundial no procesa este pago.</span>
        </p>`
     : '';
@@ -634,21 +634,21 @@ export async function sendBarPorraWelcomeEmail(opts: {
   const html = `<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#0B1825;">
+<body style="margin:0;padding:0;background:#0a0906;">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Ya estás dentro de la porra de ${barName}. Predice los partidos del Mundial y compite por los incentivos del local.</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0B1825;padding:24px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0a0906;padding:24px 12px;">
   <tr><td align="center">
-    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#1f2937;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#241e12;">
       <!-- HERO: el BAR es el protagonista -->
-      <tr><td style="background:linear-gradient(135deg,#0F1D32,#0B1825);padding:34px 32px 28px;text-align:center;border-radius:16px 16px 0 0;">
+      <tr><td style="background:linear-gradient(135deg,#14110a,#0a0906);padding:34px 32px 28px;text-align:center;border-radius:16px 16px 0 0;">
         <div style="margin:0 auto 14px;width:84px;">${avatar}</div>
         <p style="color:${accent};margin:0 0 6px;font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;">Peña Mundialista 2026</p>
         <h1 style="margin:0;color:#ffffff;font-size:26px;line-height:1.2;letter-spacing:-0.02em;">${barName}</h1>
       </td></tr>
       <!-- CUERPO -->
       <tr><td style="padding:32px;background:#ffffff;border-radius:0 0 16px 16px;">
-        <h2 style="margin:0 0 14px;color:#111827;font-size:21px;letter-spacing:-0.01em;">¡Ya estás dentro de la porra de ${barName}!</h2>
-        <p style="line-height:1.7;margin:0 0 16px;font-size:15px;color:#1f2937;">
+        <h2 style="margin:0 0 14px;color:#14110a;font-size:21px;letter-spacing:-0.01em;">¡Ya estás dentro de la porra de ${barName}!</h2>
+        <p style="line-height:1.7;margin:0 0 16px;font-size:15px;color:#241e12;">
           Predice los partidos del <strong>Mundial 2026</strong> desde tu móvil, sube en el
           <strong>ranking de ${barName}</strong> y compite con el resto de la clientela del local.
         </p>
@@ -698,7 +698,7 @@ export async function sendFounderConfirmationEmail(opts: {
       bodyHtml: `
         <p>Tu pago de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> se ha procesado correctamente.</p>
         <p>A partir de ahora tienes:</p>
-        <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
+        <ul style="line-height:1.8;padding-left:20px;color:#241e12;">
           <li>✅ <strong>Navegación sin publicidad</strong> en toda la plataforma</li>
           <li>📊 <strong>Estadísticas avanzadas</strong> (xG, mapas de calor, comparativas)</li>
           <li>🚀 <strong>Beta access</strong> a nuevas funcionalidades</li>
@@ -732,7 +732,7 @@ export async function sendProWelcomeEmail(opts: {
       heading: '⭐ Ya eres Pro',
       bodyHtml: `
         <p>Tu suscripción <strong>Pro ${planLabel}</strong> de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> está activa. Desde ya tienes:</p>
-        <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
+        <ul style="line-height:1.8;padding-left:20px;color:#241e12;">
           <li>🎯 <strong>Los 8 tipos de predicción</strong> con multiplicadores de puntos</li>
           <li>🤖 <strong>IA Coach ilimitada</strong>: Oracle, Live, Coach, Análisis y Debate</li>
           <li>⚽ <strong>Fantasy en vivo</strong>: sustituciones y puntos en tiempo real</li>

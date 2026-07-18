@@ -19,7 +19,7 @@ interface Audience {
 }
 
 const INPUT =
-  "w-full rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm px-4 py-2.5 " +
+  "w-full rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm px-4 py-2.5 " +
   "focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 placeholder:text-gray-600";
 const LABEL = "block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1.5";
 
@@ -254,7 +254,7 @@ export default function PushComposer({ audience }: { audience: Audience | null }
             type="button"
             onClick={send}
             disabled={busy || !title.trim() || !body.trim()}
-            className="rounded-xl px-5 py-2.5 text-sm font-bold text-[#060B14] disabled:opacity-50 transition-all"
+            className="rounded-xl px-5 py-2.5 text-sm font-bold text-[#000000] disabled:opacity-50 transition-all"
             style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
           >
             {busy ? "Enviando…" : "Enviar push"}
@@ -273,7 +273,7 @@ export default function PushComposer({ audience }: { audience: Audience | null }
       {/* Previsualización */}
       <div>
         <div className={LABEL}>Vista previa</div>
-        <div className="rounded-2xl border border-white/10 bg-[#0F1D32] p-4 shadow-xl">
+        <div className="rounded-2xl border border-white/10 bg-[#14110a] p-4 shadow-xl">
           <div className="flex gap-3">
             <img
               src="/img/email/logo-zonamundial.png"

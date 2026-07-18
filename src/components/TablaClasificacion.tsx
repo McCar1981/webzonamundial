@@ -47,7 +47,7 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
   };
 
   return (
-    <div className="rounded-xl border border-white/5 bg-[#0B0F1A] overflow-hidden">
+    <div className="rounded-xl border border-white/5 bg-[#0a0906] overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
         <svg className="w-5 h-5 shrink-0" style={{ color: groupColor }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -63,7 +63,7 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
             {labels.live}
           </span>
         ) : anyPlayed ? (
-          <span className="ml-auto text-[10px] font-bold uppercase tracking-wide text-[#6a7a9a]">{labels.updated}</span>
+          <span className="ml-auto text-[10px] font-bold uppercase tracking-wide text-[#6e6552]">{labels.updated}</span>
         ) : null}
       </div>
 
@@ -117,7 +117,7 @@ export default function TablaClasificacion({ selecciones, groupColor, liveMap = 
       </div>
 
       {/* Leyenda */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-2.5 border-t border-white/5 text-[10px] text-[#6a7a9a]">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-2.5 border-t border-white/5 text-[10px] text-[#6e6552]">
         <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-1 rounded-sm bg-green-500" />{labels.qualify}</span>
         <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-1 rounded-sm bg-yellow-500" />{labels.third}</span>
         <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-1 rounded-sm bg-red-800" />{labels.out}</span>

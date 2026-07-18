@@ -17,7 +17,7 @@ import { isFinished, isLive, type LiveMap } from '@/lib/calendario/live';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BG = "#060B14";
+const BG = "#000000";
 
 const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> = {
   'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
@@ -31,7 +31,7 @@ const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> =
   'I': { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  icon: '/img/imagenessilviu/balondefutbol.webp' },
   'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: 'ranking' },
   'K': { color: '#a855f7', bg: 'rgba(168,85,247,0.15)',  icon: 'modo carrera' },
-  'L': { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', icon: 'historia' },
+  'L': { color: '#a69a82', bg: 'rgba(148,163,184,0.15)', icon: 'historia' },
 };
 
 function formatDate(dateStr: string, locale: string) {
@@ -56,7 +56,7 @@ function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string
           <Link
             key={m.i}
             href={`/partido/${matchSlug(m.i)}`}
-            className="block no-underline rounded-xl border border-white/5 bg-[#060B14] p-3 transition hover:border-[#c9a84c]/20"
+            className="block no-underline rounded-xl border border-white/5 bg-[#000000] p-3 transition hover:border-[#c9a84c]/20"
             style={playing ? { borderColor: 'rgba(255,107,87,0.30)' } : undefined}
           >
             <div className="flex items-center justify-between gap-2 mb-2">
@@ -72,14 +72,14 @@ function MiniFixture({ letra, locale, liveMap }: { letra: string; locale: string
                   {live!.sc[0]}–{live!.sc[1]}
                 </span>
               ) : (
-                <span className="text-[10px] text-[#6a7a9a]">VS</span>
+                <span className="text-[10px] text-[#6e6552]">VS</span>
               )}
               <div className="flex items-center gap-2 min-w-0 justify-end">
                 <span className="text-sm font-semibold text-white truncate">{m.a}</span>
                 <img src={`https://flagcdn.com/w20/${m.af}.png`} alt={m.a} className="w-5 h-3.5 object-cover rounded" />
               </div>
             </div>
-            <div className="flex items-center justify-between text-[10px] text-[#6a7a9a]">
+            <div className="flex items-center justify-between text-[10px] text-[#6e6552]">
               <span>
                 {playing ? (
                   <span className="font-bold" style={{ color: '#ff6b57' }}>{live!.s === 'HT' ? (locale === 'en' ? 'HT' : 'Descanso') : `${live!.el}'`} · {locale === 'en' ? 'LIVE' : 'En vivo'}</span>
@@ -139,7 +139,7 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
   return (
     <div
       className={`p-5 md:p-6 rounded-2xl border transition-all ${
-        isHighlight ? 'border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent' : 'border-white/5 bg-[#0B1825]'
+        isHighlight ? 'border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent' : 'border-white/5 bg-[#0a0906]'
       }`}
     >
       <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -154,7 +154,7 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
             </div>
             <div>
               <h3 className="text-xl font-bold text-white">{t.ui.grupo} {letra}</h3>
-              <p className="text-sm text-[#6a7a9a]">{descripcion}</p>
+              <p className="text-sm text-[#6e6552]">{descripcion}</p>
             </div>
           </div>
 
@@ -164,14 +164,14 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
               <Link
                 key={team.slug}
                 href={`/selecciones/${team.slug}`}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#060B14] border border-white/5 hover:border-[#c9a84c]/30 transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#000000] border border-white/5 hover:border-[#c9a84c]/30 transition-all"
               >
                 <img
                   src={`https://flagcdn.com/w20/${team.flagCode}.png`}
                   alt={team.nombre}
                   className="w-5 h-3.5 object-cover rounded"
                 />
-                <span className="text-xs text-[#CBD5E1] hover:text-[#c9a84c]">{team.nombre}</span>
+                <span className="text-xs text-[#e6decb] hover:text-[#c9a84c]">{team.nombre}</span>
               </Link>
             ))}
           </div>
@@ -180,7 +180,7 @@ function GrupoTabContent({ letra, liveMap }: { letra: string; liveMap: LiveMap }
           {analysis && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sections.map((s) => (
-                <div key={s.key} className="flex gap-3 p-3 rounded-xl bg-[#060B14]/60 border border-white/5">
+                <div key={s.key} className="flex gap-3 p-3 rounded-xl bg-[#000000]/60 border border-white/5">
                   <div className="flex-shrink-0 mt-0.5">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill={s.color}><path d={s.icon}/></svg>
                   </div>
@@ -307,7 +307,7 @@ export default function GruposIndex() {
 
         <div className="max-w-6xl mx-auto relative">
           {/* Breadcrumb */}
-          <nav ref={breadcrumbRef} className="flex items-center gap-2 text-sm text-[#6a7a9a] mb-6">
+          <nav ref={breadcrumbRef} className="flex items-center gap-2 text-sm text-[#6e6552] mb-6">
             <Link href="/" className="hover:text-[#c9a84c] transition-colors">{t.ui.inicio}</Link>
             <span>/</span>
             <span className="text-[#c9a84c]">{gT.allGroups === "All groups" ? "Groups" : "Grupos"}</span>
@@ -330,11 +330,11 @@ export default function GruposIndex() {
                 { value: '72', label: gT.stats.partidos, icon: 'match center' },
                 { value: '32', label: gT.stats.clasifican, icon: 'ranking' },
               ].map((stat) => (
-                <div key={stat.label} className="stat-item flex items-center gap-3 px-4 py-2 bg-[#0F1D32] rounded-xl border border-white/5">
+                <div key={stat.label} className="stat-item flex items-center gap-3 px-4 py-2 bg-[#14110a] rounded-xl border border-white/5">
                   <SvgIcon name={stat.icon} size={40} />
                   <div className="text-left">
                     <p className="text-xl font-black text-[#c9a84c]">{stat.value}</p>
-                    <p className="text-xs text-[#6a7a9a]">{stat.label}</p>
+                    <p className="text-xs text-[#6e6552]">{stat.label}</p>
                   </div>
                 </div>
               ))}
@@ -351,12 +351,12 @@ export default function GruposIndex() {
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white">{gT.allGroups}</h2>
-            <p className="text-sm text-[#6a7a9a]">{gT.allGroupsSub}</p>
+            <p className="text-sm text-[#6e6552]">{gT.allGroupsSub}</p>
           </div>
         </div>
 
         <Link href="/que-necesita-cada-seleccion-mundial-2026" className="block mb-6 rounded-xl border border-[#c9a84c]/30 bg-gradient-to-br from-[#c9a84c]/10 to-transparent px-4 py-3 transition hover:border-[#c9a84c]/50">
-          <span className="text-sm text-[#8a94b0]">
+          <span className="text-sm text-[#a69a82]">
             <b className="text-white">{locale === 'en' ? 'Last matchday:' : 'Última jornada:'}</b>{' '}
             {locale === 'en'
               ? 'see what each team needs to reach the Round of 32 — with a simulator'
@@ -380,7 +380,7 @@ export default function GruposIndex() {
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white">{gT.analysis}</h2>
-            <p className="text-sm text-[#6a7a9a]">{gT.analysisSub}</p>
+            <p className="text-sm text-[#6e6552]">{gT.analysisSub}</p>
           </div>
         </div>
 
@@ -395,7 +395,7 @@ export default function GruposIndex() {
                 className={`min-w-[2.5rem] rounded-xl px-3 py-2 text-sm font-bold transition-all border ${
                   active
                     ? 'bg-[#c9a84c]/15 text-[#c9a84c] border-[#c9a84c]/40'
-                    : 'bg-[#0B1825] text-[#8a94b0] border-white/10 hover:border-white/20 hover:text-white'
+                    : 'bg-[#0a0906] text-[#a69a82] border-white/10 hover:border-white/20 hover:text-white'
                 }`}
               >
                 {letra}
@@ -410,14 +410,14 @@ export default function GruposIndex() {
 
       {/* Cómo funciona el formato */}
       <section ref={formatRef} className="max-w-6xl mx-auto px-4 mb-16">
-        <div className="bg-gradient-to-br from-[#0B1825] to-[#0F1D32] rounded-2xl p-6 md:p-8 border border-white/5">
+        <div className="bg-gradient-to-br from-[#0a0906] to-[#14110a] rounded-2xl p-6 md:p-8 border border-white/5">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 flex items-center justify-center border border-blue-500/20">
               <SvgIcon name="formato 2026" size={32} />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white">{gT.format.title}</h2>
-              <p className="text-sm text-[#6a7a9a]">{gT.format.subtitle}</p>
+              <p className="text-sm text-[#6e6552]">{gT.format.subtitle}</p>
             </div>
           </div>
 
@@ -435,18 +435,18 @@ export default function GruposIndex() {
                   <SvgIcon name={item.icon} size={32} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-[#8a94b0] leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-[#a69a82] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
-            <p className="text-sm text-[#8a94b0]">
+            <p className="text-sm text-[#a69a82]">
               {gT.format.finalNote} <span className="text-[#c9a84c] font-bold">{gT.format.finalDate}</span> {gT.format.finalCity}
             </p>
             <Link
               href="/datos/formato-2026"
-              className="px-5 py-2.5 bg-[#060B14] rounded-xl text-[#c9a84c] text-sm font-medium hover:bg-[#c9a84c]/10 transition-colors border border-[#c9a84c]/20"
+              className="px-5 py-2.5 bg-[#000000] rounded-xl text-[#c9a84c] text-sm font-medium hover:bg-[#c9a84c]/10 transition-colors border border-[#c9a84c]/20"
             >
               {gT.format.verFormato}
             </Link>
@@ -458,7 +458,7 @@ export default function GruposIndex() {
       <section className="max-w-5xl mx-auto px-4 mb-16">
         <div ref={ctaRef} className="relative rounded-3xl border border-[#c9a84c]/20 overflow-hidden group">
           <img src="/img/imagenessilviu/Estadio Atmosphere.webp" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70"/>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/85 to-[#000000]/70"/>
           <div className="absolute inset-0 bg-gradient-to-r from-[#c9a84c]/10 via-transparent to-[#c9a84c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"/>
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-8 md:p-12">
@@ -471,7 +471,7 @@ export default function GruposIndex() {
             <div className="text-center lg:text-left flex-1">
               <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">{gT.cta.title}</h2>
               <p className="text-gray-300 mb-8 max-w-xl text-lg leading-relaxed">{gT.cta.desc}</p>
-              <Link href="/registro" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#060B14] font-bold rounded-xl hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)] transition-all hover:-translate-y-0.5">
+              <Link href="/registro" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#000000] font-bold rounded-xl hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)] transition-all hover:-translate-y-0.5">
                 {gT.cta.btn} <span>→</span>
               </Link>
             </div>

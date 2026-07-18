@@ -53,7 +53,7 @@ export default function TuMundialPublicPage({ searchParams }: { searchParams: SP
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #060B14, #0a0f1a)",
+        background: "linear-gradient(180deg, #000000, #000000)",
         color: "#E2E8F0",
         padding: "48px 16px",
       }}
@@ -61,7 +61,7 @@ export default function TuMundialPublicPage({ searchParams }: { searchParams: SP
       <RecapCard s={s} />
 
       <div style={{ maxWidth: 560, margin: "28px auto 0", textAlign: "center" }}>
-        <p style={{ fontSize: 15, color: "#9db0c9", marginBottom: 16 }}>
+        <p style={{ fontSize: 15, color: "#a69a82", marginBottom: 16 }}>
           Cada aficionado tiene su propio Mundial. ¿Cómo fue el tuyo?
         </p>
         <Link
@@ -69,7 +69,7 @@ export default function TuMundialPublicPage({ searchParams }: { searchParams: SP
           style={{
             display: "inline-block",
             background: "linear-gradient(135deg, #c9a84c, #e8d48b)",
-            color: "#0A1422",
+            color: "#0a0906",
             fontWeight: 800,
             fontSize: 16,
             padding: "14px 30px",

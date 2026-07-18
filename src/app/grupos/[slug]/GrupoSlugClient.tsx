@@ -16,12 +16,12 @@ import { getExtendedSeleccion } from '@/data/selecciones-extended';
 import type { SeleccionExtended } from '@/data/selecciones-extended';
 import { useTournamentLive } from '@/lib/grupos/useTournamentLive';
 
-const BG = "#030712";
+const BG = "#000000";
 
 const GROUP_COLORS: Record<string, string> = {
   a: '#22c55e', b: '#22c55e', c: '#eab308', d: '#22c55e', e: '#fbbf24',
   f: '#ef4444', g: '#a855f7', h: '#c9a84c', i: '#3b82f6', j: '#38bdf8',
-  k: '#a855f7', l: '#94a3b8',
+  k: '#a855f7', l: '#a69a82',
 };
 
 const VALID_GROUPS = ['a','b','c','d','e','f','g','h','i','j','k','l'];
@@ -120,7 +120,7 @@ function AnalysisSection({ letter, groupColor, gsT, gT }: {
   ];
 
   return (
-    <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0B0F1A' }} y={20}>
+    <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0a0906' }} y={20}>
       <div className="px-6 py-5 border-b border-white/5 flex items-center gap-3" style={{ background: `${groupColor}08` }}>
         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}20` }}>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: groupColor }}>
@@ -196,7 +196,7 @@ function GroupStats({ selecciones, groupColor, gsT }: {
   ];
 
   return (
-    <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
+    <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0a0906' }} y={20}>
       <div className="flex items-center gap-3 mb-5">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}15` }}>
           <SvgIcon name="predicciones" size={24} />
@@ -234,7 +234,7 @@ function SedesGrupo({ letter, groupColor, gsT }: {
   if (finalSedes.length === 0) return null;
 
   return (
-    <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
+    <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0a0906' }} y={20}>
       <div className="flex items-center gap-3 mb-5">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}15` }}>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: groupColor }}>
@@ -300,7 +300,7 @@ function KeyPlayersSection({ selecciones, groupColor, gsT }: {
   if (extendedTeams.length === 0) return null;
 
   return (
-    <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0B0F1A' }} y={20}>
+    <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0a0906' }} y={20}>
       <div className="px-6 py-5 border-b border-white/5 flex items-center gap-3" style={{ background: `${groupColor}08` }}>
         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}20` }}>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: groupColor }}>
@@ -324,7 +324,7 @@ function KeyPlayersSection({ selecciones, groupColor, gsT }: {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {(team.jugadoresClave || []).slice(0, 3).map((player) => {
-                const posColor = POS_COLORS[player.posicion] || '#94a3b8';
+                const posColor = POS_COLORS[player.posicion] || '#a69a82';
                 return (
                   <div key={player.nombre} className="p-3 rounded-xl border border-white/5 bg-white/[0.02]">
                     <div className="flex items-center gap-2 mb-1.5">
@@ -460,7 +460,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
             <AnalysisSection letter={letter} groupColor={groupColor} gsT={gsT as unknown as Record<string, string | Record<string, unknown>>} gT={gT as unknown as Record<string, unknown>} />
 
             {/* Head-to-head */}
-            <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0B0F1A' }} y={20}>
+            <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0a0906' }} y={20}>
               <div
                 className="px-6 py-5 border-b border-white/5 flex items-center gap-3"
                 style={{ background: `${groupColor}08` }}
@@ -486,7 +486,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
             <KeyPlayersSection selecciones={selecciones} groupColor={groupColor} gsT={gsT as unknown as Record<string, string | Record<string, unknown>>} />
 
             {/* Simulador Card */}
-            <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0B0F1A' }} y={20}>
+            <AnimatedSection className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0a0906' }} y={20}>
               <div
                 className="px-6 py-5 border-b border-white/5 flex items-center justify-between"
                 style={{ background: `${groupColor}08` }}
@@ -521,7 +521,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
             <GroupStats selecciones={selecciones} groupColor={groupColor} gsT={gsT as unknown as Record<string, string | Record<string, unknown>>} />
 
             {/* Teams List */}
-            <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
+            <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0a0906' }} y={20}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}15` }}>
                   <SvgIcon name="48 selecciones" size={24} />
@@ -572,14 +572,14 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
               <Link
                 href="/registro"
                 className="block w-full py-3.5 rounded-xl text-center font-bold transition-all hover:shadow-lg hover:-translate-y-0.5"
-                style={{ background: groupColor, color: '#030712' }}
+                style={{ background: groupColor, color: '#000000' }}
               >
                 {gsT.crearPrediccion}
               </Link>
             </AnimatedSection>
 
             {/* Other Groups */}
-            <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
+            <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0a0906' }} y={20}>
               <h3 className="text-lg font-bold text-white mb-4">{gsT.otrosGrupos}</h3>
               <div className="grid grid-cols-6 gap-2">
                 {VALID_GROUPS.filter(g => g !== letter.toLowerCase()).map((g) => {

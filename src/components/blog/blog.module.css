@@ -5,9 +5,9 @@
  */
 
 .scope {
-  --b-bg-0: #060B14;
-  --b-bg-1: #0B1825;
-  --b-bg-2: #0F1F30;
+  --b-bg-0: #000000;
+  --b-bg-1: #0a0906;
+  --b-bg-2: #14110a;
   --b-gold-1: #C9A84C;
   --b-gold-2: #E8C76B;
   --b-gold-3: #FDE68A;
@@ -187,7 +187,7 @@
   padding: 18px;
   border: 1px solid var(--b-border);
   border-radius: 14px;
-  background: rgba(15, 31, 48, 0.5);
+  background: rgba(20,17,10, 0.5);
 }
 .statItem {
   text-align: center;
@@ -370,7 +370,7 @@
   border: 1px solid var(--b-border-strong);
   background:
     radial-gradient(ellipse 60% 80% at 0% 50%, rgba(201, 168, 76, 0.10), transparent 70%),
-    linear-gradient(180deg, rgba(20, 37, 54, 0.7), rgba(11, 24, 37, 0.5));
+    linear-gradient(180deg, rgba(27,22,13, 0.7), rgba(10,9,6, 0.5));
   display: grid;
   gap: 14px;
   grid-template-columns: 1fr auto;

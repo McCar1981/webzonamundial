@@ -21,7 +21,7 @@ export default function KitToolbar({ label }: { label: string }) {
         href="/bar-dashboard/kit"
         style={{
           pointerEvents: "auto", display: "inline-flex", alignItems: "center", gap: 8,
-          background: "#0F1D32", color: "#E2E8F0", border: "1px solid rgba(255,255,255,0.12)",
+          background: "#14110a", color: "#E2E8F0", border: "1px solid rgba(255,255,255,0.12)",
           borderRadius: 10, fontWeight: 800, fontSize: 14, padding: "10px 16px", textDecoration: "none",
           boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
         }}

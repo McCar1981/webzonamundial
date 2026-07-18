@@ -171,7 +171,7 @@ function MonitorPageInner() {
           <section style={{ marginTop: 24 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 10 }}>Incidentes abiertos</h2>
             {data.incidents.map((inc) => (
-              <div key={inc.key} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 8, background: "#181b22", border: `1px solid ${COLORS[inc.severity]}55`, marginBottom: 8 }}>
+              <div key={inc.key} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 8, background: "#14110a", border: `1px solid ${COLORS[inc.severity]}55`, marginBottom: 8 }}>
                 <div>
                   <span style={{ color: COLORS[inc.severity], fontWeight: 700 }}>{inc.key}</span>
                   <span style={{ color: "#9aa0ac", marginLeft: 10, fontSize: 13 }}>{inc.detail}</span>
@@ -187,7 +187,7 @@ function MonitorPageInner() {
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 10 }}>Comprobaciones</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 10 }}>
             {(data?.latest?.checks ?? []).map((c) => (
-              <div key={c.name} style={{ background: "#181b22", border: "1px solid #262a33", borderRadius: 10, padding: 14 }}>
+              <div key={c.name} style={{ background: "#14110a", border: "1px solid #262a33", borderRadius: 10, padding: 14 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontWeight: 600, fontSize: 14 }}>{c.name}</span>
                   <span style={{ width: 10, height: 10, borderRadius: "50%", background: COLORS[c.ok ? "ok" : c.severity] }} />

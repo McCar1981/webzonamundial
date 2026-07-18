@@ -35,13 +35,13 @@ import {
 } from "../components/DraftIcons";
 import FlagImage from "@/components/FlagImage";
 
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
-const CARD = "#111d32";
-const CARD_HOV = "#1a2744";
+const TXT_MUT = "#a69a82";
+const CARD = "#14110a";
+const CARD_HOV = "#14110a";
 const RED = "#ef4444";
 const GREEN = "#22c55e";
 
@@ -187,8 +187,8 @@ function Confetti() {
 }
 
 /* ─────────── SetupScreen ─────────── */
-const SETUP_BG_DEEP = "#060B14";
-const SETUP_CARD = "#0F1D32";
+const SETUP_BG_DEEP = "#000000";
+const SETUP_CARD = "#14110a";
 const SETUP_CARD_HI = "#16294a";
 
 // Microcopy táctico por formación (sensación de panel de juego).
@@ -321,7 +321,7 @@ function SetupScreen({
                   }}>
                   {sel && <CheckBadge />}
                   <div className="text-[15px] font-black leading-none tabular-nums" style={{ color: sel ? NAVY : TXT }}>{f.label}</div>
-                  <div className="text-[8.5px] font-bold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>
+                  <div className="text-[8.5px] font-bold mt-1 leading-tight" style={{ color: sel ? "rgba(10,9,6,0.7)" : TXT_MUT }}>
                     {FORM_MICRO[f.key]}
                   </div>
                 </button>
@@ -348,12 +348,12 @@ function SetupScreen({
                   }}>
                   {sel && <CheckBadge />}
                   <div className="flex justify-center mb-1.5">
-                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,23,41,0.14)" : `${s.accent}1f` }}>
+                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,9,6,0.14)" : `${s.accent}1f` }}>
                       <s.icon size={18} color={sel ? NAVY : s.accent} />
                     </div>
                   </div>
                   <div className="text-[13px] font-extrabold leading-none" style={{ color: sel ? NAVY : TXT }}>{s.label}</div>
-                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>{s.desc}</div>
+                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,9,6,0.7)" : TXT_MUT }}>{s.desc}</div>
                 </button>
               );
             })}
@@ -383,12 +383,12 @@ function SetupScreen({
                   </span>
                   {sel && <CheckBadge />}
                   <div className="flex justify-center mb-1.5 mt-0.5">
-                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,23,41,0.14)" : "rgba(255,255,255,0.06)" }}>
+                    <div className="flex items-center justify-center rounded-lg" style={{ width: 34, height: 34, background: sel ? "rgba(10,9,6,0.14)" : "rgba(255,255,255,0.06)" }}>
                       <m.icon size={18} color={sel ? NAVY : GOLD} />
                     </div>
                   </div>
                   <div className="text-[13px] font-extrabold leading-none" style={{ color: sel ? NAVY : TXT }}>{m.label}</div>
-                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,23,41,0.7)" : TXT_MUT }}>{m.desc}</div>
+                  <div className="text-[10px] font-semibold mt-1 leading-tight" style={{ color: sel ? "rgba(10,9,6,0.7)" : TXT_MUT }}>{m.desc}</div>
                 </button>
               );
             })}
@@ -419,7 +419,7 @@ function SetupScreen({
           className="w-full rounded-2xl transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] flex flex-col items-center justify-center gap-0.5"
           style={{ minHeight: 60, padding: "10px 16px", background: `linear-gradient(135deg, ${GOLD2}, ${GOLD})`, color: NAVY, boxShadow: `0 10px 30px ${GOLD}66, inset 0 1px 0 rgba(255,255,255,0.4)` }}>
           <span className="flex items-center gap-2 text-lg font-black"><IconDice size={20} color={NAVY} />Comenzar Draft</span>
-          <span className="text-[11px] font-bold" style={{ color: "rgba(10,23,41,0.72)" }}>{resumen}</span>
+          <span className="text-[11px] font-bold" style={{ color: "rgba(10,9,6,0.72)" }}>{resumen}</span>
         </button>
       </div>
 
@@ -1034,11 +1034,11 @@ function CampanaScreen({ equipo, onTerminar }: {
                       boxShadow: sel ? `0 10px 26px ${GOLD}55` : "0 3px 12px rgba(0,0,0,0.35)",
                     }}>
                     {sel && <CheckBadge />}
-                    <div className="flex items-center justify-center rounded-xl mb-3" style={{ width: 40, height: 40, background: sel ? "rgba(10,23,41,0.14)" : `${GOLD}1a` }}>
+                    <div className="flex items-center justify-center rounded-xl mb-3" style={{ width: 40, height: 40, background: sel ? "rgba(10,9,6,0.14)" : `${GOLD}1a` }}>
                       <m.icon size={22} color={sel ? NAVY : GOLD} />
                     </div>
                     <div className="text-[15px] font-black leading-tight" style={{ color: sel ? NAVY : TXT }}>{m.title}</div>
-                    <div className="text-[11px] mt-1 leading-snug flex-1" style={{ color: sel ? "rgba(10,23,41,0.75)" : TXT_MUT }}>{m.desc}</div>
+                    <div className="text-[11px] mt-1 leading-snug flex-1" style={{ color: sel ? "rgba(10,9,6,0.75)" : TXT_MUT }}>{m.desc}</div>
                     <span className="inline-block mt-2 text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full self-start"
                       style={{ background: sel ? NAVY : `${GOLD}22`, color: sel ? GOLD2 : GOLD, border: `1px solid ${sel ? "transparent" : `${GOLD}55`}` }}>
                       {m.badge}
@@ -1082,7 +1082,7 @@ function CampanaScreen({ equipo, onTerminar }: {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill={NAVY}><path d="M8 5v14l11-7z" /></svg>
                 Iniciar campaña
               </span>
-              <span className="text-[11px] font-bold" style={{ color: "rgba(10,23,41,0.72)" }}>
+              <span className="text-[11px] font-bold" style={{ color: "rgba(10,9,6,0.72)" }}>
                 Modo {modoCampana === "auto" ? "automático" : "partido a partido"} seleccionado
               </span>
             </button>

@@ -48,7 +48,7 @@ export default function Quiz({ preguntas }: Props) {
   if (terminado) {
     const pct = Math.round((aciertos / preguntas.length) * 100);
     let nivel = "";
-    let color = "#94A3B8";
+    let color = "#a69a82";
     if (pct >= 90) {
       nivel = "🏆 LEYENDA MUNDIALISTA";
       color = GOLD;
@@ -63,7 +63,7 @@ export default function Quiz({ preguntas }: Props) {
       color = "#F59E0B";
     } else {
       nivel = "🎓 ESTUDIANTE";
-      color = "#94A3B8";
+      color = "#a69a82";
     }
 
     return (
@@ -94,7 +94,7 @@ export default function Quiz({ preguntas }: Props) {
         </div>
         <button
           onClick={reiniciar}
-          className="px-6 py-3 rounded-lg font-bold text-sm text-[#060B14]"
+          className="px-6 py-3 rounded-lg font-bold text-sm text-[#000000]"
           style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }}
         >
           Volver a jugar
@@ -115,7 +115,7 @@ export default function Quiz({ preguntas }: Props) {
             {aciertos} acierto{aciertos !== 1 ? "s" : ""}
           </span>
         </div>
-        <div className="h-1.5 bg-[#1E293B] rounded-full overflow-hidden">
+        <div className="h-1.5 bg-[#241e12] rounded-full overflow-hidden">
           <div
             className="h-full transition-all duration-300"
             style={{
@@ -136,8 +136,8 @@ export default function Quiz({ preguntas }: Props) {
         {p.opciones.map((op, i) => {
           const esCorrecta = i === p.correcta;
           const esSeleccionada = i === seleccion;
-          let bg = "#0F1D32";
-          let border = "#1E293B";
+          let bg = "#14110a";
+          let border = "#241e12";
           let textColor = "#E2E8F0";
           if (ya) {
             if (esCorrecta) {
@@ -148,7 +148,7 @@ export default function Quiz({ preguntas }: Props) {
               border = "#DC2626";
               textColor = "#FCA5A5";
             } else {
-              textColor = "#64748B";
+              textColor = "#8b8168";
             }
           }
           return (
@@ -198,7 +198,7 @@ export default function Quiz({ preguntas }: Props) {
       {ya && (
         <button
           onClick={siguiente}
-          className="w-full px-5 py-3 rounded-lg font-bold text-sm text-[#060B14]"
+          className="w-full px-5 py-3 rounded-lg font-bold text-sm text-[#000000]"
           style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }}
         >
           {actual + 1 < preguntas.length ? "Siguiente pregunta →" : "Ver resultados →"}

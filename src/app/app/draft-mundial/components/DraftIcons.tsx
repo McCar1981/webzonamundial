@@ -5,7 +5,7 @@ import React from "react";
 
 const GOLD = "#c9a84c";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
+const TXT_MUT = "#a69a82";
 
 interface IconProps {
   size?: number;

@@ -1,7 +1,7 @@
 // src/app/eliminar-cuenta/page.tsx
 //
 // Página de solicitud de eliminación de cuenta (RGPD art. 17 / "derecho al
-// olvido"). Conserva el sistema visual del resto del sitio (fondo #060B14,
+// olvido"). Conserva el sistema visual del resto del sitio (fondo #000000,
 // dorado #c9a84c, fuente Outfit). Cliente-side porque maneja un formulario
 // con estado de envío.
 
@@ -10,15 +10,15 @@
 import Link from "next/link";
 import { useState, FormEvent } from "react";
 
-const BG = "#060B14";
-const BG2 = "#0B1825";
-const BG3 = "#0F1F30";
+const BG = "#000000";
+const BG2 = "#0a0906";
+const BG3 = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const GOLD3 = "#FDE68A";
-const TEXT = "#cbd5e1";
-const MUTED = "#94a3b8";
-const DIM = "#64748b";
+const TEXT = "#e6decb";
+const MUTED = "#a69a82";
+const DIM = "#8b8168";
 const BORDER = "rgba(201,168,76,0.18)";
 const BORDER_STRONG = "rgba(201,168,76,0.5)";
 const DANGER = "#fca5a5";

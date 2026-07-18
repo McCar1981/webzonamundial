@@ -41,7 +41,7 @@ const CATEGORIA_LABELS: Record<string, { label: string; color: string }> = {
   estadio: { label: "Estadios", color: "#3B82F6" },
   arbitro: { label: "Árbitros", color: "#8B5CF6" },
   jugador: { label: "Jugadores", color: "#EC4899" },
-  misc: { label: "Misceláneas", color: "#64748B" },
+  misc: { label: "Misceláneas", color: "#8b8168" },
 };
 
 const CATEGORIA_ORDER = [
@@ -108,7 +108,7 @@ export default function CuriosidadesPage() {
               <a
                 key={cat}
                 href={`#cat-${cat}`}
-                className="p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32]/60 text-center hover:border-[#C9A84C]/40 transition-all no-underline"
+                className="p-3 rounded-lg border border-[#241e12] bg-[#14110a]/60 text-center hover:border-[#C9A84C]/40 transition-all no-underline"
               >
                 <div
                   className="text-base sm:text-lg font-black tabular-nums"
@@ -143,7 +143,7 @@ export default function CuriosidadesPage() {
               {items.map((c, i) => (
                 <article
                   key={`${c.edicionSlug}-${cat}-${i}`}
-                  className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+                  className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
                 >
                   <Link
                     href={`/historia/${c.edicionSlug}`}

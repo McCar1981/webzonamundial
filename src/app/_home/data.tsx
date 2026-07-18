@@ -114,7 +114,7 @@ export const ICON_V3: Record<string, ReactNode> = {
         strokeWidth="1"
         strokeLinejoin="round"
       />
-      <circle cx="18" cy="6" r="2.5" fill="#060B14" stroke="#c9a84c" strokeWidth="1" />
+      <circle cx="18" cy="6" r="2.5" fill="#000000" stroke="#c9a84c" strokeWidth="1" />
       <circle cx="18" cy="6" r="1" fill="#ff4444" />
     </svg>
   ),
@@ -261,7 +261,7 @@ export const ICON_V3: Record<string, ReactNode> = {
       <rect x="6.5" y="7.5" width="7" height="4" rx="1" fill="#c9a84c" fillOpacity="0.2" stroke="#c9a84c" strokeWidth="0.6" />
       <path d="M6.5 14.5h7" stroke="#c9a84c" strokeWidth="0.9" strokeLinecap="round" />
       <path d="M6.5 17h5" stroke="#c9a84c" strokeWidth="0.9" strokeLinecap="round" opacity="0.5" />
-      <circle cx="17.5" cy="18" r="3.5" fill="#060B14" stroke="#c9a84c" strokeWidth="1.2" />
+      <circle cx="17.5" cy="18" r="3.5" fill="#000000" stroke="#c9a84c" strokeWidth="1.2" />
       <path d="M16 18l1.2 1.2 2.5-2.5" stroke="#c9a84c" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
@@ -299,7 +299,7 @@ export const ICON_DESCUBRE: Record<string, ReactNode> = {
       <ellipse cx="12" cy="12" rx="4.5" ry="9.5" stroke="#c9a84c" strokeWidth="0.8" opacity="0.5" />
       <path d="M3 9h18" stroke="#c9a84c" strokeWidth="0.7" opacity="0.45" />
       <path d="M3 15h18" stroke="#c9a84c" strokeWidth="0.7" opacity="0.45" />
-      <circle cx="17" cy="18" r="4" fill="#060B14" stroke="#c9a84c" strokeWidth="1.2" />
+      <circle cx="17" cy="18" r="4" fill="#000000" stroke="#c9a84c" strokeWidth="1.2" />
       <text x="17" y="20" textAnchor="middle" fill="#c9a84c" fontSize="5" fontWeight="900" fontFamily="system-ui">48</text>
     </svg>
   ),
@@ -313,7 +313,7 @@ export const ICON_DESCUBRE: Record<string, ReactNode> = {
       </defs>
       <circle cx="10" cy="7.5" r="4" fill="url(#i-crt)" stroke="#c9a84c" strokeWidth="1.3" />
       <path d="M3 21a7 7 0 0 1 14 0" fill="#c9a84c" fillOpacity="0.08" stroke="#c9a84c" strokeWidth="1.3" strokeLinecap="round" />
-      <circle cx="18.5" cy="15" r="4.5" fill="#060B14" stroke="#c9a84c" strokeWidth="1.2" />
+      <circle cx="18.5" cy="15" r="4.5" fill="#000000" stroke="#c9a84c" strokeWidth="1.2" />
       <path d="M17 13l4 2-4 2z" fill="#c9a84c" fillOpacity="0.6" stroke="#c9a84c" strokeWidth="0.8" strokeLinejoin="round" />
     </svg>
   ),
@@ -345,7 +345,7 @@ export const ICON_DESCUBRE: Record<string, ReactNode> = {
       <rect x="1.5" y="18.5" width="7" height="3.5" rx="1" fill="url(#i-brk)" stroke="#c9a84c" strokeWidth="1.1" />
       <path d="M8.5 3.75h3v7.5h-3" stroke="#c9a84c" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       <path d="M11.5 7.5h3" stroke="#c9a84c" strokeWidth="1.1" strokeLinecap="round" />
-      <circle cx="18.5" cy="12" r="4.5" fill="#060B14" stroke="#c9a84c" strokeWidth="1.3" />
+      <circle cx="18.5" cy="12" r="4.5" fill="#000000" stroke="#c9a84c" strokeWidth="1.3" />
       <path d="M18.5 8.5l1.2 2.3 2.6.4-1.9 1.8.4 2.5-2.3-1.2-2.3 1.2.4-2.5-1.9-1.8 2.6-.4z" fill="#c9a84c" fillOpacity="0.6" stroke="#c9a84c" strokeWidth="0.5" />
     </svg>
   ),

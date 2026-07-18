@@ -13,7 +13,7 @@ import Link from "next/link";
 import { X } from "lucide-react";
 import { useEntitlements } from "./EntitlementsProvider";
 
-const NAVY = "#0F1D32", BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
+const NAVY = "#14110a", BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82";
 const DISMISS_KEY = "zm:gp-offer-dismissed-at";
 // Reaparece N días después de cerrarlo (no para siempre): la oferta necesita
 // varios impactos para convertir — la gente compra al 2º o 3º, no al primero.
@@ -102,7 +102,7 @@ export default function GranPremioOffer() {
         <Link
           href="/pro"
           onClick={close}
-          style={{ flex: "1 1 140px", textAlign: "center", padding: "11px 14px", borderRadius: 12, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0A1422", fontSize: 14, fontWeight: 900, textDecoration: "none" }}
+          style={{ flex: "1 1 140px", textAlign: "center", padding: "11px 14px", borderRadius: 12, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0a0906", fontSize: 14, fontWeight: 900, textDecoration: "none" }}
         >
           Conseguir el Pase
         </Link>

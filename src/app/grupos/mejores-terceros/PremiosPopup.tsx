@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 
-const NAVY = "#0F1D32", BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
+const NAVY = "#14110a", BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82";
 const DISMISS_KEY = "zm:premios-popup-terceros-at";
 const SHOW_AFTER_MS = 6000;
 const REAPPEAR_AFTER_MS = 2 * 24 * 60 * 60 * 1000;
@@ -87,7 +87,7 @@ export default function PremiosPopup() {
         alignItems: "center",
         justifyContent: "center",
         padding: 16,
-        background: "rgba(3,6,12,0.72)",
+        background: "rgba(0,0,0,0.72)",
         backdropFilter: "blur(3px)",
         WebkitBackdropFilter: "blur(3px)",
       }}
@@ -159,7 +159,7 @@ export default function PremiosPopup() {
             padding: "13px 16px",
             borderRadius: 12,
             background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            color: "#0A1422",
+            color: "#0a0906",
             fontSize: 15,
             fontWeight: 900,
             textDecoration: "none",

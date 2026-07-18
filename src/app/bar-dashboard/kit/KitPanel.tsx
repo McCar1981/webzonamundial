@@ -13,13 +13,13 @@ import {
 } from "lucide-react";
 import type { KitMaterial } from "@/lib/bars/kit";
 
-const BG = "#060B14";
-const BG2 = "#0F1D32";
+const BG = "#000000";
+const BG2 = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TEXT = "#F8FAFC";
-const MID = "#94A3B8";
-const DIM = "#64748B";
+const MID = "#a69a82";
+const DIM = "#8b8168";
 const BORDER = "1px solid rgba(255,255,255,0.08)";
 
 // Icono por tipo de material (solo SVG, sin emojis).

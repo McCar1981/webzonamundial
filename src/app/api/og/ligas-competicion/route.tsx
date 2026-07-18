@@ -27,7 +27,7 @@ export async function GET(request: Request) {
           flexDirection: "column",
           justifyContent: "space-between",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.20), transparent 65%), linear-gradient(180deg, #060B14, #0B1825)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.20), transparent 65%), linear-gradient(180deg, #000000, #0a0906)",
           color: "#fff",
           fontFamily: "sans-serif",
           padding: "56px 72px",
@@ -35,12 +35,12 @@ export async function GET(request: Request) {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 26, fontWeight: 800, letterSpacing: 5, color: GOLD }}>ZONA DE LIGAS</span>
-          <span style={{ fontSize: 24, fontWeight: 700, color: "#9db0c9" }}>zonamundial.app</span>
+          <span style={{ fontSize: 24, fontWeight: 700, color: "#a69a82" }}>zonamundial.app</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span style={{ fontSize: 84, fontWeight: 900, lineHeight: 1.05 }}>{comp}</span>
-          {country ? <span style={{ fontSize: 30, fontWeight: 600, color: "#9db0c9", marginTop: 8 }}>{country}</span> : null}
+          {country ? <span style={{ fontSize: 30, fontWeight: 600, color: "#a69a82", marginTop: 8 }}>{country}</span> : null}
           <span style={{ fontSize: 30, fontWeight: 600, color: "#dbe4f0", marginTop: 18 }}>Calendario, resultados y clasificación en vivo</span>
         </div>
 

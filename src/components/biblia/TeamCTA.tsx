@@ -15,7 +15,7 @@ export default function TeamCTA({ team }: { team: NationalTeam }) {
       style={{
         borderColor: "rgba(201,168,76,0.2)",
         background:
-          "radial-gradient(ellipse at center, rgba(201,168,76,0.12), rgba(11,24,37,0.6))",
+          "radial-gradient(ellipse at center, rgba(201,168,76,0.12), rgba(10,9,6,0.6))",
       }}
     >
       <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
@@ -77,7 +77,7 @@ function CTACard({
           : "rgba(255,255,255,0.08)",
         background: primary
           ? "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05))"
-          : "rgba(11,24,37,0.6)",
+          : "rgba(10,9,6,0.6)",
       }}
     >
       <div className="text-3xl mb-2">{icon}</div>

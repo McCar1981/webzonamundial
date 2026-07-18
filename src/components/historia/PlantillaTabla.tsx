@@ -33,11 +33,11 @@ export default function PlantillaTabla({ plantilla, titulo }: Props) {
       {titulo && (
         <h3 className="text-base sm:text-lg font-bold text-white mb-3">{titulo}</h3>
       )}
-      <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+      <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
         {grouped.map(({ pos, jugadores }) => (
           <div key={pos}>
             <div
-              className="px-3 sm:px-4 py-2 bg-[#0B1825] text-[10px] font-bold uppercase tracking-wider"
+              className="px-3 sm:px-4 py-2 bg-[#0a0906] text-[10px] font-bold uppercase tracking-wider"
               style={{ color: GOLD }}
             >
               {POS_LABEL[pos]} · {jugadores.length}
@@ -45,15 +45,15 @@ export default function PlantillaTabla({ plantilla, titulo }: Props) {
             {jugadores.map((j, i) => (
               <div
                 key={`${pos}-${j.dorsal ?? j.nombre}-${i}`}
-                className="grid items-center gap-3 px-3 sm:px-4 py-2.5 border-b border-[#0F172A] last:border-b-0"
+                className="grid items-center gap-3 px-3 sm:px-4 py-2.5 border-b border-[#14110a] last:border-b-0"
                 style={{
                   gridTemplateColumns: "32px 1fr auto auto",
-                  background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                  background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
                 }}
               >
                 <span
                   className="text-xs sm:text-sm font-black tabular-nums text-center"
-                  style={{ color: j.capitan ? GOLD : "#64748B" }}
+                  style={{ color: j.capitan ? GOLD : "#8b8168" }}
                 >
                   {j.dorsal ?? "—"}
                 </span>

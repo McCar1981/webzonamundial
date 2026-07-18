@@ -98,7 +98,7 @@ export async function buildKitData(
 ): Promise<KitData> {
   const qrTarget = `${origin}/r/${code}`;
   const qrDataUrl = await QRCode.toDataURL(qrTarget, {
-    width: 1000, margin: 1, color: { dark: "#0A0A0A", light: "#FFFFFF" }, errorCorrectionLevel: "M",
+    width: 1000, margin: 1, color: { dark: "#000000", light: "#FFFFFF" }, errorCorrectionLevel: "M",
   });
   const mainPrize = prizes.find((p) => p.prize_type === "principal") ?? prizes[0] ?? null;
   return {

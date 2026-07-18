@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 const CONTACT_EMAIL = "gol@zonamundial.app";
 
 export const metadata: Metadata = {
@@ -97,7 +97,7 @@ export default function AccesibilidadPage() {
           Accesibilidad
         </h1>
 
-        <p style={{ color: "#cbd5e1", fontSize: 18, lineHeight: 1.55, marginBottom: 36, maxWidth: 720 }}>
+        <p style={{ color: "#e6decb", fontSize: 18, lineHeight: 1.55, marginBottom: 36, maxWidth: 720 }}>
           ZonaMundial se compromete a ofrecer una plataforma digital usable por el mayor número
           posible de personas, con independencia de capacidades, dispositivo o tecnología asistiva.
           Si encuentras una barrera, escríbenos a{" "}
@@ -327,7 +327,7 @@ export default function AccesibilidadPage() {
           </p>
         </Section>
 
-        <div style={{ marginTop: 48, padding: 28, background: "#0B1825", border: "1px solid rgba(212,168,83,0.3)", borderRadius: 10 }}>
+        <div style={{ marginTop: 48, padding: 28, background: "#0a0906", border: "1px solid rgba(212,168,83,0.3)", borderRadius: 10 }}>
           <h3 style={{ color: GOLD2, fontSize: 20, fontWeight: 700, margin: "0 0 8px" }}>¿Necesitas ayuda ahora mismo?</h3>
           <p style={{ color: MID, fontSize: 14, margin: "0 0 16px", lineHeight: 1.6 }}>
             Si una barrera te está impidiendo usar la plataforma justo ahora, escríbenos con
@@ -339,7 +339,7 @@ export default function AccesibilidadPage() {
               display: "inline-block",
               padding: "10px 18px",
               background: GOLD,
-              color: "#060B14",
+              color: "#000000",
               fontWeight: 600,
               fontSize: 14,
               textDecoration: "none",

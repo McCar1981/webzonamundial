@@ -127,7 +127,7 @@ export default function AvatarUploader({
             background: preview
               ? `url(${preview}) center/cover no-repeat`
               : "linear-gradient(135deg, #C9A84C, #E8D48B)",
-            color: "#030712",
+            color: "#000000",
           }}
         >
           {!preview && (
@@ -147,7 +147,7 @@ export default function AvatarUploader({
             type="button"
             onClick={handlePick}
             disabled={uploading || removing}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 transition-all"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 transition-all"
             style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
           >
             {uploading ? "Subiendo…" : preview ? "Cambiar foto" : "Subir foto"}

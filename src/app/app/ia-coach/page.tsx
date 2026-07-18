@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 const Icon = ({ icon, size = 24 }: { icon: React.ReactNode; size?: number }) => (
   <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: size, height: size, flexShrink: 0 }}>{icon}</span>

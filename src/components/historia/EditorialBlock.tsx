@@ -24,7 +24,7 @@ export default function EditorialBlock({ slug }: { slug: string }) {
       : null;
 
   return (
-    <section className="mt-16 border-t border-[#1E293B] pt-10 mb-12">
+    <section className="mt-16 border-t border-[#241e12] pt-10 mb-12">
       <article className="max-w-3xl">
         <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
           {article.lead}
@@ -55,7 +55,7 @@ export default function EditorialBlock({ slug }: { slug: string }) {
               {article.faq.map((f) => (
                 <div
                   key={f.q}
-                  className="rounded-xl border border-[#1E293B] bg-[#0B1825] p-4"
+                  className="rounded-xl border border-[#241e12] bg-[#0a0906] p-4"
                 >
                   <h3 className="text-[15px] sm:text-base font-bold text-[#c9a84c] mb-1.5">
                     {f.q}

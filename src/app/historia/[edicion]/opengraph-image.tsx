@@ -45,7 +45,7 @@ export default async function OGImage({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#060B14',
+            background: '#000000',
             color: '#c9a84c',
             fontSize: 64,
             fontWeight: 900,
@@ -70,7 +70,7 @@ export default async function OGImage({
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          background: 'linear-gradient(135deg, #060B14 0%, #0F1D32 60%, #0B1825 100%)',
+          background: 'linear-gradient(135deg, #000000 0%, #14110a 60%, #0a0906 100%)',
           color: '#fff',
           padding: '64px',
           fontFamily: 'sans-serif',
@@ -125,7 +125,7 @@ export default async function OGImage({
             <div
               style={{
                 fontSize: 18,
-                color: '#94A3B8',
+                color: '#a69a82',
                 letterSpacing: 4,
                 fontWeight: 700,
                 display: 'flex',
@@ -174,7 +174,7 @@ export default async function OGImage({
           <div
             style={{
               fontSize: 22,
-              color: '#94A3B8',
+              color: '#a69a82',
               display: 'flex',
             }}
           >

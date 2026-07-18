@@ -252,7 +252,7 @@ function AnalysisBody({
           label="Empate"
           value={draw}
           highlight={isDraw}
-          color="#94a3b8"
+          color="#a69a82"
         />
         <ProbBar
           label={teamB.name}

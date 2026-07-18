@@ -109,7 +109,7 @@ export default function EstadiosPage() {
             return (
               <article
                 key={`${s.nombre}-${s.inauguracion}`}
-                className="p-4 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+                className="p-4 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
               >
                 <div className="flex items-baseline gap-3 flex-wrap mb-3">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -155,7 +155,7 @@ export default function EstadiosPage() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-300 leading-relaxed mb-3">{s.datoClave}</p>
-                <div className="p-3 rounded-lg bg-[#0B1825] border-l-2 border-[#C9A84C]">
+                <div className="p-3 rounded-lg bg-[#0a0906] border-l-2 border-[#C9A84C]">
                   <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: GOLD }}>
                     Momento épico
                   </div>

@@ -74,7 +74,7 @@ export default function BestXIPage() {
               {jugs.map((j) => (
                 <article
                   key={j.nombre}
-                  className="p-4 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80"
+                  className="p-4 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,7 +107,7 @@ export default function BestXIPage() {
           {epocas.map((e) => (
             <article
               key={e.epoca}
-              className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <h3 className="text-base sm:text-lg font-bold text-white mb-1">
                 {e.epoca}
@@ -117,7 +117,7 @@ export default function BestXIPage() {
                 {e.jugadores.map((j, i) => (
                   <span
                     key={`${e.epoca}-${i}`}
-                    className="px-2 py-1 rounded text-[11px] font-semibold text-gray-300 bg-[#0B1825] border border-[#1E293B]"
+                    className="px-2 py-1 rounded text-[11px] font-semibold text-gray-300 bg-[#0a0906] border border-[#241e12]"
                   >
                     {j}
                   </span>

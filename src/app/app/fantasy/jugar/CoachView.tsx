@@ -47,7 +47,7 @@ export default function CoachView({ team, ownedIds, onAutoDraft, onCaptain, onGo
           })}
         </div>
 
-        <button onClick={onAutoDraft} style={{ marginTop: 12, width: "100%", padding: "12px", borderRadius: 12, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 14, cursor: "pointer" }}>
+        <button onClick={onAutoDraft} style={{ marginTop: 12, width: "100%", padding: "12px", borderRadius: 12, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 14, cursor: "pointer" }}>
           🪄 Optimizar equipo con Auto-draft IA
         </button>
       </div>
@@ -66,7 +66,7 @@ export default function CoachView({ team, ownedIds, onAutoDraft, onCaptain, onGo
               <span style={{ fontSize: 11, fontWeight: 800, color: captain.player.next.tier.color }}>{captain.player.next.tier.emoji} ×{captain.player.next.tier.multiplier}</span>
             </div>
             <div style={{ fontSize: 12, color: MID, marginTop: 10, lineHeight: 1.45 }}>{captain.why}</div>
-            <button onClick={() => onCaptain(captain.player.id)} disabled={!!captainIsSet} style={{ marginTop: 12, width: "100%", padding: "10px", borderRadius: 10, border: "none", background: captainIsSet ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: captainIsSet ? MID : "#060B14", fontWeight: 800, fontSize: 13, cursor: captainIsSet ? "default" : "pointer" }}>
+            <button onClick={() => onCaptain(captain.player.id)} disabled={!!captainIsSet} style={{ marginTop: 12, width: "100%", padding: "10px", borderRadius: 10, border: "none", background: captainIsSet ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: captainIsSet ? MID : "#000000", fontWeight: 800, fontSize: 13, cursor: captainIsSet ? "default" : "pointer" }}>
               {captainIsSet ? "✓ Ya es tu capitán" : "Nombrar capitán"}
             </button>
           </div>

@@ -18,7 +18,7 @@ import FantasyPicker from "./FantasyPicker";
 export const dynamic = "force-dynamic";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const comp = getCompetition(params.slug);
@@ -40,7 +40,7 @@ export default async function FantasyPage({ params }: { params: { slug: string }
   const roundFixtures = round ? upcoming.filter((f) => f.round === round) : [];
 
   const shell = (children: React.ReactNode) => (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
           <span aria-hidden>&larr;</span> {comp.name}

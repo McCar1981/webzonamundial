@@ -749,7 +749,7 @@ export default function SeasonView({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "rgba(6,11,20,0.86)",
+            background: "rgba(0,0,0,0.86)",
             padding: 20,
             animation: "mcBannerIn .25s ease both",
           }}
@@ -863,7 +863,7 @@ export default function SeasonView({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "rgba(6,11,20,0.9)",
+            background: "rgba(0,0,0,0.9)",
             padding: 20,
             animation: "mcBannerIn .25s ease both",
           }}
@@ -878,7 +878,7 @@ export default function SeasonView({
               border: `1px solid ${GOLD}`,
               boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
               backgroundImage:
-                "linear-gradient(180deg, rgba(6,11,20,0.78), rgba(6,11,20,0.94)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
+                "linear-gradient(180deg, rgba(0,0,0,0.78), rgba(0,0,0,0.94)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -905,7 +905,7 @@ export default function SeasonView({
                       textAlign: "left",
                       padding: "12px 16px",
                       borderRadius: 12,
-                      background: "rgba(15,23,38,0.72)",
+                      background: "rgba(20,17,10,0.72)",
                       border: "1px solid rgba(255,255,255,0.12)",
                       color: "#fff",
                       cursor: "pointer",
@@ -919,7 +919,7 @@ export default function SeasonView({
                     }}
                     onMouseLeave={(ev) => {
                       ev.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-                      ev.currentTarget.style.background = "rgba(15,23,38,0.72)";
+                      ev.currentTarget.style.background = "rgba(20,17,10,0.72)";
                     }}
                   >
                     {ch.label}

@@ -37,7 +37,7 @@ export default function MatchSummary({ fixtureId }: { fixtureId: number }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
         <span style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>Ponme al día</span>
         {ai && (
-          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: 1, color: "#0A1422", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, padding: "2px 7px", borderRadius: 99 }}>IA</span>
+          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: 1, color: "#0a0906", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, padding: "2px 7px", borderRadius: 99 }}>IA</span>
         )}
       </div>
       {loading ? (

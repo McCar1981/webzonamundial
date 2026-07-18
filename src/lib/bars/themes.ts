@@ -29,15 +29,15 @@ export interface BarTheme {
 export const BAR_THEMES: Record<string, BarTheme> = {
   "deportivo-oscuro": {
     id: "deportivo-oscuro", name: "Deportivo oscuro",
-    bg: "#0A0E14", surface: "#121821", surface2: "#0C1118", border: "rgba(255,255,255,0.08)",
+    bg: "#0A0E14", surface: "#121821", surface2: "#000000", border: "rgba(255,255,255,0.08)",
     primary: "#22c55e", primaryInk: "#04210f", secondary: "#38bdf8",
     text: "#E6EBF2", textMuted: "#8a94a6", buttonRadius: 10, cardRadius: 14,
   },
   "estadio-premium": {
     id: "estadio-premium", name: "Estadio premium",
-    bg: "#060B14", surface: "#0F1D32", surface2: "#0B1825", border: "rgba(255,255,255,0.07)",
+    bg: "#000000", surface: "#14110a", surface2: "#0a0906", border: "rgba(255,255,255,0.07)",
     primary: "#c9a84c", primaryInk: "#1a1206", secondary: "#e8d48b",
-    text: "#E2E8F0", textMuted: "#94A3B8", buttonRadius: 12, cardRadius: 16,
+    text: "#E2E8F0", textMuted: "#a69a82", buttonRadius: 12, cardRadius: 16,
   },
   "pub-clasico": {
     id: "pub-clasico", name: "Pub clásico",
@@ -53,9 +53,9 @@ export const BAR_THEMES: Record<string, BarTheme> = {
   },
   "minimal-blanco": {
     id: "minimal-blanco", name: "Minimal blanco",
-    bg: "#F6F7F9", surface: "#FFFFFF", surface2: "#EEF1F5", border: "rgba(15,23,42,0.10)",
-    primary: "#111827", primaryInk: "#FFFFFF", secondary: "#2563eb",
-    text: "#0F172A", textMuted: "#64748B", buttonRadius: 10, cardRadius: 14,
+    bg: "#F6F7F9", surface: "#FFFFFF", surface2: "#EEF1F5", border: "rgba(20,17,10,0.10)",
+    primary: "#14110a", primaryInk: "#FFFFFF", secondary: "#2563eb",
+    text: "#14110a", textMuted: "#8b8168", buttonRadius: 10, cardRadius: 14,
   },
   "rojo-energia": {
     id: "rojo-energia", name: "Rojo energía",
@@ -77,8 +77,8 @@ export const BAR_THEMES: Record<string, BarTheme> = {
   },
   "azul-electrico": {
     id: "azul-electrico", name: "Azul eléctrico",
-    bg: "#06090F", surface: "#0E1726", surface2: "#0A111D", border: "rgba(255,255,255,0.08)",
-    primary: "#3b82f6", primaryInk: "#03122e", secondary: "#22d3ee",
+    bg: "#06090F", surface: "#0E1726", surface2: "#0a0906", border: "rgba(255,255,255,0.08)",
+    primary: "#3b82f6", primaryInk: "#000000", secondary: "#22d3ee",
     text: "#E6EDF7", textMuted: "#8DA0BC", buttonRadius: 10, cardRadius: 14,
   },
   "purpura-neon": {
@@ -102,13 +102,13 @@ export const BAR_THEMES: Record<string, BarTheme> = {
   "grafito-plata": {
     id: "grafito-plata", name: "Grafito plata",
     bg: "#0C0E11", surface: "#171A1F", surface2: "#101317", border: "rgba(255,255,255,0.10)",
-    primary: "#cbd5e1", primaryInk: "#0b1016", secondary: "#94a3b8",
+    primary: "#e6decb", primaryInk: "#000000", secondary: "#a69a82",
     text: "#E8ECF1", textMuted: "#8a94a6", buttonRadius: 8, cardRadius: 12,
   },
   "oceano-profundo": {
     id: "oceano-profundo", name: "Océano profundo",
-    bg: "#04101C", surface: "#0A2036", surface2: "#07182A", border: "rgba(255,255,255,0.08)",
-    primary: "#0ea5e9", primaryInk: "#03182b", secondary: "#38bdf8",
+    bg: "#000000", surface: "#0a0906", surface2: "#0a0906", border: "rgba(255,255,255,0.08)",
+    primary: "#0ea5e9", primaryInk: "#0a0906", secondary: "#38bdf8",
     text: "#E1EEF8", textMuted: "#84A2BC", buttonRadius: 12, cardRadius: 16,
   },
   "cobre-vintage": {

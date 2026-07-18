@@ -210,7 +210,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
         color: "#fff",
         padding: "40px 16px 80px",
       }}
@@ -276,7 +276,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
         <p
           style={{
             textAlign: "center",
-            color: "#94A3B8",
+            color: "#a69a82",
             fontSize: "clamp(15px, 2vw, 18px)",
             maxWidth: 640,
             margin: "16px auto 0",
@@ -302,7 +302,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             gridTemplateColumns: "minmax(280px, 340px) 1fr",
             gap: 40,
             alignItems: "center",
-            background: "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+            background: "linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
             border: "1px solid rgba(201,168,76,0.25)",
             borderRadius: 24,
             padding: "clamp(24px, 4vw, 40px)",
@@ -357,7 +357,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             <p
               style={{
                 fontSize: 13,
-                color: "#94A3B8",
+                color: "#a69a82",
                 letterSpacing: "0.02em",
                 margin: 0,
                 textAlign: "center",
@@ -558,7 +558,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
           >
             Qué vas a tener en la app
           </h2>
-          <p style={{ textAlign: "center", color: "#94A3B8", margin: "0 0 36px" }}>
+          <p style={{ textAlign: "center", color: "#a69a82", margin: "0 0 36px" }}>
             12 módulos integrados para vivir el Mundial 2026 al máximo.
           </p>
           <div
@@ -607,7 +607,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                 >
                   {f.title}
                 </h3>
-                <p style={{ margin: 0, fontSize: 12.5, color: "#94A3B8", lineHeight: 1.5 }}>
+                <p style={{ margin: 0, fontSize: 12.5, color: "#a69a82", lineHeight: 1.5 }}>
                   {f.desc}
                 </p>
               </div>
@@ -722,7 +722,7 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
       <h2 style={{ fontSize: 22, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.01em" }}>
         Añádela a tu pantalla de inicio
       </h2>
-      <p style={{ color: "#94A3B8", fontSize: 14, margin: "0 0 24px", lineHeight: 1.5 }}>
+      <p style={{ color: "#a69a82", fontSize: 14, margin: "0 0 24px", lineHeight: 1.5 }}>
         {isIos
           ? "En Safari, toca Compartir y elige «Añadir a pantalla de inicio». La abrirás como una app, a pantalla completa."
           : "Toca el botón y confirma la instalación. La tendrás en tu pantalla de inicio, lista para abrir como una app más."}

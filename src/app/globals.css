@@ -5,7 +5,7 @@
 /* ══════════════════════════════════════
    ZonaMundial — Global Styles
    Font: Outfit (Google Fonts)
-   Colors: #060B14 bg, #c9a84c gold
+   Colors: #000000 bg, #c9a84c gold
    ══════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
@@ -28,14 +28,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;600;800&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --zm-bg: #060B14;
-  --zm-surface: #0F1D32;
-  --zm-surface2: #0B1825;
+  --zm-bg: #000000;
+  --zm-surface: #14110a;
+  --zm-surface2: #0a0906;
   --zm-gold: #c9a84c;
   --zm-gold-light: #e8d48b;
   --zm-text: #E2E8F0;
-  --zm-text-muted: #94A3B8;
-  --zm-border: #1E293B;
+  --zm-text-muted: #a69a82;
+  --zm-border: #241e12;
 }
 
 * {
@@ -321,17 +321,17 @@ summary {
 
 :root {
   /* Cards */
-  --bb-card: rgba(15, 23, 42, 0.7);
-  --bb-card-ghost: rgba(11, 24, 37, 0.4);
+  --bb-card: rgba(20,17,10, 0.7);
+  --bb-card-ghost: rgba(10,9,6, 0.4);
   --bb-border-subtle: rgba(255, 255, 255, 0.06);
   --bb-border-strong: rgba(201, 168, 76, 0.25);
   --bb-border-blue: rgba(124, 192, 255, 0.18);
 
-  /* Texto — todos cumplen contraste WCAG AA sobre #060B14 */
+  /* Texto — todos cumplen contraste WCAG AA sobre #000000 */
   --bb-text: #f1f5f9;          /* 17.5:1 */
-  --bb-text-soft: #cbd5e1;     /* 11.7:1 */
-  --bb-text-muted: #94a3b8;    /* 7.6:1  ← reemplaza el viejo #6a7a9a (3.4:1) */
-  --bb-text-dim: #64748b;      /* 4.8:1, solo para info terciaria */
+  --bb-text-soft: #e6decb;     /* 11.7:1 */
+  --bb-text-muted: #a69a82;    /* 7.6:1  ← reemplaza el viejo #6e6552 (3.4:1) */
+  --bb-text-dim: #8b8168;      /* 4.8:1, solo para info terciaria */
 
   /* Acentos */
   --bb-gold: #c9a84c;

@@ -109,7 +109,7 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
             {q.top_scorers.map((s, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-3"
+                className="flex items-center gap-3 rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-3"
               >
                 <span
                   className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0"
@@ -117,7 +117,7 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
                     background: i === 0
                       ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                       : "rgba(201,168,76,0.1)",
-                    color: i === 0 ? "#030712" : "#C9A84C",
+                    color: i === 0 ? "#000000" : "#C9A84C",
                   }}
                 >
                   {s.goals}
@@ -175,7 +175,7 @@ function StatsGrid({ stats }: { stats: MatchStats }) {
               : "rgba(255,255,255,0.05)",
             background: it.accent
               ? "rgba(201,168,76,0.06)"
-              : "rgba(11,24,37,0.5)",
+              : "rgba(10,9,6,0.5)",
           }}
         >
           <div
@@ -266,10 +266,10 @@ function MatchesTable({
   ourIso: string;
 }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-[#1E293B]/60">
+    <div className="overflow-x-auto rounded-xl border border-[#241e12]/60">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
+          <tr className="bg-[#0a0906]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
             <th className="text-left font-semibold py-3 px-3">J</th>
             <th className="text-left font-semibold py-3 px-3">Fecha</th>
             <th className="text-right font-semibold py-3 px-3">Local</th>
@@ -302,7 +302,7 @@ function MatchesTable({
             return (
               <tr
                 key={i}
-                className="border-t border-[#1E293B]/40 hover:bg-[#0B1825]/40 transition-colors"
+                className="border-t border-[#241e12]/40 hover:bg-[#0a0906]/40 transition-colors"
               >
                 <td className="py-2.5 px-3 text-[var(--bb-text-muted)] font-mono">{m.matchday}</td>
                 <td className="py-2.5 px-3 text-[var(--bb-text-soft)] whitespace-nowrap">

@@ -103,7 +103,7 @@ export default function PushOptInBanner() {
         maxWidth: 380,
         marginLeft: "auto",
         zIndex: 9000,
-        background: "linear-gradient(180deg, #0F1F30, #0B1825)",
+        background: "linear-gradient(180deg, #14110a, #0a0906)",
         border: "1px solid rgba(201,168,76,0.35)",
         borderRadius: 16,
         boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
@@ -147,7 +147,7 @@ export default function PushOptInBanner() {
             style={{
               margin: 0,
               fontSize: 12.5,
-              color: "#94A3B8",
+              color: "#a69a82",
               lineHeight: 1.45,
             }}
           >
@@ -177,7 +177,7 @@ export default function PushOptInBanner() {
             key={b}
             style={{
               fontSize: 12.5,
-              color: "#CBD5E1",
+              color: "#e6decb",
               display: "flex",
               gap: 8,
               alignItems: "flex-start",
@@ -204,7 +204,7 @@ export default function PushOptInBanner() {
         style={{
           margin: "12px 0 0",
           fontSize: 11,
-          color: "#64748B",
+          color: "#8b8168",
           textAlign: "center",
         }}
       >
@@ -225,7 +225,7 @@ export default function PushOptInBanner() {
           disabled={loading}
           style={{
             background: "transparent",
-            color: "#94A3B8",
+            color: "#a69a82",
             border: "none",
             fontSize: 13,
             cursor: loading ? "wait" : "pointer",

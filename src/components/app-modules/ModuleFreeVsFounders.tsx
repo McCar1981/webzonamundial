@@ -40,7 +40,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
         padding: "26px 24px",
         borderRadius: 18,
         border: "1px solid rgba(255,255,255,0.08)",
-        background: "linear-gradient(180deg, rgba(15,31,48,0.5), rgba(11,24,37,0.25))",
+        background: "linear-gradient(180deg, rgba(20,17,10,0.5), rgba(10,9,6,0.25))",
       }}
     >
       <div
@@ -74,7 +74,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
             width: "100%",
             borderCollapse: "collapse",
             fontSize: 14,
-            color: "#cbd5e1",
+            color: "#e6decb",
             minWidth: 560,
           }}
         >
@@ -86,7 +86,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
                 fontSize: 11,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "#94a3b8",
+                color: "#a69a82",
               }}
             >
               <th style={{ textAlign: "left", padding: "12px 14px", fontWeight: 700 }}>

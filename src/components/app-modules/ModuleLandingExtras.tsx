@@ -27,7 +27,7 @@ export default function ModuleLandingExtras({ slug, labelOverride }: Props) {
     <section
       style={{
         background:
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
         padding: "clamp(40px, 6vw, 72px) 20px",
         color: "#fff",
         fontFamily: "Outfit, system-ui, sans-serif",

@@ -42,14 +42,14 @@ export function SedesMatches() {
   }, []);
 
   return (
-    <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-[#0B1825] to-[#0F1D32] p-5 md:p-6">
+    <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-[#0a0906] to-[#14110a] p-5 md:p-6">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
           <svg className="w-5 h-5 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" strokeWidth={2} /><path strokeWidth={2} d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10zM2 12h20" /></svg>
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">{sT.matchesTitle}</h3>
-          <p className="text-xs text-[#6a7a9a]">{sT.matchesSub}</p>
+          <p className="text-xs text-[#6e6552]">{sT.matchesSub}</p>
         </div>
       </div>
 
@@ -60,7 +60,7 @@ export function SedesMatches() {
           return (
             <div
               key={sede.slug}
-              className="rounded-xl border border-white/5 bg-[#060B14] p-4 transition hover:border-[#c9a84c]/20"
+              className="rounded-xl border border-white/5 bg-[#000000] p-4 transition hover:border-[#c9a84c]/20"
             >
               <div className="mb-3 flex items-center gap-2">
                 <img
@@ -82,20 +82,20 @@ export function SedesMatches() {
                         alt={m.h}
                         className="h-3 w-4 rounded-sm object-cover"
                       />
-                      <span className="text-[#CBD5E1]">vs</span>
+                      <span className="text-[#e6decb]">vs</span>
                       <img
                         src={`https://flagcdn.com/w20/${m.af}.png`}
                         alt={m.a}
                         className="h-3 w-4 rounded-sm object-cover"
                       />
                     </div>
-                    <span className="text-[10px] text-[#6a7a9a]">
+                    <span className="text-[10px] text-[#6e6552]">
                       {formatDateShort(m.d, locale)} · {m.t}
                     </span>
                   </div>
                 ))}
                 {remaining > 0 && (
-                  <p className="text-[10px] text-[#6a7a9a]">+{remaining} {locale === 'en' ? 'more' : 'más'}</p>
+                  <p className="text-[10px] text-[#6e6552]">+{remaining} {locale === 'en' ? 'more' : 'más'}</p>
                 )}
               </div>
             </div>

@@ -84,27 +84,27 @@ export async function POST(req: Request) {
     preheader: `Solicitud de eliminación: ${email}`,
     heading: "Nueva solicitud de eliminación de cuenta (RGPD)",
     bodyHtml: `
-      <p style="margin:0 0 16px;color:#1e293b;font-size:15px;line-height:1.6">
+      <p style="margin:0 0 16px;color:#241e12;font-size:15px;line-height:1.6">
         Se ha recibido una solicitud de eliminación de cuenta a través del formulario público de
         <strong>/eliminar-cuenta</strong>. Procesar antes de <strong>${escapeHtml(
           new Date(Date.now() + 30 * 24 * 3600 * 1000).toLocaleDateString("es-ES"),
         )}</strong> (plazo máximo 30 días según política).
       </p>
       <table style="width:100%;border-collapse:collapse;margin:16px 0">
-        <tr><td style="padding:8px 0;color:#64748b;font-size:13px;width:140px">Email</td>
-            <td style="padding:8px 0;color:#0f172a;font-size:14px;font-weight:600">${escapeHtml(email)}</td></tr>
-        <tr><td style="padding:8px 0;color:#64748b;font-size:13px">Usuario</td>
-            <td style="padding:8px 0;color:#0f172a;font-size:14px;font-weight:600">${escapeHtml(username)}</td></tr>
-        <tr><td style="padding:8px 0;color:#64748b;font-size:13px">Solicitado</td>
-            <td style="padding:8px 0;color:#0f172a;font-size:14px">${escapeHtml(requestedAt)}</td></tr>
-        <tr><td style="padding:8px 0;color:#64748b;font-size:13px">IP</td>
-            <td style="padding:8px 0;color:#0f172a;font-size:13px;font-family:monospace">${escapeHtml(ip)}</td></tr>
+        <tr><td style="padding:8px 0;color:#8b8168;font-size:13px;width:140px">Email</td>
+            <td style="padding:8px 0;color:#14110a;font-size:14px;font-weight:600">${escapeHtml(email)}</td></tr>
+        <tr><td style="padding:8px 0;color:#8b8168;font-size:13px">Usuario</td>
+            <td style="padding:8px 0;color:#14110a;font-size:14px;font-weight:600">${escapeHtml(username)}</td></tr>
+        <tr><td style="padding:8px 0;color:#8b8168;font-size:13px">Solicitado</td>
+            <td style="padding:8px 0;color:#14110a;font-size:14px">${escapeHtml(requestedAt)}</td></tr>
+        <tr><td style="padding:8px 0;color:#8b8168;font-size:13px">IP</td>
+            <td style="padding:8px 0;color:#14110a;font-size:13px;font-family:monospace">${escapeHtml(ip)}</td></tr>
       </table>
       ${
         motivo
-          ? `<p style="margin:16px 0 8px;color:#64748b;font-size:13px">Motivo indicado por el usuario:</p>
-             <blockquote style="margin:0;padding:12px 16px;background:#f1f5f9;border-left:3px solid #c9a84c;color:#0f172a;font-size:14px;line-height:1.6;border-radius:4px">${escapeHtml(motivo)}</blockquote>`
-          : `<p style="margin:16px 0;color:#94a3b8;font-size:13px;font-style:italic">El usuario no indicó motivo.</p>`
+          ? `<p style="margin:16px 0 8px;color:#8b8168;font-size:13px">Motivo indicado por el usuario:</p>
+             <blockquote style="margin:0;padding:12px 16px;background:#f1f5f9;border-left:3px solid #c9a84c;color:#14110a;font-size:14px;line-height:1.6;border-radius:4px">${escapeHtml(motivo)}</blockquote>`
+          : `<p style="margin:16px 0;color:#a69a82;font-size:13px;font-style:italic">El usuario no indicó motivo.</p>`
       }
     `,
   });
@@ -115,27 +115,27 @@ export async function POST(req: Request) {
       "Tu solicitud de eliminación de cuenta ha sido recibida. Procesaremos en 30 días.",
     heading: "Hemos recibido tu solicitud",
     bodyHtml: `
-      <p style="margin:0 0 16px;color:#1e293b;font-size:15px;line-height:1.6">
+      <p style="margin:0 0 16px;color:#241e12;font-size:15px;line-height:1.6">
         Hola <strong>${escapeHtml(username)}</strong>, hemos registrado correctamente tu solicitud
         de eliminación de cuenta en ZonaMundial.
       </p>
-      <p style="margin:0 0 16px;color:#1e293b;font-size:15px;line-height:1.6">
+      <p style="margin:0 0 16px;color:#241e12;font-size:15px;line-height:1.6">
         Procederemos al borrado de tus datos personales en un plazo máximo de
         <strong>30 días naturales</strong>. Una vez completado, recibirás un
         email final confirmando que tu cuenta y datos asociados han sido
         eliminados.
       </p>
-      <p style="margin:0 0 16px;color:#64748b;font-size:14px;line-height:1.6">
+      <p style="margin:0 0 16px;color:#8b8168;font-size:14px;line-height:1.6">
         Qué se elimina: tu cuenta de usuario, tus predicciones, tu historial de
         actividad y los datos personales que tengamos asociados a tu email
         (${escapeHtml(email)}).
       </p>
-      <p style="margin:0 0 16px;color:#64748b;font-size:14px;line-height:1.6">
+      <p style="margin:0 0 16px;color:#8b8168;font-size:14px;line-height:1.6">
         Datos agregados y anónimos (rankings históricos, estadísticas globales
         sin identificación personal) pueden conservarse hasta 90 días
         adicionales, conforme a nuestra política de privacidad.
       </p>
-      <p style="margin:24px 0 0;color:#94a3b8;font-size:13px;line-height:1.6">
+      <p style="margin:24px 0 0;color:#a69a82;font-size:13px;line-height:1.6">
         Si esta solicitud no fue hecha por ti, escribe inmediatamente a
         <a href="mailto:${SUPPORT_EMAIL}" style="color:#c9a84c">${SUPPORT_EMAIL}</a>
         antes del plazo de 30 días para cancelarla.

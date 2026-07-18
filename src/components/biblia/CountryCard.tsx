@@ -145,7 +145,7 @@ function FieldCard({
       style={{
         borderColor: "var(--bb-border-subtle)",
         background:
-          "linear-gradient(135deg, rgba(11,24,37,0.7), rgba(15,23,42,0.45))",
+          "linear-gradient(135deg, rgba(10,9,6,0.7), rgba(20,17,10,0.45))",
       }}
     >
       <span
@@ -164,7 +164,7 @@ function FieldCard({
           className="absolute inset-0 rounded-xl border"
           style={{
             borderColor: "var(--bb-border-blue)",
-            background: "rgba(11,24,37,0.6)",
+            background: "rgba(10,9,6,0.6)",
           }}
         />
         <span className="relative text-[var(--bb-icon-blue)]">{icon}</span>

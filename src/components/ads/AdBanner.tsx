@@ -40,7 +40,7 @@ export default function AdBanner({ slot, style }: Props) {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#64748B",
+            color: "#8b8168",
             marginBottom: 6,
             textAlign: "center",
             fontFamily: "JetBrains Mono, monospace",

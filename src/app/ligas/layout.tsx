@@ -16,15 +16,15 @@
 
 const ZL_CSS = `
 :root{
-  --zl-bg:#070C16;
+  --zl-bg:#000000;
   --zl-bg-grad:
     radial-gradient(120% 68% at 50% -14%, rgba(201,168,76,.10), rgba(201,168,76,.03) 26%, transparent 56%),
-    radial-gradient(100% 60% at 50% 116%, rgba(30,57,92,.30), transparent 60%),
-    linear-gradient(180deg,#070C16 0%,#0A1120 55%,#0B1522 100%);
+    radial-gradient(100% 60% at 50% 116%, rgba(27,22,13,.30), transparent 60%),
+    linear-gradient(180deg,#000000 0%,#0a0906 55%,#0a0906 100%);
 
-  --zl-surface-top:#14202F;
-  --zl-surface-bot:#0D1826;
-  --zl-raised:#122032;
+  --zl-surface-top:#14110a;
+  --zl-surface-bot:#0a0906;
+  --zl-raised:#1b160d;
   --zl-gold-wash:rgba(201,168,76,.09);
 
   --zl-hairline:rgba(255,255,255,.07);
@@ -34,9 +34,9 @@ const ZL_CSS = `
   --zl-sep:rgba(255,255,255,.055);
   --zl-gold-border:linear-gradient(135deg,rgba(201,168,76,.85),rgba(201,168,76,.12) 52%,rgba(232,212,139,.7));
 
-  --zl-gold:#c9a84c; --zl-gold-hi:#e8d48b; --zl-gold-deep:#a8863a; --zl-gold-ink:#0A1422;
+  --zl-gold:#c9a84c; --zl-gold-hi:#e8d48b; --zl-gold-deep:#a8863a; --zl-gold-ink:#0a0906;
 
-  --zl-text:#F5F8FD; --zl-body:#C7D2E0; --zl-muted:#94A3B8; --zl-dim:#64748B;
+  --zl-text:#F5F8FD; --zl-body:#C7D2E0; --zl-muted:#a69a82; --zl-dim:#8b8168;
 
   --zl-live:#e2683c; --zl-live-glow:rgba(226,104,60,.5);
   --zl-win:#35c26e; --zl-loss:#e0574f; --zl-draw:#7A8699;
@@ -57,7 +57,7 @@ const ZL_CSS = `
 .zl-scope main::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
     radial-gradient(120% 62% at 50% -12%, rgba(201,168,76,.06), transparent 55%),
-    radial-gradient(95% 55% at 50% 114%, rgba(30,57,92,.22), transparent 62%)}
+    radial-gradient(95% 55% at 50% 114%, rgba(27,22,13,.22), transparent 62%)}
 .zl-scope main>*{position:relative;z-index:1}
 
 /* ===== TIPOGRAFIA: de "todo peso 500" a jerarquia editorial. ===== */

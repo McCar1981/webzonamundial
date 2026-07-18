@@ -55,11 +55,11 @@ interface TodayMatch {
   away: TodayTeam;
 }
 
-const BG = "#070D17";
+const BG = "#000000";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const RED = "#e63946";
-const MID = "#8a94b0";
+const MID = "#a69a82";
 
 const POLL_LIVE_MS = 15_000;
 const POLL_IDLE_MS = 60_000;
@@ -240,7 +240,7 @@ export default function LiveMatchBar() {
           position: "sticky",
           top: 0,
           zIndex: 1001,
-          background: `linear-gradient(90deg, ${BG} 0%, #0d1726 50%, ${BG} 100%)`,
+          background: `linear-gradient(90deg, ${BG} 0%, #0a0906 50%, ${BG} 100%)`,
           borderBottom: "1px solid rgba(201,168,76,0.18)",
           boxShadow: "0 6px 22px -8px rgba(0,0,0,0.6)",
         }}
@@ -313,7 +313,7 @@ export default function LiveMatchBar() {
         position: "sticky",
         top: 0,
         zIndex: 1001,
-        background: `linear-gradient(90deg, ${BG} 0%, #0d1726 50%, ${BG} 100%)`,
+        background: `linear-gradient(90deg, ${BG} 0%, #0a0906 50%, ${BG} 100%)`,
         borderBottom: "1px solid rgba(201,168,76,0.18)",
         boxShadow: "0 6px 22px -8px rgba(0,0,0,0.6)",
       }}

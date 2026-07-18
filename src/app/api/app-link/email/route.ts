@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
         de abajo. Te llevará a la página de descarga adaptada a tu
         dispositivo (iOS o Android).
       </p>
-      <p style="margin:18px 0 0;font-size:12px;color:#94A3B8;line-height:1.5;text-align:center;">
+      <p style="margin:18px 0 0;font-size:12px;color:#a69a82;line-height:1.5;text-align:center;">
         Si abriste este email en el PC: el botón te lleva a la misma página
         con el QR y otras opciones de envío.
       </p>

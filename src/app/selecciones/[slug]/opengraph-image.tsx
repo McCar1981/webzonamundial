@@ -42,13 +42,13 @@ export default async function OgImage({ params }: Props) {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            background: "linear-gradient(180deg, #060B14, #0B1825)",
+            background: "linear-gradient(180deg, #000000, #0a0906)",
             color: "#fff",
             fontFamily: "sans-serif",
           }}
         >
           <div style={{ fontSize: 64, fontWeight: 900, letterSpacing: "-0.03em" }}>ZonaMundial</div>
-          <div style={{ fontSize: 28, color: "#94a3b8", marginTop: 16 }}>
+          <div style={{ fontSize: 28, color: "#a69a82", marginTop: 16 }}>
             Mundial FIFA 2026
           </div>
         </div>
@@ -70,7 +70,7 @@ export default async function OgImage({ params }: Props) {
           display: "flex",
           flexDirection: "column",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 70%), linear-gradient(180deg, #060B14, #0B1825)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 70%), linear-gradient(180deg, #000000, #0a0906)",
           color: "#fff",
           fontFamily: "sans-serif",
           padding: "56px 72px",
@@ -101,7 +101,7 @@ export default async function OgImage({ params }: Props) {
             <div
               style={{
                 fontSize: 12,
-                color: "#94a3b8",
+                color: "#a69a82",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 fontWeight: 600,
@@ -134,7 +134,7 @@ export default async function OgImage({ params }: Props) {
               borderRadius: 16,
               overflow: "hidden",
               boxShadow: "0 0 0 4px rgba(201,168,76,0.5), 0 0 60px -10px rgba(253,230,138,0.6)",
-              background: "#0F1F30",
+              background: "#14110a",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -180,7 +180,7 @@ export default async function OgImage({ params }: Props) {
             <div
               style={{
                 fontSize: 22,
-                color: "#cbd5e1",
+                color: "#e6decb",
                 marginTop: 18,
                 lineHeight: 1.4,
                 display: "flex",
@@ -202,7 +202,7 @@ export default async function OgImage({ params }: Props) {
             borderTop: "1px solid rgba(201,168,76,0.25)",
           }}
         >
-          <div style={{ fontSize: 16, color: "#94a3b8", display: "flex" }}>
+          <div style={{ fontSize: 16, color: "#a69a82", display: "flex" }}>
             zonamundial.app/selecciones/{params.slug}
           </div>
           <div

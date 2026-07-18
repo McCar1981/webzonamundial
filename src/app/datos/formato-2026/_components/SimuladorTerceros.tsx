@@ -72,15 +72,15 @@ export function SimuladorTerceros() {
   const isEliminated = (id: number) => calculated && eliminated.some((t) => t.id === id);
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-gradient-to-b from-[#0B1825]/50 to-transparent p-5 sm:p-8">
+    <div className="rounded-3xl border border-white/5 bg-gradient-to-b from-[#0a0906]/50 to-transparent p-5 sm:p-8">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h3 className="text-xl font-black text-white sm:text-2xl">{f.simulatorTitle}</h3>
-          <p className="text-sm text-[#8a94b0]">{f.simulatorSubtitle}</p>
+          <p className="text-sm text-[#a69a82]">{f.simulatorSubtitle}</p>
         </div>
         <button
           onClick={() => setCalculated(true)}
-          className="rounded-xl bg-gradient-to-r from-[#c9a84c] to-[#b08d3b] px-4 py-2 text-sm font-bold text-[#030712] shadow-lg transition hover:brightness-110"
+          className="rounded-xl bg-gradient-to-r from-[#c9a84c] to-[#b08d3b] px-4 py-2 text-sm font-bold text-[#000000] shadow-lg transition hover:brightness-110"
         >
           {f.simulatorBtn}
         </button>
@@ -89,7 +89,7 @@ export function SimuladorTerceros() {
       <div className="overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse text-sm">
           <thead>
-            <tr className="text-left text-xs uppercase tracking-wider text-[#6a7a9a]">
+            <tr className="text-left text-xs uppercase tracking-wider text-[#6e6552]">
               <th className="pb-3 pl-3">#</th>
               <th className="pb-3">{f.simulatorColTeam}</th>
               <th className="pb-3">{f.simulatorColPts}</th>
@@ -108,14 +108,14 @@ export function SimuladorTerceros() {
                   key={team.id}
                   className={`transition-colors ${q ? 'bg-green-500/10' : e ? 'bg-red-500/5' : 'bg-transparent hover:bg-white/[0.02]'}`}
                 >
-                  <td className="py-3 pl-3 text-[#6a7a9a]">{idx + 1}</td>
+                  <td className="py-3 pl-3 text-[#6e6552]">{idx + 1}</td>
                   <td className="py-3 font-medium text-white">{team.name}</td>
                   <td className="py-3">
                     <input
                       type="number"
                       value={team.pts}
                       onChange={(ev) => updateTeam(team.id, 'pts', clamp(parseInt(ev.target.value) || 0, 0, 9))}
-                      className="w-16 rounded-lg border border-white/10 bg-[#060B14] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
+                      className="w-16 rounded-lg border border-white/10 bg-[#000000] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
                     />
                   </td>
                   <td className="py-3">
@@ -123,7 +123,7 @@ export function SimuladorTerceros() {
                       type="number"
                       value={team.gf}
                       onChange={(ev) => updateTeam(team.id, 'gf', clamp(parseInt(ev.target.value) || 0, 0, 99))}
-                      className="w-16 rounded-lg border border-white/10 bg-[#060B14] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
+                      className="w-16 rounded-lg border border-white/10 bg-[#000000] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
                     />
                   </td>
                   <td className="py-3">
@@ -131,7 +131,7 @@ export function SimuladorTerceros() {
                       type="number"
                       value={team.dg}
                       onChange={(ev) => updateTeam(team.id, 'dg', clamp(parseInt(ev.target.value) || -20, -20, 20))}
-                      className="w-16 rounded-lg border border-white/10 bg-[#060B14] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
+                      className="w-16 rounded-lg border border-white/10 bg-[#000000] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
                     />
                   </td>
                   <td className="py-3">
@@ -139,7 +139,7 @@ export function SimuladorTerceros() {
                       type="number"
                       value={team.fp}
                       onChange={(ev) => updateTeam(team.id, 'fp', clamp(parseInt(ev.target.value) || 0, -20, 20))}
-                      className="w-16 rounded-lg border border-white/10 bg-[#060B14] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
+                      className="w-16 rounded-lg border border-white/10 bg-[#000000] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
                     />
                   </td>
                   <td className="py-3 pr-3">
@@ -147,7 +147,7 @@ export function SimuladorTerceros() {
                       type="number"
                       value={team.ranking}
                       onChange={(ev) => updateTeam(team.id, 'ranking', clamp(parseInt(ev.target.value) || 1, 1, 210))}
-                      className="w-20 rounded-lg border border-white/10 bg-[#060B14] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
+                      className="w-20 rounded-lg border border-white/10 bg-[#000000] px-2 py-1 text-white outline-none focus:border-[#c9a84c]/50"
                     />
                   </td>
                 </tr>
@@ -163,7 +163,7 @@ export function SimuladorTerceros() {
             <p className="mb-2 text-xs font-bold uppercase tracking-wider text-[#22c55e]">{f.simulatorQualified} (8)</p>
             <div className="flex flex-wrap gap-2">
               {qualified.map((t) => (
-                <span key={t.id} className="rounded-lg bg-[#060B14] px-2 py-1 text-xs font-medium text-white">{t.name}</span>
+                <span key={t.id} className="rounded-lg bg-[#000000] px-2 py-1 text-xs font-medium text-white">{t.name}</span>
               ))}
             </div>
           </div>
@@ -171,16 +171,16 @@ export function SimuladorTerceros() {
             <p className="mb-2 text-xs font-bold uppercase tracking-wider text-red-400">{f.simulatorEliminated} (4)</p>
             <div className="flex flex-wrap gap-2">
               {eliminated.map((t) => (
-                <span key={t.id} className="rounded-lg bg-[#060B14] px-2 py-1 text-xs font-medium text-white/70">{t.name}</span>
+                <span key={t.id} className="rounded-lg bg-[#000000] px-2 py-1 text-xs font-medium text-white/70">{t.name}</span>
               ))}
             </div>
           </div>
         </div>
       )}
 
-      <div className="mt-6 rounded-2xl border border-white/5 bg-[#060B14] p-4">
+      <div className="mt-6 rounded-2xl border border-white/5 bg-[#000000] p-4">
         <p className="mb-1 text-xs font-bold uppercase tracking-wider text-[#c9a84c]">{f.simulatorWhy32}</p>
-        <p className="text-sm text-[#8a94b0]">{f.simulatorWhy32Desc}</p>
+        <p className="text-sm text-[#a69a82]">{f.simulatorWhy32Desc}</p>
       </div>
     </div>
   );

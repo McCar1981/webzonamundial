@@ -62,7 +62,7 @@ export default async function DescargaPage() {
     margin: 1,
     width: 280,
     color: {
-      dark: "#1A1A2E",
+      dark: "#1b160d",
       light: "#FFFFFF",
     },
   });

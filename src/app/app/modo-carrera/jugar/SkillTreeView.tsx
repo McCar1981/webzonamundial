@@ -102,7 +102,7 @@ export default function SkillTreeView({
                             borderRadius: "50%",
                             border: `2px solid ${color}`,
                             background: unlocked ? branch.accent : available ? "rgba(201,168,76,0.12)" : BG3,
-                            color: unlocked ? "#0B1825" : available ? GOLD2 : MID,
+                            color: unlocked ? "#0a0906" : available ? GOLD2 : MID,
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",

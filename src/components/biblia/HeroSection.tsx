@@ -1,7 +1,7 @@
 "use client";
 
 // HeroSection — versión profesional, escalable a las 48 selecciones.
-// Sin SCROLL animado. 2 stats. Tokens BIBLIA (#94a3b8, no #6a7a9a).
+// Sin SCROLL animado. 2 stats. Tokens BIBLIA (#a69a82, no #6e6552).
 // Bandera con FlagFrame (efectos CSS uniformes para todas).
 
 import Link from "next/link";
@@ -13,7 +13,7 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
   const colors = team.flag?.colors ?? {
     primary: "#75AADB",
     secondary: "#FFFFFF",
-    contrast_text: "#0F1D32",
+    contrast_text: "#14110a",
   };
 
   const rank = team.fifa_ranking?.current;
@@ -54,9 +54,9 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
         className="absolute inset-0"
         style={{
           background: `linear-gradient(180deg,
-            rgba(6,11,20,0.72) 0%,
-            rgba(6,11,20,0.9) 60%,
-            rgba(6,11,20,1) 100%)`,
+            rgba(0,0,0,0.72) 0%,
+            rgba(0,0,0,0.9) 60%,
+            rgba(0,0,0,1) 100%)`,
         }}
       />
       <div
@@ -180,7 +180,7 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
             <div className="flex flex-wrap gap-3">
               <Link
                 href={groupHref}
-                className="bb-focusable group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-[#030712] font-bold text-sm transition-all bb-touch"
+                className="bb-focusable group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-[#000000] font-bold text-sm transition-all bb-touch"
                 style={{
                   background: "linear-gradient(135deg, #C9A84C, #E8D48B)",
                   boxShadow:
@@ -320,7 +320,7 @@ function StatCard({
       style={{
         background: accent
           ? "linear-gradient(135deg, rgba(201,168,76,0.14), rgba(201,168,76,0.03))"
-          : "linear-gradient(135deg, rgba(15,23,42,0.85), rgba(11,24,37,0.6))",
+          : "linear-gradient(135deg, rgba(20,17,10,0.85), rgba(10,9,6,0.6))",
         border: `1px solid ${accent ? "rgba(201,168,76,0.4)" : "var(--bb-border-subtle)"}`,
       }}
     >

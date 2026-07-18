@@ -116,8 +116,8 @@ export default function OnboardingWizard({
                 style={{
                   background: active || done
                     ? "linear-gradient(135deg, #C9A84C, #A8893D)"
-                    : "rgba(15,23,42,0.6)",
-                  color: active || done ? "#030712" : "#6a7a9a",
+                    : "rgba(20,17,10,0.6)",
+                  color: active || done ? "#000000" : "#6e6552",
                   border: active ? "2px solid #FDE68A" : "2px solid transparent",
                 }}
               >
@@ -127,7 +127,7 @@ export default function OnboardingWizard({
                 <div
                   className="w-12 h-0.5"
                   style={{
-                    background: step > n ? "#C9A84C" : "#1E293B",
+                    background: step > n ? "#C9A84C" : "#241e12",
                   }}
                 />
               )}
@@ -140,7 +140,7 @@ export default function OnboardingWizard({
         className="rounded-3xl border border-[#C9A84C]/20 p-7 sm:p-10"
         style={{
           background:
-            "linear-gradient(135deg, rgba(15,23,42,0.8), rgba(11,24,37,0.6))",
+            "linear-gradient(135deg, rgba(20,17,10,0.8), rgba(10,9,6,0.6))",
           backdropFilter: "blur(20px)",
           boxShadow: "0 25px 50px -12px rgba(201,168,76,0.1)",
         }}
@@ -246,7 +246,7 @@ function Step1({
             type="email"
             value={email}
             disabled
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825]/60 border border-[#1E293B] text-gray-300 text-sm cursor-not-allowed"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906]/60 border border-[#241e12] text-gray-300 text-sm cursor-not-allowed"
           />
         </div>
 
@@ -259,7 +259,7 @@ function Step1({
             value={username}
             onChange={(e) => onChangeUsername(e.target.value)}
             maxLength={30}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
             placeholder="tunombre"
           />
           <p className="text-[11px] text-gray-500 mt-1">
@@ -272,14 +272,14 @@ function Step1({
         <button
           onClick={onSkip}
           disabled={skipPending}
-          className="px-5 py-3 rounded-xl border border-[#1E293B] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all disabled:opacity-50"
+          className="px-5 py-3 rounded-xl border border-[#241e12] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all disabled:opacity-50"
         >
           Más tarde
         </button>
         <button
           onClick={onNext}
           disabled={!username.trim()}
-          className="flex-1 px-6 py-3 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+          className="flex-1 px-6 py-3 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 transition-all flex items-center justify-center gap-2"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           Continuar
@@ -336,7 +336,7 @@ function Step2({
           <select
             value={country}
             onChange={(e) => onChange("country", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
           >
             <option value="">— Selecciona país —</option>
             {countries.map((c) => (
@@ -364,8 +364,8 @@ function Step2({
                     background: active
                       ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                       : "transparent",
-                    color: active ? "#030712" : "#cbd5e1",
-                    borderColor: active ? "#C9A84C" : "#1E293B",
+                    color: active ? "#000000" : "#e6decb",
+                    borderColor: active ? "#C9A84C" : "#241e12",
                   }}
                 >
                   {lang === "es" ? "🇪🇸 Español" : "🇬🇧 English"}
@@ -384,7 +384,7 @@ function Step2({
             value={birth_date}
             max={new Date().toISOString().slice(0, 10)}
             onChange={(e) => onChange("birth_date", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
           />
           <p className="text-[11px] text-gray-500 mt-1">
             Opcional. Solo se usa para verificar la mayoría de edad cuando una función lo requiere.
@@ -395,13 +395,13 @@ function Step2({
       <div className="flex items-center gap-3 mt-8">
         <button
           onClick={onBack}
-          className="px-5 py-3 rounded-xl border border-[#1E293B] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all"
+          className="px-5 py-3 rounded-xl border border-[#241e12] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all"
         >
           ← Atrás
         </button>
         <button
           onClick={onNext}
-          className="flex-1 px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all flex items-center justify-center gap-2"
+          className="flex-1 px-6 py-3 rounded-xl text-[#000000] font-bold text-sm transition-all flex items-center justify-center gap-2"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           Continuar
@@ -456,7 +456,7 @@ function Step3({
           <select
             value={fav_team}
             onChange={(e) => onChange("fav_team", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
           >
             <option value="">— Sin selección favorita —</option>
             {selecciones.map((s) => (
@@ -473,14 +473,14 @@ function Step3({
         <button
           onClick={onBack}
           disabled={pending}
-          className="px-5 py-3 rounded-xl border border-[#1E293B] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all disabled:opacity-50"
+          className="px-5 py-3 rounded-xl border border-[#241e12] text-gray-400 font-semibold text-sm hover:border-[#C9A84C]/30 hover:text-gray-300 transition-all disabled:opacity-50"
         >
           ← Atrás
         </button>
         <button
           onClick={onFinish}
           disabled={pending}
-          className="flex-1 px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="flex-1 px-6 py-3 rounded-xl text-[#000000] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           Continuar
@@ -559,7 +559,7 @@ function Step4({ onFinish, pending }: { onFinish: () => void; pending: boolean }
           <button
             onClick={activate}
             disabled={busy}
-            className="w-full px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+            className="w-full px-6 py-3 rounded-xl text-[#000000] font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-60"
             style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
           >
             {pushState === "loading" ? "Activando…" : `Activar notificaciones · +${PUSH_REWARD_COINS} 🪙`}
@@ -576,7 +576,7 @@ function Step4({ onFinish, pending }: { onFinish: () => void; pending: boolean }
         <button
           onClick={onFinish}
           disabled={pending && pushState !== "done"}
-          className="w-full px-6 py-3 rounded-xl text-[#030712] font-bold text-sm transition-all disabled:opacity-60"
+          className="w-full px-6 py-3 rounded-xl text-[#000000] font-bold text-sm transition-all disabled:opacity-60"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           {pending ? "Entrando…" : "Empezar a jugar"}

@@ -67,7 +67,7 @@ export default class ViewErrorBoundary extends Component<Props, State> {
           >
             Reintentar
           </button>
-          <details style={{ marginTop: 14, fontSize: 11, color: "#94a3b8" }}>
+          <details style={{ marginTop: 14, fontSize: 11, color: "#a69a82" }}>
             <summary style={{ cursor: "pointer" }}>Stack trace</summary>
             <pre style={{ whiteSpace: "pre-wrap", marginTop: 8 }}>{this.state.error.stack}</pre>
           </details>

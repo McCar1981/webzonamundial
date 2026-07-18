@@ -66,19 +66,19 @@ export default function PremiosPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           ★ Balones de Oro all-time
         </h2>
-        <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+        <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
           {p.rankingsAllTime.balonesOro.map((b, i) => (
             <div
               key={`${b.jugador}-${i}`}
-              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#0F172A] last:border-b-0"
+              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#14110a] last:border-b-0"
               style={{
                 gridTemplateColumns: "32px 28px 1fr auto",
-                background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
               }}
             >
               <span
                 className="text-sm sm:text-base font-bold tabular-nums text-center"
-                style={{ color: i < 3 ? GOLD : "#64748B" }}
+                style={{ color: i < 3 ? GOLD : "#8b8168" }}
               >
                 {i + 1}
               </span>
@@ -113,14 +113,14 @@ export default function PremiosPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           ⚽ Botas de Oro all-time
         </h2>
-        <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+        <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
           {p.rankingsAllTime.botasOro.map((b, i) => (
             <div
               key={`${b.jugador}-${i}`}
-              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#0F172A] last:border-b-0"
+              className="grid items-center gap-3 px-3 sm:px-5 py-3 border-b border-[#14110a] last:border-b-0"
               style={{
                 gridTemplateColumns: "60px 28px 1fr auto",
-                background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
               }}
             >
               <span
@@ -164,7 +164,7 @@ export default function PremiosPage() {
           {p.rankingsAllTime.guantesOro.map((g) => (
             <div
               key={`${g.jugador}-${g.anio}`}
-              className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 mb-2">
                 <span
@@ -198,7 +198,7 @@ export default function PremiosPage() {
             <Link
               key={e.anio}
               href={`/historia/${e.edicionSlug}`}
-              className="block p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
+              className="block p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
             >
               <div className="flex items-baseline gap-3 mb-3 flex-wrap">
                 <span

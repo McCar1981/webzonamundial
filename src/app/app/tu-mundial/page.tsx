@@ -37,14 +37,14 @@ export default async function TuMundialPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #060B14, #0a0f1a)",
+        background: "linear-gradient(180deg, #000000, #000000)",
         color: "#E2E8F0",
         padding: "40px 16px 64px",
       }}
     >
       <div style={{ maxWidth: 560, margin: "0 auto 22px", textAlign: "center" }}>
         <h1 style={{ fontSize: 26, fontWeight: 900, color: "#fff", margin: "0 0 6px" }}>Tu Mundial 2026</h1>
-        <p style={{ fontSize: 14.5, color: "#9db0c9", margin: 0 }}>
+        <p style={{ fontSize: 14.5, color: "#a69a82", margin: 0 }}>
           Así ha sido tu torneo. Compártelo con tu marca y reta a tus amigos.
         </p>
       </div>
@@ -69,19 +69,19 @@ export default async function TuMundialPage() {
         }}
       >
         {pro ? (
-          <p style={{ margin: 0, fontSize: 14.5, color: "#cbd5e1" }}>
+          <p style={{ margin: 0, fontSize: 14.5, color: "#e6decb" }}>
             Gracias por ser Pro. Tu progreso —puntos, nivel, Fútcoins y cromos— te acompaña a la próxima temporada.
           </p>
         ) : (
           <>
-            <p style={{ margin: "0 0 14px", fontSize: 15, color: "#cbd5e1" }}>
+            <p style={{ margin: "0 0 14px", fontSize: 15, color: "#e6decb" }}>
               El Mundial se acaba, pero el fútbol no. Con <b style={{ color: "#fff" }}>Pro</b> te llevas tu progreso a la
               próxima temporada de ligas de clubes.
             </p>
             <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <Link
                 href="/pro"
-                style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}
+                style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}
               >
                 Ver Pro
               </Link>

@@ -21,7 +21,7 @@ type Fixture = {
 type Payload = { mode: "live" | "today" | "none"; fixtures: Fixture[] };
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 

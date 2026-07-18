@@ -11,7 +11,7 @@ import type { MatchMeta } from "@/lib/match-center/types";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
+const MID = "#a69a82";
 
 function flagUrl(code: string): string {
   return `https://flagcdn.com/w160/${code}.png`;
@@ -96,7 +96,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
         borderRadius: 20,
         border: "1px solid rgba(255,255,255,0.08)",
         marginBottom: 14,
-        background: "#0B1825",
+        background: "#0a0906",
       }}
     >
       {/* Foto de fondo (estadio) con velo oscuro para legibilidad */}
@@ -122,7 +122,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(180deg, rgba(11,24,37,0.55) 0%, rgba(11,24,37,0.82) 100%)",
+                "linear-gradient(180deg, rgba(10,9,6,0.55) 0%, rgba(10,9,6,0.82) 100%)",
               pointerEvents: "none",
             }}
           />

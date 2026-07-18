@@ -109,7 +109,7 @@ export default function RegistroCodigoPage() {
               className="p-6 sm:p-8 rounded-3xl border overflow-hidden relative"
               style={{
                 borderColor: "#C9A84C25",
-                background: "linear-gradient(135deg, rgba(15,23,42,0.8), rgba(11,24,37,0.6))",
+                background: "linear-gradient(135deg, rgba(20,17,10,0.8), rgba(10,9,6,0.6))",
                 backdropFilter: "blur(20px)",
                 boxShadow: "0 25px 50px -12px #C9A84C15, 0 0 0 1px #C9A84C10",
               }}

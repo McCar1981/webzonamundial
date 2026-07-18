@@ -86,7 +86,7 @@ export default function BarKitPosterTemplate({
         backgroundSize: "100% 100%",       // exacto, sin recortes → coordenadas fiables
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundColor: "#07101F",
+        backgroundColor: "#000000",
         color: "#F8FAFC",
         fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
       }}

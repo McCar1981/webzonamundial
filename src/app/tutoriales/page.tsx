@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", DARK = "#4a5570";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", DARK = "#a69a82";
 
 const MODULE_COLORS: Record<string, string> = {
   Fantasy: "#3b82f6",
@@ -62,7 +62,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "5 min",
     steps: 6,
     featured: true,
-    img: "linear-gradient(135deg,#3b82f620,#0F1D32)",
+    img: "linear-gradient(135deg,#3b82f620,#14110a)",
     tips: [
       "Elige un portero de una selección que llegue lejos para acumular puntos por partidos disputados.",
       "No metas todos los presupuestos en un solo crack; el equilibrio es la clave.",
@@ -86,7 +86,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "7 min",
     steps: 5,
     featured: true,
-    img: "linear-gradient(135deg,#ef444420,#0F1D32)",
+    img: "linear-gradient(135deg,#ef444420,#14110a)",
     tips: [
       "Los partidos de fase de grupos entre favoritos y débiles tienden a acabar 2-0 o 3-0.",
       "Guarda tus predicciones más arriesgadas para la fase eliminatoria; los puntos se multiplican.",
@@ -109,7 +109,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "4 min",
     steps: 5,
     featured: true,
-    img: "linear-gradient(135deg,#a855f720,#0F1D32)",
+    img: "linear-gradient(135deg,#a855f720,#14110a)",
     tips: [
       "Usa el comodín 'Elimina 2 opciones' solo en preguntas de historia o estadísticas donde tengas dudas.",
       "Las rachas de respuestas correctas multiplican por 1.5x los puntos a partir de la 5ª consecutiva.",
@@ -132,7 +132,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "6 min",
     steps: 5,
     featured: false,
-    img: "linear-gradient(135deg,#22c55e20,#0F1D32)",
+    img: "linear-gradient(135deg,#22c55e20,#14110a)",
     tips: [
       "Habla con el IA Coach antes de cada jornada para recibir sugerencias de transferencias en Fantasy.",
       "Pídele que analice tu historial de predicciones para identificar patrones de error.",
@@ -155,7 +155,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "3 min",
     steps: 6,
     featured: false,
-    img: "linear-gradient(135deg,#14b8a620,#0F1D32)",
+    img: "linear-gradient(135deg,#14b8a620,#14110a)",
     tips: [
       "Crea la liga antes de que empiece el Mundial para dar tiempo a todos de inscribirse.",
       "Activa el modo 'Sorpresa' para que los puntos sean ocultos hasta el final de cada jornada.",
@@ -179,7 +179,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "4 min",
     steps: 5,
     featured: false,
-    img: "linear-gradient(135deg,#f9731620,#0F1D32)",
+    img: "linear-gradient(135deg,#f9731620,#14110a)",
     tips: [
       "Activa el modo 'Picture-in-Picture' para seguir el partido mientras navegas por Fantasy o Predicciones.",
       "Usa la vista multiscreeen para ver hasta 2 partidos simultáneos en pantalla dividida.",
@@ -202,7 +202,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "10 min",
     steps: 6,
     featured: false,
-    img: "linear-gradient(135deg,#ec489920,#0F1D32)",
+    img: "linear-gradient(135deg,#ec489920,#14110a)",
     tips: [
       "Los jugadores acumulan fatiga si juegas siempre con la misma alineación; rota en la fase de grupos.",
       "Las decisiones de rueda de prensa afectan a la moral del equipo. Sé coherente con tus respuestas.",
@@ -226,7 +226,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "8 min",
     steps: 5,
     featured: false,
-    img: "linear-gradient(135deg,#3b82f620,#0F1D32)",
+    img: "linear-gradient(135deg,#3b82f620,#14110a)",
     tips: [
       "Compra jugadores 48h antes de que su selección juegue un partido fácil: el precio sube con el rendimiento.",
       "El precio máximo de un jugador se actualiza cada 12 horas. Vende en picos, no cuando ya bajó.",
@@ -249,7 +249,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "9 min",
     steps: 5,
     featured: false,
-    img: "linear-gradient(135deg,#ef444420,#0F1D32)",
+    img: "linear-gradient(135deg,#ef444420,#14110a)",
     tips: [
       "Las predicciones de primer goleador del torneo dan 50 puntos si aciertas; vale la pena arriesgar.",
       "En empates el marcador exacto es más probable en partidos entre selecciones de nivel similar.",
@@ -272,7 +272,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "12 min",
     steps: 4,
     featured: false,
-    img: "linear-gradient(135deg,#a855f720,#0F1D32)",
+    img: "linear-gradient(135deg,#a855f720,#14110a)",
     tips: [
       "Los años y países anfitriones son la pregunta más frecuente: memoriza la lista del 1930 al 2022.",
       "Los récords individuales (goles, partidos, asistencias) salen mucho. Pelé, Miroslav Klose y Ronaldo C. son clave.",
@@ -294,7 +294,7 @@ const TUTORIALS: Tutorial[] = [
     duration: "3 min",
     steps: 4,
     featured: false,
-    img: "linear-gradient(135deg,#22c55e20,#0F1D32)",
+    img: "linear-gradient(135deg,#22c55e20,#14110a)",
     tips: [
       "Completa el perfil al 100% desbloquea la insignia 'Fan Completo' que da +50 puntos de bienvenida.",
       "Conecta tus redes sociales para importar amigos y unirte a ligas privadas de tu entorno.",
@@ -330,7 +330,7 @@ function DifficultyBadge({ difficulty }: { difficulty: string }) {
 
 function StepsIcon({ count }: { count: number }) {
   return (
-    <span className="inline-flex items-center gap-1 text-[10px] text-[#6a7a9a]">
+    <span className="inline-flex items-center gap-1 text-[10px] text-[#6e6552]">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
         <path d="M9 11l3 3L22 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -360,13 +360,13 @@ function FeaturedTutorialCard({ tutorial, onClick, index }: { tutorial: Tutorial
       <div className="relative overflow-hidden rounded-3xl border border-white/5 hover:border-[var(--mod-color)]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
         style={{ "--mod-color": modColor } as React.CSSProperties}>
         <div className="absolute inset-0" style={{ background: tutorial.img }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--mod-color)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="relative p-8 min-h-[280px] flex flex-col justify-end">
           <div className="flex items-center gap-3 mb-4 flex-wrap">
             <AnimatedBadge color={modColor}>{tutorial.module}</AnimatedBadge>
             <DifficultyBadge difficulty={tutorial.difficulty} />
-            <span className="ml-auto text-xs text-[#6a7a9a] flex items-center gap-1">
+            <span className="ml-auto text-xs text-[#6e6552] flex items-center gap-1">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                 <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -375,10 +375,10 @@ function FeaturedTutorialCard({ tutorial, onClick, index }: { tutorial: Tutorial
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-[#C9A84C] transition-colors leading-tight">{tutorial.title}</h3>
-          <p className="text-sm text-[#8a94b0] mb-4 line-clamp-2">{tutorial.excerpt}</p>
-          <div className="flex items-center gap-3 text-xs text-[#6a7a9a]">
+          <p className="text-sm text-[#a69a82] mb-4 line-clamp-2">{tutorial.excerpt}</p>
+          <div className="flex items-center gap-3 text-xs text-[#6e6552]">
             <StepsIcon count={tutorial.steps} />
-            <span className="w-1 h-1 rounded-full bg-[#6a7a9a]" />
+            <span className="w-1 h-1 rounded-full bg-[#6e6552]" />
             <span className="text-[#c9a84c] font-semibold group-hover:underline">Ver tutorial →</span>
           </div>
         </div>
@@ -413,7 +413,7 @@ function TutorialCard({ tutorial, onClick, index }: { tutorial: Tutorial; onClic
           <span className="px-2.5 py-1 rounded-md text-[10px] font-bold"
             style={{ background: `${modColor}15`, color: modColor }}>{tutorial.module}</span>
           <DifficultyBadge difficulty={tutorial.difficulty} />
-          <span className="text-[10px] text-[#4a5570] ml-auto flex items-center gap-1">
+          <span className="text-[10px] text-[#a69a82] ml-auto flex items-center gap-1">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
               <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -423,7 +423,7 @@ function TutorialCard({ tutorial, onClick, index }: { tutorial: Tutorial; onClic
         </div>
         <h3 className="text-base font-bold transition-colors leading-snug"
           style={{ color: hov ? GOLD : "#fff" }}>{tutorial.title}</h3>
-        <p className="text-xs text-[#6a7a9a] line-clamp-2">{tutorial.excerpt}</p>
+        <p className="text-xs text-[#6e6552] line-clamp-2">{tutorial.excerpt}</p>
         <div className="flex items-center justify-between pt-1 border-t border-white/5">
           <StepsIcon count={tutorial.steps} />
           <span className="text-[10px] font-semibold transition-colors"
@@ -458,7 +458,7 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
 
   return (
     <div ref={overlayRef} className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-      style={{ background: "rgba(6,11,20,0.85)", backdropFilter: "blur(10px)" }}
+      style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(10px)" }}
       onClick={(e) => { if (e.target === overlayRef.current) handleClose(); }}>
       <div ref={panelRef} className="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl border border-white/8"
         style={{ background: BG2 }}>
@@ -470,7 +470,7 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
               <div className="flex items-center gap-2 mb-3 flex-wrap">
                 <AnimatedBadge color={modColor}>{tutorial.module}</AnimatedBadge>
                 <DifficultyBadge difficulty={tutorial.difficulty} />
-                <span className="text-xs text-[#6a7a9a] flex items-center gap-1 ml-1">
+                <span className="text-xs text-[#6e6552] flex items-center gap-1 ml-1">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                     <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -488,13 +488,13 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
               </svg>
             </button>
           </div>
-          <p className="text-sm text-[#8a94b0] mt-2 leading-relaxed">{tutorial.excerpt}</p>
+          <p className="text-sm text-[#a69a82] mt-2 leading-relaxed">{tutorial.excerpt}</p>
         </div>
 
         <div className="px-6 py-6 flex flex-col gap-8">
           {/* Steps */}
           <div>
-            <h3 className="text-xs font-bold tracking-wider uppercase text-[#6a7a9a] mb-5">
+            <h3 className="text-xs font-bold tracking-wider uppercase text-[#6e6552] mb-5">
               Pasos — {tutorial.steps} en total
             </h3>
             <div className="flex flex-col gap-4">
@@ -511,7 +511,7 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
                   </div>
                   <div className="pb-4 flex-1 min-w-0">
                     <h4 className="font-bold text-sm text-white mb-1.5">{step.title}</h4>
-                    <p className="text-xs text-[#8a94b0] leading-relaxed">{step.description}</p>
+                    <p className="text-xs text-[#a69a82] leading-relaxed">{step.description}</p>
                   </div>
                 </div>
               ))}
@@ -527,7 +527,7 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
             </div>
             <ul className="flex flex-col gap-3">
               {tutorial.tips.map((tip, i) => (
-                <li key={i} className="flex gap-3 text-xs text-[#8a94b0] leading-relaxed">
+                <li key={i} className="flex gap-3 text-xs text-[#a69a82] leading-relaxed">
                   <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black"
                     style={{ background: `${GOLD}20`, color: GOLD }}>
                     {i + 1}
@@ -541,10 +541,10 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
           {/* CTA */}
           <div className="p-6 rounded-2xl border text-center"
             style={{ background: `${modColor}08`, borderColor: `${modColor}25` }}>
-            <p className="text-sm text-[#8a94b0] mb-4">¿Listo para poner en práctica lo aprendido?</p>
+            <p className="text-sm text-[#a69a82] mb-4">¿Listo para poner en práctica lo aprendido?</p>
             <Link href="/registro"
               className="inline-block px-8 py-3 rounded-xl font-bold text-sm transition-all hover:shadow-lg"
-              style={{ background: `linear-gradient(to right,${modColor},${modColor}cc)`, color: "#060B14", boxShadow: `0 0 0 0 ${modColor}00` }}
+              style={{ background: `linear-gradient(to right,${modColor},${modColor}cc)`, color: "#000000", boxShadow: `0 0 0 0 ${modColor}00` }}
               onClick={handleClose}>
               Empieza ahora gratis
             </Link>
@@ -617,7 +617,7 @@ export default function TutorialesPage() {
               {tT.title2}
             </span>
           </h1>
-          <p className="text-lg text-[#8a94b0] max-w-xl leading-relaxed">
+          <p className="text-lg text-[#a69a82] max-w-xl leading-relaxed">
             {tT.subtitle}
           </p>
         </div>
@@ -632,7 +632,7 @@ export default function TutorialesPage() {
             <div key={s.label} className="p-4 sm:p-5 rounded-2xl border border-white/5 text-center"
               style={{ background: BG2 }}>
               <div className="text-2xl sm:text-3xl font-black mb-1" style={{ color: s.color }}>{s.value}</div>
-              <div className="text-[10px] sm:text-xs text-[#6a7a9a] font-semibold">{s.label}</div>
+              <div className="text-[10px] sm:text-xs text-[#6e6552] font-semibold">{s.label}</div>
             </div>
           ))}
         </div>
@@ -665,7 +665,7 @@ export default function TutorialesPage() {
         {featured.length > 0 && regular.length > 0 && (
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-white/5" />
-            <span className="text-xs font-bold tracking-wider uppercase text-[#4a5570]">Todos los tutoriales</span>
+            <span className="text-xs font-bold tracking-wider uppercase text-[#a69a82]">Todos los tutoriales</span>
             <div className="flex-1 h-px bg-white/5" />
           </div>
         )}
@@ -681,7 +681,7 @@ export default function TutorialesPage() {
 
         {/* Empty state */}
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-[#6a7a9a]">
+          <div className="text-center py-20 text-[#6e6552]">
             No hay tutoriales en este módulo aún.
           </div>
         )}

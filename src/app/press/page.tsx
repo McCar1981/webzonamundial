@@ -37,7 +37,7 @@ export default function PressPage() {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
         color: "#fff",
         fontFamily: "Outfit, system-ui, sans-serif",
         padding: "clamp(40px, 6vw, 72px) 20px 80px",
@@ -51,7 +51,7 @@ export default function PressPage() {
             alignItems: "center",
             gap: 6,
             fontSize: 13,
-            color: "#94a3b8",
+            color: "#a69a82",
             textDecoration: "none",
             marginBottom: 24,
           }}
@@ -98,7 +98,7 @@ export default function PressPage() {
           style={{
             fontSize: 17,
             lineHeight: 1.6,
-            color: "#cbd5e1",
+            color: "#e6decb",
             margin: "0 0 36px",
             maxWidth: 720,
           }}
@@ -133,7 +133,7 @@ export default function PressPage() {
                     fontSize: 10,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#94a3b8",
+                    color: "#a69a82",
                     marginBottom: 4,
                   }}
                 >
@@ -147,7 +147,7 @@ export default function PressPage() {
 
         {/* BOILERPLATE */}
         <Section title="Boilerplate (descripción oficial)">
-          <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 12px" }}>
+          <p style={{ fontSize: 14, color: "#a69a82", margin: "0 0 12px" }}>
             Texto autorizado para copiar y pegar en notas de prensa, artículos o
             entrevistas. Cabe sin problema en una sola tarjeta de Twitter.
           </p>
@@ -156,7 +156,7 @@ export default function PressPage() {
               padding: 18,
               borderRadius: 12,
               border: "1px solid rgba(201,168,76,0.25)",
-              background: "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+              background: "linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
               fontFamily: "Source Serif 4, Georgia, serif",
               fontSize: 15,
               lineHeight: 1.65,
@@ -214,12 +214,12 @@ export default function PressPage() {
               borderRadius: 14,
               border: "1px solid rgba(201,168,76,0.30)",
               background:
-                "radial-gradient(ellipse 70% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+                "radial-gradient(ellipse 70% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
             }}
           >
             <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "center" }}>
               <div style={{ flex: 1, minWidth: 220 }}>
-                <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>Redacción / entrevistas</div>
+                <div style={{ fontSize: 12, color: "#a69a82", marginBottom: 4 }}>Redacción / entrevistas</div>
                 <a
                   href="mailto:editorial@zonamundial.app"
                   style={{ color: "#FDE68A", textDecoration: "none", fontWeight: 700 }}
@@ -228,7 +228,7 @@ export default function PressPage() {
                 </a>
               </div>
               <div style={{ flex: 1, minWidth: 220 }}>
-                <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>Partners / colaboraciones</div>
+                <div style={{ fontSize: 12, color: "#a69a82", marginBottom: 4 }}>Partners / colaboraciones</div>
                 <a
                   href="mailto:partners@zonamundial.app"
                   style={{ color: "#FDE68A", textDecoration: "none", fontWeight: 700 }}
@@ -237,7 +237,7 @@ export default function PressPage() {
                 </a>
               </div>
             </div>
-            <p style={{ fontSize: 13, color: "#cbd5e1", marginTop: 16, marginBottom: 0 }}>
+            <p style={{ fontSize: 13, color: "#e6decb", marginTop: 16, marginBottom: 0 }}>
               Respondemos en menos de 24 horas hábiles. Si tienes una fecha límite,
               escríbela en el asunto y la priorizamos.
             </p>
@@ -246,7 +246,7 @@ export default function PressPage() {
 
         {/* EMBED WIDGET */}
         <Section title="Embed del calendario en tu sitio">
-          <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 12px" }}>
+          <p style={{ fontSize: 14, color: "#a69a82", margin: "0 0 12px" }}>
             Si publicas en un blog o medio digital, puedes embeber el calendario
             del Mundial 2026 en tu sitio con un iframe. Filtra por equipo, fase o
             sede usando query params.
@@ -260,7 +260,7 @@ export default function PressPage() {
               fontFamily: "JetBrains Mono, monospace",
               fontSize: 12.5,
               lineHeight: 1.55,
-              color: "#cbd5e1",
+              color: "#e6decb",
               overflowX: "auto",
             }}
           >
@@ -269,7 +269,7 @@ export default function PressPage() {
   width="100%"
   height="600"
   frameborder="0"
-  style="border:0;border-radius:14px;background:#060B14"
+  style="border:0;border-radius:14px;background:#000000"
   loading="lazy"
 ></iframe>`}</pre>
           </div>
@@ -332,7 +332,7 @@ function Resource({ label, href, sub }: { label: string; href: string; sub: stri
       }}
     >
       <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 11, color: "#94a3b8", letterSpacing: "0.04em" }}>{sub}</div>
+      <div style={{ fontSize: 11, color: "#a69a82", letterSpacing: "0.04em" }}>{sub}</div>
       <div
         style={{
           fontSize: 11,
@@ -359,7 +359,7 @@ function ImagePreview({ src, alt }: { src: string; alt: string }) {
         borderRadius: 12,
         overflow: "hidden",
         border: "1px solid rgba(255,255,255,0.08)",
-        background: "#0F1F30",
+        background: "#14110a",
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -384,7 +384,7 @@ function SocialLink({ href, label }: { href: string; label: string }) {
         borderRadius: 99,
         border: "1px solid rgba(255,255,255,0.10)",
         background: "rgba(255,255,255,0.03)",
-        color: "#cbd5e1",
+        color: "#e6decb",
         textDecoration: "none",
         fontSize: 13,
         fontWeight: 500,

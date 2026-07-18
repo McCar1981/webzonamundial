@@ -137,7 +137,7 @@ export default async function JugadorPage({
       </nav>
 
       {/* HERO */}
-      <header className="mb-10 pb-6 border-b border-[#1E293B]">
+      <header className="mb-10 pb-6 border-b border-[#241e12]">
         <div className="flex items-center gap-3 mb-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -186,7 +186,7 @@ export default async function JugadorPage({
               <Link
                 key={m.anio}
                 href={`/historia/${m.slug}`}
-                className="p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline text-center"
+                className="p-3 rounded-xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline text-center"
                 style={m.esCampeon ? { borderColor: "rgba(201,168,76,0.4)" } : undefined}
               >
                 <div
@@ -203,7 +203,7 @@ export default async function JugadorPage({
             ) : (
               <div
                 key={m.anio}
-                className="p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center"
+                className="p-3 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center"
               >
                 <div
                   className="text-base font-black tabular-nums"
@@ -238,7 +238,7 @@ export default async function JugadorPage({
           {j.anecdotas.map((a, i) => (
             <article
               key={i}
-              className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60"
             >
               <p className="text-sm text-gray-300 leading-relaxed">{a}</p>
             </article>
@@ -280,7 +280,7 @@ function Stat({
   highlight?: boolean;
 }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div
         className="text-2xl font-black tabular-nums"
         style={{ color: highlight ? GOLD : "#fff" }}

@@ -19,7 +19,7 @@ import AppBottomNav from "@/components/AppBottomNav";
 import UpdateToast from "@/components/UpdateToast";
 import SprintmarktBanner from "@/components/SprintmarktBanner";
 
-const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
+const BG="#000000",BG2="#14110a",BG3="#0a0906",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#a69a82",DIM="#6e6552",DARK="#a69a82";
 
 function buildNav(t: Translations) {
   return [
@@ -330,8 +330,8 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       <header style={{
         position: "sticky", top: "var(--zm-livebar-h, 0px)", zIndex: 1000,
         background: scrolled
-          ? "rgba(6,11,20,0.88)"
-          : "linear-gradient(180deg, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.15) 70%, transparent 100%)",
+          ? "rgba(0,0,0,0.88)"
+          : "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 70%, transparent 100%)",
         backdropFilter: scrolled ? "blur(18px) saturate(180%)" : "blur(6px)",
         WebkitBackdropFilter: scrolled ? "blur(18px) saturate(180%)" : "blur(6px)",
         borderBottom: scrolled ? "1px solid rgba(201,168,76,0.1)" : "1px solid transparent",
@@ -423,7 +423,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       {/* ═══ MOBILE OVERLAY ═══ */}
       <div style={{
         position: "fixed", inset: 0, zIndex: 999,
-        background: "rgba(6,11,20,0.98)",
+        background: "rgba(0,0,0,0.98)",
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
         transition: "opacity 0.35s,visibility 0.35s",
         opacity: mobileOpen ? 1 : 0, visibility: mobileOpen ? "visible" : "hidden",

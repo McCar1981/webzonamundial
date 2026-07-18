@@ -53,7 +53,7 @@ export default async function FoundersLandingPage() {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.15), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,168,76,0.15), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
         color: "#fff",
         fontFamily: "Outfit, system-ui, sans-serif",
       }}
@@ -101,7 +101,7 @@ export default async function FoundersLandingPage() {
             style={{
               fontSize: "clamp(16px, 1.6vw, 19px)",
               lineHeight: 1.55,
-              color: "#94a3b8",
+              color: "#a69a82",
               maxWidth: 640,
               margin: "0 auto 32px",
               fontStyle: "italic",
@@ -151,7 +151,7 @@ export default async function FoundersLandingPage() {
             border: "1px solid rgba(201,168,76,0.25)",
             borderRadius: 18,
             padding: 24,
-            background: "linear-gradient(180deg, rgba(15,31,48,0.6), rgba(11,24,37,0.3))",
+            background: "linear-gradient(180deg, rgba(20,17,10,0.6), rgba(10,9,6,0.3))",
           }}
         >
           <Stat label="Founders activos" value={count.toString()} sub={count === 0 ? "Sé el primero" : count === 1 ? "El primero ya está" : "Y subiendo"} />
@@ -160,7 +160,7 @@ export default async function FoundersLandingPage() {
         </div>
 
         {purchaseEvents.length > 0 && (
-          <div style={{ marginTop: 20, fontSize: 13, color: "#94a3b8", textAlign: "center" }}>
+          <div style={{ marginTop: 20, fontSize: 13, color: "#a69a82", textAlign: "center" }}>
             {purchaseEvents.length === 1 ? (
               <span>1 persona ya se ha unido al equipo Founders.</span>
             ) : (
@@ -255,7 +255,7 @@ export default async function FoundersLandingPage() {
         <h2 style={{ fontWeight: 800, fontSize: 24, letterSpacing: "-0.02em", marginBottom: 14 }}>
           ¿A dónde va tu dinero?
         </h2>
-        <p style={{ color: "#94a3b8", lineHeight: 1.7, fontSize: 15 }}>
+        <p style={{ color: "#a69a82", lineHeight: 1.7, fontSize: 15 }}>
           El 100% de los ingresos del Founders Pass se destinan a <b style={{ color: "#fff" }}>sostener
           la plataforma</b>: servidores, base de datos, datos en vivo de partidos, derechos de imágenes,
           email transaccional y redacción editorial. Sin tu apoyo, ZonaMundial no podría ofrecer un plan
@@ -270,7 +270,7 @@ export default async function FoundersLandingPage() {
             background: "rgba(255,255,255,0.03)",
             border: "1px solid rgba(255,255,255,0.06)",
             fontSize: 14,
-            color: "#cbd5e1",
+            color: "#e6decb",
             lineHeight: 1.6,
           }}
         >
@@ -336,7 +336,7 @@ function Stat({ label, value, sub }: { label: string; value: string; sub: string
       >
         {label}
       </div>
-      <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 6 }}>{sub}</div>
+      <div style={{ fontSize: 12, color: "#a69a82", marginTop: 6 }}>{sub}</div>
     </div>
   );
 }
@@ -348,12 +348,12 @@ function PerkCard({ icon, title, text }: { icon: string; title: string; text: st
         padding: 22,
         borderRadius: 14,
         border: "1px solid rgba(201,168,76,0.18)",
-        background: "linear-gradient(180deg, rgba(15,31,48,0.5), rgba(11,24,37,0.3))",
+        background: "linear-gradient(180deg, rgba(20,17,10,0.5), rgba(10,9,6,0.3))",
       }}
     >
       <div style={{ fontSize: 26, marginBottom: 10 }}>{icon}</div>
       <h3 style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.01em", marginBottom: 6 }}>{title}</h3>
-      <p style={{ color: "#94a3b8", fontSize: 14, lineHeight: 1.55, margin: 0 }}>{text}</p>
+      <p style={{ color: "#a69a82", fontSize: 14, lineHeight: 1.55, margin: 0 }}>{text}</p>
     </div>
   );
 }

@@ -23,8 +23,8 @@ import { handleProRequired } from "@/lib/pro/paywall-client";
 const MAX_FOLLOWUP_TURNS = 8;
 
 // Paleta alineada con el resto del bracket (dorado ZonaMundial).
-const BG2 = "#12161D";
-const BG3 = "#1A2029";
+const BG2 = "#14110a";
+const BG3 = "#241e12";
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
 const MID = "#C7CEDA";
@@ -198,7 +198,7 @@ export default function OraclePanel({ state }: { state: BracketState }) {
           disabled={loading}
           style={{
             background: GOLD,
-            color: "#0C0F14",
+            color: "#000000",
             border: "none",
             borderRadius: 9,
             padding: "9px 16px",
@@ -405,7 +405,7 @@ export default function OraclePanel({ state }: { state: BracketState }) {
                   disabled={chatLoading || draft.trim().length === 0}
                   style={{
                     background: GOLD,
-                    color: "#0C0F14",
+                    color: "#000000",
                     border: "none",
                     borderRadius: 9,
                     padding: "10px 14px",

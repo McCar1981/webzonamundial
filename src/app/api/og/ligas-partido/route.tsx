@@ -30,7 +30,7 @@ export async function GET(request: Request) {
           display: "flex",
           flexDirection: "column",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.20), transparent 65%), linear-gradient(180deg, #060B14, #0B1825)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.20), transparent 65%), linear-gradient(180deg, #000000, #0a0906)",
           color: "#fff",
           fontFamily: "sans-serif",
           padding: "56px 72px",
@@ -39,14 +39,14 @@ export async function GET(request: Request) {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 26, fontWeight: 800, letterSpacing: 3, color: GOLD }}>{comp.toUpperCase()}</span>
-          <span style={{ fontSize: 24, fontWeight: 700, color: "#9db0c9" }}>zonamundial.app</span>
+          <span style={{ fontSize: 24, fontWeight: 700, color: "#a69a82" }}>zonamundial.app</span>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flex: 1, gap: 28 }}>
           <span style={{ display: "flex", flex: 1, justifyContent: "flex-end", textAlign: "right", fontSize: 56, fontWeight: 800 }}>{home}</span>
           <span style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: 180 }}>
             <span style={{ fontSize: 72, fontWeight: 900, color: GOLD }}>{score}</span>
-            {sub ? <span style={{ fontSize: 24, fontWeight: 600, color: "#9db0c9", marginTop: 6 }}>{sub}</span> : null}
+            {sub ? <span style={{ fontSize: 24, fontWeight: 600, color: "#a69a82", marginTop: 6 }}>{sub}</span> : null}
           </span>
           <span style={{ display: "flex", flex: 1, justifyContent: "flex-start", textAlign: "left", fontSize: 56, fontWeight: 800 }}>{away}</span>
         </div>

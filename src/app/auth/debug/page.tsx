@@ -140,7 +140,7 @@ async function runChecks(): Promise<CheckResult[]> {
   return checks;
 }
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", BG = "#060B14", BG2 = "#0B1825";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", BG = "#000000", BG2 = "#0a0906";
 
 export default async function AuthDebugPage() {
   // Protección en producción: solo accesible si se posee la cookie
@@ -164,7 +164,7 @@ export default async function AuthDebugPage() {
   const projectRef = supabaseUrl.match(/https:\/\/([^.]+)\.supabase\.co/)?.[1] || "(desconocido)";
 
   return (
-    <main style={{ background: BG, minHeight: "100vh", color: "#cbd5e1", padding: "60px 20px" }}>
+    <main style={{ background: BG, minHeight: "100vh", color: "#e6decb", padding: "60px 20px" }}>
       <div style={{ maxWidth: 880, margin: "0 auto" }}>
         <Link href="/login" style={{ color: GOLD, fontSize: 13, textDecoration: "none", opacity: 0.7 }}>
           ← Volver a login
@@ -173,7 +173,7 @@ export default async function AuthDebugPage() {
         <h1 style={{ color: GOLD2, fontSize: 36, fontWeight: 800, margin: "20px 0 8px", letterSpacing: "-0.02em" }}>
           Diagnóstico de Autenticación
         </h1>
-        <p style={{ color: "#8a94b0", fontSize: 14, marginBottom: 30 }}>
+        <p style={{ color: "#a69a82", fontSize: 14, marginBottom: 30 }}>
           Esta página no es indexable. Sirve para confirmar qué falla cuando los botones
           de Google / Apple devuelven error. No expone ningún secret.
         </p>
@@ -225,7 +225,7 @@ export default async function AuthDebugPage() {
               </span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ color: "#fff", fontWeight: 600, fontSize: 14 }}>{c.label}</div>
-                <div style={{ color: "#8a94b0", fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
+                <div style={{ color: "#a69a82", fontSize: 13, marginTop: 4, lineHeight: 1.5 }}>
                   {c.detail}
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default async function AuthDebugPage() {
           <h2 style={{ color: GOLD2, fontSize: 18, fontWeight: 700, margin: "0 0 12px" }}>
             URLs que necesitas pegar en los providers
           </h2>
-          <p style={{ fontSize: 13, color: "#8a94b0", margin: "0 0 14px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 13, color: "#a69a82", margin: "0 0 14px", lineHeight: 1.6 }}>
             Estas son las URLs exactas que el proveedor (Google / Apple / Supabase) necesita
             tener autorizadas para que el flujo funcione.
           </p>
@@ -278,7 +278,7 @@ export default async function AuthDebugPage() {
 function UrlRow({ label, url }: { label: string; url: string }) {
   return (
     <div style={{ marginBottom: 12 }}>
-      <div style={{ fontSize: 12, color: "#8a94b0", marginBottom: 4 }}>{label}</div>
+      <div style={{ fontSize: 12, color: "#a69a82", marginBottom: 4 }}>{label}</div>
       <code
         style={{
           display: "block",

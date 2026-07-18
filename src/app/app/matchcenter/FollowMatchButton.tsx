@@ -77,7 +77,7 @@ export default function FollowMatchButton({ matchId, homeName, awayName }: Props
           borderRadius: 999,
           border: following ? "1px solid #f5c518" : "1px solid rgba(255,255,255,0.25)",
           background: following ? "#f5c518" : "rgba(255,255,255,0.06)",
-          color: following ? "#0b0b0f" : "#fff",
+          color: following ? "#000000" : "#fff",
           fontWeight: 700,
           fontSize: 14,
           cursor: busy ? "default" : "pointer",

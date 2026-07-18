@@ -57,7 +57,7 @@ export const BRACKET_TEAMS: BracketTeam[] = [
   { id: "SWE", name: "Suecia",         iso: "se",     slug: "suecia",         group: "F", color: "#006AA7", confed: "UEFA" },
   // Grupo G
   { id: "BEL", name: "Bélgica",        iso: "be",     slug: "belgica",        group: "G", color: "#EF3340", confed: "UEFA" },
-  { id: "NZL", name: "Nueva Zelanda",  iso: "nz",     slug: "nueva-zelanda",  group: "G", color: "#0A1F3D", confed: "OFC" },
+  { id: "NZL", name: "Nueva Zelanda",  iso: "nz",     slug: "nueva-zelanda",  group: "G", color: "#0a0906", confed: "OFC" },
   { id: "EGY", name: "Egipto",         iso: "eg",     slug: "egipto",         group: "G", color: "#CE1126", confed: "CAF" },
   { id: "IRN", name: "Irán",           iso: "ir",     slug: "iran",           group: "G", color: "#239F40", confed: "AFC" },
   // Grupo H

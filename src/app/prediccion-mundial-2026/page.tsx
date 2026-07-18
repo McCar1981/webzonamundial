@@ -22,7 +22,7 @@ import Link from "next/link";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
 import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 export const metadata: Metadata = {
   title: "Predicción Mundial 2026: predice gratis y gana premios",
@@ -143,7 +143,7 @@ export default function PrediccionMundialPage() {
 
         {/* CTA arriba (intención transaccional: quieren predecir) */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", margin: "20px 0 8px" }}>
-          <Link href="/registro" style={{ display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none", whiteSpace: "nowrap" }}>
+          <Link href="/registro" style={{ display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none", whiteSpace: "nowrap" }}>
             Crear mi cuenta gratis y predecir →
           </Link>
           <Link href="/app/predicciones" style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
@@ -225,7 +225,7 @@ export default function PrediccionMundialPage() {
           <p style={{ fontSize: 14, lineHeight: 1.6, margin: "0 0 14px" }}>
             Crea tu cuenta gratis, empieza a predecir y entra en el ranking que reparte las Gift Cards.
           </p>
-          <Link href="/registro" style={{ display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
+          <Link href="/registro" style={{ display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
             Crear mi cuenta gratis →
           </Link>
         </div>
@@ -249,7 +249,7 @@ export default function PrediccionMundialPage() {
             104 partidos. 8 formas de acertar. Un campeón del pronóstico.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0A1422", fontWeight: 800, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
+            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
               Crear mi cuenta gratis
             </Link>
             <Link href="/quiniela-mundial-2026" style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>

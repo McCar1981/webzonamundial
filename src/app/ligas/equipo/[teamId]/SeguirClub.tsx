@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 export default function SeguirClub({ teamId, teamName, teamLogo }: { teamId: number; teamName: string; teamLogo: string | null }) {
   const [authed, setAuthed] = useState<boolean | null>(null);
@@ -61,7 +61,7 @@ export default function SeguirClub({ teamId, teamName, teamLogo }: { teamId: num
   return (
     <span style={{ flexShrink: 0, display: "inline-flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
       <button onClick={seguir} disabled={busy}
-        style={{ border: "none", cursor: busy ? "default" : "pointer", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0A1422", fontWeight: 600, fontSize: 12.5, padding: "8px 14px", borderRadius: 99, opacity: busy ? 0.7 : 1 }}>
+        style={{ border: "none", cursor: busy ? "default" : "pointer", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0a0906", fontWeight: 600, fontSize: 12.5, padding: "8px 14px", borderRadius: 99, opacity: busy ? 0.7 : 1 }}>
         {busy ? "…" : "Hacer mi club"}
       </button>
       {error ? <span style={{ fontSize: 11, color: DIM }}>{error}</span> : null}

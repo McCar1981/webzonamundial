@@ -15,7 +15,7 @@ export function FilterBtn({ label, active, onClick }: FilterBtnProps) {
         "border-2",
         active
           ? "border-[#c9a84c]/40 bg-gradient-to-br from-[#c9a84c]/15 to-[#c9a84c]/5 text-[#c9a84c] shadow-[0_4px_16px_rgba(201,168,76,0.15)]"
-          : "border-white/[0.06] bg-transparent text-[#6a7a9a] hover:border-white/15 hover:bg-white/5 hover:text-white",
+          : "border-white/[0.06] bg-transparent text-[#6e6552] hover:border-white/15 hover:bg-white/5 hover:text-white",
       ].join(" ")}
     >
       {label}

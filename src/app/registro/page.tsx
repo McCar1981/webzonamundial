@@ -79,7 +79,7 @@ export default function RegistroPage() {
           <div className="lg:col-span-3 order-1">
             <div className="p-7 sm:p-9 rounded-3xl border border-[#C9A84C]/20"
               style={{
-                background: 'linear-gradient(135deg, rgba(15,23,42,0.8), rgba(11,24,37,0.6))',
+                background: 'linear-gradient(135deg, rgba(20,17,10,0.8), rgba(10,9,6,0.6))',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 50px -12px rgba(201,168,76,0.1)'
               }}>
@@ -103,7 +103,7 @@ export default function RegistroPage() {
               <FormularioRegistro />
 
               {/* Trust badges */}
-              <div className="mt-6 pt-5 border-t border-[#1E293B]/50">
+              <div className="mt-6 pt-5 border-t border-[#241e12]/50">
                 <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-gray-500">
                   <span className="flex items-center gap-1.5 text-[#C9A84C]">
                     {ICON_UI.shieldCheck}
@@ -126,8 +126,8 @@ export default function RegistroPage() {
           <div className="lg:col-span-2 order-2 space-y-6">
 
             {/* What's included - compact */}
-            <div className="p-6 rounded-2xl border border-[#1E293B]/50"
-              style={{ background: 'rgba(15,23,42,0.4)', backdropFilter: 'blur(12px)' }}>
+            <div className="p-6 rounded-2xl border border-[#241e12]/50"
+              style={{ background: 'rgba(20,17,10,0.4)', backdropFilter: 'blur(12px)' }}>
               <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 flex-shrink-0">{ICON_V3.predicciones}</span>
                 {rT.includes}
@@ -155,8 +155,8 @@ export default function RegistroPage() {
                 { value: '104', label: rT.stats.partidos, icon: ICON_V3.matchCenter },
                 { value: '8', label: rT.stats.modos, icon: ICON_V3.fantasy },
               ].map((stat, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-[#1E293B]/50"
-                  style={{ background: 'rgba(15,23,42,0.4)' }}>
+                <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-[#241e12]/50"
+                  style={{ background: 'rgba(20,17,10,0.4)' }}>
                   <span className="w-8 h-8 flex-shrink-0">{stat.icon}</span>
                   <div>
                     <p className="text-xl font-black text-[#C9A84C]">{stat.value}</p>

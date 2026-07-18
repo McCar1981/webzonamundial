@@ -21,7 +21,7 @@ import { trackEvent } from "@/lib/analytics/track-event";
 import { isPostFreeWeekendWindow } from "@/lib/pro/free-weekend";
 import { hasUsedAnyPro } from "@/lib/pro/free-weekend-usage";
 
-const BG2 = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0";
+const BG2 = "#14110a", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82";
 
 function retryCountdown(retryAt: string | null | undefined): string | null {
   if (!retryAt) return null;
@@ -68,7 +68,7 @@ export default function PaywallModal() {
       onClick={close}
       style={{
         position: "fixed", inset: 0, zIndex: 2000,
-        background: "rgba(6,11,20,0.78)",
+        background: "rgba(0,0,0,0.78)",
         backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
         display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
       }}
@@ -120,7 +120,7 @@ export default function PaywallModal() {
           style={{
             display: "block", marginTop: 16,
             background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-            color: "#060B14", fontWeight: 800, fontSize: 15,
+            color: "#000000", fontWeight: 800, fontSize: 15,
             padding: "13px 18px", borderRadius: 12, textDecoration: "none",
             boxShadow: "0 6px 24px rgba(201,168,76,0.25)",
           }}

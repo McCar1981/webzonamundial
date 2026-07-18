@@ -125,7 +125,7 @@ export default async function SeleccionPage({
         </ol>
       </nav>
 
-      <header className="mb-10 pb-6 border-b border-[#1E293B]">
+      <header className="mb-10 pb-6 border-b border-[#241e12]">
         <div className="flex items-center gap-3 mb-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -146,19 +146,19 @@ export default async function SeleccionPage({
 
       <section className="mb-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="p-4 rounded-xl border border-[#C9A84C]/30 bg-[#0F1D32]/60 text-center">
+          <div className="p-4 rounded-xl border border-[#C9A84C]/30 bg-[#14110a]/60 text-center">
             <div className="text-3xl font-black tabular-nums" style={{ color: GOLD }}>{s.titulos}</div>
             <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Campeón</div>
           </div>
-          <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center">
+          <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center">
             <div className="text-3xl font-black tabular-nums text-white">{s.subcampeonatos}</div>
             <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Subcampeón</div>
           </div>
-          <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center">
+          <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center">
             <div className="text-3xl font-black tabular-nums text-white">{s.podios}</div>
             <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Podios</div>
           </div>
-          <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center">
+          <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center">
             <div className="text-3xl font-black tabular-nums text-white">{s.participaciones}</div>
             <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Mundiales</div>
           </div>
@@ -181,7 +181,7 @@ export default async function SeleccionPage({
                 <Link
                   key={t.anio}
                   href={`/historia/${t.slug}`}
-                  className="p-4 rounded-xl border border-[#C9A84C]/40 bg-[#0F1D32]/80 text-center hover:border-[#C9A84C] no-underline"
+                  className="p-4 rounded-xl border border-[#C9A84C]/40 bg-[#14110a]/80 text-center hover:border-[#C9A84C] no-underline"
                 >
                   <div className="text-2xl font-black tabular-nums" style={{ color: GOLD }}>{t.anio}</div>
                   <div className="text-xs text-gray-300 mt-1">{t.nombre}</div>
@@ -201,7 +201,7 @@ export default async function SeleccionPage({
                 <Link
                   key={t.anio}
                   href={`/historia/${t.slug}`}
-                  className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center hover:border-[#C9A84C]/40 no-underline"
+                  className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center hover:border-[#C9A84C]/40 no-underline"
                 >
                   <div className="text-xl font-black tabular-nums text-white">{t.anio}</div>
                   <div className="text-xs text-gray-400 mt-1">{t.nombre}</div>
@@ -218,7 +218,7 @@ export default async function SeleccionPage({
           {s.estrellasIconicas.map((j) => (
             <span
               key={j}
-              className="px-3 py-1.5 rounded-full bg-[#0F1D32] border border-[#1E293B] text-sm text-gray-300"
+              className="px-3 py-1.5 rounded-full bg-[#14110a] border border-[#241e12] text-sm text-gray-300"
             >
               {j}
             </span>
@@ -240,7 +240,7 @@ export default async function SeleccionPage({
 
       <section className="mb-10">
         <h2 className="text-lg font-bold text-white mb-4">Dato clave</h2>
-        <div className="p-5 rounded-xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80">
+        <div className="p-5 rounded-xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80">
           <p className="text-sm text-gray-200 leading-relaxed">{s.datoClave}</p>
         </div>
       </section>

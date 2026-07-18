@@ -104,7 +104,7 @@ export default function ModuleFAQ({ moduleLabel, items }: Props) {
                 style={{
                   marginTop: 10,
                   marginBottom: 0,
-                  color: "#94a3b8",
+                  color: "#a69a82",
                   lineHeight: 1.65,
                   fontSize: 15,
                   fontFamily: "Source Serif 4, Georgia, serif",

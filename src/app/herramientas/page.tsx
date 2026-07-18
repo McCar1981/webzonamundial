@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ShimmerButton } from "@/components/ShimmerButton";
 
-const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
+const BG="#000000",BG2="#14110a",BG3="#0a0906",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#a69a82",DIM="#6e6552",DARK="#a69a82";
 const flagUrl=(c,w=80)=>c?`https://flagcdn.com/w${w}/${c}.png`:null;
 
 // ═══ ICONS SVG ═══
@@ -555,7 +555,7 @@ export default function ViralTools() {
         *{margin:0;padding:0;box-sizing:border-box}
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:${BG}}::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.2);border-radius:3px}
         ::selection{background:rgba(201,168,76,0.3)}
-        select option{background:#0F1D32;color:#fff}
+        select option{background:#14110a;color:#fff}
       `}</style>
 
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "24px 16px 80px" }}>

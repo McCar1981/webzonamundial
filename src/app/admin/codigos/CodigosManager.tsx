@@ -28,7 +28,7 @@ interface Props {
 type Msg = { ok: boolean; text: string } | null;
 
 const fieldCls =
-  "w-full px-3 py-2 rounded-lg bg-[#0B1825] border border-white/10 text-white text-sm focus:border-[#C9A84C] focus:outline-none";
+  "w-full px-3 py-2 rounded-lg bg-[#0a0906] border border-white/10 text-white text-sm focus:border-[#C9A84C] focus:outline-none";
 const labelCls = "block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1";
 
 export default function CodigosManager({ codes, siteUrl }: Props) {
@@ -126,7 +126,7 @@ export default function CodigosManager({ codes, siteUrl }: Props) {
             <button
               type="submit"
               disabled={pending}
-              className="px-5 py-2.5 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 cursor-pointer"
               style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
             >
               {pending ? "Guardando…" : "Crear código"}
@@ -229,7 +229,7 @@ export default function CodigosManager({ codes, siteUrl }: Props) {
                       <button
                         type="submit"
                         disabled={pending}
-                        className="px-5 py-2.5 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 cursor-pointer"
+                        className="px-5 py-2.5 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 cursor-pointer"
                         style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
                       >
                         {pending ? "Guardando…" : "Guardar cambios"}

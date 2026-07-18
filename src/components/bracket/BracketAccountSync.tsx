@@ -11,8 +11,8 @@ import { CheckCircle2, CloudUpload, LogIn, Trophy } from "lucide-react";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 
 const STORAGE_KEY = "zm:bracket:v1";
-const BG2 = "#0F1D32", BG3 = "#0B1825";
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
+const BG2 = "#14110a", BG3 = "#0a0906";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 
 interface Pick { matchId: string; winner: string | null; scoreA: number; scoreB: number; ts: number }

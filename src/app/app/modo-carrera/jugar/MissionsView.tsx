@@ -85,7 +85,7 @@ export default function MissionsView({
             gap: 14,
             padding: "10px 18px",
             borderRadius: 999,
-            background: "rgba(11,24,37,0.96)",
+            background: "rgba(10,9,6,0.96)",
             border: `1px solid ${GOLD}`,
             animation: "mcReward 1.8s ease forwards",
           }}
@@ -201,7 +201,7 @@ function MissionCard({
       ) : expired ? (
         <div style={{ fontSize: 13, fontWeight: 700, color: DIM }}>Expirada</div>
       ) : isTraining ? (
-        <button type="button" onClick={() => onAdvance(m.id)} style={btn(GOLD, "#0B1825")}>
+        <button type="button" onClick={() => onAdvance(m.id)} style={btn(GOLD, "#0a0906")}>
           Entrenar hoy
         </button>
       ) : (

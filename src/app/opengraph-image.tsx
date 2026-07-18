@@ -30,7 +30,7 @@ export default async function OGImage() {
           display: "flex",
           flexDirection: "column",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 60%), linear-gradient(180deg, #060B14 0%, #0B1825 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.18), transparent 60%), linear-gradient(180deg, #000000 0%, #0a0906 100%)",
           color: "#ffffff",
           fontFamily: "system-ui, -apple-system, sans-serif",
           position: "relative",
@@ -111,7 +111,7 @@ export default async function OGImage() {
             <div
               style={{
                 fontSize: 32,
-                color: "#94A3B8",
+                color: "#a69a82",
                 marginTop: 24,
                 lineHeight: 1.3,
                 fontWeight: 500,
@@ -123,7 +123,7 @@ export default async function OGImage() {
             <div
               style={{
                 fontSize: 22,
-                color: "#64748B",
+                color: "#8b8168",
                 marginTop: 12,
                 display: "flex",
               }}

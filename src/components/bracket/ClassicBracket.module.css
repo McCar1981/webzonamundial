@@ -20,7 +20,7 @@
   position: sticky;
   top: 64px;
   z-index: 20;
-  background: linear-gradient(180deg, rgba(6, 11, 20, 0.92) 70%, rgba(6, 11, 20, 0));
+  background: linear-gradient(180deg, rgba(0,0,0, 0.92) 70%, rgba(0,0,0, 0));
   backdrop-filter: blur(8px);
 }
 .phaseTab {
@@ -71,7 +71,7 @@
 }
 .groupCard {
   border: 1px solid var(--bb-border);
-  background: linear-gradient(180deg, rgba(15, 31, 48, 0.55), rgba(11, 24, 37, 0.35));
+  background: linear-gradient(180deg, rgba(20,17,10, 0.55), rgba(10,9,6, 0.35));
   border-radius: 18px;
   padding: 18px;
   transition: all 280ms var(--bb-ease);
@@ -167,7 +167,7 @@
   height: 20px;
   border-radius: 3px;
   overflow: hidden;
-  background: #1A2434;
+  background: #1b160d;
   flex-shrink: 0;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -310,7 +310,7 @@
   height: 16px;
   border-radius: 2px;
   overflow: hidden;
-  background: #1A2434;
+  background: #1b160d;
 }
 .standingFlag img {
   width: 100%;
@@ -441,7 +441,7 @@
 /* Knockout match card */
 .koCard {
   appearance: none;
-  background: rgba(15, 31, 48, 0.7);
+  background: rgba(20,17,10, 0.7);
   border: 1px solid var(--bb-border);
   border-radius: 12px;
   padding: 8px 10px;
@@ -456,7 +456,7 @@
 }
 .koCard:hover:not(:disabled) {
   border-color: var(--bb-border-strong);
-  background: rgba(20, 37, 54, 0.85);
+  background: rgba(27,22,13, 0.85);
   transform: translateY(-1px);
 }
 .koCard:disabled {
@@ -465,7 +465,7 @@
 }
 .koCard[data-picked="true"] {
   border-color: var(--bb-gold-2);
-  background: linear-gradient(180deg, rgba(201, 168, 76, 0.10), rgba(20, 37, 54, 0.7));
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.10), rgba(27,22,13, 0.7));
   box-shadow: 0 0 24px -8px rgba(253, 230, 138, 0.4);
 }
 .koCardSlot {

@@ -117,7 +117,7 @@ export default function CookieConsent() {
         zIndex: 9997, // Debajo del PromoPopup (9998-9999) y modales
         padding: "18px 20px",
         borderRadius: 16,
-        background: "linear-gradient(180deg, rgba(15,23,42,0.97), rgba(11,24,37,0.97))",
+        background: "linear-gradient(180deg, rgba(20,17,10,0.97), rgba(10,9,6,0.97))",
         border: "1px solid rgba(201,168,76,0.30)",
         backdropFilter: "blur(14px)",
         boxShadow: "0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) inset",

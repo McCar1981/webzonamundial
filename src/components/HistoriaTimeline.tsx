@@ -50,7 +50,7 @@ function TimelineModal({
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       <div
         className="relative w-full max-w-lg rounded-3xl border border-[#C9A84C]/30 p-6 sm:p-8"
-        style={{ background: "#0B0F1A" }}
+        style={{ background: "#0a0906" }}
         onClick={(e) => e.stopPropagation()}
       >
         <button

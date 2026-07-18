@@ -119,7 +119,7 @@ export default function CapsuleSealModal({ open, state, onClose }: Props) {
               }}
             >
               <div style={{ fontWeight: 700, marginBottom: 6 }}>🎉 Cápsula sellada</div>
-              <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.55 }}>
+              <div style={{ fontSize: 13, color: "#e6decb", lineHeight: 1.55 }}>
                 Tu cápsula <code style={{ color: "#FDE68A" }}>#{result.hash}</code> está guardada
                 en bóveda hasta el 20 de julio de 2026. Te llegará un email de confirmación en unos
                 segundos.

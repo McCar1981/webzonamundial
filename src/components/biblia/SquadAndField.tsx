@@ -26,7 +26,7 @@ const STATUS_COLORS: Record<"fixed" | "probable" | "bubble", { bg: string; text:
   {
     fixed: { bg: "rgba(34,197,94,0.12)", text: "#4ade80" },
     probable: { bg: "rgba(234,179,8,0.12)", text: "#facc15" },
-    bubble: { bg: "rgba(148,163,184,0.12)", text: "#94a3b8" },
+    bubble: { bg: "rgba(148,163,184,0.12)", text: "#a69a82" },
   };
 
 export default function SquadAndField({ team }: { team: NationalTeam }) {
@@ -77,7 +77,7 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
             className="inline-flex rounded-xl border p-1"
             style={{
               borderColor: "var(--bb-border-subtle)",
-              background: "rgba(11,24,37,0.6)",
+              background: "rgba(10,9,6,0.6)",
             }}
             role="tablist"
             aria-label="Vista de plantilla"
@@ -133,7 +133,7 @@ function ToggleButton({
       className="bb-focusable px-4 py-2 rounded-lg text-xs font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed bb-touch"
       style={{
         background: active ? "linear-gradient(135deg, #C9A84C, #A8893D)" : "transparent",
-        color: active ? "#030712" : "var(--bb-text-soft)",
+        color: active ? "#000000" : "var(--bb-text-soft)",
       }}
     >
       {label}
@@ -230,8 +230,8 @@ function FilterChip({
       style={{
         background: active
           ? "linear-gradient(135deg, #C9A84C, #A8893D)"
-          : "rgba(11,24,37,0.5)",
-        color: active ? "#030712" : "#cbd5e1",
+          : "rgba(10,9,6,0.5)",
+        color: active ? "#000000" : "#e6decb",
         borderColor: active ? "#C9A84C" : "rgba(255,255,255,0.06)",
       }}
     >
@@ -240,7 +240,7 @@ function FilterChip({
         className="text-[10px] px-1.5 py-0.5 rounded-md font-mono"
         style={{
           background: active ? "rgba(0,0,0,0.18)" : "rgba(201,168,76,0.1)",
-          color: active ? "#030712" : "#C9A84C",
+          color: active ? "#000000" : "#C9A84C",
         }}
       >
         {count}
@@ -262,7 +262,7 @@ function PlayerCard({
       className="rounded-xl border p-4 transition-all hover:border-[#C9A84C]/30"
       style={{
         borderColor: "rgba(255,255,255,0.06)",
-        background: "rgba(11,24,37,0.5)",
+        background: "rgba(10,9,6,0.5)",
       }}
     >
       <div className="flex items-center gap-3 mb-3">
@@ -272,7 +272,7 @@ function PlayerCard({
           className="relative w-14 h-14 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 overflow-hidden border-2"
           style={{
             background: player.photo_url
-              ? "linear-gradient(135deg, #1a2438, #0B1825)"
+              ? "linear-gradient(135deg, #14110a, #0a0906)"
               : "linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.08))",
             color: "#C9A84C",
             borderColor: "rgba(201,168,76,0.35)",
@@ -527,9 +527,9 @@ function PlayerDot({
             className="relative block w-14 h-14 rounded-full overflow-hidden flex items-center justify-center text-base font-black shadow-xl border-2"
             style={{
               background: player.photo_url
-                ? "linear-gradient(135deg, #1a2438, #0B1825)"
+                ? "linear-gradient(135deg, #14110a, #0a0906)"
                 : "linear-gradient(135deg, #C9A84C, #A8893D)",
-              color: "#030712",
+              color: "#000000",
               borderColor: "rgba(232,212,139,0.85)",
               boxShadow:
                 "0 0 0 1px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.5), 0 0 24px rgba(201,168,76,0.25)",
@@ -560,8 +560,8 @@ function PlayerDot({
               className="absolute -bottom-1 -right-1 min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center text-[10px] font-black border-2 leading-none"
               style={{
                 background: "linear-gradient(135deg, #C9A84C, #A8893D)",
-                color: "#030712",
-                borderColor: "#0B1825",
+                color: "#000000",
+                borderColor: "#0a0906",
                 boxShadow: "0 0 8px rgba(201,168,76,0.6)",
               }}
               aria-hidden

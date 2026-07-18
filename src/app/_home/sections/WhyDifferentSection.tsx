@@ -16,12 +16,12 @@ export function WhyDifferentSection({ h }: { h: any }) {
             decoding="async"
           />
         </picture>
-        <div className="absolute inset-0 bg-[#0F1D32]/90" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F1D32] via-transparent to-[#0F1D32]" />
+        <div className="absolute inset-0 bg-[#14110a]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#14110a] via-transparent to-[#14110a]" />
       </div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-[#C9A84C]/5 blur-[180px] rounded-full pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="relative rounded-3xl border-2 border-dashed border-[#C9A84C]/30 bg-gradient-to-br from-[#0B1825] to-[#0F1D32] overflow-hidden p-10 sm:p-14">
+        <div className="relative rounded-3xl border-2 border-dashed border-[#C9A84C]/30 bg-gradient-to-br from-[#0a0906] to-[#14110a] overflow-hidden p-10 sm:p-14">
           <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/5 via-transparent to-blue-900/10 pointer-events-none" />
 
           {/* Watermark ilustración sutil — lado derecho */}

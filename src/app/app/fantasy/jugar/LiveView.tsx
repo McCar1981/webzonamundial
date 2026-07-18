@@ -187,7 +187,7 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
   return (
     <div>
       {/* Marcador */}
-      <div style={{ background: "linear-gradient(135deg,#0c1f3a,#0a1525)", border: `1px solid ${GOLD}33`, borderRadius: 16, padding: 18, marginBottom: 14, textAlign: "center" }}>
+      <div style={{ background: "linear-gradient(135deg,#0a0906,#0a0906)", border: `1px solid ${GOLD}33`, borderRadius: 16, padding: 18, marginBottom: 14, textAlign: "center" }}>
         <div style={{ fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1 }}>Jornada {result.gameweek} · {statusLabel}</div>
         <div style={{ fontSize: 52, fontWeight: 900, color: GOLD2, lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>{runningTotal}</div>
         <div style={{ fontSize: 12, color: MID, fontWeight: 700 }}>puntos {allFinished ? "totales" : "en vivo"}</div>
@@ -312,7 +312,7 @@ const STATUS_LABEL: Record<string, string> = {
 function Scheduled({ matches, snapshots, gw }: { matches: Match[]; snapshots: Record<number, LiveSnapshot>; gw: number }) {
   return (
     <div>
-      <div style={{ background: "linear-gradient(135deg,#0c1f3a,#0a1525)", border: `1px solid ${GOLD}33`, borderRadius: 16, padding: 18, marginBottom: 14, textAlign: "center" }}>
+      <div style={{ background: "linear-gradient(135deg,#0a0906,#0a0906)", border: `1px solid ${GOLD}33`, borderRadius: 16, padding: 18, marginBottom: 14, textAlign: "center" }}>
         <div style={{ fontSize: 40, marginBottom: 6 }}>🟢</div>
         <div style={{ fontSize: 17, fontWeight: 900, color: "#fff" }}>Jornada {gw} · por comenzar</div>
         <div style={{ fontSize: 13, color: MID, marginTop: 6, maxWidth: 460, marginInline: "auto", lineHeight: 1.5 }}>
@@ -370,7 +370,7 @@ function PreSeason({ ready, filled, cd }: { ready: boolean; filled: number; cd: 
 
       <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 22, flexWrap: "wrap" }}>
         {([["d", "días"], ["h", "horas"], ["m", "min"], ["s", "seg"]] as const).map(([k, label]) => (
-          <div key={k} style={{ background: "linear-gradient(135deg,#0c1f3a,#0a1525)", border: `1px solid ${GOLD}33`, borderRadius: 12, padding: "12px 14px", minWidth: 64 }}>
+          <div key={k} style={{ background: "linear-gradient(135deg,#0a0906,#0a0906)", border: `1px solid ${GOLD}33`, borderRadius: 12, padding: "12px 14px", minWidth: 64 }}>
             <div style={{ fontSize: 30, fontWeight: 900, color: GOLD2, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{String(cd[k]).padStart(2, "0")}</div>
             <div style={{ fontSize: 10, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginTop: 4 }}>{label}</div>
           </div>
@@ -392,5 +392,5 @@ function PreSeason({ ready, filled, cd }: { ready: boolean; filled: number; cd: 
 }
 
 const sectionTitle: React.CSSProperties = { fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 };
-const btnPrimary: React.CSSProperties = { padding: "10px 18px", borderRadius: 10, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 14, cursor: "pointer" };
+const btnPrimary: React.CSSProperties = { padding: "10px 18px", borderRadius: 10, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 14, cursor: "pointer" };
 const btnGhost: React.CSSProperties = { padding: "10px 18px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: BG2, color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer" };

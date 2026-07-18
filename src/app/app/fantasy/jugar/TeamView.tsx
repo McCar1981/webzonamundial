@@ -48,8 +48,8 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
         @keyframes zmRise { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
         @keyframes zmPop { from { opacity: 0; transform: translateY(6px) scale(.94) } to { opacity: 1; transform: none } }
         @keyframes zmFieldGlow {
-          0%, 100% { box-shadow: 0 16px 40px rgba(8,20,40,.18), 0 0 0 1px rgba(20,150,86,.25) }
-          50% { box-shadow: 0 20px 54px rgba(8,20,40,.24), 0 0 26px rgba(20,150,86,.42) }
+          0%, 100% { box-shadow: 0 16px 40px rgba(10,9,6,.18), 0 0 0 1px rgba(20,150,86,.25) }
+          50% { box-shadow: 0 20px 54px rgba(10,9,6,.24), 0 0 26px rgba(20,150,86,.42) }
         }
       `}</style>
 
@@ -367,7 +367,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onRef
         <div style={{ position: "relative" }}>
           <img src={kitUrl(p.teamSlug)} alt={p.teamName} style={{ width: K, height: K, objectFit: "contain", filter: p.available ? "drop-shadow(0 2px 3px rgba(0,0,0,0.45))" : "grayscale(0.7) opacity(0.55)" }} />
           <img src={flagUrl(p.flag)} alt={p.teamName} style={{ position: "absolute", bottom: -2, left: -4, width: compact ? 15 : 18, height: compact ? 10 : 12, borderRadius: 2, objectFit: "cover", border: `1px solid ${p.color}`, boxShadow: "0 1px 2px rgba(0,0,0,0.5)" }} />
-          {(isCap || isVice) && <span style={{ position: "absolute", top: -6, right: -6, width: compact ? 14 : 16, height: compact ? 14 : 16, borderRadius: "50%", background: isCap ? GOLD : "#94a3b8", color: BG, fontSize: 9, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{isCap ? "C" : "V"}</span>}
+          {(isCap || isVice) && <span style={{ position: "absolute", top: -6, right: -6, width: compact ? 14 : 16, height: compact ? 14 : 16, borderRadius: "50%", background: isCap ? GOLD : "#a69a82", color: BG, fontSize: 9, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{isCap ? "C" : "V"}</span>}
         </div>
         <div style={{ fontSize: nameFs, fontWeight: 700, lineHeight: 1.05, textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: W - 8 }}>{lastName(p.name)}</div>
         <div style={{ display: "flex", gap: 4, alignItems: "center" }}>

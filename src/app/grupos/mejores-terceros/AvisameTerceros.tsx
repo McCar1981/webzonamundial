@@ -16,7 +16,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef6a6a";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", DIM = "#6e6552", GREEN = "#22c55e", RED = "#ef6a6a";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function AvisameTerceros() {
@@ -112,7 +112,7 @@ export default function AvisameTerceros() {
               disabled={status === "sending"}
               style={{
                 whiteSpace: "nowrap", border: "none", cursor: status === "sending" ? "default" : "pointer",
-                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
                 fontWeight: 800, fontSize: 15, padding: "12px 24px", borderRadius: 12,
                 opacity: status === "sending" ? 0.7 : 1,
               }}

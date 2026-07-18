@@ -410,7 +410,7 @@ const GN_CSS = `
 /* LOWER-THIRD estilo retransmisión: barra con franja del color del equipo,
    bandera ONDEANDO + país (grande) + goleador, entrada por WIPE. */
 .gnet3d-lower{position:relative;display:inline-flex;align-items:center;gap:12px;padding:9px 18px 9px 16px;border-radius:11px;overflow:hidden;
-  background:linear-gradient(180deg, rgba(15,26,42,.93), rgba(8,15,26,.93));border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.55);
+  background:linear-gradient(180deg, rgba(20,17,10,.93), rgba(10,9,6,.93));border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.55);
   opacity:0;animation:gnet3dBar .55s cubic-bezier(.2,1,.3,1) 1.4s both}
 .gnet3d-lower::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:rgb(var(--teamrgb));box-shadow:0 0 14px rgba(var(--teamrgb),.9)}
 .gnet3d-flag{width:clamp(34px,8vw,52px);height:auto;border-radius:4px;box-shadow:0 3px 10px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.5);transform-origin:center;animation:gnet3dWave 2.6s ease-in-out 1.7s infinite}

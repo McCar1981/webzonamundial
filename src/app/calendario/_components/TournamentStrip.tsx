@@ -54,7 +54,7 @@ export function TournamentStrip({
     return (
       <div
         className={`${shell} border-[#c9a84c]/25`}
-        style={{ background: "linear-gradient(120deg, rgba(201,168,76,0.12), rgba(15,29,50,0.6))" }}
+        style={{ background: "linear-gradient(120deg, rgba(201,168,76,0.12), rgba(20,17,10,0.6))" }}
       >
         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#e8d48b]">
           {cT.inauguracion}
@@ -63,12 +63,12 @@ export function TournamentStrip({
           {cells.map(([value, label]) => (
             <div
               key={label}
-              className="flex min-w-[3.4rem] flex-col items-center rounded-lg border border-[#c9a84c]/20 bg-[#060B14]/60 px-2 py-1"
+              className="flex min-w-[3.4rem] flex-col items-center rounded-lg border border-[#c9a84c]/20 bg-[#000000]/60 px-2 py-1"
             >
               <span className="text-base font-black tabular-nums leading-tight text-white">
                 {String(value).padStart(2, "0")}
               </span>
-              <span className="text-[8px] font-semibold uppercase tracking-wider text-[#8a94b0]">
+              <span className="text-[8px] font-semibold uppercase tracking-wider text-[#a69a82]">
                 {label}
               </span>
             </div>
@@ -83,9 +83,9 @@ export function TournamentStrip({
     return (
       <div
         className={`${shell} border-white/10`}
-        style={{ background: "linear-gradient(120deg, rgba(201,168,76,0.08), rgba(15,29,50,0.6))" }}
+        style={{ background: "linear-gradient(120deg, rgba(201,168,76,0.08), rgba(20,17,10,0.6))" }}
       >
-        <p className="text-sm font-bold text-[#8a94b0]">🏆 {cT.torneoFinalizado}</p>
+        <p className="text-sm font-bold text-[#a69a82]">🏆 {cT.torneoFinalizado}</p>
         <Link
           href="/app/matchcenter"
           className="text-sm font-extrabold text-[#c9a84c] no-underline hover:underline"
@@ -103,8 +103,8 @@ export function TournamentStrip({
       className={`${shell} ${playing ? "border-[#ff6b57]/30" : "border-[#c9a84c]/25"}`}
       style={{
         background: playing
-          ? "linear-gradient(120deg, rgba(255,107,87,0.10), rgba(15,29,50,0.6))"
-          : "linear-gradient(120deg, rgba(201,168,76,0.12), rgba(15,29,50,0.6))",
+          ? "linear-gradient(120deg, rgba(255,107,87,0.10), rgba(20,17,10,0.6))"
+          : "linear-gradient(120deg, rgba(201,168,76,0.12), rgba(20,17,10,0.6))",
       }}
     >
       <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
@@ -123,7 +123,7 @@ export function TournamentStrip({
           </span>
           {todayCount} {todayCount === 1 ? cT.partido : cT.partidosHoy}
         </span>
-        <span className="text-[13px] text-[#8a94b0]">
+        <span className="text-[13px] text-[#a69a82]">
           {playing ? (
             <strong className="font-extrabold" style={{ color: LIVE_RED }}>
               {liveCount} {cT.enVivo}
@@ -139,7 +139,7 @@ export function TournamentStrip({
       {canJumpToToday && (
         <button
           onClick={onVerHoy}
-          className="rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-4 py-1.5 text-xs font-extrabold text-[#060B14] transition-transform hover:scale-[1.03]"
+          className="rounded-lg bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-4 py-1.5 text-xs font-extrabold text-[#000000] transition-transform hover:scale-[1.03]"
         >
           {cT.verHoy} ↓
         </button>

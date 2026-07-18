@@ -11,15 +11,15 @@ const config: Config = {
       colors: {
         // ZonaMundial Brand Colors
         zm: {
-          bg: "#060B14",           // Main background
-          surface: "#0F1D32",      // Support background 1
-          surface2: "#0B1825",     // Support background 2
+          bg: "#000000",           // Main background
+          surface: "#14110a",      // Support background 1
+          surface2: "#0a0906",     // Support background 2
           gold: "#c9a84c",         // Gold accent
           "gold-light": "#e8d48b", // Gold hover
           "gold-dark": "#a88a3d",  // Gold pressed
           text: "#E2E8F0",         // Primary text
-          "text-muted": "#94A3B8", // Secondary text
-          border: "#1E293B",       // Borders
+          "text-muted": "#a69a82", // Secondary text
+          border: "#241e12",       // Borders
         },
       },
       fontFamily: {
@@ -27,7 +27,7 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "hero-pattern": "linear-gradient(135deg, #060B14 0%, #0F1D32 50%, #0B1825 100%)",
+        "hero-pattern": "linear-gradient(135deg, #000000 0%, #14110a 50%, #0a0906 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

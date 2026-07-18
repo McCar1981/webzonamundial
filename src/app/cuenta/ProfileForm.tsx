@@ -76,7 +76,7 @@ export default function ProfileForm({
             type="email"
             value={email}
             disabled
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825]/60 border border-[#1E293B] text-gray-300 text-sm cursor-not-allowed"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906]/60 border border-[#241e12] text-gray-300 text-sm cursor-not-allowed"
           />
           <span className="text-[10px] text-gray-500 whitespace-nowrap">
             Cambia en Seguridad
@@ -94,7 +94,7 @@ export default function ProfileForm({
           value={values.username}
           onChange={(e) => handleChange("username", e.target.value)}
           maxLength={30}
-          className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 transition-all"
+          className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 transition-all"
           placeholder="tunombre"
         />
         <p className="text-[11px] text-gray-500 mt-1">
@@ -112,7 +112,7 @@ export default function ProfileForm({
           <select
             value={values.country}
             onChange={(e) => handleChange("country", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
           >
             <option value="">— Selecciona país —</option>
             {countries.map((c) => (
@@ -141,8 +141,8 @@ export default function ProfileForm({
                     background: active
                       ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                       : "transparent",
-                    color: active ? "#030712" : "#cbd5e1",
-                    borderColor: active ? "#C9A84C" : "#1E293B",
+                    color: active ? "#000000" : "#e6decb",
+                    borderColor: active ? "#C9A84C" : "#241e12",
                   }}
                 >
                   {lang === "es" ? "Español" : "English"}
@@ -162,7 +162,7 @@ export default function ProfileForm({
             value={values.birth_date}
             max={new Date().toISOString().slice(0, 10)}
             onChange={(e) => handleChange("birth_date", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
           />
           <p className="text-[11px] text-gray-500 mt-1">
             Opcional. Solo se usa para verificar la mayoría de edad cuando una función lo requiere.
@@ -177,7 +177,7 @@ export default function ProfileForm({
           <select
             value={values.fav_team}
             onChange={(e) => handleChange("fav_team", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
+            className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40"
           >
             <option value="">— Sin selección favorita —</option>
             {selecciones.map((s) => (
@@ -190,7 +190,7 @@ export default function ProfileForm({
       </div>
 
       {/* Feedback + submit */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#1E293B]/40">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#241e12]/40">
         <div className="text-sm">
           {feedback?.type === "ok" && (
             <span className="text-green-400">✓ {feedback.msg}</span>
@@ -202,7 +202,7 @@ export default function ProfileForm({
         <button
           type="submit"
           disabled={pending}
-          className="px-6 py-3 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-lg hover:shadow-[#C9A84C]/25"
+          className="px-6 py-3 rounded-xl text-[#000000] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-lg hover:shadow-[#C9A84C]/25"
           style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
         >
           {pending ? "Guardando…" : "Guardar cambios"}

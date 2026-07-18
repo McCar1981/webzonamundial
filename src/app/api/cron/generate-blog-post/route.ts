@@ -204,7 +204,7 @@ async function sendBlogPostEmail(post: {
             <p style="margin:0 0 18px;color:#3D3D5C;font-size:15px;line-height:1.6;">
               ${escapeHtml(post.dek)}
             </p>
-            <p style="margin:0;font-size:11px;color:#94A3B8;text-align:center;line-height:1.6;padding-top:14px;border-top:1px solid #e5e7eb;margin-top:24px;">
+            <p style="margin:0;font-size:11px;color:#a69a82;text-align:center;line-height:1.6;padding-top:14px;border-top:1px solid #e5e7eb;margin-top:24px;">
               Recibes este email porque est\u00e1s suscrito a 'Nuevos posts del blog' en ZonaMundial.<br>
               <a href="${unsubUrl}" style="color:#C9A84C;text-decoration:underline;">Darse de baja</a> \u00b7
               <a href="${SITE}/cuenta/notificaciones" style="color:#C9A84C;text-decoration:underline;">Gestionar notificaciones</a>

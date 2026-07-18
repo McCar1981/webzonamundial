@@ -151,7 +151,7 @@ export default function VisualizacionesPage() {
       <section className="mt-10">
         <Link
           href="/historia/records"
-          className="block p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80 hover:border-[#C9A84C]/60 transition-all no-underline"
+          className="block p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80 hover:border-[#C9A84C]/60 transition-all no-underline"
         >
           <div className="flex items-baseline gap-3 mb-2">
             <span className="text-2xl">📊</span>
@@ -182,7 +182,7 @@ function Section({
         <h2 className="text-lg sm:text-xl font-bold text-white mb-1">{title}</h2>
         <p className="text-xs text-gray-400">{subtitle}</p>
       </div>
-      <div className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/40">
+      <div className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/40">
         {children}
       </div>
     </section>

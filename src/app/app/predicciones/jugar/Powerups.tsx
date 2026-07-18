@@ -16,13 +16,13 @@ import { createPortal } from "react-dom";
 import { X, Zap, RotateCcw } from "lucide-react";
 import { POWERUP_PACK } from "@/lib/powerups/catalog";
 
-const BG3 = "#0B1825";
+const BG3 = "#0a0906";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TEXT = "#E2E8F0";
-const MID = "#94A3B8";
-const DIM = "#64748B";
-const CARD_BORDER = "1px solid #1E293B";
+const MID = "#a69a82";
+const DIM = "#8b8168";
+const CARD_BORDER = "1px solid #241e12";
 
 // ─── Estado de comodines del partido ─────────────────────────────────────────
 
@@ -178,7 +178,7 @@ export function DoubleMatchCard({ matchId, closed, active, currency = "eur", cre
             disabled={busy}
             style={{
               width: "100%", padding: "10px 14px", borderRadius: 10, cursor: busy ? "wait" : "pointer",
-              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, border: "none", color: "#0B1220",
+              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, border: "none", color: "#0a0906",
               fontWeight: 900, fontSize: 13.5, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7,
               opacity: busy ? 0.7 : 1,
             }}
@@ -342,11 +342,11 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
   return createPortal(
     <div
       onClick={onClose}
-      style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(6,11,20,0.78)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}
+      style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(0,0,0,0.78)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{ background: "#0F1D32", border: `1px solid color-mix(in srgb, ${GOLD} 30%, transparent)`, borderRadius: 20, padding: "24px 20px", maxWidth: 400, width: "100%" }}
+        style={{ background: "#14110a", border: `1px solid color-mix(in srgb, ${GOLD} 30%, transparent)`, borderRadius: 20, padding: "24px 20px", maxWidth: 400, width: "100%" }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
           <span style={{ fontSize: 20 }}>⏪</span>
@@ -382,7 +382,7 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
             marginTop: 16, width: "100%", padding: "12px 14px", borderRadius: 12,
             cursor: busy || samePick ? "default" : "pointer",
             background: samePick ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            border: "none", color: samePick ? DIM : "#0B1220", fontWeight: 900, fontSize: 14,
+            border: "none", color: samePick ? DIM : "#0a0906", fontWeight: 900, fontSize: 14,
             opacity: busy ? 0.7 : 1,
           }}
         >

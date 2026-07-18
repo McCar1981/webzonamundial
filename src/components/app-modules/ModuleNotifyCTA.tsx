@@ -92,7 +92,7 @@ export default function ModuleNotifyCTA({
           borderRadius: 18,
           border: "1px solid rgba(201,168,76,0.30)",
           background:
-            "radial-gradient(ellipse 80% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+            "radial-gradient(ellipse 80% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
           textAlign: "center",
         }}
       >
@@ -162,7 +162,7 @@ export default function ModuleNotifyCTA({
         borderRadius: 18,
         border: "1px solid rgba(201,168,76,0.30)",
         background:
-          "radial-gradient(ellipse 80% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+          "radial-gradient(ellipse 80% 100% at 0% 0%, rgba(201,168,76,0.10), transparent 70%), linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
       }}
     >
       <div
@@ -189,7 +189,7 @@ export default function ModuleNotifyCTA({
       >
         Avísame cuando se active {label}
       </h3>
-      <p style={{ fontSize: 13.5, color: "#94a3b8", margin: "0 0 18px", lineHeight: 1.55 }}>
+      <p style={{ fontSize: 13.5, color: "#a69a82", margin: "0 0 18px", lineHeight: 1.55 }}>
         Sin compromiso. Te enviaremos un email cuando este módulo esté disponible en la app — y solo
         para esto, no spam.
       </p>
@@ -259,7 +259,7 @@ export default function ModuleNotifyCTA({
         <p
           style={{
             fontSize: 12,
-            color: "#94a3b8",
+            color: "#a69a82",
             marginTop: 14,
             fontFamily: "JetBrains Mono, ui-monospace, monospace",
             letterSpacing: "0.04em",

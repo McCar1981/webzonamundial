@@ -54,7 +54,7 @@ export default function TrofeosPage() {
           {trofeos.map((t) => (
             <article
               key={t.nombre}
-              className="p-5 sm:p-6 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80"
+              className="p-5 sm:p-6 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80"
             >
               <div className="flex items-baseline gap-3 mb-2 flex-wrap">
                 <h2 className="text-xl sm:text-3xl font-black text-white">{t.nombre}</h2>
@@ -73,7 +73,7 @@ export default function TrofeosPage() {
 
               <p className="text-sm text-gray-200 leading-relaxed mb-5">{t.descripcion}</p>
 
-              <div className="space-y-2 pt-4 border-t border-[#1E293B]">
+              <div className="space-y-2 pt-4 border-t border-[#241e12]">
                 <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: GOLD }}>
                   Anécdotas y curiosidades
                 </div>
@@ -94,7 +94,7 @@ export default function TrofeosPage() {
 
 function Stat({ label, value, small }: { label: string; value: string; small?: boolean }) {
   return (
-    <div className="p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32]/40">
+    <div className="p-3 rounded-lg border border-[#241e12] bg-[#14110a]/40">
       <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">{label}</div>
       <div className={small ? "text-xs text-gray-200 leading-tight" : "text-sm font-bold text-white"}>
         {value}

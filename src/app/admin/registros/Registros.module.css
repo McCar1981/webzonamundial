@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: #060B14;
+  background: #000000;
   color: #fff;
   font-family: var(--zm-font-outfit), Inter, system-ui, sans-serif;
   font-size: 14px;
@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 28px;
-  background: rgba(6, 11, 20, 0.92);
+  background: rgba(0,0,0, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(201, 168, 76, 0.12);
@@ -88,7 +88,7 @@
 .kpiHero {
   background:
     radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.18), transparent 60%),
-    linear-gradient(135deg, rgba(15, 29, 50, 0.9), rgba(26, 17, 48, 0.7));
+    linear-gradient(135deg, rgba(20,17,10, 0.9), rgba(26, 17, 48, 0.7));
   border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 18px;
   padding: 32px 36px;
@@ -128,7 +128,7 @@
 }
 .kpiCard {
   padding: 18px 20px;
-  background: rgba(15, 29, 50, 0.6);
+  background: rgba(20,17,10, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
 }
@@ -157,7 +157,7 @@
 /* Panels */
 .panel,
 .panelFull {
-  background: rgba(15, 29, 50, 0.55);
+  background: rgba(20,17,10, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   padding: 22px 24px;
@@ -331,7 +331,7 @@
 }
 .table thead th {
   text-align: left;
-  background: rgba(6, 11, 20, 0.6);
+  background: rgba(0,0,0, 0.6);
   color: rgba(255, 255, 255, 0.55);
   font-size: 10.5px;
   font-weight: 700;

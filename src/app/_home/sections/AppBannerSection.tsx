@@ -19,7 +19,7 @@ export function AppBannerSection({ h }: { h: any }) {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#ff6b35]/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-xl mx-auto relative z-10">
-        <div className="relative rounded-3xl border-2 border-dashed border-[#ff6b35]/40 bg-[#0B1825] p-8 sm:p-10 overflow-hidden">
+        <div className="relative rounded-3xl border-2 border-dashed border-[#ff6b35]/40 bg-[#0a0906] p-8 sm:p-10 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b35]/5 to-transparent pointer-events-none" />
 
           <div className="relative z-10 text-center">
@@ -86,7 +86,7 @@ export function AppBannerSection({ h }: { h: any }) {
                     key={i}
                     src={src}
                     alt=""
-                    className="w-8 h-8 rounded-full border-2 border-[#0B1825] object-cover"
+                    className="w-8 h-8 rounded-full border-2 border-[#0a0906] object-cover"
                   />
                 ))}
               </div>

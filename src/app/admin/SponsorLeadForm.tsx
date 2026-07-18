@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { submitSponsorLead } from "./actions";
 
 const INPUT_CLS =
-  "w-full rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm px-4 py-2.5 " +
+  "w-full rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm px-4 py-2.5 " +
   "focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 placeholder:text-gray-600";
 
 function SubmitButton() {
@@ -14,7 +14,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="rounded-xl px-5 py-2.5 text-sm font-bold text-[#060B14] disabled:opacity-60 transition-all"
+      className="rounded-xl px-5 py-2.5 text-sm font-bold text-[#000000] disabled:opacity-60 transition-all"
       style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
     >
       {pending ? "Enviando…" : "Proponer marca"}

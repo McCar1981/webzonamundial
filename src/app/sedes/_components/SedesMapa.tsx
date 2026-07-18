@@ -23,18 +23,18 @@ export function SedesMapa() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className="relative w-full rounded-2xl border border-white/5 bg-[#0B1825] p-4 md:p-6 overflow-hidden">
+    <div className="relative w-full rounded-2xl border border-white/5 bg-[#0a0906] p-4 md:p-6 overflow-hidden">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
           <svg className="w-5 h-5 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" strokeWidth={2} /><path strokeWidth={2} d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">{sT.mapaTitle}</h3>
-          <p className="text-xs text-[#6a7a9a]">{sT.mapaSub}</p>
+          <p className="text-xs text-[#6e6552]">{sT.mapaSub}</p>
         </div>
       </div>
 
-      <div className="relative aspect-[16/9] w-full rounded-xl bg-[#060B14]">
+      <div className="relative aspect-[16/9] w-full rounded-xl bg-[#000000]">
         {/* Grid sutil */}
         <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
           <defs>
@@ -98,9 +98,9 @@ export function SedesMapa() {
               />
               {/* Tooltip */}
               {isHovered && (
-                <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 min-w-[8rem] -translate-x-1/2 rounded-lg border border-white/10 bg-[#060B14] px-3 py-2 text-center shadow-xl">
+                <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 min-w-[8rem] -translate-x-1/2 rounded-lg border border-white/10 bg-[#000000] px-3 py-2 text-center shadow-xl">
                   <p className="text-xs font-bold text-white">{sede.nombre}</p>
-                  <p className="text-[10px] text-[#6a7a9a]">{sede.estadio}</p>
+                  <p className="text-[10px] text-[#6e6552]">{sede.estadio}</p>
                 </div>
               )}
             </a>
@@ -113,7 +113,7 @@ export function SedesMapa() {
         {Object.entries(PAIS_COLORS).map(([pais, color]) => (
           <div key={pais} className="flex items-center gap-2">
             <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: color }} />
-            <span className="text-xs text-[#8a94b0]">{pais}</span>
+            <span className="text-xs text-[#a69a82]">{pais}</span>
           </div>
         ))}
       </div>

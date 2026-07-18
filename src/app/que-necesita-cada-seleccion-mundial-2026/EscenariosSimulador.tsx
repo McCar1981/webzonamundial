@@ -13,7 +13,7 @@ import Link from "next/link";
 import { standingsOrder, type TeamMeta } from "@/lib/grupos/standings";
 import type { LiveMap } from "@/lib/calendario/live";
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
 
 interface FinalView { i: number; hf: string; hn: string; af: string; an: string; sede: string; fecha: string; jugado: boolean; }
 interface CruceDest { rival: string; sede: string; fecha: string; }

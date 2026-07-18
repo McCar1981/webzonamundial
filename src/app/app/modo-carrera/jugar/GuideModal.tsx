@@ -74,7 +74,7 @@ export default function GuideModal({ onClose, onOpenFullGuide }: { onClose: () =
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(6,11,20,0.9)",
+        background: "rgba(0,0,0,0.9)",
         padding: 20,
         fontFamily: "'Outfit',sans-serif",
         animation: "mcGuideIn .25s ease both",

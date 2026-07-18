@@ -27,7 +27,7 @@ export default async function AdminPushPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#060B14] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <div className="px-6 py-8 max-w-5xl mx-auto">
         <AdminHeader
           title="Push manual"

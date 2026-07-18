@@ -41,7 +41,7 @@ export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trop
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: `radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.22), rgba(6,11,20,0.92) 60%, ${BG} 100%)`,
+        background: `radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.22), rgba(0,0,0,0.92) 60%, ${BG} 100%)`,
         animation: "mcTrFade .4s ease both",
         overflow: "hidden",
         padding: 20,

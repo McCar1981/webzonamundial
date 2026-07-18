@@ -19,12 +19,12 @@ function hasRealTeams(m: Match): boolean {
   return m.hf !== "tbd" && m.af !== "tbd";
 }
 
-const BG2 = "#0F1D32",
-  BG3 = "#0B1825",
+const BG2 = "#14110a",
+  BG3 = "#0a0906",
   GOLD = "#c9a84c",
   GOLD2 = "#e8d48b",
-  MID = "#8a94b0",
-  DIM = "#6a7a9a";
+  MID = "#a69a82",
+  DIM = "#6e6552";
 
 type Pick = "home" | "draw" | "away";
 
@@ -118,7 +118,7 @@ export function HomeMatchPredictSection() {
           className="relative overflow-hidden rounded-3xl border p-6 sm:p-8 mb-6"
           style={{
             borderColor: "rgba(201,168,76,0.25)",
-            background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+            background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
           <div

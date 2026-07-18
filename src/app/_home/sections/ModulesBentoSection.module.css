@@ -20,7 +20,7 @@
   background:
     radial-gradient(ellipse 70% 50% at 20% 0%, rgba(46,134,171,0.12), transparent 60%),
     radial-gradient(ellipse 60% 40% at 90% 100%, rgba(212,168,83,0.08), transparent 60%),
-    linear-gradient(180deg, #06060E 0%, #0A0A18 50%, #06060E 100%);
+    linear-gradient(180deg, #000000 0%, #000000 50%, #000000 100%);
   color: #fff;
   overflow: hidden;
   font-family: var(--zm-font-body);
@@ -145,7 +145,7 @@
   position: relative;
   border-radius: 22px;
   overflow: hidden;
-  background: #12122A;
+  background: #14110a;
   border: 1px solid rgba(255,255,255,0.06);
   cursor: pointer;
   isolation: isolate;
@@ -160,18 +160,18 @@
    after the image zooms in */
 .card:hover .cardImageWrap::after {
   background: linear-gradient(180deg,
-    rgba(6,6,14,0.55) 0%,
-    rgba(6,6,14,0.88) 50%,
-    rgba(6,6,14,0.98) 100%) !important;
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.88) 50%,
+    rgba(0,0,0,0.98) 100%) !important;
 }
 /* Reinforce title + tag with text-shadow so they stay punchy over any image */
 .card .cardTitle,
 .card .tag,
 .card .tagline,
 .card .cardText {
-  text-shadow: 0 2px 14px rgba(6, 6, 14, 0.85);
+  text-shadow: 0 2px 14px rgba(0,0,0, 0.85);
 }
-.card:hover .cta { background: var(--zm-brand-gold); color: #0A0A14; }
+.card:hover .cta { background: var(--zm-brand-gold); color: #000000; }
 .card:hover .cta svg { transform: translateX(3px); }
 
 /* Conic gradient border on hover */
@@ -210,9 +210,9 @@
 .cardImageWrap::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(6,6,14,0.4) 0%,
-    rgba(6,6,14,0.75) 60%,
-    rgba(6,6,14,0.95) 100%);
+    rgba(0,0,0,0.4) 0%,
+    rgba(0,0,0,0.75) 60%,
+    rgba(0,0,0,0.95) 100%);
   pointer-events: none;
 }
 
@@ -315,20 +315,20 @@
 .cardPredictions .tag { align-self: flex-start; }
 .cardPredictions .cardImageWrap::after {
   background: linear-gradient(180deg,
-    rgba(6,6,14,0.3) 0%,
-    rgba(6,6,14,0.55) 50%,
-    rgba(6,6,14,0.95) 100%);
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.55) 50%,
+    rgba(0,0,0,0.95) 100%);
 }
 
 /* ===== Fantasy ===== */
 .cardFantasy .cardImageWrap::after {
   background: linear-gradient(180deg,
-    rgba(10,20,40,0.3) 0%,
-    rgba(6,6,14,0.55) 50%,
-    rgba(6,6,14,0.92) 100%);
+    rgba(10,9,6,0.3) 0%,
+    rgba(0,0,0,0.55) 50%,
+    rgba(0,0,0,0.92) 100%);
 }
 .cardFantasy .tag {
-  background: rgba(10,20,40,0.6);
+  background: rgba(10,9,6,0.6);
   border-color: rgba(79,160,194,0.45);
   color: #4FA0C2;
 }
@@ -351,7 +351,7 @@
   background: linear-gradient(180deg,
     rgba(30,20,5,0.2) 0%,
     rgba(12,8,0,0.65) 50%,
-    rgba(6,6,14,0.95) 100%);
+    rgba(0,0,0,0.95) 100%);
 }
 .cardTrivia .cardTitle {
   font-size: 18px;
@@ -362,9 +362,9 @@
 /* ===== AI Coach ===== */
 .cardAi .cardImageWrap::after {
   background: linear-gradient(180deg,
-    rgba(5,10,30,0.35) 0%,
+    rgba(10,9,6,0.35) 0%,
     rgba(6,6,20,0.7) 50%,
-    rgba(6,6,14,0.95) 100%);
+    rgba(0,0,0,0.95) 100%);
 }
 .cardAi .tag {
   background: rgba(79,160,194,0.15);
@@ -407,9 +407,9 @@
 /* ===== Streaming ===== */
 .cardStreaming .cardImageWrap::after {
   background: linear-gradient(180deg,
-    rgba(6,6,14,0.3) 0%,
-    rgba(6,6,14,0.5) 40%,
-    rgba(6,6,14,0.95) 100%);
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.5) 40%,
+    rgba(0,0,0,0.95) 100%);
 }
 .cardStreaming .cardTitle {
   font-size: 17px;
@@ -464,7 +464,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 30px; border-radius: 999px;
   /* Solid-ish dark bg so it never blends with section sparks */
-  background: rgba(10, 10, 24, 0.9);
+  background: rgba(10,9,6, 0.9);
   border: 1.5px solid rgba(212,168,83,0.55);
   color: #F5D07A;
   font-family: var(--zm-font-display, "Syne", sans-serif);
@@ -485,7 +485,7 @@
 .explore:hover {
   /* Solid gold fill with navy text for maximum contrast */
   background: linear-gradient(135deg, #F5D07A 0%, #D4A853 60%, #B8913F 100%);
-  color: #0A0A14;
+  color: #000000;
   border-color: #F5D07A;
   transform: translateY(-2px);
   box-shadow:

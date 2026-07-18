@@ -15,12 +15,12 @@
 
 import Link from "next/link";
 
-const BG = "#060B14";
+const BG = "#000000";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const GOLD3 = "#FDE68A";
-const TEXT = "#cbd5e1";
-const MUTED = "#94a3b8";
+const TEXT = "#e6decb";
+const MUTED = "#a69a82";
 const BORDER = "rgba(201,168,76,0.18)";
 
 export function GuiaMundial2026Section() {
@@ -345,7 +345,7 @@ export function GuiaMundial2026Section() {
             border: `1px solid ${BORDER}`,
             borderRadius: 14,
             background:
-              "linear-gradient(180deg, rgba(201,168,76,0.04), rgba(11,24,37,0.4))",
+              "linear-gradient(180deg, rgba(201,168,76,0.04), rgba(10,9,6,0.4))",
           }}
         >
           <p style={{ color: GOLD3, fontSize: 13, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", margin: 0, marginBottom: 8 }}>

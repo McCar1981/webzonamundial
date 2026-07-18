@@ -8,7 +8,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 export default function RachaWidget() {
   const [streak, setStreak] = useState(0);
@@ -71,7 +71,7 @@ export default function RachaWidget() {
         <button
           onClick={claim}
           disabled={busy}
-          style={{ flexShrink: 0, border: "none", cursor: busy ? "default" : "pointer", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0A1422", fontWeight: 600, fontSize: 13.5, padding: "10px 16px", borderRadius: 10, opacity: busy ? 0.7 : 1 }}
+          style={{ flexShrink: 0, border: "none", cursor: busy ? "default" : "pointer", background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0a0906", fontWeight: 600, fontSize: 13.5, padding: "10px 16px", borderRadius: 10, opacity: busy ? 0.7 : 1 }}
         >
           {busy ? "…" : "Reclamar"}
         </button>

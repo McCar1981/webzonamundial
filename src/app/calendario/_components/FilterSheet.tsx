@@ -83,11 +83,11 @@ export function FilterSheet({
       aria-label={cT.filtros}
       onClick={onClose}
       className="fixed inset-0 z-[95] flex items-end justify-center sm:items-center sm:p-5"
-      style={{ background: "rgba(6,11,20,0.8)", backdropFilter: "blur(6px)" }}
+      style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(6px)" }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex max-h-[84vh] w-full flex-col overflow-hidden rounded-t-[24px] border border-white/10 bg-[#0F1D32] sm:max-w-lg sm:rounded-3xl"
+        className="flex max-h-[84vh] w-full flex-col overflow-hidden rounded-t-[24px] border border-white/10 bg-[#14110a] sm:max-w-lg sm:rounded-3xl"
       >
         {/* Asa + cabecera */}
         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
@@ -95,7 +95,7 @@ export function FilterSheet({
           <button
             onClick={onClose}
             aria-label="✕"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a94b0] transition-colors hover:bg-white/5 hover:text-white"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#a69a82] transition-colors hover:bg-white/5 hover:text-white"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <path d="M18 6 6 18M6 6l12 12" />
@@ -105,7 +105,7 @@ export function FilterSheet({
 
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {/* Fase */}
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#6a7a9a]">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#6e6552]">
             {cT.faseLabel}
           </p>
           <div className="mb-5 flex flex-wrap gap-1.5">
@@ -133,7 +133,7 @@ export function FilterSheet({
           {/* Grupos (solo con fase de grupos a la vista) */}
           {(phase === "all" || phase === "Fase de grupos") && (
             <>
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#6a7a9a]">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[#6e6552]">
                 {cT.gruposTitulo}
               </p>
               <div className="mb-5 flex flex-wrap gap-1.5">
@@ -192,7 +192,7 @@ export function FilterSheet({
             className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-sm font-semibold transition-all ${
               favoritesOnly
                 ? "border-[#c9a84c]/40 bg-[#c9a84c]/15 text-[#c9a84c]"
-                : "border-white/8 bg-[#0B1825] text-[#8a94b0] hover:border-white/15"
+                : "border-white/8 bg-[#0a0906] text-[#a69a82] hover:border-white/15"
             }`}
           >
             <span className="flex items-center gap-2">
@@ -228,7 +228,7 @@ export function FilterSheet({
           )}
           <button
             onClick={onClose}
-            className="ml-auto rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-6 py-2.5 text-sm font-extrabold text-[#060B14] transition-transform hover:scale-[1.02]"
+            className="ml-auto rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8d48b] px-6 py-2.5 text-sm font-extrabold text-[#000000] transition-transform hover:scale-[1.02]"
           >
             {cT.aplicar} ({resultCount})
           </button>

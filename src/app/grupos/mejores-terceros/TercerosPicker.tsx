@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Check, Trophy } from "lucide-react";
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e";
 const STORAGE_KEY = "zm:pronostico-terceros:v1";
 const TARGET = 8;
 
@@ -180,7 +180,7 @@ export default function TercerosPicker({ terceros }: { terceros: TerceroOption[]
                     height: 18,
                     borderRadius: 999,
                     background: GOLD,
-                    color: "#0A1422",
+                    color: "#0a0906",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -208,7 +208,7 @@ export default function TercerosPicker({ terceros }: { terceros: TerceroOption[]
             style={{
               display: "inline-block",
               background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-              color: "#0A1422",
+              color: "#0a0906",
               fontWeight: 800,
               fontSize: 15,
               padding: "12px 26px",

@@ -35,7 +35,7 @@ function MomentCard({
         loading="lazy"
       />
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0906] via-[#0a0906]/70 to-transparent" />
       <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${moment.color}20 0%, transparent 60%)` }} />
       <div
         className="absolute top-0 left-0 right-0 transition-all duration-300"
@@ -78,7 +78,7 @@ function MomentCard({
 
 function MomentDetail({ moment, isEN }: { moment: IconicMoment; isEN: boolean }) {
   return (
-    <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ background: '#0B0F1A' }}>
+    <div className="rounded-2xl border border-white/10 overflow-hidden" style={{ background: '#0a0906' }}>
       {/* Hero header */}
       <div className="relative overflow-hidden">
         <img
@@ -86,8 +86,8 @@ function MomentDetail({ moment, isEN }: { moment: IconicMoment; isEN: boolean })
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-25 blur-[3px] scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/60 to-[#0B0F1A]/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0906] via-[#0a0906]/60 to-[#0a0906]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0906]/50 to-transparent" />
         <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 80% 20%, ${moment.color}15 0%, transparent 60%)` }} />
         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: moment.color }} />
 

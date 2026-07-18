@@ -27,7 +27,7 @@ export const revalidate = 30;
 const loadDetail = cache((id: number) => getFixtureDetail(id));
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
 type Params = { slug: string; fixture: string };
@@ -208,7 +208,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
   const homeId = f.home.id;
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "20px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "20px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
           <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
@@ -235,7 +235,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
         <Link href={finished ? `/ligas/${comp.slug}` : "/registro"} style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>
           <span style={{ display: "block", fontSize: 15, fontWeight: 500, color: "#fff" }}>No leas el partido. Juégalo.</span>
-          <span style={{ display: "block", fontSize: 13, color: "#cbd5e1", marginTop: 4 }}>
+          <span style={{ display: "block", fontSize: 13, color: "#e6decb", marginTop: 4 }}>
             {finished
               ? `Este partido terminó. Predice los próximos de ${comp.short} y gana Fútcoins. Sin apuestas.`
               : "Predice este partido y compite por Fútcoins con tus amigos. Sin apuestas."}
@@ -267,7 +267,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
                 <div key={l.teamId}>
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{l.teamName}</div>
                   {l.formation ? <div style={{ fontSize: 11.5, color: GOLD, marginBottom: 6 }}>{l.formation}</div> : null}
-                  <ol style={{ margin: 0, padding: 0, listStyle: "none", fontSize: 12.5, color: "#cbd5e1", lineHeight: 1.9 }}>
+                  <ol style={{ margin: 0, padding: 0, listStyle: "none", fontSize: 12.5, color: "#e6decb", lineHeight: 1.9 }}>
                     {l.startXI.map((p, i) => <li key={i}>{p}</li>)}
                   </ol>
                 </div>

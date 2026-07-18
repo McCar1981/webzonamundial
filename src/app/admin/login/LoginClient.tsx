@@ -41,7 +41,7 @@ export default function LoginClient({ nextPath }: { nextPath: string }) {
         display: "grid",
         placeItems: "center",
         background:
-          "radial-gradient(ellipse at top, #1a1130 0%, #0F1D32 50%, #060B14 100%)",
+          "radial-gradient(ellipse at top, #1a1130 0%, #14110a 50%, #000000 100%)",
         fontFamily: "Inter, system-ui, sans-serif",
         color: "#fff",
         padding: 24,
@@ -52,7 +52,7 @@ export default function LoginClient({ nextPath }: { nextPath: string }) {
         style={{
           width: "100%",
           maxWidth: 400,
-          background: "rgba(15, 29, 50, 0.9)",
+          background: "rgba(20,17,10, 0.9)",
           border: "1px solid rgba(201, 168, 76, 0.15)",
           borderRadius: 16,
           padding: 32,
@@ -114,7 +114,7 @@ export default function LoginClient({ nextPath }: { nextPath: string }) {
             border: error
               ? "1px solid rgba(239,68,68,0.6)"
               : "1px solid rgba(201, 168, 76, 0.3)",
-            background: "rgba(6,11,20,0.6)",
+            background: "rgba(0,0,0,0.6)",
             color: "#fff",
             fontSize: 14,
             fontFamily: "inherit",
@@ -148,7 +148,7 @@ export default function LoginClient({ nextPath }: { nextPath: string }) {
             background: busy
               ? "rgba(201,168,76,0.4)"
               : "linear-gradient(135deg, #c9a84c, #e8d48b)",
-            color: "#060B14",
+            color: "#000000",
             fontWeight: 800,
             fontSize: 14,
             cursor: busy ? "not-allowed" : "pointer",

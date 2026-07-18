@@ -81,8 +81,8 @@ export default function Sedes2026Page() {
             {sedes.map((s) => (
               <article
                 key={s.estadio}
-                className="p-4 sm:p-5 rounded-2xl border bg-[#0F1D32]/60"
-                style={s.rolEspecial ? { borderColor: "rgba(201,168,76,0.4)" } : { borderColor: "#1E293B" }}
+                className="p-4 sm:p-5 rounded-2xl border bg-[#14110a]/60"
+                style={s.rolEspecial ? { borderColor: "rgba(201,168,76,0.4)" } : { borderColor: "#241e12" }}
               >
                 <div className="flex items-baseline gap-3 mb-2 flex-wrap">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -124,7 +124,7 @@ export default function Sedes2026Page() {
       ))}
 
       <section className="mt-10">
-        <div className="p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80">
+        <div className="p-5 rounded-xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80">
           <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: GOLD }}>
             Resumen
           </div>
@@ -138,7 +138,7 @@ export default function Sedes2026Page() {
 
 function Stat({ n, label }: { n: string; label: string }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="text-2xl sm:text-3xl font-black tabular-nums" style={{ color: GOLD }}>
         {n}
       </div>

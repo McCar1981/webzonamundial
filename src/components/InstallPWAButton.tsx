@@ -129,7 +129,7 @@ export default function InstallPWAButton() {
             <p style={{ margin: "0 0 12px", color: "#FDE68A", fontWeight: 700, fontSize: 14 }}>
               En Safari, en 2 pasos:
             </p>
-            <ol style={{ margin: 0, paddingLeft: 20, color: "#94A3B8", fontSize: 14, lineHeight: 1.7 }}>
+            <ol style={{ margin: 0, paddingLeft: 20, color: "#a69a82", fontSize: 14, lineHeight: 1.7 }}>
               <li>
                 Toca el botón <strong style={{ color: "#fff" }}>Compartir</strong>{" "}
                 <span aria-hidden>(el cuadrado con la flecha hacia arriba)</span>.
@@ -176,7 +176,7 @@ export default function InstallPWAButton() {
           <p style={{ margin: "0 0 12px", color: "#FDE68A", fontWeight: 700, fontSize: 14 }}>
             Para instalarla:
           </p>
-          <p style={{ margin: 0, color: "#94A3B8", fontSize: 14, lineHeight: 1.6 }}>
+          <p style={{ margin: 0, color: "#a69a82", fontSize: 14, lineHeight: 1.6 }}>
             Abre el menú de tu navegador y elige{" "}
             <strong style={{ color: "#fff" }}>Instalar app</strong> o{" "}
             <strong style={{ color: "#fff" }}>Añadir a pantalla de inicio</strong>.

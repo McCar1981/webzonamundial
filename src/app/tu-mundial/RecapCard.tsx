@@ -7,7 +7,7 @@
 import type { TuMundialStats } from "@/lib/tu-mundial/share";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 function Tile({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
@@ -49,7 +49,7 @@ export default function RecapCard({ s }: { s: TuMundialStats }) {
         padding: 24,
         borderRadius: 24,
         background:
-          "radial-gradient(ellipse 90% 60% at 50% 0%, rgba(201,168,76,0.14), transparent 60%), linear-gradient(180deg, #0a0f1a, #060B14)",
+          "radial-gradient(ellipse 90% 60% at 50% 0%, rgba(201,168,76,0.14), transparent 60%), linear-gradient(180deg, #000000, #000000)",
         border: "1px solid rgba(201,168,76,0.3)",
       }}
     >

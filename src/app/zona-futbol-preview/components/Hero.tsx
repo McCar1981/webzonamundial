@@ -10,7 +10,7 @@ export function Hero() {
     <section className="relative overflow-hidden py-24 sm:py-40 px-3 sm:px-4" role="region" aria-label="Hero Zona Futbol">
       <div className="absolute inset-0 z-0">
         <ParallaxImage src="/og-image.jpg" alt="Zona Futbol" className="h-full" speed={0.25} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(6,11,20,0.6)] via-[rgba(6,11,20,0.7)] to-[rgba(6,11,20,0.95)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] via-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.95)]" />
         <div className="absolute inset-0 opacity-30 mix-blend-screen">
           <FloatingElements />
         </div>
@@ -31,7 +31,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#cbd5e1] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
+          <p className="text-lg sm:text-xl text-[#e6decb] max-w-2xl mx-auto leading-relaxed tracking-wide animate-slide-up" style={{textShadow: "0 2px 8px rgba(0,0,0,0.2)"}}>
             Fantasy, duelos, cromos, predicciones e IA Coach para las grandes ligas de clubes. La evolución de ZonaMundial, ahora con tu liga. Muy pronto.
           </p>
 
@@ -50,7 +50,7 @@ export function Hero() {
             </span>
           </div>
 
-          <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#94A3B8] animate-fade-in" style={{animationDelay: "0.6s"}}>
+          <div className="pt-6 flex items-center justify-center gap-3 text-sm text-[#a69a82] animate-fade-in" style={{animationDelay: "0.6s"}}>
             <span>100% Seguro</span>
             <span className="text-[#D4AF37]">•</span>
             <span>Verificado</span>

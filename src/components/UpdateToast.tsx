@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 
 const CHECK_EVERY_MS = 5 * 60_000;
 // Mínimo entre comprobaciones disparadas por visibilitychange.
@@ -81,7 +81,7 @@ export default function UpdateToast() {
         maxWidth: "calc(100vw - 28px)",
         padding: "11px 14px",
         borderRadius: 14,
-        background: "rgba(12,27,50,0.97)",
+        background: "rgba(10,9,6,0.97)",
         border: `1px solid ${GOLD}66`,
         boxShadow: "0 14px 36px rgba(0,0,0,0.5)",
         color: "#eef2fb",
@@ -116,7 +116,7 @@ export default function UpdateToast() {
           setFresh(null);
         }}
         aria-label="Cerrar aviso"
-        style={{ flexShrink: 0, background: "none", border: "none", color: "#93a1bd", fontSize: 17, cursor: "pointer", padding: 0, lineHeight: 1 }}
+        style={{ flexShrink: 0, background: "none", border: "none", color: "#a69a82", fontSize: 17, cursor: "pointer", padding: 0, lineHeight: 1 }}
       >
         ×
       </button>

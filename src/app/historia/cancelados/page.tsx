@@ -54,7 +54,7 @@ export default function CanceladosPage() {
           {cancelados.map((c) => (
             <article
               key={c.anio}
-              className="p-5 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-5 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 mb-3 flex-wrap">
                 <span className="text-3xl font-black tabular-nums" style={{ color: GOLD }}>
@@ -65,13 +65,13 @@ export default function CanceladosPage() {
                 </h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                <div className="p-3 rounded-lg bg-[#0B1825] border-l-2 border-[#9333EA]">
+                <div className="p-3 rounded-lg bg-[#0a0906] border-l-2 border-[#9333EA]">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#9333EA] mb-1">
                     Motivo
                   </div>
                   <p className="text-sm text-gray-200">{c.motivo}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-[#0B1825] border-l-2 border-[#C9A84C]">
+                <div className="p-3 rounded-lg bg-[#0a0906] border-l-2 border-[#C9A84C]">
                   <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: GOLD }}>
                     Sedes candidatas
                   </div>
@@ -79,7 +79,7 @@ export default function CanceladosPage() {
                 </div>
               </div>
               <p className="text-sm text-gray-200 leading-relaxed mb-4">{c.datoClave}</p>
-              <div className="space-y-2 pt-3 border-t border-[#1E293B]">
+              <div className="space-y-2 pt-3 border-t border-[#241e12]">
                 <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: GOLD }}>
                   Anécdotas
                 </div>
@@ -93,7 +93,7 @@ export default function CanceladosPage() {
           ))}
 
           {datoCierre && (
-            <div className="p-5 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80">
+            <div className="p-5 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80">
               <div className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: GOLD }}>
                 Dato histórico
               </div>

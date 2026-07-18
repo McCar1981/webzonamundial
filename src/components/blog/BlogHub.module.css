@@ -16,7 +16,7 @@
   text-align: center;
   background:
     radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201, 168, 76, 0.12), transparent 70%),
-    linear-gradient(180deg, rgba(11, 24, 37, 0.6), transparent);
+    linear-gradient(180deg, rgba(10,9,6, 0.6), transparent);
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   overflow: hidden;
 }
@@ -84,7 +84,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  background: linear-gradient(180deg, rgba(6, 11, 20, 0.95) 80%, rgba(6, 11, 20, 0));
+  background: linear-gradient(180deg, rgba(0,0,0, 0.95) 80%, rgba(0,0,0, 0));
   backdrop-filter: blur(8px);
 }
 .catBtn {
@@ -128,7 +128,7 @@
   padding: 24px;
   background:
     radial-gradient(ellipse 60% 80% at 100% 50%, rgba(201, 168, 76, 0.08), transparent 70%),
-    linear-gradient(180deg, rgba(15, 31, 48, 0.7), rgba(11, 24, 37, 0.4));
+    linear-gradient(180deg, rgba(20,17,10, 0.7), rgba(10,9,6, 0.4));
   border: 1px solid var(--b-border);
   transition: all 280ms var(--b-ease);
 }
@@ -142,7 +142,7 @@
   aspect-ratio: 16 / 10;
   border-radius: 14px;
   overflow: hidden;
-  background: #0F1F30;
+  background: #14110a;
 }
 .featuredImg img {
   width: 100%;
@@ -215,7 +215,7 @@
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--b-border);
-  background: linear-gradient(180deg, rgba(15, 31, 48, 0.5), rgba(11, 24, 37, 0.3));
+  background: linear-gradient(180deg, rgba(20,17,10, 0.5), rgba(10,9,6, 0.3));
   transition: all 280ms var(--b-ease);
 }
 .card:hover {
@@ -226,7 +226,7 @@
 .cardImg {
   position: relative;
   aspect-ratio: 16 / 10;
-  background: #0F1F30;
+  background: #14110a;
   overflow: hidden;
 }
 .cardImg img {
@@ -249,7 +249,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 800;
-  background: rgba(6, 11, 20, 0.85);
+  background: rgba(0,0,0, 0.85);
   backdrop-filter: blur(8px);
 }
 .cardBody {

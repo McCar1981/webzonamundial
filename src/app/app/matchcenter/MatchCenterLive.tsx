@@ -45,7 +45,7 @@ import type {
   LiveEventInput,
 } from "@/lib/ia-coach/live-types";
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef4444";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", RED = "#ef4444";
 
 // Pestañas estilo Google. "general" lleva el campo animado en vivo; las demás
 // reparten cronología, alineaciones (campo vertical con camisetas), stats y la
@@ -91,7 +91,7 @@ function MCTabBar({ tab, onTab }: { tab: MCTab; onTab: (t: MCTab) => void }) {
               fontWeight: 700,
               whiteSpace: "nowrap",
               background: active ? "#fff" : "rgba(255,255,255,0.06)",
-              color: active ? "#0B1825" : MID,
+              color: active ? "#0a0906" : MID,
               transition: "background .2s, color .2s",
             }}
           >
@@ -1574,7 +1574,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
               </button>
               {feed.mode === "sim" && (
                 <>
-                  <span style={{ display: "inline-flex", alignItems: "center", padding: "6px 10px", borderRadius: 8, fontSize: 11, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: "#0b1825", background: GOLD2 }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "6px 10px", borderRadius: 8, fontSize: 11, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: "#0a0906", background: GOLD2 }}>
                     Simulación · Demo
                   </span>
                   <button onClick={() => setPaused((p) => !p)} disabled={finished} style={btnGhost}>
@@ -1648,7 +1648,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
               </div>
               <MatchFx meta={meta} goalPulse={goalPulse} cardFx={cardFx} subFx={subFx} />
               {feed.mode === "live" && !isInPlay(status) && !finished && (
-                <div style={{ position: "absolute", inset: 0, zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(6,11,20,0.55)", borderRadius: 16, pointerEvents: "none" }}>
+                <div style={{ position: "absolute", inset: 0, zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(0,0,0,0.55)", borderRadius: 16, pointerEvents: "none" }}>
                   <span className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: GOLD2 }}>
                     {/* `phase` ya da Descanso / Suspendido / Interrumpido /
                         Cancelado…; en la previa real (NS) mostramos "Por comenzar". */}
@@ -1668,7 +1668,7 @@ export default function MatchCenterLive({ matchId, meta, sim, demo, heroImage }:
                 <PlayerCard player={hoverPlayer} meta={meta} />
               )}
               {replayTag && (
-                <div style={{ position: "absolute", top: 12, left: 12, zIndex: 8, display: "flex", alignItems: "center", gap: 8, background: "rgba(11,24,37,0.9)", border: `1px solid ${RED}88`, borderRadius: 8, padding: "5px 12px", pointerEvents: "none" }}>
+                <div style={{ position: "absolute", top: 12, left: 12, zIndex: 8, display: "flex", alignItems: "center", gap: 8, background: "rgba(10,9,6,0.9)", border: `1px solid ${RED}88`, borderRadius: 8, padding: "5px 12px", pointerEvents: "none" }}>
                   <span className="mc-live-dot" style={{ background: RED }} />
                   <span className="mc-condensed" style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#fff" }}>Repetición · Cámara lenta</span>
                 </div>
@@ -1796,7 +1796,7 @@ function PlayerCard({ player, meta }: { player: { num: number; label: string; si
   return (
     <div style={{
       position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)", zIndex: 8,
-      maxWidth: "92%", display: "flex", alignItems: "center", gap: 12, background: "rgba(11,24,37,0.96)",
+      maxWidth: "92%", display: "flex", alignItems: "center", gap: 12, background: "rgba(10,9,6,0.96)",
       border: `1px solid rgba(255,255,255,0.14)`, borderLeft: `5px solid ${team.color}`,
       borderRadius: 12, padding: "10px 16px", backdropFilter: "blur(6px)", boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
       animation: "mcSlide .25s ease", pointerEvents: "none",
@@ -2230,7 +2230,7 @@ function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]
     [log],
   );
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 40, background: "rgba(4,8,16,0.82)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, animation: "mcSlide .3s ease" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 40, background: "rgba(0,0,0,0.82)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, animation: "mcSlide .3s ease" }}>
       <div style={{ width: "min(560px,100%)", maxHeight: "86vh", overflowY: "auto", background: BG2, borderRadius: 20, border: `1px solid ${GOLD}44`, padding: 22, boxShadow: "0 30px 80px rgba(0,0,0,0.7)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <h3 className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, color: GOLD2, textTransform: "uppercase", margin: 0 }}>Destacados</h3>

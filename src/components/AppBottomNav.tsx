@@ -18,10 +18,10 @@ import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const GOLD = "#c9a84c";
-// Contraste WCAG AA sobre #060B14: los grises anteriores (#5a6a8a / #6a7a9a)
+// Contraste WCAG AA sobre #000000: los grises anteriores (#5a6a8a / #6e6552)
 // daban ~3.2:1 y fallaban AA para texto pequeño; estos llegan a ≥4.5:1.
 const DIM = "#8294b0";
-const BG = "#060B14";
+const BG = "#000000";
 
 const ACTIVE_BAR = "#c9a84c";
 const INACTIVE_TEXT = "#8294b0";
@@ -139,7 +139,7 @@ export default function AppBottomNav() {
         bottom: 0,
         zIndex: 950,
         display: "none",
-        background: "rgba(6,11,20,0.92)",
+        background: "rgba(0,0,0,0.92)",
         backdropFilter: "blur(18px) saturate(160%)",
         WebkitBackdropFilter: "blur(18px) saturate(160%)",
         borderTop: "1px solid rgba(201,168,76,0.12)",

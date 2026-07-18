@@ -17,8 +17,8 @@ import type {
 } from "@/lib/ia-coach/debate-types";
 
 // Paleta alineada con el resto del bracket (dorado ZonaMundial).
-const BG2 = "#12161D";
-const BG3 = "#1A2029";
+const BG2 = "#14110a";
+const BG3 = "#241e12";
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
 const MID = "#C7CEDA";
@@ -145,7 +145,7 @@ export default function DebatePanel({
                 marginLeft: 8,
                 fontSize: 10,
                 fontWeight: 800,
-                color: "#0C0F14",
+                color: "#000000",
                 background: GOLD2,
                 borderRadius: 6,
                 padding: "2px 6px",
@@ -163,8 +163,8 @@ export default function DebatePanel({
         <button
           onClick={() => setOpen((o) => !o)}
           style={{
-            background: open ? "#3A3F49" : GOLD,
-            color: open ? MID : "#0C0F14",
+            background: open ? "#2a2418" : GOLD,
+            color: open ? MID : "#000000",
             border: "none",
             borderRadius: 9,
             padding: "9px 16px",
@@ -293,8 +293,8 @@ export default function DebatePanel({
                 onClick={() => void send()}
                 disabled={loading || !input.trim()}
                 style={{
-                  background: input.trim() && !loading ? GOLD : "#3A3F49",
-                  color: input.trim() && !loading ? "#0C0F14" : DIM,
+                  background: input.trim() && !loading ? GOLD : "#2a2418",
+                  color: input.trim() && !loading ? "#000000" : DIM,
                   border: "none",
                   borderRadius: 9,
                   padding: "10px 16px",
@@ -334,7 +334,7 @@ function Bubble({
         alignSelf: isUser ? "flex-end" : "flex-start",
         maxWidth: "85%",
         background: isUser ? GOLD : BG3,
-        color: isUser ? "#0C0F14" : MID,
+        color: isUser ? "#000000" : MID,
         border: isUser ? "none" : `1px solid ${GOLD}22`,
         borderRadius: 12,
         borderBottomRightRadius: isUser ? 3 : 12,
@@ -371,7 +371,7 @@ function GateBox({ text, cta, href }: { text: string; cta: string; href: string 
         style={{
           alignSelf: "flex-start",
           background: GOLD,
-          color: "#0C0F14",
+          color: "#000000",
           borderRadius: 9,
           padding: "8px 15px",
           fontWeight: 700,

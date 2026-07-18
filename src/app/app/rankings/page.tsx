@@ -12,7 +12,7 @@ import { SPONSORED_PRIZE, type SponsoredPrize } from "@/data/sponsored-prize";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 // ─── Tipos que devuelven los endpoints ──────────────────────────────────────
 interface RankEntry { rank: number; userId: string; name: string | null; avatarUrl: string | null; country: string | null; coins: number; level: number; }

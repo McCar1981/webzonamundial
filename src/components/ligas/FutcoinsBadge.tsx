@@ -40,7 +40,7 @@ export default function FutcoinsBadge() {
     >
       <span aria-hidden style={{ width: 14, height: 14, borderRadius: 99, background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, flexShrink: 0 }} />
       <span style={{ fontSize: 13, fontWeight: 600, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString("es")}</span>
-      <span style={{ fontSize: 11.5, color: "#cbd5e1" }}>Fútcoins</span>
+      <span style={{ fontSize: 11.5, color: "#e6decb" }}>Fútcoins</span>
     </span>
   );
 }

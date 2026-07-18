@@ -246,7 +246,7 @@ export default function BlockRenderer({ blocks }: Props) {
                   borderRadius: 14,
                   border: "1px solid var(--b-border)",
                   background:
-                    "linear-gradient(180deg, rgba(20,37,54,0.5), rgba(11,24,37,0.35))",
+                    "linear-gradient(180deg, rgba(27,22,13,0.5), rgba(10,9,6,0.35))",
                 }}
               >
                 {b.title && (

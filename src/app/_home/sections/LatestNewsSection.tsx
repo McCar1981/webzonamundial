@@ -17,13 +17,13 @@ import Link from "next/link";
 import AdInFeed from "@/components/ads/AdInFeed";
 import { noticiaCardImage } from "@/lib/noticias-image";
 
-const BG = "#060B14";
-const CARD_BG = "#0F1D32";
+const BG = "#000000";
+const CARD_BG = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const TEXT = "#cbd5e1";
-const MUTED = "#94a3b8";
-const DIM = "#6a7a9a";
+const TEXT = "#e6decb";
+const MUTED = "#a69a82";
+const DIM = "#6e6552";
 
 // Espejo de CAT_LABELS/CAT_COLORS del hub /noticias (NoticiasClient.tsx).
 const CAT_LABELS: Record<string, string> = {
@@ -212,7 +212,7 @@ function NewsCard({ n, seed }: { n: UltimaNoticia; seed: number }) {
         style={{
           position: "relative",
           aspectRatio: "16 / 9",
-          background: "#0B1825",
+          background: "#0a0906",
           overflow: "hidden",
         }}
       >

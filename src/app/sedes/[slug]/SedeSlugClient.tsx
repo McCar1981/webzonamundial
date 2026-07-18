@@ -42,7 +42,7 @@ function StatBadge({ value, label, delay = 0 }: { value: string; label: string; 
   }, [delay]);
   return (
     <div
-      className={`px-4 py-3 rounded-xl border border-white/10 bg-[#0B1825]/90 backdrop-blur-md text-center min-w-[100px] transition-all duration-700 ${
+      className={`px-4 py-3 rounded-xl border border-white/10 bg-[#0a0906]/90 backdrop-blur-md text-center min-w-[100px] transition-all duration-700 ${
         mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
     >
@@ -54,7 +54,7 @@ function StatBadge({ value, label, delay = 0 }: { value: string; label: string; 
 
 function InfoCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="bg-[#0B1825] rounded-2xl p-5 md:p-6 border border-white/5 hover:border-[#c9a84c]/20 transition-all">
+    <div className="bg-[#0a0906] rounded-2xl p-5 md:p-6 border border-white/5 hover:border-[#c9a84c]/20 transition-all">
       <div className="flex items-center gap-3 mb-4">
         <span className="text-2xl">{icon}</span>
         <h3 className="text-lg font-bold text-white">{title}</h3>
@@ -74,7 +74,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
         <h2 className="text-2xl font-black text-white mb-6">{title}</h2>
       </AnimatedSection>
       <AnimatedSection y={20}>
-        <div className="rounded-3xl overflow-hidden border border-white/5 bg-[#0B0F1A]">
+        <div className="rounded-3xl overflow-hidden border border-white/5 bg-[#0a0906]">
           {/* Main viewer */}
           <div
             className="relative aspect-[16/9] sm:aspect-[21/9] cursor-zoom-in"
@@ -85,7 +85,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
               alt="Stadium"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 via-transparent to-transparent" />
             {images.length > 1 && (
               <>
                 <button
@@ -130,7 +130,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-[100] bg-[#030712]/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-[#000000]/95 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setLightbox(false)}
         >
           <button
@@ -154,7 +154,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
 function MapEmbed({ lat, lng, label }: { lat: number; lng: number; label: string }) {
   const mapSrc = `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
   return (
-    <div className="rounded-3xl overflow-hidden border border-white/5 bg-[#0B0F1A]">
+    <div className="rounded-3xl overflow-hidden border border-white/5 bg-[#0a0906]">
       <div className="relative w-full aspect-[16/9]" style={{ filter: 'invert(0.9) hue-rotate(180deg)' }}>
         <iframe
           title={label}
@@ -192,7 +192,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
   const galleryImages = imageUrl ? [imageUrl] : [];
 
   return (
-    <div className="min-h-screen bg-[#060B14]">
+    <div className="min-h-screen bg-[#000000]">
       {/* Schema.org */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org', '@type': 'Place',
@@ -212,7 +212,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
 
       <div className="max-w-7xl mx-auto px-4 pt-0 pb-8 sm:pb-12">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm text-[#6a7a9a] mb-6 pt-6">
+        <nav className="flex items-center gap-2 text-sm text-[#6e6552] mb-6 pt-6">
           <Link href="/" className="hover:text-[#c9a84c] transition-colors">{nav.inicio}</Link>
           <span>/</span>
           <Link href="/sedes" className="hover:text-[#c9a84c] transition-colors">{nav.sedes}</Link>
@@ -230,12 +230,12 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-[#0F1D32] to-[#1a2a3f] flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-[#14110a] to-[#1b160d] flex items-center justify-center">
                 <SvgIcon name="match center" size={80} />
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/50 to-[#060B14]/30" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#060B14]/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-[#000000]/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/60 via-transparent to-transparent" />
             {imageUrl && (
               <span className="absolute bottom-2 right-3 text-[10px] text-white/40 z-10">
                 Foto: Wikimedia Commons
@@ -250,7 +250,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                   className="w-10 h-7 object-cover rounded shadow-lg"
                 />
                 {isFinalSede && (
-                  <span className="px-4 py-1.5 bg-[#c9a84c] text-[#060B14] text-sm font-black rounded-full">
+                  <span className="px-4 py-1.5 bg-[#c9a84c] text-[#000000] text-sm font-black rounded-full">
                     FINAL DEL MUNDIAL
                   </span>
                 )}
@@ -299,14 +299,14 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
           {/* Main column */}
           <div className="lg:col-span-2 space-y-8">
             {/* History */}
-            <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
+            <AnimatedSection className="bg-[#0a0906] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
                   <SvgIcon name="historia" size={32} />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{sT.historiaTitle}</h2>
               </div>
-              <p className="text-[#8a94b0] leading-relaxed text-lg mb-6">
+              <p className="text-[#a69a82] leading-relaxed text-lg mb-6">
                 {sede.historia}
               </p>
               <div className="p-4 bg-[#c9a84c]/10 border-l-4 border-[#c9a84c] rounded-r-xl">
@@ -317,7 +317,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             </AnimatedSection>
 
             {/* Matches detail */}
-            <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
+            <AnimatedSection className="bg-[#0a0906] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
                   <SvgIcon name="match center" size={32} />
@@ -332,7 +332,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                     className={`px-4 py-2 rounded-xl text-sm font-bold ${
                       fase.includes('FINAL') || fase.includes('SEMI')
                         ? 'bg-[#c9a84c]/20 text-[#c9a84c] border border-[#c9a84c]/30'
-                        : 'bg-[#060B14] text-[#8a94b0] border border-white/5'
+                        : 'bg-[#000000] text-[#a69a82] border border-white/5'
                     }`}
                   >
                     {fase}
@@ -341,13 +341,13 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
               </div>
 
               <div className="mb-6">
-                <p className="text-sm text-[#6a7a9a] mb-3">{sT.gruposAsignados}</p>
+                <p className="text-sm text-[#6e6552] mb-3">{sT.gruposAsignados}</p>
                 <div className="flex flex-wrap gap-2">
                   {sede.gruposAsignados.map(gr => (
                     <Link
                       key={gr}
                       href={`/grupos/grupo-${gr.toLowerCase()}`}
-                      className="px-4 py-2 bg-[#060B14] rounded-xl text-white font-bold hover:bg-[#c9a84c]/20 hover:text-[#c9a84c] transition-all border border-white/5"
+                      className="px-4 py-2 bg-[#000000] rounded-xl text-white font-bold hover:bg-[#c9a84c]/20 hover:text-[#c9a84c] transition-all border border-white/5"
                     >
                       {sT.grupo} {gr}
                     </Link>
@@ -357,10 +357,10 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
 
               {sede.partidosDestacados.length > 0 && (
                 <div>
-                  <p className="text-sm text-[#6a7a9a] mb-3">{sT.partidosDestacados}</p>
+                  <p className="text-sm text-[#6e6552] mb-3">{sT.partidosDestacados}</p>
                   <div className="space-y-2">
                     {sede.partidosDestacados.map((p, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 bg-[#060B14] rounded-xl border border-white/5">
+                      <div key={i} className="flex items-center gap-3 p-3 bg-[#000000] rounded-xl border border-white/5">
                         <SvgIcon name="ranking" size={16} className="inline-block" />
                         <span className="text-white">{p}</span>
                       </div>
@@ -384,7 +384,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             </AnimatedSection>
 
             {/* Technical data */}
-            <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
+            <AnimatedSection className="bg-[#0a0906] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
                   <SvgIcon name="match center" size={32} />
@@ -403,8 +403,8 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                   [sT.labelZonaHoraria, `${sede.zonaHoraria} (${sede.utcOffset})`],
                   [sT.labelTotalPartidos, `${sede.totalPartidos} ${sT.partidos}`],
                 ].map(([label, value]) => (
-                  <div key={label} className="flex justify-between p-4 bg-[#060B14] rounded-xl">
-                    <span className="text-[#6a7a9a]">{label}</span>
+                  <div key={label} className="flex justify-between p-4 bg-[#000000] rounded-xl">
+                    <span className="text-[#6e6552]">{label}</span>
                     <span className="text-white font-semibold">{value}</span>
                   </div>
                 ))}
@@ -415,7 +415,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Travel guide */}
-            <AnimatedSection className="bg-gradient-to-br from-[#0B1825] to-[#0F1D32] rounded-3xl p-6 border border-white/5">
+            <AnimatedSection className="bg-gradient-to-br from-[#0a0906] to-[#14110a] rounded-3xl p-6 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <SvgIcon name="stories" size={32} />
                 <h3 className="text-xl font-bold text-white">{sT.guiaViaje}</h3>
@@ -423,42 +423,42 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
 
               <div className="space-y-4">
                 <InfoCard title={sT.comoLlegar} icon={<SvgIcon name="stories" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelAeropuerto}</strong> {sede.transporte.aeropuerto}</p>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelCodigo}</strong> {sede.transporte.codigoIATA}</p>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelAlEstadio}</strong> {sede.transporte.distanciaEstadio}</p>
-                  <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelTransporte}</strong> {sede.transporte.metroTren}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelAeropuerto}</strong> {sede.transporte.aeropuerto}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelCodigo}</strong> {sede.transporte.codigoIATA}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelAlEstadio}</strong> {sede.transporte.distanciaEstadio}</p>
+                  <p className="text-[#a69a82] text-sm"><strong className="text-white">{sT.labelTransporte}</strong> {sede.transporte.metroTren}</p>
                 </InfoCard>
 
                 <InfoCard title={sT.visaYDinero} icon={<SvgIcon name="predicciones" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelVisa}</strong> {g.visa}</p>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelIdioma}</strong> {g.idioma}</p>
-                  <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelMoneda}</strong> {g.moneda}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelVisa}</strong> {g.visa}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelIdioma}</strong> {g.idioma}</p>
+                  <p className="text-[#a69a82] text-sm"><strong className="text-white">{sT.labelMoneda}</strong> {g.moneda}</p>
                 </InfoCard>
 
                 <InfoCard title={sT.alojamiento} icon={<SvgIcon name="ligas privadas" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm mb-3">{g.costoAlojamiento}</p>
+                  <p className="text-[#a69a82] text-sm mb-3">{g.costoAlojamiento}</p>
                   <p className="text-white text-sm font-semibold mb-2">{sT.zonasRecomendadas}</p>
                   <div className="flex flex-wrap gap-2">
                     {g.zonasRecomendadas.map(z => (
-                      <span key={z} className="px-3 py-1 bg-[#060B14] rounded-lg text-xs text-[#8a94b0]">{z}</span>
+                      <span key={z} className="px-3 py-1 bg-[#000000] rounded-lg text-xs text-[#a69a82]">{z}</span>
                     ))}
                   </div>
                 </InfoCard>
 
                 <InfoCard title={sT.clima} icon={<SvgIcon name="streaming" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelJunio}</strong> {sede.clima.junio}</p>
-                  <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelJulio}</strong> {sede.clima.julio}</p>
-                  <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelLluvia}</strong> {sede.clima.lluvia}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelJunio}</strong> {sede.clima.junio}</p>
+                  <p className="text-[#a69a82] text-sm mb-2"><strong className="text-white">{sT.labelJulio}</strong> {sede.clima.julio}</p>
+                  <p className="text-[#a69a82] text-sm"><strong className="text-white">{sT.labelLluvia}</strong> {sede.clima.lluvia}</p>
                 </InfoCard>
 
                 <InfoCard title={sT.gastronomia} icon={<SvgIcon name="creadores" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm">{g.gastronomia}</p>
+                  <p className="text-[#a69a82] text-sm">{g.gastronomia}</p>
                 </InfoCard>
 
                 <InfoCard title={sT.seguridad} icon={<SvgIcon name="ia coach" size={32} />}>
-                  <p className="text-[#8a94b0] text-sm mb-2">{g.seguridadNota}</p>
+                  <p className="text-[#a69a82] text-sm mb-2">{g.seguridadNota}</p>
                   {g.fanZone && (
-                    <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.fanZone}</strong> {g.fanZone}</p>
+                    <p className="text-[#a69a82] text-sm"><strong className="text-white">{sT.fanZone}</strong> {g.fanZone}</p>
                   )}
                 </InfoCard>
               </div>
@@ -467,10 +467,10 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             {/* CTA */}
             <AnimatedSection className="bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 rounded-3xl p-6 border border-[#c9a84c]/20">
               <h3 className="font-bold text-white mb-2">{sT.ctaTitle} {sede.nombre}?</h3>
-              <p className="text-sm text-[#8a94b0] mb-4">{sT.ctaDesc}</p>
+              <p className="text-sm text-[#a69a82] mb-4">{sT.ctaDesc}</p>
               <Link
                 href="/registro"
-                className="block w-full py-3 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#060B14] font-bold rounded-xl text-center hover:shadow-lg transition-all"
+                className="block w-full py-3 bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#000000] font-bold rounded-xl text-center hover:shadow-lg transition-all"
               >
                 {sT.ctaBtn}
               </Link>
@@ -491,7 +491,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-3 p-4 bg-[#0B1825] rounded-xl border border-white/5 hover:border-[#c9a84c]/30 hover:text-[#c9a84c] transition-all group"
+                className="flex items-center gap-3 p-4 bg-[#0a0906] rounded-xl border border-white/5 hover:border-[#c9a84c]/30 hover:text-[#c9a84c] transition-all group"
               >
                 <SvgIcon name={link.icon} size={24} className="group-hover:scale-110 transition-transform" />
                 <span className="font-medium">{link.label}</span>

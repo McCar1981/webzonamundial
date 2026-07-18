@@ -176,7 +176,7 @@ export default function MatchLive({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(6,11,20,0.92)",
+        background: "rgba(0,0,0,0.92)",
         padding: 16,
         animation: "mcBannerIn .25s ease both",
       }}
@@ -1063,7 +1063,7 @@ function GoalCelebration({
         justifyContent: "center",
         overflow: "hidden",
         pointerEvents: "none",
-        background: "radial-gradient(ellipse at center, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.9) 80%)",
+        background: "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.9) 80%)",
         animation: "mlGolWrap 2s ease both",
       }}
     >

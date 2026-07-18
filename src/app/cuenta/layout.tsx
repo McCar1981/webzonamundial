@@ -58,10 +58,10 @@ export default async function CuentaLayout({
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6 lg:gap-8">
           <CuentaSidebar />
           <main
-            className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
+            className="rounded-2xl border border-[#241e12]/50 p-6 sm:p-8"
             style={{
               background:
-                "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
+                "linear-gradient(135deg, rgba(20,17,10,0.6), rgba(10,9,6,0.4))",
               backdropFilter: "blur(12px)",
             }}
           >

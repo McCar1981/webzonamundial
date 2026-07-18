@@ -145,7 +145,7 @@ export default function FlagSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={ariaLabel}
-        className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all cursor-pointer text-left flex items-center gap-3"
+        className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-white border border-[#241e12] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all cursor-pointer text-left flex items-center gap-3"
       >
         {iconLeftSlot && (
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
@@ -189,11 +189,11 @@ export default function FlagSelect({
       {/* Dropdown panel */}
       {open && (
         <div
-          className="absolute z-50 mt-1.5 w-full rounded-xl bg-[#0B1825] border border-[#C9A84C]/30 shadow-2xl overflow-hidden"
+          className="absolute z-50 mt-1.5 w-full rounded-xl bg-[#0a0906] border border-[#C9A84C]/30 shadow-2xl overflow-hidden"
           role="listbox"
         >
           {/* Buscador interno */}
-          <div className="p-2 border-b border-[#1E293B]">
+          <div className="p-2 border-b border-[#241e12]">
             <div className="relative">
               <svg
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"
@@ -211,7 +211,7 @@ export default function FlagSelect({
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={onSearchKeyDown}
                 placeholder={searchPlaceholder}
-                className="w-full pl-9 pr-3 py-2 rounded-lg bg-[#0F1D32] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none placeholder:text-gray-600"
+                className="w-full pl-9 pr-3 py-2 rounded-lg bg-[#14110a] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none placeholder:text-gray-600"
               />
             </div>
           </div>
@@ -237,8 +237,8 @@ export default function FlagSelect({
                       isSelected
                         ? 'bg-[#C9A84C]/15 text-[#C9A84C]'
                         : isActive
-                          ? 'bg-[#1E293B] text-white'
-                          : 'text-gray-300 hover:bg-[#1E293B]/60'
+                          ? 'bg-[#241e12] text-white'
+                          : 'text-gray-300 hover:bg-[#241e12]/60'
                     }`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -111,7 +111,7 @@ export interface RankDef {
 }
 
 export const DT_RANKS: RankDef[] = [
-  { min: 0, name: "Amateur", color: "#94a3b8" },
+  { min: 0, name: "Amateur", color: "#a69a82" },
   { min: 60, name: "Profesional", color: "#22c55e" },
   { min: 70, name: "Élite", color: "#3b82f6" },
   { min: 80, name: "Estrella", color: "#a855f7" },

@@ -19,7 +19,7 @@ export default function CopyLinkButton({ url }: { url: string }) {
     <button
       type="button"
       onClick={copy}
-      className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-[#060B14] transition-all"
+      className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-[#000000] transition-all"
       style={{ background: copied ? "#10B981" : "linear-gradient(135deg, #C9A84C, #A8893D)" }}
     >
       {copied ? "¡Copiado!" : "Copiar"}

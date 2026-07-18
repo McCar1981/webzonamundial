@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function LigasHub() {
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <p className="zl-eyebrow">Zona de Ligas</p>
         <h1 className="zl-h1">Todas las ligas y copas</h1>

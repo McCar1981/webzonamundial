@@ -26,7 +26,7 @@ export const metadata = {
 const REWARD = 10;
 const EXACT_REWARD = 40;
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
@@ -68,7 +68,7 @@ function Row({ p, d }: { p: LigaPredictionRow; d: FixtureDetail | null }) {
         <span style={{ fontSize: 12, fontWeight: 500, color: tag.color, flexShrink: 0 }}>{tag.text}</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 3, fontSize: 12, color: DIM }}>
-        <span>Tu pronóstico: <span style={{ color: "#cbd5e1" }}>{pickLabel(p, d)}</span></span>
+        <span>Tu pronóstico: <span style={{ color: "#e6decb" }}>{pickLabel(p, d)}</span></span>
         <span>{result ? `Resultado ${result}` : <LocalTime iso={p.kickoff} mode="date" fallback={p.kickoff.slice(0, 10)} />}</span>
       </div>
     </div>
@@ -91,7 +91,7 @@ export default async function MisPrediccionesPage() {
   const done = rows.filter((r) => r.p.status !== "pending");
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
           <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
@@ -105,8 +105,8 @@ export default async function MisPrediccionesPage() {
 
         {preds.length === 0 ? (
           <div style={{ padding: 24, borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.24)", textAlign: "center" }}>
-            <p style={{ margin: "0 0 14px", fontSize: 14.5, color: "#cbd5e1" }}>Aún no has predicho ningún partido. Elige un partido y gana Fútcoins si aciertas.</p>
-            <Link href="/ligas" style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0A1422", fontWeight: 500, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>Ver partidos</Link>
+            <p style={{ margin: "0 0 14px", fontSize: 14.5, color: "#e6decb" }}>Aún no has predicho ningún partido. Elige un partido y gana Fútcoins si aciertas.</p>
+            <Link href="/ligas" style={{ display: "inline-block", background: "linear-gradient(135deg, #c9a84c, #e8d48b)", color: "#0a0906", fontWeight: 500, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>Ver partidos</Link>
           </div>
         ) : (
           <>

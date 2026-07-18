@@ -13,7 +13,7 @@ type Pick = "home" | "draw" | "away";
 type Counts = { home: number; draw: number; away: number; total: number };
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const REWARD = 10;
 const EXACT_REWARD = 40;
 
@@ -201,7 +201,7 @@ export default function MatchPoll({
             const mine = myPick === o.key;
             return (
               <div key={o.key}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, marginBottom: 3, color: mine ? GOLD : "#cbd5e1" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12.5, marginBottom: 3, color: mine ? GOLD : "#e6decb" }}>
                   <span style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: mine ? 600 : 400 }}>{o.label}{mine ? " · tu pronóstico" : ""}</span>
                   <span style={{ fontVariantNumeric: "tabular-nums" }}>{p}%</span>
                 </div>
@@ -255,7 +255,7 @@ export default function MatchPoll({
             </p>
           ) : (
             <>
-              <p style={{ margin: "0 0 10px", fontSize: 12.5, color: "#cbd5e1", textAlign: "center" }}>
+              <p style={{ margin: "0 0 10px", fontSize: 12.5, color: "#e6decb", textAlign: "center" }}>
                 ¿Te atreves con el marcador exacto? <span style={{ color: GOLD, fontWeight: 500 }}>+{EXACT_REWARD} Fútcoins</span> si lo clavas
               </p>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>

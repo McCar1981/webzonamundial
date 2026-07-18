@@ -24,7 +24,7 @@ interface Props {
 
 const TIER_COLOR: Record<Achievement["tier"], string> = {
   bronce: "#cd7f32",
-  plata: "#cbd5e1",
+  plata: "#e6decb",
   oro: "#fbbf24",
   leyenda: "#a855f7",
 };

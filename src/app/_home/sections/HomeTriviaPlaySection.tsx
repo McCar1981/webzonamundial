@@ -9,12 +9,12 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const BG2 = "#0F1D32",
-  BG3 = "#0B1825",
+const BG2 = "#14110a",
+  BG3 = "#0a0906",
   GOLD = "#c9a84c",
   GOLD2 = "#e8d48b",
-  MID = "#8a94b0",
-  DIM = "#6a7a9a",
+  MID = "#a69a82",
+  DIM = "#6e6552",
   GREEN = "#22c55e",
   RED = "#ef4444";
 
@@ -102,7 +102,7 @@ export function HomeTriviaPlaySection() {
           className="relative overflow-hidden rounded-3xl border"
           style={{
             borderColor: "rgba(201,168,76,0.25)",
-            background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+            background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
           {/* ── Banner hero: leyendas del Mundial ── */}
@@ -120,13 +120,13 @@ export function HomeTriviaPlaySection() {
             <div
               aria-hidden
               className="absolute inset-0 sm:hidden"
-              style={{ background: "linear-gradient(to top, rgba(7,12,20,0.97) 0%, rgba(7,12,20,0.55) 42%, rgba(7,12,20,0.12) 72%, transparent 100%)" }}
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.12) 72%, transparent 100%)" }}
             />
             {/* Degradado escritorio: oscurece la izquierda (texto a la izq.) */}
             <div
               aria-hidden
               className="absolute inset-0 hidden sm:block"
-              style={{ background: "linear-gradient(to right, rgba(7,12,20,0.97) 0%, rgba(7,12,20,0.82) 32%, rgba(7,12,20,0.25) 60%, transparent 82%)" }}
+              style={{ background: "linear-gradient(to right, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.82) 32%, rgba(0,0,0,0.25) 60%, transparent 82%)" }}
             />
             {/* Texto sobre la zona oscura */}
             <div className="absolute inset-0 flex flex-col justify-end sm:justify-center px-6 pb-6 sm:px-9 sm:pb-0">

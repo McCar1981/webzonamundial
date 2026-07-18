@@ -13,7 +13,7 @@ import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
 const FIELD = "#1a5c3a";
 const LINE = "rgba(255,255,255,0.25)";
 const GOLD = "#c9a84c";
-const NAVY = "#0a1729";
+const NAVY = "#0a0906";
 
 interface SoccerFieldProps {
   slots: SlotLayout[];

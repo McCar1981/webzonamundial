@@ -67,7 +67,7 @@ export function Coach({ pose, size = 72, slug }: { pose: CoachPose; size?: numbe
         borderRadius: "50%",
         overflow: "hidden",
         border: `2px solid ${GOLD_C}`,
-        background: "radial-gradient(circle at 50% 30%, rgba(201,168,76,0.22), rgba(6,11,20,0.6))",
+        background: "radial-gradient(circle at 50% 30%, rgba(201,168,76,0.22), rgba(0,0,0,0.6))",
         boxShadow: `0 6px 18px rgba(0,0,0,0.45), 0 0 0 4px rgba(201,168,76,0.12)`,
         animation: "mcCoachIn .5s cubic-bezier(.2,.9,.3,1.25) both",
       }}

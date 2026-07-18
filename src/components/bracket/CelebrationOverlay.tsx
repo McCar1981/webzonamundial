@@ -726,7 +726,7 @@ function ChampionCard({
         maxWidth: 680,
         padding: "20px 28px",
         background:
-          "linear-gradient(180deg, rgba(10,12,20,0.85) 0%, rgba(8,10,16,0.75) 100%)",
+          "linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(8,10,16,0.75) 100%)",
         border: "1px solid rgba(255,212,121,0.5)",
         borderRadius: 16,
         boxShadow: `
@@ -858,7 +858,7 @@ function StatsCard({ totalGoals }: { totalGoals: number }) {
         width: "100%",
         maxWidth: 680,
         padding: "18px 24px",
-        background: "rgba(10,12,20,0.65)",
+        background: "rgba(0,0,0,0.65)",
         border: "1px solid rgba(255,212,121,0.22)",
         borderRadius: 14,
         backdropFilter: "blur(14px) saturate(160%)",
@@ -1117,7 +1117,7 @@ function SecondaryButton({ onClick }: { onClick: () => void }) {
         flex: "1 1 240px",
         maxWidth: 320,
         padding: "20px 24px",
-        background: "rgba(10,12,20,0.7)",
+        background: "rgba(0,0,0,0.7)",
         border: "1px solid rgba(255,212,121,0.4)",
         borderRadius: 12,
         color: "#FFE9A8",

@@ -12,7 +12,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 type TypedMarket = "ou_goals" | "first_goal" | "btts";
 type Saved = Partial<Record<TypedMarket, Record<string, unknown>>>;

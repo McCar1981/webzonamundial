@@ -18,7 +18,7 @@ import EscenariosSimulador from "./EscenariosSimulador";
 import ConsultaSeleccion, { type TeamView } from "./ConsultaSeleccion";
 import { matchInstant } from "@/lib/calendario/time";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
 
 export const revalidate = 60;
 
@@ -330,7 +330,7 @@ export default async function EscenariosPage() {
           </p>
           <Link href="/registro" style={{
             display: "inline-block", whiteSpace: "nowrap",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906",
             fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none",
           }}>
             Crear mi cuenta gratis →
@@ -385,7 +385,7 @@ export default async function EscenariosPage() {
             No solo mires la última jornada: juégala.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0A1422", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
+            <Link href="/registro" style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 700, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>
               Crear mi cuenta gratis
             </Link>
             <Link href="/grupos/mejores-terceros" style={{ display: "inline-block", border: `1px solid ${GOLD}`, color: GOLD, fontWeight: 600, fontSize: 15, padding: "12px 24px", borderRadius: 12, textDecoration: "none" }}>

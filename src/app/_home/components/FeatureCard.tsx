@@ -53,7 +53,7 @@ export function FeatureCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="feature-card relative p-6 rounded-2xl border border-white/5 bg-gradient-to-br from-[#0F1D32] to-[#0B1825] hover:border-[#C9A84C]/30 transition-all duration-500 group cursor-pointer overflow-hidden"
+      className="feature-card relative p-6 rounded-2xl border border-white/5 bg-gradient-to-br from-[#14110a] to-[#0a0906] hover:border-[#C9A84C]/30 transition-all duration-500 group cursor-pointer overflow-hidden"
       style={{ perspective: "1000px" }}
     >
       {/* Efecto shimmer dorado */}

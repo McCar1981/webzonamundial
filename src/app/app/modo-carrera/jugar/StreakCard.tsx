@@ -35,7 +35,7 @@ export default function StreakCard({
   const consolidated = status.claimable ? weekPos - 1 : weekPos;
 
   return (
-    <div style={{ padding: 20, borderRadius: 16, background: "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(15,29,50,0.4))", border: "1px solid rgba(201,168,76,0.22)" }}>
+    <div style={{ padding: 20, borderRadius: 16, background: "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(20,17,10,0.4))", border: "1px solid rgba(201,168,76,0.22)" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
         <h3 style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>
           Racha diaria

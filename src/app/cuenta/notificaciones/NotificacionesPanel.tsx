@@ -298,7 +298,7 @@ export default function NotificacionesPanel({
       className="min-h-screen px-5 py-12 sm:py-16"
       style={{
         background:
-          "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 60%), linear-gradient(180deg, #000000, #0a0906)",
       }}
     >
       <div className="max-w-3xl mx-auto">
@@ -339,7 +339,7 @@ export default function NotificacionesPanel({
           style={{
             borderColor: "rgba(201,168,76,0.25)",
             background:
-              "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+              "linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
           }}
         >
           <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -422,7 +422,7 @@ export default function NotificacionesPanel({
           className="rounded-2xl border overflow-hidden"
           style={{
             borderColor: "rgba(255,255,255,0.08)",
-            background: "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
+            background: "linear-gradient(180deg, rgba(20,17,10,0.7), rgba(10,9,6,0.4))",
           }}
         >
           {/* Header de columnas */}

@@ -100,7 +100,7 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
 
       {/* Prediction */}
       {a.prediction_text ? (
-        <div className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-5 mb-4">
+        <div className="rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-5 mb-4">
           <div className="text-[10px] font-bold uppercase tracking-widest text-[#C9A84C] mb-2">
             Veredicto
           </div>
@@ -136,7 +136,7 @@ function BulletList({
   return (
     <div
       className="rounded-xl border p-5"
-      style={{ borderColor: palette.border, background: "rgba(11,24,37,0.5)" }}
+      style={{ borderColor: palette.border, background: "rgba(10,9,6,0.5)" }}
     >
       <div
         className="text-[10px] font-bold uppercase tracking-widest mb-3"
@@ -163,7 +163,7 @@ function ProbBar({ label, value }: { label: string; value: number }) {
   return (
     <div className="flex items-center gap-3">
       <div className="text-xs text-[var(--bb-text-muted)] w-32 flex-shrink-0">{label}</div>
-      <div className="flex-1 h-7 rounded-md bg-[#0B1825] border border-[#1E293B]/50 overflow-hidden relative">
+      <div className="flex-1 h-7 rounded-md bg-[#0a0906] border border-[#241e12]/50 overflow-hidden relative">
         <div
           className="absolute inset-y-0 left-0 transition-all"
           style={{
@@ -173,7 +173,7 @@ function ProbBar({ label, value }: { label: string; value: number }) {
         />
         <span
           className="absolute inset-0 flex items-center justify-end px-3 text-xs font-bold"
-          style={{ color: pct > 50 ? "#030712" : "#cbd5e1" }}
+          style={{ color: pct > 50 ? "#000000" : "#e6decb" }}
         >
           {pct}%
         </span>

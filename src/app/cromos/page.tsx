@@ -8,12 +8,12 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 /* ─────────── Paleta ─────────── */
-const NAVY = "#0a1729";
-const NAVY_LIGHT = "#0F1D32";
+const NAVY = "#0a0906";
+const NAVY_LIGHT = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const TXT = "#eef2fb";
-const TXT_MUT = "#93a1bd";
+const TXT_MUT = "#a69a82";
 const LINE = "rgba(255,255,255,0.08)";
 
 /* ─────────── Iconos inline ─────────── */
@@ -63,7 +63,7 @@ function rarityBorder(rarity: string): string {
 function rarityText(rarity: string): string {
   if (rarity === "Legendario") return "#f59e0b";
   if (rarity === "Oro") return "#eab308";
-  return "#94a3b8";
+  return "#a69a82";
 }
 
 /* ─────────── StatPill ─────────── */
@@ -131,13 +131,13 @@ function CromoCard({ cromo, onClick }: { cromo: Cromo; onClick: (c: Cromo) => vo
           position: "relative",
           borderRadius: 12,
           overflow: "hidden",
-          background: "#060B14",
+          background: "#000000",
           aspectRatio: "3/4",
         }}>
           {!loaded && (
             <div style={{
               position: "absolute", inset: 0,
-              background: `linear-gradient(110deg, ${NAVY_LIGHT} 30%, #1a2744 50%, ${NAVY_LIGHT} 70%)`,
+              background: `linear-gradient(110deg, ${NAVY_LIGHT} 30%, #14110a 50%, ${NAVY_LIGHT} 70%)`,
               backgroundSize: "200% 100%",
               animation: "cromo-shimmer 1.4s ease infinite",
             }} />
@@ -159,7 +159,7 @@ function CromoCard({ cromo, onClick }: { cromo: Cromo; onClick: (c: Cromo) => vo
           <div style={{
             position: "absolute", bottom: 0, left: 0, right: 0,
             height: "35%",
-            background: "linear-gradient(to top, rgba(6,11,20,0.85) 0%, transparent 100%)",
+            background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)",
             pointerEvents: "none",
           }} />
           {/* Info superpuesta */}
@@ -224,7 +224,7 @@ function Lightbox({ cromo, onClose, onPrev, onNext, hasPrev, hasNext }: {
       onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 1000,
-        background: "rgba(6,11,20,0.92)",
+        background: "rgba(0,0,0,0.92)",
         backdropFilter: "blur(12px)",
         display: "flex", alignItems: "center", justifyContent: "center",
         padding: "20px",
@@ -298,7 +298,7 @@ function Lightbox({ cromo, onClose, onPrev, onNext, hasPrev, hasNext }: {
         }}>
           <div style={{
             borderRadius: 16, overflow: "hidden",
-            background: "#060B14",
+            background: "#000000",
           }}>
             <img
               src={cromo.path}
@@ -444,7 +444,7 @@ export default function CromosPage() {
         minHeight: "100vh",
         backgroundColor: NAVY,
         backgroundImage: `
-          radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%),
+          radial-gradient(1200px 600px at 50% -10%, #1b160d 0%, ${NAVY} 55%),
           radial-gradient(circle at 1px 1px, rgba(255,255,255,0.022) 1px, transparent 1.6px)
         `,
         backgroundSize: "100% 100%, 22px 22px",
@@ -555,7 +555,7 @@ export default function CromosPage() {
             <StatPill label={t.total} value={TOTAL_CROMOS} />
             <StatPill label={t.legendarios} value={counts.legendario} color="#f59e0b" />
             <StatPill label={t.oro} value={counts.oro} color="#eab308" />
-            <StatPill label={t.plata} value={counts.plata} color="#94a3b8" />
+            <StatPill label={t.plata} value={counts.plata} color="#a69a82" />
           </div>
 
           {/* ═══ FILTROS ═══ */}

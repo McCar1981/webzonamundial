@@ -76,9 +76,9 @@ function PhoneMockup() {
   return (
     <div
       className="relative w-[170px] rounded-[26px] p-2.5"
-      style={{ background: "linear-gradient(160deg,#1b2a40,#0a1220)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)" }}
+      style={{ background: "linear-gradient(160deg,#14110a,#000000)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)" }}
     >
-      <div className="rounded-[20px] overflow-hidden" style={{ background: "#0b1622", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="rounded-[20px] overflow-hidden" style={{ background: "#0a0906", border: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="px-3 pt-3 pb-2 flex items-center justify-between" style={{ background: "rgba(201,168,76,0.08)" }}>
           <span className="text-[9px] font-black uppercase tracking-wider" style={{ color: GOLD }}>Peña · Bar Marcelo</span>
           <Beer size={12} color={GOLD} />
@@ -92,8 +92,8 @@ function PhoneMockup() {
           </div>
           <div className="mt-3 flex gap-1.5">
             <div className="flex-1 h-7 rounded-lg grid place-items-center text-[10px] font-black" style={{ background: GOLD_GRAD, color: "#1A1208" }}>Local</div>
-            <div className="flex-1 h-7 rounded-lg grid place-items-center text-[10px] font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "#cbd5e1" }}>Empate</div>
-            <div className="flex-1 h-7 rounded-lg grid place-items-center text-[10px] font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "#cbd5e1" }}>Visita</div>
+            <div className="flex-1 h-7 rounded-lg grid place-items-center text-[10px] font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "#e6decb" }}>Empate</div>
+            <div className="flex-1 h-7 rounded-lg grid place-items-center text-[10px] font-bold" style={{ background: "rgba(255,255,255,0.06)", color: "#e6decb" }}>Visita</div>
           </div>
           <div className="mt-3 flex items-center gap-1.5 text-[8.5px]" style={{ color: GOLD }}>
             <Trophy size={10} /> Suma puntos para la peña
@@ -116,7 +116,7 @@ function TvMockup() {
     <div className="w-full max-w-[300px]">
       <div
         className="rounded-2xl p-3.5"
-        style={{ background: "linear-gradient(160deg,#0e1c2e,#091320)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)" }}
+        style={{ background: "linear-gradient(160deg,#0a0906,#000000)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)" }}
       >
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider" style={{ color: GOLD }}>
@@ -131,7 +131,7 @@ function TvMockup() {
               className="flex items-center gap-2.5 rounded-lg px-2.5 py-1.5"
               style={{ background: i === 0 ? "rgba(201,168,76,0.16)" : "rgba(255,255,255,0.04)" }}
             >
-              <span className="w-4 text-[11px] font-black" style={{ color: i === 0 ? GOLD : "#94a3b8" }}>{r.p}</span>
+              <span className="w-4 text-[11px] font-black" style={{ color: i === 0 ? GOLD : "#a69a82" }}>{r.p}</span>
               <span className="flex-1 text-[11px] font-bold text-white">{r.n}</span>
               <span className="text-[11px] font-black" style={{ color: GOLD }}>{r.pts}</span>
             </div>
@@ -174,7 +174,7 @@ export default function BaresLandingPage() {
       className="min-h-screen text-zm-text overflow-hidden"
       style={{
         background:
-          "radial-gradient(ellipse 75% 45% at 50% -5%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #0A111E 0%, #0E1B2C 45%, #0B1622 100%)",
+          "radial-gradient(ellipse 75% 45% at 50% -5%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #000000 0%, #0a0906 45%, #0a0906 100%)",
       }}
     >
       <div className="max-w-6xl mx-auto px-5 py-14 sm:py-20">
@@ -245,7 +245,7 @@ export default function BaresLandingPage() {
                   className="w-full h-full"
                   style={{
                     background:
-                      "radial-gradient(120% 80% at 80% 10%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(150deg, #16273E 0%, #0E1B2C 55%, #0A1422 100%)",
+                      "radial-gradient(120% 80% at 80% 10%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(150deg, #1b160d 0%, #0a0906 55%, #0a0906 100%)",
                   }}
                 />
               </BarPhoto>
@@ -253,7 +253,7 @@ export default function BaresLandingPage() {
               {/* Overlay para legibilidad y unión con el fondo */}
               <div
                 className="absolute inset-0"
-                style={{ background: "linear-gradient(180deg, rgba(10,17,30,0) 35%, rgba(10,17,30,0.55) 100%)" }}
+                style={{ background: "linear-gradient(180deg, rgba(10,9,6,0) 35%, rgba(10,9,6,0.55) 100%)" }}
               />
 
               {/* Teléfono con predicción, flotando */}
@@ -264,7 +264,7 @@ export default function BaresLandingPage() {
               {/* Chip QR */}
               <div
                 className="absolute right-4 top-4 rounded-2xl p-3 flex flex-col items-center backdrop-blur-sm"
-                style={{ background: "rgba(12,22,38,0.72)", border: "1px solid rgba(201,168,76,0.3)", boxShadow: "0 18px 40px -18px rgba(0,0,0,0.8)" }}
+                style={{ background: "rgba(10,9,6,0.72)", border: "1px solid rgba(201,168,76,0.3)", boxShadow: "0 18px 40px -18px rgba(0,0,0,0.8)" }}
               >
                 <BarQr size={76} />
                 <span className="mt-2 inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider" style={{ color: GOLD }}>
@@ -293,7 +293,7 @@ export default function BaresLandingPage() {
                 className="group relative rounded-3xl border p-7 overflow-hidden transition-transform hover:-translate-y-1.5"
                 style={{
                   borderColor: "rgba(255,255,255,0.07)",
-                  background: "linear-gradient(165deg, rgba(30,46,71,0.55) 0%, rgba(15,27,44,0.45) 100%)",
+                  background: "linear-gradient(165deg, rgba(27,22,13,0.55) 0%, rgba(20,17,10,0.45) 100%)",
                   boxShadow: "0 24px 50px -34px rgba(0,0,0,0.7)",
                 }}
               >
@@ -325,7 +325,7 @@ export default function BaresLandingPage() {
         {/* ── BLOQUE VISUAL: tu bar, tu ranking, tus premios ── */}
         <section
           className="mt-24 rounded-[32px] border overflow-hidden"
-          style={{ borderColor: "rgba(201,168,76,0.22)", background: "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(11,24,37,0.5) 55%)" }}
+          style={{ borderColor: "rgba(201,168,76,0.22)", background: "linear-gradient(135deg, rgba(201,168,76,0.10), rgba(10,9,6,0.5) 55%)" }}
         >
           <div className="grid lg:grid-cols-2 gap-10 items-center p-8 sm:p-12">
             <div className="text-center lg:text-left">
@@ -338,7 +338,7 @@ export default function BaresLandingPage() {
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {WINS.map((w) => (
-                  <div key={w.title} className="rounded-2xl p-4 text-left" style={{ background: "linear-gradient(160deg, rgba(30,46,71,0.5), rgba(13,24,40,0.4))", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div key={w.title} className="rounded-2xl p-4 text-left" style={{ background: "linear-gradient(160deg, rgba(27,22,13,0.5), rgba(10,9,6,0.4))", border: "1px solid rgba(255,255,255,0.06)" }}>
                     <span className="flex items-center justify-center w-9 h-9 rounded-xl mb-2" style={{ background: "rgba(201,168,76,0.14)", color: GOLD }}>
                       <w.icon size={18} />
                     </span>
@@ -362,11 +362,11 @@ export default function BaresLandingPage() {
                     className="w-full h-full"
                     style={{
                       background:
-                        "radial-gradient(110% 90% at 20% 0%, rgba(201,168,76,0.14), transparent 55%), linear-gradient(150deg, #16273E, #0C1626)",
+                        "radial-gradient(110% 90% at 20% 0%, rgba(201,168,76,0.14), transparent 55%), linear-gradient(150deg, #1b160d, #0a0906)",
                     }}
                   />
                 </BarPhoto>
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,17,30,0) 30%, rgba(10,17,30,0.5) 100%)" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,9,6,0) 30%, rgba(10,9,6,0.5) 100%)" }} />
                 {/* Mockup de TV/ranking superpuesto */}
                 <div className="absolute inset-0 flex items-center justify-center p-5">
                   <TvMockup />
@@ -387,8 +387,8 @@ export default function BaresLandingPage() {
                 style={{
                   borderColor: f.big ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.06)",
                   background: f.big
-                    ? "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(13,24,40,0.45))"
-                    : "linear-gradient(160deg, rgba(30,46,71,0.5), rgba(13,24,40,0.35))",
+                    ? "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(10,9,6,0.45))"
+                    : "linear-gradient(160deg, rgba(27,22,13,0.5), rgba(10,9,6,0.35))",
                   boxShadow: "0 22px 46px -34px rgba(0,0,0,0.65)",
                 }}
               >
@@ -409,7 +409,7 @@ export default function BaresLandingPage() {
         <section id="gratis" className="mt-24 scroll-mt-24">
           <div
             className="relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-14"
-            style={{ borderColor: "rgba(201,168,76,0.3)", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(11,24,37,0.5) 55%)" }}
+            style={{ borderColor: "rgba(201,168,76,0.3)", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(10,9,6,0.5) 55%)" }}
           >
             <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-bold" style={{ color: GOLD }}>
               <Sparkles size={14} /> Sin pagos
@@ -448,13 +448,13 @@ export default function BaresLandingPage() {
               alt=""
               objectPosition="center"
             >
-              <div className="w-full h-full" style={{ background: "linear-gradient(180deg, #142536, #0B1622)" }} />
+              <div className="w-full h-full" style={{ background: "linear-gradient(180deg, #14110a, #0a0906)" }} />
             </BarPhoto>
           </div>
           {/* Overlay para que el botón y el texto sigan legibles */}
           <div
             className="absolute inset-0 -z-10"
-            style={{ background: "radial-gradient(ellipse 70% 90% at 50% 0%, rgba(201,168,76,0.20), transparent 60%), linear-gradient(180deg, rgba(10,17,30,0.82), rgba(11,22,37,0.92))" }}
+            style={{ background: "radial-gradient(ellipse 70% 90% at 50% 0%, rgba(201,168,76,0.20), transparent 60%), linear-gradient(180deg, rgba(10,9,6,0.82), rgba(10,9,6,0.92))" }}
           />
           <h2 className="text-3xl sm:text-4xl font-black leading-tight">
             Crea la porra de tu bar antes del primer partido

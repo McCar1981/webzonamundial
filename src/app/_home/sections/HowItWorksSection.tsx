@@ -29,7 +29,7 @@ const STEPS = [
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
         <rect x="1.5" y="5.5" width="21" height="13" rx="2.5" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.4" />
         <path d="M10 14.5v-5l5 2.5z" fill="currentColor" fillOpacity="0.7" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
-        <circle cx="18" cy="9" r="2" fill="#060B14" stroke="currentColor" strokeWidth="1" />
+        <circle cx="18" cy="9" r="2" fill="#000000" stroke="currentColor" strokeWidth="1" />
         <circle cx="18" cy="9" r="0.8" fill="#ff4444" />
       </svg>
     ),
@@ -71,7 +71,7 @@ export function HowItWorksSection({
 
           {steps.map((s, i) => (
             <div key={i} className="howitworks-card relative text-center">
-              <div className="mx-auto mb-6 relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-full border border-[#C9A84C]/20 bg-[#0B1825] shadow-[0_0_40px_rgba(201,168,76,0.08)] group hover:shadow-[0_0_60px_rgba(201,168,76,0.18)] hover:border-[#C9A84C]/40 transition-all duration-500">
+              <div className="mx-auto mb-6 relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-full border border-[#C9A84C]/20 bg-[#0a0906] shadow-[0_0_40px_rgba(201,168,76,0.08)] group hover:shadow-[0_0_60px_rgba(201,168,76,0.18)] hover:border-[#C9A84C]/40 transition-all duration-500">
                 <div className="text-[#C9A84C] group-hover:scale-110 transition-transform duration-300">
                   {STEPS[i].icon}
                 </div>

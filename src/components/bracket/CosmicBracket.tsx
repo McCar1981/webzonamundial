@@ -179,7 +179,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
                           cx={0}
                           cy={0}
                           r={9}
-                          fill={status === "winner" ? "#FDE68A" : status === "eliminated" ? "#1A2434" : "#0F1F30"}
+                          fill={status === "winner" ? "#FDE68A" : status === "eliminated" ? "#1b160d" : "#14110a"}
                           stroke={status === "winner" ? "#FDE68A" : "rgba(201,168,76,0.45)"}
                           strokeWidth={status === "winner" ? 1.5 : 1}
                         />
@@ -277,7 +277,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
                         onMouseLeave={hideTooltip}
                       />
                     ) : (
-                      <circle cx={-7} cy={0} r={6} fill="#0F1F30" stroke="rgba(201,168,76,0.20)" strokeDasharray="2 2" />
+                      <circle cx={-7} cy={0} r={6} fill="#14110a" stroke="rgba(201,168,76,0.20)" strokeDasharray="2 2" />
                     )}
                     {/* Equipo B (derecha) */}
                     {teamB ? (
@@ -294,7 +294,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
                         onMouseLeave={hideTooltip}
                       />
                     ) : (
-                      <circle cx={7} cy={0} r={6} fill="#0F1F30" stroke="rgba(201,168,76,0.20)" strokeDasharray="2 2" />
+                      <circle cx={7} cy={0} r={6} fill="#14110a" stroke="rgba(201,168,76,0.20)" strokeDasharray="2 2" />
                     )}
                     {teamA && teamB && (
                       <line x1={-1} y1={-3} x2={1} y2={3} stroke="rgba(255,255,255,0.25)" strokeWidth={0.8} />
@@ -353,7 +353,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
               zIndex: 60,
               padding: "12px 14px",
               borderRadius: 12,
-              background: "rgba(11,24,37,0.95)",
+              background: "rgba(10,9,6,0.95)",
               border: "1px solid var(--bb-border)",
               backdropFilter: "blur(14px)",
               boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
@@ -365,16 +365,16 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
             }}
           >
             <div style={{ fontSize: 14, fontWeight: 800, marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ width: 24, height: 16, borderRadius: 3, overflow: "hidden", background: "#1A2434" }}>
+              <span style={{ width: 24, height: 16, borderRadius: 3, overflow: "hidden", background: "#1b160d" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://flagcdn.com/${tooltip.team.iso}.svg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </span>
               {tooltip.team.name}
             </div>
-            <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, color: "#94A3B8" }}>
+            <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, color: "#a69a82" }}>
               Confederación: <b style={{ color: "#fff" }}>{tooltip.team.confed}</b>
             </div>
-            <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, color: "#94A3B8" }}>
+            <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, color: "#a69a82" }}>
               Grupo: <b style={{ color: "#fff" }}>{tooltip.team.group}</b>
             </div>
           </div>

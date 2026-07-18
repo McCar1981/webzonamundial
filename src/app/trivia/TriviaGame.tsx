@@ -12,13 +12,13 @@ import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import { POWERUP_PACK } from "@/lib/powerups/catalog";
 
-const BG = "#060B14",
-  BG2 = "#0F1D32",
-  BG3 = "#0B1825",
+const BG = "#000000",
+  BG2 = "#14110a",
+  BG3 = "#0a0906",
   GOLD = "#c9a84c",
   GOLD2 = "#e8d48b",
-  MID = "#8a94b0",
-  DIM = "#94a3b8",
+  MID = "#a69a82",
+  DIM = "#a69a82",
   GREEN = "#22c55e",
   RED = "#ef4444";
 
@@ -520,7 +520,7 @@ export default function TriviaGame() {
         .zm-opt:hover:not(:disabled){border-color:${GOLD}88;transform:translateY(-2px)}
         .zm-result-bg{
           background-color:${BG};
-          background-image:linear-gradient(to bottom,rgba(5,11,20,.92),rgba(5,11,20,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.webp');
+          background-image:linear-gradient(to bottom,rgba(0,0,0,.92),rgba(0,0,0,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.webp');
           background-size:cover;background-position:center top;background-repeat:no-repeat;
         }
         @media(prefers-reduced-motion:reduce){
@@ -533,7 +533,7 @@ export default function TriviaGame() {
         }
         @media(min-width:1024px){
           .zm-result-bg{
-            background-image:linear-gradient(to bottom,rgba(5,11,20,.9),rgba(5,11,20,.98)),url('/assets/trivia/results/trivia-result-bg-desktop.webp');
+            background-image:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,.98)),url('/assets/trivia/results/trivia-result-bg-desktop.webp');
             background-attachment:fixed;
           }
         }
@@ -1062,19 +1062,19 @@ function Result({
       <style>{`
         .zm-r{max-width:760px;margin:0 auto;animation:pop .3s ease}
         .zm-r-eyebrow{text-align:center;color:#E6C85C;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px}
-        .zm-r-card{position:relative;background-image:linear-gradient(180deg,rgba(7,20,38,.35),rgba(7,20,38,.55)),url('${R}/result-main-panel.webp');background-size:100% 100%;background-repeat:no-repeat;padding:42px 22px 30px;text-align:center;margin-bottom:16px}
+        .zm-r-card{position:relative;background-image:linear-gradient(180deg,rgba(10,9,6,.35),rgba(10,9,6,.55)),url('${R}/result-main-panel.webp');background-size:100% 100%;background-repeat:no-repeat;padding:42px 22px 30px;text-align:center;margin-bottom:16px}
         .zm-r-medal{width:88px;height:88px;margin:0 auto 8px;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
         .zm-r-score{font-weight:900;line-height:.95;font-size:clamp(46px,13vw,66px);color:#F4F6FA;text-shadow:0 2px 18px rgba(0,0,0,.4)}
         .zm-r-score b{color:#E6C85C}
         .zm-r-score em{display:block;font-style:normal;font-size:.26em;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#8E9AB3;margin-top:8px}
         .zm-r-summary{color:#8E9AB3;font-size:15px;font-weight:500;margin:12px 0 16px}
-        .zm-r-rank{display:inline-block;padding:9px 20px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.4px;color:#050B14;background:linear-gradient(135deg,#D8B84F,#E6C85C);box-shadow:0 6px 18px rgba(216,184,79,.28)}
+        .zm-r-rank{display:inline-block;padding:9px 20px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.4px;color:#000000;background:linear-gradient(135deg,#D8B84F,#E6C85C);box-shadow:0 6px 18px rgba(216,184,79,.28)}
         .zm-r-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-        .zm-r-stat{background:linear-gradient(180deg,#0B1A2D,#071426);border:1px solid rgba(47,128,255,.28);border-radius:14px;padding:14px 6px;text-align:center}
+        .zm-r-stat{background:linear-gradient(180deg,#0a0906,#000000);border:1px solid rgba(47,128,255,.28);border-radius:14px;padding:14px 6px;text-align:center}
         .zm-r-stat img{width:24px;height:24px;margin-bottom:6px}
         .zm-r-stat strong{display:block;font-size:clamp(18px,5.4vw,22px);font-weight:800;color:#F4F6FA}
         .zm-r-stat span{display:block;margin-top:2px;font-size:11px;color:#8E9AB3;font-weight:500}
-        .zm-r-rewards{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;background:linear-gradient(180deg,#0B1A2D,#071426);border:1px solid rgba(47,128,255,.22);border-radius:14px;padding:12px 6px;margin-bottom:18px}
+        .zm-r-rewards{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;background:linear-gradient(180deg,#0a0906,#000000);border:1px solid rgba(47,128,255,.22);border-radius:14px;padding:12px 6px;margin-bottom:18px}
         .zm-r-reward{display:flex;align-items:center;gap:7px;padding:4px 14px;font-weight:800;color:#F4F6FA;font-size:14px}
         .zm-r-reward img{width:20px;height:20px}
         .zm-r-reward+.zm-r-reward{border-left:1px solid rgba(255,255,255,.08)}
@@ -1085,11 +1085,11 @@ function Result({
         .zm-r-btn:hover{filter:brightness(1.07)}
         .zm-r-btn:active{transform:translateY(1px)}
         .zm-r-btn:focus-visible{outline:3px solid #2F80FF;outline-offset:2px}
-        .zm-r-primary{background:linear-gradient(135deg,#D8B84F,#E6C85C);color:#050B14}
-        .zm-r-secondary{background:#0B1A2D;color:#F4F6FA;border:1px solid rgba(47,128,255,.55)}
+        .zm-r-primary{background:linear-gradient(135deg,#D8B84F,#E6C85C);color:#000000}
+        .zm-r-secondary{background:#0a0906;color:#F4F6FA;border:1px solid rgba(47,128,255,.55)}
         .zm-r-tertiary{background:transparent;color:#8E9AB3;border:1px solid rgba(255,255,255,.1)}
         .zm-r-chev{margin-left:auto;font-size:20px;line-height:1;font-weight:800}
-        .zm-r-note{color:#6a7a9a;font-size:12px;text-align:center;margin:14px auto 0;max-width:480px}
+        .zm-r-note{color:#6e6552;font-size:12px;text-align:center;margin:14px auto 0;max-width:480px}
         @media(max-width:359px){.zm-r-reward{padding:4px 9px;font-size:13px}}
       `}</style>
 
@@ -1209,8 +1209,8 @@ function ReviveOverlay({ lostStreak, credits, busy, waiting, err, onBuy, onDecli
         ? `💛 Usar Salvarracha · te quedan ${credits}`
         : `💛 Revivir con ${POWERUP_PACK.emoji} Pack ×3 · ${POWERUP_PACK.prices.eur.display}`;
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(6,11,20,0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
-      <div style={{ background: "#0F1D32", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "28px 22px", maxWidth: 400, width: "100%", textAlign: "center", animation: "pop .18s ease-out" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
+      <div style={{ background: "#14110a", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "28px 22px", maxWidth: 400, width: "100%", textAlign: "center", animation: "pop .18s ease-out" }}>
         <div style={{ fontSize: 44, lineHeight: 1 }}>💀</div>
         <h3 style={{ margin: "10px 0 6px", fontSize: 20, fontWeight: 900, color: "#fff" }}>¡Has caído!</h3>
         <p style={{ margin: "0 0 16px", fontSize: 14, color: MID, lineHeight: 1.55 }}>
@@ -1231,7 +1231,7 @@ function ReviveOverlay({ lostStreak, credits, busy, waiting, err, onBuy, onDecli
             style={{
               width: "100%", padding: "13px 16px", borderRadius: 12, border: "none",
               cursor: busy || credits === null ? "default" : "pointer",
-              background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0B1220",
+              background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0a0906",
               fontWeight: 900, fontSize: 15, fontFamily: "inherit",
               opacity: busy || credits === null ? 0.75 : 1,
             }}
@@ -1253,7 +1253,7 @@ function ReviveOverlay({ lostStreak, credits, busy, waiting, err, onBuy, onDecli
         >
           Terminar partida
         </button>
-        <p style={{ margin: "10px 0 0", fontSize: 11, color: "#64748B", lineHeight: 1.45 }}>
+        <p style={{ margin: "10px 0 0", fontSize: 11, color: "#8b8168", lineHeight: 1.45 }}>
           {hasCredits
             ? "Un revive por partida. Se aplica al instante con uno de tus usos."
             : `Un revive por partida. El pack trae 3 usos: gastas 1 aquí y te quedan 2 para cualquier comodín.`}

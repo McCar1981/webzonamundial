@@ -273,7 +273,7 @@ export default function CareerGame() {
           zIndex: 0,
           pointerEvents: "none",
           backgroundImage:
-            "linear-gradient(rgba(6,11,20,0.84), rgba(6,11,20,0.93)), url('/img/modo-carrera/hub-bg.webp')",
+            "linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.93)), url('/img/modo-carrera/hub-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}

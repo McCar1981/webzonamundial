@@ -56,7 +56,7 @@ export default function NotablesPage() {
           {sels.map((s) => (
             <article
               key={s.slug}
-              className="p-5 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-5 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 mb-3 flex-wrap">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -101,7 +101,7 @@ export default function NotablesPage() {
                   {s.estrellasIconicas.map((j) => (
                     <span
                       key={j}
-                      className="px-2 py-0.5 rounded text-[11px] text-gray-300 bg-[#0B1825] border border-[#1E293B]"
+                      className="px-2 py-0.5 rounded text-[11px] text-gray-300 bg-[#0a0906] border border-[#241e12]"
                     >
                       {j}
                     </span>

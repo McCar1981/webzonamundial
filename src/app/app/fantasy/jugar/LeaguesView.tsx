@@ -90,7 +90,7 @@ function GuestPreview({ team }: { team: FantasyTeamState }) {
         <span style={{ fontSize: 13, fontWeight: 700, color: GOLD2, flex: 1, minWidth: 200 }}>
           Crea tu liga privada e invita a tus amigos con un código — unirse es gratis. Inicia sesión para competir de verdad.
         </span>
-        <Link href={LOGIN_HREF} style={{ padding: "8px 16px", borderRadius: 9, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 13, textDecoration: "none" }}>Iniciar sesión</Link>
+        <Link href={LOGIN_HREF} style={{ padding: "8px 16px", borderRadius: 9, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 13, textDecoration: "none" }}>Iniciar sesión</Link>
       </div>
 
       {/* Flujo visible de crear/unirse — aquí sólo redirige al login */}
@@ -98,7 +98,7 @@ function GuestPreview({ team }: { team: FantasyTeamState }) {
         <div>
           <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconPlus />Crear liga privada<ProBadge size={9} /></div>
           <input placeholder="Nombre de la liga" style={{ ...inputStyle, width: "100%", marginBottom: 8 }} />
-          <Link href={LOGIN_HREF} style={{ display: "block", textAlign: "center", textDecoration: "none", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 13 }}>Crear y generar código</Link>
+          <Link href={LOGIN_HREF} style={{ display: "block", textAlign: "center", textDecoration: "none", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 13 }}>Crear y generar código</Link>
         </div>
         <div>
           <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconKey />Unirse con código</div>
@@ -257,7 +257,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           <div>
             <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconPlus />Crear liga privada{!isPro && <ProBadge size={9} />}</div>
             <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Nombre de la liga" style={{ ...inputStyle, width: "100%", marginBottom: 8 }} />
-            <button onClick={create} disabled={busy} style={{ width: "100%", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 13, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>{busy ? "Creando…" : "Crear y generar código"}</button>
+            <button onClick={create} disabled={busy} style={{ width: "100%", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 13, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>{busy ? "Creando…" : "Crear y generar código"}</button>
           </div>
           <div>
             <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconKey />Unirse con código</div>
@@ -276,13 +276,13 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           {renaming && leagueOwner ? (
             <>
               <input value={renameVal} onChange={(e) => setRenameVal(e.target.value)} placeholder="Nuevo nombre" style={{ ...inputStyle, width: 180 }} />
-              <button onClick={() => rename(activeLeague.id)} style={{ padding: "5px 10px", borderRadius: 8, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 12, cursor: "pointer" }}>Guardar</button>
+              <button onClick={() => rename(activeLeague.id)} style={{ padding: "5px 10px", borderRadius: 8, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 12, cursor: "pointer" }}>Guardar</button>
               <button onClick={() => setRenaming(false)} style={{ padding: "5px 10px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: BG2, color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Cancelar</button>
             </>
           ) : (
             <>
               <span style={{ fontSize: 13, fontWeight: 800 }}>{activeLeague.name}</span>
-              {leagueOwner && <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 800, color: "#060B14", background: GOLD2, borderRadius: 6, padding: "2px 7px" }}><IconCrown size={12} color="#060B14" />Dueño</span>}
+              {leagueOwner && <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 800, color: "#000000", background: GOLD2, borderRadius: 6, padding: "2px 7px" }}><IconCrown size={12} color="#000000" />Dueño</span>}
               {leagueOwner && <button onClick={() => { setRenaming(true); setRenameVal(activeLeague.name); }} style={{ padding: "5px 10px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: BG2, color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Renombrar</button>}
             </>
           )}

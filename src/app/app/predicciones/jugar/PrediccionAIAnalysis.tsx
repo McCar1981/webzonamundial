@@ -24,8 +24,8 @@ import type {
 import { FUN_FACTS } from "@/lib/ia-coach/fun-facts";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 
-const BG2 = "#0F1D32", BG3 = "#0B1825";
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG2 = "#14110a", BG3 = "#0a0906";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 const GREEN = "#22c55e", PURPLE = "#a78bfa";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 
@@ -299,7 +299,7 @@ function AnalysisBody({ analysis, match, bridge, onApply }: {
 
       <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 14 }}>
         <ProbBar label={match.h} value={homeProb} highlight={winner === "home"} color={homeColor} />
-        <ProbBar label="Empate" value={drawProb} highlight={winner === "draw"} color="#94a3b8" />
+        <ProbBar label="Empate" value={drawProb} highlight={winner === "draw"} color="#a69a82" />
         <ProbBar label={match.a} value={awayProb} highlight={winner === "away"} color={awayColor} />
       </div>
 

@@ -18,9 +18,9 @@ function Defs({ id }: { id: string }) {
         <stop offset="100%" stopColor="#8B6A2E" />
       </linearGradient>
       <radialGradient id={`${id}-inner`} cx="50%" cy="30%" r="70%">
-        <stop offset="0%" stopColor="#1A3358" />
-        <stop offset="50%" stopColor="#0F2A44" />
-        <stop offset="100%" stopColor="#050B18" />
+        <stop offset="0%" stopColor="#1b160d" />
+        <stop offset="50%" stopColor="#14110a" />
+        <stop offset="100%" stopColor="#000000" />
       </radialGradient>
       <linearGradient id={`${id}-gloss`} x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.45" />
@@ -74,18 +74,18 @@ export function IconStatBall({ size = 84 }: IconProps) {
       <circle cx="50" cy="50" r="22" fill={`url(#${id}-icon)`} stroke="#8B6A2E" strokeWidth="0.8" />
       {/* Center pentagon - the instantly recognisable soccer signature */}
       <path d="M 50 36.5 L 60.5 44 L 56.5 56.5 L 43.5 56.5 L 39.5 44 Z"
-        fill="#0A1A2F" stroke="#8B6A2E" strokeWidth="0.5" />
+        fill="#0a0906" stroke="#8B6A2E" strokeWidth="0.5" />
       {/* Surrounding hexagons (dark) */}
       <path d="M 50 28 L 55 30.5 L 55 35.5 L 50 36.5 L 45 35.5 L 45 30.5 Z"
-        fill="#0A1A2F" opacity="0.9" />
+        fill="#0a0906" opacity="0.9" />
       <path d="M 68 40 L 72 43 L 70.5 48 L 65 47 L 61.5 44 L 63 40 Z"
-        fill="#0A1A2F" opacity="0.9" />
+        fill="#0a0906" opacity="0.9" />
       <path d="M 63 60 L 67 62 L 66 66 L 61 65 L 58 63 L 60 60 Z"
-        fill="#0A1A2F" opacity="0.9" />
+        fill="#0a0906" opacity="0.9" />
       <path d="M 37 60 L 40 63 L 39 65 L 33 66 L 32 62 L 37 60 Z"
-        fill="#0A1A2F" opacity="0.9" />
+        fill="#0a0906" opacity="0.9" />
       <path d="M 32 40 L 37 40 L 38.5 44 L 35 47 L 29.5 48 L 28 43 Z"
-        fill="#0A1A2F" opacity="0.9" />
+        fill="#0a0906" opacity="0.9" />
       {/* Seams connecting pentagon to hexagons */}
       <line x1="50" y1="36.5" x2="50" y2="34" stroke="#8B6A2E" strokeWidth="0.6" />
       <line x1="60.5" y1="44" x2="63" y2="43" stroke="#8B6A2E" strokeWidth="0.6" />
@@ -104,7 +104,7 @@ export function IconStatStadium({ size = 84 }: IconProps) {
   return (
     <Frame id={id} size={size}>
       {/* Ground/pitch ellipse */}
-      <ellipse cx="50" cy="64" rx="26" ry="4" fill="#0A1A2F" stroke={`url(#${id}-icon)`} strokeWidth="0.6" />
+      <ellipse cx="50" cy="64" rx="26" ry="4" fill="#0a0906" stroke={`url(#${id}-icon)`} strokeWidth="0.6" />
       {/* Pitch lines */}
       <ellipse cx="50" cy="64" rx="20" ry="2.5" fill="none" stroke={`url(#${id}-icon)`} strokeWidth="0.3" opacity="0.5" />
       <line x1="50" y1="62" x2="50" y2="66" stroke={`url(#${id}-icon)`} strokeWidth="0.3" opacity="0.5" />
@@ -143,13 +143,13 @@ export function IconStatWhistle({ size = 84 }: IconProps) {
         fill={`url(#${id}-icon)`} stroke="#8B6A2E" strokeWidth="0.7" />
       {/* Header band */}
       <rect x="28" y="32" width="44" height="10" rx="3"
-        fill="#0F2A44" />
-      <rect x="28" y="38" width="44" height="4" fill="#0F2A44" />
+        fill="#14110a" />
+      <rect x="28" y="38" width="44" height="4" fill="#14110a" />
       {/* Rings on top */}
       <rect x="36" y="26" width="3" height="10" rx="1.5" fill="#8B6A2E" />
       <rect x="61" y="26" width="3" height="10" rx="1.5" fill="#8B6A2E" />
       {/* Grid cells */}
-      <g stroke="#0F2A44" strokeWidth="0.3" opacity="0.4">
+      <g stroke="#14110a" strokeWidth="0.3" opacity="0.4">
         <line x1="28" y1="50" x2="72" y2="50" />
         <line x1="28" y1="58" x2="72" y2="58" />
         <line x1="28" y1="66" x2="72" y2="66" />
@@ -158,12 +158,12 @@ export function IconStatWhistle({ size = 84 }: IconProps) {
         <line x1="61" y1="42" x2="61" y2="74" />
       </g>
       {/* Little match-day dots */}
-      <circle cx="34" cy="54" r="1" fill="#0F2A44" opacity="0.6" />
-      <circle cx="45" cy="54" r="1" fill="#0F2A44" opacity="0.6" />
-      <circle cx="56" cy="62" r="1" fill="#0F2A44" opacity="0.6" />
-      <circle cx="67" cy="70" r="1" fill="#0F2A44" opacity="0.6" />
+      <circle cx="34" cy="54" r="1" fill="#14110a" opacity="0.6" />
+      <circle cx="45" cy="54" r="1" fill="#14110a" opacity="0.6" />
+      <circle cx="56" cy="62" r="1" fill="#14110a" opacity="0.6" />
+      <circle cx="67" cy="70" r="1" fill="#14110a" opacity="0.6" />
       {/* Highlight on one match with ball */}
-      <circle cx="45" cy="62" r="3" fill="#0F2A44" stroke={`url(#${id}-icon)`} strokeWidth="0.5" />
+      <circle cx="45" cy="62" r="3" fill="#14110a" stroke={`url(#${id}-icon)`} strokeWidth="0.5" />
       <circle cx="45" cy="62" r="1.5" fill="#FFF3B8" />
       {/* Sheen */}
       <path d="M 30 44 L 36 44" stroke="#FFF" strokeWidth="0.5" opacity="0.35" />
@@ -185,17 +185,17 @@ export function IconStatGroup({ size = 84 }: IconProps) {
           return (
             <g key={`${col}-${row}`}>
               <rect x={x} y={y} width="9" height="10" rx="1.5"
-                fill={highlight ? `url(#${id}-icon)` : "#0F2A44"}
+                fill={highlight ? `url(#${id}-icon)` : "#14110a"}
                 stroke="#D4A853"
                 strokeWidth={highlight ? "0.6" : "0.3"}
                 opacity={highlight ? 1 : 0.85}
               />
               {/* 3 dots inside each group card */}
-              <circle cx={x + 2.5} cy={y + 7} r="0.7" fill={highlight ? "#0F2A44" : "#D4A853"} />
-              <circle cx={x + 4.5} cy={y + 7} r="0.7" fill={highlight ? "#0F2A44" : "#D4A853"} />
-              <circle cx={x + 6.5} cy={y + 7} r="0.7" fill={highlight ? "#0F2A44" : "#D4A853"} />
+              <circle cx={x + 2.5} cy={y + 7} r="0.7" fill={highlight ? "#14110a" : "#D4A853"} />
+              <circle cx={x + 4.5} cy={y + 7} r="0.7" fill={highlight ? "#14110a" : "#D4A853"} />
+              <circle cx={x + 6.5} cy={y + 7} r="0.7" fill={highlight ? "#14110a" : "#D4A853"} />
               {/* Group letter at top */}
-              <rect x={x + 2} y={y + 2} width="5" height="1.5" fill={highlight ? "#0F2A44" : "#D4A853"} opacity="0.7" />
+              <rect x={x + 2} y={y + 2} width="5" height="1.5" fill={highlight ? "#14110a" : "#D4A853"} opacity="0.7" />
             </g>
           );
         })
@@ -212,9 +212,9 @@ export function IconStatFlag({ size = 84 }: IconProps) {
       {/* Globe */}
       <circle cx="50" cy="52" r="20" fill={`url(#${id}-icon)`} stroke="#8B6A2E" strokeWidth="0.6" />
       {/* Meridians */}
-      <ellipse cx="50" cy="52" rx="20" ry="8" fill="none" stroke="#0A1A2F" strokeWidth="0.5" opacity="0.7" />
-      <ellipse cx="50" cy="52" rx="10" ry="20" fill="none" stroke="#0A1A2F" strokeWidth="0.5" opacity="0.7" />
-      <line x1="30" y1="52" x2="70" y2="52" stroke="#0A1A2F" strokeWidth="0.4" opacity="0.6" />
+      <ellipse cx="50" cy="52" rx="20" ry="8" fill="none" stroke="#0a0906" strokeWidth="0.5" opacity="0.7" />
+      <ellipse cx="50" cy="52" rx="10" ry="20" fill="none" stroke="#0a0906" strokeWidth="0.5" opacity="0.7" />
+      <line x1="30" y1="52" x2="70" y2="52" stroke="#0a0906" strokeWidth="0.4" opacity="0.6" />
       {/* 3 pins for 3 host countries */}
       {[
         { x: 42, y: 46, c: "#EF4444" },
@@ -250,7 +250,7 @@ export function IconStatPuzzle({ size = 84 }: IconProps) {
         strokeWidth="0.6"
       />
       {/* Central icon inside hub (grid of dots = modules) */}
-      <g fill="#0A1A2F">
+      <g fill="#0a0906">
         <circle cx="45" cy="42" r="1.2" />
         <circle cx="50" cy="42" r="1.2" />
         <circle cx="55" cy="42" r="1.2" />
@@ -275,7 +275,7 @@ export function IconStatPuzzle({ size = 84 }: IconProps) {
             stroke={`url(#${id}-icon)`} strokeWidth="0.8" strokeDasharray="1 1.5" opacity="0.7" />
           <path
             d={`M ${s.x} ${s.y - 4} L ${s.x + 4} ${s.y - 2} L ${s.x + 4} ${s.y + 2} L ${s.x} ${s.y + 4} L ${s.x - 4} ${s.y + 2} L ${s.x - 4} ${s.y - 2} Z`}
-            fill="#0F2A44"
+            fill="#14110a"
             stroke={`url(#${id}-icon)`}
             strokeWidth="0.5"
           />
@@ -303,7 +303,7 @@ export function IconStepChoose({ size = 56 }: IconProps) {
       {/* Inner dark panel */}
       <path
         d="M 50 30 L 68 36 L 68 52 Q 68 62 50 70 Q 32 62 32 52 L 32 36 Z"
-        fill="#0F2A44"
+        fill="#14110a"
       />
       {/* Jersey silhouette */}
       <path
@@ -335,7 +335,7 @@ export function IconStepPlay({ size = 56 }: IconProps) {
       {/* Soccer ball landing on the bullseye */}
       <circle cx="50" cy="50" r="5" fill="#FDEFB8" stroke="#8B6A2E" strokeWidth="0.4" />
       <path d="M 50 47 L 52.8 49 L 51.7 52.3 L 48.3 52.3 L 47.2 49 Z"
-        fill="#0A1A2F" stroke="#8B6A2E" strokeWidth="0.25" />
+        fill="#0a0906" stroke="#8B6A2E" strokeWidth="0.25" />
     </Frame>
   );
 }
@@ -360,7 +360,7 @@ export function IconStepWin({ size = 56 }: IconProps) {
       {/* Star on cup */}
       <path
         d="M 50 38 L 52.5 44 L 59 44.5 L 54 49 L 55.5 55.5 L 50 52 L 44.5 55.5 L 46 49 L 41 44.5 L 47.5 44 Z"
-        fill="#0F2A44"
+        fill="#14110a"
         stroke="#FFF3B8"
         strokeWidth="0.5"
       />

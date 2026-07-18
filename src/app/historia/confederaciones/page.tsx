@@ -55,7 +55,7 @@ export default function ConfederacionesPage() {
           {confs.map((c) => (
             <article
               key={c.slug}
-              className="p-4 sm:p-5 rounded-2xl border bg-[#0F1D32]/60"
+              className="p-4 sm:p-5 rounded-2xl border bg-[#14110a]/60"
               style={{ borderColor: `${c.color}33` }}
             >
               <div
@@ -94,7 +94,7 @@ export default function ConfederacionesPage() {
             <article
               key={c.slug}
               id={c.slug}
-              className="rounded-2xl border bg-[#0F1D32]/60 overflow-hidden scroll-mt-24"
+              className="rounded-2xl border bg-[#14110a]/60 overflow-hidden scroll-mt-24"
               style={{ borderColor: `${c.color}33` }}
             >
               <div className="h-1.5" style={{ background: c.color }} />
@@ -183,7 +183,7 @@ function Stat({
   highlight?: boolean;
 }) {
   return (
-    <div className="p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32]/40 text-center">
+    <div className="p-3 rounded-lg border border-[#241e12] bg-[#14110a]/40 text-center">
       <div
         className="text-xl sm:text-2xl font-black tabular-nums"
         style={{ color: highlight ? GOLD : "#fff" }}

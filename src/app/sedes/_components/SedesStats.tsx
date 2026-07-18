@@ -47,11 +47,11 @@ export function SedesStats() {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-2xl border border-white/5 bg-[#0B1825] p-4 text-center transition hover:border-[#c9a84c]/20"
+          className="rounded-2xl border border-white/5 bg-[#0a0906] p-4 text-center transition hover:border-[#c9a84c]/20"
         >
           <div className="mb-1">{STAT_ICONS[item.icon]}</div>
           <p className="text-xl font-black text-[#c9a84c]">{item.value}</p>
-          <p className="text-xs text-[#6a7a9a]">{item.label}</p>
+          <p className="text-xs text-[#6e6552]">{item.label}</p>
         </div>
       ))}
     </div>

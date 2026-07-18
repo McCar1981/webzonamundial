@@ -74,7 +74,7 @@ export default async function CompararJugadoresPage({
             <select
               name="a"
               defaultValue={slugA}
-              className="w-full p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32] text-white text-sm"
+              className="w-full p-3 rounded-lg border border-[#241e12] bg-[#14110a] text-white text-sm"
             >
               {all.map((j) => (
                 <option key={j.slug} value={j.slug}>
@@ -90,7 +90,7 @@ export default async function CompararJugadoresPage({
             <select
               name="b"
               defaultValue={slugB}
-              className="w-full p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32] text-white text-sm"
+              className="w-full p-3 rounded-lg border border-[#241e12] bg-[#14110a] text-white text-sm"
             >
               {all.map((j) => (
                 <option key={j.slug} value={j.slug}>
@@ -101,7 +101,7 @@ export default async function CompararJugadoresPage({
           </div>
           <button
             type="submit"
-            className="p-3 rounded-lg font-bold text-sm text-[#060B14]"
+            className="p-3 rounded-lg font-bold text-sm text-[#000000]"
             style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }}
           >
             Comparar
@@ -161,7 +161,7 @@ function JugadorHero({ j }: { j: JugadorLegendario }) {
   return (
     <Link
       href={`/historia/jugadores/${j.slug}`}
-      className="block p-3 sm:p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 no-underline transition-all"
+      className="block p-3 sm:p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 no-underline transition-all"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -193,11 +193,11 @@ function CompareRow({
 }) {
   const cmp = compareNum(a, b);
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/40">
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 p-3 rounded-xl border border-[#241e12] bg-[#14110a]/40">
       <div
         className="text-right text-base sm:text-2xl font-black tabular-nums"
         style={{
-          color: cmp.aWins ? GOLD : highlight ? "#fff" : "#94A3B8",
+          color: cmp.aWins ? GOLD : highlight ? "#fff" : "#a69a82",
         }}
       >
         {decimals > 0 ? a.toFixed(decimals) : a}
@@ -208,7 +208,7 @@ function CompareRow({
       <div
         className="text-left text-base sm:text-2xl font-black tabular-nums"
         style={{
-          color: cmp.bWins ? GOLD : highlight ? "#fff" : "#94A3B8",
+          color: cmp.bWins ? GOLD : highlight ? "#fff" : "#a69a82",
         }}
       >
         {decimals > 0 ? b.toFixed(decimals) : b}
@@ -219,7 +219,7 @@ function CompareRow({
 
 function Quote({ j }: { j: JugadorLegendario }) {
   return (
-    <div className="p-4 rounded-xl border border-[#C9A84C]/20 bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#C9A84C]/20 bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">
         {j.nombre}
       </div>
@@ -230,7 +230,7 @@ function Quote({ j }: { j: JugadorLegendario }) {
 
 function TitulosBox({ j }: { j: JugadorLegendario }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">
         {j.nombre} · Mundiales
       </div>
@@ -242,9 +242,9 @@ function TitulosBox({ j }: { j: JugadorLegendario }) {
               key={y}
               className="px-2 py-0.5 rounded text-[11px] font-bold tabular-nums"
               style={{
-                background: ganado ? "rgba(201,168,76,0.2)" : "#0B1825",
-                color: ganado ? GOLD : "#94A3B8",
-                border: `1px solid ${ganado ? "rgba(201,168,76,0.5)" : "#1E293B"}`,
+                background: ganado ? "rgba(201,168,76,0.2)" : "#0a0906",
+                color: ganado ? GOLD : "#a69a82",
+                border: `1px solid ${ganado ? "rgba(201,168,76,0.5)" : "#241e12"}`,
               }}
             >
               {ganado && "★ "}
@@ -259,7 +259,7 @@ function TitulosBox({ j }: { j: JugadorLegendario }) {
 
 function LogrosBox({ j }: { j: JugadorLegendario }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-3">
         {j.nombre} · Logros mundialistas
       </div>

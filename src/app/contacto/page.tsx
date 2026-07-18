@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 const CONTACT_EMAIL = "gol@zonamundial.app";
 
@@ -49,7 +49,7 @@ export default function ContactoPage() {
         {/* Email destacado */}
         <div
           style={{
-            background: "#0B1825",
+            background: "#0a0906",
             border: "1px solid rgba(212,168,83,0.35)",
             borderRadius: 12,
             padding: 28,
@@ -198,7 +198,7 @@ function ContactBlock({ label, description }: { label: string; description: stri
     <div
       style={{
         padding: 14,
-        background: "#0B1825",
+        background: "#0a0906",
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: 8,
       }}

@@ -109,7 +109,7 @@ export default function BrowseSection({ labels }: BrowseSectionProps) {
                       ? ({
                           background: cf.color,
                           borderColor: cf.color,
-                          color: k === "CONMEBOL" || k === "OFC" ? "#0A0A14" : "#fff",
+                          color: k === "CONMEBOL" || k === "OFC" ? "#000000" : "#fff",
                         } as React.CSSProperties)
                       : undefined
                   }

@@ -82,7 +82,7 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
           <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-3">
             Base de entrenamiento · Mundial 2026
           </div>
-          <div className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-5">
+          <div className="rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-5">
             <div className="flex items-center gap-3 mb-2">
               <span className="text-xl">📍</span>
               <div className="text-base font-bold text-white">
@@ -116,7 +116,7 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
               <Link
                 key={i}
                 href={`/sedes/${slugifyStadium(v.stadium)}`}
-                className="group rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-4 hover:border-[#C9A84C]/30 transition-all"
+                className="group rounded-xl border border-[#241e12]/60 bg-[#0a0906]/50 p-4 hover:border-[#C9A84C]/30 transition-all"
               >
                 <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--bb-text-muted)] mb-1">
                   {v.country_iso?.toUpperCase() ?? ""}
@@ -172,7 +172,7 @@ function RoleCard({
       className="rounded-xl border p-4"
       style={{
         borderColor: accent ? "rgba(201,168,76,0.3)" : "rgba(255,255,255,0.06)",
-        background: accent ? "rgba(201,168,76,0.05)" : "rgba(11,24,37,0.5)",
+        background: accent ? "rgba(201,168,76,0.05)" : "rgba(10,9,6,0.5)",
       }}
     >
       <div className="flex items-start gap-3 mb-2">
@@ -187,8 +187,8 @@ function RoleCard({
               ? `url(${photoUrl}) center/cover no-repeat`
               : accent
               ? "linear-gradient(135deg, #C9A84C, #A8893D)"
-              : "linear-gradient(135deg, rgba(124,192,255,0.18), rgba(11,24,37,0.6))",
-            color: accent ? "#030712" : "#7CC0FF",
+              : "linear-gradient(135deg, rgba(124,192,255,0.18), rgba(10,9,6,0.6))",
+            color: accent ? "#000000" : "#7CC0FF",
             boxShadow: accent
               ? "0 0 16px rgba(201,168,76,0.25)"
               : "0 0 12px rgba(124,192,255,0.12)",

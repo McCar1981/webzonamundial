@@ -54,7 +54,7 @@ export default function PolemicasPage() {
           {polemicas.map((p, i) => (
             <article
               key={`${p.anio}-${i}`}
-              className="p-5 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-5 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 flex-wrap mb-2">
                 <Link
@@ -73,13 +73,13 @@ export default function PolemicasPage() {
               <p className="italic text-sm text-gray-300 mb-3">«{p.subtitulo}»</p>
               <p className="text-sm text-gray-200 leading-relaxed mb-4">{p.descripcion}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-                <div className="p-3 rounded-lg bg-[#0B1825] border-l-2 border-[#DC2626]">
+                <div className="p-3 rounded-lg bg-[#0a0906] border-l-2 border-[#DC2626]">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#DC2626] mb-1">
                     Consecuencia
                   </div>
                   <p className="text-xs text-gray-200 leading-relaxed">{p.consecuencia}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-[#0B1825] border-l-2 border-[#C9A84C]">
+                <div className="p-3 rounded-lg bg-[#0a0906] border-l-2 border-[#C9A84C]">
                   <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: GOLD }}>
                     Vigencia
                   </div>

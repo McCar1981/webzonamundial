@@ -54,7 +54,7 @@ export default function TestToolbar({ publicUrl, debug, logoTest }: { publicUrl:
         <Bug size={16} /> {debug ? "Debug ON" : "Debug OFF"}
       </button>
 
-      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#0F1D32", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "6px 10px", boxShadow: "0 4px 16px rgba(0,0,0,0.25)" }}>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#14110a", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "6px 10px", boxShadow: "0 4px 16px rgba(0,0,0,0.25)" }}>
         <ImageIcon size={15} color="#E2E8F0" />
         {LOGO_TESTS.map((t) => {
           const active = (logoTest ?? "") === t.value;
@@ -66,7 +66,7 @@ export default function TestToolbar({ publicUrl, debug, logoTest }: { publicUrl:
               style={{
                 cursor: "pointer", border: "none", borderRadius: 7, fontWeight: 800, fontSize: 12.5, padding: "5px 9px",
                 background: active ? "linear-gradient(135deg, #C9A84C, #E8C76B)" : "transparent",
-                color: active ? "#1A1208" : "#94A3B8",
+                color: active ? "#1A1208" : "#a69a82",
               }}
             >
               {t.label}
@@ -88,7 +88,7 @@ function primary(): React.CSSProperties {
 function btn(): React.CSSProperties {
   return {
     display: "inline-flex", alignItems: "center", gap: 8, cursor: "pointer",
-    background: "#0F1D32", color: "#E2E8F0", border: "1px solid rgba(255,255,255,0.12)",
+    background: "#14110a", color: "#E2E8F0", border: "1px solid rgba(255,255,255,0.12)",
     borderRadius: 10, fontWeight: 800, fontSize: 14, padding: "10px 16px", textDecoration: "none",
     boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
   };

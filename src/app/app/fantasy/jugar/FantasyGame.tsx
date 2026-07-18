@@ -39,7 +39,7 @@ const FANTASY_BG =
   "conic-gradient(from 160deg at 82% -8%, rgba(255,245,210,0.20), transparent 22%)," + // reflector superior der.
   "radial-gradient(1000px 520px at 50% -6%, rgba(201,168,76,0.22), transparent 62%)," + // resplandor dorado del marcador
   "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
-  "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
+  "linear-gradient(180deg, #0a0906 0%, #0a0906 50%, #000000 100%)"; // base azul noche
 
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "logros" | "coach" | "guia";
 

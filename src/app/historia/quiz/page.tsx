@@ -49,7 +49,7 @@ export default function QuizPage() {
       </header>
 
       <section>
-        <div className="p-5 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/40">
+        <div className="p-5 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/40">
           <Quiz preguntas={preguntas} />
         </div>
       </section>

@@ -40,7 +40,7 @@ export default function EditorialMeta({ team }: { team: NationalTeam }) {
       style={{
         marginTop: 48,
         padding: "28px 28px 24px",
-        background: "rgba(11,24,37,0.5)",
+        background: "rgba(10,9,6,0.5)",
         border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: 12,
         fontSize: 14,
@@ -66,7 +66,7 @@ export default function EditorialMeta({ team }: { team: NationalTeam }) {
             background: `linear-gradient(135deg, ${GOLD}, #8B6914)`,
             display: "grid",
             placeItems: "center",
-            color: "#060B14",
+            color: "#000000",
             fontWeight: 800,
             fontSize: 16,
             letterSpacing: "-0.02em",

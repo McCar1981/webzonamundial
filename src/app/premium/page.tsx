@@ -8,13 +8,13 @@ import { StatCounter } from "@/components/StatCounter";
 import { SvgIcon } from "@/components/icons";
 import { FOUNDERS_PASS_PRICES } from "@/lib/stripe/pricing";
 
-const BG = "#060B14",
-  BG2 = "#0F1D32",
-  BG3 = "#0B1825",
+const BG = "#000000",
+  BG2 = "#14110a",
+  BG3 = "#0a0906",
   GOLD = "#c9a84c",
   GOLD2 = "#e8d48b",
-  MID = "#94a3b8",
-  DIM = "#6a7a9a";
+  MID = "#a69a82",
+  DIM = "#6e6552";
 
 /* ─── tiny check / cross icons ─── */
 const Check = ({ gold }: { gold?: boolean }) => (
@@ -81,7 +81,7 @@ export default function PremiumPage() {
           />
         </picture>
         {/* Dark overlay to ensure text readability */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(6,11,20,0.35)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(0,0,0,0.35)" }} />
         {/* Top gold line */}
         <div className="absolute top-0 left-0 w-full h-[2px]" style={{ background: `linear-gradient(90deg, transparent 5%, ${GOLD}, transparent 95%)` }} />
 
@@ -128,7 +128,7 @@ export default function PremiumPage() {
                 className="group relative flex items-center gap-3 px-5 sm:px-7 py-4 rounded-2xl border overflow-hidden transition-all hover:-translate-y-0.5"
                 style={{
                   borderColor: `${GOLD}30`,
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+                  background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
                 }}
               >
                 {/* Subtle top line */}
@@ -180,7 +180,7 @@ export default function PremiumPage() {
                 className="flex items-center gap-4 py-4 sm:py-5 px-5 sm:px-6 rounded-2xl border"
                 style={{
                   borderColor: `${GOLD}18`,
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.85), rgba(11,24,37,0.7))",
+                  background: "linear-gradient(135deg, rgba(20,17,10,0.85), rgba(10,9,6,0.7))",
                 }}
               >
                 <div
@@ -240,7 +240,7 @@ export default function PremiumPage() {
                 className="group relative p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                 style={{
                   borderColor: "rgba(255,255,255,0.06)",
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+                  background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = `${GOLD}40`;
@@ -294,7 +294,7 @@ export default function PremiumPage() {
                 className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl border transition-all hover:border-[#C9A84C]/30"
                 style={{
                   borderColor: "rgba(255,255,255,0.06)",
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+                  background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
                 }}
               >
                 <div
@@ -349,7 +349,7 @@ export default function PremiumPage() {
                   key={i}
                   className="grid grid-cols-[2fr_1fr_1fr] text-xs sm:text-sm items-center px-4 sm:px-6 py-3"
                   style={{
-                    background: i % 2 === 0 ? "rgba(15,23,42,0.5)" : "rgba(11,24,37,0.3)",
+                    background: i % 2 === 0 ? "rgba(20,17,10,0.5)" : "rgba(10,9,6,0.3)",
                     borderTop: "1px solid rgba(255,255,255,0.04)",
                   }}
                 >
@@ -405,7 +405,7 @@ export default function PremiumPage() {
                 className="relative rounded-3xl overflow-hidden border-2 transition-all hover:-translate-y-1"
                 style={{
                   borderColor: `${GOLD}40`,
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
+                  background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
                 }}
               >
                 {/* Top gradient line */}
@@ -466,7 +466,7 @@ export default function PremiumPage() {
               loading="lazy"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/90 to-[#060B14]/75" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/90 to-[#000000]/75" />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-8 sm:p-12 lg:p-16">
               <div className="flex-shrink-0">

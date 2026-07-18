@@ -10,7 +10,7 @@ export interface CosmeticDisplay {
   title: string | null;
 }
 
-const GOLD2 = "#e8d48b", DIM = "#6a7a9a";
+const GOLD2 = "#e8d48b", DIM = "#6e6552";
 
 /** Estilo del aro/marco para envolver el badge de posición (o avatar). */
 export function frameStyle(c: CosmeticDisplay | null | undefined): CSSProperties {

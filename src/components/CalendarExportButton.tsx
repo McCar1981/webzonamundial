@@ -129,7 +129,7 @@ function PanelButton({
     <button
       type="button"
       onClick={onClick}
-      className="group relative inline-flex items-center gap-3 rounded-2xl px-7 py-4 font-bold text-[#030712] transition-all hover:scale-[1.02]"
+      className="group relative inline-flex items-center gap-3 rounded-2xl px-7 py-4 font-bold text-[#000000] transition-all hover:scale-[1.02]"
       style={{
         background: "linear-gradient(135deg, #C9A84C, #E8D48B)",
         boxShadow:
@@ -202,7 +202,7 @@ function ExportModal({
       onClick={onClose}
       className="fixed inset-0 z-[1000] flex items-center justify-center p-4"
       style={{
-        background: "rgba(6,11,20,0.85)",
+        background: "rgba(0,0,0,0.85)",
         backdropFilter: "blur(8px)",
       }}
     >
@@ -211,7 +211,7 @@ function ExportModal({
         className="relative w-full max-w-md rounded-3xl border p-6 sm:p-8 max-h-[90vh] overflow-y-auto"
         style={{
           borderColor: "rgba(201,168,76,0.25)",
-          background: "linear-gradient(135deg, #0F1D32, #0B1825)",
+          background: "linear-gradient(135deg, #14110a, #0a0906)",
           boxShadow: "0 30px 80px -20px rgba(0,0,0,0.85)",
         }}
       >
@@ -219,7 +219,7 @@ function ExportModal({
           type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute top-4 right-4 w-9 h-9 rounded-lg flex items-center justify-center text-[#94a3b8] hover:text-white hover:bg-white/5 transition-all"
+          className="absolute top-4 right-4 w-9 h-9 rounded-lg flex items-center justify-center text-[#a69a82] hover:text-white hover:bg-white/5 transition-all"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden>
             <path d="M18 6 6 18M6 6l12 12" />
@@ -238,7 +238,7 @@ function ExportModal({
             </span>{" "}
             a tu calendario
           </h2>
-          <p className="text-sm text-[#94a3b8] leading-relaxed">
+          <p className="text-sm text-[#a69a82] leading-relaxed">
             Cada partido con recordatorios escalonados (24h / 2h / 15min antes),
             link al estadio, ficha de cada selección y hasta el himno en Spotify.
           </p>
@@ -279,7 +279,7 @@ function ExportModal({
             style={{
               borderLeft: "2px solid #C9A84C",
               background: "rgba(201,168,76,0.06)",
-              color: "#cbd5e1",
+              color: "#e6decb",
             }}
           >
             <strong className="text-white">Android · ¿No ves los partidos en tu calendario?</strong>
@@ -303,7 +303,7 @@ function ExportModal({
             <button
               type="button"
               onClick={copyUrl}
-              className="mt-2 w-full rounded-lg border border-[#1E293B] bg-[#0B1825] px-3 py-2 text-left font-mono text-[10px] text-[#cbd5e1] hover:border-[#C9A84C]/40 transition-colors break-all"
+              className="mt-2 w-full rounded-lg border border-[#241e12] bg-[#0a0906] px-3 py-2 text-left font-mono text-[10px] text-[#e6decb] hover:border-[#C9A84C]/40 transition-colors break-all"
             >
               {copied ? "✓ URL copiada" : httpsUrl}
             </button>
@@ -312,7 +312,7 @@ function ExportModal({
 
         {/* Detalles */}
         <details className="mt-4 group">
-          <summary className="text-xs text-[#94a3b8] hover:text-[#C9A84C] cursor-pointer list-none transition-colors">
+          <summary className="text-xs text-[#a69a82] hover:text-[#C9A84C] cursor-pointer list-none transition-colors">
             <span className="inline-flex items-center gap-1.5">
               <svg className="w-3 h-3 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
                 <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -320,7 +320,7 @@ function ExportModal({
               ¿Qué incluye este calendario?
             </span>
           </summary>
-          <ul className="mt-3 text-xs text-[#cbd5e1] space-y-1.5 pl-4">
+          <ul className="mt-3 text-xs text-[#e6decb] space-y-1.5 pl-4">
             <li>· Los 104 partidos del Mundial 2026</li>
             <li>· 3 recordatorios escalonados por partido</li>
             <li>· Link al estadio (abre Google Maps)</li>
@@ -336,7 +336,7 @@ function ExportModal({
           <button
             type="button"
             onClick={copyUrl}
-            className="mt-4 w-full text-[10px] text-[#94a3b8] hover:text-[#C9A84C] transition-colors text-center"
+            className="mt-4 w-full text-[10px] text-[#a69a82] hover:text-[#C9A84C] transition-colors text-center"
           >
             {copied ? "✓ URL del calendario copiada al portapapeles" : "Copiar URL del calendario"}
           </button>
@@ -373,7 +373,7 @@ function Option({
         borderColor: primary ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.08)",
         background: primary
           ? "rgba(201,168,76,0.08)"
-          : "rgba(11,24,37,0.5)",
+          : "rgba(10,9,6,0.5)",
       }}
     >
       <span
@@ -385,7 +385,7 @@ function Option({
       </span>
       <span className="flex-1 min-w-0">
         <span className="block text-sm font-bold text-white">{title}</span>
-        <span className="block text-[11px] text-[#94a3b8] mt-0.5">{desc}</span>
+        <span className="block text-[11px] text-[#a69a82] mt-0.5">{desc}</span>
       </span>
       {primary ? (
         <span
@@ -394,7 +394,7 @@ function Option({
           Tu equipo
         </span>
       ) : null}
-      <svg className="w-4 h-4 text-[#94a3b8] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <svg className="w-4 h-4 text-[#a69a82] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
     </a>

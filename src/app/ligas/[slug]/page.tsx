@@ -61,7 +61,7 @@ function timeFallback(iso: string): string {
 }
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 function TeamName({ name, logo, align }: { name: string; logo: string; align: "left" | "right" }) {
   return (
@@ -174,7 +174,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
   const featOpen = featured ? featured.status === "NS" || featured.status === "TBD" : false;
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #060B14, #0a0f1a)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
+    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <p className="zl-eyebrow">Zona de Ligas</p>
         <h1 className="zl-h1">{comp.name}</h1>
@@ -212,7 +212,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
               {(featPlayed ? ["Resumen con IA", "Estadísticas", "Alineaciones", "Línea de tiempo"] : ["Resumen con IA", "Predice y gana Fútcoins"]).map((chip) => (
-                <span key={chip} style={{ fontSize: 11, color: "#cbd5e1", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(201,168,76,0.24)", borderRadius: 99, padding: "4px 10px" }}>{chip}</span>
+                <span key={chip} style={{ fontSize: 11, color: "#e6decb", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(201,168,76,0.24)", borderRadius: 99, padding: "4px 10px" }}>{chip}</span>
               ))}
             </div>
             <div style={{ marginTop: 12, fontSize: 13, fontWeight: 600, color: GOLD }}>Ver partido <span className="zl-chev">&rsaquo;</span></div>

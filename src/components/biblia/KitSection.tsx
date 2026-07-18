@@ -35,7 +35,7 @@ export default function KitSection({ team }: { team: NationalTeam }) {
         action={
           <div
             className="inline-flex rounded-xl border border-[var(--bb-border-subtle)] p-1"
-            style={{ background: "rgba(11,24,37,0.6)" }}
+            style={{ background: "rgba(10,9,6,0.6)" }}
             role="tablist"
             aria-label="Variante de camiseta"
           >
@@ -60,8 +60,8 @@ export default function KitSection({ team }: { team: NationalTeam }) {
           style={{
             aspectRatio: "1 / 1",
             background: hasImage
-              ? `radial-gradient(ellipse at center, ${hex(current.primary_color, 0.18)} 0%, transparent 70%), #0B1825`
-              : "#0B1825",
+              ? `radial-gradient(ellipse at center, ${hex(current.primary_color, 0.18)} 0%, transparent 70%), #0a0906`
+              : "#0a0906",
             border: "1px solid var(--bb-border-subtle)",
           }}
         >
@@ -156,7 +156,7 @@ function ToggleBtn({
         background: active
           ? "linear-gradient(135deg, #C9A84C, #A8893D)"
           : "transparent",
-        color: active ? "#030712" : "var(--bb-text-soft)",
+        color: active ? "#000000" : "var(--bb-text-soft)",
       }}
     >
       {label}

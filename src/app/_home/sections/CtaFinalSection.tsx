@@ -23,7 +23,7 @@ export function CtaFinalSection({
             speed={0.3}
           />
           {/* Overlay oscuro para legibilidad */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/85 to-[#000000]/70" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#C9A84C]/10 via-transparent to-[#C9A84C]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-10 sm:p-16">

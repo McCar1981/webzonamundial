@@ -3,7 +3,7 @@
    ================================================================== */
 
 .page {
-  background: #060B14;
+  background: #000000;
   color: #fff;
   font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
   min-height: 100vh;
@@ -90,7 +90,7 @@
   background:
     radial-gradient(ellipse 80% 60% at 30% 50%, rgba(201, 168, 76, 0.12), transparent 60%),
     radial-gradient(ellipse 60% 60% at 80% 30%, rgba(91, 33, 182, 0.18), transparent 65%),
-    linear-gradient(180deg, #0F1D32 0%, #060B14 100%);
+    linear-gradient(180deg, #14110a 0%, #000000 100%);
   padding: clamp(48px, 6vw, 84px) clamp(16px, 3vw, 32px) clamp(36px, 4vw, 56px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -154,7 +154,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(6, 11, 20, 0.92);
+  background: rgba(0,0,0, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -191,8 +191,8 @@
   pointer-events: none;
   background: linear-gradient(
     to right,
-    rgba(6, 11, 20, 0),
-    rgba(6, 11, 20, 0.92)
+    rgba(0,0,0, 0),
+    rgba(0,0,0, 0.92)
   );
 }
 .catBtn {
@@ -287,7 +287,7 @@
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  background: #0F1D32;
+  background: #14110a;
   border: 1px solid rgba(255, 255, 255, 0.06);
   isolation: isolate;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.3s;
@@ -312,8 +312,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(6, 11, 20, 0) 30%, rgba(6, 11, 20, 0.6) 65%, rgba(6, 11, 20, 0.96) 100%),
-    linear-gradient(90deg, rgba(6, 11, 20, 0.4) 0%, transparent 50%);
+    linear-gradient(180deg, rgba(0,0,0, 0) 30%, rgba(0,0,0, 0.6) 65%, rgba(0,0,0, 0.96) 100%),
+    linear-gradient(90deg, rgba(0,0,0, 0.4) 0%, transparent 50%);
   z-index: 1;
 }
 .topBody {
@@ -340,7 +340,7 @@
   margin: 0;
   color: #fff;
   text-wrap: balance;
-  text-shadow: 0 4px 20px rgba(6, 11, 20, 0.7);
+  text-shadow: 0 4px 20px rgba(0,0,0, 0.7);
 }
 .topExcerpt {
   font-size: clamp(14px, 1.2vw, 16px);
@@ -380,7 +380,7 @@
   gap: 14px;
   padding: 12px;
   border-radius: 12px;
-  background: rgba(15, 29, 50, 0.5);
+  background: rgba(20,17,10, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.06);
   text-decoration: none;
   color: inherit;
@@ -389,7 +389,7 @@
 .secCard:hover {
   transform: translateX(3px);
   border-color: rgba(201, 168, 76, 0.3);
-  background: rgba(15, 29, 50, 0.85);
+  background: rgba(20,17,10, 0.85);
 }
 /* Sin imagen: el cuerpo ocupa toda la tarjeta en vez de colapsar en la
    columna de 110px reservada para la miniatura. */
@@ -534,7 +534,7 @@
 .sideBlock {
   padding: 22px;
   border-radius: 14px;
-  background: rgba(15, 29, 50, 0.6);
+  background: rgba(20,17,10, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 .sideBlock h3 {
@@ -628,7 +628,7 @@
   padding: 9px 16px;
   border-radius: 8px;
   background: linear-gradient(135deg, #f5d07a, #c9a84c);
-  color: #060B14;
+  color: #000000;
   font-weight: 800;
   font-size: 13px;
   text-decoration: none;
@@ -646,7 +646,7 @@
   padding: 7px 13px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(15, 29, 50, 0.5);
+  background: rgba(20,17,10, 0.5);
   font-size: 12px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
@@ -704,13 +704,13 @@
     /* sólo cubre la imagen para conservar legibilidad de su pie */
     bottom: auto;
     height: var(--zm-top-img-h, 0);
-    background: linear-gradient(180deg, rgba(6, 11, 20, 0) 60%, rgba(6, 11, 20, 0.85) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0, 0) 60%, rgba(0,0,0, 0.85) 100%);
   }
   .topBody {
     position: relative;
     inset: auto;
     padding: 18px 18px 22px;
-    background: linear-gradient(180deg, rgba(11, 24, 37, 0.95), rgba(6, 11, 20, 0.98));
+    background: linear-gradient(180deg, rgba(10,9,6, 0.95), rgba(0,0,0, 0.98));
     gap: 10px;
   }
   .topTitle {
@@ -808,7 +808,7 @@
 
 /* Active filters bar */
 .filterBar {
-  background: rgba(11, 24, 37, 0.6);
+  background: rgba(10,9,6, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 .filterBarInner {

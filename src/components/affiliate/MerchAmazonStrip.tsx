@@ -67,7 +67,7 @@ export default function MerchAmazonStrip({
 
   const cardBg =
     variant === "lobby"
-      ? "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(11,24,37,0.55))"
+      ? "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(10,9,6,0.55))"
       : "rgba(255,255,255,0.04)";
 
   return (
@@ -98,7 +98,7 @@ export default function MerchAmazonStrip({
             fontWeight: 800,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#93a1bd",
+            color: "#a69a82",
             flexShrink: 0,
           }}
         >
@@ -232,7 +232,7 @@ export default function MerchAmazonStrip({
           margin: "12px 2px 0",
           fontSize: 10,
           lineHeight: 1.4,
-          color: "#93a1bd",
+          color: "#a69a82",
         }}
       >
         {AMAZON_DISCLOSURE}

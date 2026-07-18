@@ -10,7 +10,7 @@
 
 import { useMemo, useState } from "react";
 
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", AMBER = "#e8a33d", RED = "#ef6a6a";
 
 type Badge = "primero" | "clasificado" | "decide" | "fuera";
 
@@ -68,7 +68,7 @@ export default function ConsultaSeleccion({ teams }: { teams: TeamView[] }) {
         onChange={(e) => setFlag(e.target.value)}
         style={{
           width: "100%", maxWidth: 360, fontFamily: "inherit", fontSize: 16, fontWeight: 600,
-          color: "#fff", background: "#0A1422", border: `1px solid ${GOLD}`, borderRadius: 12,
+          color: "#fff", background: "#0a0906", border: `1px solid ${GOLD}`, borderRadius: 12,
           padding: "12px 14px", appearance: "none", cursor: "pointer", touchAction: "manipulation",
         }}
       >

@@ -296,8 +296,8 @@ export default function BuscarPage() {
           Buscar en toda la Historia
         </h1>
         <p className="text-sm sm:text-base text-gray-400">
-          Filtra por tipo, escribe lo que recuerdes, presiona <kbd className="px-1.5 py-0.5 rounded bg-[#0F1D32] border border-[#1E293B] text-[10px]">Ctrl+K</kbd> o
-          <kbd className="px-1.5 py-0.5 rounded bg-[#0F1D32] border border-[#1E293B] text-[10px] ml-1">⌘K</kbd> desde cualquier lugar.
+          Filtra por tipo, escribe lo que recuerdes, presiona <kbd className="px-1.5 py-0.5 rounded bg-[#14110a] border border-[#241e12] text-[10px]">Ctrl+K</kbd> o
+          <kbd className="px-1.5 py-0.5 rounded bg-[#14110a] border border-[#241e12] text-[10px] ml-1">⌘K</kbd> desde cualquier lugar.
         </p>
       </header>
 

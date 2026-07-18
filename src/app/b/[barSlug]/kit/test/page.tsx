@@ -42,8 +42,8 @@ function simulatedLogo(kind: "horizontal" | "square"): string {
   const [w, h] = kind === "horizontal" ? [900, 240] : [420, 420];
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
     <rect width="${w}" height="${h}" rx="24" fill="#ffffff"/>
-    <rect x="14" y="14" width="${w - 28}" height="${h - 28}" rx="16" fill="none" stroke="#0F1D32" stroke-width="6"/>
-    <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="${kind === "horizontal" ? 110 : 150}" fill="#0F1D32">BAR</text>
+    <rect x="14" y="14" width="${w - 28}" height="${h - 28}" rx="16" fill="none" stroke="#14110a" stroke-width="6"/>
+    <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="${kind === "horizontal" ? 110 : 150}" fill="#14110a">BAR</text>
     <text x="50%" y="${kind === "horizontal" ? "82%" : "75%"}" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="${kind === "horizontal" ? 40 : 56}" fill="#C9A84C">${kind.toUpperCase()}</text>
   </svg>`;
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
@@ -69,7 +69,7 @@ export default async function KitTestPage({
   const qrTarget = `${origin}/r/${code}`;
   const shortUrl = qrTarget.replace(/^https?:\/\//, "");
   const qrDataUrl = await QRCode.toDataURL(qrTarget, {
-    width: 600, margin: 0, color: { dark: "#0A0A0A", light: "#FFFFFF" }, errorCorrectionLevel: "M",
+    width: 600, margin: 0, color: { dark: "#000000", light: "#FFFFFF" }, errorCorrectionLevel: "M",
   });
 
   const mainPrize = prizes.find((p) => p.prize_type === "principal") ?? prizes[0] ?? null;

@@ -19,8 +19,8 @@ import type {
 } from "@/lib/ia-coach/coach-types";
 
 // Paleta alineada con el resto del bracket (dorado ZonaMundial).
-const BG2 = "#12161D";
-const BG3 = "#1A2029";
+const BG2 = "#14110a";
+const BG3 = "#241e12";
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
 const MID = "#C7CEDA";
@@ -160,8 +160,8 @@ export default function BracketCoachPanel({
           onClick={analyze}
           disabled={loading || !ready}
           style={{
-            background: ready ? GOLD : "#3A3F49",
-            color: ready ? "#0C0F14" : DIM,
+            background: ready ? GOLD : "#2a2418",
+            color: ready ? "#000000" : DIM,
             border: "none",
             borderRadius: 9,
             padding: "9px 16px",

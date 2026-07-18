@@ -10,7 +10,7 @@ import type { UserFantasyPick, SquadPick } from "@/lib/ligas/fantasy-store";
 
 const SQUAD = 5;
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 const POS_ES: Record<string, string> = { GK: "POR", DEF: "DEF", MID: "MED", FWD: "DEL" };
 
 export default function FantasyPicker({
@@ -99,7 +99,7 @@ export default function FantasyPicker({
           <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 14 }}>
             <span style={{ width: 34, fontSize: 11, color: DIM }}>{POS_ES[p.pos] ?? p.pos}</span>
             <span style={{ flex: 1, color: "#fff" }}>{p.name}</span>
-            {cap === p.id ? <span style={{ fontSize: 11, fontWeight: 700, color: "#0A1422", background: GOLD, borderRadius: 6, padding: "2px 7px" }}>CAP x2</span> : null}
+            {cap === p.id ? <span style={{ fontSize: 11, fontWeight: 700, color: "#0a0906", background: GOLD, borderRadius: 6, padding: "2px 7px" }}>CAP x2</span> : null}
           </div>
         ))}
       </div>
@@ -111,7 +111,7 @@ export default function FantasyPicker({
   return (
     <div style={{ marginTop: 16 }}>
       {/* Barra de elegidos */}
-      <div style={{ position: "sticky", top: 0, zIndex: 2, padding: "12px 0", background: "linear-gradient(180deg, #060B14 70%, transparent)" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 2, padding: "12px 0", background: "linear-gradient(180deg, #000000 70%, transparent)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
           <span style={{ fontSize: 13, color: DIM }}>Elegidos: <b style={{ color: selected.length === SQUAD ? GOLD : "#fff" }}>{selected.length}/{SQUAD}</b> · toca la estrella para el capitán</span>
         </div>
@@ -127,7 +127,7 @@ export default function FantasyPicker({
         <button
           onClick={save}
           disabled={busy || selected.length !== SQUAD}
-          style={{ width: "100%", border: "none", cursor: selected.length === SQUAD && !busy ? "pointer" : "default", background: selected.length === SQUAD ? `linear-gradient(135deg, ${GOLD}, #e8d48b)` : "rgba(255,255,255,0.08)", color: selected.length === SQUAD ? "#0A1422" : DIM, fontWeight: 600, fontSize: 15, padding: "12px", borderRadius: 12 }}
+          style={{ width: "100%", border: "none", cursor: selected.length === SQUAD && !busy ? "pointer" : "default", background: selected.length === SQUAD ? `linear-gradient(135deg, ${GOLD}, #e8d48b)` : "rgba(255,255,255,0.08)", color: selected.length === SQUAD ? "#0a0906" : DIM, fontWeight: 600, fontSize: 15, padding: "12px", borderRadius: 12 }}
         >
           {busy ? "Guardando…" : selected.length === SQUAD ? "Guardar mi once" : `Elige ${SQUAD - selected.length} más`}
         </button>

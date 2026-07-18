@@ -109,7 +109,7 @@ export default function HomeInstallBanner() {
           alignItems: "center",
           gap: 16,
           flexWrap: "wrap",
-          background: "linear-gradient(180deg, #0F1F30, #0B1825)",
+          background: "linear-gradient(180deg, #14110a, #0a0906)",
           border: "1px solid rgba(201,168,76,0.35)",
           borderRadius: 16,
           padding: "14px 18px",
@@ -146,7 +146,7 @@ export default function HomeInstallBanner() {
           >
             Instala ZonaMundial en tu móvil
           </p>
-          <p style={{ margin: 0, fontSize: 12.5, color: "#94A3B8", lineHeight: 1.4 }}>
+          <p style={{ margin: 0, fontSize: 12.5, color: "#a69a82", lineHeight: 1.4 }}>
             Acceso directo desde la pantalla de inicio, sin tienda de apps.
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function HomeInstallBanner() {
               borderRadius: 999,
               background: "rgba(255,255,255,0.05)",
               border: "1px solid rgba(255,255,255,0.08)",
-              color: "#94A3B8",
+              color: "#a69a82",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
@@ -209,7 +209,7 @@ export default function HomeInstallBanner() {
             <p style={{ margin: "0 0 10px", color: "#FDE68A", fontWeight: 700, fontSize: 14 }}>
               En Safari, en 2 pasos:
             </p>
-            <ol style={{ margin: 0, paddingLeft: 20, color: "#94A3B8", fontSize: 14, lineHeight: 1.7 }}>
+            <ol style={{ margin: 0, paddingLeft: 20, color: "#a69a82", fontSize: 14, lineHeight: 1.7 }}>
               <li>
                 Toca el botón <strong style={{ color: "#fff" }}>Compartir</strong> (el cuadrado con la
                 flecha hacia arriba).

@@ -82,7 +82,7 @@ export default function RecordsPage() {
           {r.recordsAbsolutos.map((rec, i) => (
             <article
               key={i}
-              className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-2">
                 {rec.categoria}
@@ -114,19 +114,19 @@ export default function RecordsPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           Top goleadores históricos
         </h2>
-        <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+        <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
           {r.topGoleadoresAllTime.map((g, i) => (
             <div
               key={g.nombre}
-              className="grid items-center gap-3 px-3 sm:px-4 py-3 border-b border-[#0F172A] last:border-b-0"
+              className="grid items-center gap-3 px-3 sm:px-4 py-3 border-b border-[#14110a] last:border-b-0"
               style={{
                 gridTemplateColumns: "32px 28px 1fr auto auto",
-                background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
               }}
             >
               <span
                 className="text-xs sm:text-sm font-bold tabular-nums text-center"
-                style={{ color: i < 3 ? GOLD : "#64748B" }}
+                style={{ color: i < 3 ? GOLD : "#8b8168" }}
               >
                 {i + 1}
               </span>
@@ -166,18 +166,18 @@ export default function RecordsPage() {
           <h2 className="text-lg sm:text-xl font-bold text-white mb-4">
             Más partidos disputados
           </h2>
-          <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+          <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
             {r.masPartidosJugados.map((p, i) => (
               <div
                 key={p.nombre}
-                className="flex items-center gap-3 px-3 py-2.5 border-b border-[#0F172A] last:border-b-0"
+                className="flex items-center gap-3 px-3 py-2.5 border-b border-[#14110a] last:border-b-0"
                 style={{
-                  background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                  background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
                 }}
               >
                 <span
                   className="text-xs font-bold tabular-nums w-6 text-center"
-                  style={{ color: i < 3 ? GOLD : "#64748B" }}
+                  style={{ color: i < 3 ? GOLD : "#8b8168" }}
                 >
                   {i + 1}
                 </span>
@@ -206,13 +206,13 @@ export default function RecordsPage() {
           <h2 className="text-lg sm:text-xl font-bold text-white mb-4">
             Más Mundiales jugados
           </h2>
-          <div className="rounded-2xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+          <div className="rounded-2xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
             {r.masMundialesJugados.map((p, i) => (
               <div
                 key={p.nombre}
-                className="px-3 py-2.5 border-b border-[#0F172A] last:border-b-0"
+                className="px-3 py-2.5 border-b border-[#14110a] last:border-b-0"
                 style={{
-                  background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                  background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
                 }}
               >
                 <div className="flex items-center gap-3">
@@ -247,10 +247,10 @@ export default function RecordsPage() {
         <h2 className="text-xl sm:text-2xl font-bold text-white mb-5">
           Tabla histórica de selecciones
         </h2>
-        <div className="overflow-x-auto rounded-2xl border border-[#1E293B] bg-[#0F1D32]/40">
+        <div className="overflow-x-auto rounded-2xl border border-[#241e12] bg-[#14110a]/40">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-[10px] font-bold uppercase tracking-wider text-gray-500 border-b border-[#0F172A]">
+              <tr className="text-[10px] font-bold uppercase tracking-wider text-gray-500 border-b border-[#14110a]">
                 <th className="text-left px-3 py-3">#</th>
                 <th className="text-left px-3 py-3">Selección</th>
                 <th className="text-center px-3 py-3" title="Participaciones">
@@ -272,14 +272,14 @@ export default function RecordsPage() {
               {r.tablaHistoricaSelecciones.map((s, i) => (
                 <tr
                   key={s.iso3}
-                  className="border-b border-[#0F172A] last:border-b-0"
+                  className="border-b border-[#14110a] last:border-b-0"
                   style={{
-                    background: i % 2 === 0 ? "transparent" : "rgba(15,23,42,0.3)",
+                    background: i % 2 === 0 ? "transparent" : "rgba(20,17,10,0.3)",
                   }}
                 >
                   <td
                     className="px-3 py-2.5 font-bold tabular-nums text-xs"
-                    style={{ color: i < 3 ? GOLD : "#64748B" }}
+                    style={{ color: i < 3 ? GOLD : "#8b8168" }}
                   >
                     {i + 1}
                   </td>
@@ -329,7 +329,7 @@ export default function RecordsPage() {
           {r.campeonesComoJugadorYDT.map((c) => (
             <div
               key={c.nombre}
-              className="p-4 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80"
+              className="p-4 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80"
             >
               <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-2">
                 {c.seleccion}
@@ -363,7 +363,7 @@ export default function RecordsPage() {
           {r.dtMasMundiales.map((dt) => (
             <div
               key={dt.nombre}
-              className="p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline justify-between gap-3 mb-2">
                 <h3 className="text-base font-bold text-white">{dt.nombre}</h3>

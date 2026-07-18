@@ -70,10 +70,10 @@ export default function CampeonesClient() {
         <h2 className="text-lg sm:text-xl font-bold text-white mb-4">{cT.palmares}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
           {Object.entries(TITLES).map(([name, d]) => (
-            <div key={name} className="p-3 sm:p-4 rounded-xl border border-[#1E293B] text-center"
-              style={{ background: 'rgba(15,23,42,0.5)' }}>
+            <div key={name} className="p-3 sm:p-4 rounded-xl border border-[#241e12] text-center"
+              style={{ background: 'rgba(20,17,10,0.5)' }}>
               <img src={`https://flagcdn.com/w80/${d.flag}.png`}
-                className="w-10 h-7 sm:w-12 sm:h-8 rounded object-cover mx-auto border border-[#1E293B]"
+                className="w-10 h-7 sm:w-12 sm:h-8 rounded object-cover mx-auto border border-[#241e12]"
                 alt={name} />
               <div className="text-xl sm:text-2xl font-black text-[#C9A84C] mt-2 flex items-center justify-center gap-1">
                 <SvgIcon name="historia" size={20} className="sm:!w-6 sm:!h-6" />
@@ -87,7 +87,7 @@ export default function CampeonesClient() {
       </section>
 
       {/* Sponsor */}
-      <div className="w-full bg-[#0B1825] border border-[#1a2a3f] rounded-lg flex items-center justify-center mb-6 sm:mb-8 py-3"
+      <div className="w-full bg-[#0a0906] border border-[#1b160d] rounded-lg flex items-center justify-center mb-6 sm:mb-8 py-3"
         data-sponsor-slot="historia-campeones">
         <a href="#" target="_blank" rel="noopener noreferrer">
           <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..webp" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
@@ -100,9 +100,9 @@ export default function CampeonesClient() {
         <p className="text-sm text-gray-500 mb-4">{cT.tableSub}</p>
 
         {/* Desktop table */}
-        <div className="hidden sm:block rounded-xl border border-[#1E293B] overflow-hidden"
-          style={{ background: 'rgba(15,23,42,0.5)' }}>
-          <div className="grid gap-0 px-4 py-2.5 text-[10px] font-bold text-[#334155] uppercase tracking-wider border-b border-[#0F172A]"
+        <div className="hidden sm:block rounded-xl border border-[#241e12] overflow-hidden"
+          style={{ background: 'rgba(20,17,10,0.5)' }}>
+          <div className="grid gap-0 px-4 py-2.5 text-[10px] font-bold text-[#334155] uppercase tracking-wider border-b border-[#14110a]"
             style={{ gridTemplateColumns: '60px 1fr 1fr 1fr 100px 1fr' }}>
             <span>{cT.headers.year}</span>
             <span>{cT.headers.host}</span>
@@ -113,8 +113,8 @@ export default function CampeonesClient() {
           </div>
           {CHAMPIONS.map((c, i) => (
             <div key={c.year}
-              className="grid gap-0 items-center px-4 py-3 border-b border-[#0F172A] transition-colors hover:bg-[#0F172A]/50"
-              style={{ gridTemplateColumns: '60px 1fr 1fr 1fr 100px 1fr', background: i % 2 === 0 ? 'transparent' : 'rgba(15,23,42,0.3)' }}>
+              className="grid gap-0 items-center px-4 py-3 border-b border-[#14110a] transition-colors hover:bg-[#14110a]/50"
+              style={{ gridTemplateColumns: '60px 1fr 1fr 1fr 100px 1fr', background: i % 2 === 0 ? 'transparent' : 'rgba(20,17,10,0.3)' }}>
               <span className="text-sm font-black text-[#C9A84C]">{c.year}</span>
               <span className="flex items-center gap-2">
                 <img src={`https://flagcdn.com/w20/${c.hostFlag}.png`} className="w-5 h-3.5 rounded-[1px] object-cover" alt="" />
@@ -137,8 +137,8 @@ export default function CampeonesClient() {
         {/* Mobile cards */}
         <div className="sm:hidden space-y-2">
           {CHAMPIONS.map(c => (
-            <div key={c.year} className="p-3 rounded-xl border border-[#1E293B]"
-              style={{ background: 'rgba(15,23,42,0.5)' }}>
+            <div key={c.year} className="p-3 rounded-xl border border-[#241e12]"
+              style={{ background: 'rgba(20,17,10,0.5)' }}>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-lg font-black text-[#C9A84C]">{c.year}</span>
                 <span className="flex items-center gap-1.5 text-xs text-gray-500">
@@ -165,12 +165,12 @@ export default function CampeonesClient() {
 
       {/* NEXT EDITION CTA */}
       <div className="text-center p-5 sm:p-7 rounded-2xl border border-[#C9A84C22] mb-6"
-        style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(15,23,42,0.3))' }}>
+        style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(20,17,10,0.3))' }}>
         <div className="mb-2 flex justify-center"><SvgIcon name="historia" size={32} /></div>
         <h2 className="text-lg sm:text-xl font-bold text-white mb-2">{cT.cta1Title}</h2>
         <p className="text-sm text-gray-400 mb-4">{cT.cta1Desc}</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/historia" className="px-6 py-3 rounded-xl text-sm font-bold text-[#030712] no-underline"
+          <Link href="/historia" className="px-6 py-3 rounded-xl text-sm font-bold text-[#000000] no-underline"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}>
             {cT.cta1Title}
           </Link>
@@ -182,9 +182,9 @@ export default function CampeonesClient() {
 
       {/* Links */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-        <Link href="/historia" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="match center" size={16} /> {nav.historia}</Link>
-        <Link href="/grupos" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="los 12 grupos" size={16} /> {nav.grupos}</Link>
-        <Link href="/selecciones" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="48 selecciones" size={16} /> {nav.selecciones}</Link>
+        <Link href="/historia" className="p-3 bg-[#0a0906] border border-[#1b160d] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="match center" size={16} /> {nav.historia}</Link>
+        <Link href="/grupos" className="p-3 bg-[#0a0906] border border-[#1b160d] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="los 12 grupos" size={16} /> {nav.grupos}</Link>
+        <Link href="/selecciones" className="p-3 bg-[#0a0906] border border-[#1b160d] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline flex items-center gap-1.5"><SvgIcon name="48 selecciones" size={16} /> {nav.selecciones}</Link>
       </div>
     </>
   );

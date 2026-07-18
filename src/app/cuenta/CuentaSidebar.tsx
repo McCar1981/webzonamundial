@@ -98,10 +98,10 @@ export default function CuentaSidebar() {
   return (
     <aside>
       <nav
-        className="rounded-2xl border border-[#1E293B]/50 p-2 sticky top-20"
+        className="rounded-2xl border border-[#241e12]/50 p-2 sticky top-20"
         style={{
           background:
-            "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
+            "linear-gradient(135deg, rgba(20,17,10,0.6), rgba(10,9,6,0.4))",
           backdropFilter: "blur(12px)",
         }}
       >
@@ -116,7 +116,7 @@ export default function CuentaSidebar() {
                 background: active
                   ? "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05))"
                   : "transparent",
-                color: active ? "#C9A84C" : "#cbd5e1",
+                color: active ? "#C9A84C" : "#e6decb",
                 border: active ? "1px solid rgba(201,168,76,0.25)" : "1px solid transparent",
                 textDecoration: "none",
               }}

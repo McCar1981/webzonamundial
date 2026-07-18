@@ -50,10 +50,10 @@ import {
 // layout de /app/* fija estas variables con el tema del bar (fondos, acentos,
 // CTAs y texto), de modo que el juego adopta la identidad del bar sin tocar la
 // lógica compartida. INK = color del texto sobre los botones de acento.
-const BG = "var(--zm-bg, #060B14)", BG2 = "var(--zm-surface, #0F1D32)", BG3 = "var(--zm-surface2, #0B1825)";
-const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#94a3b8";
+const BG = "var(--zm-bg, #000000)", BG2 = "var(--zm-surface, #14110a)", BG3 = "var(--zm-surface2, #0a0906)";
+const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #a69a82)", DIM = "#a69a82";
 const GREEN = "#22c55e", RED = "#ef4444";
-const INK = "var(--zm-ink, #060B14)";
+const INK = "var(--zm-ink, #000000)";
 const TEXT = "var(--zm-text, #fff)";
 
 // Prompt de push contextual tras guardar una predicción (momento de máxima
@@ -503,7 +503,7 @@ export default function PrediccionesGame() {
 
       {pushPrompt !== "hidden" && (
         <div role="dialog" aria-label="Activar avisos de predicciones" className="pj-push-prompt" data-reduce-motion={reduceMotion || undefined} style={{
-          background: "linear-gradient(135deg, rgba(201,168,76,0.18), #0F1D32 60%, #0B1825)",
+          background: "linear-gradient(135deg, rgba(201,168,76,0.18), #14110a 60%, #0a0906)",
           border: `1px solid ${GOLD}59`, color: TEXT, padding: "12px 14px", borderRadius: 14,
           boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
         }}>
@@ -590,14 +590,14 @@ const PJ_CSS = `
 .predictions-hero .pj-hero-bg {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(90deg, rgba(6,11,20,0.94) 0%, rgba(6,11,20,0.72) 45%, rgba(6,11,20,0.42) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.72) 45%, rgba(0,0,0,0.42) 100%),
     url('/img/predicciones/hero-mobile.webp');
   background-size: cover; background-position: center;
 }
 @media (min-width: 768px) {
   .predictions-hero .pj-hero-bg {
     background-image:
-      linear-gradient(90deg, rgba(6,11,20,0.92) 0%, rgba(6,11,20,0.62) 50%, rgba(6,11,20,0.34) 100%),
+      linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.62) 50%, rgba(0,0,0,0.34) 100%),
       url('/img/predicciones/hero-desktop.webp');
   }
 }
@@ -743,7 +743,7 @@ const PJ_CSS = `
    (1200) y con holgura a la derecha para no quedar bajo su botón flotante. */
 .pj-sticky-footer {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-  background: rgba(11,24,37,0.92); backdrop-filter: blur(10px);
+  background: rgba(10,9,6,0.92); backdrop-filter: blur(10px);
   border-top: ${CARD_BORDER};
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
 }

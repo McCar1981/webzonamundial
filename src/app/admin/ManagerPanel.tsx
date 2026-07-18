@@ -109,7 +109,7 @@ export default async function ManagerPanel({ manager }: { manager: CreatorManage
   );
 
   return (
-    <div className="min-h-screen bg-[#060B14] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <header className="mb-6">
           <div className="flex items-baseline justify-between flex-wrap gap-2">
@@ -210,7 +210,7 @@ function Card({ label, value, gold }: { label: string; value: string; gold?: boo
 
 function SetupNotice({ message }: { message: string }) {
   return (
-    <div className="min-h-screen bg-[#060B14] text-white flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#000000] text-white flex items-center justify-center px-6">
       <div className="max-w-lg rounded-2xl border border-amber-500/40 bg-amber-500/10 p-6">
         <h1 className="font-bold text-amber-300 mb-2">No se pudo cargar la remuneración</h1>
         <p className="text-sm text-gray-300 mb-3">

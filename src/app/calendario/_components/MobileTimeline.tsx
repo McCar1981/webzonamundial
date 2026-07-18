@@ -32,7 +32,7 @@ function FlagImg({ code }: { code: string }) {
       className="h-[15px] w-[22px] flex-shrink-0 rounded-[2px] object-cover"
     />
   ) : (
-    <span className="flex h-[15px] w-[22px] flex-shrink-0 items-center justify-center rounded-[2px] bg-white/5 text-[9px] text-[#6a7a9a]">
+    <span className="flex h-[15px] w-[22px] flex-shrink-0 items-center justify-center rounded-[2px] bg-white/5 text-[9px] text-[#6e6552]">
       ?
     </span>
   );
@@ -58,14 +58,14 @@ export function MobileTimeline({ matches, onClick, tz, live }: MobileTimelinePro
             <span className="rounded-md bg-[#c9a84c]/12 px-2 py-0.5 text-[12px] font-black text-[#c9a84c]">
               {fmtDayShort(day.instant, tz, locale)}
             </span>
-            <span className="text-[11px] text-[#6a7a9a]">
+            <span className="text-[11px] text-[#6e6552]">
               {day.matches.length}{" "}
               {day.matches.length === 1 ? cT.partido : cT.partidoPlural}
             </span>
           </div>
 
           {/* Filas del día */}
-          <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0c1626]/60">
+          <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0a0906]/60">
             {day.matches.map((m) => {
               const isImportant = m.p === "FINAL" || m.p === "Semifinal";
               const phaseColor = PHASE_COLORS[m.p] || GOLD;
@@ -110,10 +110,10 @@ export function MobileTimeline({ matches, onClick, tz, live }: MobileTimelinePro
                       </>
                     ) : ended ? (
                       <>
-                        <span className="text-[11px] font-black text-[#8a94b0]">
+                        <span className="text-[11px] font-black text-[#a69a82]">
                           {snap!.s === "PEN" ? cT.penales : cT.finalizado}
                         </span>
-                        <span className="text-[9px] tabular-nums text-[#4a5570]">{localTime}</span>
+                        <span className="text-[9px] tabular-nums text-[#a69a82]">{localTime}</span>
                       </>
                     ) : (
                       <span className="text-[13px] font-black tabular-nums text-[#c9a84c]">

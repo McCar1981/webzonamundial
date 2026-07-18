@@ -18,7 +18,7 @@ export default function PurchaseSuccessBanner() {
       <span style={{ fontSize: 22, lineHeight: 1 }}>🎉</span>
       <div>
         <strong className="block text-white">¡Bienvenido al equipo Founders!</strong>
-        <span className="text-[#cbd5e1]">
+        <span className="text-[#e6decb]">
           Tu pago se ha procesado correctamente. Si no ves los detalles aquí abajo todavía, dale unos segundos y refresca la página — Stripe nos confirma el pago en cuestión de segundos.
         </span>
       </div>

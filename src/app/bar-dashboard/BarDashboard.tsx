@@ -21,8 +21,8 @@ import { planList, getPlan, type BarPlan } from "@/lib/bars/plans";
 import type { BarRow, QrSource, BarPrize, BarStats, BarPayment } from "@/lib/bars/store";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#94A3B8", DIM = "#64748B", GREEN = "#22c55e", RED = "#f87171";
+const BG = "#000000", BG2 = "#14110a", BG3 = "#0a0906";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#8b8168", GREEN = "#22c55e", RED = "#f87171";
 const BORDER = "1px solid rgba(255,255,255,0.08)";
 
 // Descripciones comerciales (UI). Las FEATURES reales salen de plans.ts para no
@@ -223,7 +223,7 @@ function StatusCard({ state, bar, publishing, onPublish, onPlans }: { state: Car
   const c = cfg[state];
   return (
     <div style={{
-      background: "linear-gradient(160deg, rgba(201,168,76,0.12), rgba(15,29,50,0.65) 55%)",
+      background: "linear-gradient(160deg, rgba(201,168,76,0.12), rgba(20,17,10,0.65) 55%)",
       border: `1px solid ${GOLD}66`, borderRadius: 20, padding: "22px 22px 20px",
       boxShadow: "0 14px 50px -20px rgba(201,168,76,0.35)",
     }}>
@@ -231,7 +231,7 @@ function StatusCard({ state, bar, publishing, onPublish, onPlans }: { state: Car
         <Sparkles size={14} /> {c.eyebrow}
       </div>
       <h2 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 0", lineHeight: 1.15 }}>{c.title}</h2>
-      <p style={{ color: "#cbd5e1", fontSize: 14.5, margin: "7px 0 16px", maxWidth: 560, lineHeight: 1.55 }}>{c.text}</p>
+      <p style={{ color: "#e6decb", fontSize: 14.5, margin: "7px 0 16px", maxWidth: 560, lineHeight: 1.55 }}>{c.text}</p>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
         <Action cfg={c.primary} primary />
         {c.secondary && <Action cfg={c.secondary} />}
@@ -295,11 +295,11 @@ function NextStepCard({ state, hasPrize, publishing, onPublish, onPlans, onPrize
     action = { label: "Abrir pantalla TV", icon: <Tv size={15} />, href: `/b/${bar.slug}/tv` };
   }
   return (
-    <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.5))", border: `1px solid ${GOLD}44`, borderRadius: 16, padding: 16 }}>
+    <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(20,17,10,0.5))", border: `1px solid ${GOLD}44`, borderRadius: 16, padding: 16 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 6 }}>
         <ArrowRight size={16} color={GOLD} /> Siguiente paso
       </div>
-      <p style={{ color: "#cbd5e1", fontSize: 13.5, margin: "0 0 12px", lineHeight: 1.5 }}>{text}</p>
+      <p style={{ color: "#e6decb", fontSize: 13.5, margin: "0 0 12px", lineHeight: 1.5 }}>{text}</p>
       <Action cfg={action} primary />
     </div>
   );
@@ -353,7 +353,7 @@ function KitSection({ hasActivePlan }: { hasActivePlan: boolean }) {
   ];
   return (
     <section>
-      <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.6))", border: `1px solid ${GOLD}4d`, borderRadius: 18, padding: 18 }}>
+      <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(20,17,10,0.6))", border: `1px solid ${GOLD}4d`, borderRadius: 18, padding: 18 }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1 }}>
           <Sparkles size={14} /> Kit de activación
         </div>
@@ -503,7 +503,7 @@ function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; pa
             <p style={{ color: MID, fontSize: 12.5, margin: "0 0 12px", lineHeight: 1.45 }}>{PLAN_TAGLINE[plan.id] ?? plan.tagline}</p>
             <ul style={{ listStyle: "none", margin: "0 0 14px", padding: 0, display: "flex", flexDirection: "column", gap: 7 }}>
               {plan.features.map((f) => (
-                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 7, fontSize: 12.5, color: "#cbd5e1", lineHeight: 1.4 }}>
+                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 7, fontSize: 12.5, color: "#e6decb", lineHeight: 1.4 }}>
                   <Check size={14} color={GOLD} style={{ flexShrink: 0, marginTop: 2 }} /> {f}
                 </li>
               ))}
@@ -539,7 +539,7 @@ function QrSection({ bar, qr, origin, onFlash, hasActivePlan }: { bar: BarRow; q
   const shortUrl = target.replace(/^https?:\/\//, "");
 
   useEffect(() => {
-    void QRCode.toDataURL(target, { width: 360, margin: 1, color: { dark: "#0A0A0A", light: "#FFFFFF" }, errorCorrectionLevel: "M" }).then(setPng);
+    void QRCode.toDataURL(target, { width: 360, margin: 1, color: { dark: "#000000", light: "#FFFFFF" }, errorCorrectionLevel: "M" }).then(setPng);
   }, [target]);
 
   const download = useCallback(async (fmt: "png" | "svg") => {
@@ -556,10 +556,10 @@ function QrSection({ bar, qr, origin, onFlash, hasActivePlan }: { bar: BarRow; q
       <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ background: "#fff", borderRadius: 12, padding: 8, width: 150, height: 150, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {png ? <img src={png} alt="QR de la peña" style={{ width: "100%", height: "100%", opacity: hasActivePlan ? 1 : 0.5 }} /> : <Loader2 size={24} className="spin" color="#0A0A0A" />}
+          {png ? <img src={png} alt="QR de la peña" style={{ width: "100%", height: "100%", opacity: hasActivePlan ? 1 : 0.5 }} /> : <Loader2 size={24} className="spin" color="#000000" />}
           {!hasActivePlan && (
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.35)", borderRadius: 12 }}>
-              <Lock size={28} color="#0A0A0A" />
+              <Lock size={28} color="#000000" />
             </div>
           )}
         </div>

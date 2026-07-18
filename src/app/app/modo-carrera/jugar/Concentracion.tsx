@@ -206,7 +206,7 @@ export default function Concentracion({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(6,11,20,0.94)",
+        background: "rgba(0,0,0,0.94)",
         padding: 14,
         animation: "mcBannerIn .25s ease both",
       }}
@@ -215,13 +215,13 @@ export default function Concentracion({
           backgroundColor de marca cubren el hueco: el 404 no rompe nada. */}
       <style>{`
         .mcConcCard {
-          background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg.webp);
+          background-image: linear-gradient(180deg, rgba(20,17,10,0.94), rgba(10,9,6,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg.webp);
           background-size: cover;
           background-position: center;
         }
         @media (max-width: 640px) {
           .mcConcCard {
-            background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg-mobile.webp);
+            background-image: linear-gradient(180deg, rgba(20,17,10,0.94), rgba(10,9,6,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg-mobile.webp);
           }
         }
       `}</style>

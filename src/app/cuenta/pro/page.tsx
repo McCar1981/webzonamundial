@@ -80,7 +80,7 @@ function SubscriptionCard({ sub }: { sub: ProSubscriptionRow }) {
   const activa = subscriptionIsActive(sub);
 
   return (
-    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#0F1D32] p-6">
+    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#14110a] p-6">
       <div className="flex items-center gap-2 mb-4">
         <span
           className="inline-block w-2 h-2 rounded-full"
@@ -129,7 +129,7 @@ function SubscriptionCard({ sub }: { sub: ProSubscriptionRow }) {
           <Link
             href="/pro"
             className="inline-block rounded-xl px-5 py-2.5 text-sm font-bold"
-            style={{ background: "linear-gradient(135deg,#C9A84C,#e8d48b)", color: "#060B14", textDecoration: "none" }}
+            style={{ background: "linear-gradient(135deg,#C9A84C,#e8d48b)", color: "#000000", textDecoration: "none" }}
           >
             Reactivar Pro
           </Link>
@@ -141,7 +141,7 @@ function SubscriptionCard({ sub }: { sub: ProSubscriptionRow }) {
 
 function FounderCard() {
   return (
-    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#0F1D32] p-6">
+    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#14110a] p-6">
       <div className="text-white font-bold mb-2">Tu Founders Pass incluye el plan Pro</div>
       <p className="text-sm text-gray-400 mb-4">
         Como Founder tienes todos los beneficios Pro de por vida, sin suscripción ni
@@ -156,7 +156,7 @@ function FounderCard() {
 
 function CompCard() {
   return (
-    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#0F1D32] p-6">
+    <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#14110a] p-6">
       <div className="text-white font-bold mb-2">Acceso Pro de cortesía activo</div>
       <p className="text-sm text-gray-400">
         Tu cuenta tiene todas las ventajas Pro desbloqueadas de por vida, sin
@@ -170,7 +170,7 @@ function CompCard() {
 
 function BuyCard() {
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#0F1D32] p-6">
+    <div className="rounded-2xl border border-white/10 bg-[#14110a] p-6">
       <div className="text-white font-bold mb-2">Aún no tienes el plan Pro</div>
       <p className="text-sm text-gray-400 mb-5">
         Desbloquea los 8 tipos de predicción, IA Coach ilimitada, fantasy en vivo,
@@ -179,7 +179,7 @@ function BuyCard() {
       <Link
         href="/pro"
         className="inline-block rounded-xl px-6 py-3 text-sm font-black"
-        style={{ background: "linear-gradient(135deg,#C9A84C,#e8d48b)", color: "#060B14", textDecoration: "none" }}
+        style={{ background: "linear-gradient(135deg,#C9A84C,#e8d48b)", color: "#000000", textDecoration: "none" }}
       >
         Ver el plan Pro — desde 20 €/año
       </Link>

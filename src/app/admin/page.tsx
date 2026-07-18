@@ -29,7 +29,7 @@ export default async function AdminRootPage() {
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#060B14] text-white flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-[#000000] text-white flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
           <div className="text-3xl font-black tracking-tight">

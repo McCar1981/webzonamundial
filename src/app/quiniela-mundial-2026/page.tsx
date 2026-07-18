@@ -7,7 +7,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BG = "#060B14", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 export const metadata: Metadata = {
   title: "Quiniela Mundial 2026: crea tu porra gratis",
@@ -185,7 +185,7 @@ export default function QuinielaMundial2026Page() {
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", margin: "24px 0 8px" }}>
           <Link
             href="/registro"
-            style={{ background: GOLD, color: "#0B0F1A", fontWeight: 700, fontSize: 15, padding: "12px 22px", borderRadius: 12, textDecoration: "none" }}
+            style={{ background: GOLD, color: "#0a0906", fontWeight: 700, fontSize: 15, padding: "12px 22px", borderRadius: 12, textDecoration: "none" }}
           >
             Crear mi quiniela gratis
           </Link>
@@ -340,7 +340,7 @@ export default function QuinielaMundial2026Page() {
           </p>
           <Link
             href="/registro"
-            style={{ display: "inline-block", background: GOLD, color: "#0B0F1A", fontWeight: 700, fontSize: 16, padding: "14px 28px", borderRadius: 12, textDecoration: "none" }}
+            style={{ display: "inline-block", background: GOLD, color: "#0a0906", fontWeight: 700, fontSize: 16, padding: "14px 28px", borderRadius: 12, textDecoration: "none" }}
           >
             Crear mi quiniela gratis
           </Link>

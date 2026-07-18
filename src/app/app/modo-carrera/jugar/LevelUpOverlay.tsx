@@ -53,7 +53,7 @@ export default function LevelUpOverlay({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "radial-gradient(ellipse at 50% 45%, rgba(201,168,76,0.28), rgba(6,11,20,0.92) 60%)",
+        background: "radial-gradient(ellipse at 50% 45%, rgba(201,168,76,0.28), rgba(0,0,0,0.92) 60%)",
         animation: "mcLvlFade .35s ease both",
         overflow: "hidden",
         padding: 20,

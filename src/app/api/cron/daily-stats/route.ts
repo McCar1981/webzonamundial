@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
     const delta = (current: number, prev: number | undefined) => {
       if (prev === undefined || prev === null) return "";
       const diff = current - prev;
-      if (diff === 0) return "<span style='color:#94a3b8'> (=)</span>";
+      if (diff === 0) return "<span style='color:#a69a82'> (=)</span>";
       const sign = diff > 0 ? "+" : "";
       const color = diff > 0 ? "#10B981" : "#EF4444";
       return ` <span style='color:${color}'>(${sign}${diff})</span>`;

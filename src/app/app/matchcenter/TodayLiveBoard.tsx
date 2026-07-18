@@ -14,11 +14,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-const BG2 = "#0F1D32";
+const BG2 = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 const RED = "#e63946";
 const GREEN = "#10b981";
 

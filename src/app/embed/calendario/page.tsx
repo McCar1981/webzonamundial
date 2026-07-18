@@ -120,7 +120,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
   return (
     <div
       style={{
-        background: "#060B14",
+        background: "#000000",
         color: "#fff",
         fontFamily: "Outfit, system-ui, sans-serif",
         minHeight: "100vh",
@@ -136,7 +136,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
           marginBottom: 12,
           padding: "8px 12px",
           borderRadius: 10,
-          background: "linear-gradient(180deg, rgba(15,31,48,0.6), rgba(11,24,37,0.4))",
+          background: "linear-gradient(180deg, rgba(20,17,10,0.6), rgba(10,9,6,0.4))",
           border: "1px solid rgba(201,168,76,0.20)",
         }}
       >
@@ -153,7 +153,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
           >
             {/* CALENDARIO MUNDIAL 2026 */}
           </div>
-          <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 2 }}>
+          <div style={{ fontSize: 12, color: "#a69a82", marginTop: 2 }}>
             {filtered.length} {filtered.length === 1 ? "partido" : "partidos"}
             {teamFilter && ` · equipo: ${teamFilter.toUpperCase()}`}
           </div>
@@ -182,7 +182,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
             style={{
               padding: 24,
               textAlign: "center",
-              color: "#94a3b8",
+              color: "#a69a82",
               fontSize: 14,
               border: "1px dashed rgba(255,255,255,0.10)",
               borderRadius: 12,
@@ -210,7 +210,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
               style={{
                 fontFamily: "JetBrains Mono, monospace",
                 fontSize: 10,
-                color: "#94a3b8",
+                color: "#a69a82",
                 minWidth: 80,
               }}
             >
@@ -245,7 +245,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
               style={{
                 fontFamily: "JetBrains Mono, monospace",
                 fontSize: 9,
-                color: "#94a3b8",
+                color: "#a69a82",
                 textAlign: "right",
                 minWidth: 60,
               }}
@@ -266,7 +266,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
           justifyContent: "space-between",
           alignItems: "center",
           fontSize: 11,
-          color: "#94a3b8",
+          color: "#a69a82",
         }}
       >
         <span>

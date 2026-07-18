@@ -31,7 +31,7 @@ export default function StickyCta() {
         justifyContent: "center",
         gap: 10,
         padding: "10px 40px 10px 14px",
-        background: "rgba(6,11,20,0.94)",
+        background: "rgba(0,0,0,0.94)",
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
         borderTop: "1px solid rgba(201,168,76,0.28)",
@@ -48,7 +48,7 @@ export default function StickyCta() {
         href="/registro"
         style={{
           background: GOLD,
-          color: "#0B0F1A",
+          color: "#0a0906",
           fontWeight: 800,
           fontSize: 14,
           padding: "9px 18px",
@@ -70,7 +70,7 @@ export default function StickyCta() {
           transform: "translateY(-50%)",
           background: "transparent",
           border: "none",
-          color: "#6a7a9a",
+          color: "#6e6552",
           fontSize: 20,
           lineHeight: 1,
           cursor: "pointer",

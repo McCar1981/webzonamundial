@@ -37,16 +37,16 @@ export function SedesFiltros({
   const hasFilters = pais !== 'Todos' || fase !== 'Todas' || techo !== 'Todos';
 
   return (
-    <div className="sticky top-0 z-20 -mx-3 mb-6 border-y border-white/5 bg-[#060B14]/95 px-3 py-3 backdrop-blur-sm">
+    <div className="sticky top-0 z-20 -mx-3 mb-6 border-y border-white/5 bg-[#000000]/95 px-3 py-3 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl flex-col gap-3">
         <div className="flex flex-wrap items-center gap-3">
           {/* País */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-[#6a7a9a]">{sT.filtroPais}</span>
+            <span className="text-xs text-[#6e6552]">{sT.filtroPais}</span>
             <select
               value={pais}
               onChange={(e) => onPaisChange(e.target.value)}
-              className="rounded-xl border border-white/10 bg-[#0B1825] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
+              className="rounded-xl border border-white/10 bg-[#0a0906] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
             >
               <option value="Todos">{sT.todosLosPaises}</option>
               {PAISES.slice(1).map((p) => (
@@ -59,11 +59,11 @@ export function SedesFiltros({
 
           {/* Fase */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-[#6a7a9a]">{sT.filtroFase}</span>
+            <span className="text-xs text-[#6e6552]">{sT.filtroFase}</span>
             <select
               value={fase}
               onChange={(e) => onFaseChange(e.target.value)}
-              className="rounded-xl border border-white/10 bg-[#0B1825] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
+              className="rounded-xl border border-white/10 bg-[#0a0906] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
             >
               <option value="Todas">{sT.todasLasFases}</option>
               {FASES.slice(1).map((f) => (
@@ -76,11 +76,11 @@ export function SedesFiltros({
 
           {/* Techo */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-[#6a7a9a]">{sT.filtroTecho}</span>
+            <span className="text-xs text-[#6e6552]">{sT.filtroTecho}</span>
             <select
               value={techo}
               onChange={(e) => onTechoChange(e.target.value)}
-              className="rounded-xl border border-white/10 bg-[#0B1825] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
+              className="rounded-xl border border-white/10 bg-[#0a0906] px-3 py-2 text-sm text-white outline-none focus:border-[#c9a84c]/50"
             >
               <option value="Todos">{locale === 'en' ? 'All' : 'Todos'}</option>
               <option value="true">{sT.conTecho}</option>

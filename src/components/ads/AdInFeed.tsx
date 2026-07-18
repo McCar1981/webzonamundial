@@ -52,7 +52,7 @@ export default function AdInFeed({ slot, variant = "card", style }: Props) {
           fontWeight: 700,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "#64748B",
+          color: "#8b8168",
           marginBottom: 8,
           fontFamily: "JetBrains Mono, monospace",
         }}

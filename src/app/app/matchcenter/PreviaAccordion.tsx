@@ -8,11 +8,11 @@
 
 import { useEffect, useState } from "react";
 
-const BG2 = "#0F1D32";
+const BG2 = "#14110a";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
-const DIM = "#6a7a9a";
+const MID = "#a69a82";
+const DIM = "#6e6552";
 
 interface NoticiaBlock {
   type: "p" | "h2" | "h3" | "quote" | "list" | "callout";
@@ -38,7 +38,7 @@ function TeamPhoto({ src, color }: { src: string | null; color: string }) {
     <img
       src={src}
       alt=""
-      style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover", objectPosition: "top center", border: `2px solid ${color}`, flexShrink: 0, background: "#0b1825" }}
+      style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover", objectPosition: "top center", border: `2px solid ${color}`, flexShrink: 0, background: "#0a0906" }}
     />
   );
 }
@@ -111,7 +111,7 @@ export default function PreviaAccordion({
       {hasPrevia && open && (
         <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
           {data.image && (
-            <img src={data.image} alt="" style={{ width: "100%", maxHeight: 220, objectFit: "cover", borderRadius: 12, background: "#0b1825" }} />
+            <img src={data.image} alt="" style={{ width: "100%", maxHeight: 220, objectFit: "cover", borderRadius: 12, background: "#0a0906" }} />
           )}
           {data.blocks!.map((b, i) => {
             if (b.type === "h2" || b.type === "h3") {

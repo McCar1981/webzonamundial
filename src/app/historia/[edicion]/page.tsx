@@ -195,7 +195,7 @@ export default async function EdicionPage({
       </nav>
 
       {/* HERO */}
-      <header className="mb-8 sm:mb-10 pb-6 sm:pb-8 border-b border-[#1E293B]">
+      <header className="mb-8 sm:mb-10 pb-6 sm:pb-8 border-b border-[#241e12]">
         <div className="text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-[#C9A84C] mb-3">
           Edición {e.meta.edicion} · {e.meta.era.toUpperCase()}
         </div>
@@ -236,7 +236,7 @@ export default async function EdicionPage({
               row.team ? (
                 <div
                   key={i}
-                  className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60"
+                  className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60"
                   style={i === 0 ? { borderColor: GOLD + '55' } : undefined}
                 >
                   <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -270,7 +270,7 @@ export default async function EdicionPage({
       {final && (
         <section className="mb-10">
           <h2 className="text-lg sm:text-xl font-bold text-white mb-4">La final</h2>
-          <div className="p-5 sm:p-6 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80">
+          <div className="p-5 sm:p-6 rounded-2xl border border-[#C9A84C]/30 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80">
             <div className="flex items-center justify-center gap-4 sm:gap-8 mb-3">
               <div className="flex flex-col items-center gap-2 flex-1">
                 {final.local.banderaUrl ? (
@@ -329,7 +329,7 @@ export default async function EdicionPage({
             </div>
 
             {final.goleadores && final.goleadores.length > 0 && (
-              <div className="mt-5 pt-4 border-t border-[#1E293B]">
+              <div className="mt-5 pt-4 border-t border-[#241e12]">
                 <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-2">
                   Goles
                 </div>
@@ -386,12 +386,12 @@ export default async function EdicionPage({
           <h2 className="text-lg sm:text-xl font-bold text-white mb-4">
             Goleadores del torneo
           </h2>
-          <div className="rounded-xl border border-[#1E293B] overflow-hidden bg-[#0F1D32]/40">
+          <div className="rounded-xl border border-[#241e12] overflow-hidden bg-[#14110a]/40">
             {e.topGoleadores.map((g, i) => (
               <div
                 key={`${g.nombre}-${i}`}
-                className="flex items-center gap-3 px-3 sm:px-4 py-3 border-b border-[#0F172A] last:border-b-0"
-                style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(15,23,42,0.3)' }}
+                className="flex items-center gap-3 px-3 sm:px-4 py-3 border-b border-[#14110a] last:border-b-0"
+                style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(20,17,10,0.3)' }}
               >
                 <span className="text-xs sm:text-sm font-bold text-gray-500 w-6 tabular-nums">
                   {i + 1}
@@ -490,7 +490,7 @@ export default async function EdicionPage({
             {e.hatTricks.map((h, i) => (
               <div
                 key={i}
-                className="p-3 sm:p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 flex items-center gap-3 flex-wrap"
+                className="p-3 sm:p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 flex items-center gap-3 flex-wrap"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -563,7 +563,7 @@ export default async function EdicionPage({
             {e.recordsEdicion.map((rec, i) => (
               <div
                 key={i}
-                className="p-4 rounded-xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#0F1D32]/80 to-[#0B1825]/80"
+                className="p-4 rounded-xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#14110a]/80 to-[#0a0906]/80"
               >
                 <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-2">
                   {rec.categoria}
@@ -621,7 +621,7 @@ export default async function EdicionPage({
             {e.curiosidades.map((c, i) => (
               <div
                 key={i}
-                className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60"
+                className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60"
               >
                 <div className="text-[10px] font-bold uppercase tracking-wider text-[#C9A84C] mb-2">
                   {c.categoria}
@@ -654,11 +654,11 @@ export default async function EdicionPage({
       </section>
 
       {/* NAV ANTERIOR / SIGUIENTE */}
-      <nav className="grid grid-cols-2 gap-3 mt-12 pt-8 border-t border-[#1E293B]">
+      <nav className="grid grid-cols-2 gap-3 mt-12 pt-8 border-t border-[#241e12]">
         {prev ? (
           <Link
             href={`/historia/${prev.meta.slug}`}
-            className="p-4 rounded-xl border border-[#1E293B] bg-[#0B1825] hover:border-[#C9A84C]/40 no-underline transition-all"
+            className="p-4 rounded-xl border border-[#241e12] bg-[#0a0906] hover:border-[#C9A84C]/40 no-underline transition-all"
           >
             <div className="text-[10px] uppercase tracking-wider text-gray-500 mb-1">
               ← Anterior
@@ -671,7 +671,7 @@ export default async function EdicionPage({
         {next ? (
           <Link
             href={`/historia/${next.meta.slug}`}
-            className="p-4 rounded-xl border border-[#1E293B] bg-[#0B1825] hover:border-[#C9A84C]/40 no-underline transition-all text-right"
+            className="p-4 rounded-xl border border-[#241e12] bg-[#0a0906] hover:border-[#C9A84C]/40 no-underline transition-all text-right"
           >
             <div className="text-[10px] uppercase tracking-wider text-gray-500 mb-1">
               Siguiente →
@@ -688,7 +688,7 @@ export default async function EdicionPage({
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div
         className="text-xl sm:text-2xl font-black tabular-nums"
         style={{ color: GOLD }}
@@ -704,7 +704,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function PremioCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">
         {label}
       </div>
@@ -715,7 +715,7 @@ function PremioCard({ label, value }: { label: string; value: string }) {
 
 function PartidoCard({ p }: { p: NonNullable<EdicionMundial['partidoInaugural']> }) {
   return (
-    <div className="p-4 sm:p-5 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60">
+    <div className="p-4 sm:p-5 rounded-xl border border-[#241e12] bg-[#14110a]/60">
       <div className="flex items-center justify-center gap-3 sm:gap-6 mb-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

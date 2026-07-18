@@ -165,13 +165,13 @@ export default async function BlogPostPage({ params }: Params) {
                   border: "1px solid var(--b-border)",
                   borderRadius: 12,
                   overflow: "hidden",
-                  background: "rgba(15,31,48,0.5)",
+                  background: "rgba(20,17,10,0.5)",
                   display: "flex",
                   flexDirection: "column",
                   transition: "all 220ms",
                 }}
               >
-                <div style={{ aspectRatio: "16/10", overflow: "hidden", background: "#0F1F30" }}>
+                <div style={{ aspectRatio: "16/10", overflow: "hidden", background: "#14110a" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={p.ogImage}
@@ -224,7 +224,7 @@ function EditorialFooter() {
         padding: "28px 24px",
         borderRadius: 16,
         border: "1px solid var(--b-border)",
-        background: "linear-gradient(180deg, rgba(20, 37, 54, 0.5), rgba(11, 24, 37, 0.3))",
+        background: "linear-gradient(180deg, rgba(27,22,13, 0.5), rgba(10,9,6, 0.3))",
         display: "flex",
         gap: 18,
         alignItems: "flex-start",

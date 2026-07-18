@@ -50,8 +50,8 @@
   padding: 16px 18px;
   background: linear-gradient(
     180deg,
-    rgba(15, 23, 42, 0.55) 0%,
-    rgba(8, 12, 22, 0.45) 100%
+    rgba(20,17,10, 0.55) 0%,
+    rgba(10, 9, 6, 0.45) 100%
   );
   border: 1px solid rgba(253, 230, 138, 0.22);
   border-radius: 14px;
@@ -213,7 +213,7 @@
   border: 1px solid currentColor;
 }
 .confidenceTag[data-level="baja"] {
-  color: #94a3b8;
+  color: #a69a82;
 }
 .confidenceTag[data-level="media"] {
   color: #FDE68A;
@@ -516,7 +516,7 @@
   margin-top: 14px;
   padding: 12px 18px;
   background: linear-gradient(135deg, #C9A84C 0%, #FDE68A 50%, #C9A84C 100%);
-  color: #0a0a0a;
+  color: #000000;
   font-family: inherit;
   font-size: 12px;
   font-weight: 900;

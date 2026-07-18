@@ -75,7 +75,7 @@ export default function BalonesPage() {
 
       {/* RESUMEN STATS */}
       <section className="mb-10 grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60">
+        <div className="p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60">
           <div className="text-2xl font-black" style={{ color: GOLD }}>
             {balones.length}
           </div>
@@ -83,7 +83,7 @@ export default function BalonesPage() {
             Balones oficiales
           </div>
         </div>
-        <div className="p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60">
+        <div className="p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60">
           <div className="text-2xl font-black" style={{ color: GOLD }}>
             {adidasYears}a
           </div>
@@ -91,7 +91,7 @@ export default function BalonesPage() {
             Adidas ininterrumpido
           </div>
         </div>
-        <div className="p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60">
+        <div className="p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60">
           <div className="text-2xl font-black" style={{ color: GOLD }}>
             32 → 4
           </div>
@@ -99,7 +99,7 @@ export default function BalonesPage() {
             Reducción paneles
           </div>
         </div>
-        <div className="p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60">
+        <div className="p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60">
           <div className="text-2xl font-black" style={{ color: GOLD }}>
             1986
           </div>
@@ -118,7 +118,7 @@ export default function BalonesPage() {
               <Link
                 key={b.anio}
                 href={`/historia/${b.edicionSlug}`}
-                className="block p-4 sm:p-6 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
+                className="block p-4 sm:p-6 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
               >
                 <div className="flex items-baseline gap-3 sm:gap-5 flex-wrap mb-2">
                   <span

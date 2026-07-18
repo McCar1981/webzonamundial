@@ -13,8 +13,8 @@ import Link from "next/link";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const GOLD3 = "#FDE68A";
-const TEXT = "#cbd5e1";
-const MUTED = "#94a3b8";
+const TEXT = "#e6decb";
+const MUTED = "#a69a82";
 const BORDER = "rgba(201,168,76,0.18)";
 
 export interface EditorialSection {
@@ -39,7 +39,7 @@ export default function EditorialBlock({ data }: { data: EditorialData }) {
     <section
       aria-labelledby={data.id}
       style={{
-        background: "#060B14",
+        background: "#000000",
         padding: "70px 20px 60px",
         borderTop: "1px solid rgba(255,255,255,0.05)",
       }}
@@ -108,7 +108,7 @@ export default function EditorialBlock({ data }: { data: EditorialData }) {
               border: `1px solid ${BORDER}`,
               borderRadius: 14,
               background:
-                "linear-gradient(180deg, rgba(201,168,76,0.04), rgba(11,24,37,0.4))",
+                "linear-gradient(180deg, rgba(201,168,76,0.04), rgba(10,9,6,0.4))",
             }}
           >
             <p

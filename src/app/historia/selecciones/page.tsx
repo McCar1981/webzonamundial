@@ -58,7 +58,7 @@ export default function SeleccionesIndex() {
             <Link
               key={s.slug}
               href={`/historia/selecciones/${s.slug}`}
-              className="block p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
+              className="block p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
             >
               <div className="flex items-center gap-3 mb-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

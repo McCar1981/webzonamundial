@@ -99,7 +99,7 @@ export default function PushPromptCard({
 
   return (
     <section
-      className="relative overflow-hidden rounded-2xl border border-[#C9A84C]/35 bg-gradient-to-br from-[#C9A84C]/15 via-[#0F1D32] to-[#0B1825] p-4 sm:p-5 mb-4"
+      className="relative overflow-hidden rounded-2xl border border-[#C9A84C]/35 bg-gradient-to-br from-[#C9A84C]/15 via-[#14110a] to-[#0a0906] p-4 sm:p-5 mb-4"
     >
       {/* halo sutil */}
       <div
@@ -162,7 +162,7 @@ export default function PushPromptCard({
             type="button"
             onClick={activate}
             disabled={status === "loading"}
-            className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-[#060B14] disabled:opacity-60 transition-all"
+            className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-[#000000] disabled:opacity-60 transition-all"
             style={{ background: "linear-gradient(135deg, #C9A84C, #A8893D)" }}
           >
             {status === "loading" ? "Activando…" : `Activar +${REWARD_COINS}`}

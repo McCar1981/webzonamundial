@@ -76,7 +76,7 @@ export default function MascotasPage() {
             <Link
               key={m.anio}
               href={`/historia/${m.edicionSlug}`}
-              className="block p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
+              className="block p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline"
             >
               <div className="flex items-baseline gap-3 mb-2">
                 <span

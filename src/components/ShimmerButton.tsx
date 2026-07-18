@@ -28,7 +28,7 @@ export function ShimmerButton({ children, className = "", onClick, href }: Shimm
       />
       <span
         className="absolute inset-[1px] rounded-[11px] pointer-events-none z-[1]"
-        style={{ background: "#060B14" }}
+        style={{ background: "#000000" }}
       />
       <span className="absolute inset-0 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[2]"
         style={{

@@ -197,7 +197,7 @@ export function BracketDiagram({ labels, playLabel }: Props) {
             r={i >= 14 ? 10 : 7}
             className={`bracket-node ${i >= 14 ? "champ-node" : ""}`}
             fill={i >= 14 ? "#e8d48b" : i < 8 ? "#f59e0b" : "#c9a84c"}
-            stroke="#060B14"
+            stroke="#000000"
             strokeWidth={2}
             style={{ opacity: 0, cursor: "pointer" }}
             onMouseEnter={(e) => handleNodeEnter(e, labels[Math.min(i < 8 ? 0 : i < 12 ? 1 : i < 14 ? 2 : i < 15 ? 3 : i < 16 ? 4 : 5, labels.length - 1)] || "")}
@@ -219,7 +219,7 @@ export function BracketDiagram({ labels, playLabel }: Props) {
             x={item.x}
             y={item.y}
             className="bracket-label"
-            fill="#8a94b0"
+            fill="#a69a82"
             fontSize={(item as any).size || "12px"}
             fontWeight={(item as any).weight || 600}
             textAnchor="middle"
@@ -232,7 +232,7 @@ export function BracketDiagram({ labels, playLabel }: Props) {
 
       {tooltip && (
         <div
-          className="pointer-events-none absolute -translate-x-1/2 -translate-y-full rounded-md border border-[#c9a84c]/30 bg-[#0B1825] px-2 py-1 text-xs font-semibold text-[#c9a84c] shadow-lg"
+          className="pointer-events-none absolute -translate-x-1/2 -translate-y-full rounded-md border border-[#c9a84c]/30 bg-[#0a0906] px-2 py-1 text-xs font-semibold text-[#c9a84c] shadow-lg"
           style={{ left: tooltip.x, top: tooltip.y }}
         >
           {tooltip.text}

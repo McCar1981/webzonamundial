@@ -173,7 +173,7 @@ export const CATEGORIES = [
 export const RARITIES = [
   { key: "Legendario", label: { es: "Legendario", en: "Legendary" }, count: CROMOS.filter((c) => c.rarity === "Legendario").length, color: "#f59e0b", glow: "rgba(245,158,11,0.4)" },
   { key: "Oro", label: { es: "Oro", en: "Gold" }, count: CROMOS.filter((c) => c.rarity === "Oro").length, color: "#eab308", glow: "rgba(234,179,8,0.35)" },
-  { key: "Plata", label: { es: "Plata", en: "Silver" }, count: CROMOS.filter((c) => c.rarity === "Plata").length, color: "#94a3b8", glow: "rgba(148,163,184,0.3)" },
+  { key: "Plata", label: { es: "Plata", en: "Silver" }, count: CROMOS.filter((c) => c.rarity === "Plata").length, color: "#a69a82", glow: "rgba(148,163,184,0.3)" },
 ] as const;
 
 export const TOTAL_CROMOS = 150;

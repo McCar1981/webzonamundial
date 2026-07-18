@@ -56,7 +56,7 @@ export default function GolesPage() {
           {goles.map((g) => (
             <article
               key={`${g.ranking}-${g.jugador}`}
-              className="p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60"
+              className="p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60"
             >
               <div className="flex items-baseline gap-3 mb-3 flex-wrap">
                 <span

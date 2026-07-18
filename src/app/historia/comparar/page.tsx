@@ -86,7 +86,7 @@ export default async function CompararPage({
             <select
               name="a"
               defaultValue={slugA}
-              className="w-full p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32] text-white text-sm"
+              className="w-full p-3 rounded-lg border border-[#241e12] bg-[#14110a] text-white text-sm"
             >
               {ediciones.map((e) => (
                 <option key={e.meta.slug} value={e.meta.slug}>
@@ -102,7 +102,7 @@ export default async function CompararPage({
             <select
               name="b"
               defaultValue={slugB}
-              className="w-full p-3 rounded-lg border border-[#1E293B] bg-[#0F1D32] text-white text-sm"
+              className="w-full p-3 rounded-lg border border-[#241e12] bg-[#14110a] text-white text-sm"
             >
               {ediciones.map((e) => (
                 <option key={e.meta.slug} value={e.meta.slug}>
@@ -113,7 +113,7 @@ export default async function CompararPage({
           </div>
           <button
             type="submit"
-            className="p-3 rounded-lg font-bold text-sm text-[#060B14]"
+            className="p-3 rounded-lg font-bold text-sm text-[#000000]"
             style={{ background: "linear-gradient(135deg, #c9a84c, #e8d48b)" }}
           >
             Comparar
@@ -190,7 +190,7 @@ function EdicionCard({ e }: { e: EdicionMundial }) {
   return (
     <Link
       href={`/historia/${e.meta.slug}`}
-      className="block p-4 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 no-underline transition-all"
+      className="block p-4 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 no-underline transition-all"
     >
       <div className="text-2xl sm:text-4xl font-black tabular-nums" style={{ color: GOLD }}>
         {e.meta.anio}
@@ -200,7 +200,7 @@ function EdicionCard({ e }: { e: EdicionMundial }) {
       </div>
       <div className="text-[10px] text-gray-500 mt-1">{e.fechas.inicio} → {e.fechas.final}</div>
       {e.resultados?.campeon && (
-        <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#1E293B]">
+        <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#241e12]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`https://flagcdn.com/w40/${e.resultados.campeon.iso2}.png`}
@@ -231,10 +231,10 @@ function CompareRow({
   if (a === undefined || b === undefined) return null;
   const cmp = compareNum(a, b);
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/40">
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 p-3 rounded-xl border border-[#241e12] bg-[#14110a]/40">
       <div
         className="text-right text-base sm:text-lg font-black tabular-nums"
-        style={{ color: cmp.aWins ? GOLD : "#94A3B8" }}
+        style={{ color: cmp.aWins ? GOLD : "#a69a82" }}
       >
         {decimals > 0 ? a.toFixed(decimals) : fmt(a)}
       </div>
@@ -243,7 +243,7 @@ function CompareRow({
       </div>
       <div
         className="text-left text-base sm:text-lg font-black tabular-nums"
-        style={{ color: cmp.bWins ? GOLD : "#94A3B8" }}
+        style={{ color: cmp.bWins ? GOLD : "#a69a82" }}
       >
         {decimals > 0 ? b.toFixed(decimals) : fmt(b)}
       </div>
@@ -255,13 +255,13 @@ function FinalCard({ e }: { e: EdicionMundial }) {
   const f = e.partidoFinal;
   if (!f) {
     return (
-      <div className="p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/40 text-center text-xs text-gray-500">
+      <div className="p-4 rounded-xl border border-[#241e12] bg-[#14110a]/40 text-center text-xs text-gray-500">
         Sin final disputada
       </div>
     );
   }
   return (
-    <div className="p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center">
+    <div className="p-3 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center">
       <div className="text-[10px] text-gray-500 mb-2 tabular-nums">{f.fecha}</div>
       <div className="flex items-center justify-center gap-2 mb-1">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -294,7 +294,7 @@ function TopGoleador({ e }: { e: EdicionMundial }) {
   const top = e.topGoleadores?.[0];
   if (!top) return null;
   return (
-    <div className="p-3 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center">
+    <div className="p-3 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`https://flagcdn.com/w40/${top.seleccion.iso2}.png`}

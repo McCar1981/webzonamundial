@@ -224,7 +224,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, ga
               <button
                 onClick={() => onPick(p.id, selectingSlot?.slot)}
                 disabled={disabled}
-                style={{ marginTop: "auto", padding: "8px 10px", borderRadius: 9, border: "none", fontWeight: 800, fontSize: 13, cursor: disabled ? "not-allowed" : "pointer", background: disabled ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: disabled ? MID : "#060B14" }}
+                style={{ marginTop: "auto", padding: "8px 10px", borderRadius: 9, border: "none", fontWeight: 800, fontSize: 13, cursor: disabled ? "not-allowed" : "pointer", background: disabled ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: disabled ? MID : "#000000" }}
               >
                 {owned ? "✓ En tu equipo" : eliminated ? "Selección eliminada" : nationFull ? "Máx. 3 de su país" : tooPricey ? "Fuera de presupuesto" : "＋ Fichar"}
               </button>

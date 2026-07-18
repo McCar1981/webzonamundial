@@ -46,7 +46,7 @@ export default function PartidosSede({ estadio, accentColor = '#c9a84c' }: Props
   }
 
   return (
-    <div className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0B0F1A' }}>
+    <div className="rounded-3xl border border-white/5 overflow-hidden" style={{ background: '#0a0906' }}>
       {/* Header */}
       <div className="px-5 sm:px-6 py-5 border-b border-white/5" style={{ background: `${accentColor}08` }}>
         <div className="flex items-center gap-3">
@@ -158,7 +158,7 @@ export default function PartidosSede({ estadio, accentColor = '#c9a84c' }: Props
       {/* Timezone indicator */}
       {mounted && timezone && (
         <div className="px-5 sm:px-6 py-3 border-t border-white/5 flex items-center gap-2">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#6a7a9a"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#6e6552"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
           <p className="text-xs text-gray-600">{labels.yourTz}: <span className="text-gray-400">{timezone}</span></p>
         </div>
       )}

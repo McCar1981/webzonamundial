@@ -35,7 +35,7 @@ import styles from "./page.module.css";
 export const rarityColor = (rarity: string) => {
   if (rarity === "Legendario") return "#f59e0b";
   if (rarity === "Oro") return "#eab308";
-  return "#94a3b8";
+  return "#a69a82";
 };
 
 export const rarityGlow = (rarity: string) => {

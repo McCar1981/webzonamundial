@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 import { COMPETITIONS } from "@/data/competitions";
 
 const GOLD = "#c9a84c";
-const DIM = "#9db0c9";
+const DIM = "#a69a82";
 
 interface Team { id: number; name: string; logo: string }
 interface Fixture {
@@ -229,7 +229,7 @@ export default function MiClubCard() {
         <div style={{ marginTop: 12 }}>
           <div style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: 1, color: DIM, marginBottom: 6 }}>NOTICIAS DE TU CLUB</div>
           {news.map((n) => (
-            <a key={n.slug} href={`/noticias/${n.slug}`} style={{ display: "block", fontSize: 13, color: "#cbd5e1", textDecoration: "none", padding: "5px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <a key={n.slug} href={`/noticias/${n.slug}`} style={{ display: "block", fontSize: 13, color: "#e6decb", textDecoration: "none", padding: "5px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
               {n.title}
             </a>
           ))}

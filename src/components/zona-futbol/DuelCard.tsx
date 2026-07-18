@@ -193,7 +193,7 @@ export default function DuelCard({
               >
                 <span
                   style={{
-                    color: type === "prediction" ? "#c9a84c" : "#94a3b8",
+                    color: type === "prediction" ? "#c9a84c" : "#a69a82",
                   }}
                 >
                   VS

@@ -13,9 +13,9 @@ import type { KitMaterial, KitData } from "@/lib/bars/kit";
 
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
-const INK = "#0A0A0A";
+const INK = "#000000";
 const TEXT = "#F8FAFC";
-const MUTED = "#9FB0C4";
+const MUTED = "#b8ac93";
 
 export default function PremiumMundialMaterial({
   material, data,
@@ -27,7 +27,7 @@ export default function PremiumMundialMaterial({
     <div
       style={{
         position: "relative", width, height, overflow: "hidden", boxSizing: "border-box",
-        background: "linear-gradient(160deg, #07101F 0%, #0B1B30 55%, #060B14 100%)",
+        background: "linear-gradient(160deg, #000000 0%, #0a0906 55%, #000000 100%)",
         color: TEXT, fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
       }}
     >

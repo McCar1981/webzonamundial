@@ -48,8 +48,8 @@ const TYPE_LABELS: Record<SearchItem["type"], { label: string; color: string }> 
   gol: { label: "Gol", color: "#22C55E" },
   trofeo: { label: "Trofeo", color: "#FBBF24" },
   premio: { label: "Premio", color: "#FBBF24" },
-  era: { label: "Era", color: "#94A3B8" },
-  curiosidad: { label: "Curiosidad", color: "#64748B" },
+  era: { label: "Era", color: "#a69a82" },
+  curiosidad: { label: "Curiosidad", color: "#8b8168" },
   entrenador: { label: "Entrenador", color: "#06B6D4" },
   partido: { label: "Partido", color: "#F97316" },
   confederacion: { label: "Confederación", color: "#0EA5E9" },
@@ -116,7 +116,7 @@ export default function BuscadorGlobal({ items }: Props) {
 
   return (
     <div>
-      <div className="sticky top-16 z-20 bg-[#060B14]/95 backdrop-blur py-3 -mx-3 sm:-mx-5 px-3 sm:px-5 border-b border-[#1E293B]">
+      <div className="sticky top-16 z-20 bg-[#000000]/95 backdrop-blur py-3 -mx-3 sm:-mx-5 px-3 sm:px-5 border-b border-[#241e12]">
         <div className="relative">
           <input
             ref={inputRef}
@@ -124,7 +124,7 @@ export default function BuscadorGlobal({ items }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar jugador, edición, gol, polémica… (Ctrl+K)"
-            className="w-full px-5 py-3 sm:py-4 rounded-xl bg-[#0F1D32] border border-[#1E293B] text-white placeholder:text-gray-500 text-base focus:border-[#C9A84C] focus:outline-none transition-colors"
+            className="w-full px-5 py-3 sm:py-4 rounded-xl bg-[#14110a] border border-[#241e12] text-white placeholder:text-gray-500 text-base focus:border-[#C9A84C] focus:outline-none transition-colors"
           />
           {query && (
             <button
@@ -178,7 +178,7 @@ export default function BuscadorGlobal({ items }: Props) {
                 <Link
                   key={`${item.type}-${item.href}-${i}`}
                   href={item.href}
-                  className="block p-3 sm:p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 transition-all no-underline group"
+                  className="block p-3 sm:p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 transition-all no-underline group"
                 >
                   <div className="flex items-baseline gap-3 mb-1 flex-wrap">
                     <span
@@ -230,9 +230,9 @@ function FilterChip({
       onClick={onClick}
       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] font-semibold whitespace-nowrap transition-all"
       style={{
-        background: active ? (color ? `${color}20` : "rgba(201,168,76,0.15)") : "#0F1D32",
-        borderColor: active ? (color ?? GOLD) : "#1E293B",
-        color: active ? (color ?? GOLD) : "#94A3B8",
+        background: active ? (color ? `${color}20` : "rgba(201,168,76,0.15)") : "#14110a",
+        borderColor: active ? (color ?? GOLD) : "#241e12",
+        color: active ? (color ?? GOLD) : "#a69a82",
       }}
     >
       <span>{label}</span>

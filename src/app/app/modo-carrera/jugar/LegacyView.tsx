@@ -88,12 +88,12 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
     <div style={{ maxWidth: 1100, margin: "0 auto" }}>
       <style>{`
         .mc-vitrina {
-          background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.webp');
+          background-image: linear-gradient(180deg, rgba(20,17,10,0.82), rgba(0,0,0,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.webp');
           background-size: cover; background-position: center;
         }
         @media (max-width: 640px) {
           .mc-vitrina {
-            background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg-mobile.webp');
+            background-image: linear-gradient(180deg, rgba(20,17,10,0.82), rgba(0,0,0,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg-mobile.webp');
           }
         }
       `}</style>

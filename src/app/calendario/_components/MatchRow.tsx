@@ -33,7 +33,7 @@ function Flag({ code }: { code: string }) {
       unoptimized
     />
   ) : (
-    <span className="flex h-[18px] w-[26px] flex-shrink-0 items-center justify-center rounded-[3px] bg-white/5 text-[10px] text-[#6a7a9a]">
+    <span className="flex h-[18px] w-[26px] flex-shrink-0 items-center justify-center rounded-[3px] bg-white/5 text-[10px] text-[#6e6552]">
       ?
     </span>
   );
@@ -89,10 +89,10 @@ export function MatchRow({ m, tz, live, onClick }: MatchRowProps) {
           </>
         ) : (
           <>
-            <span className={`text-[15px] font-black tabular-nums ${ended ? "text-[#6a7a9a]" : "text-[#c9a84c]"}`}>
+            <span className={`text-[15px] font-black tabular-nums ${ended ? "text-[#6e6552]" : "text-[#c9a84c]"}`}>
               {ended ? (live!.s === "PEN" ? cT.penales : cT.finalizado) : localTime}
             </span>
-            {ended && <span className="text-[10px] tabular-nums text-[#4a5570]">{localTime}</span>}
+            {ended && <span className="text-[10px] tabular-nums text-[#a69a82]">{localTime}</span>}
           </>
         )}
       </div>
@@ -116,7 +116,7 @@ export function MatchRow({ m, tz, live, onClick }: MatchRowProps) {
             {live!.sc[0]} – {live!.sc[1]}
           </span>
         ) : (
-          <span className="flex-shrink-0 rounded-lg border border-white/[0.07] bg-white/[0.03] px-2 py-0.5 text-[10px] font-black text-[#6a7a9a]">
+          <span className="flex-shrink-0 rounded-lg border border-white/[0.07] bg-white/[0.03] px-2 py-0.5 text-[10px] font-black text-[#6e6552]">
             VS
           </span>
         )}
@@ -156,7 +156,7 @@ export function MatchRow({ m, tz, live, onClick }: MatchRowProps) {
           </Link>
         )}
         <svg
-          className="h-3.5 w-3.5 flex-shrink-0 text-[#4a5570] transition-all group-hover:translate-x-0.5 group-hover:text-[#c9a84c]"
+          className="h-3.5 w-3.5 flex-shrink-0 text-[#a69a82] transition-all group-hover:translate-x-0.5 group-hover:text-[#c9a84c]"
           fill="none"
           stroke="currentColor"
           strokeWidth={2.5}

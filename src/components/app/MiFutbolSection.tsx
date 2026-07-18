@@ -19,7 +19,7 @@ import { usePostMundial } from "@/app/_home/hooks/usePostMundial";
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const LINE = "rgba(255,255,255,0.08)";
-const DIM = "#93a1bd";
+const DIM = "#a69a82";
 
 const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
@@ -75,7 +75,7 @@ function ClubCard({ club, next, last }: { club: MiClub; next: TeamFixture | null
         borderRadius: 16,
         padding: "14px 16px",
         marginBottom: 12,
-        background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 62%)",
+        background: "linear-gradient(160deg,#1b160d 0%,#0a0906 62%)",
         border: `1px solid ${GOLD}33`,
         boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06)",
         textDecoration: "none",
@@ -95,7 +95,7 @@ function ClubCard({ club, next, last }: { club: MiClub; next: TeamFixture | null
 
       {show && t && (
         <div style={{ display: "flex", alignItems: "center", gap: 10, paddingTop: 12, borderTop: `1px solid ${LINE}` }}>
-          <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 700, color: next ? DIM : "#8a94b0", minWidth: 62 }}>
+          <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 700, color: next ? DIM : "#a69a82", minWidth: 62 }}>
             {next ? (LIVE.has(show.status) ? "En vivo" : "Próximo") : "Último"}
           </span>
           <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>

@@ -20,7 +20,7 @@ import { X, Target, Sparkles, Zap, Trophy, Gamepad2, Users, type LucideIcon } fr
 import { isFreeWeekendActive, freeWeekendEnd } from "@/lib/pro/free-weekend";
 import { featureForPath } from "@/lib/pro/free-weekend-usage";
 
-const BG = "#060B14", NAVY = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#8a94b0";
+const BG = "#000000", NAVY = "#14110a", GOLD = "#c9a84c", GOLD2 = "#e8d48b", GREEN = "#22c55e", MID = "#a69a82";
 const SHOWN_KEY = "zm:fw-popup-day"; // guarda el día (YYYY-MM-DD): máx. 1 popup/día
 // sessionStorage: si el usuario cierra la píldora con la ×, se mantiene cerrada
 // al minimizar/volver de segundo plano (misma sesión) y solo reaparece cuando
@@ -161,7 +161,7 @@ export default function FreeWeekendCampaign() {
               bottom: "calc(152px + env(safe-area-inset-bottom, 0px))", zIndex: 9990,
               display: "flex", alignItems: "center", gap: 6, maxWidth: "calc(100vw - 24px)",
               padding: "8px 8px 8px 16px", borderRadius: 999, border: "1px solid rgba(201,168,76,0.5)",
-              background: "linear-gradient(135deg, #11233a, #0A1422)",
+              background: "linear-gradient(135deg, #14110a, #0a0906)",
               color: "#fff", fontSize: 13, fontWeight: 800, fontFamily: "inherit", whiteSpace: "nowrap",
               boxShadow: "0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.15)",
               animation: "zmFwPill .3s ease both",
@@ -212,7 +212,7 @@ export default function FreeWeekendCampaign() {
             onClick={closePopup}
             style={{
               position: "fixed", inset: 0, zIndex: 9999,
-              background: "rgba(4,8,15,0.82)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
+              background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
               display: "flex", alignItems: "center", justifyContent: "center", padding: 16,
               animation: "zmFwBg .2s ease",
             }}
@@ -298,7 +298,7 @@ export default function FreeWeekendCampaign() {
                 <button
                   className="zm-fw-cta"
                   onClick={closePopup}
-                  style={{ width: "100%", padding: "15px 18px", borderRadius: 14, border: "none", cursor: "pointer", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0A1422", fontSize: 16.5, fontWeight: 900, fontFamily: "inherit", boxShadow: "0 10px 34px rgba(201,168,76,0.3)" }}
+                  style={{ width: "100%", padding: "15px 18px", borderRadius: 14, border: "none", cursor: "pointer", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontSize: 16.5, fontWeight: 900, fontFamily: "inherit", boxShadow: "0 10px 34px rgba(201,168,76,0.3)" }}
                 >
                   Entrar gratis este finde
                 </button>

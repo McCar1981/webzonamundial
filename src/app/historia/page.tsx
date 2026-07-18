@@ -149,7 +149,7 @@ export default function HistoriaPage() {
             <Link
               key={p.iso3}
               href={`/historia/selecciones/${getSeleccionSlug(p.iso3)}`}
-              className="p-3 sm:p-4 rounded-xl border border-[#1E293B] bg-[#0F1D32]/60 text-center hover:border-[#C9A84C]/40 transition-all no-underline"
+              className="p-3 sm:p-4 rounded-xl border border-[#241e12] bg-[#14110a]/60 text-center hover:border-[#C9A84C]/40 transition-all no-underline"
             >
               {p.banderaUrl && (
                 /* eslint-disable-next-line @next/next/no-img-element */
@@ -157,7 +157,7 @@ export default function HistoriaPage() {
                   src={p.banderaUrl}
                   alt={p.pais}
                   loading="lazy"
-                  className="w-10 h-7 sm:w-12 sm:h-8 rounded object-cover mx-auto border border-[#1E293B]"
+                  className="w-10 h-7 sm:w-12 sm:h-8 rounded object-cover mx-auto border border-[#241e12]"
                 />
               )}
               <div className="text-xl sm:text-2xl font-black text-[#C9A84C] mt-2">
@@ -441,13 +441,13 @@ export default function HistoriaPage() {
                     className="absolute -left-10 sm:-left-14 top-5 w-4 h-4 rounded-full border-2"
                     style={{
                       borderColor: GOLD,
-                      background: isProximo ? '#0F1D32' : GOLD,
+                      background: isProximo ? '#14110a' : GOLD,
                       left: '6px',
                     }}
                   />
                   <Link
                     href={`/historia/${e.meta.slug}`}
-                    className="block p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 hover:bg-[#0F1D32]/90 transition-all no-underline"
+                    className="block p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 hover:bg-[#14110a]/90 transition-all no-underline"
                   >
                     <div className="flex items-baseline gap-3 sm:gap-4 flex-wrap mb-2">
                       <span className="text-2xl sm:text-3xl font-black" style={{ color: GOLD }}>
@@ -537,7 +537,7 @@ function MegaStat({
   small?: boolean;
 }) {
   return (
-    <div className={`p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 ${small ? '' : ''}`}>
+    <div className={`p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 ${small ? '' : ''}`}>
       <div className={`font-black tabular-nums ${small ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`} style={{ color: GOLD }}>
         {n}
       </div>
@@ -564,7 +564,7 @@ function FeatureCard({
   return (
     <Link
       href={href}
-      className="block p-4 sm:p-5 rounded-2xl border border-[#1E293B] bg-[#0F1D32]/60 hover:border-[#C9A84C]/40 hover:bg-[#0F1D32]/90 transition-all no-underline group"
+      className="block p-4 sm:p-5 rounded-2xl border border-[#241e12] bg-[#14110a]/60 hover:border-[#C9A84C]/40 hover:bg-[#14110a]/90 transition-all no-underline group"
     >
       <div className="flex items-baseline justify-between mb-2">
         <span className="text-2xl">{icon}</span>

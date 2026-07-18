@@ -13,7 +13,7 @@ import { ensureAnonId } from "@/lib/anon-id";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
+const MID = "#a69a82";
 const RED = "#e63946";
 
 const EMOJIS = ["⚽", "🔥", "👏", "😱", "🙌"];
@@ -162,7 +162,7 @@ export default function EstadioEnVivo({ matchId, live }: { matchId: number; live
     <section
       style={{
         position: "relative",
-        background: "#0F1D32",
+        background: "#14110a",
         borderRadius: 16,
         border: "1px solid rgba(255,255,255,0.08)",
         padding: "14px 16px",

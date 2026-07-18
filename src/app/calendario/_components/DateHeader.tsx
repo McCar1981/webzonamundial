@@ -24,7 +24,7 @@ export function DateHeader({ instant, tz, count }: DateHeaderProps) {
       <span className="text-[15px] font-semibold text-[#aab3c7]">
         {fmtDayLong(instant, tz, locale)}
       </span>
-      <span className="text-[12px] text-[#6a7a9a]">
+      <span className="text-[12px] text-[#6e6552]">
         · {count} {count === 1 ? cT.partido : cT.partidoPlural}
       </span>
     </div>

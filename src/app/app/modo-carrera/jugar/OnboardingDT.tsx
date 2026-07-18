@@ -124,7 +124,7 @@ export default function OnboardingDT({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={SCENE_BG} alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
         </picture>
-        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(180deg, rgba(6,11,20,0.7), ${BG} 85%)` }} />
+        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(180deg, rgba(0,0,0,0.7), ${BG} 85%)` }} />
       </div>
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1040, margin: "0 auto", padding: "48px 20px 90px" }}>

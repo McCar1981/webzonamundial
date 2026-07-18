@@ -18,6 +18,7 @@ import { MATCHES } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
 import PushPromptCard from "@/components/app/PushPromptCard";
+import MiFutbolSection from "@/components/app/MiFutbolSection";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
 import MerchAmazonStrip from "@/components/affiliate/MerchAmazonStrip";
@@ -1305,6 +1306,12 @@ export default function AppHubPage() {
             </Link>
           );
         })()}
+
+        {/* ═══ TU FÚTBOL — el lobby adaptado a las preferencias del usuario.
+            Club favorito + partidos de sus ligas (mi-club / mi-feed). Se oculta
+            solo si no hay sesión o el usuario aún no eligió (seguro para
+            invitados y antes del gate de ligas). ═══ */}
+        <MiFutbolSection />
 
         {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══
             El bloque más fuerte de la pantalla: navy + textura de estadio, banderas

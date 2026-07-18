@@ -5,7 +5,6 @@ import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { sendWelcomeEmail } from "@/lib/email";
 import { subscribe } from "@/lib/email-subscriptions";
-import { getCreadorBySlug } from "@/data/creadores";
 import { getSeleccionBySlug } from "@/data/selecciones";
 import { COUNTRIES } from "@/lib/countries";
 import {
@@ -13,7 +12,6 @@ import {
   isAdult,
   validateCountry,
   validateFavTeam,
-  validateFavCreator,
 } from "@/lib/profile-validation";
 
 interface ActionResult {
@@ -49,7 +47,6 @@ export async function completeOnboardingAction(
 
   const countryRaw = (formData.get("country") as string | null)?.trim() || null;
   const fav_teamRaw = (formData.get("fav_team") as string | null)?.trim() || null;
-  const fav_creatorRaw = (formData.get("fav_creator") as string | null)?.trim() || null;
   const localeRaw = (formData.get("locale") as string | null)?.trim() ?? "es";
   const locale = localeRaw === "en" ? "en" : "es";
   const birth_date = (formData.get("birth_date") as string | null)?.trim() || null;
@@ -65,7 +62,6 @@ export async function completeOnboardingAction(
   // Validar contra catálogo — valores no encontrados se descartan (null)
   const country = validateCountry(countryRaw);
   const fav_team = validateFavTeam(fav_teamRaw);
-  const fav_creator = validateFavCreator(fav_creatorRaw);
 
   const { error } = await supabase
     .from("profiles")
@@ -73,7 +69,6 @@ export async function completeOnboardingAction(
       username,
       country,
       fav_team,
-      fav_creator,
       locale,
       birth_date,
       onboarded_at: new Date().toISOString(),
@@ -99,7 +94,6 @@ export async function completeOnboardingAction(
   // Convertimos los slugs a nombres legibles antes de enviarlo.
   if (user.email) {
     const teamName = fav_team ? getSeleccionBySlug(fav_team)?.nombre ?? null : null;
-    const creatorName = fav_creator ? getCreadorBySlug(fav_creator)?.nombre ?? null : null;
     const countryName = country
       ? COUNTRIES.find((c) => c.code === country)?.name ?? null
       : null;
@@ -108,7 +102,6 @@ export async function completeOnboardingAction(
       username,
       countryName,
       teamName,
-      creatorName,
     });
     // Alta en el digest diario con el user_id REAL. Es lo que habilita que el
     // digest y los emails por-usuario (recordatorio de racha) lleguen al

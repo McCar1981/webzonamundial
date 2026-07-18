@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs as getAllSeleccionSlugs, GRUPOS } from "@/data/selecciones";
 import { getAllSedeSlugs } from "@/data/sedes";
-import { CREADORES } from "@/data/creadores";
 import { getAllMomentSlugs } from "@/data/momentos-iconicos";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 import { getAllPosts as getAllBlogPosts } from "@/lib/blog";
@@ -143,13 +142,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Rutas dinámicas: creadores (registro personalizado por creator)
-  const creadorRoutes: MetadataRoute.Sitemap = CREADORES.map((c) => ({
-    url: `${BASE_URL}/registro/${c.slug}`,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
-
   // Rutas dinámicas: momentos icónicos
   const momentoRoutes: MetadataRoute.Sitemap = getAllMomentSlugs().map((slug) => ({
     url: `${BASE_URL}/historia/momentos-iconicos/${slug}`,
@@ -229,7 +221,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...seleccionRoutes,
     ...sedeRoutes,
     ...grupoRoutes,
-    ...creadorRoutes,
     ...momentoRoutes,
     ...edicionRoutes,
     ...jugadorLegRoutes,

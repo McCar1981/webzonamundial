@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getOwnProfile } from "@/lib/auth-helpers";
-import { getCreadoresActivos } from "@/data/creadores";
 import { SELECCIONES } from "@/data/selecciones";
 import { COUNTRIES } from "@/lib/countries";
 import { isFounder } from "@/lib/founders/store";
@@ -10,7 +9,6 @@ export const dynamic = "force-dynamic";
 
 export default async function CuentaProfilePage() {
   const { user, profile } = await getOwnProfile();
-  const creadores = getCreadoresActivos();
   const founder = user.email ? await isFounder(user.email) : false;
 
   return (
@@ -46,7 +44,6 @@ export default async function CuentaProfilePage() {
           username: profile?.username ?? "",
           country: profile?.country ?? "",
           fav_team: profile?.fav_team ?? "",
-          fav_creator: profile?.fav_creator ?? "",
           locale: profile?.locale ?? "es",
           birth_date: profile?.birth_date ?? "",
         }}
@@ -55,12 +52,6 @@ export default async function CuentaProfilePage() {
           slug: s.slug,
           nombre: s.nombre,
           flagCode: s.flagCode,
-        }))}
-        creadores={creadores.map((c) => ({
-          slug: c.slug,
-          nombre: c.nombre,
-          imagen: c.imagen,
-          plataformaPrincipal: c.plataformaPrincipal,
         }))}
       />
     </div>

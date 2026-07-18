@@ -17,21 +17,12 @@ interface SeleccionOption {
   flagCode: string;
   grupo: string;
 }
-interface CreadorOption {
-  slug: string;
-  nombre: string;
-  imagen: string;
-  plataformaPrincipal: string;
-  seguidores: string;
-}
-
 interface State {
   username: string;
   country: string;
   locale: "es" | "en";
   birth_date: string;
   fav_team: string;
-  fav_creator: string;
 }
 
 export default function OnboardingWizard({
@@ -39,13 +30,11 @@ export default function OnboardingWizard({
   initialUsername,
   countries,
   selecciones,
-  creadores,
 }: {
   email: string;
   initialUsername: string;
   countries: CountryOption[];
   selecciones: SeleccionOption[];
-  creadores: CreadorOption[];
 }) {
   const router = useRouter();
   const searchParamsHook = useSearchParams();
@@ -66,7 +55,6 @@ export default function OnboardingWizard({
     locale: "es",
     birth_date: "",
     fav_team: "",
-    fav_creator: "",
   });
 
   function set<K extends keyof State>(key: K, value: State[K]) {
@@ -187,9 +175,7 @@ export default function OnboardingWizard({
         {step === 3 && (
           <Step3
             fav_team={state.fav_team}
-            fav_creator={state.fav_creator}
             selecciones={selecciones}
-            creadores={creadores}
             onChange={set}
             onBack={() => setStep(2)}
             onFinish={() => setStep(4)}
@@ -338,7 +324,7 @@ function Step2({
           ¿Desde dónde nos sigues?
         </h2>
         <p className="text-gray-400 text-sm">
-          Esto nos ayuda a recomendarte creadores y rivales locales.
+          Esto nos ayuda a recomendarte rivales locales.
         </p>
       </div>
 
@@ -429,22 +415,18 @@ function Step2({
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   STEP 3 — Selección + creador favorito
+   STEP 3 — Selección favorita
 ─────────────────────────────────────────────────────────────────── */
 function Step3({
   fav_team,
-  fav_creator,
   selecciones,
-  creadores,
   onChange,
   onBack,
   onFinish,
   pending,
 }: {
   fav_team: string;
-  fav_creator: string;
   selecciones: SeleccionOption[];
-  creadores: CreadorOption[];
   onChange: <K extends keyof State>(k: K, v: State[K]) => void;
   onBack: () => void;
   onFinish: () => void;
@@ -462,7 +444,7 @@ function Step3({
           Tus colores
         </h2>
         <p className="text-gray-400 text-sm">
-          Vibra con tu selección y únete a tu creador favorito.
+          Elige la selección con la que vibras.
         </p>
       </div>
 
@@ -485,65 +467,6 @@ function Step3({
           </select>
         </div>
 
-        <div>
-          <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
-            Creador favorito
-          </label>
-          <div className="grid grid-cols-2 gap-3 max-h-[280px] overflow-y-auto pr-1">
-            <button
-              type="button"
-              onClick={() => onChange("fav_creator", "")}
-              className="p-3 rounded-xl border text-left transition-all"
-              style={{
-                background: fav_creator === ""
-                  ? "rgba(201,168,76,0.1)"
-                  : "rgba(11,24,37,0.5)",
-                borderColor: fav_creator === "" ? "#C9A84C" : "#1E293B",
-              }}
-            >
-              <div className="text-xs font-bold text-white">Ninguno</div>
-              <div className="text-[10px] text-gray-500 mt-0.5">
-                Sin creador asignado
-              </div>
-            </button>
-            {creadores.map((c) => {
-              const active = fav_creator === c.slug;
-              return (
-                <button
-                  key={c.slug}
-                  type="button"
-                  onClick={() => onChange("fav_creator", c.slug)}
-                  className="p-3 rounded-xl border text-left transition-all flex items-center gap-3"
-                  style={{
-                    background: active
-                      ? "rgba(201,168,76,0.1)"
-                      : "rgba(11,24,37,0.5)",
-                    borderColor: active ? "#C9A84C" : "#1E293B",
-                  }}
-                >
-                  <span
-                    className="w-9 h-9 rounded-full flex-shrink-0 overflow-hidden border"
-                    style={{ borderColor: active ? "#C9A84C" : "#1E293B" }}
-                  >
-                    <img
-                      src={c.imagen}
-                      alt={c.nombre}
-                      className="w-full h-full object-cover"
-                    />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-xs font-bold text-white truncate">
-                      {c.nombre}
-                    </span>
-                    <span className="block text-[10px] text-gray-500 truncate">
-                      {c.seguidores}
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </div>
 
       <div className="flex items-center gap-3 mt-8">

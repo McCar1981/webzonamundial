@@ -5,9 +5,8 @@
 
 import Link from 'next/link';
 import FormularioRegistro from '@/components/FormularioRegistro';
-import { getTotalSeguidores, getCreadoresActivos } from '@/data/creadores';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { ICON_UI, ICON_V3, ICON_DESCUBRE } from '@/components/icons';
+import { ICON_UI, ICON_V3 } from '@/components/icons';
 
 const FEATURE_ICON_MAP: Record<string, React.ReactNode> = {
   'Predicciones': ICON_V3.predicciones,
@@ -31,9 +30,6 @@ const FEATURE_ICON_MAP: Record<string, React.ReactNode> = {
 export default function RegistroPage() {
   const { t } = useLanguage();
   const rT = t.registro;
-  const totalSeg = getTotalSeguidores();
-  const numCreadores = getCreadoresActivos().length;
-  const creadores = getCreadoresActivos();
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -72,7 +68,7 @@ export default function RegistroPage() {
           </h1>
 
           <p className="text-gray-400 text-base max-w-xl mx-auto leading-relaxed">
-            {rT.subtitle.replace('{n}', numCreadores.toString()).replace('{s}', totalSeg)}
+            {rT.formSub}
           </p>
         </div>
 
@@ -151,34 +147,6 @@ export default function RegistroPage() {
                 <span className="w-4 h-4 flex-shrink-0">{ICON_V3.stories}</span>
                 {rT.surprises}
               </p>
-            </div>
-
-            {/* Top Creators compact */}
-            <div className="p-6 rounded-2xl border border-[#1E293B]/50"
-              style={{ background: 'rgba(15,23,42,0.4)', backdropFilter: 'blur(12px)' }}>
-              <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-                <span className="w-6 h-6 flex-shrink-0">{ICON_DESCUBRE.creadores}</span>
-                {rT.featuredCreators}
-              </h3>
-              <div className="space-y-3">
-                {creadores.slice(0, 4).map((c) => (
-                  <Link key={c.slug} href={`/registro/${c.slug}`}
-                    className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all group">
-                    <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border"
-                      style={{ borderColor: `${c.colorPrimario}40` }}>
-                      <img src={c.imagen} alt={c.nombre} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-white text-sm group-hover:text-[#C9A84C] transition-colors truncate">{c.nombre}</p>
-                      <p className="text-xs text-gray-500">{c.seguidores} · {c.plataformaPrincipal}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-              <Link href="/creadores"
-                className="block text-center mt-4 text-xs font-medium text-[#C9A84C] hover:text-[#E8D48B] transition-colors">
-                {rT.verCreadores}
-              </Link>
             </div>
 
             {/* Stats mini */}

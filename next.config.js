@@ -54,6 +54,9 @@ const nextConfig = {
       // 301 para preservar el equity SEO de las URLs indexadas y no dejar 404s.
       { source: "/creadores", destination: "/ligas", permanent: true },
       { source: "/creadores/:slug*", destination: "/ligas", permanent: true },
+      // Registro personalizado por creador retirado: cualquier /registro/<algo>
+      // (los enlaces de referido de creadores) va al registro normal.
+      { source: "/registro/:creador", destination: "/registro", permanent: true },
     ];
   },
 

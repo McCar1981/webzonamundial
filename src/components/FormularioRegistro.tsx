@@ -3,7 +3,6 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { getCreadoresActivos } from '@/data/creadores';
 import { SELECCIONES } from '@/data/selecciones';
 import { COUNTRIES } from '@/lib/countries';
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -26,23 +25,20 @@ function normCode(raw: string): string {
 }
 
 export default function FormularioRegistro({
-  creadorPreseleccionado,
-  // Código de captación (estrategia paralela a los creadores). Si viene
-  // `codigoPreseleccionado` (landing /registro-codigo/<CODIGO>) el campo va
-  // bloqueado y prerelleno. Si `pedirCodigo` es true (página /registro-codigo
-  // genérica) se muestra un campo editable opcional. Si ninguno, el formulario
-  // se comporta EXACTAMENTE como hasta ahora (registro normal / por creador).
+  // Código de captación. Si viene `codigoPreseleccionado` (landing
+  // /registro-codigo/<CODIGO>) el campo va bloqueado y prerelleno. Si
+  // `pedirCodigo` es true (página /registro-codigo genérica) se muestra un
+  // campo editable opcional. Si ninguno, el formulario es el registro normal.
   codigoPreseleccionado,
   pedirCodigo,
 }: {
-  creadorPreseleccionado?: string;
   codigoPreseleccionado?: string;
   pedirCodigo?: boolean;
 }) {
   const { t } = useLanguage();
   const isEN = t.nav.selecciones === '48 Teams';
 
-  const [step, setStep] = useState(1);
+  const step = 1;
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',    // Nombre real, e.g. "Juan Carlos"
@@ -50,7 +46,6 @@ export default function FormularioRegistro({
     nombre: '',       // Username público (alias), e.g. "juancho21"
     country: '',      // ISO-3166 alpha-2 (ar, es, mx, …)
     fav_team: '',     // slug de SELECCIONES (argentina, espana, …)
-    creador: creadorPreseleccionado || '',
     signupCode: normCode(codigoPreseleccionado || ''), // código de captación
     acceptTerms: false,
   });
@@ -150,7 +145,6 @@ export default function FormularioRegistro({
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const creadores = getCreadoresActivos();
 
   const labels = isEN ? {
     step1: 'Your info',
@@ -293,10 +287,6 @@ export default function FormularioRegistro({
     return true;
   };
 
-  const handleContinue = () => {
-    if (validateStep1()) setStep(2);
-  };
-
   // Registro/login en 1 clic con Google o Apple. Es el camino MÁS rápido:
   // sin teclear nada ni esperar un correo. Supabase crea la cuenta en el
   // primer login y el callback manda al usuario nuevo a /onboarding, donde
@@ -326,7 +316,6 @@ export default function FormularioRegistro({
     // OAuth. El código se canjea en /auth/callback leyendo el param `codigo`.
     const codeForUrl = normCode(formData.signupCode || codigoPreseleccionado || '');
     const params = new URLSearchParams();
-    if (creadorPreseleccionado) params.set('creador', creadorPreseleccionado);
     if (codeForUrl) params.set('codigo', codeForUrl);
     if (nextDestino) params.set('next', nextDestino); // el wizard lo respeta al terminar
     const qs = params.toString();
@@ -384,7 +373,6 @@ export default function FormularioRegistro({
     const cleanLastName = formData.lastName.trim().replace(/\s+/g, ' ');
     const cleanFullName = `${cleanFirstName} ${cleanLastName}`.trim();
     const cleanNombre = formData.nombre.trim();
-    const cleanCreador = formData.creador?.trim() || '';
     // Código de captación normalizado (vacío si no hay).
     const cleanCode = normCode(formData.signupCode || '');
     // Country: ISO-3166 alpha-2 lowercase (ar, es, mx…). null si vacío.
@@ -446,7 +434,6 @@ export default function FormularioRegistro({
           first_name: cleanFirstName,
           last_name: cleanLastName,
           full_name: cleanFullName,
-          creador: cleanCreador,
           country: cleanCountry,
           fav_team: cleanFavTeam,
           signup_code: cleanCode,
@@ -500,7 +487,6 @@ export default function FormularioRegistro({
             first_name: cleanFirstName,
             last_name: cleanLastName,
             username: cleanNombre,
-            fav_creator: cleanCreador,
             country: cleanCountry,
             fav_team: cleanFavTeam,
             signup_code: cleanCode,
@@ -613,28 +599,6 @@ export default function FormularioRegistro({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Progress Steps — solo en el registro normal/por creador (2 pasos).
-          En el flujo de código no hay paso 2 (no se elige creador). */}
-      {!isCodeFlow && (
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-            step === 1 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#C9A84C]/20 text-[#C9A84C]'
-          }`}>
-            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-              style={{ background: step === 1 ? '#030712' : 'transparent' }}>1</span>
-            {labels.step1}
-          </div>
-          <div className="w-8 h-0.5 bg-[#1E293B]" />
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-            step === 2 ? 'bg-[#C9A84C] text-[#030712]' : 'bg-[#1E293B] text-gray-500'
-          }`}>
-            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-              style={{ background: step === 2 ? '#030712' : 'transparent' }}>2</span>
-            {labels.step2}
-          </div>
-        </div>
-      )}
-
       {/* Error message */}
       {error && (
         <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
@@ -920,12 +884,9 @@ export default function FormularioRegistro({
           </div>
 
           <button
-            // Flujo de código: este botón ENVÍA (no hay paso 2). Registro
-            // normal/por creador: continúa al paso 2 (elegir creador).
-            type={isCodeFlow ? 'submit' : 'button'}
-            onClick={isCodeFlow ? undefined : handleContinue}
+            type="submit"
             disabled={
-              (isCodeFlow && loading) ||
+              loading ||
               !formData.email ||
               !formData.firstName.trim() ||
               !formData.lastName.trim() ||
@@ -935,108 +896,6 @@ export default function FormularioRegistro({
               !formData.acceptTerms
             }
             className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
-            style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
-          >
-            {isCodeFlow ? (
-              loading ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  {labels.submitting}
-                </>
-              ) : (
-                <>
-                  {labels.submit}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </>
-              )
-            ) : (
-              <>
-                {labels.continue}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </>
-            )}
-          </button>
-        </>
-      )}
-
-      {step === 2 && (
-        <>
-          <button
-            type="button"
-            onClick={() => { setStep(1); setError(''); }}
-            className="text-xs text-gray-500 hover:text-[#C9A84C] flex items-center gap-1.5 mb-4 transition-colors cursor-pointer"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            {labels.back}
-          </button>
-
-          <p className="text-sm text-gray-300 mb-4">{labels.chooseCreator}</p>
-
-          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
-            {/* No creator option */}
-            <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-300 ${
-              formData.creador === '' ? 'border-[#C9A84C] bg-[#C9A84C]/5' : 'border-[#1E293B] hover:border-[#2a3a4f] bg-[#0B1825]/50'
-            }`}>
-              <input type="radio" name="creador" value="" checked={formData.creador === ''}
-                onChange={(e) => setFormData({ ...formData, creador: e.target.value })} className="sr-only" />
-              <div className="w-11 h-11 rounded-xl flex-shrink-0 border border-[#1E293B] flex items-center justify-center bg-[#0B1825]"
-                style={{ borderColor: formData.creador === '' ? '#C9A84C' : '#1E293B' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#6a7a9a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-4h2v2h-2v-2zm0-2h2V7h-2v7z"/></svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-white">{labels.noCreator}</p>
-                <p className="text-xs text-gray-500">{labels.noCreatorDesc}</p>
-              </div>
-              {formData.creador === '' && (
-                <div className="w-5 h-5 rounded-full bg-[#C9A84C] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3 h-3 text-[#030712]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              )}
-            </label>
-
-            <div className="border-t border-[#1E293B]/50 my-2" />
-
-            {creadores.map((c) => (
-              <label key={c.slug} className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all duration-300 ${
-                formData.creador === c.slug ? 'border-[#C9A84C] bg-[#C9A84C]/5' : 'border-[#1E293B] hover:border-[#2a3a4f] bg-[#0B1825]/50'
-              }`}>
-                <input type="radio" name="creador" value={c.slug}
-                  checked={formData.creador === c.slug}
-                  onChange={(e) => setFormData({ ...formData, creador: e.target.value })} className="sr-only" />
-                <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all"
-                  style={{ borderColor: formData.creador === c.slug ? c.colorPrimario : `${c.colorPrimario}33` }}>
-                  <img src={c.imagen} alt={c.nombre} className="w-full h-full object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-white truncate">{c.nombre}</p>
-                  <p className="text-xs text-gray-500">{c.seguidores} {labels.followers} · <span style={{ color: c.colorPrimario }}>{c.plataformaPrincipal}</span></p>
-                </div>
-                {formData.creador === c.slug && (
-                  <div className="w-5 h-5 rounded-full bg-[#C9A84C] flex items-center justify-center flex-shrink-0">
-                    <svg className="w-3 h-3 text-[#030712]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                )}
-              </label>
-            ))}
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 mt-4 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >
             {loading ? (

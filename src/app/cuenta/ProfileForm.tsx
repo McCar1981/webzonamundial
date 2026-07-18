@@ -12,18 +12,10 @@ interface SeleccionOption {
   nombre: string;
   flagCode: string;
 }
-interface CreadorOption {
-  slug: string;
-  nombre: string;
-  imagen: string;
-  plataformaPrincipal: string;
-}
-
 interface InitialValues {
   username: string;
   country: string;
   fav_team: string;
-  fav_creator: string;
   locale: "es" | "en";
   birth_date: string;
 }
@@ -33,13 +25,11 @@ export default function ProfileForm({
   initial,
   countries,
   selecciones,
-  creadores,
 }: {
   email: string;
   initial: InitialValues;
   countries: CountryOption[];
   selecciones: SeleccionOption[];
-  creadores: CreadorOption[];
 }) {
   const [values, setValues] = useState<InitialValues>(initial);
   const [pending, startTransition] = useTransition();
@@ -61,7 +51,6 @@ export default function ProfileForm({
     fd.set("username", values.username);
     fd.set("country", values.country);
     fd.set("fav_team", values.fav_team);
-    fd.set("fav_creator", values.fav_creator);
     fd.set("locale", values.locale);
     fd.set("birth_date", values.birth_date);
 
@@ -197,72 +186,6 @@ export default function ProfileForm({
               </option>
             ))}
           </select>
-        </div>
-      </div>
-
-      {/* Creador favorito */}
-      <div>
-        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-          Creador favorito
-        </label>
-        <p className="text-[11px] text-gray-500 mb-3">
-          Te uniremos a su comunidad. Puedes cambiarlo cuando quieras.
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <button
-            type="button"
-            onClick={() => handleChange("fav_creator", "")}
-            className="p-3 rounded-xl border text-left transition-all"
-            style={{
-              background: values.fav_creator === ""
-                ? "rgba(201,168,76,0.1)"
-                : "rgba(11,24,37,0.5)",
-              borderColor: values.fav_creator === ""
-                ? "#C9A84C"
-                : "#1E293B",
-            }}
-          >
-            <div className="text-xs font-bold text-white">Ninguno</div>
-            <div className="text-[10px] text-gray-500 mt-0.5">
-              Sin creador asignado
-            </div>
-          </button>
-          {creadores.map((c) => {
-            const active = values.fav_creator === c.slug;
-            return (
-              <button
-                key={c.slug}
-                type="button"
-                onClick={() => handleChange("fav_creator", c.slug)}
-                className="p-3 rounded-xl border text-left transition-all flex items-center gap-3"
-                style={{
-                  background: active
-                    ? "rgba(201,168,76,0.1)"
-                    : "rgba(11,24,37,0.5)",
-                  borderColor: active ? "#C9A84C" : "#1E293B",
-                }}
-              >
-                <span
-                  className="w-9 h-9 rounded-full flex-shrink-0 overflow-hidden border"
-                  style={{ borderColor: active ? "#C9A84C" : "#1E293B" }}
-                >
-                  <img
-                    src={c.imagen}
-                    alt={c.nombre}
-                    className="w-full h-full object-cover"
-                  />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs font-bold text-white truncate">
-                    {c.nombre}
-                  </span>
-                  <span className="block text-[10px] text-gray-500 truncate">
-                    {c.plataformaPrincipal}
-                  </span>
-                </span>
-              </button>
-            );
-          })}
         </div>
       </div>
 

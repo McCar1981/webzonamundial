@@ -7,7 +7,6 @@
 
 import { COUNTRIES } from "./countries";
 import { getSeleccionBySlug } from "@/data/selecciones";
-import { getCreadorBySlug } from "@/data/creadores";
 
 /** Valida formato de username: 3-30 chars, a-z, 0-9, underscore. */
 export function isValidUsername(username: string): boolean {
@@ -94,13 +93,3 @@ export function validateFavTeam(input: string | null): string | null {
   return found ? clean : null;
 }
 
-/**
- * Valida fav_creator contra el catálogo de creadores.
- * Devuelve el slug limpio o null si no es válido.
- */
-export function validateFavCreator(input: string | null): string | null {
-  if (!input) return null;
-  const clean = input.trim().toLowerCase();
-  const found = getCreadorBySlug(clean);
-  return found ? clean : null;
-}

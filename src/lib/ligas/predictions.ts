@@ -10,9 +10,10 @@
 // aplique el SQL, sin romper nada.
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { TypedMarket, MarketData } from "./predict-markets";
 
 export type LigaPick = "home" | "draw" | "away";
-export type LigaMarket = "1x2" | "exact";
+export type LigaMarket = "1x2" | "exact" | TypedMarket;
 
 export function isMissingTable(err: unknown): boolean {
   return !!err && typeof err === "object" && (err as { code?: string }).code === "42P01";
@@ -107,6 +108,53 @@ export async function getUserScorePick(
   const row = data as { score_home: number | null; score_away: number | null };
   if (row.score_home == null || row.score_away == null) return null;
   return { home: row.score_home, away: row.score_away };
+}
+
+// ─── Mercados tipados (migración 2026-47): ou_goals / first_goal / btts ──────
+
+/** Guarda un pick de mercado tipado (payload en `data jsonb`). */
+export async function saveTypedPick(
+  userId: string,
+  fixtureId: number,
+  competitionSlug: string,
+  market: TypedMarket,
+  data: MarketData,
+  kickoffIso: string,
+): Promise<SavePickResult> {
+  const supa = createSupabaseServerClient();
+  const { error } = await supa.from("liga_predictions").insert({
+    user_id: userId,
+    fixture_id: fixtureId,
+    competition_slug: competitionSlug,
+    market,
+    data,
+    kickoff: kickoffIso,
+  });
+  if (!error) return { ok: true };
+  if ((error as { code?: string }).code === "23505") return { ok: false, reason: "exists" };
+  if (isMissingTable(error) || isMissingColumn(error)) return { ok: false, reason: "not_available" };
+  console.error("[liga-predictions] saveTypedPick failed:", error.message);
+  return { ok: false, reason: "error" };
+}
+
+/** Picks tipados del usuario para un partido: mapa market -> data guardado. */
+export async function getUserTypedPicks(
+  userId: string,
+  fixtureId: number,
+): Promise<Partial<Record<TypedMarket, MarketData>>> {
+  const supa = createSupabaseServerClient();
+  const { data, error } = await supa
+    .from("liga_predictions")
+    .select("market,data")
+    .eq("user_id", userId)
+    .eq("fixture_id", fixtureId)
+    .in("market", ["ou_goals", "first_goal", "btts"]);
+  if (error || !data) return {}; // tabla/columna ausente: la UI simplemente no ofrece los mercados
+  const out: Partial<Record<TypedMarket, MarketData>> = {};
+  for (const row of data as { market: TypedMarket; data: MarketData | null }[]) {
+    if (row.data) out[row.market] = row.data;
+  }
+  return out;
 }
 
 export type LigaPredictionStatus = "pending" | "won" | "lost" | "void";

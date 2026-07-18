@@ -21,6 +21,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
 import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
+import { resolveTypedMarket, MARKET_REWARD, type TypedMarket, type MarketData } from "@/lib/ligas/predict-markets";
 import { notifyResolvedLigaFixtures, type ResolvedLigaFixtureMeta } from "@/lib/ligas/notify";
 import { recordHeartbeat } from "@/lib/ops/store";
 
@@ -71,6 +72,10 @@ export async function GET(req: Request) {
   // Sonda de la migración 2026-44: ¿existe ya la columna `market`?
   const probe = await admin.from("liga_predictions").select("market").limit(1);
   const hasExact = !probe.error;
+  // Sonda de la migración 2026-47: ¿existe la columna `data` (mercados tipados)?
+  const typedProbe = await admin.from("liga_predictions").select("data").limit(1);
+  const hasTyped = !typedProbe.error;
+  const hasMarket = hasExact || hasTyped;
 
   const fixtureIds = [...new Set(pending.map((p) => p.fixture_id))].slice(0, MAX_FIXTURES_PER_RUN);
   let resolvedFixtures = 0;
@@ -99,6 +104,22 @@ export async function GET(req: Request) {
         .eq("fixture_id", fid).eq("status", "pending").eq("market", "exact")
         .or(`score_home.neq.${h},score_away.neq.${a}`);
     }
+    // Mercados tipados (2026-47): se resuelven en JS por fila con el detalle real
+    // del partido. void (null) si no se puede determinar (p.ej. sin timeline de
+    // goles) → no paga, pero tampoco falla mal.
+    if (hasTyped) {
+      const { data: typedRows } = await admin
+        .from("liga_predictions")
+        .select("id,market,data")
+        .eq("fixture_id", fid)
+        .eq("status", "pending")
+        .in("market", ["ou_goals", "first_goal", "btts"]);
+      for (const tr of (typedRows ?? []) as unknown as { id: string; market: TypedMarket; data: MarketData }[]) {
+        const verdict = resolveTypedMarket(tr.market, tr.data, d);
+        const status = verdict === null ? "void" : verdict ? "won" : "lost";
+        await admin.from("liga_predictions").update({ status, resolved_at: nowIso }).eq("id", tr.id).eq("status", "pending");
+      }
+    }
     resolvedMeta.set(fid, { label: `${d.fixture.home.name} ${d.fixture.score.home ?? 0}-${d.fixture.score.away ?? 0} ${d.fixture.away.name}` });
     resolvedFixtures++;
   }
@@ -113,7 +134,7 @@ export async function GET(req: Request) {
   type RewardRow = { id: string; user_id: string; fixture_id: number; market?: string | null };
   const { data: toReward } = await admin
     .from("liga_predictions")
-    .select(hasExact ? "id,user_id,fixture_id,market" : "id,user_id,fixture_id")
+    .select(hasMarket ? "id,user_id,fixture_id,market" : "id,user_id,fixture_id")
     .eq("status", "won")
     .eq("rewarded", false)
     .limit(300);
@@ -129,8 +150,11 @@ export async function GET(req: Request) {
     let coins: number;
     if (row.market === "exact") {
       coins = EXACT_REWARD; // el boost aplica solo al 1X2 (aquí no se consume)
+    } else if (row.market && row.market in MARKET_REWARD) {
+      // Mercados tipados (2026-47): recompensa fija por mercado, sin boost.
+      coins = MARKET_REWARD[row.market as TypedMarket];
     } else {
-      // Boost: si el usuario pagó por amplificar este partido, paga el premio mayor.
+      // 1X2. Boost: si el usuario pagó por amplificar este partido, premio mayor.
       const boosted = await consumeBoost(row.user_id, row.fixture_id);
       coins = boosted ? BOOST_REWARD : REWARD_COINS;
     }

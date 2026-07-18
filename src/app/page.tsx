@@ -24,7 +24,6 @@ import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSectio
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
 import { ModulesBentoSection } from "./_home/sections/ModulesBentoSection";
 import { GuaranteesBar } from "./_home/sections/GuaranteesBar";
-import { CommunityCreatorsSection } from "./_home/sections/CommunityCreatorsSection";
 import { SocialProofTicker } from "./_home/sections/SocialProofTicker";
 import { WaitlistSection } from "./_home/sections/WaitlistSection";
 import { FinalCTASection } from "./_home/sections/FinalCTASection";
@@ -152,7 +151,6 @@ export default function HomePage() {
       <PlatformShowcaseSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
-      <CommunityCreatorsSection />
       <AlbumDominaSection />
       <AppRevealSection />
       <WaitlistSection />

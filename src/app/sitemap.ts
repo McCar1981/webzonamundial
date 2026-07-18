@@ -40,7 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Puente a la próxima temporada de ligas de clubes: capta búsqueda de marca
     // ("zona futbol") y da destino al tráfico del Mundial cuando acabe (waitlist).
     { url: `${BASE_URL}/zona-futbol-preview`, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/creadores`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/calendario`, lastModified, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE_URL}/grupos`, lastModified, changeFrequency: "daily", priority: 0.9 },
     // Tabla viva de mejores terceros: cambia con cada resultado de grupos.

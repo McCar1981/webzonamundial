@@ -1,7 +1,7 @@
 name: Cron frequent (every 15 min)
 
 # Free alternative to Vercel Pro crons for the medium-frequency endpoints
-# (predictions + Zona de Ligas resolution, stories). Hobby cannot schedule
+# (predictions + Zona de Ligas resolution). Hobby cannot schedule
 # sub-daily crons, so GitHub Actions triggers them every 15 min.
 #
 # Required repo secrets (Settings -> Secrets and variables -> Actions):
@@ -30,7 +30,6 @@ jobs:
             "/api/cron/resolve-predictions"
             "/api/cron/resolve-liga-predictions"
             "/api/cron/resolve-liga-fantasy"
-            "/api/stories/generate"
           )
           for ep in "${endpoints[@]}"; do
             echo "--- $ep"

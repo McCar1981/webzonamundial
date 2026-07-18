@@ -12,7 +12,6 @@ import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import MobileUserMenu from "@/components/MobileUserMenu";
-import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 import LiveMatchBar from "@/components/LiveMatchBar";
 import GoalCelebrationGlobal from "@/components/GoalCelebrationGlobal";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
@@ -50,7 +49,6 @@ function buildNav(t: Translations) {
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
     { id: "camisetas",  label: "Camisetas",       href: "/camisetas" },
     { id: "tutoriales", label: t.nav.tutoriales,  href: "/tutoriales" },
-    { id: "creadores",  label: t.nav.creadores,   href: "/creadores" },
     { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
     { id: "premium",    label: t.nav.premium,     href: "/pro" },
     { id: "bares",      label: t.nav.bares,       href: "/bares" },
@@ -91,7 +89,6 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.noticias,   href: "/noticias" },
       { label: t.footer.blog,        href: "/blog" },
       { label: t.footer.tutoriales,  href: "/tutoriales" },
-      { label: t.footer.creadores,   href: "/creadores" },
       { label: t.footer.ligas,       href: "/app/fantasy/jugar?tab=ligas" },
       { label: t.footer.rankings,    href: "/app/rankings" },
       { label: t.footer.streaming,   href: "/app/streaming" },
@@ -422,7 +419,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           Solo se monta si hay alg\u00fan creator de ZonaMundial transmitiendo
           ahora mismo. El componente hace fetch a /api/creators/live cada
           60s y se oculta autom\u00e1ticamente si nadie est\u00e1 en directo. */}
-      <LiveCreatorsBanner />
 
       {/* ═══ MOBILE OVERLAY ═══ */}
       <div style={{

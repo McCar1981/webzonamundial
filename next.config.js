@@ -50,7 +50,10 @@ const nextConfig = {
   // Redirecciones SEO
   async redirects() {
     return [
-      // Redirigir rutas antiguas si las hay
+      // Sección de creadores retirada (jul-2026): Zona de Ligas la sustituye.
+      // 301 para preservar el equity SEO de las URLs indexadas y no dejar 404s.
+      { source: "/creadores", destination: "/ligas", permanent: true },
+      { source: "/creadores/:slug*", destination: "/ligas", permanent: true },
     ];
   },
 

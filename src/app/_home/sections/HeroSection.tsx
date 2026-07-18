@@ -2,7 +2,6 @@
 
 import { RefObject, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CREADORES } from "@/data/creadores";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
 import { MatchCenterBanner } from "./MatchCenterBanner";
@@ -172,11 +171,6 @@ function HeroLeft({
   // lugar mostramos el estado en vivo.
   const kickedOff = cd.d === 0 && cd.h === 0 && cd.m === 0 && cd.s === 0;
 
-  // Real creators avatars (first 5, ordered per data file)
-  const creatorAvatars = CREADORES.slice(0, 5).map((c) => ({
-    nombre: c.nombre,
-    imagen: c.imagen,
-  }));
 
   return (
     <div className={styles.zmLeft}>
@@ -279,18 +273,6 @@ function HeroLeft({
       </div>
 
       <div className={styles.zmProof}>
-        <div className={styles.zmProofAvatars}>
-          {creatorAvatars.map((a, ix) => (
-            <div key={ix} className={styles.zmProofAvatar} title={a.nombre}>
-              <img
-                src={a.imagen}
-                alt={`${t.proof.avatarAlt} ${a.nombre}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          ))}
-        </div>
         <div className={styles.zmProofText}>
           <b>{t.proof.boldCount}</b> {t.proof.afterBold}
           <br />

@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { CREADORES } from "@/data/creadores";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
 import styles from "./WaitlistSection.module.css";
@@ -244,8 +243,6 @@ export function WaitlistSection() {
     }
   }
 
-  // First 3 creators as avatars shown next to the counter
-  const avatars = CREADORES.slice(0, 3);
 
   return (
     <section ref={sectionRef} className={styles.section} id="waitlist">
@@ -318,13 +315,6 @@ export function WaitlistSection() {
                   <h3>{t.successTitle}</h3>
                   <p>{t.successMsg}</p>
                   <div className={styles.counter} style={{ marginTop: 22 }}>
-                    <div className={styles.counterAvatars}>
-                      {avatars.map((c) => (
-                        <div key={c.slug} className={styles.counterAvatar}>
-                          <img src={c.imagen} alt="" loading="lazy" decoding="async" />
-                        </div>
-                      ))}
-                    </div>
                     <span className={styles.counterText}>
                       <span className={styles.counterNum}>
                         {displayedCount.toLocaleString(locale === "es" ? "es-ES" : "en-US")}
@@ -380,13 +370,6 @@ export function WaitlistSection() {
                   </div>
 
                   <div className={styles.counter}>
-                    <div className={styles.counterAvatars}>
-                      {avatars.map((c) => (
-                        <div key={c.slug} className={styles.counterAvatar}>
-                          <img src={c.imagen} alt="" loading="lazy" decoding="async" />
-                        </div>
-                      ))}
-                    </div>
                     <span className={styles.counterText}>
                       <span className={styles.counterNum}>
                         {displayedCount.toLocaleString(locale === "es" ? "es-ES" : "en-US")}

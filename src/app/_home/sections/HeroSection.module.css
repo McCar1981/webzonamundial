@@ -5,13 +5,15 @@
 
 /* ===== Design tokens (solo para este hero) ===== */
 .zmScope {
-  --zm-brand-blue: #2E86AB;
-  --zm-brand-blue-light: #4FA0C2;
+  /* Relanzamiento: negro total + oro. Se retiraron los acentos azul/morado;
+     los tokens de "blue/purple" ahora apuntan a oro para no dejar restos. */
+  --zm-brand-blue: #c9a84c;
+  --zm-brand-blue-light: #e8d48b;
   --zm-brand-dark: #1b160d;
   --zm-brand-gold: #c9a84c;
   --zm-brand-gold-dark: #a88a3d;
   --zm-brand-gold-light: #e8d48b;
-  --zm-brand-purple: #9b51e0;
+  --zm-brand-purple: #a88a3d;
   --zm-font-display: "Syne", system-ui, -apple-system, sans-serif;
   --zm-font-body: "Inter", system-ui, -apple-system, sans-serif;
   --zm-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
@@ -22,15 +24,38 @@
 .zmPage {
   position: relative;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(46,134,171,0.18), transparent 55%),
-    radial-gradient(ellipse 90% 70% at 100% 30%, rgba(212,168,83,0.14), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(155,81,224,0.12), transparent 60%),
-    linear-gradient(160deg, #08080F 0%, #000000 30%, #0E0E1F 60%, #080810 100%);
+  background: #000000;   /* NEGRO TOTAL — el brillo va en .zmGlow */
   color: #fff;
   overflow: hidden;
   font-family: var(--zm-font-body);
   isolation: isolate;
+}
+
+/* Atmósfera: resplandor de oro (arriba-derecha) sobre el negro. Estático. */
+.zmGlow {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 70% at 82% -8%, rgba(214,169,74,0.20), transparent 55%),
+    radial-gradient(ellipse 70% 60% at 4% 8%, rgba(169,120,31,0.10), transparent 62%);
+}
+/* Red de portería en filetes finísimos de oro, difuminada hacia el centro. */
+.zmNet {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+  background-image:
+    repeating-linear-gradient(60deg,  rgba(214,175,90,.06) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(-60deg, rgba(214,175,90,.06) 0 1px, transparent 1px 48px);
+  -webkit-mask-image: radial-gradient(120% 90% at 82% 0%, #000 8%, transparent 62%);
+          mask-image: radial-gradient(120% 90% at 82% 0%, #000 8%, transparent 62%);
+}
+/* Columna derecha del hero: el marcador en vivo como objeto protagonista. */
+.zmBoard {
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+}
+.zmBoard > section { width: 100%; padding-left: 0; padding-right: 0; }
+@media (max-width: 1023px) {
+  .zmBoard > section { padding-top: 8px; }
 }
 
 .zmStadiumPhoto {
@@ -164,8 +189,8 @@
 .zmChip {
   display: inline-flex; align-items: center;
   padding: 1px 8px; border-radius: 6px; margin: 0 2px;
-  background: rgba(46,134,171,0.16); color: #7CC1E0;
-  border: 1px solid rgba(46,134,171,0.3);
+  background: rgba(214,169,74,0.14); color: #e8d48b;
+  border: 1px solid rgba(214,169,74,0.3);
   font-family: var(--zm-font-mono); font-size: 13px; font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -704,12 +729,9 @@
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Lock left column height so the phone stage / chips don't reflow. */
+/* Sin teléfono a la derecha: el lado izquierdo ya no necesita altura fija. */
 .zmLeft {
-  min-height: 640px;
-}
-@media (max-width: 1023px) {
-  .zmLeft { min-height: 0; }
+  min-height: 0;
 }
 
 /* ===== HEADLINE SLIDER DOTS (within hero, under left column) ===== */

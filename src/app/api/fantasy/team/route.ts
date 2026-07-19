@@ -141,13 +141,14 @@ export async function PUT(req: Request) {
   const prev = await getTeam(user.id);
 
   // ── Bloqueo del plan Free ──
-  // La plantilla se congela 24h antes del primer partido de la jornada y
-  // durante la jornada (Pro = sustituciones en vivo). Las escrituras que NO
-  // tocan la alineación (confirmar puntos de jornada, metadatos) pasan igual.
-  // El PRIMER equipo (sin estado previo) NO cuenta como cambio: un alta nueva a
-  // mitad de jornada no es una sustitución en vivo, y bloquearla dejaba a los
-  // registros de días de partido sin poder crear equipo. La equidad la pone el
-  // cierre por partido de abajo (no pueden alinear a quien ya jugó).
+  // La plantilla Free se congela AL EMPEZAR la jornada (lockHoursBeforeGameweek=0),
+  // medido contra el ÚLTIMO partido de la ventana: así una jornada con partidos en
+  // días distintos (J8: Tercer puesto + FINAL) sigue siendo editable hasta el saque
+  // de la FINAL, y no queda cerrada por el 3.º puesto del día anterior. Antes del
+  // saque el Free ficha/arma libre; una vez en juego, las sustituciones EN VIVO del
+  // once son el perk Pro. Las escrituras que NO tocan la alineación (confirmar
+  // puntos, metadatos) pasan igual, y el PRIMER equipo (sin estado previo) tampoco
+  // se bloquea. El retrovisor lo pone el cierre por partido de 3h de abajo.
   if (gameweekLockedForFree(state.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) &&
       !(await isPro(user.id, user.email))) {
     // Solo se bloquea una SUSTITUCIÓN EN VIVO de un jugador VIVO ya alineado (el
@@ -157,7 +158,7 @@ export async function PUT(req: Request) {
     if (inPlaySub) {
       trackLimitHit("fantasy_lock");
       const payload: ProRequiredPayload = {
-        error: `Tu plantilla está cerrada desde ${FREE_LIMITS.fantasy.lockHoursBeforeGameweek} h antes de la jornada. Con Pro haces sustituciones en vivo.`,
+        error: `La jornada ya está en juego: cambiar el once en vivo es Pro. Antes del saque puedes fichar y armar tu equipo libremente.`,
         code: PRO_REQUIRED_CODE,
         feature: "fantasy_lock",
         limit: FREE_LIMITS.fantasy.lockHoursBeforeGameweek,

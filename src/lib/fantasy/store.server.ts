@@ -9,7 +9,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { fantasyGameweekReward } from "@/lib/economy/earn";
-import { isValidGameweek, gameweekIsOver, currentGameweek, TOTAL_GAMEWEEKS } from "./fixtures";
+import { isValidGameweek, gameweekIsOver, preparableGameweek, TOTAL_GAMEWEEKS } from "./fixtures";
 import { isFantasyLive } from "./season";
 import { excludedInClause } from "@/lib/ranking-exclusions";
 import { normalizeTeam } from "./store";
@@ -91,7 +91,7 @@ export async function getGameweekScore(userId: string, gameweek: number): Promis
  */
 export async function autoAdvanceGameweeks(userId: string, team: FantasyTeamState): Promise<FantasyTeamState> {
   if (!isFantasyLive()) return team;
-  const target = currentGameweek();
+  const target = preparableGameweek();
   let t = team;
   let guard = 0;
   while (
@@ -185,7 +185,7 @@ export async function adminSetGameweekScore(userId: string, gameweek: number, po
  * ya está en la jornada vigente no lo toca. Devuelve cuántos avanzó.
  */
 export async function adminAutoAdvanceAll(): Promise<{ scanned: number; advanced: number; target: number }> {
-  const target = currentGameweek();
+  const target = preparableGameweek();
   if (!isFantasyLive()) return { scanned: 0, advanced: 0, target };
   const admin = adminClient();
   const { data: teams } = await admin.from("fantasy_teams").select("user_id,state").lt("gameweek", target);

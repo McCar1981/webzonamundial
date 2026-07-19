@@ -32,7 +32,7 @@ const ROWS: { feature: string; free: string; pro: string }[] = [
   },
   {
     feature: "Fantasy",
-    free: `1 equipo · cambios hasta ${FREE_LIMITS.fantasy.lockHoursBeforeGameweek} h antes de la jornada`,
+    free: `1 equipo · cambios hasta el saque de la jornada`,
     pro: "Sustituciones en vivo, +presupuesto y puntos en tiempo real",
   },
   {

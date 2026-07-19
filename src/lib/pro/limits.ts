@@ -27,8 +27,10 @@ export const FREE_LIMITS = {
     multipliers: false,
   },
   fantasy: {
-    /** Horas antes del kickoff de la jornada en que se congela la plantilla. */
-    lockHoursBeforeGameweek: 24,
+    /** Horas antes del ÚLTIMO kickoff de la jornada en que se congela la plantilla.
+     *  0 = Free arma/ficha libre hasta que empieza la jornada; a partir del saque
+     *  el once queda congelado (las sustituciones EN VIVO son el perk Pro). */
+    lockHoursBeforeGameweek: 0,
     /** Sustituciones con la jornada en juego. */
     liveSubs: false,
     /** Presupuesto extra (M€) sobre los 100M base. */

@@ -89,6 +89,22 @@ export function gameweekFirstKickoff(gw: number): Date | null {
 }
 
 /**
+ * Kickoff del ÚLTIMO partido real de la jornada (null si no resoluble). Importa
+ * para las jornadas que agrupan varios partidos en días distintos: la J8 junta
+ * "Tercer puesto" (día previo) y "FINAL" (día siguiente). El cierre de la
+ * plantilla debe medirse contra el ÚLTIMO partido (la FINAL), no contra el
+ * primero, para no congelar la alineación de la FINAL por el saque del 3.º puesto.
+ */
+export function gameweekLastKickoff(gw: number): Date | null {
+  let last: Date | null = null;
+  for (const m of gameweekMatches(gw)) {
+    const k = etToDate(m.d, m.t);
+    if (k && (!last || k > last)) last = k;
+  }
+  return last;
+}
+
+/**
  * Jornada Fantasy VIGENTE del torneo según el calendario real: la mayor jornada
  * cuyo primer partido ya empezó. Sirve para AUTO-AVANZAR a los usuarios que se
  * quedaron en una jornada antigua (el avance manual por "Confirmar" dejaba a casi
@@ -106,15 +122,37 @@ export function currentGameweek(ref: Date = new Date()): number {
 
 /**
  * Bloqueo del plan Free: la plantilla se congela desde `lockHours` horas antes
- * del primer kickoff de la jornada hasta que la jornada termina (Pro hace
- * sustituciones en vivo). Si el calendario no es resoluble, no bloquea.
+ * del ÚLTIMO kickoff de la jornada hasta que la jornada termina (Pro hace
+ * sustituciones en vivo). Se ancla al ÚLTIMO partido —no al primero— para que
+ * una jornada con partidos en días distintos (J8: Tercer puesto + FINAL) siga
+ * siendo editable hasta el saque de su último partido: así el fichaje de cara a
+ * la FINAL no queda cerrado por el saque del 3.º puesto del día anterior. El
+ * anti-retrovisor por jugador ya jugado lo garantiza el cierre por partido de 3h
+ * (playerMatchLocked), autoritativo para todos los planes. Si el calendario no es
+ * resoluble, no bloquea.
  */
 export function gameweekLockedForFree(gw: number, lockHours: number, ref: Date = new Date()): boolean {
   if (!isValidGameweek(gw)) return false;
   if (gameweekIsOver(gw, ref)) return false;
-  const first = gameweekFirstKickoff(gw);
-  if (!first) return false;
-  return ref.getTime() >= first.getTime() - lockHours * 3_600_000;
+  const last = gameweekLastKickoff(gw);
+  if (!last) return false;
+  return ref.getTime() >= last.getTime() - lockHours * 3_600_000;
+}
+
+/**
+ * Jornada Fantasy a PREPARAR: la primera que aún NO ha terminado (o la última del
+ * torneo). A diferencia de currentGameweek() —que solo avanza cuando el primer
+ * saque de la jornada ya pasó— ésta alcanza la jornada entrante en cuanto la
+ * anterior queda "over", ANTES de su kickoff. Con esto el auto-avance deposita al
+ * usuario sobre la jornada entrante con días de antelación, dándole ventana real
+ * para armar/fichar su equipo antes de que empiece (currentGameweek lo dejaba
+ * aterrizar justo cuando la jornada ya había arrancado). Antes del torneo → 1.
+ */
+export function preparableGameweek(ref: Date = new Date()): number {
+  for (let gw = 1; gw <= TOTAL_GAMEWEEKS; gw++) {
+    if (!gameweekIsOver(gw, ref)) return gw;
+  }
+  return TOTAL_GAMEWEEKS;
 }
 
 /** Partido (y lado) de una selección, por código de bandera, en una jornada. */

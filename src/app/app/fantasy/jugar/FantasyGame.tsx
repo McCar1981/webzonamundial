@@ -574,12 +574,12 @@ export default function FantasyGame() {
           Pro es acción explícita del usuario, así que abre el paywall normal. */}
       {freeLocked && gameweekLockedForFree(team.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) && (
         <div style={{ background: "rgba(201,168,76,0.10)", borderBottom: "1px solid rgba(201,168,76,0.35)", padding: "8px 16px", fontSize: 12.5, fontWeight: 700, textAlign: "center", color: GOLD2 }}>
-          🔒 Jornada en curso: tu alineación está cerrada y los cambios no se guardarán.{" "}
+          🔒 Jornada en juego: mover el once en vivo es Pro. Puedes seguir fichando y completando tu plantilla.{" "}
           <button
             onClick={() => openProPaywall({ feature: "fantasy_lock" })}
             style={{ background: "none", border: "none", color: "#fff", fontWeight: 800, cursor: "pointer", textDecoration: "underline", padding: 0, fontSize: 12.5 }}
           >
-            Con Pro haces cambios en vivo
+            Con Pro haces sustituciones en vivo
           </button>
         </div>
       )}

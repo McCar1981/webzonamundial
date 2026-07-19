@@ -18,7 +18,6 @@ import {
 import { FORMATIONS } from "@/lib/fantasy/rules";
 import { SCORING_TABLE, POWER_UPS } from "@/lib/fantasy/scoring";
 import { TOTAL_GAMEWEEKS, MATCH_LOCK_HOURS } from "@/lib/fantasy/fixtures";
-import { FREE_LIMITS } from "@/lib/pro/limits";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 
 // Franjas del Modo Underdog (mismas que tierFromGap en fixtures.ts).
@@ -260,7 +259,7 @@ export default function GuideView() {
       <Section id="envivo" icon="🔴" title="La jornada, en vivo" lead="Del primer saque a confirmar tus puntos" open={open === "envivo"} onToggle={toggle}>
         <div style={{ display: "grid", gap: 8 }}>
           {[
-            { e: "🔒", t: `${FREE_LIMITS.fantasy.lockHoursBeforeGameweek}h antes de la jornada`, d: "Con el plan gratuito, tu alineación se cierra. Con Pro sigues haciendo cambios, respetando el cierre de cada partido." },
+            { e: "🔒", t: `Al empezar la jornada`, d: "Con el plan gratuito, tu once se congela al primer saque de la jornada (puedes fichar y armar libremente antes). Con Pro haces sustituciones en vivo, respetando el cierre de cada partido." },
             { e: "🚫", t: `${MATCH_LOCK_HOURS}h antes de CADA partido`, d: "Los jugadores de ese partido se cierran para TODOS: ni entran, ni salen, ni se mueven al banquillo hasta la próxima jornada." },
             { e: "⏱️", t: "Primer saque", d: "Capitán, vice y power-up quedan congelados para todos. Lo que elegiste, va a misa." },
             { e: "📡", t: "Durante los partidos", d: "Con Pro sigues tus puntos minuto a minuto. Con el plan gratuito aparecen al final de cada partido." },

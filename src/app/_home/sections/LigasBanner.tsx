@@ -56,11 +56,12 @@ export function LigasBanner() {
                 </span>
               </h2>
               <p className="text-sm text-[#e6decb] leading-relaxed max-w-2xl">
-                Liga MX, LaLiga, Libertadores, Premier, Champions y más:
-                calendario, clasificación en vivo y cada partido con resumen de
-                IA. Predice el resultado, monta tu once de la jornada y gana{" "}
-                <b className="text-[#FDE68A]">Fútcoins</b> — con la misma cuenta
-                y la misma cartera que ya usas en el Mundial.
+                Tu liga, las grandes de América y Europa, y las noches de
+                Champions y Libertadores: calendario, clasificación en vivo y
+                cada partido con resumen de IA. Predice el resultado, monta tu
+                once de la jornada y gana{" "}
+                <b className="text-[#FDE68A]">Fútcoins</b> — con una sola cuenta
+                y una sola cartera.
               </p>
               <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[#a69a82]">
                 <span>19 ligas y copas</span>

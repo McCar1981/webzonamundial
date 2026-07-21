@@ -14,7 +14,7 @@ import { useCallback, useEffect, useState } from "react";
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
 
-type TypedMarket = "ou_goals" | "first_goal" | "btts";
+type TypedMarket = "ou_goals" | "first_goal" | "btts" | "ou_corners" | "ou_cards" | "first_goal_half";
 type Saved = Partial<Record<TypedMarket, Record<string, unknown>>>;
 
 export default function PredictMercados({
@@ -120,10 +120,44 @@ export default function PredictMercados({
         reward={12}
         saved={saved.btts ? (saved.btts.pick === "yes" ? "Sí, ambos marcan" : "No marcan ambos") : null}
         busy={busy === "btts"}
-        last
         options={[
           { label: "Sí", onPick: () => send("btts", { pick: "yes" }) },
           { label: "No", onPick: () => send("btts", { pick: "no" }) },
+        ]}
+      />
+
+      <Market
+        title="Total de córners"
+        reward={15}
+        saved={saved.ou_corners ? (saved.ou_corners.side === "over" ? "Más de 9.5 córners" : "Menos de 9.5 córners") : null}
+        busy={busy === "ou_corners"}
+        options={[
+          { label: "Más de 9.5", onPick: () => send("ou_corners", { side: "over" }) },
+          { label: "Menos de 9.5", onPick: () => send("ou_corners", { side: "under" }) },
+        ]}
+      />
+
+      <Market
+        title="Total de tarjetas"
+        reward={12}
+        saved={saved.ou_cards ? (saved.ou_cards.side === "over" ? "Más de 4.5 tarjetas" : "Menos de 4.5 tarjetas") : null}
+        busy={busy === "ou_cards"}
+        options={[
+          { label: "Más de 4.5", onPick: () => send("ou_cards", { side: "over" }) },
+          { label: "Menos de 4.5", onPick: () => send("ou_cards", { side: "under" }) },
+        ]}
+      />
+
+      <Market
+        title="¿Cuándo cae el 1er gol?"
+        reward={15}
+        saved={saved.first_goal_half ? (saved.first_goal_half.pick === "first" ? "1ª mitad" : saved.first_goal_half.pick === "second" ? "2ª mitad" : "Sin goles") : null}
+        busy={busy === "first_goal_half"}
+        last
+        options={[
+          { label: "1ª mitad", onPick: () => send("first_goal_half", { pick: "first" }) },
+          { label: "Sin goles", onPick: () => send("first_goal_half", { pick: "none" }) },
+          { label: "2ª mitad", onPick: () => send("first_goal_half", { pick: "second" }) },
         ]}
       />
 

@@ -21,7 +21,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
 import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
-import { resolveTypedMarket, MARKET_REWARD, type TypedMarket, type MarketData } from "@/lib/ligas/predict-markets";
+import { resolveTypedMarket, MARKET_REWARD, TYPED_MARKETS, type TypedMarket, type MarketData } from "@/lib/ligas/predict-markets";
 import { notifyResolvedLigaFixtures, type ResolvedLigaFixtureMeta } from "@/lib/ligas/notify";
 import { recordHeartbeat } from "@/lib/ops/store";
 
@@ -113,7 +113,7 @@ export async function GET(req: Request) {
         .select("id,market,data")
         .eq("fixture_id", fid)
         .eq("status", "pending")
-        .in("market", ["ou_goals", "first_goal", "btts"]);
+        .in("market", TYPED_MARKETS as unknown as string[]);
       for (const tr of (typedRows ?? []) as unknown as { id: string; market: TypedMarket; data: MarketData }[]) {
         const verdict = resolveTypedMarket(tr.market, tr.data, d);
         const status = verdict === null ? "void" : verdict ? "won" : "lost";

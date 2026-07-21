@@ -18,6 +18,7 @@ import { MATCHES } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import MiFutbolSection from "@/components/app/MiFutbolSection";
+import { usePostMundial } from "@/app/_home/hooks/usePostMundial";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
 import MerchAmazonStrip from "@/components/affiliate/MerchAmazonStrip";
@@ -515,6 +516,9 @@ export default function AppHubPage() {
   // undefined = cargando (skeleton reserva el hueco → sin salto de layout);
   // null = sin partido destacado; objeto = datos reales.
   const [match, setMatch] = useState<Featured | undefined>(undefined);
+  // Pivote post-Mundial (lunes 20-jul): el lobby deja de mostrar el partido del
+  // Mundial (la final, ya terminada) y pasa al fútbol del usuario (sus ligas).
+  const post = usePostMundial();
   // Top-5 del ranking global por Fútcoins (preview en vivo dentro del hub).
   const [topGlobal, setTopGlobal] = useState<TopEntry[] | null>(null);
   // Posición propia en el ranking (solo con sesión).
@@ -610,6 +614,10 @@ export default function AppHubPage() {
   // si hay partido en vivo u hoy; sin datos aún, reintento suave a 60s. Pausa
   // con la pestaña oculta y refresca al volver (visibilitychange).
   useEffect(() => {
+    // Post-Mundial: sin partido destacado del torneo (la final ya terminó). El
+    // lobby muestra el fútbol del usuario, no el Mundial. match=null (no
+    // undefined) para que el bloque se OCULTE en vez de mostrar el skeleton.
+    if (post) { setMatch(null); return; }
     let on = true;
     let current: Featured | undefined = undefined;
 
@@ -641,7 +649,7 @@ export default function AppHubPage() {
     const onVisible = () => { if (!document.hidden) load(); };
     document.addEventListener("visibilitychange", onVisible);
     return () => { on = false; clearInterval(id); document.removeEventListener("visibilitychange", onVisible); };
-  }, []);
+  }, [post]);
 
   // Reloj de la cuenta atrás del hero (solo re-render, sin red).
   useEffect(() => {
@@ -697,13 +705,16 @@ export default function AppHubPage() {
   // muestra uno). Una carga al entrar; ligera (endpoint público cacheado).
   useEffect(() => {
     if (authed !== true) { setTodayMatches(null); return; }
+    // Post-Mundial: sin "partidos de hoy" del torneo (así se ocultan el doblete
+    // y la tira "Otros partidos", ambos alimentados por match-center/today).
+    if (post) { setTodayMatches([]); return; }
     let on = true;
     fetch("/api/match-center/today")
       .then((r) => (r.ok ? r.json() : null))
       .then((d: { matches?: TodayMatch[] } | null) => { if (on) setTodayMatches(d?.matches ?? []); })
       .catch(() => { if (on) setTodayMatches([]); });
     return () => { on = false; };
-  }, [authed]);
+  }, [authed, post]);
 
   // Si llegan con #modulos (los CTA "Explorar modos"), abrimos el catálogo.
   useEffect(() => {
@@ -953,10 +964,24 @@ export default function AppHubPage() {
     cta1: { label: "Responder trivia", href: "/trivia" },
     cta2: { label: "Ver ranking", href: "/app/rankings#tablero" },
   };
+  // Post-Mundial: el héroe deja de ser del torneo y pasa a Zona de Ligas
+  // (fútbol del usuario todo el año). Copy pan-LATAM: lidera "tu liga" + lo
+  // continental (Champions/Libertadores), sin poner Liga MX por delante.
+  const heroLigas: HeroCfg = {
+    id: "ligas", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Zona de Ligas",
+    title: <>Tu fútbol, <span className="zm-shimmer" style={{ background: `linear-gradient(110deg,${GOLD},${GOLD2},#fff7dd,${GOLD2},${GOLD})`, backgroundSize: "220% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>todo el año</span></>,
+    desc: "Tu liga, las grandes de América y Europa, y las noches de Champions y Libertadores. Predice, arma tu once y gana Fútcoins.",
+    art: "/assets/card-backgrounds/match-center.webp",
+    cta1: { label: "Explorar Zona de Ligas", href: "/ligas" },
+    cta2: { label: "Mis predicciones", href: "/ligas/mis-predicciones" },
+  };
+
   // Orden de slides por prioridad de contexto (NO promos):
   //   live (si hay) → partido del día (si hay) → base → reto (si pendiente).
   // Con ?hero= se bloquea a una sola pantalla (preview de diseño).
-  const heroSlides: HeroCfg[] = heroOverride
+  const heroSlides: HeroCfg[] = post
+    ? [heroLigas]
+    : heroOverride
     ? [heroOverride === "live" ? (heroOpening ?? heroLive) : heroOverride === "match" ? (heroOpening ?? heroMatch ?? heroBase) : heroOverride === "reto" ? heroReto : heroBase]
     : dualSlot && slotHeroSlides.length >= 2
       // Doblete: el carrusel rota SOLO entre los 2 partidos del horario (cada uno

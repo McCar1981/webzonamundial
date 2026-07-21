@@ -10,7 +10,7 @@
 // aplique el SQL, sin romper nada.
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { TypedMarket, MarketData } from "./predict-markets";
+import { TYPED_MARKETS, type TypedMarket, type MarketData } from "./predict-markets";
 
 export type LigaPick = "home" | "draw" | "away";
 export type LigaMarket = "1x2" | "exact" | TypedMarket;
@@ -132,6 +132,9 @@ export async function saveTypedPick(
   });
   if (!error) return { ok: true };
   if ((error as { code?: string }).code === "23505") return { ok: false, reason: "exists" };
+  // 23514 = el CHECK de `market` aún no incluye este mercado (migración A2b sin
+  // aplicar) -> degradar limpio como "no disponible", nunca 500.
+  if ((error as { code?: string }).code === "23514") return { ok: false, reason: "not_available" };
   if (isMissingTable(error) || isMissingColumn(error)) return { ok: false, reason: "not_available" };
   console.error("[liga-predictions] saveTypedPick failed:", error.message);
   return { ok: false, reason: "error" };
@@ -148,7 +151,7 @@ export async function getUserTypedPicks(
     .select("market,data")
     .eq("user_id", userId)
     .eq("fixture_id", fixtureId)
-    .in("market", ["ou_goals", "first_goal", "btts"]);
+    .in("market", TYPED_MARKETS as unknown as string[]);
   if (error || !data) return {}; // tabla/columna ausente: la UI simplemente no ofrece los mercados
   const out: Partial<Record<TypedMarket, MarketData>> = {};
   for (const row of data as { market: TypedMarket; data: MarketData | null }[]) {

@@ -3,15 +3,16 @@
 // Definición y RESOLUCIÓN de los mercados de predicción tipados de Zona de Ligas.
 // Un único motor, parametrizado por competición/fixture — sin copiar nada por
 // liga. Compartido por el endpoint (validación del pick) y por el cron
-// (resolución + reparto). Sin dependencias de React ni de Supabase: solo lógica
-// pura sobre el FixtureDetail de api-football que ligas ya consume.
+// (resolución + reparto). Sin dependencias de React ni de Supabase.
 //
 // A1: ou_goals, first_goal, btts.
-// A2: ou_corners, ou_cards, first_goal_half (córners, tarjetas y "¿cuándo el 1er
-//     gol?"). Se resuelven de stats/events del MISMO FixtureDetail — sin nuevas
-//     llamadas a api-football ni datos de jugador (eso es A2b: goleador/duelo).
+// A2: ou_corners, ou_cards, first_goal_half (stats + events del FixtureDetail).
+// A2b: first_scorer, duel (datos de JUGADOR). first_scorer se resuelve de los
+//      eventos (por NOMBRE, con match por apellido: los eventos no traen id);
+//      duel necesita getFixturePlayerStats (por ID, fiable) → se resuelve aparte.
 
 import type { FixtureDetail } from "@/lib/competitions/api";
+import type { PlayerMatchStats } from "@/lib/ligas/fantasy";
 
 export type TypedMarket =
   | "ou_goals"
@@ -19,7 +20,9 @@ export type TypedMarket =
   | "btts"
   | "ou_corners"
   | "ou_cards"
-  | "first_goal_half";
+  | "first_goal_half"
+  | "first_scorer"
+  | "duel";
 export const TYPED_MARKETS: TypedMarket[] = [
   "ou_goals",
   "first_goal",
@@ -27,9 +30,10 @@ export const TYPED_MARKETS: TypedMarket[] = [
   "ou_corners",
   "ou_cards",
   "first_goal_half",
+  "first_scorer",
+  "duel",
 ];
 
-// Recompensa fija por mercado (Fútcoins), coherente con 1X2=10 / exact=40.
 export const MARKET_REWARD: Record<TypedMarket, number> = {
   ou_goals: 15,
   first_goal: 15,
@@ -37,16 +41,14 @@ export const MARKET_REWARD: Record<TypedMarket, number> = {
   ou_corners: 15,
   ou_cards: 12,
   first_goal_half: 15,
+  first_scorer: 30, // el más difícil
+  duel: 20,
 };
 
-// Líneas fijas del over/under por mercado (las más comunes). Se guardan en `data`
-// para poder abrir otras líneas en el futuro sin migración.
 export const OU_LINE_GOALS = 2.5;
 export const OU_LINE_CORNERS = 9.5;
 export const OU_LINE_CARDS = 4.5;
 
-// Ola 1 del lanzamiento: los mercados avanzados se exponen SOLO en estas ligas al
-// principio (control de coste y foco). Ampliar = añadir slugs aquí.
 export const OLA1_SLUGS = new Set(["liga-mx", "ligapro-ecuador", "libertadores", "laliga"]);
 export function isOla1(slug: string): boolean {
   return OLA1_SLUGS.has(slug);
@@ -56,15 +58,31 @@ export type OuData = { line: number; side: "over" | "under" };
 export type FirstGoalData = { pick: "home" | "away" | "none" };
 export type BttsData = { pick: "yes" | "no" };
 export type FirstHalfData = { pick: "first" | "second" | "none" };
-export type MarketData = OuData | FirstGoalData | BttsData | FirstHalfData;
+/** playerId 0 = "Nadie / sin goleador". */
+export type FirstScorerData = { playerId: number; name: string };
+export type DuelData = { aId: number; aName: string; bId: number; bName: string; pick: "a" | "b" };
+export type MarketData =
+  | OuData | FirstGoalData | BttsData | FirstHalfData | FirstScorerData | DuelData;
 
 export function isTypedMarket(v: unknown): v is TypedMarket {
   return typeof v === "string" && (TYPED_MARKETS as string[]).includes(v);
 }
 
+/** ¿El mercado necesita stats por jugador (getFixturePlayerStats) para resolver? */
+export function needsPlayerStats(market: TypedMarket): boolean {
+  return market === "duel";
+}
+
 const OU_MARKETS = new Set<TypedMarket>(["ou_goals", "ou_corners", "ou_cards"]);
 function ouLineFor(market: TypedMarket): number {
   return market === "ou_corners" ? OU_LINE_CORNERS : market === "ou_cards" ? OU_LINE_CARDS : OU_LINE_GOALS;
+}
+
+function isInt(v: unknown): v is number {
+  return typeof v === "number" && Number.isInteger(v) && v >= 0 && v < 1e9;
+}
+function isStr(v: unknown): v is string {
+  return typeof v === "string" && v.trim().length > 0 && v.length <= 80;
 }
 
 /** Valida/normaliza el payload del cliente. Devuelve el `data` a guardar o null. */
@@ -82,6 +100,16 @@ export function validateMarketData(market: TypedMarket, raw: unknown): MarketDat
   if (market === "first_goal_half") {
     return o.pick === "first" || o.pick === "second" || o.pick === "none" ? { pick: o.pick } : null;
   }
+  if (market === "first_scorer") {
+    // playerId 0 = "sin goleador"; si no, id>0 y nombre.
+    if (o.playerId === 0) return { playerId: 0, name: "" };
+    return isInt(o.playerId) && isStr(o.name) ? { playerId: o.playerId, name: (o.name as string).trim().slice(0, 80) } : null;
+  }
+  if (market === "duel") {
+    if (!isInt(o.aId) || !isInt(o.bId) || o.aId === o.bId || !isStr(o.aName) || !isStr(o.bName)) return null;
+    if (o.pick !== "a" && o.pick !== "b") return null;
+    return { aId: o.aId, bId: o.bId, aName: (o.aName as string).trim().slice(0, 80), bName: (o.bName as string).trim().slice(0, 80), pick: o.pick };
+  }
   return null;
 }
 
@@ -89,8 +117,8 @@ export function validateMarketData(market: TypedMarket, raw: unknown): MarketDat
 export function marketPickLabel(market: TypedMarket, data: MarketData, homeName: string, awayName: string): string {
   if (OU_MARKETS.has(market)) {
     const d = data as OuData;
-    const unidad = market === "ou_corners" ? "córners" : market === "ou_cards" ? "tarjetas" : "goles";
-    return `${d.side === "over" ? "Más" : "Menos"} de ${d.line} ${unidad}`;
+    const u = market === "ou_corners" ? "córners" : market === "ou_cards" ? "tarjetas" : "goles";
+    return `${d.side === "over" ? "Más" : "Menos"} de ${d.line} ${u}`;
   }
   if (market === "first_goal") {
     const p = (data as FirstGoalData).pick;
@@ -100,16 +128,21 @@ export function marketPickLabel(market: TypedMarket, data: MarketData, homeName:
     const p = (data as FirstHalfData).pick;
     return p === "first" ? "1ª mitad" : p === "second" ? "2ª mitad" : "Sin goles";
   }
+  if (market === "first_scorer") {
+    const d = data as FirstScorerData;
+    return d.playerId === 0 ? "Sin goleador" : d.name;
+  }
+  if (market === "duel") {
+    const d = data as DuelData;
+    return `Gana ${d.pick === "a" ? d.aName : d.bName}`;
+  }
   return (data as BttsData).pick === "yes" ? "Ambos marcan" : "No marcan ambos";
 }
 
 // ── Helpers sobre el FixtureDetail ──────────────────────────────────────────
 
-/** Suma un stat (por su/sus nombre/s api-football) sobre AMBOS equipos. null si
- *  el feed no trae ese stat (→ void, no fallar mal). */
 function statTotal(d: FixtureDetail, typesLower: string[]): number | null {
-  let total = 0;
-  let found = false;
+  let total = 0, found = false;
   for (const block of d.stats ?? []) {
     for (const it of block.items ?? []) {
       if (typesLower.includes((it.type || "").toLowerCase())) {
@@ -121,7 +154,6 @@ function statTotal(d: FixtureDetail, typesLower: string[]): number | null {
   return found ? total : null;
 }
 
-/** Minuto del PRIMER gol (o null si no hay eventos de gol). */
 function firstGoalMinute(d: FixtureDetail): number | null {
   const goals = d.events
     .filter((e) => (e.type || "").toLowerCase() === "goal" && e.minute != null)
@@ -129,9 +161,6 @@ function firstGoalMinute(d: FixtureDetail): number | null {
   return goals.length ? (goals[0].minute as number) : null;
 }
 
-// ¿Quién marcó primero? Maneja el AUTOGOL: en api-football el evento de autogol
-// va bajo el equipo del jugador que lo encaja (detail "Own Goal"), así que el gol
-// cuenta para el rival.
 function firstGoalSide(d: FixtureDetail): "home" | "away" | "none" {
   const homeId = d.fixture.home.id;
   const goals = d.events
@@ -144,10 +173,31 @@ function firstGoalSide(d: FixtureDetail): "home" | "away" | "none" {
   return own ? (scoredByHome ? "away" : "home") : scoredByHome ? "home" : "away";
 }
 
+/** Nombre del PRIMER goleador real (ignora autogoles). null si no hubo gol de
+ *  jugada. Los eventos de api-football solo traen NOMBRE, no id. */
+function firstScorerName(d: FixtureDetail): string | null {
+  const goals = d.events
+    .filter((e) => (e.type || "").toLowerCase() === "goal" && (e.detail || "").toLowerCase().indexOf("own") === -1 && e.minute != null && e.player)
+    .sort((a, b) => (a.minute as number) - (b.minute as number));
+  return goals.length ? (goals[0].player as string) : null;
+}
+
+/** Normaliza un nombre a su APELLIDO (última palabra), sin acentos ni iniciales,
+ *  para casar "L. Messi" (evento) con "Lionel Messi" (plantilla). */
+function lastNameKey(name: string): string {
+  const clean = name
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z\s.]/g, "").replace(/\b[a-z]\.\s*/g, "").trim();
+  const parts = clean.split(/\s+/).filter(Boolean);
+  return parts.length ? parts[parts.length - 1] : clean;
+}
+function nameMatches(a: string, b: string): boolean {
+  return !!a && !!b && lastNameKey(a) === lastNameKey(b);
+}
+
 /**
- * Resuelve un mercado tipado sobre un partido TERMINADO.
- * Devuelve true=acierto, false=fallo, null=indeterminado (void: no pagar, no
- * fallar mal). El cron solo llama con partidos ya finalizados.
+ * Resuelve un mercado tipado (EXCEPTO duel, que necesita player-stats → ver
+ * resolveDuel). true=acierto, false=fallo, null=indeterminado (void).
  */
 export function resolveTypedMarket(market: TypedMarket, data: MarketData, d: FixtureDetail): boolean | null {
   const h = d.fixture.score.home;
@@ -159,9 +209,9 @@ export function resolveTypedMarket(market: TypedMarket, data: MarketData, d: Fix
     let total: number | null;
     if (market === "ou_goals") total = h + a;
     else if (market === "ou_corners") total = statTotal(d, ["corner kicks", "corners"]);
-    else total = statTotal(d, ["yellow cards", "red cards"]); // ou_cards: amarillas + rojas
-    if (total == null) return null; // stats no disponibles → void
-    if (total === line) return null; // imposible con .5, pero por seguridad
+    else total = statTotal(d, ["yellow cards", "red cards"]);
+    if (total == null) return null;
+    if (total === line) return null;
     return side === "over" ? total > line : total < line;
   }
 
@@ -172,20 +222,41 @@ export function resolveTypedMarket(market: TypedMarket, data: MarketData, d: Fix
 
   if (market === "first_goal") {
     const hasGoalEvents = d.events.some((e) => (e.type || "").toLowerCase() === "goal");
-    if (!hasGoalEvents && (h > 0 || a > 0)) return null; // sin timeline → void
+    if (!hasGoalEvents && (h > 0 || a > 0)) return null;
     return firstGoalSide(d) === (data as FirstGoalData).pick;
   }
 
   if (market === "first_goal_half") {
-    const totalGoals = h + a;
     const min = firstGoalMinute(d);
-    if (min == null) {
-      // Sin eventos de gol: acierto solo si predijo "sin goles" y el marcador es 0-0.
-      return totalGoals === 0 ? (data as FirstHalfData).pick === "none" : null;
-    }
-    const actual = min <= 45 ? "first" : "second";
-    return (data as FirstHalfData).pick === actual;
+    if (min == null) return h + a === 0 ? (data as FirstHalfData).pick === "none" : null;
+    return (data as FirstHalfData).pick === (min <= 45 ? "first" : "second");
   }
 
-  return null;
+  if (market === "first_scorer") {
+    const scorer = firstScorerName(d);
+    const picked = data as FirstScorerData;
+    if (picked.playerId === 0) return scorer == null; // "sin goleador"
+    if (scorer == null) return false;
+    return nameMatches(scorer, picked.name);
+  }
+
+  return null; // duel se resuelve aparte
+}
+
+/** Resuelve un DUELO con las stats por jugador del partido. Métrica transparente:
+ *  goles×4 + asistencias×2, desempate por rating. true/false/null(empate=void). */
+export function resolveDuel(data: DuelData, stats: PlayerMatchStats[]): boolean | null {
+  const find = (id: number) => stats.find((s) => s.playerId === id) ?? null;
+  const a = find(data.aId);
+  const b = find(data.bId);
+  const score = (p: PlayerMatchStats | null) => (p ? p.goals * 4 + p.assists * 2 : -1);
+  const sa = score(a), sb = score(b);
+  let winner: "a" | "b";
+  if (sa !== sb) winner = sa > sb ? "a" : "b";
+  else {
+    const ra = a?.rating ?? 0, rb = b?.rating ?? 0;
+    if (ra === rb) return null; // empate real → void
+    winner = ra > rb ? "a" : "b";
+  }
+  return data.pick === winner;
 }

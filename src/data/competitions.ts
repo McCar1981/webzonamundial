@@ -63,6 +63,10 @@ export const COMPETITIONS: Competition[] = [
 
   // ── OLA 2 — resto de Américas + copas CONMEBOL/CONCACAF ──
   { slug: "primera-a-colombia", name: "Primera A (Colombia)", short: "Primera A", apiFootballId: 239, country: "Colombia", flag: "co", scope: "domestic", region: "americas", format: "split-playoff", wave: 2 },
+  // Venezuela — Primera División (Liga FUTVE). apiFootballId validado en vivo
+  // 2026-07-22 (GET /leagues?country=Venezuela&type=league → id 299, temporada
+  // current 2026). La 300 es la Segunda División.
+  { slug: "liga-futve", name: "Liga FUTVE (Venezuela)", short: "Liga FUTVE", apiFootballId: 299, country: "Venezuela", flag: "ve", scope: "domestic", region: "americas", format: "split-playoff", wave: 2 },
   { slug: "liga-argentina", name: "Liga Profesional (Argentina)", short: "Liga Arg.", apiFootballId: 128, country: "Argentina", flag: "ar", scope: "domestic", region: "americas", format: "split-playoff", wave: 2 },
   { slug: "brasileirao", name: "Brasileirão Serie A", short: "Brasileirão", apiFootballId: 71, country: "Brasil", flag: "br", scope: "domestic", region: "americas", format: "league", wave: 2 },
   { slug: "mls", name: "Major League Soccer", short: "MLS", apiFootballId: 253, country: "EE. UU. / Canadá", flag: "us", scope: "domestic", region: "americas", format: "conference-playoff", wave: 2 },

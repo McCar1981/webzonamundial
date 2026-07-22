@@ -7,6 +7,7 @@
 import { useMemo, useState } from "react";
 import type { FantasyPlayer } from "@/lib/ligas/fantasy";
 import type { UserFantasyPick, SquadPick } from "@/lib/ligas/fantasy-store";
+import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 
 const SQUAD = 5;
 const GOLD = "#c9a84c";
@@ -98,6 +99,7 @@ export default function FantasyPicker({
         {shown.map((p) => (
           <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 14 }}>
             <span style={{ width: 34, fontSize: 11, color: DIM }}>{POS_ES[p.pos] ?? p.pos}</span>
+            <PlayerAvatar id={p.id} size={28} />
             <span style={{ flex: 1, color: "#fff" }}>{p.name}</span>
             {cap === p.id ? <span style={{ fontSize: 11, fontWeight: 700, color: "#0a0906", background: GOLD, borderRadius: 6, padding: "2px 7px" }}>CAP x2</span> : null}
           </div>
@@ -119,6 +121,7 @@ export default function FantasyPicker({
           {selPlayers.map((p) => (
             <span key={p.id} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, color: "#fff", background: "rgba(201,168,76,0.14)", border: "1px solid rgba(201,168,76,0.34)", borderRadius: 99, padding: "4px 8px" }}>
               <button onClick={() => setCaptain(captain === p.id ? null : p.id)} title="Capitán" style={{ border: "none", background: "none", cursor: "pointer", color: captain === p.id ? GOLD : DIM, fontSize: 13, padding: 0, lineHeight: 1 }}>{captain === p.id ? "★" : "☆"}</button>
+              <PlayerAvatar id={p.id} size={18} />
               {p.name}
               <button onClick={() => toggle(p.id)} aria-label="Quitar" style={{ border: "none", background: "none", cursor: "pointer", color: DIM, fontSize: 14, padding: 0, lineHeight: 1 }}>×</button>
             </span>
@@ -157,6 +160,7 @@ export default function FantasyPicker({
                 style={{ display: "flex", width: "100%", alignItems: "center", gap: 10, padding: "9px 8px", border: "none", borderTop: "1px solid rgba(255,255,255,0.06)", background: on ? "rgba(201,168,76,0.14)" : "transparent", color: "#fff", cursor: full ? "default" : "pointer", fontSize: 14, textAlign: "left", opacity: full ? 0.4 : 1 }}
               >
                 <span style={{ width: 34, fontSize: 11, color: DIM }}>{POS_ES[p.position] ?? p.position}</span>
+                <PlayerAvatar id={p.id} size={28} />
                 <span style={{ flex: 1 }}>{p.name}</span>
                 <span style={{ fontSize: 16, color: on ? GOLD : DIM }}>{on ? "−" : "+"}</span>
               </button>

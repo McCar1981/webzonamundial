@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, type TeamFixture } from "@/lib/competitions/api";
 import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
+import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
 import LocalTime from "../../[slug]/LocalTime";
 import SeguirClub from "./SeguirClub";
@@ -177,6 +178,7 @@ export default async function TeamPage({ params }: { params: Params }) {
                     return (
                       <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 4px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <span style={{ width: 24, fontSize: 12, color: DIM, fontVariantNumeric: "tabular-nums", flexShrink: 0, textAlign: "right" }}>{p.number ?? ""}</span>
+                        <PlayerAvatar id={p.id} size={30} />
                         <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{p.name}</span>
                         {s ? (
                           <span style={{ display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0, fontSize: 12.5, color: "#e6decb", fontVariantNumeric: "tabular-nums" }}>

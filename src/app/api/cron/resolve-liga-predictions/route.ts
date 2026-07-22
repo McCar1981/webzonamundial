@@ -21,7 +21,7 @@ import { adminClient } from "@/lib/predictions/admin";
 import { getFixtureDetail } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
 import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
-import { resolveTypedMarket, resolveDuel, MARKET_REWARD, TYPED_MARKETS, type TypedMarket, type MarketData, type DuelData } from "@/lib/ligas/predict-markets";
+import { resolveTypedMarket, resolveDuel, MARKET_REWARD, TYPED_MARKETS, type TypedMarket, type MarketData, type DuelData, type ChainData } from "@/lib/ligas/predict-markets";
 import { getFixturePlayerStats } from "@/lib/ligas/fantasy";
 import { notifyResolvedLigaFixtures, type ResolvedLigaFixtureMeta } from "@/lib/ligas/notify";
 import { recordHeartbeat } from "@/lib/ops/store";
@@ -138,10 +138,10 @@ export async function GET(req: Request) {
   // Lo realmente abonado en esta pasada ("uid:fixtureId" -> coins), para que el
   // push de payoff diga la cifra exacta (10, 30 con boost o 40 por exacto).
   const paidCoins = new Map<string, number>();
-  type RewardRow = { id: string; user_id: string; fixture_id: number; market?: string | null };
+  type RewardRow = { id: string; user_id: string; fixture_id: number; market?: string | null; data?: unknown };
   const { data: toReward } = await admin
     .from("liga_predictions")
-    .select(hasMarket ? "id,user_id,fixture_id,market" : "id,user_id,fixture_id")
+    .select(hasMarket ? "id,user_id,fixture_id,market,data" : "id,user_id,fixture_id")
     .eq("status", "won")
     .eq("rewarded", false)
     .limit(300);
@@ -155,7 +155,11 @@ export async function GET(req: Request) {
       .maybeSingle();
     if (!claimed) continue; // otra ejecución ya lo reclamó
     let coins: number;
-    if (row.market === "exact") {
+    if (row.market === "chain") {
+      // Combinada: premio dinámico congelado al crearla (data.reward), acotado.
+      const r = (row.data as ChainData | null)?.reward;
+      coins = typeof r === "number" && Number.isFinite(r) && r > 0 ? Math.min(300, Math.floor(r)) : 0;
+    } else if (row.market === "exact") {
       coins = EXACT_REWARD; // el boost aplica solo al 1X2 (aquí no se consume)
     } else if (row.market && row.market in MARKET_REWARD) {
       // Mercados tipados (2026-47): recompensa fija por mercado, sin boost.

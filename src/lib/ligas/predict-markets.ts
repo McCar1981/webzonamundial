@@ -22,7 +22,8 @@ export type TypedMarket =
   | "ou_cards"
   | "first_goal_half"
   | "first_scorer"
-  | "duel";
+  | "duel"
+  | "chain";
 export const TYPED_MARKETS: TypedMarket[] = [
   "ou_goals",
   "first_goal",
@@ -32,8 +33,11 @@ export const TYPED_MARKETS: TypedMarket[] = [
   "first_goal_half",
   "first_scorer",
   "duel",
+  "chain",
 ];
 
+// Recompensa fija por mercado simple. `chain` es dinámica (ver chainReward) —
+// aquí 0 como placeholder; el cron la lee de la fila (data.reward).
 export const MARKET_REWARD: Record<TypedMarket, number> = {
   ou_goals: 15,
   first_goal: 15,
@@ -43,7 +47,24 @@ export const MARKET_REWARD: Record<TypedMarket, number> = {
   first_goal_half: 15,
   first_scorer: 30, // el más difícil
   duel: 20,
+  chain: 0,
 };
+
+// Mercados que pueden entrar en una COMBINADA: los resolubles del propio
+// FixtureDetail (sin datos de jugador). Se excluyen duel (needs player-stats),
+// first_scorer (needs selector) y chain (no anidar).
+export const CHAIN_ELIGIBLE: TypedMarket[] = ["ou_goals", "first_goal", "btts", "ou_corners", "ou_cards", "first_goal_half"];
+export const CHAIN_MIN_LEGS = 2;
+export const CHAIN_MAX_LEGS = 3;
+const CHAIN_REWARD_CAP = 300;
+
+/** Recompensa de una combinada: suma de premios base × multiplicador por nº de
+ *  patas (2→×2, 3→×3). Transparente y acotada. */
+export function chainReward(legs: { market: TypedMarket }[]): number {
+  const base = legs.reduce((s, l) => s + (MARKET_REWARD[l.market] || 0), 0);
+  const mult = legs.length >= 3 ? 3 : 2;
+  return Math.min(CHAIN_REWARD_CAP, base * mult);
+}
 
 export const OU_LINE_GOALS = 2.5;
 export const OU_LINE_CORNERS = 9.5;
@@ -61,8 +82,11 @@ export type FirstHalfData = { pick: "first" | "second" | "none" };
 /** playerId 0 = "Nadie / sin goleador". */
 export type FirstScorerData = { playerId: number; name: string };
 export type DuelData = { aId: number; aName: string; bId: number; bName: string; pick: "a" | "b" };
+/** Una pata de combinada: un mercado simple + su pick. */
+export type ChainLeg = { market: TypedMarket; data: MarketData };
+export type ChainData = { legs: ChainLeg[]; reward: number };
 export type MarketData =
-  | OuData | FirstGoalData | BttsData | FirstHalfData | FirstScorerData | DuelData;
+  | OuData | FirstGoalData | BttsData | FirstHalfData | FirstScorerData | DuelData | ChainData;
 
 export function isTypedMarket(v: unknown): v is TypedMarket {
   return typeof v === "string" && (TYPED_MARKETS as string[]).includes(v);
@@ -110,6 +134,23 @@ export function validateMarketData(market: TypedMarket, raw: unknown): MarketDat
     if (o.pick !== "a" && o.pick !== "b") return null;
     return { aId: o.aId, bId: o.bId, aName: (o.aName as string).trim().slice(0, 80), bName: (o.bName as string).trim().slice(0, 80), pick: o.pick };
   }
+  if (market === "chain") {
+    const legsRaw = Array.isArray(o.legs) ? o.legs : null;
+    if (!legsRaw || legsRaw.length < CHAIN_MIN_LEGS || legsRaw.length > CHAIN_MAX_LEGS) return null;
+    const seen = new Set<string>();
+    const legs: ChainLeg[] = [];
+    for (const lr of legsRaw) {
+      const lo = (lr && typeof lr === "object" ? lr : {}) as Record<string, unknown>;
+      const lm = lo.market;
+      // Solo mercados simples elegibles y NO repetidos (patas distintas).
+      if (typeof lm !== "string" || !(CHAIN_ELIGIBLE as string[]).includes(lm) || seen.has(lm)) return null;
+      const ld = validateMarketData(lm as TypedMarket, lo.data);
+      if (!ld) return null;
+      seen.add(lm);
+      legs.push({ market: lm as TypedMarket, data: ld });
+    }
+    return { legs, reward: chainReward(legs) };
+  }
   return null;
 }
 
@@ -135,6 +176,10 @@ export function marketPickLabel(market: TypedMarket, data: MarketData, homeName:
   if (market === "duel") {
     const d = data as DuelData;
     return `Gana ${d.pick === "a" ? d.aName : d.bName}`;
+  }
+  if (market === "chain") {
+    const d = data as ChainData;
+    return `Combinada de ${d.legs.length} (+${d.reward})`;
   }
   return (data as BttsData).pick === "yes" ? "Ambos marcan" : "No marcan ambos";
 }
@@ -203,6 +248,16 @@ export function resolveTypedMarket(market: TypedMarket, data: MarketData, d: Fix
   const h = d.fixture.score.home;
   const a = d.fixture.score.away;
   if (h == null || a == null) return null;
+
+  if (market === "chain") {
+    // Todas las patas deben acertar. Una pata indeterminada -> combinada void.
+    for (const leg of (data as ChainData).legs || []) {
+      const v = resolveTypedMarket(leg.market, leg.data, d);
+      if (v === null) return null;
+      if (!v) return false;
+    }
+    return true;
+  }
 
   if (OU_MARKETS.has(market)) {
     const { line, side } = data as OuData;

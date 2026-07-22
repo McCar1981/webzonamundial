@@ -53,6 +53,17 @@ export interface PlayerCompetition {
   red: number;
   penaltyScored: number;
   penaltyMissed: number;
+  penaltyWon: number;
+  penaltyCommitted: number;
+  penaltySaved: number; // penaltis parados (portero)
+  subIn: number;
+  subOut: number;
+  bench: number;
+  conceded: number; // goles encajados (portero)
+  saves: number; // paradas (portero)
+  tacklesBlocks: number;
+  dribblesPast: number; // veces superado en regate
+  yellowRed: number; // doble amarilla
 }
 
 export interface PlayerProfile {
@@ -81,15 +92,16 @@ interface RawStat {
   team: { id: number; name: string; logo: string | null };
   league: { id: number; name: string; logo: string | null; season: number };
   games: { appearences: number | null; lineups: number | null; minutes: number | null; number: number | null; position: string | null; rating: string | null; captain: boolean | null };
+  substitutes: { in: number | null; out: number | null; bench: number | null } | null;
   shots: { total: number | null; on: number | null };
-  goals: { total: number | null; assists: number | null };
+  goals: { total: number | null; conceded: number | null; assists: number | null; saves: number | null };
   passes: { total: number | null; key: number | null; accuracy: number | null };
   tackles: { total: number | null; blocks: number | null; interceptions: number | null };
   duels: { total: number | null; won: number | null };
-  dribbles: { attempts: number | null; success: number | null };
+  dribbles: { attempts: number | null; success: number | null; past: number | null };
   fouls: { drawn: number | null; committed: number | null };
-  cards: { yellow: number | null; red: number | null };
-  penalty: { scored: number | null; missed: number | null };
+  cards: { yellow: number | null; yellowred: number | null; red: number | null };
+  penalty: { won: number | null; commited: number | null; scored: number | null; missed: number | null; saved: number | null };
 }
 interface RawPlayer {
   player: {
@@ -159,6 +171,17 @@ function toComp(s: RawStat): PlayerCompetition {
     red: num(s.cards.red),
     penaltyScored: num(s.penalty.scored),
     penaltyMissed: num(s.penalty.missed),
+    penaltyWon: num(s.penalty.won),
+    penaltyCommitted: num(s.penalty.commited), // api-football lo escribe "commited"
+    penaltySaved: num(s.penalty.saved),
+    subIn: num(s.substitutes?.in),
+    subOut: num(s.substitutes?.out),
+    bench: num(s.substitutes?.bench),
+    conceded: num(s.goals.conceded),
+    saves: num(s.goals.saves),
+    tacklesBlocks: num(s.tackles.blocks),
+    dribblesPast: num(s.dribbles.past),
+    yellowRed: num(s.cards.yellowred),
   };
 }
 
@@ -213,7 +236,8 @@ function mapProfile(raw: RawPlayer, season: number): PlayerProfile {
 /** Ficha completa del jugador (perfil + estadísticas por competición). null si no
  *  existe / sin datos en las últimas temporadas. Cacheada 24 h en KV. */
 export async function getPlayerProfile(playerId: number): Promise<PlayerProfile | null> {
-  const cacheKey = `zl:player:${playerId}`;
+  // v2: nuevos campos por competición (subs, portero, bloqueos, doble amarilla…).
+  const cacheKey = `zl:player:v2:${playerId}`;
   try {
     const cached = await kv.get<PlayerProfile>(cacheKey);
     if (cached) return cached;

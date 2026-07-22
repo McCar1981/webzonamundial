@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPlayerProfile, type PlayerCompetition } from "@/lib/ligas/player";
 import PlayerCareer from "./PlayerCareer";
+import StatGlossary from "./StatGlossary";
 
 export const revalidate = 3600;
 
@@ -78,8 +79,21 @@ function Line({ label, value }: { label: string; value: ReactNode }) {
   );
 }
 
+// Grupo de estadísticas: solo se pinta si tiene al menos una fila con dato.
+function Group({ title, lines }: { title: string; lines: { label: string; value: ReactNode; show: boolean }[] }) {
+  const visible = lines.filter((l) => l.show);
+  if (visible.length === 0) return null;
+  return (
+    <>
+      <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", color: DIM, margin: "12px 0 0" }}>{title}</div>
+      {visible.map((l) => <Line key={l.label} label={l.label} value={l.value} />)}
+    </>
+  );
+}
+
 function CompCard({ c }: { c: PlayerCompetition }) {
   const pct = (n: number, d: number) => (d > 0 ? `${Math.round((n / d) * 100)}%` : "—");
+  const isGK = c.position === "Goalkeeper" || c.saves > 0 || c.conceded > 0;
   return (
     <section style={{ marginTop: 14, padding: "14px 16px", borderRadius: 14, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.16)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
@@ -91,20 +105,55 @@ function CompCard({ c }: { c: PlayerCompetition }) {
       {/* Números principales */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 4, margin: "8px 0 4px", padding: "8px 0", borderTop: LINE, borderBottom: LINE }}>
         <Stat label="Partidos" value={c.appearances} />
-        <Stat label="Goles" value={c.goals} gold={c.goals > 0} />
+        <Stat label={isGK ? "Paradas" : "Goles"} value={isGK ? c.saves : c.goals} gold={(isGK ? c.saves : c.goals) > 0} />
         <Stat label="Asist." value={c.assists} gold={c.assists > 0} />
         <Stat label="Nota" value={c.rating != null ? c.rating.toFixed(2) : "—"} gold={(c.rating ?? 0) >= 7} />
       </div>
 
-      <Line label="Minutos" value={c.minutes.toLocaleString("es")} />
-      <Line label="Titular / suplente" value={`${c.lineups} / ${Math.max(0, c.appearances - c.lineups)}`} />
-      {(c.shotsTotal > 0 || c.shotsOn > 0) && <Line label="Tiros (a puerta)" value={`${c.shotsTotal} (${c.shotsOn})`} />}
-      {c.passesTotal > 0 && <Line label="Pases (clave)" value={`${c.passesTotal.toLocaleString("es")} (${c.passesKey})${c.passAccuracy != null ? ` · ${c.passAccuracy}%` : ""}`} />}
-      {c.dribblesAttempts > 0 && <Line label="Regates (éxito)" value={`${c.dribblesSuccess}/${c.dribblesAttempts} · ${pct(c.dribblesSuccess, c.dribblesAttempts)}`} />}
-      {(c.tacklesTotal > 0 || c.interceptions > 0) && <Line label="Entradas · intercep." value={`${c.tacklesTotal} · ${c.interceptions}`} />}
-      {c.duelsTotal > 0 && <Line label="Duelos ganados" value={`${c.duelsWon}/${c.duelsTotal} · ${pct(c.duelsWon, c.duelsTotal)}`} />}
-      {(c.penaltyScored > 0 || c.penaltyMissed > 0) && <Line label="Penaltis (marcados/fallados)" value={`${c.penaltyScored} / ${c.penaltyMissed}`} />}
-      {(c.yellow > 0 || c.red > 0) && <Line label="Tarjetas (A/R)" value={`${c.yellow} / ${c.red}`} />}
+      <Group title="Partido" lines={[
+        { label: "Minutos", value: c.minutes.toLocaleString("es"), show: true },
+        { label: "Titularidades", value: c.lineups, show: c.appearances > 0 },
+        { label: "Entró / salió del campo", value: `${c.subIn} / ${c.subOut}`, show: c.subIn > 0 || c.subOut > 0 },
+        { label: "En el banquillo", value: c.bench, show: c.bench > 0 },
+      ]} />
+
+      <Group title="Ataque" lines={[
+        { label: "Goles", value: c.goals, show: c.goals > 0 },
+        { label: "Asistencias", value: c.assists, show: c.assists > 0 },
+        { label: "Tiros (a puerta)", value: `${c.shotsTotal} (${c.shotsOn})`, show: c.shotsTotal > 0 || c.shotsOn > 0 },
+        { label: "Regates (éxito)", value: `${c.dribblesSuccess}/${c.dribblesAttempts} · ${pct(c.dribblesSuccess, c.dribblesAttempts)}`, show: c.dribblesAttempts > 0 },
+        { label: "Penaltis (marcados / fallados)", value: `${c.penaltyScored} / ${c.penaltyMissed}`, show: c.penaltyScored > 0 || c.penaltyMissed > 0 },
+        { label: "Penaltis provocados", value: c.penaltyWon, show: c.penaltyWon > 0 },
+      ]} />
+
+      <Group title="Creación" lines={[
+        { label: "Pases (clave)", value: `${c.passesTotal.toLocaleString("es")} (${c.passesKey})`, show: c.passesTotal > 0 },
+        { label: "Precisión de pase", value: c.passAccuracy != null ? `${c.passAccuracy}%` : "—", show: c.passAccuracy != null },
+      ]} />
+
+      <Group title="Defensa" lines={[
+        { label: "Entradas", value: c.tacklesTotal, show: c.tacklesTotal > 0 },
+        { label: "Bloqueos", value: c.tacklesBlocks, show: c.tacklesBlocks > 0 },
+        { label: "Intercepciones", value: c.interceptions, show: c.interceptions > 0 },
+        { label: "Duelos ganados", value: `${c.duelsWon}/${c.duelsTotal} · ${pct(c.duelsWon, c.duelsTotal)}`, show: c.duelsTotal > 0 },
+        { label: "Regateado (superado)", value: c.dribblesPast, show: c.dribblesPast > 0 },
+        { label: "Faltas (cometidas / recibidas)", value: `${c.foulsCommitted} / ${c.foulsDrawn}`, show: c.foulsCommitted > 0 || c.foulsDrawn > 0 },
+        { label: "Penaltis cometidos", value: c.penaltyCommitted, show: c.penaltyCommitted > 0 },
+      ]} />
+
+      {isGK && (
+        <Group title="Portería" lines={[
+          { label: "Paradas", value: c.saves, show: true },
+          { label: "Goles encajados", value: c.conceded, show: true },
+          { label: "Penaltis parados", value: c.penaltySaved, show: c.penaltySaved > 0 },
+        ]} />
+      )}
+
+      <Group title="Disciplina" lines={[
+        { label: "Amarillas", value: c.yellow, show: c.yellow > 0 },
+        { label: "Doble amarilla", value: c.yellowRed, show: c.yellowRed > 0 },
+        { label: "Rojas", value: c.red, show: c.red > 0 },
+      ]} />
     </section>
   );
 }
@@ -194,6 +243,9 @@ export default async function JugadorPage({ params }: { params: Params }) {
 
         {/* Carrera completa (histórico) — colapsada, se carga bajo demanda */}
         <PlayerCareer playerId={p.id} />
+
+        {/* Leyenda: qué significa cada estadística */}
+        <StatGlossary />
 
         <p style={{ marginTop: 22, fontSize: 11, color: DIM, textAlign: "center" }}>Datos de api-football · temporada {p.season}</p>
       </div>

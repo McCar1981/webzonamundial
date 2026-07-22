@@ -54,15 +54,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-function Field({ label, value }: { label: string; value: ReactNode }) {
-  return (
-    <div style={{ padding: "9px 0", borderTop: LINE }}>
-      <div style={{ fontSize: 11, color: DIM, marginBottom: 2 }}>{label}</div>
-      <div style={{ fontSize: 13.5, color: "#fff", fontWeight: 500 }}>{value}</div>
-    </div>
-  );
-}
-
 function Stat({ label, value, gold = false }: { label: string; value: ReactNode; gold?: boolean }) {
   return (
     <div style={{ textAlign: "center", padding: "6px 4px" }}>
@@ -267,16 +258,16 @@ export default async function JugadorPage({ params }: { params: Params }) {
         </div>
 
         <div style={{ padding: "0 16px 52px" }}>
-          {/* Datos personales */}
-          <section style={{ marginTop: 24 }}>
+          {/* Datos personales (chips, estilo maqueta) */}
+          <section style={{ marginTop: 22 }}>
             <h2 className="zl-h2">Datos</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
-              {p.age != null && <Field label="Edad" value={`${p.age} años`} />}
-              {birth && <Field label="Nacimiento" value={birth} />}
-              {(p.birthPlace || p.birthCountry) && <Field label="Lugar" value={[p.birthPlace, p.birthCountry].filter(Boolean).join(", ")} />}
-              {p.nationality && <Field label="Nacionalidad" value={p.nationality} />}
-              {p.height && <Field label="Altura" value={p.height} />}
-              {p.weight && <Field label="Peso" value={p.weight} />}
+            <div className={styles.bio}>
+              {p.age != null && <span className={styles.chip}><span className={styles.chipLabel}>Edad</span> {p.age} años</span>}
+              {birth && <span className={styles.chip}><span className={styles.chipLabel}>Nacimiento</span> {birth}</span>}
+              {(p.birthPlace || p.birthCountry) && <span className={styles.chip}><span className={styles.chipLabel}>Lugar</span> {[p.birthPlace, p.birthCountry].filter(Boolean).join(", ")}</span>}
+              {p.nationality && <span className={styles.chip}><span className={styles.chipLabel}>Nacionalidad</span> {p.nationality}</span>}
+              {p.height && <span className={styles.chip}><span className={styles.chipLabel}>Altura</span> {p.height}</span>}
+              {p.weight && <span className={styles.chip}><span className={styles.chipLabel}>Peso</span> {p.weight}</span>}
             </div>
           </section>
 
@@ -290,7 +281,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
             )}
             {natComps.length > 0 && (
               <section style={{ marginTop: 20 }}>
-                <h2 className="zl-h2">Selección · {p.season}</h2>
+                <h2 className="zl-h2">Selección · {natComps[0]?.season ?? p.season}</h2>
                 {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
               </section>
             )}

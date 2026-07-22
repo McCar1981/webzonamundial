@@ -12,7 +12,8 @@ const GOLD = "#c9a84c";
 const DIM = "#a69a82";
 const LINE = "1px solid rgba(255,255,255,0.06)";
 
-type CareerRow = { season: number; teams: string[]; appearances: number; minutes: number; goals: number; assists: number; yellow: number; red: number; rating: number | null };
+type CareerTeam = { name: string; logo: string | null };
+type CareerRow = { season: number; teams: CareerTeam[]; appearances: number; minutes: number; goals: number; assists: number; yellow: number; red: number; rating: number | null };
 type CareerTotals = { appearances: number; minutes: number; goals: number; assists: number; yellow: number; red: number };
 type Career = {
   club: { seasons: CareerRow[]; totals: CareerTotals };
@@ -72,7 +73,12 @@ function CareerTable({ title, rows, totals, variant }: { title: string; rows: Ca
             {rows.map((r) => (
               <tr key={r.season}>
                 <td style={{ ...tdBase, textAlign: "left", color: "#fff", fontWeight: 700, position: "sticky", left: 0, background: "#000" }}>{r.season}</td>
-                <td style={{ ...tdBase, textAlign: "left", color: "#e6decb", maxWidth: 170, overflow: "hidden", textOverflow: "ellipsis" }}>{r.teams.join(", ")}</td>
+                <td style={{ ...tdBase, textAlign: "left" }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, maxWidth: 150, overflow: "hidden" }}>
+                    {r.teams[0]?.logo ? <img src={r.teams[0].logo} alt="" width={16} height={16} loading="lazy" style={{ width: 16, height: 16, objectFit: "contain", flexShrink: 0 }} /> : null}
+                    <span style={{ color: "#d9cba6", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.teams.map((t) => t.name).join(", ")}</span>
+                  </span>
+                </td>
                 <td style={{ ...tdBase, textAlign: "right", color: "#fff" }}>{r.appearances}</td>
                 <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f" }}>{int(r.minutes)}</td>
                 <td style={{ ...tdBase, textAlign: "right", color: r.goals > 0 ? GOLD : DIM, fontWeight: r.goals > 0 ? 700 : 400 }}>{r.goals}</td>

@@ -185,85 +185,75 @@ function toComp(s: RawStat): PlayerCompetition {
   };
 }
 
-function mapProfile(raw: RawPlayer, season: number): PlayerProfile {
-  const p = raw.player;
-  const comps = (raw.statistics ?? []).map(toComp);
-  // Ordena por minutos desc (la competición principal primero).
-  comps.sort((a, b) => b.minutes - a.minutes);
-
-  const totals = comps.reduce(
-    (t, c) => ({
-      appearances: t.appearances + c.appearances,
-      minutes: t.minutes + c.minutes,
-      goals: t.goals + c.goals,
-      assists: t.assists + c.assists,
-      yellow: t.yellow + c.yellow,
-      red: t.red + c.red,
-    }),
-    { appearances: 0, minutes: 0, goals: 0, assists: 0, yellow: 0, red: 0 },
-  );
-
-  // Rating medio ponderado por minutos.
-  let rw = 0;
-  for (const c of comps) if (c.rating && c.minutes > 0) rw += c.rating * c.minutes;
-  const rating = totals.minutes > 0 && rw > 0 ? Math.round((rw / totals.minutes) * 100) / 100 : null;
-
-  const primary = comps[0] ?? null;
-
-  return {
-    id: p.id,
-    name: p.name,
-    firstname: p.firstname ?? null,
-    lastname: p.lastname ?? null,
-    age: p.age ?? null,
-    birthDate: p.birth?.date ?? null,
-    birthPlace: p.birth?.place ?? null,
-    birthCountry: p.birth?.country ?? null,
-    nationality: p.nationality ?? null,
-    height: p.height ?? null,
-    weight: p.weight ?? null,
-    injured: !!p.injured,
-    photo: p.photo ?? null,
-    position: primary?.position ?? null,
-    number: primary?.number ?? null,
-    season,
-    rating,
-    competitions: comps,
-    totals,
-  };
-}
-
 /** Ficha completa del jugador (perfil + estadísticas por competición). null si no
  *  existe / sin datos en las últimas temporadas. Cacheada 24 h en KV. */
 export async function getPlayerProfile(playerId: number): Promise<PlayerProfile | null> {
-  // v3: preferir la temporada con fútbol de CLUB (antes tomaba la 1ª con datos,
-  // que en pretemporada es solo la SELECCIÓN → la ficha salía "de Spain").
-  const cacheKey = `zl:player:v3:${playerId}`;
+  // v4: COMBINA el club de su última temporada jugada con su selección más
+  // reciente (que suele estar en OTRA temporada: en pretemporada el club es de
+  // 2025 pero el Mundial/amistosos están en 2026). Así no se pierde ninguno.
+  const cacheKey = `zl:player:v4:${playerId}`;
   try {
     const cached = await kv.get<PlayerProfile>(cacheKey);
     if (cached) return cached;
   } catch { /* sin KV: a la API */ }
 
   const year = new Date().getUTCFullYear();
-  let fallback: PlayerProfile | null = null; // más reciente con datos (aunque sea solo selección)
+  const seasons: { season: number; comps: PlayerCompetition[]; raw: RawPlayer }[] = [];
   for (const season of [year, year - 1, year - 2]) {
     const raw = await apiGet(`/players?id=${playerId}&season=${season}`);
     const row = raw?.response?.[0];
-    if (!row?.player?.id) continue;
-    const profile = mapProfile(row, season);
-    const clubMinutes = profile.competitions.reduce((s, c) => s + (c.kind === "club" ? c.minutes : 0), 0);
-    if (clubMinutes > 0) {
-      // Temporada con fútbol de club (la más reciente): la ideal para la ficha.
-      try { await kv.set(cacheKey, profile, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
-      return profile;
+    if (row?.player?.id) seasons.push({ season, comps: (row.statistics ?? []).map(toComp), raw: row });
+  }
+  if (seasons.length === 0) return null; // seasons: más reciente primero
+
+  // Comps de la temporada MÁS RECIENTE con minutos de ese tipo (club / selección).
+  const mostRecent = (kind: "club" | "national") => {
+    for (const s of seasons) {
+      const comps = s.comps.filter((c) => c.kind === kind);
+      if (comps.reduce((m, c) => m + c.minutes, 0) > 0) return { season: s.season, comps };
     }
-    if (!fallback && (profile.competitions.length > 0 || profile.name)) fallback = profile;
-  }
-  if (fallback) {
-    try { await kv.set(cacheKey, fallback, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
-    return fallback;
-  }
-  return null;
+    return null;
+  };
+  const clubPick = mostRecent("club");
+  const natPick = mostRecent("national");
+
+  let competitions = [...(clubPick?.comps ?? []), ...(natPick?.comps ?? [])];
+  if (competitions.length === 0) competitions = seasons[0].comps; // ni club ni selección: lo más reciente
+  competitions.sort((a, b) => (a.kind === b.kind ? b.minutes - a.minutes : a.kind === "club" ? -1 : 1));
+
+  const totals = competitions.reduce(
+    (t, c) => ({ appearances: t.appearances + c.appearances, minutes: t.minutes + c.minutes, goals: t.goals + c.goals, assists: t.assists + c.assists, yellow: t.yellow + c.yellow, red: t.red + c.red }),
+    { appearances: 0, minutes: 0, goals: 0, assists: 0, yellow: 0, red: 0 },
+  );
+  let rw = 0;
+  for (const c of competitions) if (c.rating && c.minutes > 0) rw += c.rating * c.minutes;
+  const rating = totals.minutes > 0 && rw > 0 ? Math.round((rw / totals.minutes) * 100) / 100 : null;
+
+  const primary = competitions.find((c) => c.kind === "club") ?? competitions[0] ?? null;
+  const pl = seasons[0].raw.player; // datos personales de la temporada más reciente
+  const profile: PlayerProfile = {
+    id: pl.id,
+    name: pl.name,
+    firstname: pl.firstname ?? null,
+    lastname: pl.lastname ?? null,
+    age: pl.age ?? null,
+    birthDate: pl.birth?.date ?? null,
+    birthPlace: pl.birth?.place ?? null,
+    birthCountry: pl.birth?.country ?? null,
+    nationality: pl.nationality ?? null,
+    height: pl.height ?? null,
+    weight: pl.weight ?? null,
+    injured: !!pl.injured,
+    photo: pl.photo ?? null,
+    position: primary?.position ?? null,
+    number: primary?.number ?? null,
+    season: clubPick?.season ?? seasons[0].season,
+    rating,
+    competitions,
+    totals,
+  };
+  try { await kv.set(cacheKey, profile, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
+  return profile;
 }
 
 // ─── Clubes por los que ha pasado (tira "ha vestido") ────────────────────────
@@ -307,9 +297,10 @@ export async function getPlayerClubs(playerId: number): Promise<PlayerClub[]> {
 // abrir la sección) + cache 30 días + tope 25 temporadas. Cada trayectoria trae
 // filas ricas por temporada (PJ, minutos, goles, asist., tarjetas, nota media).
 
+export interface CareerTeam { name: string; logo: string | null }
 export interface CareerRow {
   season: number;
-  teams: string[];
+  teams: CareerTeam[];
   appearances: number;
   minutes: number;
   goals: number;
@@ -349,16 +340,16 @@ async function apiGetSeasons(playerId: number): Promise<number[]> {
 }
 
 // Acumulador por (kind, temporada): suma competiciones y pondera la nota por minutos.
-interface Acc { teams: Set<string>; apps: number; min: number; goals: number; assists: number; yellow: number; red: number; ratingW: number; ratingMin: number }
-function newAcc(): Acc { return { teams: new Set(), apps: 0, min: 0, goals: 0, assists: 0, yellow: 0, red: 0, ratingW: 0, ratingMin: 0 }; }
+interface Acc { teams: Map<string, string | null>; apps: number; min: number; goals: number; assists: number; yellow: number; red: number; ratingW: number; ratingMin: number }
+function newAcc(): Acc { return { teams: new Map(), apps: 0, min: 0, goals: 0, assists: 0, yellow: 0, red: 0, ratingW: 0, ratingMin: 0 }; }
 function accAdd(a: Acc, c: PlayerCompetition): void {
-  a.teams.add(c.team);
+  a.teams.set(c.team, c.teamLogo);
   a.apps += c.appearances; a.min += c.minutes; a.goals += c.goals; a.assists += c.assists; a.yellow += c.yellow; a.red += c.red;
   if (c.rating && c.minutes > 0) { a.ratingW += c.rating * c.minutes; a.ratingMin += c.minutes; }
 }
 function accToRow(season: number, a: Acc): CareerRow {
   return {
-    season, teams: [...a.teams], appearances: a.apps, minutes: a.min, goals: a.goals, assists: a.assists, yellow: a.yellow, red: a.red,
+    season, teams: [...a.teams.entries()].map(([name, logo]) => ({ name, logo })), appearances: a.apps, minutes: a.min, goals: a.goals, assists: a.assists, yellow: a.yellow, red: a.red,
     rating: a.ratingMin > 0 ? Math.round((a.ratingW / a.ratingMin) * 100) / 100 : null,
   };
 }
@@ -370,9 +361,9 @@ function sumTotals(rows: CareerRow[]): CareerTotals {
 }
 
 export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | null> {
-  // v2: nueva forma (club/national separados). La clave bumpeada ignora las
-  // entradas cacheadas con la forma anterior (habrían roto la UI nueva).
-  const cacheKey = `zl:career:v2:${playerId}`;
+  // v3: las filas ahora traen el LOGO del equipo (escudo/bandera). La clave
+  // bumpeada ignora las entradas cacheadas con la forma anterior.
+  const cacheKey = `zl:career:v3:${playerId}`;
   try {
     const cached = await kv.get<PlayerCareer>(cacheKey);
     if (cached) return cached;
@@ -407,7 +398,7 @@ export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | 
 
   const career: PlayerCareer = {
     club: { seasons: clubSeasons, totals: sumTotals(clubSeasons) },
-    national: { seasons: natSeasons, totals: sumTotals(natSeasons), teams: [...new Set(natSeasons.flatMap((r) => r.teams))] },
+    national: { seasons: natSeasons, totals: sumTotals(natSeasons), teams: [...new Set(natSeasons.flatMap((r) => r.teams.map((t) => t.name)))] },
   };
   try { await kv.set(cacheKey, career, { ex: CAREER_TTL_S }); } catch { /* best-effort */ }
   return career;

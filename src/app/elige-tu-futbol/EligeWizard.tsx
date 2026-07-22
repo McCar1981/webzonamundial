@@ -3,8 +3,8 @@
 // Wizard del GATE de fútbol (2 pasos):
 //   1. Elige tus ligas — multiselección del catálogo, agrupado por región
 //      (América primero, coherente con el hub /ligas). Tope de 8.
-//   2. Elige tu club — pestañas por liga elegida; los equipos salen de
-//      /api/ligas/equipos (cacheado). Selección única.
+//   2. Elige tus clubes — pestañas por liga elegida; los equipos salen de
+//      /api/ligas/equipos (cacheado). Multiselección (uno o varios, tope 8).
 // Al terminar guarda ambas preferencias (server action) y entra al lobby /app.
 // SVG-only, sin dependencias nuevas.
 
@@ -15,6 +15,7 @@ import { saveFootballPrefsAction, type SaveClubInput } from "./actions";
 const GOLD = "#C9A84C";
 const GOLD2 = "#FDE68A";
 const MAX_LIGAS = 8;
+const MAX_CLUBES = 8;
 
 type LigaOpt = {
   slug: string;
@@ -40,7 +41,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
   const [selected, setSelected] = useState<string[]>([]);
-  const [club, setClub] = useState<(SaveClubInput & { fromSlug: string }) | null>(null);
+  const [clubs, setClubs] = useState<(SaveClubInput & { fromSlug: string })[]>([]);
 
   // Club step: pestaña activa + caché de equipos por liga + estado de carga.
   const [activeTab, setActiveTab] = useState<string | null>(null);
@@ -91,22 +92,22 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
       return;
     }
     setError(null);
-    // Si el club elegido ya no pertenece a ninguna liga seleccionada, se limpia.
-    if (club && !selected.includes(club.fromSlug)) setClub(null);
+    // Se descartan los clubes cuya liga de origen ya no está seleccionada.
+    setClubs((prev) => prev.filter((c) => selected.includes(c.fromSlug)));
     setActiveTab((prev) => (prev && selected.includes(prev) ? prev : selected[0]));
     setStep(2);
   }
 
   async function finish() {
-    if (!club) {
-      setError("Elige tu club para terminar.");
+    if (clubs.length === 0) {
+      setError("Elige al menos un club para terminar.");
       return;
     }
     setSaving(true);
     setError(null);
     const res = await saveFootballPrefsAction({
       ligas: selected,
-      club: { ligaSlug: club.ligaSlug, clubId: club.clubId, clubName: club.clubName, clubLogo: club.clubLogo },
+      clubs: clubs.map((c) => ({ ligaSlug: c.ligaSlug, clubId: c.clubId, clubName: c.clubName, clubLogo: c.clubLogo })),
     });
     if (!res.ok) {
       setSaving(false);
@@ -134,13 +135,13 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
           {step === 1 ? (
             <>Elige tu <span style={{ color: GOLD2 }}>fútbol</span></>
           ) : (
-            <>Elige tu <span style={{ color: GOLD2 }}>club</span></>
+            <>Elige tus <span style={{ color: GOLD2 }}>clubes</span></>
           )}
         </h1>
         <p className="mx-auto mt-2 max-w-lg text-sm text-[#a69a82]">
           {step === 1
             ? "Selecciona las ligas y copas que quieres seguir. Tu lobby se arma con lo que elijas — y podrás cambiarlo cuando quieras."
-            : "Tu equipo del alma. Marcaremos sus partidos y noticias en tu inicio."}
+            : "Elige uno o varios equipos. Marcaremos sus partidos y noticias en tu inicio."}
         </p>
       </div>
 
@@ -277,19 +278,19 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
             ) : activeTeams && activeTeams.length > 0 ? (
               <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
                 {activeTeams.map((t) => {
-                  const on = club?.clubId === t.id;
+                  const on = clubs.some((c) => c.clubId === t.id);
                   return (
                     <button
                       key={t.id}
                       type="button"
                       onClick={() =>
-                        setClub({
-                          fromSlug: activeTab!,
-                          ligaSlug: activeTab!,
-                          clubId: t.id,
-                          clubName: t.name,
-                          clubLogo: t.logo,
-                        })
+                        setClubs((prev) =>
+                          prev.some((c) => c.clubId === t.id)
+                            ? prev.filter((c) => c.clubId !== t.id)
+                            : prev.length >= MAX_CLUBES
+                              ? prev
+                              : [...prev, { fromSlug: activeTab!, ligaSlug: activeTab!, clubId: t.id, clubName: t.name, clubLogo: t.logo }],
+                        )
                       }
                       aria-pressed={on}
                       className="flex items-center gap-2.5 rounded-2xl border px-3 py-3 text-left transition-transform active:scale-[0.98]"
@@ -323,9 +324,10 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
             )}
           </div>
 
-          {club && (
+          {clubs.length > 0 && (
             <p className="mt-4 text-center text-sm text-[#e6decb]">
-              Tu club: <b style={{ color: GOLD2 }}>{club.clubName}</b>
+              {clubs.length === 1 ? "Tu club: " : `Tus clubes (${clubs.length}): `}
+              <b style={{ color: GOLD2 }}>{clubs.map((c) => c.clubName).join(", ")}</b>
             </p>
           )}
           {error && <p className="mt-3 text-center text-sm text-[#ff8a8a]">{error}</p>}
@@ -345,7 +347,7 @@ export default function EligeWizard({ ligas }: { ligas: LigaOpt[] }) {
             <button
               type="button"
               onClick={finish}
-              disabled={!club || saving}
+              disabled={clubs.length === 0 || saving}
               className="flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold transition-transform active:scale-[0.99] disabled:opacity-40"
               style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906" }}
             >

@@ -8,7 +8,7 @@
 
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { setMisLigas } from "@/lib/ligas/mis-ligas";
-import { addMiClub } from "@/lib/ligas/mi-club";
+import { setMisClubes } from "@/lib/ligas/mi-club";
 import { getCompetition } from "@/data/competitions";
 
 export interface SaveClubInput {
@@ -24,7 +24,7 @@ export interface SavePrefsResult {
 
 export async function saveFootballPrefsAction(input: {
   ligas: string[];
-  club: SaveClubInput | null;
+  clubs: SaveClubInput[];
 }): Promise<SavePrefsResult> {
   const user = await getCurrentUser();
   if (!user) return { ok: false, error: "No autenticado" };
@@ -35,10 +35,10 @@ export async function saveFootballPrefsAction(input: {
     : [];
   if (ligas.length === 0) return { ok: false, error: "Elige al menos una liga." };
 
-  const club = input.club;
-  if (!club || !Number.isInteger(club.clubId) || club.clubId <= 0 || !club.clubName?.trim()) {
-    return { ok: false, error: "Elige tu club." };
-  }
+  const clubs = (Array.isArray(input.clubs) ? input.clubs : []).filter(
+    (c) => c && Number.isInteger(c.clubId) && c.clubId > 0 && !!c.clubName?.trim(),
+  );
+  if (clubs.length === 0) return { ok: false, error: "Elige al menos un club." };
 
   const ligasRes = await setMisLigas(user.id, ligas);
   if (!ligasRes.ok) {
@@ -51,20 +51,23 @@ export async function saveFootballPrefsAction(input: {
     };
   }
 
-  const clubRes = await addMiClub(user.id, {
-    // El club conserva su liga de origen solo si es un slug válido del catálogo.
-    ligaSlug: club.ligaSlug && getCompetition(club.ligaSlug) ? club.ligaSlug : null,
-    clubId: club.clubId,
-    clubName: club.clubName.trim().slice(0, 80),
-    clubLogo: club.clubLogo || null,
-  });
+  const clubRes = await setMisClubes(
+    user.id,
+    clubs.map((c) => ({
+      // Cada club conserva su liga de origen solo si es un slug válido del catálogo.
+      ligaSlug: c.ligaSlug && getCompetition(c.ligaSlug) ? c.ligaSlug : null,
+      clubId: c.clubId,
+      clubName: c.clubName.trim().slice(0, 80),
+      clubLogo: c.clubLogo || null,
+    })),
+  );
   if (!clubRes.ok) {
     return {
       ok: false,
       error:
         clubRes.reason === "not_available"
           ? "Las preferencias aún no están disponibles. Inténtalo más tarde."
-          : "No pudimos guardar tu club. Inténtalo de nuevo.",
+          : "No pudimos guardar tus clubes. Inténtalo de nuevo.",
     };
   }
 

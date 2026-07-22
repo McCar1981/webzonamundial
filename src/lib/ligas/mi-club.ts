@@ -120,6 +120,21 @@ export async function addMiClub(
   return writeClubes(userId, [...current, club]);
 }
 
+/** Fija la lista COMPLETA de clubes (dedupe por id, tope MAX_CLUBES). Para el
+ *  onboarding (guardar de una vez la selección del wizard). */
+export async function setMisClubes(userId: string, clubs: MiClub[]): Promise<SetMiClubResult> {
+  const seen = new Set<number>();
+  const clean: MiClub[] = [];
+  for (const c of clubs) {
+    if (c.clubId > 0 && !!c.clubName && !seen.has(c.clubId)) {
+      seen.add(c.clubId);
+      clean.push(c);
+      if (clean.length >= MAX_CLUBES) break;
+    }
+  }
+  return writeClubes(userId, clean);
+}
+
 /** Quita un club de la lista por id. */
 export async function removeMiClub(userId: string, clubId: number): Promise<SetMiClubResult> {
   const current = await getMisClubes(userId);

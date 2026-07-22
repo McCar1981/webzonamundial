@@ -119,10 +119,21 @@ function ClubCard({ club, next, last }: { club: MiClub; next: TeamFixture | null
   );
 }
 
-/* Tira horizontal de partidos de una liga (en vivo primero, luego próximos). */
+/* Tira horizontal de partidos de una liga (en vivo primero, luego próximos).
+   Si la liga está en parón (sin partidos), muestra un estado "sin partidos" que
+   enlaza a la liga — así el usuario ve que su elección sigue ahí. */
 function LigaRow({ liga }: { liga: LigaFeed }) {
   const fixtures = [...liga.live, ...liga.upcoming].slice(0, 6);
-  if (fixtures.length === 0) return null;
+  if (fixtures.length === 0) {
+    return (
+      <div style={{ marginBottom: 10 }}>
+        <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.5, textTransform: "uppercase", color: DIM, marginBottom: 6 }}>{liga.short}</div>
+        <Link href={`/ligas/${liga.slug}`} style={{ display: "block", padding: "10px 12px", borderRadius: 12, textDecoration: "none", background: "rgba(255,255,255,0.03)", border: `1px solid ${LINE}` }}>
+          <span style={{ fontSize: 12.5, color: DIM }}>Sin partidos próximos ahora · toca para ver la liga</span>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div style={{ marginBottom: 10 }}>
       <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.5, textTransform: "uppercase", color: DIM, marginBottom: 6 }}>{liga.short}</div>
@@ -207,10 +218,12 @@ export default function MiFutbolSection() {
   if (!authed) return null;
 
   const clubs = club?.clubs ?? [];
-  const ligasWithMatches = (feed?.ligas ?? []).filter((l) => l.live.length + l.upcoming.length > 0);
+  // TODAS las ligas elegidas (aunque estén en parón, sin partidos): el usuario
+  // debe ver lo que eligió. LigaRow muestra un estado "sin partidos" si toca.
+  const ligas = feed?.ligas ?? [];
 
-  // Sin clubes y sin partidos en sus ligas: no hay nada personal que mostrar.
-  if (clubs.length === 0 && ligasWithMatches.length === 0) return null;
+  // Sin clubes y sin ninguna liga elegida: no hay nada personal que mostrar.
+  if (clubs.length === 0 && ligas.length === 0) return null;
 
   return (
     <section data-reveal style={{ marginBottom: 20 }}>
@@ -229,7 +242,7 @@ export default function MiFutbolSection() {
         <ClubCard key={c.clubId} club={c} next={c.next} last={c.last} />
       ))}
 
-      {ligasWithMatches.map((l) => (
+      {ligas.map((l) => (
         <LigaRow key={l.slug} liga={l} />
       ))}
     </section>

@@ -14,6 +14,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { COMPETITIONS, getCompetition } from "@/data/competitions";
+import LigaLeaderboard from "./LigaLeaderboard";
 import {
   getCompetitionFixtures,
   getCompetitionStandings,
@@ -272,6 +273,9 @@ export default async function LigaPage({ params }: { params: { slug: string } })
             )}
           </>
         )}
+
+        {/* El marcador competitivo: ranking de Fútcoins por aciertos de la liga. */}
+        <LigaLeaderboard slug={comp.slug} shortName={comp.short} />
 
         <div className="zl-card--raised" style={{ marginTop: 34, textAlign: "center" }}>
           <p style={{ margin: "0 0 12px", fontSize: 14.5, color: "var(--zl-body)" }}>No leas el partido. Juégalo. Predice cada jornada de {comp.short} y compite con tus amigos.</p>

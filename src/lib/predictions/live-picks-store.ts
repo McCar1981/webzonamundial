@@ -15,6 +15,7 @@ import { getMatchMeta } from "./match-data";
 import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { buildSimulation } from "@/lib/match-center/simulation";
 import { fetchLiveSnapshot } from "@/lib/match-center/apiFootball";
+import { isLigaMicroMatchId, fetchLigaSnapshot } from "@/lib/ligas/micro-live";
 import type { MatchEvent } from "@/lib/match-center/types";
 import {
   LIVE_MARKETS,
@@ -40,6 +41,18 @@ export interface MatchLiveState {
 const FINISHED_STATUSES = ["FT", "AET", "PEN"];
 
 export async function authoritativeState(matchId: string): Promise<MatchLiveState | null> {
+  // Zona de Ligas: el match_id ES el fixtureId de api-football. Se resuelve
+  // SIEMPRE del feed real (autoritativo por sí mismo), sin MATCHES ni simulación.
+  // Si el feed no responde, devolvemos null → resolve-micro pospone (nunca paga
+  // contra datos inventados). Es más simple que el camino del Mundial.
+  const ligaId = parseInt(matchId, 10);
+  if (isLigaMicroMatchId(ligaId)) {
+    const snap = await fetchLigaSnapshot(ligaId);
+    if (!snap) return null;
+    const finished = FINISHED_STATUSES.includes(snap.status);
+    return { live: !finished, minute: snap.elapsed, finished, source: "live", events: snap.events };
+  }
+
   const pred = getMatchMeta(matchId);
   if (!pred?.kickoff_at) return null;
 

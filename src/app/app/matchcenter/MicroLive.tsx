@@ -78,7 +78,10 @@ interface LateInfo {
   note?: string;
 }
 
-export default function MicroLive({ matchId }: { matchId: number }) {
+export default function MicroLive({ matchId, backHref }: { matchId: number; backHref?: string }) {
+  // Ruta de retorno tras login: el Match Center del Mundial por defecto, o la del
+  // partido de liga cuando el widget se monta en /ligas/[slug]/[fixture].
+  const loginNext = backHref ?? `/app/matchcenter/${matchId}`;
   const [micro, setMicro] = useState<ActiveMicro | null>(null);
   const [fireChain, setFireChain] = useState<FireChain | null>(null);
   const [myOption, setMyOption] = useState<string | null>(null);
@@ -260,7 +263,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   const respond = async (option: string) => {
     if (!micro || sending || answered || secondsLeft <= 0) return;
     if (authed === false) {
-      window.location.href = `/login?next=/app/matchcenter/${matchId}`;
+      window.location.href = `/login?next=${loginNext}`;
       return;
     }
     setSending(true);
@@ -274,7 +277,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
       });
       if (res.status === 401) {
         setMyOption(null);
-        window.location.href = `/login?next=/app/matchcenter/${matchId}`;
+        window.location.href = `/login?next=${loginNext}`;
         return;
       }
       if (res.ok) {

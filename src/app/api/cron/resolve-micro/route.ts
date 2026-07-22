@@ -22,6 +22,7 @@ import {
 } from "@/lib/micro/store";
 import { authoritativeState } from "@/lib/predictions/live-picks-store";
 import { shouldRunSettlementCron } from "@/lib/match-center/live-window";
+import { ligasHaveLive } from "@/lib/ligas/micro-live";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -46,7 +47,10 @@ export async function GET(req: Request) {
   // Guarda de coste: las micros solo existen en partidos del Mundial. Sin ninguno
   // en ventana, no hay nada que liquidar; saltamos la lectura a Supabase salvo el
   // barrido de seguridad periódico (cada 15 min) que caza posibles rezagados.
-  if (!shouldRunSettlementCron(startMs)) {
+  // El gate original solo conoce el Mundial (MATCHES). Si hay partidos de LIGA en
+  // vivo (bandera KV que pone el poller de ligas), también despertamos para
+  // liquidar sus micros.
+  if (!shouldRunSettlementCron(startMs) && !(await ligasHaveLive())) {
     return NextResponse.json({ ok: true, skipped: "idle" });
   }
 

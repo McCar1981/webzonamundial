@@ -20,6 +20,7 @@ import PredictMercados from "./PredictMercados";
 import MatchSummary from "./MatchSummary";
 import LiveScore from "./LiveScore";
 import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
+import MicroLive from "@/app/app/matchcenter/MicroLive";
 import { isOla1 } from "@/lib/ligas/predict-markets";
 
 export const revalidate = 30;
@@ -29,6 +30,8 @@ const loadDetail = cache((id: number) => getFixtureDetail(id));
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
 const FINISHED = new Set(["FT", "AET", "PEN"]);
+// Estados EN VIVO (api-football) para montar el widget de micro-predicciones.
+const LIVE = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 
 type Params = { slug: string; fixture: string };
 
@@ -224,6 +227,15 @@ export default async function CentroPartido({ params }: { params: Params }) {
         </div>
 
         <MatchSummary fixtureId={f.fixtureId} />
+
+        {/* Micro-predicciones EN VIVO (Fútcoins reales). DORMIDO tras el flag
+            LIGAS_MICRO_ENABLED: solo se monta si está activo, la liga es de Ola 1
+            y el partido está en juego. El match_id es el fixtureId. */}
+        {process.env.LIGAS_MICRO_ENABLED === "1" && isOla1(comp.slug) && LIVE.has(f.status) && (
+          <div style={{ marginTop: 16 }}>
+            <MicroLive matchId={f.fixtureId} backHref={`/ligas/${comp.slug}/${f.fixtureId}`} />
+          </div>
+        )}
 
         {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} notStarted={f.status === "NS" || f.status === "TBD"} />}
 

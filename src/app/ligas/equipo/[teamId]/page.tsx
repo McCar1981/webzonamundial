@@ -176,7 +176,7 @@ export default async function TeamPage({ params }: { params: Params }) {
                   {players.map((p) => {
                     const s = statById.get(p.id);
                     return (
-                      <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 4px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                      <Link key={p.id} href={`/ligas/jugador/${p.id}`} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
                         <span style={{ width: 24, fontSize: 12, color: DIM, fontVariantNumeric: "tabular-nums", flexShrink: 0, textAlign: "right" }}>{p.number ?? ""}</span>
                         <PlayerAvatar id={p.id} size={30} />
                         <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{p.name}</span>
@@ -194,7 +194,8 @@ export default async function TeamPage({ params }: { params: Params }) {
                         ) : (
                           <span style={{ flexShrink: 0, fontSize: 12, color: DIM }}>sin minutos</span>
                         )}
-                      </div>
+                        <span aria-hidden style={{ color: DIM, fontSize: 16, flexShrink: 0, marginLeft: 2 }}>&rsaquo;</span>
+                      </Link>
                     );
                   })}
                 </div>

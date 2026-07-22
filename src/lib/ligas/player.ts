@@ -259,6 +259,42 @@ export async function getPlayerProfile(playerId: number): Promise<PlayerProfile 
   return null;
 }
 
+// ─── Clubes por los que ha pasado (tira "ha vestido") ────────────────────────
+// Fuente: /transfers (1 llamada, cacheada 24 h). Del más reciente al más antiguo.
+
+export interface PlayerClub { id: number; name: string; logo: string | null }
+interface RawTeamRef { id: number; name: string; logo: string | null }
+interface RawTransfers { response?: { transfers?: { teams?: { in?: RawTeamRef | null; out?: RawTeamRef | null } }[] }[] }
+
+export async function getPlayerClubs(playerId: number): Promise<PlayerClub[]> {
+  const cacheKey = `zl:playerclubs:${playerId}`;
+  try {
+    const cached = await kv.get<PlayerClub[]>(cacheKey);
+    if (cached) return cached;
+  } catch { /* sin KV: a la API */ }
+
+  const key = getApiKey();
+  if (!key) return [];
+  let data: RawTransfers | null = null;
+  try {
+    const r = await fetch(`${API_SPORTS_BASE}/transfers?player=${playerId}`, { headers: { "x-apisports-key": key }, cache: "no-store" });
+    if (r.ok) data = (await r.json()) as RawTransfers;
+  } catch { return []; }
+
+  const trs = data?.response?.[0]?.transfers ?? [];
+  const out: PlayerClub[] = [];
+  const seen = new Set<number>();
+  const add = (t?: RawTeamRef | null) => {
+    if (t && typeof t.id === "number" && t.id > 0 && t.name && !seen.has(t.id)) {
+      seen.add(t.id);
+      out.push({ id: t.id, name: t.name, logo: t.logo ?? null });
+    }
+  };
+  for (const t of trs) { add(t.teams?.in); add(t.teams?.out); } // in = club más reciente
+  try { await kv.set(cacheKey, out, { ex: CAREER_TTL_S }); } catch { /* best-effort */ }
+  return out;
+}
+
 // ─── Carrera completa (histórico), SEPARADA en CLUB y SELECCIÓN ──────────────
 // Cara: una llamada por temporada jugada. BAJO DEMANDA (la pide el cliente al
 // abrir la sección) + cache 30 días + tope 25 temporadas. Cada trayectoria trae

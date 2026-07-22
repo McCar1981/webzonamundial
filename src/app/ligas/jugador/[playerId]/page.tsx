@@ -7,12 +7,14 @@
 
 import type { Metadata } from "next";
 import { cache } from "react";
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPlayerProfile, type PlayerCompetition } from "@/lib/ligas/player";
+import { getPlayerProfile, getPlayerClubs, type PlayerCompetition } from "@/lib/ligas/player";
+import { clubColor, flagUrl } from "@/lib/ligas/player-visuals";
 import PlayerCareer from "./PlayerCareer";
 import StatGlossary from "./StatGlossary";
+import styles from "./ficha.module.css";
 
 export const revalidate = 3600;
 
@@ -23,6 +25,7 @@ const DIM = "#a69a82";
 const LINE = "1px solid rgba(255,255,255,0.06)";
 
 const load = cache((id: number) => getPlayerProfile(id));
+const loadClubs = cache((id: number) => getPlayerClubs(id));
 
 const POS_ES: Record<string, string> = { Goalkeeper: "Portero", Defender: "Defensa", Midfielder: "Centrocampista", Attacker: "Delantero" };
 
@@ -162,7 +165,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
   const id = Number(params.playerId);
   if (!Number.isFinite(id) || id <= 0) notFound();
 
-  const p = await load(id);
+  const [p, clubs] = await Promise.all([load(id), loadClubs(id)]);
   if (!p) notFound();
 
   const primary = p.competitions[0] ?? null;
@@ -172,83 +175,136 @@ export default async function JugadorPage({ params }: { params: Params }) {
   const clubComps = p.competitions.filter((c) => c.kind === "club");
   const natComps = p.competitions.filter((c) => c.kind === "national");
 
-  return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
-      <div style={{ maxWidth: 620, margin: "0 auto" }}>
-        <Link href={backHref} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
-          <span aria-hidden>&larr;</span> {primary ? primary.team : "Zona de Ligas"}
-        </Link>
+  // Piezas cinematográficas
+  const nm = p.name.trim();
+  const sp = nm.lastIndexOf(" ");
+  const firstName = sp > 0 ? nm.slice(0, sp) : "";
+  const lastName = sp > 0 ? nm.slice(sp + 1) : nm;
+  const ghostNum = p.number ?? primary?.number ?? null;
+  const cc = clubColor(primary?.teamId);
+  const natFlag = flagUrl(p.nationality, 40);
+  const natTeam = natComps[0]?.team ?? null;
+  // "Ha vestido": clubes de /transfers (viejo→nuevo); si no hay, el club actual.
+  const badgeClubs = clubs.length > 0
+    ? [...clubs].reverse()
+    : (primary ? [{ id: primary.teamId, name: primary.team, logo: primary.teamLogo }] : []);
 
-        {/* Cabecera */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 16 }}>
-          {p.photo ? (
-            <img src={p.photo} alt="" width={84} height={84} style={{ width: 84, height: 84, borderRadius: "50%", objectFit: "cover", background: "#241e12", flexShrink: 0, border: `2px solid ${GOLD}55` }} />
-          ) : (
-            <span style={{ width: 84, height: 84, borderRadius: "50%", background: "#241e12", flexShrink: 0 }} aria-hidden />
-          )}
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <h1 className="zl-h1" style={{ margin: 0, fontSize: 24 }}>{p.name}</h1>
-            <div style={{ fontSize: 13, color: DIM, marginTop: 4, display: "flex", flexWrap: "wrap", gap: "2px 10px" }}>
-              {posEs && <span>{posEs}</span>}
-              {p.number != null && <span>Dorsal {p.number}</span>}
-              {p.nationality && <span style={{ color: "#e6decb" }}>{p.nationality}</span>}
-            </div>
-            {p.injured && <span style={{ display: "inline-block", marginTop: 8, fontSize: 11, fontWeight: 700, color: "#0a0906", background: "#cf5b5b", borderRadius: 6, padding: "2px 8px" }}>Lesionado</span>}
-          </div>
+  return (
+    <div className={styles.screen} style={cc ? ({ "--club": cc.club, "--club-deep": cc.deep } as CSSProperties) : undefined}>
+      <div className={styles.amb} aria-hidden />
+      <div className={styles.amb2} aria-hidden />
+
+      <div className={styles.inner}>
+        <div className={styles.bar}>
+          <Link className={styles.back} href={backHref}><span aria-hidden>&larr;</span> {primary ? primary.team : "Zona de Ligas"}</Link>
         </div>
 
-        {/* Totales de la temporada */}
-        <section style={{ marginTop: 22 }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
-            <h2 className="zl-h2" style={{ marginBottom: 0 }}>Temporada {p.season}</h2>
-            {p.rating != null && <span style={{ fontSize: 12, color: DIM }}>Nota media {p.rating.toFixed(2)}</span>}
+        {/* HÉROE */}
+        <header className={`${styles.hero} ${styles.rise} ${styles.d1}`}>
+          {ghostNum != null && <div className={styles.ghost} aria-hidden>{ghostNum}</div>}
+          <div className={styles.avatarWrap}>
+            <div className={styles.glow} aria-hidden />
+            <div className={styles.ring} aria-hidden />
+            <div className={styles.avatar}>
+              {p.photo ? (
+                <img src={p.photo} alt={p.name} />
+              ) : (
+                <svg className={styles.avatarPh} viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 12.8a4.4 4.4 0 1 0 0-8.8 4.4 4.4 0 0 0 0 8.8ZM4 20.4c0-3.6 3.6-5.8 8-5.8s8 2.2 8 5.8" stroke="#e8d48b" strokeWidth="1.3" strokeLinecap="round" /></svg>
+              )}
+            </div>
+            {primary?.teamLogo ? <img className={styles.crestBadge} src={primary.teamLogo} alt="" /> : null}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 4, marginTop: 10, padding: "10px 0", borderRadius: 14, background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.2)" }}>
-            <Stat label="Partidos" value={p.totals.appearances} />
-            <Stat label="Goles" value={p.totals.goals} gold={p.totals.goals > 0} />
-            <Stat label="Asist." value={p.totals.assists} gold={p.totals.assists > 0} />
-            <Stat label="Min." value={p.totals.minutes.toLocaleString("es")} />
-          </div>
-        </section>
 
-        {/* Datos personales */}
-        <section style={{ marginTop: 24 }}>
-          <h2 className="zl-h2">Datos</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
-            {p.age != null && <Field label="Edad" value={`${p.age} años`} />}
-            {birth && <Field label="Nacimiento" value={birth} />}
-            {(p.birthPlace || p.birthCountry) && <Field label="Lugar" value={[p.birthPlace, p.birthCountry].filter(Boolean).join(", ")} />}
-            {p.nationality && <Field label="Nacionalidad" value={p.nationality} />}
-            {p.height && <Field label="Altura" value={p.height} />}
-            {p.weight && <Field label="Peso" value={p.weight} />}
+          {(posEs || p.number != null) && (
+            <div className={styles.eyebrow}>{[posEs, p.number != null ? `Dorsal ${p.number}` : null].filter(Boolean).join(" · ")}</div>
+          )}
+          <h1 className={styles.name}>{firstName ? <>{firstName} </> : null}<span className={styles.gold}>{lastName}</span></h1>
+          <div className={styles.subline}>
+            {p.nationality && (
+              <span className={styles.natpill}>
+                {natFlag && <img className={styles.flag} src={natFlag} alt="" />}
+                {p.nationality}
+              </span>
+            )}
+            {primary && (<><span className={styles.dot}>•</span><span>{primary.team}</span></>)}
+            {(p.age != null || p.height) && (<><span className={styles.dot}>•</span><span>{[p.age != null ? `${p.age} años` : null, p.height].filter(Boolean).join(" · ")}</span></>)}
+            {p.injured && (<><span className={styles.dot}>•</span><span style={{ color: "#ef8a8a", fontWeight: 700 }}>Lesionado</span></>)}
           </div>
-        </section>
+        </header>
 
-        {/* Temporada actual, SEPARADA en Club y Selección (si fue convocado) */}
-        {clubComps.length > 0 && (
+        {/* HA VESTIDO — escudos de sus clubes + bandera de su selección */}
+        {(badgeClubs.length > 0 || natTeam) && (
+          <div className={`${styles.badges} ${styles.rise} ${styles.d2}`}>
+            <div className={styles.badgesLab}>Ha vestido</div>
+            <div className={styles.badgesRow}>
+              {badgeClubs.map((cl) => (
+                <Link key={cl.id} className={styles.club} href={`/ligas/equipo/${cl.id}`}>
+                  {cl.logo ? <img src={cl.logo} alt="" /> : <span style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(255,255,255,.08)" }} aria-hidden />}
+                  <span className={`${styles.clubName}${cl.id === primary?.teamId ? " " + styles.clubCurrent : ""}`}>{cl.name}</span>
+                </Link>
+              ))}
+              {natTeam && (
+                <>
+                  <span className={styles.sep} aria-hidden />
+                  <div className={styles.club}>
+                    {natFlag ? <img className={styles.selFlag} src={natFlag} alt="" /> : <span style={{ width: 34, height: 24, borderRadius: 4, background: "rgba(255,255,255,.08)" }} aria-hidden />}
+                    <span className={styles.clubName}>{natTeam}</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* TIRA DESTACADA */}
+        <div className={`${styles.strip} ${styles.rise} ${styles.d2}`}>
+          <div className={styles.stripS}><div className={styles.stripV}>{p.totals.appearances}</div><div className={styles.stripK}>Partidos</div></div>
+          <div className={styles.stripS}><div className={`${styles.stripV} ${styles.stripVg}`}>{p.totals.goals}</div><div className={styles.stripK}>Goles</div></div>
+          <div className={styles.stripS}><div className={`${styles.stripV} ${styles.stripVg}`}>{p.totals.assists}</div><div className={styles.stripK}>Asist.</div></div>
+          <div className={styles.stripS}><div className={styles.stripV}>{p.rating != null ? p.rating.toFixed(2) : "—"}</div><div className={styles.stripK}>Nota</div></div>
+        </div>
+
+        <div style={{ padding: "0 16px 52px" }}>
+          {/* Datos personales */}
           <section style={{ marginTop: 24 }}>
-            <h2 className="zl-h2">Club · {p.season}</h2>
-            {clubComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+            <h2 className="zl-h2">Datos</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
+              {p.age != null && <Field label="Edad" value={`${p.age} años`} />}
+              {birth && <Field label="Nacimiento" value={birth} />}
+              {(p.birthPlace || p.birthCountry) && <Field label="Lugar" value={[p.birthPlace, p.birthCountry].filter(Boolean).join(", ")} />}
+              {p.nationality && <Field label="Nacionalidad" value={p.nationality} />}
+              {p.height && <Field label="Altura" value={p.height} />}
+              {p.weight && <Field label="Peso" value={p.weight} />}
+            </div>
           </section>
-        )}
-        {natComps.length > 0 && (
-          <section style={{ marginTop: 24 }}>
-            <h2 className="zl-h2">Selección · {p.season}</h2>
-            {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
-          </section>
-        )}
-        {clubComps.length === 0 && natComps.length === 0 && (
-          <p style={{ marginTop: 20, fontSize: 13.5, color: DIM }}>Sin estadísticas de las últimas temporadas.</p>
-        )}
 
-        {/* Carrera completa (histórico) — colapsada, se carga bajo demanda */}
-        <PlayerCareer playerId={p.id} />
+          {clubComps.length > 0 && (
+            <section style={{ marginTop: 24 }}>
+              <h2 className="zl-h2">Club · {p.season}</h2>
+              {clubComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+            </section>
+          )}
+          {natComps.length > 0 && (
+            <section style={{ marginTop: 24 }}>
+              <h2 className="zl-h2">Selección · {p.season}</h2>
+              {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+            </section>
+          )}
+          {clubComps.length === 0 && natComps.length === 0 && (
+            <p style={{ marginTop: 20, fontSize: 13.5, color: DIM }}>Sin estadísticas de las últimas temporadas.</p>
+          )}
 
-        {/* Leyenda: qué significa cada estadística */}
-        <StatGlossary />
+          {/* Carrera completa (histórico) — colapsada, bajo demanda */}
+          <PlayerCareer playerId={p.id} />
+          {/* Leyenda de siglas */}
+          <StatGlossary />
 
-        <p style={{ marginTop: 22, fontSize: 11, color: DIM, textAlign: "center" }}>Datos de api-football · temporada {p.season}</p>
+          <p style={{ marginTop: 22, fontSize: 11, color: DIM, textAlign: "center" }}>Datos de api-football · temporada {p.season}</p>
+        </div>
       </div>
-    </main>
+
+      <div className={styles.grain} aria-hidden />
+      <div className={styles.vig} aria-hidden />
+    </div>
   );
 }

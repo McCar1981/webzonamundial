@@ -1820,7 +1820,14 @@ export default function AppHubPage() {
               </span>
             </div>
             <div className="zm-mod-grid">
-              {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} cat={cat} />)}
+              {cat.mods.map((m) => {
+                // Post-Mundial: "Predicciones" deja de abrir el lobby del Mundial
+                // y va al hub de predicción de las ligas del usuario.
+                const mm = post && m.title === "Predicciones"
+                  ? { ...m, href: "/ligas/predicciones", desc: "Predice los partidos de tus ligas elegidas." }
+                  : m;
+                return <ModuleCard key={m.title} mod={mm} cat={cat} />;
+              })}
             </div>
           </section>
             )}

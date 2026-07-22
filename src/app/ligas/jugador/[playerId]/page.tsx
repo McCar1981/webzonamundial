@@ -11,6 +11,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPlayerProfile, type PlayerCompetition } from "@/lib/ligas/player";
+import PlayerCareer from "./PlayerCareer";
 
 export const revalidate = 3600;
 
@@ -119,6 +120,8 @@ export default async function JugadorPage({ params }: { params: Params }) {
   const posEs = p.position ? (POS_ES[p.position] ?? p.position) : null;
   const backHref = primary ? `/ligas/equipo/${primary.teamId}` : "/ligas";
   const birth = fmtBirth(p.birthDate);
+  const clubComps = p.competitions.filter((c) => c.kind === "club");
+  const natComps = p.competitions.filter((c) => c.kind === "national");
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "24px 16px 64px" }}>
@@ -172,15 +175,25 @@ export default async function JugadorPage({ params }: { params: Params }) {
           </div>
         </section>
 
-        {/* Desglose por competición */}
-        {p.competitions.length > 0 ? (
+        {/* Temporada actual, SEPARADA en Club y Selección (si fue convocado) */}
+        {clubComps.length > 0 && (
           <section style={{ marginTop: 24 }}>
-            <h2 className="zl-h2">Por competición</h2>
-            {p.competitions.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+            <h2 className="zl-h2">Club · {p.season}</h2>
+            {clubComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
           </section>
-        ) : (
+        )}
+        {natComps.length > 0 && (
+          <section style={{ marginTop: 24 }}>
+            <h2 className="zl-h2">Selección · {p.season}</h2>
+            {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+          </section>
+        )}
+        {clubComps.length === 0 && natComps.length === 0 && (
           <p style={{ marginTop: 20, fontSize: 13.5, color: DIM }}>Sin estadísticas de las últimas temporadas.</p>
         )}
+
+        {/* Carrera completa (histórico) — colapsada, se carga bajo demanda */}
+        <PlayerCareer playerId={p.id} />
 
         <p style={{ marginTop: 22, fontSize: 11, color: DIM, textAlign: "center" }}>Datos de api-football · temporada {p.season}</p>
       </div>

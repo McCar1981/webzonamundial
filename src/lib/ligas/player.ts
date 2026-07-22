@@ -19,6 +19,7 @@ function getApiKey(): string | undefined {
 }
 
 export interface PlayerCompetition {
+  kind: "club" | "national"; // club vs selección
   leagueId: number;
   league: string;
   leagueLogo: string | null;
@@ -113,8 +114,18 @@ async function apiGet(path: string): Promise<{ response?: RawPlayer[] } | null> 
   }
 }
 
+// ¿Es una competición de SELECCIÓN? api-football no rellena team.national ni
+// league.type en /players, así que se clasifica por el nombre de la liga.
+// "Club" descarta los falsos amigos ("Friendlies Clubs", "FIFA Club World Cup").
+export function isNationalTeamLeague(leagueName: string): boolean {
+  const n = (leagueName || "").toLowerCase();
+  if (n.includes("club")) return false;
+  return /world cup|copa am[eé]rica|nations league|\beuro\b|european championship|qualif|africa cup|afcon|asian cup|gold cup|copa oro|confederations|olympic|friendlies/.test(n);
+}
+
 function toComp(s: RawStat): PlayerCompetition {
   return {
+    kind: isNationalTeamLeague(s.league.name) ? "national" : "club",
     leagueId: s.league.id,
     league: s.league.name,
     leagueLogo: s.league.logo ?? null,
@@ -222,4 +233,90 @@ export async function getPlayerProfile(playerId: number): Promise<PlayerProfile 
     }
   }
   return null;
+}
+
+// ─── Carrera completa (histórico) ────────────────────────────────────────────
+// Cara: una llamada por temporada jugada. Por eso es BAJO DEMANDA (la pide el
+// cliente al abrir la sección) y se cachea 30 días. Se acota a las últimas 25
+// temporadas (cubre cualquier carrera real).
+
+export interface CareerSeason {
+  season: number;
+  teams: string[];
+  appearances: number;
+  goals: number;
+  assists: number;
+  minutes: number;
+  hasNational: boolean;
+}
+export interface PlayerCareer {
+  seasons: CareerSeason[]; // año descendente
+  totals: { appearances: number; goals: number; assists: number; minutes: number };
+  club: { appearances: number; goals: number; assists: number };
+  national: { appearances: number; goals: number; assists: number; teams: string[] };
+}
+
+const CAREER_TTL_S = 60 * 60 * 24 * 30; // 30 días
+const CAREER_MAX_SEASONS = 25;
+const CAREER_BATCH = 5; // temporadas por lote (respeta el rate-limit)
+
+async function apiGetSeasons(playerId: number): Promise<number[]> {
+  const key = getApiKey();
+  if (!key) return [];
+  try {
+    const r = await fetch(`${API_SPORTS_BASE}/players/seasons?player=${playerId}`, { headers: { "x-apisports-key": key }, cache: "no-store" });
+    if (!r.ok) return [];
+    const j = (await r.json()) as { response?: number[] };
+    return Array.isArray(j.response) ? j.response.filter((y): y is number => typeof y === "number") : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | null> {
+  const cacheKey = `zl:career:${playerId}`;
+  try {
+    const cached = await kv.get<PlayerCareer>(cacheKey);
+    if (cached) return cached;
+  } catch { /* sin KV: a la API */ }
+
+  let years = await apiGetSeasons(playerId);
+  if (!years.length) return null;
+  years = [...new Set(years)].sort((a, b) => a - b).slice(-CAREER_MAX_SEASONS);
+
+  const seasons: CareerSeason[] = [];
+  const totals = { appearances: 0, goals: 0, assists: 0, minutes: 0 };
+  const club = { appearances: 0, goals: 0, assists: 0 };
+  const national = { appearances: 0, goals: 0, assists: 0, teams: new Set<string>() };
+
+  for (let i = 0; i < years.length; i += CAREER_BATCH) {
+    const batch = years.slice(i, i + CAREER_BATCH);
+    const rows = await Promise.all(
+      batch.map((y) => apiGet(`/players?id=${playerId}&season=${y}`).then((r) => ({ y, row: r?.response?.[0] ?? null }))),
+    );
+    for (const { y, row } of rows) {
+      const comps = (row?.statistics ?? []).map(toComp);
+      if (!comps.length) continue;
+      let sApps = 0, sG = 0, sA = 0, sMin = 0, hasNational = false;
+      const teams = new Set<string>();
+      for (const c of comps) {
+        teams.add(c.team);
+        sApps += c.appearances; sG += c.goals; sA += c.assists; sMin += c.minutes;
+        totals.appearances += c.appearances; totals.goals += c.goals; totals.assists += c.assists; totals.minutes += c.minutes;
+        if (c.kind === "national") {
+          hasNational = true;
+          national.appearances += c.appearances; national.goals += c.goals; national.assists += c.assists; national.teams.add(c.team);
+        } else {
+          club.appearances += c.appearances; club.goals += c.goals; club.assists += c.assists;
+        }
+      }
+      seasons.push({ season: y, teams: [...teams], appearances: sApps, goals: sG, assists: sA, minutes: sMin, hasNational });
+    }
+  }
+  if (!seasons.length) return null;
+
+  seasons.sort((a, b) => b.season - a.season);
+  const career: PlayerCareer = { seasons, totals, club, national: { ...national, teams: [...national.teams] } };
+  try { await kv.set(cacheKey, career, { ex: CAREER_TTL_S }); } catch { /* best-effort */ }
+  return career;
 }

@@ -303,7 +303,9 @@ function sumTotals(rows: CareerRow[]): CareerTotals {
 }
 
 export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | null> {
-  const cacheKey = `zl:career:${playerId}`;
+  // v2: nueva forma (club/national separados). La clave bumpeada ignora las
+  // entradas cacheadas con la forma anterior (habrían roto la UI nueva).
+  const cacheKey = `zl:career:v2:${playerId}`;
   try {
     const cached = await kv.get<PlayerCareer>(cacheKey);
     if (cached) return cached;

@@ -82,7 +82,9 @@ export const COMPETITIONS: Competition[] = [
   { slug: "champions-league", name: "UEFA Champions League", short: "Champions", apiFootballId: 2, country: "UEFA", flag: null, scope: "continental", region: "europa", format: "league-phase-knockout", wave: 3 },
   { slug: "europa-league", name: "UEFA Europa League", short: "Europa League", apiFootballId: 3, country: "UEFA", flag: null, scope: "continental", region: "europa", format: "league-phase-knockout", wave: 3 },
   { slug: "conference-league", name: "UEFA Conference League", short: "Conference", apiFootballId: 848, country: "UEFA", flag: null, scope: "continental", region: "europa", format: "league-phase-knockout", wave: 3 },
-  { slug: "club-world-cup", name: "Mundial de Clubes FIFA", short: "Mundial Clubes", apiFootballId: 15, country: "FIFA", flag: null, scope: "intercontinental", region: "global", format: "groups-knockout", wave: 3 },
+  // Mundial de Clubes FIFA (id 15) retirado del catálogo: es cada 4 años (próxima
+  // edición 2029). No procede ofrecerlo como competición seguible durante ~3 años
+  // (solo mostraría "en espera de calendario"). Se re-añadirá cuando se acerque.
 ];
 
 // ── Índices y selectores (todo derivado, sin duplicar la fuente) ─────────────

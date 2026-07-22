@@ -266,7 +266,7 @@ export default function LigasDirectory() {
       { label: "Tengo un club favorito", sub: "Lo sigues a todo: su calendario, resultados y noticias arriba del todo.", onClick: gotoClub },
       { label: "Sigo varios clubes, sin uno favorito", sub: "Elige las ligas que te importan y verás solo esas.", onClick: () => openEditor([]) },
       { label: "Disfruto del fútbol en general", sub: "Te mostramos lo que se juega hoy en todas las ligas.", onClick: () => setGateDone(true) },
-      { label: "Sobre todo fútbol internacional", sub: "Champions, Libertadores, Sudamericana y Mundial de Clubes.", onClick: () => openEditor(["champions-league", "libertadores", "sudamericana", "club-world-cup"]) },
+      { label: "Sobre todo fútbol internacional", sub: "Champions, Libertadores y Sudamericana.", onClick: () => openEditor(["champions-league", "libertadores", "sudamericana"]) },
     ];
     return (
       <>

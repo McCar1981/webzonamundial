@@ -158,13 +158,19 @@ export async function getCompetitionFixtures(
   apiFootballId: number,
   q: FixturesQuery = {},
 ): Promise<CompetitionFixture[]> {
-  const season = q.season ?? (await resolveCurrentSeason(apiFootballId));
-  if (season == null) return [];
+  const params = new URLSearchParams({ league: String(apiFootballId) });
 
-  const params = new URLSearchParams({
-    league: String(apiFootballId),
-    season: String(season),
-  });
+  // next / last / live devuelven los partidos CRONOLÓGICOS (próximos, recientes o
+  // en vivo) y NO necesitan `season`. Es más: forzar season aquí rompe en el hueco
+  // de PRETEMPORADA — api-football marca "current" la campaña ya terminada, cuyo
+  // `next` es 0, mientras el calendario nuevo vive en la temporada siguiente. Por
+  // eso, salvo que se pida una temporada explícita, estas consultas van sin season.
+  const chronological = q.next != null || q.last != null || !!q.live;
+  if (!(chronological && q.season == null)) {
+    const season = q.season ?? (await resolveCurrentSeason(apiFootballId));
+    if (season == null) return [];
+    params.set("season", String(season));
+  }
   if (q.next) params.set("next", String(q.next));
   if (q.last) params.set("last", String(q.last));
   if (q.from) params.set("from", q.from);

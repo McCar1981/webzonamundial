@@ -36,7 +36,8 @@ type Fixture = {
 };
 type TeamFixture = Fixture & { leagueName: string };
 type MiClub = { ligaSlug: string | null; clubId: number; clubName: string; clubLogo: string | null };
-type ClubResp = { authed: boolean; club: MiClub | null; next: TeamFixture | null; last: TeamFixture | null };
+type ClubEntry = MiClub & { next: TeamFixture | null; last: TeamFixture | null };
+type ClubResp = { authed: boolean; clubs: ClubEntry[] };
 type LigaFeed = { slug: string; name: string; short: string; live: Fixture[]; upcoming: Fixture[] };
 type FeedResp = { authed: boolean; ligas: LigaFeed[] };
 
@@ -205,11 +206,11 @@ export default function MiFutbolSection() {
   const authed = club?.authed || feed?.authed;
   if (!authed) return null;
 
-  const hasClub = !!club?.club;
+  const clubs = club?.clubs ?? [];
   const ligasWithMatches = (feed?.ligas ?? []).filter((l) => l.live.length + l.upcoming.length > 0);
 
-  // Sin club y sin partidos en sus ligas: no hay nada personal que mostrar.
-  if (!hasClub && ligasWithMatches.length === 0) return null;
+  // Sin clubes y sin partidos en sus ligas: no hay nada personal que mostrar.
+  if (clubs.length === 0 && ligasWithMatches.length === 0) return null;
 
   return (
     <section data-reveal style={{ marginBottom: 20 }}>
@@ -224,7 +225,9 @@ export default function MiFutbolSection() {
         </Link>
       </div>
 
-      {club?.club && <ClubCard club={club.club} next={club.next} last={club.last} />}
+      {clubs.map((c) => (
+        <ClubCard key={c.clubId} club={c} next={c.next} last={c.last} />
+      ))}
 
       {ligasWithMatches.map((l) => (
         <LigaRow key={l.slug} liga={l} />

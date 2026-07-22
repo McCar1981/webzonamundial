@@ -8,7 +8,7 @@
 
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { setMisLigas } from "@/lib/ligas/mis-ligas";
-import { setMiClub } from "@/lib/ligas/mi-club";
+import { addMiClub } from "@/lib/ligas/mi-club";
 import { getCompetition } from "@/data/competitions";
 
 export interface SaveClubInput {
@@ -51,7 +51,7 @@ export async function saveFootballPrefsAction(input: {
     };
   }
 
-  const clubRes = await setMiClub(user.id, {
+  const clubRes = await addMiClub(user.id, {
     // El club conserva su liga de origen solo si es un slug válido del catálogo.
     ligaSlug: club.ligaSlug && getCompetition(club.ligaSlug) ? club.ligaSlug : null,
     clubId: club.clubId,

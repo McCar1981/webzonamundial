@@ -13,7 +13,7 @@ import { kv } from "@/lib/kv";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
 import { getTeamFixtures, type TeamFixture } from "@/lib/competitions/api";
-import { getMiClub, setMiClub, clearMiClub } from "@/lib/ligas/mi-club";
+import { getMisClubes, addMiClub, removeMiClub, clearMiClub } from "@/lib/ligas/mi-club";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 
 export const runtime = "nodejs";
@@ -60,11 +60,15 @@ async function clubExtra(teamId: number, clubName: string): Promise<ClubExtra> {
 export async function GET() {
   const user = await getCurrentUser();
   const noStore = { headers: { "Cache-Control": "private, no-store" } };
-  if (!user) return NextResponse.json({ authed: false, club: null }, noStore);
-  const club = await getMiClub(user.id);
-  if (!club) return NextResponse.json({ authed: true, club: null }, noStore);
-  const extra = await clubExtra(club.clubId, club.clubName);
-  return NextResponse.json({ authed: true, club, ...extra }, noStore);
+  if (!user) return NextResponse.json({ authed: false, clubs: [] }, noStore);
+  const clubes = await getMisClubes(user.id);
+  if (clubes.length === 0) return NextResponse.json({ authed: true, clubs: [] }, noStore);
+  // Próximo/último por cada club (cap 6; extras cacheados 10 min por club). Las
+  // noticias solo del club primario (evita N barridos del store de noticias).
+  const capped = clubes.slice(0, 6);
+  const extras = await Promise.all(capped.map((c) => clubExtra(c.clubId, c.clubName)));
+  const clubs = capped.map((c, i) => ({ ...c, next: extras[i].next, last: extras[i].last }));
+  return NextResponse.json({ authed: true, clubs, news: extras[0]?.news ?? [] }, noStore);
 }
 
 export async function POST(request: Request) {
@@ -88,7 +92,7 @@ export async function POST(request: Request) {
   const rawLogo = typeof body.teamLogo === "string" ? body.teamLogo : "";
   const teamLogo = rawLogo.startsWith("https://media.api-sports.io/") && rawLogo.length < 300 ? rawLogo : null;
 
-  const res = await setMiClub(user.id, { ligaSlug, clubId: teamId, clubName: teamName, clubLogo: teamLogo });
+  const res = await addMiClub(user.id, { ligaSlug, clubId: teamId, clubName: teamName, clubLogo: teamLogo });
   if (!res.ok) {
     if (res.reason === "not_available") return NextResponse.json({ error: "not_available" }, { status: 503 });
     return NextResponse.json({ error: "internal" }, { status: 500 });
@@ -96,10 +100,15 @@ export async function POST(request: Request) {
   return NextResponse.json({ ok: true });
 }
 
-export async function DELETE() {
+// DELETE ?teamId=123 -> quita ese club. Sin teamId -> vacía todos.
+export async function DELETE(request: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const res = await clearMiClub(user.id);
+  const idParam = new URL(request.url).searchParams.get("teamId");
+  const teamId = idParam ? Number(idParam) : NaN;
+  const res = Number.isInteger(teamId) && teamId > 0
+    ? await removeMiClub(user.id, teamId)
+    : await clearMiClub(user.id);
   return res.ok
     ? NextResponse.json({ ok: true })
     : NextResponse.json({ error: res.reason ?? "internal" }, { status: res.reason === "not_available" ? 503 : 500 });

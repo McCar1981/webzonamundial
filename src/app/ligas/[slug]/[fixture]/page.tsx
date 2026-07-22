@@ -20,6 +20,7 @@ import PredictMercados from "./PredictMercados";
 import MatchSummary from "./MatchSummary";
 import LiveScore from "./LiveScore";
 import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
+import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import MicroLive from "@/app/app/matchcenter/MicroLive";
 import { isOla1 } from "@/lib/ligas/predict-markets";
 
@@ -261,9 +262,14 @@ export default async function CentroPartido({ params }: { params: Params }) {
             {d.events.map((e, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 13, flexDirection: e.teamId === homeId ? "row" : "row-reverse", textAlign: e.teamId === homeId ? "left" : "right" }}>
                 <span style={{ color: DIM, width: 34, fontVariantNumeric: "tabular-nums", flexShrink: 0 }}>{e.minute != null ? `${e.minute}'` : ""}</span>
+                {e.playerId ? <PlayerAvatar id={e.playerId} size={26} /> : null}
                 <span style={{ flex: 1 }}>
                   <span style={{ color: GOLD, fontWeight: 500 }}>{eventLabel(e.type, e.detail)}</span>
-                  {e.player ? <span style={{ color: "#fff" }}> · {e.player}</span> : null}
+                  {e.player ? (
+                    e.playerId
+                      ? <Link href={`/ligas/jugador/${e.playerId}`} style={{ color: "#fff", textDecoration: "none" }}> · {e.player}</Link>
+                      : <span style={{ color: "#fff" }}> · {e.player}</span>
+                  ) : null}
                   {e.assist ? <span style={{ color: DIM }}> ({e.assist})</span> : null}
                 </span>
               </div>

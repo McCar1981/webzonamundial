@@ -93,11 +93,17 @@ function FeedRow({ f, slug }: { f: Fixture; slug: string }) {
   const live = LIVE.has(f.status);
   return (
     <Link href={`/ligas/${slug}/${f.fixtureId}`} className="zl-row" style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 2px", textDecoration: "none" }}>
-      <span style={{ flex: 1, minWidth: 0, textAlign: "right", fontSize: 13.5, color: "var(--zl-text)", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{f.home.name}</span>
+      <span style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 7 }}>
+        <span style={{ fontSize: 13.5, color: "var(--zl-text)", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{f.home.name}</span>
+        {f.home.logo ? <img src={f.home.logo} alt="" width={18} height={18} loading="lazy" style={{ width: 18, height: 18, objectFit: "contain", flexShrink: 0 }} /> : null}
+      </span>
       <span className="zl-num" style={{ minWidth: 58, textAlign: "center", fontSize: live || finished ? 14.5 : 11.5, color: live ? "var(--zl-live)" : finished ? "var(--zl-text)" : "var(--zl-muted)" }}>
         {live ? `${f.score.home ?? 0}-${f.score.away ?? 0} · ${f.elapsed != null ? `${f.elapsed}'` : "VIVO"}` : finished ? `${f.score.home ?? 0}-${f.score.away ?? 0}` : fmtKickoff(f.kickoff)}
       </span>
-      <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "var(--zl-text)", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{f.away.name}</span>
+      <span style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: 7 }}>
+        {f.away.logo ? <img src={f.away.logo} alt="" width={18} height={18} loading="lazy" style={{ width: 18, height: 18, objectFit: "contain", flexShrink: 0 }} /> : null}
+        <span style={{ fontSize: 13.5, color: "var(--zl-text)", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{f.away.name}</span>
+      </span>
     </Link>
   );
 }

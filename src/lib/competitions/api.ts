@@ -294,6 +294,7 @@ export interface FixtureEvent {
   type: string; // Goal, Card, subst, Var
   detail: string; // "Normal Goal", "Yellow Card", "Substitution 1"…
   teamId: number;
+  playerId: number | null;
   player: string | null;
   assist: string | null;
 }
@@ -320,7 +321,7 @@ export interface FixtureDetail {
 interface RawEvent {
   time: { elapsed: number | null };
   team: { id: number };
-  player: { name: string | null };
+  player: { id: number | null; name: string | null };
   assist: { name: string | null };
   type: string;
   detail: string;
@@ -351,6 +352,7 @@ export async function getFixtureDetail(fixtureId: number): Promise<FixtureDetail
       type: e.type,
       detail: e.detail,
       teamId: e.team.id,
+      playerId: e.player?.id ?? null,
       player: e.player?.name ?? null,
       assist: e.assist?.name ?? null,
     })),

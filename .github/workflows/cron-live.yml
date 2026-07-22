@@ -32,6 +32,7 @@ jobs:
           fi
           endpoints=(
             "/api/cron/match-center-poll"
+            "/api/cron/poll-ligas-live"
             "/api/cron/resolve-micro"
             "/api/cron/settle-live-picks"
             "/api/cron/stage-results"

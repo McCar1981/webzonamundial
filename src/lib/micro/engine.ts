@@ -221,7 +221,8 @@ async function pushMicro(snap: LiveSnapshot, micro: MicroRow): Promise<void> {
       // Sin prometer segundos: con ventana de 15s, quien llega del push juega
       // la SIGUIENTE micro (la tarjeta "llegaste tarde" se lo explica).
       body: `${micro.question} ¡Está pasando ahora — entra al partido!`,
-      url: `/app/matchcenter/${snap.matchId}`,
+      // Ligas enlazan a su Match Center propio; el Mundial al de la app.
+      url: snap.meta.ligaSlug ? `/ligas/${snap.meta.ligaSlug}/${snap.matchId}` : `/app/matchcenter/${snap.matchId}`,
       tag: `micro-${snap.matchId}`,
       icon: PUSH_ICON,
       badge: "/icons/badge-72.png",

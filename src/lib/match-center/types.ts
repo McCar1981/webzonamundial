@@ -125,6 +125,10 @@ export interface MatchMeta {
   time: string;
   phase: string; // "Fase de grupos", "Octavos", ...
   group: string;
+  /** Slug de competición de Zona de Ligas cuando el partido es de una liga (no
+   *  del Mundial). Lo usa el push de micro para enlazar a /ligas/[slug]/[fixture]
+   *  en vez de a /app/matchcenter. Ausente en partidos del Mundial. */
+  ligaSlug?: string;
 }
 
 export interface StatKeyframe {

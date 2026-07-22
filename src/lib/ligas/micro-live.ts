@@ -15,7 +15,7 @@
 // prueba (9000+). authoritativeState y resolve-micro reconocen ese rango para
 // liquidar contra el feed REAL, nunca con simulación.
 
-import { getCompetition } from "@/data/competitions";
+import { getCompetition, getCompetitionByApiId } from "@/data/competitions";
 import { OLA1_SLUGS } from "@/lib/ligas/predict-markets";
 import { fetchLiveSnapshot, fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import type { LiveSnapshot, MatchMeta } from "@/lib/match-center/types";
@@ -75,7 +75,8 @@ interface LiveRow {
 
 // El match_id ES el fixtureId (meta.id). Los nombres solo alimentan la UI del
 // snapshot; para la RESOLUCIÓN (eventos/minuto/status) el meta es irrelevante.
-function metaFor(fixtureId: number, homeName: string, awayName: string, venue = "", city = "", date = ""): MatchMeta {
+// `ligaSlug` (cuando se conoce la liga) hace que el push enlace a /ligas/…
+function metaFor(fixtureId: number, homeName: string, awayName: string, slug?: string | null, venue = "", city = "", date = ""): MatchMeta {
   return {
     id: fixtureId,
     home: { name: homeName || "Local", flag: "", color: "#c9a84c", id: "" },
@@ -86,6 +87,7 @@ function metaFor(fixtureId: number, homeName: string, awayName: string, venue = 
     time: "",
     phase: "",
     group: "",
+    ...(slug ? { ligaSlug: slug } : {}),
   };
 }
 
@@ -102,7 +104,15 @@ export async function fetchOla1LiveSnapshots(): Promise<LiveSnapshot[]> {
   const pairs = relevant.map((r) => ({
     matchId: r.fixture.id,
     fixtureId: r.fixture.id,
-    meta: metaFor(r.fixture.id, r.teams.home.name, r.teams.away.name, r.fixture.venue?.name ?? "", r.fixture.venue?.city ?? "", r.fixture.date),
+    meta: metaFor(
+      r.fixture.id,
+      r.teams.home.name,
+      r.teams.away.name,
+      getCompetitionByApiId(r.league?.id)?.slug ?? null,
+      r.fixture.venue?.name ?? "",
+      r.fixture.venue?.city ?? "",
+      r.fixture.date,
+    ),
   }));
   const byMatch = await fetchLiveSnapshots(pairs);
   return Object.values(byMatch);

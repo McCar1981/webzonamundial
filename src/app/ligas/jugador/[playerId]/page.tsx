@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPlayerProfile, getPlayerClubs, type PlayerCompetition } from "@/lib/ligas/player";
 import { clubColor, flagUrl } from "@/lib/ligas/player-visuals";
-import PlayerCareer from "./PlayerCareer";
+import FichaTabs from "./FichaTabs";
 import StatGlossary from "./StatGlossary";
 import styles from "./ficha.module.css";
 
@@ -168,26 +168,28 @@ export default async function JugadorPage({ params }: { params: Params }) {
   const [p, clubs] = await Promise.all([load(id), loadClubs(id)]);
   if (!p) notFound();
 
-  const primary = p.competitions[0] ?? null;
-  const posEs = p.position ? (POS_ES[p.position] ?? p.position) : null;
-  const backHref = primary ? `/ligas/equipo/${primary.teamId}` : "/ligas";
-  const birth = fmtBirth(p.birthDate);
   const clubComps = p.competitions.filter((c) => c.kind === "club");
   const natComps = p.competitions.filter((c) => c.kind === "national");
+  // Identidad de CLUB del héroe: el club con más minutos, NO la selección (en
+  // pretemporada la temporada puede quedar solo con datos de selección).
+  const primaryClub = clubComps[0] ?? p.competitions[0] ?? null;
+  const posEs = p.position ? (POS_ES[p.position] ?? p.position) : null;
+  const backHref = primaryClub ? `/ligas/equipo/${primaryClub.teamId}` : "/ligas";
+  const birth = fmtBirth(p.birthDate);
 
   // Piezas cinematográficas
   const nm = p.name.trim();
   const sp = nm.lastIndexOf(" ");
   const firstName = sp > 0 ? nm.slice(0, sp) : "";
   const lastName = sp > 0 ? nm.slice(sp + 1) : nm;
-  const ghostNum = p.number ?? primary?.number ?? null;
-  const cc = clubColor(primary?.teamId);
+  const ghostNum = p.number ?? primaryClub?.number ?? null;
+  const cc = clubColor(primaryClub?.teamId);
   const natFlag = flagUrl(p.nationality, 40);
   const natTeam = natComps[0]?.team ?? null;
-  // "Ha vestido": clubes de /transfers (viejo→nuevo); si no hay, el club actual.
+  // "Ha vestido": SOLO clubes (de /transfers, viejo→nuevo); si no hay, el principal.
   const badgeClubs = clubs.length > 0
     ? [...clubs].reverse()
-    : (primary ? [{ id: primary.teamId, name: primary.team, logo: primary.teamLogo }] : []);
+    : (primaryClub && primaryClub.kind === "club" ? [{ id: primaryClub.teamId, name: primaryClub.team, logo: primaryClub.teamLogo }] : []);
 
   return (
     <div className={styles.screen} style={cc ? ({ "--club": cc.club, "--club-deep": cc.deep } as CSSProperties) : undefined}>
@@ -196,7 +198,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
 
       <div className={styles.inner}>
         <div className={styles.bar}>
-          <Link className={styles.back} href={backHref}><span aria-hidden>&larr;</span> {primary ? primary.team : "Zona de Ligas"}</Link>
+          <Link className={styles.back} href={backHref}><span aria-hidden>&larr;</span> {primaryClub ? primaryClub.team : "Zona de Ligas"}</Link>
         </div>
 
         {/* HÉROE */}
@@ -212,7 +214,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
                 <svg className={styles.avatarPh} viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 12.8a4.4 4.4 0 1 0 0-8.8 4.4 4.4 0 0 0 0 8.8ZM4 20.4c0-3.6 3.6-5.8 8-5.8s8 2.2 8 5.8" stroke="#e8d48b" strokeWidth="1.3" strokeLinecap="round" /></svg>
               )}
             </div>
-            {primary?.teamLogo ? <img className={styles.crestBadge} src={primary.teamLogo} alt="" /> : null}
+            {primaryClub?.teamLogo ? <img className={styles.crestBadge} src={primaryClub.teamLogo} alt="" /> : null}
           </div>
 
           {(posEs || p.number != null) && (
@@ -226,7 +228,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
                 {p.nationality}
               </span>
             )}
-            {primary && (<><span className={styles.dot}>•</span><span>{primary.team}</span></>)}
+            {primaryClub && (<><span className={styles.dot}>•</span><span>{primaryClub.team}</span></>)}
             {(p.age != null || p.height) && (<><span className={styles.dot}>•</span><span>{[p.age != null ? `${p.age} años` : null, p.height].filter(Boolean).join(" · ")}</span></>)}
             {p.injured && (<><span className={styles.dot}>•</span><span style={{ color: "#ef8a8a", fontWeight: 700 }}>Lesionado</span></>)}
           </div>
@@ -240,7 +242,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
               {badgeClubs.map((cl) => (
                 <Link key={cl.id} className={styles.club} href={`/ligas/equipo/${cl.id}`}>
                   {cl.logo ? <img src={cl.logo} alt="" /> : <span style={{ width: 34, height: 34, borderRadius: "50%", background: "rgba(255,255,255,.08)" }} aria-hidden />}
-                  <span className={`${styles.clubName}${cl.id === primary?.teamId ? " " + styles.clubCurrent : ""}`}>{cl.name}</span>
+                  <span className={`${styles.clubName}${cl.id === primaryClub?.teamId ? " " + styles.clubCurrent : ""}`}>{cl.name}</span>
                 </Link>
               ))}
               {natTeam && (
@@ -278,24 +280,25 @@ export default async function JugadorPage({ params }: { params: Params }) {
             </div>
           </section>
 
-          {clubComps.length > 0 && (
-            <section style={{ marginTop: 24 }}>
-              <h2 className="zl-h2">Club · {p.season}</h2>
-              {clubComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
-            </section>
-          )}
-          {natComps.length > 0 && (
-            <section style={{ marginTop: 24 }}>
-              <h2 className="zl-h2">Selección · {p.season}</h2>
-              {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
-            </section>
-          )}
-          {clubComps.length === 0 && natComps.length === 0 && (
-            <p style={{ marginTop: 20, fontSize: 13.5, color: DIM }}>Sin estadísticas de las últimas temporadas.</p>
-          )}
+          {/* Tabs: Temporada (Club/Selección) vs Carrera (histórico) */}
+          <FichaTabs playerId={p.id} season={p.season}>
+            {clubComps.length > 0 && (
+              <section style={{ marginTop: 20 }}>
+                <h2 className="zl-h2">Club · {p.season}</h2>
+                {clubComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+              </section>
+            )}
+            {natComps.length > 0 && (
+              <section style={{ marginTop: 20 }}>
+                <h2 className="zl-h2">Selección · {p.season}</h2>
+                {natComps.map((c) => <CompCard key={`${c.leagueId}-${c.teamId}`} c={c} />)}
+              </section>
+            )}
+            {clubComps.length === 0 && natComps.length === 0 && (
+              <p style={{ marginTop: 20, fontSize: 13.5, color: DIM }}>Sin estadísticas de las últimas temporadas.</p>
+            )}
+          </FichaTabs>
 
-          {/* Carrera completa (histórico) — colapsada, bajo demanda */}
-          <PlayerCareer playerId={p.id} />
           {/* Leyenda de siglas */}
           <StatGlossary />
 

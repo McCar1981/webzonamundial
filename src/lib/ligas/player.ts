@@ -236,25 +236,32 @@ function mapProfile(raw: RawPlayer, season: number): PlayerProfile {
 /** Ficha completa del jugador (perfil + estadísticas por competición). null si no
  *  existe / sin datos en las últimas temporadas. Cacheada 24 h en KV. */
 export async function getPlayerProfile(playerId: number): Promise<PlayerProfile | null> {
-  // v2: nuevos campos por competición (subs, portero, bloqueos, doble amarilla…).
-  const cacheKey = `zl:player:v2:${playerId}`;
+  // v3: preferir la temporada con fútbol de CLUB (antes tomaba la 1ª con datos,
+  // que en pretemporada es solo la SELECCIÓN → la ficha salía "de Spain").
+  const cacheKey = `zl:player:v3:${playerId}`;
   try {
     const cached = await kv.get<PlayerProfile>(cacheKey);
     if (cached) return cached;
   } catch { /* sin KV: a la API */ }
 
   const year = new Date().getUTCFullYear();
+  let fallback: PlayerProfile | null = null; // más reciente con datos (aunque sea solo selección)
   for (const season of [year, year - 1, year - 2]) {
     const raw = await apiGet(`/players?id=${playerId}&season=${season}`);
     const row = raw?.response?.[0];
-    if (row?.player?.id) {
-      const profile = mapProfile(row, season);
-      // Solo cachear una ficha con algo de sustancia (evita cachear vacíos).
-      if (profile.competitions.length > 0 || profile.name) {
-        try { await kv.set(cacheKey, profile, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
-      }
+    if (!row?.player?.id) continue;
+    const profile = mapProfile(row, season);
+    const clubMinutes = profile.competitions.reduce((s, c) => s + (c.kind === "club" ? c.minutes : 0), 0);
+    if (clubMinutes > 0) {
+      // Temporada con fútbol de club (la más reciente): la ideal para la ficha.
+      try { await kv.set(cacheKey, profile, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
       return profile;
     }
+    if (!fallback && (profile.competitions.length > 0 || profile.name)) fallback = profile;
+  }
+  if (fallback) {
+    try { await kv.set(cacheKey, fallback, { ex: CACHE_TTL_S }); } catch { /* best-effort */ }
+    return fallback;
   }
   return null;
 }

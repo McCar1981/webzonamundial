@@ -155,6 +155,10 @@
 .stripVg { background: linear-gradient(180deg, var(--gold-hi), var(--gold-dp)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .stripK { margin-top: 6px; font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--warm); }
 
+.tabs { display: flex; gap: 6px; background: var(--card); border: 1px solid var(--hair); padding: 4px; border-radius: 14px; }
+.tab { flex: 1; text-align: center; font-size: 13px; font-weight: 800; padding: 10px 0; border-radius: 10px; color: var(--warm); cursor: pointer; border: none; background: none; font-family: inherit; }
+.tabOn { color: #0a0906; background: linear-gradient(135deg, var(--gold), var(--gold-lt)); box-shadow: 0 6px 16px rgba(201, 168, 76, 0.28); }
+
 @media (prefers-reduced-motion: reduce) {
   .glow { animation: none; }
   .rise { opacity: 1 !important; transform: none !important; animation: none !important; }

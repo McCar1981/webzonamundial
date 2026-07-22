@@ -6,7 +6,7 @@
 // trayectoria año a año SEPARADA en CLUB y SELECCIÓN, en tablas ricas
 // (PJ, minutos, goles, asist., tarjetas, nota) con scroll horizontal en móvil.
 
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
@@ -101,61 +101,42 @@ function CareerTable({ title, rows, totals, variant }: { title: string; rows: Ca
 }
 
 export default function PlayerCareer({ playerId }: { playerId: number }) {
-  const [open, setOpen] = useState(false);
-  const [career, setCareer] = useState<Career | null | undefined>(undefined); // undefined = sin cargar
-  const [loading, setLoading] = useState(false);
+  // Se monta al abrir la tab "Carrera" → carga en ese momento (lazy real).
+  const [career, setCareer] = useState<Career | null | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
-  const toggle = async () => {
-    const next = !open;
-    setOpen(next);
-    if (next && career === undefined && !loading) {
-      setLoading(true);
-      try {
-        const r = await fetch(`/api/ligas/jugador/${playerId}/carrera`);
-        const j = r.ok ? await r.json() : null;
-        setCareer((j?.career as Career) ?? null);
-      } catch {
-        setCareer(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    fetch(`/api/ligas/jugador/${playerId}/carrera`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive) setCareer((j?.career as Career) ?? null); })
+      .catch(() => { if (alive) setCareer(null); })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [playerId]);
 
   const hasNat = !!career && career.national.seasons.length > 0;
 
   return (
-    <section style={{ marginTop: 24 }}>
-      <button
-        onClick={toggle}
-        aria-expanded={open}
-        style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, border: "1px solid rgba(201,168,76,0.28)", background: "rgba(201,168,76,0.05)", borderRadius: 12, padding: "12px 14px", cursor: "pointer" }}
-      >
-        <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>Carrera completa</span>
-        <span aria-hidden style={{ color: GOLD, fontSize: 13, transform: open ? "rotate(90deg)" : "none", transition: "transform .15s" }}>&rsaquo;</span>
-      </button>
+    <div style={{ marginTop: 14 }}>
+      {loading ? (
+        <p style={{ fontSize: 13, color: DIM, textAlign: "center", padding: "18px 0" }}>Cargando carrera…</p>
+      ) : !career ? (
+        <p style={{ fontSize: 13, color: DIM, textAlign: "center", padding: "18px 0" }}>No hay histórico disponible para este jugador.</p>
+      ) : (
+        <>
+          <div style={{ display: "grid", gridTemplateColumns: hasNat ? "1fr 1fr" : "1fr", gap: 8 }}>
+            <Block title="Club" t={career.club.totals} />
+            {hasNat && <Block title="Selección" t={career.national.totals} extra={career.national.teams.join(", ")} />}
+          </div>
 
-      {open && (
-        <div style={{ marginTop: 12 }}>
-          {loading ? (
-            <p style={{ fontSize: 13, color: DIM, textAlign: "center", padding: "10px 0" }}>Cargando carrera…</p>
-          ) : !career ? (
-            <p style={{ fontSize: 13, color: DIM, textAlign: "center", padding: "10px 0" }}>No hay histórico disponible para este jugador.</p>
-          ) : (
-            <>
-              <div style={{ display: "grid", gridTemplateColumns: hasNat ? "1fr 1fr" : "1fr", gap: 8 }}>
-                <Block title="Club" t={career.club.totals} />
-                {hasNat && <Block title="Selección" t={career.national.totals} extra={career.national.teams.join(", ")} />}
-              </div>
+          <CareerTable title="Trayectoria en clubes" rows={career.club.seasons} totals={career.club.totals} variant="club" />
+          {hasNat && <CareerTable title="Con la selección" rows={career.national.seasons} totals={career.national.totals} variant="national" />}
 
-              <CareerTable title="Trayectoria en clubes" rows={career.club.seasons} totals={career.club.totals} variant="club" />
-              {hasNat && <CareerTable title="Con la selección" rows={career.national.seasons} totals={career.national.totals} variant="national" />}
-
-              <p style={{ fontSize: 10.5, color: DIM, marginTop: 10 }}>Desliza las tablas para ver todas las columnas. Datos de api-football.</p>
-            </>
-          )}
-        </div>
+          <p style={{ fontSize: 10.5, color: DIM, marginTop: 10 }}>Desliza las tablas para ver todas las columnas. Datos de api-football.</p>
+        </>
       )}
-    </section>
+    </div>
   );
 }

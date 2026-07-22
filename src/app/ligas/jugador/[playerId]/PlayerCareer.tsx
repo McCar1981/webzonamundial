@@ -1,23 +1,25 @@
 "use client";
 
-// Sección "Carrera completa" de la ficha de jugador: COLAPSADA por defecto (para
-// no ensuciar la vista de la temporada) y BAJO DEMANDA (al abrir, pide
-// /api/ligas/jugador/[id]/carrera, que es caro: 1 llamada por temporada). Muestra
-// los totales de carrera separados en CLUB y SELECCIÓN, y el año a año.
+// Sección "Carrera completa" de la ficha: COLAPSADA por defecto y BAJO DEMANDA
+// (al abrir pide /api/ligas/jugador/[id]/carrera, caro: 1 llamada por temporada).
+// Inspirada en las fichas de mlb.com: totales de carrera arriba y, debajo, la
+// trayectoria año a año SEPARADA en CLUB y SELECCIÓN, en tablas ricas
+// (PJ, minutos, goles, asist., tarjetas, nota) con scroll horizontal en móvil.
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
 const LINE = "1px solid rgba(255,255,255,0.06)";
 
-type CareerSeason = { season: number; teams: string[]; appearances: number; goals: number; assists: number; minutes: number; hasNational: boolean };
+type CareerRow = { season: number; teams: string[]; appearances: number; minutes: number; goals: number; assists: number; yellow: number; red: number; rating: number | null };
+type CareerTotals = { appearances: number; minutes: number; goals: number; assists: number; yellow: number; red: number };
 type Career = {
-  seasons: CareerSeason[];
-  totals: { appearances: number; goals: number; assists: number; minutes: number };
-  club: { appearances: number; goals: number; assists: number };
-  national: { appearances: number; goals: number; assists: number; teams: string[] };
+  club: { seasons: CareerRow[]; totals: CareerTotals };
+  national: { seasons: CareerRow[]; totals: CareerTotals; teams: string[] };
 };
+
+const int = (n: number) => n.toLocaleString("es");
 
 function Tot({ label, value, gold = false }: { label: string; value: React.ReactNode; gold?: boolean }) {
   return (
@@ -28,16 +30,72 @@ function Tot({ label, value, gold = false }: { label: string; value: React.React
   );
 }
 
-function Block({ title, apps, goals, assists, extra }: { title: string; apps: number; goals: number; assists: number; extra?: string }) {
+function Block({ title, t, extra }: { title: string; t: CareerTotals; extra?: string }) {
   return (
     <div style={{ padding: "10px 12px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.16)" }}>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", color: GOLD, marginBottom: 6 }}>{title}</div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
-        <Tot label="Partidos" value={apps} />
-        <Tot label="Goles" value={goals} gold={goals > 0} />
-        <Tot label="Asist." value={assists} gold={assists > 0} />
+        <Tot label="Partidos" value={t.appearances} />
+        <Tot label="Goles" value={t.goals} gold={t.goals > 0} />
+        <Tot label="Asist." value={t.assists} gold={t.assists > 0} />
       </div>
       {extra ? <div style={{ fontSize: 11.5, color: DIM, marginTop: 8, textAlign: "center", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{extra}</div> : null}
+    </div>
+  );
+}
+
+const thBase: CSSProperties = { fontSize: 10, color: DIM, textTransform: "uppercase", letterSpacing: 0.3, fontWeight: 700, padding: "6px 8px", whiteSpace: "nowrap" };
+const tdBase: CSSProperties = { fontSize: 12.5, padding: "8px 8px", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", borderTop: LINE };
+
+function CareerTable({ title, rows, totals, variant }: { title: string; rows: CareerRow[]; totals: CareerTotals; variant: "club" | "national" }) {
+  const isClub = variant === "club";
+  if (rows.length === 0) return null;
+  return (
+    <div style={{ marginTop: 16 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", color: GOLD, marginBottom: 6 }}>{title}</div>
+      <div style={{ overflowX: "auto", borderRadius: 12, border: "1px solid rgba(255,255,255,0.07)" }}>
+        <table style={{ width: "100%", minWidth: isClub ? 480 : 300, borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th style={{ ...thBase, textAlign: "left", position: "sticky", left: 0, background: "#0a0906" }}>Temp.</th>
+              <th style={{ ...thBase, textAlign: "left", minWidth: 130 }}>{isClub ? "Equipo(s)" : "Selección"}</th>
+              <th style={{ ...thBase, textAlign: "right" }}>PJ</th>
+              <th style={{ ...thBase, textAlign: "right" }}>Min</th>
+              <th style={{ ...thBase, textAlign: "right" }}>G</th>
+              <th style={{ ...thBase, textAlign: "right" }}>A</th>
+              {isClub && <th style={{ ...thBase, textAlign: "right" }}>TA</th>}
+              {isClub && <th style={{ ...thBase, textAlign: "right" }}>TR</th>}
+              {isClub && <th style={{ ...thBase, textAlign: "right" }}>Nota</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.season}>
+                <td style={{ ...tdBase, textAlign: "left", color: "#fff", fontWeight: 700, position: "sticky", left: 0, background: "#000" }}>{r.season}</td>
+                <td style={{ ...tdBase, textAlign: "left", color: "#e6decb", maxWidth: 170, overflow: "hidden", textOverflow: "ellipsis" }}>{r.teams.join(", ")}</td>
+                <td style={{ ...tdBase, textAlign: "right", color: "#fff" }}>{r.appearances}</td>
+                <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f" }}>{int(r.minutes)}</td>
+                <td style={{ ...tdBase, textAlign: "right", color: r.goals > 0 ? GOLD : DIM, fontWeight: r.goals > 0 ? 700 : 400 }}>{r.goals}</td>
+                <td style={{ ...tdBase, textAlign: "right", color: "#fff" }}>{r.assists}</td>
+                {isClub && <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f" }}>{r.yellow}</td>}
+                {isClub && <td style={{ ...tdBase, textAlign: "right", color: r.red > 0 ? "#cf5b5b" : DIM }}>{r.red}</td>}
+                {isClub && <td style={{ ...tdBase, textAlign: "right", color: (r.rating ?? 0) >= 7 ? GOLD : "#fff" }}>{r.rating != null ? r.rating.toFixed(2) : "—"}</td>}
+              </tr>
+            ))}
+            <tr>
+              <td style={{ ...tdBase, textAlign: "left", color: GOLD, fontWeight: 800, borderTop: "1px solid rgba(201,168,76,0.3)", position: "sticky", left: 0, background: "#000" }}>Total</td>
+              <td style={{ ...tdBase, textAlign: "left", color: DIM, fontSize: 11, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{rows.length} temp.</td>
+              <td style={{ ...tdBase, textAlign: "right", color: "#fff", fontWeight: 700, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.appearances}</td>
+              <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f", borderTop: "1px solid rgba(201,168,76,0.3)" }}>{int(totals.minutes)}</td>
+              <td style={{ ...tdBase, textAlign: "right", color: GOLD, fontWeight: 700, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.goals}</td>
+              <td style={{ ...tdBase, textAlign: "right", color: "#fff", fontWeight: 700, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.assists}</td>
+              {isClub && <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f", borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.yellow}</td>}
+              {isClub && <td style={{ ...tdBase, textAlign: "right", color: DIM, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.red}</td>}
+              {isClub && <td style={{ ...tdBase, textAlign: "right", color: DIM, borderTop: "1px solid rgba(201,168,76,0.3)" }}>—</td>}
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -64,6 +122,8 @@ export default function PlayerCareer({ playerId }: { playerId: number }) {
     }
   };
 
+  const hasNat = !!career && career.national.seasons.length > 0;
+
   return (
     <section style={{ marginTop: 24 }}>
       <button
@@ -83,44 +143,15 @@ export default function PlayerCareer({ playerId }: { playerId: number }) {
             <p style={{ fontSize: 13, color: DIM, textAlign: "center", padding: "10px 0" }}>No hay histórico disponible para este jugador.</p>
           ) : (
             <>
-              <div style={{ display: "grid", gridTemplateColumns: career.national.appearances > 0 ? "1fr 1fr" : "1fr", gap: 8 }}>
-                <Block title="Club" apps={career.club.appearances} goals={career.club.goals} assists={career.club.assists} />
-                {career.national.appearances > 0 && (
-                  <Block title="Selección" apps={career.national.appearances} goals={career.national.goals} assists={career.national.assists} extra={career.national.teams.join(", ")} />
-                )}
+              <div style={{ display: "grid", gridTemplateColumns: hasNat ? "1fr 1fr" : "1fr", gap: 8 }}>
+                <Block title="Club" t={career.club.totals} />
+                {hasNat && <Block title="Selección" t={career.national.totals} extra={career.national.teams.join(", ")} />}
               </div>
 
-              <div style={{ marginTop: 14 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", color: DIM, marginBottom: 4 }}>Año a año</div>
-                {/* Cabecera */}
-                <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 4px", fontSize: 10.5, color: DIM, textTransform: "uppercase", letterSpacing: 0.3 }}>
-                  <span style={{ width: 42, flexShrink: 0 }}>Temp.</span>
-                  <span style={{ flex: 1, minWidth: 0 }}>Equipo(s)</span>
-                  <span style={{ width: 32, textAlign: "right", flexShrink: 0 }}>PJ</span>
-                  <span style={{ width: 28, textAlign: "right", flexShrink: 0 }}>G</span>
-                  <span style={{ width: 28, textAlign: "right", flexShrink: 0 }}>A</span>
-                </div>
-                {career.seasons.map((s) => (
-                  <div key={s.season} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 4px", borderTop: LINE, fontSize: 12.5 }}>
-                    <span style={{ width: 42, flexShrink: 0, color: "#fff", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
-                      {s.season}
-                      {s.hasNational ? <span title="Con selección" style={{ display: "inline-block", width: 5, height: 5, borderRadius: 99, background: GOLD, marginLeft: 4, verticalAlign: "middle" }} /> : null}
-                    </span>
-                    <span style={{ flex: 1, minWidth: 0, color: "#e6decb", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{s.teams.join(", ")}</span>
-                    <span style={{ width: 32, textAlign: "right", flexShrink: 0, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{s.appearances}</span>
-                    <span style={{ width: 28, textAlign: "right", flexShrink: 0, color: s.goals > 0 ? GOLD : DIM, fontVariantNumeric: "tabular-nums", fontWeight: s.goals > 0 ? 600 : 400 }}>{s.goals}</span>
-                    <span style={{ width: 28, textAlign: "right", flexShrink: 0, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{s.assists}</span>
-                  </div>
-                ))}
-                <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 4px", borderTop: "1px solid rgba(201,168,76,0.3)", fontSize: 12.5, fontWeight: 700 }}>
-                  <span style={{ width: 42, flexShrink: 0, color: GOLD }}>Total</span>
-                  <span style={{ flex: 1, minWidth: 0, color: DIM, fontSize: 11 }}>{career.seasons.length} temporadas</span>
-                  <span style={{ width: 32, textAlign: "right", flexShrink: 0, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{career.totals.appearances}</span>
-                  <span style={{ width: 28, textAlign: "right", flexShrink: 0, color: GOLD, fontVariantNumeric: "tabular-nums" }}>{career.totals.goals}</span>
-                  <span style={{ width: 28, textAlign: "right", flexShrink: 0, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{career.totals.assists}</span>
-                </div>
-                <p style={{ fontSize: 10.5, color: DIM, marginTop: 8 }}>· El punto dorado marca las temporadas con partidos de selección.</p>
-              </div>
+              <CareerTable title="Trayectoria en clubes" rows={career.club.seasons} totals={career.club.totals} variant="club" />
+              {hasNat && <CareerTable title="Con la selección" rows={career.national.seasons} totals={career.national.totals} variant="national" />}
+
+              <p style={{ fontSize: 10.5, color: DIM, marginTop: 10 }}>Desliza las tablas para ver todas las columnas. Datos de api-football.</p>
             </>
           )}
         </div>

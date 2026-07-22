@@ -235,25 +235,33 @@ export async function getPlayerProfile(playerId: number): Promise<PlayerProfile 
   return null;
 }
 
-// ─── Carrera completa (histórico) ────────────────────────────────────────────
-// Cara: una llamada por temporada jugada. Por eso es BAJO DEMANDA (la pide el
-// cliente al abrir la sección) y se cachea 30 días. Se acota a las últimas 25
-// temporadas (cubre cualquier carrera real).
+// ─── Carrera completa (histórico), SEPARADA en CLUB y SELECCIÓN ──────────────
+// Cara: una llamada por temporada jugada. BAJO DEMANDA (la pide el cliente al
+// abrir la sección) + cache 30 días + tope 25 temporadas. Cada trayectoria trae
+// filas ricas por temporada (PJ, minutos, goles, asist., tarjetas, nota media).
 
-export interface CareerSeason {
+export interface CareerRow {
   season: number;
   teams: string[];
   appearances: number;
+  minutes: number;
   goals: number;
   assists: number;
+  yellow: number;
+  red: number;
+  rating: number | null; // media ponderada por minutos
+}
+export interface CareerTotals {
+  appearances: number;
   minutes: number;
-  hasNational: boolean;
+  goals: number;
+  assists: number;
+  yellow: number;
+  red: number;
 }
 export interface PlayerCareer {
-  seasons: CareerSeason[]; // año descendente
-  totals: { appearances: number; goals: number; assists: number; minutes: number };
-  club: { appearances: number; goals: number; assists: number };
-  national: { appearances: number; goals: number; assists: number; teams: string[] };
+  club: { seasons: CareerRow[]; totals: CareerTotals };
+  national: { seasons: CareerRow[]; totals: CareerTotals; teams: string[] };
 }
 
 const CAREER_TTL_S = 60 * 60 * 24 * 30; // 30 días
@@ -273,6 +281,27 @@ async function apiGetSeasons(playerId: number): Promise<number[]> {
   }
 }
 
+// Acumulador por (kind, temporada): suma competiciones y pondera la nota por minutos.
+interface Acc { teams: Set<string>; apps: number; min: number; goals: number; assists: number; yellow: number; red: number; ratingW: number; ratingMin: number }
+function newAcc(): Acc { return { teams: new Set(), apps: 0, min: 0, goals: 0, assists: 0, yellow: 0, red: 0, ratingW: 0, ratingMin: 0 }; }
+function accAdd(a: Acc, c: PlayerCompetition): void {
+  a.teams.add(c.team);
+  a.apps += c.appearances; a.min += c.minutes; a.goals += c.goals; a.assists += c.assists; a.yellow += c.yellow; a.red += c.red;
+  if (c.rating && c.minutes > 0) { a.ratingW += c.rating * c.minutes; a.ratingMin += c.minutes; }
+}
+function accToRow(season: number, a: Acc): CareerRow {
+  return {
+    season, teams: [...a.teams], appearances: a.apps, minutes: a.min, goals: a.goals, assists: a.assists, yellow: a.yellow, red: a.red,
+    rating: a.ratingMin > 0 ? Math.round((a.ratingW / a.ratingMin) * 100) / 100 : null,
+  };
+}
+function sumTotals(rows: CareerRow[]): CareerTotals {
+  return rows.reduce(
+    (t, r) => ({ appearances: t.appearances + r.appearances, minutes: t.minutes + r.minutes, goals: t.goals + r.goals, assists: t.assists + r.assists, yellow: t.yellow + r.yellow, red: t.red + r.red }),
+    { appearances: 0, minutes: 0, goals: 0, assists: 0, yellow: 0, red: 0 },
+  );
+}
+
 export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | null> {
   const cacheKey = `zl:career:${playerId}`;
   try {
@@ -284,10 +313,8 @@ export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | 
   if (!years.length) return null;
   years = [...new Set(years)].sort((a, b) => a - b).slice(-CAREER_MAX_SEASONS);
 
-  const seasons: CareerSeason[] = [];
-  const totals = { appearances: 0, goals: 0, assists: 0, minutes: 0 };
-  const club = { appearances: 0, goals: 0, assists: 0 };
-  const national = { appearances: 0, goals: 0, assists: 0, teams: new Set<string>() };
+  const clubBy = new Map<number, Acc>();
+  const natBy = new Map<number, Acc>();
 
   for (let i = 0; i < years.length; i += CAREER_BATCH) {
     const batch = years.slice(i, i + CAREER_BATCH);
@@ -295,28 +322,24 @@ export async function getPlayerCareer(playerId: number): Promise<PlayerCareer | 
       batch.map((y) => apiGet(`/players?id=${playerId}&season=${y}`).then((r) => ({ y, row: r?.response?.[0] ?? null }))),
     );
     for (const { y, row } of rows) {
-      const comps = (row?.statistics ?? []).map(toComp);
-      if (!comps.length) continue;
-      let sApps = 0, sG = 0, sA = 0, sMin = 0, hasNational = false;
-      const teams = new Set<string>();
-      for (const c of comps) {
-        teams.add(c.team);
-        sApps += c.appearances; sG += c.goals; sA += c.assists; sMin += c.minutes;
-        totals.appearances += c.appearances; totals.goals += c.goals; totals.assists += c.assists; totals.minutes += c.minutes;
-        if (c.kind === "national") {
-          hasNational = true;
-          national.appearances += c.appearances; national.goals += c.goals; national.assists += c.assists; national.teams.add(c.team);
-        } else {
-          club.appearances += c.appearances; club.goals += c.goals; club.assists += c.assists;
-        }
+      for (const c of (row?.statistics ?? []).map(toComp)) {
+        if (c.appearances === 0 && c.minutes === 0) continue; // competición sin jugar
+        const map = c.kind === "national" ? natBy : clubBy;
+        const acc = map.get(y) ?? newAcc();
+        accAdd(acc, c);
+        map.set(y, acc);
       }
-      seasons.push({ season: y, teams: [...teams], appearances: sApps, goals: sG, assists: sA, minutes: sMin, hasNational });
     }
   }
-  if (!seasons.length) return null;
 
-  seasons.sort((a, b) => b.season - a.season);
-  const career: PlayerCareer = { seasons, totals, club, national: { ...national, teams: [...national.teams] } };
+  const clubSeasons = [...clubBy.entries()].map(([y, a]) => accToRow(y, a)).sort((a, b) => b.season - a.season);
+  const natSeasons = [...natBy.entries()].map(([y, a]) => accToRow(y, a)).sort((a, b) => b.season - a.season);
+  if (!clubSeasons.length && !natSeasons.length) return null;
+
+  const career: PlayerCareer = {
+    club: { seasons: clubSeasons, totals: sumTotals(clubSeasons) },
+    national: { seasons: natSeasons, totals: sumTotals(natSeasons), teams: [...new Set(natSeasons.flatMap((r) => r.teams))] },
+  };
   try { await kv.set(cacheKey, career, { ex: CAREER_TTL_S }); } catch { /* best-effort */ }
   return career;
 }

@@ -62,7 +62,9 @@ const LEAGUE_ALIASES: Record<string, string[]> = {
   "liga-mx": ["liga mx", "liga mexicana"],
   "liga-mx-femenil": ["liga mx femenil", "liga femenil"],
   "liga-expansion-mx": ["liga de expansion", "expansion mx"],
-  laliga: ["laliga", "la liga"],
+  // "la liga" NO: es una frase genérica del español ("de la liga mexicana",
+  // "el mejor de la liga") → falsos positivos. "LaLiga" es la marca inequívoca.
+  laliga: ["laliga"],
   libertadores: ["libertadores", "copa libertadores"],
   sudamericana: ["sudamericana", "copa sudamericana"],
   "ligapro-ecuador": ["ligapro", "liga pro", "futbol ecuatoriano", "serie a de ecuador"],
@@ -218,9 +220,15 @@ export async function getPersonalNoticias(
       if (!ts) continue;
       const t = Date.parse(ts);
       if (!Number.isFinite(t) || t < cutoff) continue;
+      // Club: título + entradilla + tags (nombres específicos; los tags traen el
+      // club de la query dirigida → match garantizado). Liga: SOLO título + tags
+      // — en un borrador en crudo, la liga mencionada de pasada en la entradilla
+      // de un resumen post-Mundial NO lo convierte en noticia de esa liga; exigir
+      // el título recorta ese ruido.
       const hay = norm(`${d.title} ${d.excerpt} ${(d.tags || []).join(" ")}`);
+      const hayTitle = norm(`${d.title} ${(d.tags || []).join(" ")}`);
       const club = matchedClub(hay);
-      const isLeague = !club && leagueTerms.some((x) => mentions(hay, x));
+      const isLeague = !club && leagueTerms.some((x) => mentions(hayTitle, x));
       if (!club && !isLeague) continue;
       breves.push({
         title: d.title,

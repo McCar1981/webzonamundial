@@ -154,16 +154,26 @@ export default function MisNoticias() {
 
   const hasClubData = data.club.length > 0 || data.breves.some((b) => b.club != null);
   const hasLigaData = data.league.length > 0 || data.breves.some((b) => b.club == null);
-  const hasTransfer = data.breves.some((b) => b.isTransfer) || data.club.some((n) => n.isTransfer) || data.league.some((n) => n.isTransfer);
+  const transferCount = data.breves.filter((b) => b.isTransfer).length + data.club.filter((n) => n.isTransfer).length + data.league.filter((n) => n.isTransfer).length;
+  const totalItems = data.breves.length + data.club.length + data.league.length;
+  // Un chip solo se muestra si PARTICIONA de verdad (subconjunto propio de
+  // "Todo"). Si solo hay noticias de liga, "Tus ligas" == "Todo" → no aporta y
+  // confunde; el split club/ligas solo tiene sentido si hay de AMBOS. Igual con
+  // "Fichajes": solo si además hay noticias que no son de fichajes.
+  const split = hasClubData && hasLigaData;
+  const hasTransfer = transferCount > 0 && transferCount < totalItems;
   const chips: { id: Filtro; label: string; show: boolean }[] = [
     { id: "todo", label: "Todo", show: true },
-    { id: "club", label: "Tu club", show: hasClubData },
-    { id: "ligas", label: "Tus ligas", show: hasLigaData },
+    { id: "club", label: "Tu club", show: split },
+    { id: "ligas", label: "Tus ligas", show: split },
     { id: "fichajes", label: "Fichajes", show: hasTransfer },
   ];
+  const visibleChips = chips.filter((c) => c.show);
+  // Con un solo chip ("Todo") no hay nada que filtrar: ocultamos la barra.
+  const showChipBar = visibleChips.length > 1;
   // Si el chip activo se quedó sin datos tras un refresco (p.ej. las breves de
   // fichajes caducaron), caemos a "todo" en vez de renderizar un widget vacío.
-  const filtro = chips.some((c) => c.id === filtroRaw && c.show) ? filtroRaw : "todo";
+  const filtro = visibleChips.some((c) => c.id === filtroRaw) ? filtroRaw : "todo";
 
   // Filtro activo → qué se muestra en cada capa.
   const breves = data.breves.filter((b) => {
@@ -184,9 +194,10 @@ export default function MisNoticias() {
         <Link href="/noticias" style={{ fontSize: 12, color: GOLD, textDecoration: "none", flexShrink: 0 }}>Ver todas <span aria-hidden>&rsaquo;</span></Link>
       </div>
 
-      {/* Chips de filtro */}
+      {/* Chips de filtro (solo si hay más de una vista) */}
+      {showChipBar && (
       <div style={{ display: "flex", gap: 6, marginTop: 10, overflowX: "auto", WebkitOverflowScrolling: "touch", paddingBottom: 2 }}>
-        {chips.filter((c) => c.show).map((c) => {
+        {visibleChips.map((c) => {
           const active = filtro === c.id;
           return (
             <button
@@ -210,6 +221,7 @@ export default function MisNoticias() {
           );
         })}
       </div>
+      )}
 
       {/* BREVES: titulares flash de tu club/liga, con fuente y enlace */}
       {breves.length > 0 && (

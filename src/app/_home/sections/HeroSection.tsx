@@ -6,6 +6,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
 import { MatchCenterBanner } from "./MatchCenterBanner";
 import { LigaLiveBanner } from "./LigaLiveBanner";
+import HeroBreakingTicker from "./HeroBreakingTicker";
 import styles from "./HeroSection.module.css";
 
 type Props = {
@@ -197,6 +198,12 @@ export function HeroSection({ heroRef, titleRef, cd, post = false }: Props) {
       <div className={styles.zmGlow} />
       <div className={styles.zmNet} />
       <div className={styles.zmGrain} />
+
+      {/* Cinta "Última hora" del club/liga del usuario. Se auto-oculta si no hay
+          sesión o nada personal (los invitados no la ven). */}
+      <div style={{ position: "relative", zIndex: 2, marginBottom: 18 }}>
+        <HeroBreakingTicker />
+      </div>
 
       <div className={styles.zmHero}>
         <HeroLeft cd={cd} titleRef={titleRef} post={post} />

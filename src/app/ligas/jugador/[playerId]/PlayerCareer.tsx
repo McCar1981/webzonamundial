@@ -33,7 +33,7 @@ function Tot({ label, value, gold = false }: { label: string; value: React.React
 
 function Block({ title, t, extra }: { title: string; t: CareerTotals; extra?: string }) {
   return (
-    <div style={{ padding: "10px 12px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.16)" }}>
+    <div style={{ padding: "10px 12px", borderRadius: 12, background: "#1c1710", border: "1px solid rgba(201,168,76,0.22)" }}>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", color: GOLD, marginBottom: 6 }}>{title}</div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
         <Tot label="Partidos" value={t.appearances} />
@@ -45,7 +45,7 @@ function Block({ title, t, extra }: { title: string; t: CareerTotals; extra?: st
   );
 }
 
-const thBase: CSSProperties = { fontSize: 10, color: DIM, textTransform: "uppercase", letterSpacing: 0.3, fontWeight: 700, padding: "6px 8px", whiteSpace: "nowrap" };
+const thBase: CSSProperties = { fontSize: 10, color: DIM, textTransform: "uppercase", letterSpacing: 0.3, fontWeight: 700, padding: "8px 8px", whiteSpace: "nowrap", background: "#2a2114" };
 const tdBase: CSSProperties = { fontSize: 12.5, padding: "8px 8px", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums", borderTop: LINE };
 
 function CareerTable({ title, rows, totals, variant }: { title: string; rows: CareerRow[]; totals: CareerTotals; variant: "club" | "national" }) {
@@ -54,11 +54,11 @@ function CareerTable({ title, rows, totals, variant }: { title: string; rows: Ca
   return (
     <div style={{ marginTop: 16 }}>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", color: GOLD, marginBottom: 6 }}>{title}</div>
-      <div style={{ overflowX: "auto", borderRadius: 12, border: "1px solid rgba(255,255,255,0.07)" }}>
+      <div style={{ overflowX: "auto", borderRadius: 12, border: "1px solid rgba(201,168,76,0.2)", background: "#1c1710", boxShadow: "0 8px 26px rgba(0,0,0,0.45)" }}>
         <table style={{ width: "100%", minWidth: isClub ? 480 : 300, borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              <th style={{ ...thBase, textAlign: "left", position: "sticky", left: 0, background: "#0a0906" }}>Temp.</th>
+              <th style={{ ...thBase, textAlign: "left", position: "sticky", left: 0, background: "#2a2114" }}>Temp.</th>
               <th style={{ ...thBase, textAlign: "left", minWidth: 130 }}>{isClub ? "Equipo(s)" : "Selección"}</th>
               <th style={{ ...thBase, textAlign: "right" }}>PJ</th>
               <th style={{ ...thBase, textAlign: "right" }}>Min</th>
@@ -72,7 +72,7 @@ function CareerTable({ title, rows, totals, variant }: { title: string; rows: Ca
           <tbody>
             {rows.map((r) => (
               <tr key={r.season}>
-                <td style={{ ...tdBase, textAlign: "left", color: "#fff", fontWeight: 700, position: "sticky", left: 0, background: "#000" }}>{r.season}</td>
+                <td style={{ ...tdBase, textAlign: "left", color: "#fff", fontWeight: 700, position: "sticky", left: 0, background: "#1c1710" }}>{r.season}</td>
                 <td style={{ ...tdBase, textAlign: "left" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 6, maxWidth: 150, overflow: "hidden" }}>
                     {r.teams[0]?.logo ? <img src={r.teams[0].logo} alt="" width={16} height={16} loading="lazy" style={{ width: 16, height: 16, objectFit: "contain", flexShrink: 0 }} /> : null}
@@ -89,7 +89,7 @@ function CareerTable({ title, rows, totals, variant }: { title: string; rows: Ca
               </tr>
             ))}
             <tr>
-              <td style={{ ...tdBase, textAlign: "left", color: GOLD, fontWeight: 800, borderTop: "1px solid rgba(201,168,76,0.3)", position: "sticky", left: 0, background: "#000" }}>Total</td>
+              <td style={{ ...tdBase, textAlign: "left", color: GOLD, fontWeight: 800, borderTop: "1px solid rgba(201,168,76,0.3)", position: "sticky", left: 0, background: "#1c1710" }}>Total</td>
               <td style={{ ...tdBase, textAlign: "left", color: DIM, fontSize: 11, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{rows.length} temp.</td>
               <td style={{ ...tdBase, textAlign: "right", color: "#fff", fontWeight: 700, borderTop: "1px solid rgba(201,168,76,0.3)" }}>{totals.appearances}</td>
               <td style={{ ...tdBase, textAlign: "right", color: "#cdbf9f", borderTop: "1px solid rgba(201,168,76,0.3)" }}>{int(totals.minutes)}</td>

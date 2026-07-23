@@ -89,7 +89,7 @@ function CompCard({ c }: { c: PlayerCompetition }) {
   const pct = (n: number, d: number) => (d > 0 ? `${Math.round((n / d) * 100)}%` : "—");
   const isGK = c.position === "Goalkeeper" || c.saves > 0 || c.conceded > 0;
   return (
-    <section style={{ marginTop: 14, padding: "14px 16px", borderRadius: 14, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.16)" }}>
+    <section style={{ marginTop: 14, padding: "14px 16px", borderRadius: 14, background: "#1c1710", border: "1px solid rgba(201,168,76,0.22)", boxShadow: "0 8px 26px rgba(0,0,0,0.45)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
         {c.teamLogo ? <img src={c.teamLogo} alt="" width={22} height={22} loading="lazy" style={{ width: 22, height: 22, objectFit: "contain", flexShrink: 0 }} /> : null}
         <span style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 600, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{c.team}</span>

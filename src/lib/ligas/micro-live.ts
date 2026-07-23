@@ -30,7 +30,9 @@ export function isLigaMicroMatchId(id: number): boolean {
 
 /** Interruptor maestro: el poller y la UI en vivo están dormidos si no es "1". */
 export function ligasMicroEnabled(): boolean {
-  return process.env.LIGAS_MICRO_ENABLED === "1";
+  // ENCENDIDO por Carlos (jul-2026): activo por defecto. Kill-switch para apagar:
+  // env LIGAS_MICRO_ENABLED="0".
+  return process.env.LIGAS_MICRO_ENABLED !== "0";
 }
 
 /** League ids de api-football para las ligas de Ola 1 (derivados del catálogo). */

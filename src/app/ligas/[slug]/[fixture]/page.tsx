@@ -229,10 +229,10 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
         <MatchSummary fixtureId={f.fixtureId} />
 
-        {/* Micro-predicciones EN VIVO (Fútcoins reales). DORMIDO tras el flag
-            LIGAS_MICRO_ENABLED: solo se monta si está activo, la liga es de Ola 1
-            y el partido está en juego. El match_id es el fixtureId. */}
-        {process.env.LIGAS_MICRO_ENABLED === "1" && isOla1(comp.slug) && LIVE.has(f.status) && (
+        {/* Micro-predicciones EN VIVO (Fútcoins reales). ACTIVO por defecto
+            (kill-switch LIGAS_MICRO_ENABLED="0"); solo se monta en ligas de Ola 1
+            con el partido en juego. El match_id es el fixtureId. */}
+        {process.env.LIGAS_MICRO_ENABLED !== "0" && isOla1(comp.slug) && LIVE.has(f.status) && (
           <div style={{ marginTop: 16 }}>
             <MicroLive matchId={f.fixtureId} backHref={`/ligas/${comp.slug}/${f.fixtureId}`} />
           </div>

@@ -120,10 +120,24 @@ export async function getFixtureId(matchId: number): Promise<number | null> {
   // nombres en inglés) y reescribimos KV — así un fixture viejo cacheado de una
   // configuración anterior (otro rival/fecha) nunca "se queda pegado".
   if (matchId === 9002) {
+    // Antes re-resolvía SIEMPRE (hasta 3 llamadas a api-football por cada toque,
+    // en cron y por request) → drenaje de cuota. Throttle de 5 min: sigue
+    // re-resolviendo (el amistoso cambia de rival/día) pero como mucho una vez
+    // cada 5 min, no en cada sondeo/visita. Clave propia y de TTL corto.
+    const throttleKey = `${FIXTURE_PREFIX}9002:rc`;
+    if (isKvEnabled()) {
+      try {
+        const v = await kv.get<number>(throttleKey);
+        if (typeof v === "number") return v;
+      } catch { /* degrada a re-resolver */ }
+    }
     const { findFriendlyFixtureId } = await import("@/lib/friendlies/api");
     const fid = await findFriendlyFixtureId("Portugal", "Nigeria");
     if (fid) {
       await setFixtureId(matchId, fid);
+      if (isKvEnabled()) {
+        try { await kv.set(throttleKey, fid, { ex: 300 }); } catch { /* best-effort */ }
+      }
       return fid;
     }
     // La API aún no expone el fixture: cae al posible valor de KV/env de respaldo.

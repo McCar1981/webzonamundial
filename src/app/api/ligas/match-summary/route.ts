@@ -10,7 +10,7 @@
 
 import { NextResponse } from "next/server";
 import { kv } from "@/lib/kv";
-import { getFixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { generateMatchSummary, deterministicSummary } from "@/lib/ligas/match-summary";
 
 export const runtime = "nodejs";
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
     // sin KV: seguimos y generamos
   }
 
-  const detail = await getFixtureDetail(id);
+  const detail = await getFixtureDetailCached(id);
   if (!detail) return NextResponse.json({ error: "fixture_not_found" }, { status: 404 });
 
   const aiText = await generateMatchSummary(detail);

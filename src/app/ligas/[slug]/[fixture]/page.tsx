@@ -14,7 +14,7 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompetition } from "@/data/competitions";
-import { getFixtureDetail, type FixtureDetail, type FixtureEvent } from "@/lib/competitions/api";
+import { getFixtureDetailCached, type FixtureDetail, type FixtureEvent } from "@/lib/competitions/api";
 import MatchPoll from "./MatchPoll";
 import PredictMercados from "./PredictMercados";
 import MatchSummary from "./MatchSummary";
@@ -26,7 +26,10 @@ import { isOla1 } from "@/lib/ligas/predict-markets";
 
 export const revalidate = 30;
 
-const loadDetail = cache((id: number) => getFixtureDetail(id));
+// getFixtureDetailCached: KV compartido (60s en vivo, 3 días si terminó) — N
+// visitas al mismo partido comparten 1 llamada; los partidos ya jugados casi no
+// vuelven a pegar a api-football. cache() dedupe además dentro del render.
+const loadDetail = cache((id: number) => getFixtureDetailCached(id));
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";

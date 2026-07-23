@@ -9,7 +9,7 @@
 
 import { NextResponse } from "next/server";
 import { kv } from "@/lib/kv";
-import { getFixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { getTeamSquad } from "@/lib/ligas/fantasy";
 
 export const runtime = "nodejs";
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
     if (cached) return NextResponse.json(cached, { headers: { "Cache-Control": "public, s-maxage=300" } });
   } catch { /* sin KV: generamos */ }
 
-  const detail = await getFixtureDetail(id);
+  const detail = await getFixtureDetailCached(id);
   if (!detail) return NextResponse.json({ error: "fixture_not_found" }, { status: 404 });
 
   const [homeSquad, awaySquad] = await Promise.all([

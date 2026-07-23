@@ -11,7 +11,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getFixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { spendCoins } from "@/lib/economy/wallet";
 import { getUserPick } from "@/lib/ligas/predictions";
 import { claimBoost, releaseBoost, BOOST_COST } from "@/lib/ligas/boost";
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   if (!pick) return NextResponse.json({ error: "no_prediction" }, { status: 400 });
 
   // El partido no debe haber empezado.
-  const detail = await getFixtureDetail(id);
+  const detail = await getFixtureDetailCached(id);
   if (!detail) return NextResponse.json({ error: "fixture_not_found" }, { status: 404 });
   if (!NOT_STARTED.has(detail.fixture.status)) {
     return NextResponse.json({ error: "match_started" }, { status: 409 });

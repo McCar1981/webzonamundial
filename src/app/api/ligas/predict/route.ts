@@ -16,7 +16,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
-import { getFixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { savePick, getUserPick, saveScorePick, getUserScorePick, saveTypedPick, getUserTypedPicks, type LigaPick } from "@/lib/ligas/predictions";
 import { isBoosted } from "@/lib/ligas/boost";
 import { isTypedMarket, validateMarketData, isOla1 } from "@/lib/ligas/predict-markets";
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
 
   // Verificación server-side contra api-football: el partido debe existir, ser de
   // esta competición y NO haber empezado. Nunca se confía en el cliente.
-  const detail = await getFixtureDetail(id);
+  const detail = await getFixtureDetailCached(id);
   if (!detail) return NextResponse.json({ error: "fixture_not_found" }, { status: 404 });
   if (detail.fixture.competitionId !== comp.apiFootballId) {
     return NextResponse.json({ error: "slug_mismatch" }, { status: 400 });

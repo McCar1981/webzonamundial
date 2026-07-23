@@ -133,11 +133,16 @@ async function resolveFixtureId(
   const key = getApiKey();
   if (!key) return null;
   const kvK = `ia-coach:fixture-id:v1:${matchId}`;
-  // 1) Cache
+  const missK = `ia-coach:fixture-id:miss:v1:${matchId}`;
+  // 1) Cache (positiva y NEGATIVA). Sin la negativa, un partido que api-football
+  // aún no expone re-dispara 3 llamadas /fixtures en CADA análisis (incluido el
+  // camino con caché de análisis). El marcador de miss (30 min) lo corta y se
+  // autorrepara en cuanto el fixture aparece.
   if (isKvEnabled()) {
     try {
       const cached = await kv.get<number>(kvK);
       if (cached) return cached;
+      if ((await kv.get(missK)) != null) return null;
     } catch { /* noop */ }
   }
   // 2) Lookup en /fixtures?league=1&season=2026&date=YYYY-MM-DD
@@ -174,6 +179,10 @@ async function resolveFixtureId(
       }
     } catch { /* try next */ }
   }
+  // No resuelto: marca de miss (30 min) para no repetir las 3 llamadas /fixtures.
+  if (isKvEnabled()) {
+    try { await kv.set(missK, 1, { ex: 30 * 60 }); } catch { /* noop */ }
+  }
   return null;
 }
 
@@ -201,15 +210,21 @@ export async function getOddsForMatch(
   }
   if (!fixtureId) return null;
 
-  // 1. Cache
+  // 1. Cache (positiva + marca de "sin cuotas" para no re-pegar a /odds)
   const cached = await readCachedOdds(matchId);
   if (cached) return cached;
+  const oddsMissK = `ia-coach:odds-miss:v1:${matchId}`;
+  if (isKvEnabled()) {
+    try { if ((await kv.get(oddsMissK)) != null) return null; } catch { /* noop */ }
+  }
 
   // 2. Fetch
   const data = await fetchOddsByFixture(fixtureId);
   if (!data || data.length === 0) {
-    // Cachea miss para no martillar API en este partido durante 12h.
-    // Como null no es cacheable, devolvemos null sin write.
+    // Sin cuotas: marca de miss (1 h) para no re-llamar /odds en cada análisis.
+    if (isKvEnabled()) {
+      try { await kv.set(oddsMissK, 1, { ex: 60 * 60 }); } catch { /* noop */ }
+    }
     return null;
   }
 
@@ -233,7 +248,13 @@ export async function getOddsForMatch(
     }
   }
 
-  if (bookmakers.length === 0) return null;
+  if (bookmakers.length === 0) {
+    const oddsMissK = `ia-coach:odds-miss:v1:${matchId}`;
+    if (isKvEnabled()) {
+      try { await kv.set(oddsMissK, 1, { ex: 60 * 60 }); } catch { /* noop */ }
+    }
+    return null;
+  }
 
   // Promedios
   const n = bookmakers.length;

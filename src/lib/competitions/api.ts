@@ -92,6 +92,9 @@ async function apiGetCached<T>(path: string, ttlSeconds: number): Promise<T | nu
 // tráfico sin que el usuario note desfase en calendario/resultados.
 const FIXTURES_TTL_LIVE_S = 30;
 const FIXTURES_TTL_S = 300;
+// La clasificación solo se mueve cuando termina un partido: 10 min de caché es
+// imperceptible y quita una llamada en vivo por cada carga de página de liga.
+const STANDINGS_TTL_S = 600;
 
 // ─── Resolver de temporada vigente (cacheado) ────────────────────────────────
 // La temporada NO se hardcodea: cada liga marca su `current` en fechas distintas
@@ -326,7 +329,7 @@ export async function getCompetitionStandings(
 ): Promise<StandingsGroup[]> {
   const s = season ?? (await resolveCurrentSeason(apiFootballId));
   if (s == null) return [];
-  const rows = await apiGet<RawStandingsLeague[]>(`/standings?league=${apiFootballId}&season=${s}`);
+  const rows = await apiGetCached<RawStandingsLeague[]>(`/standings?league=${apiFootballId}&season=${s}`, STANDINGS_TTL_S);
   const groups = rows?.[0]?.league?.standings ?? [];
   return groups
     .filter((g) => g.length > 0)

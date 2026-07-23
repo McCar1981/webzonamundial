@@ -16,7 +16,9 @@ import FichaTabs from "./FichaTabs";
 import StatGlossary from "./StatGlossary";
 import styles from "./ficha.module.css";
 
-export const revalidate = 3600;
+// Cache corto durante el pulido de diseño: los cambios de la ficha se ven en ~1
+// min (los datos van por KV, así que regenerar es barato). Subir a 3600 más tarde.
+export const revalidate = 60;
 
 type Params = { playerId: string };
 

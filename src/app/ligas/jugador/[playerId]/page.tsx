@@ -11,7 +11,8 @@ import type { ReactNode, CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPlayerProfile, getPlayerClubs, type PlayerCompetition } from "@/lib/ligas/player";
-import { clubColor, flagUrl } from "@/lib/ligas/player-visuals";
+import { flagUrl } from "@/lib/ligas/player-visuals";
+import { getClubColor } from "@/lib/ligas/club-color";
 import FichaTabs from "./FichaTabs";
 import StatGlossary from "./StatGlossary";
 import styles from "./ficha.module.css";
@@ -176,7 +177,7 @@ export default async function JugadorPage({ params }: { params: Params }) {
   const firstName = sp > 0 ? nm.slice(0, sp) : "";
   const lastName = sp > 0 ? nm.slice(sp + 1) : nm;
   const ghostNum = p.number ?? primaryClub?.number ?? null;
-  const cc = clubColor(primaryClub?.teamId);
+  const cc = primaryClub ? await getClubColor(primaryClub.teamId, primaryClub.teamLogo) : null;
   const natFlag = flagUrl(p.nationality, 40);
   const natTeam = natComps[0]?.team ?? null;
   // "Ha vestido": SOLO clubes (de /transfers, viejo→nuevo); si no hay, el principal.

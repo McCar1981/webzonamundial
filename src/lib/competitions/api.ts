@@ -303,7 +303,7 @@ export interface FixtureLineup {
   teamId: number;
   teamName: string;
   formation: string | null;
-  startXI: string[]; // nombres del once
+  startXI: { name: string; id: number | null }[]; // once (nombre + id para foto/ficha)
 }
 
 export interface FixtureStat {
@@ -329,7 +329,7 @@ interface RawEvent {
 interface RawLineup {
   team: { id: number; name: string };
   formation: string | null;
-  startXI: { player: { name: string | null } }[];
+  startXI: { player: { id: number | null; name: string | null } }[];
 }
 interface RawStatBlock {
   team: { id: number };
@@ -360,7 +360,7 @@ export async function getFixtureDetail(fixtureId: number): Promise<FixtureDetail
       teamId: l.team.id,
       teamName: l.team.name,
       formation: l.formation,
-      startXI: (l.startXI ?? []).map((p) => p.player?.name ?? "—"),
+      startXI: (l.startXI ?? []).map((p) => ({ name: p.player?.name ?? "—", id: p.player?.id ?? null })),
     })),
     stats: (r.statistics ?? []).map((s) => ({
       teamId: s.team.id,

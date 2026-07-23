@@ -286,7 +286,12 @@ export default async function CentroPartido({ params }: { params: Params }) {
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{l.teamName}</div>
                   {l.formation ? <div style={{ fontSize: 11.5, color: GOLD, marginBottom: 6 }}>{l.formation}</div> : null}
                   <ol style={{ margin: 0, padding: 0, listStyle: "none", fontSize: 12.5, color: "#e6decb", lineHeight: 1.9 }}>
-                    {l.startXI.map((p, i) => <li key={i}>{p}</li>)}
+                    {l.startXI.map((p, i) => (
+                      <li key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 0" }}>
+                        {p.id ? <PlayerAvatar id={p.id} size={22} /> : <span style={{ width: 22, height: 22, borderRadius: "50%", background: "#241e12", flexShrink: 0 }} aria-hidden />}
+                        {p.id ? <Link href={`/ligas/jugador/${p.id}`} style={{ color: "#e6decb", textDecoration: "none" }}>{p.name}</Link> : <span>{p.name}</span>}
+                      </li>
+                    ))}
                   </ol>
                 </div>
               ))}

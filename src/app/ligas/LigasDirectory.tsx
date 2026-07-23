@@ -15,6 +15,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
+import MisNoticias from "./MisNoticias";
 
 const GOLD = "#c9a84c";
 
@@ -245,6 +246,8 @@ export default function LigasDirectory() {
             </section>
           ))
         )}
+
+        <MisNoticias />
 
         <details style={{ marginTop: 24 }}>
           <summary style={{ cursor: "pointer", fontSize: 13.5, fontWeight: 600, color: "var(--zl-muted)", listStyle: "none", padding: "10px 0" }}>

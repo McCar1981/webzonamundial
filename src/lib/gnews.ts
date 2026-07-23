@@ -157,6 +157,27 @@ export const WORLD_CUP_QUERIES = {
   france: '(Francia OR "Les Bleus" OR Mbappé OR Deschamps) AND ("Mundial 2026" OR convocatoria)',
   // Inglaterra
   england: '("England" OR Inglaterra OR Bellingham OR Kane OR Tuchel) AND "Mundial 2026"',
+
+  // ── LIGAS DE CLUBES — pivote a fútbol de clubes todo el año ──
+  // Estos beats NO anclan en "Mundial 2026": traen la actualidad de las ligas
+  // que el usuario puede seguir (su club / su liga). Alimentan el feed
+  // personalizado "Noticias de tu fútbol". El filtro isNonFootballArticle +
+  // NON_FOOTBALL_BLOCK_LIST descarta resultados de otros deportes. Orden
+  // pan-LATAM: mercado, Ecuador y CONMEBOL primero, México/España después.
+  // Mercado de pases / fichajes (genérico, muy caliente en la ventana de verano)
+  fichajes: 'fútbol AND (fichaje OR fichajes OR "mercado de pases" OR traspaso OR refuerzo OR cesión OR "acuerdo total")',
+  // LigaPro Ecuador (≈50% de la audiencia)
+  ligapro_ecuador: '(LigaPro OR "Liga Pro" OR "Barcelona SC" OR "Liga de Quito" OR "Independiente del Valle" OR Emelec OR "fútbol ecuatoriano") AND fútbol',
+  // CONMEBOL de clubes: Libertadores + Sudamericana
+  conmebol_clubes: '(Libertadores OR Sudamericana OR CONMEBOL) AND fútbol AND (partido OR fase OR clasifica OR eliminatoria OR fichaje OR gol)',
+  // Liga MX
+  liga_mx: '"Liga MX" AND (jornada OR liguilla OR clásico OR fichaje OR refuerzo OR gol OR América OR Chivas OR "Cruz Azul")',
+  // LaLiga (España)
+  laliga_clubes: 'LaLiga AND (Barcelona OR "Real Madrid" OR "Atlético" OR jornada OR fichaje OR refuerzo OR gol)',
+  // Liga FUTVE (Venezuela)
+  futve_venezuela: '("Liga FUTVE" OR "fútbol venezolano" OR "Deportivo Táchira" OR "Caracas FC" OR "Primera División de Venezuela") AND fútbol',
+  // Resto de ligas seguibles (Américas + grandes de Europa), cobertura amplia
+  ligas_top: '(Brasileirão OR "Liga Profesional Argentina" OR "Primera A" OR MLS OR "Premier League" OR "Champions League" OR "Serie A") AND fútbol AND (fichaje OR jornada OR gol OR partido)',
 };
 
 export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;
@@ -175,6 +196,17 @@ export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;
  * feed de paja.
  */
 export const HOT_QUERY_KEYS: WorldCupQueryKey[] = [
+  // Ligas de clubes — beats primarios tras el Mundial 2026 (pivote todo el año).
+  // Van al frente para que el feed personalizado "Noticias de tu fútbol"
+  // (club + liga) tenga material desde el primer día. Orden pan-LATAM.
+  "fichajes",
+  "ligapro_ecuador",
+  "conmebol_clubes",
+  "liga_mx",
+  "laliga_clubes",
+  "ligas_top",
+  "futve_venezuela",
+  // Mundial 2026 — cobertura residual post-torneo (cracks, lesiones, análisis).
   "squad",
   "injuries",
   "injuries_wc",

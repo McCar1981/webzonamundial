@@ -205,7 +205,28 @@ export default async function CentroPartido({ params }: { params: Params }) {
   if (!comp || !Number.isFinite(id)) notFound();
 
   const d = await loadDetail(id);
-  if (!d) notFound();
+  // Sin detalle: id inexistente O api-football sin responder (caída/cuota). No
+  // distinguibles, así que degradamos con gracia (HTTP 200) en vez de 404 duro;
+  // se autorepara en la siguiente revalidación cuando la API vuelva.
+  if (!d) {
+    return (
+      <main style={{ minHeight: "100vh", background: "#000", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+        <div style={{ maxWidth: 620, margin: "0 auto" }}>
+          <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
+            <span aria-hidden>&larr;</span> {comp.name}
+          </Link>
+          <div style={{ marginTop: 48, textAlign: "center" }}>
+            <div style={{ fontSize: 40, marginBottom: 12 }}>⚽</div>
+            <h1 className="zl-h2" style={{ marginBottom: 8 }}>Datos no disponibles ahora mismo</h1>
+            <p style={{ fontSize: 14, color: "#a69a82", lineHeight: 1.5, maxWidth: 380, margin: "0 auto" }}>
+              No hemos podido cargar este partido en este momento. Es algo
+              temporal — vuelve a intentarlo en unos minutos.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const f = d.fixture;
   const finished = FINISHED.has(f.status);

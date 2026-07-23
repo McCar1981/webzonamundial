@@ -160,7 +160,29 @@ export default async function JugadorPage({ params }: { params: Params }) {
   if (!Number.isFinite(id) || id <= 0) notFound();
 
   const [p, clubs] = await Promise.all([load(id), loadClubs(id)]);
-  if (!p) notFound();
+  // Sin perfil: puede ser un id inexistente O que api-football no responda
+  // (caída / sin cuota). No podemos distinguir uno de otro, así que degradamos
+  // con gracia a "datos no disponibles" (HTTP 200) en vez de un 404 duro. Si el
+  // jugador existe, la página se autorepara en la siguiente revalidación (ISR).
+  if (!p) {
+    return (
+      <main style={{ minHeight: "100vh", background: "#000", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+        <div style={{ maxWidth: 620, margin: "0 auto" }}>
+          <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
+            <span aria-hidden>&larr;</span> Zona de Ligas
+          </Link>
+          <div style={{ marginTop: 48, textAlign: "center" }}>
+            <div style={{ fontSize: 40, marginBottom: 12 }}>👤</div>
+            <h1 className="zl-h2" style={{ marginBottom: 8 }}>Datos no disponibles ahora mismo</h1>
+            <p style={{ fontSize: 14, color: DIM, lineHeight: 1.5, maxWidth: 380, margin: "0 auto" }}>
+              No hemos podido cargar la ficha de este jugador en este momento. Es
+              algo temporal — vuelve a intentarlo en unos minutos.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const clubComps = p.competitions.filter((c) => c.kind === "club");
   const natComps = p.competitions.filter((c) => c.kind === "national");

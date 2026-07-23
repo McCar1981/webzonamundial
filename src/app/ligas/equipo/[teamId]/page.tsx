@@ -10,7 +10,7 @@ import { cache } from "react";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTeamFixtures, type TeamFixture } from "@/lib/competitions/api";
+import { getTeamFixtures, getTeamInfo, type TeamFixture } from "@/lib/competitions/api";
 import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
@@ -106,8 +106,37 @@ export default async function TeamPage({ params }: { params: Params }) {
   if (!Number.isFinite(id) || id <= 0) notFound();
 
   const [[last, next], [squad, stats]] = await Promise.all([load(id), loadPlantilla(id)]);
-  const team = teamOf([...last, ...next], id);
-  if (!team) notFound();
+  // Identidad del club: primero de los fixtures; si no hay (parón, club recién
+  // ascendido o api-football caída), se resuelve con /teams?id=. Así un club que
+  // SÍ existe nunca cae en 404 por una falta puntual de partidos/datos.
+  let team = teamOf([...last, ...next], id);
+  if (!team) {
+    const info = await getTeamInfo(id);
+    if (info) team = { name: info.name, logo: info.logo };
+  }
+  // Si ni siquiera podemos identificar el club (api-football sin responder),
+  // degradamos con gracia a un estado "datos no disponibles" (HTTP 200) en vez
+  // de un 404: es un fallo temporal de datos, no un club inexistente. La página
+  // se autorepara en la siguiente revalidación (ISR) cuando la API vuelva.
+  if (!team) {
+    return (
+      <main style={{ minHeight: "100vh", background: "#000", color: "#E2E8F0", padding: "24px 16px 64px" }}>
+        <div style={{ maxWidth: 620, margin: "0 auto" }}>
+          <Link href="/ligas" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
+            <span aria-hidden>&larr;</span> Zona de Ligas
+          </Link>
+          <div style={{ marginTop: 48, textAlign: "center" }}>
+            <div style={{ fontSize: 40, marginBottom: 12 }}>⚽</div>
+            <h1 className="zl-h2" style={{ marginBottom: 8 }}>Datos no disponibles ahora mismo</h1>
+            <p style={{ fontSize: 14, color: DIM, lineHeight: 1.5, maxWidth: 380, margin: "0 auto" }}>
+              No hemos podido cargar la información de este club en este momento. Es
+              algo temporal — vuelve a intentarlo en unos minutos.
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
   const statById = new Map<number, PlayerSeasonStats>((stats?.players ?? []).map((p) => [p.playerId, p]));
 
   // Forma: últimos resultados terminados (más reciente primero).

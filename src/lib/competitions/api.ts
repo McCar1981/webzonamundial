@@ -47,6 +47,39 @@ async function apiGet<T>(path: string): Promise<T | null> {
   }
 }
 
+// ─── Caché KV de lecturas de api-football (protección de cuota) ──────────────
+// El diseño per-request con cache:"no-store" QUEMABA la cuota diaria: cada vista
+// de liga/club hacía llamadas en vivo (el hub dispara UNA por cada tile de liga,
+// el club 3-4). Con esto, N visitas comparten 1 llamada por ventana. Solo se
+// cachean ÉXITOS (respuesta != null): un fallo o "100% used" NO envenena la caché
+// y se reintenta al recuperar cuota. Los `[]` (sin partidos) SÍ se cachean: son
+// una respuesta válida, no un fallo.
+const apiCacheKey = (path: string) => `zl:apicache:${path}`;
+
+async function apiGetCached<T>(path: string, ttlSeconds: number): Promise<T | null> {
+  try {
+    const cached = await kv.get<T>(apiCacheKey(path));
+    if (cached != null) return cached;
+  } catch {
+    // sin KV: vamos directos a la API
+  }
+  const fresh = await apiGet<T>(path);
+  if (fresh != null) {
+    try {
+      await kv.set(apiCacheKey(path), fresh, { ex: ttlSeconds });
+    } catch {
+      // caché best-effort
+    }
+  }
+  return fresh;
+}
+
+// TTL de fixtures: en vivo cambia rápido (marcador), lo demás (próximos/recientes)
+// aguanta minutos sin problema. Cachear 5 min recorta el consumo ~10-100x bajo
+// tráfico sin que el usuario note desfase en calendario/resultados.
+const FIXTURES_TTL_LIVE_S = 30;
+const FIXTURES_TTL_S = 300;
+
 // ─── Resolver de temporada vigente (cacheado) ────────────────────────────────
 // La temporada NO se hardcodea: cada liga marca su `current` en fechas distintas
 // (visto el 2-jul en el parón: Liga MX/LaLiga en 2026 pero Bundesliga/Primeira en
@@ -178,7 +211,8 @@ export async function getCompetitionFixtures(
   if (q.round) params.set("round", q.round);
   if (q.live) params.set("live", "all");
 
-  const rows = await apiGet<RawFixtureRow[]>(`/fixtures?${params.toString()}`);
+  const ttl = q.live ? FIXTURES_TTL_LIVE_S : FIXTURES_TTL_S;
+  const rows = await apiGetCached<RawFixtureRow[]>(`/fixtures?${params.toString()}`, ttl);
   return (rows ?? []).map(mapFixture);
 }
 
@@ -195,7 +229,8 @@ export interface CatalogFixture extends CompetitionFixture {
 async function catalogFixturesFrom(query: string): Promise<CatalogFixture[]> {
   const { COMPETITIONS } = await import("@/data/competitions");
   const byId = new Map(COMPETITIONS.map((c) => [c.apiFootballId, c]));
-  const rows = await apiGet<RawFixtureRow[]>(`/fixtures?${query}`);
+  const ttl = query.includes("live=all") ? FIXTURES_TTL_LIVE_S : FIXTURES_TTL_S;
+  const rows = await apiGetCached<RawFixtureRow[]>(`/fixtures?${query}`, ttl);
   const out: CatalogFixture[] = [];
   for (const r of rows ?? []) {
     const comp = byId.get(r.league.id);
@@ -401,7 +436,7 @@ export async function getTeamFixtures(
   const params = new URLSearchParams({ team: String(teamId) });
   if (opts.last) params.set("last", String(opts.last));
   if (opts.next) params.set("next", String(opts.next));
-  const rows = await apiGet<RawTeamFixtureRow[]>(`/fixtures?${params.toString()}`);
+  const rows = await apiGetCached<RawTeamFixtureRow[]>(`/fixtures?${params.toString()}`, FIXTURES_TTL_S);
   return (rows ?? []).map((r) => ({
     fixtureId: r.fixture.id,
     kickoff: r.fixture.date,
@@ -412,6 +447,73 @@ export async function getTeamFixtures(
     away: r.teams.away,
     score: { home: r.goals.home, away: r.goals.away },
   }));
+}
+
+// ─── Identidad de un equipo (fallback cuando NO hay fixtures) ────────────────
+// La pantalla de club derivaba nombre/escudo SOLO de los fixtures; si /fixtures
+// venía vacío (parón profundo, club recién ascendido, o api-football caída/sin
+// cuota) la página hacía notFound() → 404 para un club que SÍ existe. /teams?id=
+// resuelve la identidad de forma independiente. KV 7 días (la identidad de un
+// club no cambia). Fail-soft: null si la API tampoco responde.
+
+export interface TeamInfo {
+  id: number;
+  name: string;
+  logo: string;
+}
+
+interface RawTeamInfoRow {
+  team?: { id: number; name: string; logo: string };
+}
+
+const teamInfoKey = (id: number) => `zl:teaminfo:${id}`;
+
+export async function getTeamInfo(teamId: number): Promise<TeamInfo | null> {
+  try {
+    const cached = await kv.get<TeamInfo>(teamInfoKey(teamId));
+    if (cached && cached.name) return cached;
+  } catch {
+    // sin KV: seguimos a la API
+  }
+  const rows = await apiGet<RawTeamInfoRow[]>(`/teams?id=${teamId}`);
+  const t = rows?.[0]?.team;
+  if (!t || !t.name) return null;
+  const info: TeamInfo = { id: t.id, name: t.name, logo: t.logo };
+  try {
+    await kv.set(teamInfoKey(teamId), info, { ex: 60 * 60 * 24 * 7 });
+  } catch {
+    // caché best-effort
+  }
+  return info;
+}
+
+// ─── Estado de la cuenta api-football (diagnóstico) ──────────────────────────
+// /status devuelve la suscripción y el consumo del día. Lo usa /api/health para
+// que una caída de api-football (clave inválida, plan caducado, cuota agotada)
+// sea VISIBLE — antes era invisible: el sitio devolvía 404/vacío en todas las
+// pantallas de datos mientras /api/health seguía en verde (no lo comprobaba).
+export interface ApiFootballStatus {
+  active: boolean;
+  used: number;
+  limit: number;
+  plan: string | null;
+}
+
+interface RawApiFootballStatus {
+  account?: { firstname?: string };
+  subscription?: { plan?: string; active?: boolean };
+  requests?: { current?: number; limit_day?: number };
+}
+
+export async function getApiFootballStatus(): Promise<ApiFootballStatus | null> {
+  const raw = await apiGet<RawApiFootballStatus>(`/status`);
+  if (!raw || !raw.requests) return null;
+  return {
+    active: raw.subscription?.active ?? false,
+    used: raw.requests.current ?? 0,
+    limit: raw.requests.limit_day ?? 0,
+    plan: raw.subscription?.plan ?? null,
+  };
 }
 
 // ─── Detalle de partido cacheado ─────────────────────────────────────────────

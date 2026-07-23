@@ -27,6 +27,7 @@
 import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 import { createClient } from "@supabase/supabase-js";
+import { getApiFootballStatus } from "@/lib/competitions/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -95,6 +96,43 @@ async function checkSupabase(): Promise<CheckResult> {
   }
 }
 
+// api-football: la web de "Zona de Ligas" no sirve datos sin ella, pero SU caída
+// no debe disparar un 503 de UptimeRobot (el resto del sitio funciona). La
+// incluimos como check INFORMATIVO con el consumo de cuota del día, para que un
+// "100% used" (que vacía ligas/clubes con 404) sea VISIBLE aquí y no invisible.
+interface ApiFootballCheck extends CheckResult {
+  used?: number;
+  limit?: number;
+  usedPct?: number;
+  plan?: string | null;
+}
+
+async function checkApiFootball(): Promise<ApiFootballCheck> {
+  const start = Date.now();
+  try {
+    const status = await Promise.race([
+      getApiFootballStatus(),
+      new Promise<null>((_, reject) =>
+        setTimeout(() => reject(new Error("timeout_1500ms")), 1500),
+      ),
+    ]);
+    const latencyMs = Date.now() - start;
+    if (!status) return { ok: false, latencyMs, error: "no_response_or_key_missing" };
+    const usedPct = status.limit > 0 ? Math.round((status.used / status.limit) * 100) : 0;
+    // "ok" mientras la clave responda y quede cuota; sin cuota => degradado.
+    return {
+      ok: status.active && status.used < status.limit,
+      latencyMs,
+      used: status.used,
+      limit: status.limit,
+      usedPct,
+      plan: status.plan,
+    };
+  } catch (err) {
+    return { ok: false, latencyMs: Date.now() - start, error: (err as Error).message };
+  }
+}
+
 async function checkKv(): Promise<CheckResult> {
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return { ok: false, error: "config_missing" };
@@ -124,10 +162,11 @@ async function checkKv(): Promise<CheckResult> {
 const PROCESS_START_MS = Date.now();
 
 export async function GET() {
-  const [envCheck, supabaseCheck, kvCheck] = await Promise.all([
+  const [envCheck, supabaseCheck, kvCheck, apiFootballCheck] = await Promise.all([
     Promise.resolve(checkEnvVars()),
     checkSupabase(),
     checkKv(),
+    checkApiFootball(),
   ]);
 
   // Status overall:
@@ -140,10 +179,10 @@ export async function GET() {
   if (!envCheck.ok || !supabaseCheck.ok) {
     status = "unhealthy";
     httpStatus = 503;
-  } else if (!kvCheck.ok) {
-    // KV opcional para algunas features (rate limit, registros). Marcamos
-    // degraded pero devolvemos 200 para que UptimeRobot no nos avise por
-    // un fallo no crítico.
+  } else if (!kvCheck.ok || !apiFootballCheck.ok) {
+    // KV y api-football son no-críticos para "está el sitio en pie": marcamos
+    // degraded pero devolvemos 200 para que UptimeRobot no avise por un fallo
+    // no crítico. api-football sin cuota vacía ligas/clubes pero el resto va.
     status = "degraded";
     httpStatus = 200;
   } else {
@@ -158,6 +197,7 @@ export async function GET() {
       env: envCheck,
       supabase: supabaseCheck,
       kv: kvCheck,
+      apifootball: apiFootballCheck,
     },
     timestamp: new Date().toISOString(),
     uptime_s: Math.round((Date.now() - PROCESS_START_MS) / 1000),

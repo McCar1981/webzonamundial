@@ -202,7 +202,7 @@ function StatBars({ d }: { d: FixtureDetail }) {
 export default async function CentroPartido({ params }: { params: Params }) {
   const comp = getCompetition(params.slug);
   const id = Number(params.fixture);
-  if (!comp || !Number.isFinite(id)) notFound();
+  if (!comp || !Number.isFinite(id) || id <= 0) notFound();
 
   const d = await loadDetail(id);
   // Sin detalle: id inexistente O api-football sin responder (caída/cuota). No

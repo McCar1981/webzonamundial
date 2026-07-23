@@ -1,9 +1,16 @@
-name: Cron live (every 5 min)
+name: Cron live (every 10 min)
 
 # Free alternative to Vercel Pro crons for the real-time endpoints.
 # The Hobby plan can only schedule crons once per day, so the live/match
-# endpoints are triggered here every ~5 min instead. All of them self-gate
-# (they no-op when there is no live match), so pinging them often is cheap.
+# endpoints are triggered here instead. All of them self-gate (they no-op when
+# there is no live match).
+#
+# Cadencia 10 min (antes 5): cada tick, match-center-poll y poll-ligas-live hacen
+# un /fixtures?live=all a api-football aunque no haya nada en vivo (~576 llamadas/
+# día entre los dos). Con el Mundial ya terminado y las micro-predicciones en
+# vivo aún sin validar, 10 min recorta ese consumo base a la mitad sin coste real.
+# Para precisión de 1 min durante partidos en vivo, apuntar cron-job.org a los
+# endpoints concretos (ver abajo) puntualmente.
 #
 # For true 1-minute precision during live matches you can additionally point
 # cron-job.org at match-center-poll / resolve-micro / settle-live-picks.
@@ -14,7 +21,7 @@ name: Cron live (every 5 min)
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 jobs:

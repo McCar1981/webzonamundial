@@ -39,7 +39,20 @@ async function apiGet<T>(path: string): Promise<T | null> {
       console.error(`[competitions-api] ${path} -> HTTP ${r.status}`);
       return null;
     }
-    const json = (await r.json()) as { response?: T };
+    const json = (await r.json()) as { response?: T; errors?: unknown };
+    // OJO: api-football NO devuelve 4xx cuando se agota la cuota diaria, la clave
+    // es inválida o el plan caduca — responde 200 con { errors: {...}, response: [] }.
+    // Si no miramos `errors`, ese [] entra como "éxito" y (peor) se CACHEA,
+    // envenenando la caché justo durante la caída. En éxito errors es []/ausente;
+    // en fallo es un objeto con claves (o un array no vacío).
+    const errs = json.errors;
+    const hasErr = Array.isArray(errs)
+      ? errs.length > 0
+      : !!errs && typeof errs === "object" && Object.keys(errs as object).length > 0;
+    if (hasErr) {
+      console.error(`[competitions-api] ${path} -> api errors ${JSON.stringify(errs).slice(0, 200)}`);
+      return null;
+    }
     return (json.response ?? null) as T | null;
   } catch (err) {
     console.error(`[competitions-api] ${path} failed`, (err as Error).message);
@@ -506,7 +519,9 @@ interface RawApiFootballStatus {
 }
 
 export async function getApiFootballStatus(): Promise<ApiFootballStatus | null> {
-  const raw = await apiGet<RawApiFootballStatus>(`/status`);
+  // Cacheado 60s: /api/health lo pinga a menudo (UptimeRobot ~1/min) y no debe
+  // disparar una llamada externa por ping. /status NO consume cuota de fixtures.
+  const raw = await apiGetCached<RawApiFootballStatus>(`/status`, 60);
   if (!raw || !raw.requests) return null;
   return {
     active: raw.subscription?.active ?? false,

@@ -101,10 +101,9 @@ async function checkSupabase(): Promise<CheckResult> {
 // incluimos como check INFORMATIVO con el consumo de cuota del día, para que un
 // "100% used" (que vacía ligas/clubes con 404) sea VISIBLE aquí y no invisible.
 interface ApiFootballCheck extends CheckResult {
-  used?: number;
-  limit?: number;
+  // Solo el % de cuota consumida (señal operativa). NO exponemos límite absoluto
+  // ni nombre de plan en un endpoint público (info disclosure; ver H-001-26).
   usedPct?: number;
-  plan?: string | null;
 }
 
 async function checkApiFootball(): Promise<ApiFootballCheck> {
@@ -123,10 +122,7 @@ async function checkApiFootball(): Promise<ApiFootballCheck> {
     return {
       ok: status.active && status.used < status.limit,
       latencyMs,
-      used: status.used,
-      limit: status.limit,
       usedPct,
-      plan: status.plan,
     };
   } catch (err) {
     return { ok: false, latencyMs: Date.now() - start, error: (err as Error).message };

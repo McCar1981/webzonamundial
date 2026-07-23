@@ -235,7 +235,9 @@ export async function applyRewrite(
     // cuando alguien los compartía con la URL normalizada. makeSlug se
     // ocupa de NFD + strip diacritics + ñ → n + lowercase + guiones.
     slug: makeSlug(out.slug || draft.slug || out.title || draft.title),
-    tags: out.tags || [],
+    // Conservar las tags ESTAMPADAS en el ingest (p.ej. el club de una query
+    // dirigida): son el ancla del feed personalizado. Las de la IA se suman.
+    tags: Array.from(new Set([...(draft.tags || []), ...(out.tags || [])])),
     body: out.body,
     cat: (out.cat as NoticiaCategory) || draft.cat,
     // Estimate reading time from word count (180 wpm average)
@@ -259,7 +261,10 @@ export async function applyRewrite(
   });
   rewritten.critic = verdict ?? undefined;
 
-  if (shouldPublish(verdict)) {
+  // INVARIANTE de publicación: ningún artículo sin imagen hero llega a
+  // "published" (política UX + AdSense). Los drafts sin imagen existen solo
+  // como BREVES del feed personal (status "review"), pase lo que pase aquí.
+  if (shouldPublish(verdict) && rewritten.realImage) {
     rewritten.status = "published";
   } else {
     console.warn(

@@ -117,6 +117,10 @@ export function buildDraftFromGNews(
   article: GNewsArticle,
   seed = 0,
   ingestedAtOverride?: string,
+  /** Etiquetas a estampar en el draft (p.ej. el nombre del club de una query
+   *  dirigida). El feed personalizado matchea también por tags, así una noticia
+   *  de "Carabobo FC" queda ligada al club aunque el titular use un apodo. */
+  tags?: string[],
 ): DraftNoticia {
   const cat = classifyCategory(article);
   const flags = detectFlags(article);
@@ -152,7 +156,7 @@ export function buildDraftFromGNews(
     updatedAt: date,
     readTime: Math.max(2, Math.round(body.length * 1.2)),
     flags,
-    tags: [],
+    tags: tags ?? [],
     featured: false,
     // Política de copyright: la imagen del medio (article.image) es material
     // con derechos servido desde su CDN — no se almacena. Solo pasaría una
@@ -216,6 +220,14 @@ export function titleFingerprint(title: string): string {
   return Array.from(new Set(tokens)).slice(0, 8).join("|");
 }
 
+/** Query dirigida (fuera del catálogo WORLD_CUP_QUERIES): p.ej. una búsqueda
+ *  por club seguido. `tags` se estampan en los drafts resultantes. */
+export interface ExtraQuery {
+  label: string;
+  q: string;
+  tags?: string[];
+}
+
 export async function ingestNews(opts: {
   /** Already-known URL hashes (to skip duplicates) */
   knownHashes: Set<string>;
@@ -223,6 +235,8 @@ export async function ingestNews(opts: {
   knownFingerprints?: Set<string>;
   /** Which queries to run (defaults to general) */
   queries?: (keyof typeof WORLD_CUP_QUERIES)[];
+  /** Queries dirigidas adicionales (clubes seguidos). Corren tras las del catálogo. */
+  extraQueries?: ExtraQuery[];
   /** Max articles per query (1-10 on free tier) */
   maxPerQuery?: number;
   /** Ventana de fechas (ISO 8601). Para backfill histórico. GNews Free cubre
@@ -237,6 +251,7 @@ export async function ingestNews(opts: {
     knownHashes,
     knownFingerprints = new Set<string>(),
     queries = ["general"],
+    extraQueries = [],
     maxPerQuery = 10,
     from,
     to,
@@ -244,9 +259,16 @@ export async function ingestNews(opts: {
   } = opts;
   const result: IngestResult = { fetched: 0, drafts: [], duplicates: 0, errors: [] };
 
-  for (let q_i = 0; q_i < queries.length; q_i++) {
-    const queryKey = queries[q_i];
-    const q = WORLD_CUP_QUERIES[queryKey];
+  // Lista unificada. Las queries dirigidas (clubes seguidos) van PRIMERO: son
+  // la prioridad del usuario y, si la cuota de GNews se agota a media jornada,
+  // lo de su club ya quedó pescado antes que los beats generales.
+  const entries: ExtraQuery[] = [
+    ...extraQueries,
+    ...queries.map((k) => ({ label: k as string, q: WORLD_CUP_QUERIES[k] })),
+  ];
+
+  for (let q_i = 0; q_i < entries.length; q_i++) {
+    const { label: queryKey, q, tags } = entries[q_i];
     try {
       const resp = await gnewsSearch({ q, lang: "es", max: maxPerQuery, from, to });
       result.fetched += resp.articles.length;
@@ -257,8 +279,11 @@ export async function ingestNews(opts: {
           return;
         }
         // Drop articles without a usable image — UX policy: every published
-        // article needs a hero image.
-        if (!a.image) {
+        // article needs a hero image. EXCEPCIÓN: las queries dirigidas (tags,
+        // clubes seguidos) se conservan como "review" — nunca pasan al pipeline
+        // de publicación (que solo reintenta status "draft"), pero alimentan
+        // las BREVES del feed personal, y un titular no necesita foto.
+        if (!a.image && !tags?.length) {
           return;
         }
         const hash = hashUrl(a.url);
@@ -274,15 +299,17 @@ export async function ingestNews(opts: {
         }
         knownHashes.add(hash);
         if (fp) knownFingerprints.add(fp);
-        result.drafts.push(
-          buildDraftFromGNews(a, i, useRealDateAsIngestedAt ? a.publishedAt : undefined),
-        );
+        const draft = buildDraftFromGNews(a, i, useRealDateAsIngestedAt ? a.publishedAt : undefined, tags);
+        // Sin imagen: solo breve (ver arriba) — "review" la excluye del retry
+        // de publicación pero la deja visible en el feed personal.
+        if (!a.image) draft.status = "review";
+        result.drafts.push(draft);
       });
     } catch (err) {
       result.errors.push(`[${queryKey}] ${(err as Error).message}`);
     }
     // Throttle between queries to avoid GNews rate limit (free tier ~1/sec)
-    if (q_i < queries.length - 1) {
+    if (q_i < entries.length - 1) {
       await new Promise((r) => setTimeout(r, 1100));
     }
   }

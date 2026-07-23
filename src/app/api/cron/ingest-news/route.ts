@@ -14,7 +14,8 @@ import { NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { revalidatePath } from "next/cache";
-import { ingestNews, titleFingerprint, type IngestResult } from "@/lib/noticias-ingest";
+import { ingestNews, titleFingerprint, type IngestResult, type ExtraQuery } from "@/lib/noticias-ingest";
+import { getFollowedClubNames, clubQueriesForTick } from "@/lib/noticias-club-targets";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { enrichMany, enrichEnabled } from "@/lib/noticias-enrich";
 import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
@@ -129,6 +130,21 @@ export async function GET(req: Request) {
     }
   }
 
+  // ----- Queries dirigidas por CLUB SEGUIDO (feed personal, vía rápida) -----
+  // Además de los beats del catálogo, cada tick busca noticias de los clubes que
+  // los usuarios siguen (fav_clubes agregado, rotando por hora). Los drafts
+  // salen TAGGEADOS con el club → alimentan las BREVES del feed personal en
+  // minutos. Coste: +NEWS_CLUB_QUERIES_PER_TICK req/tick (def. 2 ≈ +48/día).
+  const CLUB_QUERIES_PER_TICK = parseInt(process.env.NEWS_CLUB_QUERIES_PER_TICK || "2", 10);
+  let clubQueries: ExtraQuery[] = [];
+  if (CLUB_QUERIES_PER_TICK > 0) {
+    try {
+      clubQueries = clubQueriesForTick(await getFollowedClubNames(), hourSeed, CLUB_QUERIES_PER_TICK);
+    } catch (err) {
+      console.error("[cron] club targets failed", (err as Error).message);
+    }
+  }
+
   // ----- Backfill histórico (recuperación de credibilidad) -----
   // ?backfill=<días> (máx 30, límite del GNews Free) reconstruye el feed
   // barriendo los últimos N días en ventanas deslizantes. Cada pieza conserva
@@ -197,6 +213,7 @@ export async function GET(req: Request) {
     result = await ingestNews({
       knownHashes,
       queries,
+      extraQueries: clubQueries,
       maxPerQuery: 10,
     });
   }
@@ -269,13 +286,22 @@ export async function GET(req: Request) {
   // FASE 1: Reescribir drafts NUEVOS (recién ingestados de GNews).
   const enrichConcurrency = parseInt(process.env.NEWS_ENRICH_CONCURRENCY || "4", 10);
   if (rewriteEnabled) {
-    const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, result.drafts.length) : result.drafts.length;
+    // SOLO drafts con status "draft" entran a reescritura/publicación. Los
+    // "review" de este tick (breves sin imagen de queries de club) NUNCA deben
+    // publicarse ni gastar llamadas al modelo: viven solo en el feed personal.
+    const candidateIdx = result.drafts
+      .map((d, i) => (d.status === "draft" ? i : -1))
+      .filter((i) => i >= 0);
+    const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, candidateIdx.length) : candidateIdx.length;
     // Pre-enriquecer EN PARALELO los candidatos de este tick. Antes el enrich
     // corría en serie dentro del loop (un fetch tras otro), sumando latencia y
     // quemando el presupuesto → solo 1-2 piezas enriquecidas por tick. Ahora las
     // descargas se solapan y llegan ya enriquecidas al reescritor.
-    const phase1Enriched = await enrichMany(result.drafts.slice(0, cap), enrichConcurrency);
-    for (let i = 0; i < cap; i++) {
+    const phase1Enriched = await enrichMany(
+      candidateIdx.slice(0, cap).map((i) => result.drafts[i]),
+      enrichConcurrency,
+    );
+    for (let k = 0; k < cap; k++) {
       // Hand off to Phase 2 once Phase 1's sub-window is spent. This is an
       // expected handoff, NOT a hard timeout, so we don't set abortedByTimeout
       // (that flag is reserved for running out the full request budget).
@@ -286,8 +312,9 @@ export async function GET(req: Request) {
       // seguimos reescribiendo (ahorra llamadas al modelo). Los drafts quedan
       // en "draft" y se reintentarán otro día con cupo.
       if (capReached()) break;
+      const i = candidateIdx[k];
       try {
-        result.drafts[i] = await applyRewrite(phase1Enriched[i], { recentTitles });
+        result.drafts[i] = await applyRewrite(phase1Enriched[k], { recentTitles });
         if (result.drafts[i].status === "published") {
           rewritten += 1;
           publishedThisRun += 1;
@@ -429,6 +456,7 @@ export async function GET(req: Request) {
     ok: true,
     queries: queries.length,
     queriesUsed: queries,
+    clubQueriesUsed: clubQueries.map((e) => e.label),
     fetched: result.fetched,
     new: result.drafts.length,
     duplicates: result.duplicates,

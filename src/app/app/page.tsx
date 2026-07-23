@@ -18,6 +18,7 @@ import { MATCHES } from "@/data/matches";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import MiFutbolSection from "@/components/app/MiFutbolSection";
+import MisNoticias from "@/app/ligas/MisNoticias";
 import { usePostMundial } from "@/app/_home/hooks/usePostMundial";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
@@ -1331,6 +1332,10 @@ export default function AppHubPage() {
             solo si no hay sesión o el usuario aún no eligió (seguro para
             invitados y antes del gate de ligas). ═══ */}
         <MiFutbolSection />
+
+        {/* Noticias personalizadas: breves + artículos SOLO del club y ligas
+            elegidos por el usuario (se auto-oculta si no hay nada personal). */}
+        <MisNoticias />
 
         {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══
             El bloque más fuerte de la pantalla: navy + textura de estadio, banderas

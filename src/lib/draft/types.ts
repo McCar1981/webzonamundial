@@ -30,6 +30,9 @@ export interface DraftPlantilla {
   torneo: string;
   bandera: string;
   jugadores: DraftJugador[];
+  /** Slug de la liga a la que pertenece el club (Draft de Ligas). Vacío en las
+   *  plantillas históricas de selecciones. Sesga el draft a la liga del usuario. */
+  liga?: string | null;
 }
 
 export type FormacionKey =

@@ -39,9 +39,9 @@ const LEYENDAS: { sel: string; year: number; iso: string }[] = [
 ];
 
 const FICHA: { n: number | string; label: string }[] = [
-  { n: 34, label: "plantillas" },
-  { n: 13, label: "selecciones" },
-  { n: "1950–2022", label: "ediciones" },
+  { n: 18, label: "clubes" },
+  { n: 6, label: "ligas" },
+  { n: "todas", label: "épocas" },
   { n: 8, label: "formaciones" },
 ];
 
@@ -191,12 +191,12 @@ export default function DraftMundialPage() {
             Minijuego · Zona Mundial
           </div>
           <h1 className="dm-hero-h text-[2.7rem] sm:text-6xl font-black leading-[0.95] tracking-tight" style={{ color: TXT, animationDelay: ".08s" }}>
-            Draft<br /><span className="dm-shimmer">Mundial</span>
+            Draft<br /><span className="dm-shimmer">de Ligas</span>
           </h1>
           <p className="dm-hero-h text-lg mt-5 leading-snug" style={{ color: TXT_MUT, animationDelay: ".16s" }}>
-            El dado saca una selección legendaria. Tú eliges un nombre.
-            Repite <span style={{ color: TXT, fontWeight: 700 }}>once veces</span> y arma el mejor equipo que pisó un Mundial —
-            aunque mezcles a Pelé del 70 con Maradona del 86.
+            El dado saca un club legendario. Tú eliges un nombre.
+            Repite <span style={{ color: TXT, fontWeight: 700 }}>once veces</span> y arma el mejor once con los clubes de tu liga —
+            aunque mezcles épocas y camisetas.
           </p>
 
           <div className="dm-hero-h" style={{ animationDelay: ".24s" }}>
@@ -231,7 +231,7 @@ export default function DraftMundialPage() {
             { k: "Tiras.", v: <>Sale <b style={{ color: TXT }}>Argentina 86</b>. Te muestra los once de esa plantilla.</> },
             { k: "Eliges uno.", v: <>De todos ellos, te quedas con <b style={{ color: TXT }}>Maradona</b> para la mediapunta. El resto vuelve al sorteo.</> },
             { k: "Repites.", v: <>Sale <b style={{ color: TXT }}>Alemania 74</b>, buscas un central y aparece <b style={{ color: TXT }}>Beckenbauer</b>. Y así hasta completar tu once.</> },
-            { k: "Se juega.", v: <>Se calcula la fuerza, el balance y la coherencia del equipo. Después disputa una campaña entera del Mundial.</> },
+            { k: "Se juega.", v: <>Se calcula la fuerza, el balance y la coherencia del equipo. Después disputa una campaña entera de torneo.</> },
           ].map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <li className="flex gap-4">

@@ -18,7 +18,7 @@ import {
   JugadorSeleccionado,
 } from "@/lib/draft/types";
 import { layoutFormacion, SlotLayout } from "@/lib/draft/layout";
-import { getPlantillaAleatoria, getOtraSeleccion, getOtroMundial } from "@/lib/draft/plantillas";
+import { PLANTILLAS, getPlantillaAleatoria, getOtraSeleccion, getOtroMundial } from "@/lib/draft/plantillas";
 import {
   calcularResultado,
   calcularBalance,
@@ -114,7 +114,7 @@ export interface UseDraftGameReturn {
   marcarLogrosVistos: () => void;
 }
 
-export function useDraftGame(): UseDraftGameReturn {
+export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameReturn {
   const [phase, setPhase] = useState<GamePhase>("setup");
   const [formacion, setFormacion] = useState<FormacionKey>("4-3-3");
   const [estilo, setEstilo] = useState<Estilo>("equilibrado");
@@ -170,23 +170,23 @@ export function useDraftGame(): UseDraftGameReturn {
     // Re-tirada GRATIS si la selección no aporta ningún jugador fichable
     // (ningún hueco encaja): así nunca se bloquea la partida.
     if (rerollsRestantes <= 0 && hayElegibles) return;
-    setTiradaActual(getOtraSeleccion(tiradaActual));
+    setTiradaActual(getOtraSeleccion(tiradaActual, pool));
     if (hayElegibles) setRerollsRestantes((r) => r - 1);
-  }, [phase, tiradaActual, rerollsRestantes, slots, equipo]);
+  }, [phase, tiradaActual, rerollsRestantes, slots, equipo, pool]);
 
   const otroMundial = useCallback(() => {
     if (phase !== "seleccion" || !tiradaActual) return;
     const nombres = nombresEnEquipo(equipo);
     const hayElegibles = tiradaActual.jugadores.some((j) => jugadorElegible(slots, equipo, nombres, j));
     if (rerollsRestantes <= 0 && hayElegibles) return;
-    setTiradaActual(getOtroMundial(tiradaActual));
+    setTiradaActual(getOtroMundial(tiradaActual, pool));
     if (hayElegibles) setRerollsRestantes((r) => r - 1);
-  }, [phase, tiradaActual, rerollsRestantes, slots, equipo]);
+  }, [phase, tiradaActual, rerollsRestantes, slots, equipo, pool]);
 
   const tirar = useCallback(() => {
     if (completo) return;
 
-    const plantilla = getPlantillaAleatoria();
+    const plantilla = getPlantillaAleatoria(pool);
     setTiradaActual(plantilla);
     setPhase("seleccion");
 
@@ -205,7 +205,7 @@ export function useDraftGame(): UseDraftGameReturn {
         });
       }, 1000);
     }
-  }, [completo, modo]);
+  }, [completo, modo, pool]);
 
   // Guarda el resultado en BD y acredita monedas. Se llama desde finalizarConCampana
   // DESPUÉS de que el usuario ve la campaña (incluye bonus por desempeño).

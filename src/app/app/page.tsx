@@ -145,7 +145,7 @@ const CATS: Cat[] = [
       // PIVOTE LIGAS (jul-2026): desactivado. "Modo Carrera" dirige una SELECCIÓN;
       // se reutiliza para dirigir un CLUB cuando se adapte. Código intacto y dormido.
       // { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
-      { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo", accent: "#8b7bd8", accent2: "#b3a6f0" },
+      { icon: "draft", title: "Draft de Ligas", desc: "Arma tu once ideal con los clubes de tu liga.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo", accent: "#8b7bd8", accent2: "#b3a6f0" },
       // PIVOTE LIGAS (jul-2026): quitado del lobby (álbum de cromos del Mundial).
       // { icon: "album", art: "/img/album/album-hero.webp", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Ver", estado: "Nuevo", accent: "#34b9c4", accent2: "#6fdce5" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista

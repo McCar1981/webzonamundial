@@ -721,24 +721,30 @@ export const PLANTILLAS: DraftPlantilla[] = [
   },
 ];
 
-export function getPlantillaAleatoria(excluirId?: string): DraftPlantilla {
-  const pool = excluirId ? PLANTILLAS.filter((p) => p.id !== excluirId) : PLANTILLAS;
-  return pool[Math.floor(Math.random() * pool.length)];
+// Los accessors reciben el POOL a usar (Draft de Ligas → plantillas de clubes de
+// la liga del usuario; por defecto, las selecciones históricas). Así el mismo
+// motor sirve para ambos. `base` acota el pool y siempre hay fallback no vacío.
+export function getPlantillaAleatoria(base: DraftPlantilla[] = PLANTILLAS, excluirId?: string): DraftPlantilla {
+  const src = base.length > 0 ? base : PLANTILLAS;
+  const pool = excluirId ? src.filter((p) => p.id !== excluirId) : src;
+  const from = pool.length > 0 ? pool : src;
+  return from[Math.floor(Math.random() * from.length)];
 }
 
-// "Otra selección": otra del MISMO mundial (mismo año), distinto país. Si esa
-// edición solo tiene una selección, cae a cualquier otra plantilla.
-export function getOtraSeleccion(actual: DraftPlantilla): DraftPlantilla {
-  const mismoMundial = PLANTILLAS.filter(
-    (p) => p.year === actual.year && p.seleccionSlug !== actual.seleccionSlug
-  );
-  const pool = mismoMundial.length > 0 ? mismoMundial : PLANTILLAS.filter((p) => p.id !== actual.id);
-  return pool[Math.floor(Math.random() * pool.length)];
+// "Otro equipo": otro del MISMO año/época, distinto club. Si no hay, cualquier otro.
+export function getOtraSeleccion(actual: DraftPlantilla, base: DraftPlantilla[] = PLANTILLAS): DraftPlantilla {
+  const src = base.length > 0 ? base : PLANTILLAS;
+  const mismoAnio = src.filter((p) => p.year === actual.year && p.seleccionSlug !== actual.seleccionSlug);
+  const pool = mismoAnio.length > 0 ? mismoAnio : src.filter((p) => p.id !== actual.id);
+  const from = pool.length > 0 ? pool : src;
+  return from[Math.floor(Math.random() * from.length)];
 }
 
-// "Otro mundial": una plantilla de otra edición (año distinto).
-export function getOtroMundial(actual: DraftPlantilla): DraftPlantilla {
-  const otrosAnios = PLANTILLAS.filter((p) => p.year !== actual.year);
-  const pool = otrosAnios.length > 0 ? otrosAnios : PLANTILLAS.filter((p) => p.id !== actual.id);
-  return pool[Math.floor(Math.random() * pool.length)];
+// "Otra época": una plantilla de otro año.
+export function getOtroMundial(actual: DraftPlantilla, base: DraftPlantilla[] = PLANTILLAS): DraftPlantilla {
+  const src = base.length > 0 ? base : PLANTILLAS;
+  const otrosAnios = src.filter((p) => p.year !== actual.year);
+  const pool = otrosAnios.length > 0 ? otrosAnios : src.filter((p) => p.id !== actual.id);
+  const from = pool.length > 0 ? pool : src;
+  return from[Math.floor(Math.random() * from.length)];
 }

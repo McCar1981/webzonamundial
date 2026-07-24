@@ -2,19 +2,21 @@
 /* eslint-disable @next/next/no-img-element */
 
 // src/app/app/draft-mundial/jugar/page.tsx
-// Juego Draft Mundial — Nueva mecánica: elegí cualquier jugador de la selección
+// Juego Draft de Ligas — Nueva mecánica: elegí cualquier jugador de la selección
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { FREE_LIMITS, PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
 import {
   DraftPosicion,
+  DraftPlantilla,
   FormacionKey,
   Estilo,
   Modo,
   DraftResultado,
   JugadorSeleccionado,
 } from "@/lib/draft/types";
+import { poolForLeagues } from "@/lib/draft/plantillas-ligas";
 import { FORMACIONES } from "@/lib/draft/formaciones";
 import { SlotLayout } from "@/lib/draft/layout";
 import {
@@ -52,6 +54,13 @@ const SELECCION_ISO: Record<string, string> = {
   Francia: "fr", España: "es", Italia: "it", Uruguay: "uy",
   Hungría: "hu", Inglaterra: "gb-eng", Portugal: "pt",
   Croacia: "hr", Marruecos: "ma",
+  // Clubes del Draft de Ligas → bandera del país del club.
+  "LDU de Quito": "ec", "Barcelona SC": "ec", "Emelec": "ec",
+  "Club América": "mx", "Chivas de Guadalajara": "mx", "Cruz Azul": "mx",
+  "FC Barcelona": "es", "Real Madrid": "es", "Atlético de Madrid": "es",
+  "Boca Juniors": "ar", "River Plate": "ar", "Independiente": "ar",
+  "Santos FC": "br", "CR Flamengo": "br", "São Paulo FC": "br",
+  "Manchester United": "gb-eng", "Liverpool FC": "gb-eng", "Arsenal FC": "gb-eng",
 };
 
 function seleccionISO(seleccion: string): string {
@@ -295,9 +304,9 @@ function SetupScreen({
               <IconTrophy size={42} color={GOLD2} />
             </div>
           </div>
-          <h1 className="relative text-2xl font-black tracking-tight" style={{ color: TXT }}>Draft Mundial</h1>
+          <h1 className="relative text-2xl font-black tracking-tight" style={{ color: TXT }}>Draft de Ligas</h1>
           <p className="relative text-sm mt-1.5 leading-snug" style={{ color: TXT_MUT }}>
-            Arma tu once ideal con leyendas de todas las Copas del Mundo
+            Arma tu once ideal con los clubes de tu liga
           </p>
         </div>
       </FadeIn>
@@ -699,7 +708,7 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
 
   const compartir = useCallback(() => {
     const nombres = Object.values(equipo).filter(Boolean).map((j) => j!.nombre).slice(0, 3).join(", ");
-    const texto = `Armé un equipo ${resultado.calificacion} (${resultado.puntaje}/100) en Draft Mundial de @ZonaMundial\n\n${nombres}...\n\n¿Puedes superarme? → webzonamundial.com/app/draft-mundial`;
+    const texto = `Armé un equipo ${resultado.calificacion} (${resultado.puntaje}/100) en Draft de Ligas de @ZonaMundial\n\n${nombres}...\n\n¿Puedes superarme? → webzonamundial.com/app/draft-mundial`;
     navigator.clipboard.writeText(texto).then(() => alert("¡Texto copiado al portapapeles!"));
   }, [resultado, equipo]);
 
@@ -977,7 +986,7 @@ function CampanaScreen({ equipo, onTerminar }: {
           <h1 className="relative text-3xl font-black leading-none" style={{ color: TXT, textShadow: `0 0 24px ${GOLD}33` }}>La Campaña</h1>
           <div className="mt-2 h-[3px] w-14 rounded-full" style={{ background: `linear-gradient(90deg, ${GOLD2}, ${GOLD}, transparent)` }} />
           <p className="text-xs mt-2.5 leading-snug" style={{ color: TXT_MUT }}>
-            Fase de grupos + eliminatorias del Mundial 2026 contra selecciones históricas.
+            Fase de grupos + eliminatorias de un torneo contra equipos históricos.
           </p>
         </div>
       </FadeIn>
@@ -1012,7 +1021,7 @@ function CampanaScreen({ equipo, onTerminar }: {
               <div className="relative flex items-center justify-center gap-2 mt-3 text-[11px] font-bold flex-wrap" style={{ color: GOLD2 }}>
                 <span>{jugCount} jugadores</span>
                 <span style={{ color: TXT_MUT }}>·</span>
-                <span>Draft Mundial</span>
+                <span>Draft de Ligas</span>
                 <span style={{ color: TXT_MUT }}>·</span>
                 <span>Campaña activa</span>
               </div>
@@ -1055,7 +1064,7 @@ function CampanaScreen({ equipo, onTerminar }: {
               <div className="text-[10px] font-bold uppercase tracking-[0.18em] mb-2.5" style={{ color: TXT_MUT }}>Resumen de campaña</div>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { t: "Draft Mundial", gold: false },
+                  { t: "Draft de Ligas", gold: false },
                   { t: "Fase de grupos + eliminatorias", gold: false },
                   { t: `Seed #${campana.seed}`, gold: false },
                   { t: "Once confirmado", gold: true },
@@ -1244,7 +1253,21 @@ function CupoBanner({ restantes }: { restantes: number }) {
 
 /* ─────────── Página Principal ─────────── */
 export default function DraftMundialJugarPage() {
-  const game = useDraftGame();
+  // Pool de clubes según las ligas que sigue el usuario (Draft de Ligas). Arranca
+  // con todos los clubes (nunca vacío) y se acota al cargar las ligas seguidas.
+  const [pool, setPool] = useState<DraftPlantilla[]>(() => poolForLeagues([]));
+  useEffect(() => {
+    let on = true;
+    fetch("/api/ligas/mis-ligas")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { ligas?: string[] } | null) => {
+        if (on && d && Array.isArray(d.ligas)) setPool(poolForLeagues(d.ligas));
+      })
+      .catch(() => { /* sin ligas: pool completo */ });
+    return () => { on = false; };
+  }, []);
+
+  const game = useDraftGame(pool);
 
   // ── Gating del tope diario ───────────────────────────────────────────
   const [gate, setGate] = useState<GateState>({
@@ -1323,7 +1346,7 @@ export default function DraftMundialJugarPage() {
 
       {/* Top bar */}
       <div className="sticky top-0 z-10 px-4 py-3 flex items-center justify-between" style={{ background: `${NAVY}ee`, backdropFilter: "blur(10px)" }}>
-        <Link href="/app/draft-mundial" className="flex items-center gap-1 text-sm font-medium" style={{ color: TXT_MUT }}><IconArrowLeft size={16} color={TXT_MUT} />Draft Mundial</Link>
+        <Link href="/app/draft-mundial" className="flex items-center gap-1 text-sm font-medium" style={{ color: TXT_MUT }}><IconArrowLeft size={16} color={TXT_MUT} />Draft de Ligas</Link>
         {game.phase !== "setup" && game.phase !== "resultado" && game.phase !== "campana" && (
           <div className="flex items-center gap-2">
             <span className="text-xs" style={{ color: TXT_MUT }}>{Object.keys(game.equipo).length}/{totalSlots}</span>

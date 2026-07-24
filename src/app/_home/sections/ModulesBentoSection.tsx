@@ -292,7 +292,7 @@ export function ModulesBentoSection() {
           <FantasyCard t={t} />
           <TriviaCard t={t} />
           <AICoachCard t={t} />
-          <StreamingCard t={t} />
+          {/* PIVOTE LIGAS (jul-2026): StreamingCard quitada (feature del Mundial). */}
         </div>
 
         <div className={styles.foot}>

@@ -128,7 +128,9 @@ export default function HomePage() {
         autoría, fecha y referencias verificables (FIFA, sedes, DTs,
         jugadores). Pieza con autoridad SEO y E-E-A-T.
       */}
-      <GuiaMundial2026Section />
+      {/* PIVOTE LIGAS: la guía editorial del Mundial se oculta post-torneo (la
+          ruta /historia sigue viva e indexada para SEO). */}
+      {!postMundial && <GuiaMundial2026Section />}
       {/*
         "Últimas del Mundial": rejilla de tarjetas tirando del motor editorial
         (getAllPublicNoticias vía /api/noticias/ultimas). La sección es client
@@ -151,7 +153,8 @@ export default function HomePage() {
       <PlatformShowcaseSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
-      <AlbumDominaSection />
+      {/* PIVOTE LIGAS: showcase del Álbum del Mundial oculto post-torneo. */}
+      {!postMundial && <AlbumDominaSection />}
       <AppRevealSection />
       <WaitlistSection />
       <SocialProofTicker items={h.testimonials} />

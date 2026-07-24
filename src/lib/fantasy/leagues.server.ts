@@ -21,6 +21,16 @@ export const MAX_LEAGUES_JOINED = 50;
 
 export interface FantasyLeagueOut {
   id: string; name: string; code: string; owner_id: string; member_count: number; is_owner: boolean;
+  /** Slug de competición si la liga privada es POR LIGA (clasifica por aciertos
+   *  de esa competición). null = liga clásica (puntos totales de Fantasy). */
+  liga: string | null;
+}
+
+// La columna fantasy_leagues.liga llega con la migración 2026-54. Hasta que se
+// aplique, escribir/leer `liga` degrada a liga clásica (sin competición).
+function isMissingLigaCol(e: unknown): boolean {
+  const c = (e as { code?: string } | null)?.code;
+  return c === "42703" || c === "PGRST204";
 }
 
 export type CreateLeagueError = "too_many_leagues" | "bad_name";
@@ -49,7 +59,7 @@ async function memberCount(admin: ReturnType<typeof adminClient>, leagueId: stri
   return count ?? 0;
 }
 
-export async function createLeague(uid: string, name: string): Promise<{ ok: boolean; error?: CreateLeagueError; league?: FantasyLeagueOut }> {
+export async function createLeague(uid: string, name: string, liga?: string | null): Promise<{ ok: boolean; error?: CreateLeagueError; league?: FantasyLeagueOut }> {
   const admin = adminClient();
   const clean = cleanName(name);
   if (!clean) return { ok: false, error: "bad_name" };
@@ -62,10 +72,16 @@ export async function createLeague(uid: string, name: string): Promise<{ ok: boo
     if (!exists) break;
     code = leagueCode(`fty:${uid}:${Date.now()}:${i}`);
   }
-  const { data, error } = await admin.from("fantasy_leagues")
-    .insert({ name: clean, code, owner_id: uid }).select("*").single();
-  if (error) throw error;
-  const league = data as { id: string; name: string; code: string; owner_id: string };
+  const ligaSlug = liga && liga.trim() ? liga.trim() : null;
+  const base = { name: clean, code, owner_id: uid };
+  let ins = await admin.from("fantasy_leagues").insert(ligaSlug ? { ...base, liga: ligaSlug } : base).select("*").single();
+  // Fail-soft: si la columna `liga` aún no existe (2026-54 sin aplicar), creamos
+  // la liga como clásica en vez de romper.
+  if (ins.error && ligaSlug && isMissingLigaCol(ins.error)) {
+    ins = await admin.from("fantasy_leagues").insert(base).select("*").single();
+  }
+  if (ins.error) throw ins.error;
+  const league = ins.data as { id: string; name: string; code: string; owner_id: string; liga?: string | null };
   await admin.from("fantasy_league_members").insert({ league_id: league.id, user_id: uid });
 
   // Reconciliación anti-carrera: el chequeo previo de ownedCount es TOCTOU (dos
@@ -75,7 +91,7 @@ export async function createLeague(uid: string, name: string): Promise<{ ok: boo
     await admin.from("fantasy_leagues").delete().eq("id", league.id);
     return { ok: false, error: "too_many_leagues" };
   }
-  return { ok: true, league: { ...league, member_count: 1, is_owner: true } };
+  return { ok: true, league: { ...league, liga: league.liga ?? null, member_count: 1, is_owner: true } };
 }
 
 export async function joinLeague(uid: string, code: string): Promise<{ ok: boolean; error?: JoinLeagueError; league?: FantasyLeagueOut }> {
@@ -84,9 +100,9 @@ export async function joinLeague(uid: string, code: string): Promise<{ ok: boole
   if (norm.length !== 6) return { ok: false, error: "invalid_code" };
 
   const { data: league } = await admin.from("fantasy_leagues")
-    .select("id,name,code,owner_id").eq("code", norm).maybeSingle();
+    .select("*").eq("code", norm).maybeSingle();
   if (!league) return { ok: false, error: "league_not_found" };
-  const l = league as { id: string; name: string; code: string; owner_id: string };
+  const l = league as { id: string; name: string; code: string; owner_id: string; liga?: string | null };
 
   // ¿Ya es miembro? Entonces el join es idempotente y no consume cupo.
   const already = await isMember(uid, l.id);
@@ -98,6 +114,7 @@ export async function joinLeague(uid: string, code: string): Promise<{ ok: boole
   await admin.from("fantasy_league_members")
     .upsert({ league_id: l.id, user_id: uid }, { onConflict: "league_id,user_id" });
   const count = await memberCount(admin, l.id);
+  const ligaOut = l.liga ?? null;
 
   // Reconciliación anti-carrera: el chequeo previo de aforo es TOCTOU. Si dos
   // joins simultáneos superan el tope, el que sobra retira su propia membresía
@@ -106,7 +123,7 @@ export async function joinLeague(uid: string, code: string): Promise<{ ok: boole
     await admin.from("fantasy_league_members").delete().eq("league_id", l.id).eq("user_id", uid);
     return { ok: false, error: "league_full" };
   }
-  return { ok: true, league: { ...l, member_count: count, is_owner: l.owner_id === uid } };
+  return { ok: true, league: { id: l.id, name: l.name, code: l.code, owner_id: l.owner_id, liga: ligaOut, member_count: count, is_owner: l.owner_id === uid } };
 }
 
 export async function leaveLeague(uid: string, leagueId: string): Promise<void> {
@@ -146,7 +163,7 @@ export async function myLeagues(uid: string): Promise<FantasyLeagueOut[]> {
   const { data: mem } = await admin.from("fantasy_league_members").select("league_id").eq("user_id", uid);
   const ids = (mem ?? []).map((m) => (m as { league_id: string }).league_id);
   if (!ids.length) return [];
-  const { data: leagues } = await admin.from("fantasy_leagues").select("id,name,code,owner_id").in("id", ids);
+  const { data: leagues } = await admin.from("fantasy_leagues").select("*").in("id", ids);
 
   // Conteo de miembros de TODAS las ligas en una sola query (antes era N+1: una
   // consulta memberCount por liga). Se tabula en memoria por league_id.
@@ -155,8 +172,8 @@ export async function myLeagues(uid: string): Promise<FantasyLeagueOut[]> {
   for (const m of (allMembers ?? []) as { league_id: string }[]) {
     counts.set(m.league_id, (counts.get(m.league_id) ?? 0) + 1);
   }
-  return ((leagues ?? []) as { id: string; name: string; code: string; owner_id: string }[])
-    .map((l) => ({ ...l, member_count: counts.get(l.id) ?? 0, is_owner: l.owner_id === uid }));
+  return ((leagues ?? []) as { id: string; name: string; code: string; owner_id: string; liga?: string | null }[])
+    .map((l) => ({ id: l.id, name: l.name, code: l.code, owner_id: l.owner_id, liga: l.liga ?? null, member_count: counts.get(l.id) ?? 0, is_owner: l.owner_id === uid }));
 }
 
 export interface FantasyLeagueStanding {
@@ -170,16 +187,24 @@ export interface FantasyLeagueStanding {
  */
 export async function leagueLeaderboard(leagueId: string, gameweek?: number): Promise<FantasyLeagueStanding[]> {
   const admin = adminClient();
-  const { data: lg } = await admin.from("fantasy_leagues").select("owner_id").eq("id", leagueId).maybeSingle();
+  const { data: lg } = await admin.from("fantasy_leagues").select("*").eq("id", leagueId).maybeSingle();
   const ownerId = (lg as { owner_id: string } | null)?.owner_id ?? null;
+  const ligaSlug = (lg as { liga?: string | null } | null)?.liga ?? null;
 
   const { data: mem } = await admin.from("fantasy_league_members").select("user_id").eq("league_id", leagueId);
   const ids = (mem ?? []).map((m) => (m as { user_id: string }).user_id);
   if (!ids.length) return [];
 
-  // Puntos: total del torneo o de una jornada concreta.
+  // Puntos según el tipo de liga privada:
+  //   - POR LIGA (liga != null): ACIERTOS de predicciones de esa competición
+  //     (liga_predictions status 'won' filtrado por competition_slug).
+  //   - CLÁSICA: total del torneo de Fantasy, o de una jornada concreta.
   const points = new Map<string, number>();
-  if (gameweek && gameweek > 0) {
+  if (ligaSlug) {
+    const { data: won } = await admin.from("liga_predictions")
+      .select("user_id").eq("competition_slug", ligaSlug).eq("status", "won").in("user_id", ids);
+    for (const w of (won ?? []) as { user_id: string }[]) points.set(w.user_id, (points.get(w.user_id) ?? 0) + 1);
+  } else if (gameweek && gameweek > 0) {
     const { data: scores } = await admin.from("fantasy_gameweek_scores")
       .select("user_id,points").eq("gameweek", gameweek).in("user_id", ids);
     for (const s of (scores ?? []) as { user_id: string; points: number }[]) points.set(s.user_id, s.points);

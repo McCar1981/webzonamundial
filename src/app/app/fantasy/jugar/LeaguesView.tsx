@@ -6,6 +6,12 @@
 // simulada con bots y una invitación a iniciar sesión para competir de verdad.
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { COMPETITIONS } from "@/data/competitions";
+
+// Competiciones para el selector de "liga privada por liga". Orden del catálogo
+// (pan-LATAM). "" = liga clásica (clasifica por puntos de Fantasy).
+const LIGA_OPTIONS = COMPETITIONS.map((c) => ({ slug: c.slug, short: c.short }));
+const shortOfLiga = (slug: string | null): string => LIGA_OPTIONS.find((o) => o.slug === slug)?.short ?? (slug ?? "");
 import Link from "next/link";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED } from "./fx";
@@ -148,6 +154,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
   const [busy, setBusy] = useState(false); // bloquea doble-clic en crear/unirse
   const [panel, setPanel] = useState(false);
   const [newName, setNewName] = useState("");
+  const [newLiga, setNewLiga] = useState(""); // "" = liga clásica; slug = por liga
   const [joinCode, setJoinCode] = useState("");
   const [msg, setMsg] = useState<{ text: string; kind: "ok" | "error" } | null>(null);
   const flash = useCallback((text: string, kind: "ok" | "error" = "ok") => setMsg({ text, kind }), []);
@@ -189,11 +196,11 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
     const name = newName.trim();
     if (!name) { flash("Ponle nombre a tu liga.", "error"); return; }
     setBusy(true);
-    const res = await createServerLeague(name);
+    const res = await createServerLeague(name, newLiga || null);
     setBusy(false);
     if (res.ok && res.league) {
       await reloadLeagues();
-      setNewName(""); setPanel(false); setActive("code:" + res.league.id);
+      setNewName(""); setNewLiga(""); setPanel(false); setActive("code:" + res.league.id);
       flash(`Liga creada. Comparte el código ${res.league.code}.`, "ok");
     } else if (!res.proRequired) {
       // proRequired ya abrió el paywall; no duplicamos con un error rojo.
@@ -257,6 +264,12 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           <div>
             <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconPlus />Crear liga privada{!isPro && <ProBadge size={9} />}</div>
             <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Nombre de la liga" style={{ ...inputStyle, width: "100%", marginBottom: 8 }} />
+            <select value={newLiga} onChange={(e) => setNewLiga(e.target.value)} style={{ ...inputStyle, width: "100%", marginBottom: 8, cursor: "pointer" }} aria-label="Competición de la liga">
+              <option value="" style={{ color: "#000" }}>Clásica · puntos de Fantasy</option>
+              {LIGA_OPTIONS.map((o) => (
+                <option key={o.slug} value={o.slug} style={{ color: "#000" }}>Por aciertos · {o.short}</option>
+              ))}
+            </select>
             <button onClick={create} disabled={busy} style={{ width: "100%", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#000000", fontWeight: 800, fontSize: 13, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>{busy ? "Creando…" : "Crear y generar código"}</button>
           </div>
           <div>
@@ -282,6 +295,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           ) : (
             <>
               <span style={{ fontSize: 13, fontWeight: 800 }}>{activeLeague.name}</span>
+              {activeLeague.liga && <span style={{ fontSize: 10.5, fontWeight: 800, color: GOLD2, background: `${GOLD}22`, border: `1px solid ${GOLD}55`, borderRadius: 6, padding: "2px 7px", letterSpacing: 0.3 }}>Aciertos · {shortOfLiga(activeLeague.liga)}</span>}
               {leagueOwner && <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 800, color: "#000000", background: GOLD2, borderRadius: 6, padding: "2px 7px" }}><IconCrown size={12} color="#000000" />Dueño</span>}
               {leagueOwner && <button onClick={() => { setRenaming(true); setRenameVal(activeLeague.name); }} style={{ padding: "5px 10px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: BG2, color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Renombrar</button>}
             </>
@@ -294,7 +308,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
         </div>
       )}
 
-      {activeLeague && (
+      {activeLeague && !activeLeague.liga && (
         <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
           {(["total", "weekly"] as const).map((p) => (
             <button key={p} onClick={() => setLeaguePeriod(p)} style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 8, border: "1px solid " + (leaguePeriod === p ? GOLD : "rgba(255,255,255,0.12)"), background: leaguePeriod === p ? `${GOLD}1c` : BG2, color: leaguePeriod === p ? GOLD2 : MID, fontWeight: 800, fontSize: 12, cursor: "pointer" }}>

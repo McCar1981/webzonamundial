@@ -22,6 +22,9 @@ export interface FantasyRankEntry {
 
 export interface FantasyLeague {
   id: string; name: string; code: string; owner_id: string; member_count: number; is_owner: boolean;
+  /** Competición si la liga privada es POR LIGA (clasifica por aciertos de esa
+   *  liga); null = liga clásica (puntos de Fantasy). */
+  liga: string | null;
 }
 
 export interface FantasyLeagueStanding {
@@ -167,12 +170,12 @@ export async function fetchMyLeagues(): Promise<FantasyLeague[]> {
   }
 }
 
-export async function createServerLeague(name: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; proRequired?: boolean }> {
+export async function createServerLeague(name: string, liga?: string | null): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; proRequired?: boolean }> {
   try {
     const res = await fetch("/api/fantasy/leagues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify(liga ? { name, liga } : { name }),
     });
     const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string; code?: string };
     // crear ligas privadas = Pro. Si el gate saltó, abrimos el paywall y avisamos

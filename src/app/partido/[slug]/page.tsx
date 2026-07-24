@@ -232,7 +232,7 @@ export default async function PartidoPage({ params }: { params: Promise<{ slug: 
         {/* CTA */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px 16px", margin: "4px 0 8px", padding: "14px 18px", borderRadius: 14, border: "1px solid rgba(201,168,76,0.28)", background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03))" }}>
           <p style={{ margin: 0, fontSize: 15, lineHeight: 1.45, color: MID, flex: "1 1 240px" }}>
-            <b style={{ color: "#fff" }}>Juega gratis:</b> predice este partido y compite por <b style={{ color: GOLD2 }}>Gift Cards de 300/200/100 €</b>. Sin apuestas.
+            <b style={{ color: "#fff" }}>Juega gratis:</b> predice este partido y compite por <b style={{ color: GOLD2 }}>Fútcoins y la cima del ranking</b>. Sin apuestas.
           </p>
           <Link href="/registro" style={{ display: "inline-block", whiteSpace: "nowrap", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "11px 22px", borderRadius: 12, textDecoration: "none" }}>
             Crear cuenta y predecir →

@@ -326,7 +326,7 @@ export default async function EscenariosPage() {
         }}>
           <p style={{ margin: 0, fontSize: 15, lineHeight: 1.45, color: MID, flex: "1 1 240px" }}>
             <b style={{ color: "#fff" }}>Juega gratis:</b> predice qué selecciones pasan y compite por{" "}
-            <b style={{ color: GOLD2 }}>Gift Cards de 300/200/100 €</b>. Sin apuestas.
+            <b style={{ color: GOLD2 }}>Fútcoins y la cima del ranking</b>. Sin apuestas.
           </p>
           <Link href="/registro" style={{
             display: "inline-block", whiteSpace: "nowrap",

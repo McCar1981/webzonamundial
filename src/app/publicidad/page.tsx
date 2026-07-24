@@ -6,7 +6,7 @@ const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM 
 export const metadata: Metadata = {
   title: "Anúnciate en ZonaMundial · Patrocinio y publicidad",
   description:
-    "Llega a la afición latinoamericana al fútbol durante el Mundial 2026: slot patrocinado del Gran Premio, integración nativa en el juego, push segmentado y campañas con creadores. Escríbenos a gol@zonamundial.app.",
+    "Llega a la afición latinoamericana al fútbol durante el Mundial 2026: integración nativa en el juego, push segmentado y campañas con creadores. Escríbenos a gol@zonamundial.app.",
 };
 
 export default function PublicidadPage() {
@@ -67,10 +67,6 @@ export default function PublicidadPage() {
         <Section title="Qué ofrecemos">
           <div style={{ display: "grid", gap: 16, marginTop: 8 }}>
             <Offer
-              title="Slot Gran Premio patrocinado"
-              desc="Tu marca financia el premio del concurso de habilidad por tasa de acierto y aparece como patrocinador oficial junto al ranking global, visible para toda la comunidad durante el Mundial."
-            />
-            <Offer
               title="Integración nativa en el juego"
               desc="Presencia de marca integrada en la experiencia (predicciones, fantasy, Modo Carrera, trivia) de forma orgánica, sin banners intrusivos que rompan la navegación."
             />
@@ -88,8 +84,7 @@ export default function PublicidadPage() {
         {/* Formatos / entregables */}
         <Section title="Formatos y entregables">
           <ul>
-            <li>Logotipo y enlace del patrocinador en el módulo del Gran Premio (ranking global).</li>
-            <li>Mención de marca como financiador del premio en las bases del concurso.</li>
+            <li>Logotipo y enlace del patrocinador junto al ranking global, visible para toda la comunidad.</li>
             <li>Integraciones de marca a medida dentro de los módulos de juego.</li>
             <li>Notificaciones push patrocinadas, segmentadas por audiencia y momento del torneo.</li>
             <li>Piezas de contenido con creadores (vídeo corto, stories, menciones) según el paquete acordado.</li>
@@ -136,8 +131,7 @@ export default function PublicidadPage() {
         </div>
 
         <p style={{ color: DIM, fontSize: 13, marginTop: 32, textAlign: "center" }}>
-          Consulta las <Link href="/legal/bases-gran-premio" style={{ color: GOLD }}>bases del Gran Premio</Link>{" "}
-          y la <Link href="/legal" style={{ color: GOLD }}>información legal</Link> de la plataforma.
+          Consulta la <Link href="/legal" style={{ color: GOLD }}>información legal</Link> de la plataforma.
         </p>
       </div>
     </main>

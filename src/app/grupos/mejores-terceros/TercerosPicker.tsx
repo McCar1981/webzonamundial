@@ -100,7 +100,7 @@ export default function TercerosPicker({ terceros }: { terceros: TerceroOption[]
       </p>
       <p style={{ fontSize: 15, lineHeight: 1.6, margin: "0 0 16px" }}>
         De los 12 grupos, marca los <b style={{ color: "#fff" }}>8</b> cuyos terceros crees que pasarán a
-        dieciseisavos. Completa tu pronóstico y compite por las Gift Cards.
+        dieciseisavos. Completa tu pronóstico y compite por Fútcoins.
       </p>
 
       {/* Progreso */}
@@ -224,7 +224,7 @@ export default function TercerosPicker({ terceros }: { terceros: TerceroOption[]
             ? "¿Cambiar? Toca un grupo marcado para soltarlo."
             : picks.length > 0
               ? `Tienes ${picks.length}/${TARGET} elegidos — al registrarte guardamos tu pronóstico.`
-              : "Gratis y sin apuestas. Marca tus 8 y compite por las Gift Cards."}
+              : "Gratis y sin apuestas. Marca tus 8 y compite por Fútcoins."}
         </p>
       </div>
     </aside>

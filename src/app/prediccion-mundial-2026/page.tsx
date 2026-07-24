@@ -8,10 +8,9 @@
 // indexable, explica el modo con los 8 TIPOS y la PUNTUACIÓN REALES del código
 // (src/lib/predictions/scoring.ts + types.ts + pro/limits.ts) y lleva a /registro.
 //
-// VERACIDAD: a diferencia del fantasy, Predicciones SÍ es la vía del Gran Premio
-// (Gift Cards 300/200/100€ al top 3 por TASA DE ACIERTO, mín. 20 predicciones —
-// bases en /legal/bases-gran-premio). Por eso AQUÍ sí usamos la barra fija y el
-// popup de Gift Cards: es exacto. Concurso de habilidad, gratis, sin apuestas.
+// VERACIDAD: es un juego de predicciones gratuito, sin apuestas ni dinero en
+// juego. Se compite por acierto: cada predicción suma Fútcoins (puntos in-app) y
+// posiciones en el ranking global. Por eso usamos la barra fija de conversión.
 //
 // Estática (explicador evergreen; el juego vive en /app/predicciones/jugar).
 // Título plano → el layout raíz añade "| ZonaMundial". Complementa, no canibaliza,
@@ -24,9 +23,9 @@ import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
 const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
 export const metadata: Metadata = {
-  title: "Predicción Mundial 2026: predice gratis y gana premios",
+  title: "Predicción Mundial 2026: predice gratis y gana Fútcoins",
   description:
-    "Predice los 104 partidos del Mundial 2026 de 8 formas distintas, gratis: resultado exacto, ganador, goleador y más. Ranking en vivo, ligas con amigos y Gift Cards de 300/200/100 € a los más certeros.",
+    "Predice los 104 partidos del Mundial 2026 de 8 formas distintas, gratis: resultado exacto, ganador, goleador y más. Ranking en vivo, ligas con amigos y Fútcoins para los más certeros.",
   keywords: [
     "prediccion mundial 2026",
     "predicciones mundial 2026",
@@ -37,9 +36,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/prediccion-mundial-2026" },
   openGraph: {
-    title: "Predicción Mundial 2026: predice gratis y gana premios",
+    title: "Predicción Mundial 2026: predice gratis y gana Fútcoins",
     description:
-      "8 formas de predecir el Mundial 2026, gratis. Ranking en vivo, ligas con amigos y Gift Cards de 300/200/100 € a los más certeros.",
+      "8 formas de predecir el Mundial 2026, gratis. Ranking en vivo, ligas con amigos y Fútcoins para los más certeros.",
     url: "/prediccion-mundial-2026",
     siteName: "ZonaMundial",
     type: "website",
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Predicción Mundial 2026",
-    description: "Predice los 104 partidos de 8 formas, gratis. Ranking en vivo y premios a los más certeros.",
+    description: "Predice los 104 partidos de 8 formas, gratis. Ranking en vivo y Fútcoins para los más certeros.",
   },
   robots: { index: true, follow: true, "max-image-preview": "large" },
 };
@@ -72,11 +71,7 @@ const FAQ: Array<{ q: string; a: string }> = [
   },
   {
     q: "¿Es gratis?",
-    a: "Sí. Crear tu cuenta, predecir, competir en el ranking global y jugar en ligas privadas con tus amigos es gratis. El plan Pro quita los límites del plan gratuito (más partidos por jornada, todos los tipos y los multiplicadores), pero no hace falta para competir ni para optar al premio.",
-  },
-  {
-    q: "¿Cómo se gana el Gran Premio?",
-    a: "Es un concurso de habilidad: ganan los tres primeros del ranking por tasa de acierto, con un mínimo de 20 predicciones válidas durante el torneo. El reparto son Gift Cards de 300, 200 y 100 € para el 1.º, 2.º y 3.º. Participar es gratis, no hay azar ni apuestas, y se decide solo por lo que aciertes.",
+    a: "Sí. Crear tu cuenta, predecir, competir en el ranking global y jugar en ligas privadas con tus amigos es gratis. El plan Pro quita los límites del plan gratuito (más partidos por jornada, todos los tipos y los multiplicadores), pero no hace falta para competir ni para liderar el ranking.",
   },
   {
     q: "¿Qué formas de predecir hay?",
@@ -88,7 +83,7 @@ const FAQ: Array<{ q: string; a: string }> = [
   },
   {
     q: "¿Se juega con dinero o apuestas?",
-    a: "No. Es un juego de predicciones gratuito, sin apuestas ni dinero en juego: se compite por puntos, por el ranking y por la gloria. El Gran Premio es un concurso de habilidad patrocinado, gratis y fuera de la regulación de juego.",
+    a: "No. Es un juego de predicciones gratuito, sin apuestas ni dinero en juego: se compite por Fútcoins, por el ranking y por la gloria. Cada acierto suma puntos y te hace subir posiciones.",
   },
 ];
 
@@ -137,7 +132,7 @@ export default function PrediccionMundialPage() {
           Mundial 2026 de <b style={{ color: "#fff" }}>8 formas distintas</b> —desde el resultado exacto hasta el primer
           goleador o el minuto del gol—, el sistema los resuelve solo con el resultado real y sumas puntos en vivo. Es{" "}
           <b style={{ color: "#fff" }}>gratis</b>, sin apuestas, y los más certeros del torneo se llevan{" "}
-          <b style={{ color: GOLD2 }}>Gift Cards de 300/200/100 €</b>.
+          <b style={{ color: GOLD2 }}>Fútcoins y lo más alto del ranking</b>.
         </p>
 
         {/* CTA arriba (intención transaccional: quieren predecir) */}
@@ -175,17 +170,16 @@ export default function PrediccionMundialPage() {
           <b style={{ color: MID }}>bonus de 500 Fútcoins</b>.
         </p>
 
-        {/* El premio / cómo se gana */}
+        {/* El ranking / cómo se compite */}
         <h2 style={{ color: "#fff", fontSize: 26, fontWeight: 700, margin: "44px 0 12px" }}>
           Predice mejor que nadie y gana
         </h2>
         <p style={{ fontSize: 16, lineHeight: 1.7, margin: "0 0 12px" }}>
-          Hay un <b style={{ color: "#fff" }}>ranking global por tasa de acierto</b> que se actualiza en vivo. Al final del
-          torneo, los <b style={{ color: "#fff" }}>tres más certeros</b> se llevan <b style={{ color: GOLD2 }}>Gift Cards
-          de 300, 200 y 100 €</b>. Es un concurso de <b style={{ color: "#fff" }}>habilidad</b> (lo decide tu acierto, no el
-          azar), <b style={{ color: "#fff" }}>gratis</b> y sin apuestas; solo necesitas un mínimo de 20 predicciones para
-          optar.{" "}
-          <Link href="/legal/bases-gran-premio" style={{ color: GOLD, textDecoration: "none" }}>Consulta las bases</Link>.
+          Hay un <b style={{ color: "#fff" }}>ranking global por tasa de acierto</b> que se actualiza en vivo. Cada acierto
+          te suma <b style={{ color: GOLD2 }}>Fútcoins</b> y te hace subir posiciones, y al final del
+          torneo los <b style={{ color: "#fff" }}>tres más certeros</b> coronan la clasificación. Es un juego de{" "}
+          <b style={{ color: "#fff" }}>habilidad</b> (lo decide tu acierto, no el
+          azar), <b style={{ color: "#fff" }}>gratis</b> y sin apuestas.
         </p>
 
         {/* Modalidades */}
@@ -210,10 +204,10 @@ export default function PrediccionMundialPage() {
           Gratis para jugar y para ganar
         </h2>
         <p style={{ fontSize: 16, lineHeight: 1.7, margin: "0 0 12px" }}>
-          Predecir, competir en el ranking, jugar en ligas y optar al premio es <b style={{ color: "#fff" }}>gratis</b>. El
+          Predecir, competir en el ranking y jugar en ligas es <b style={{ color: "#fff" }}>gratis</b>. El
           plan <Link href="/pro" style={{ color: GOLD, textDecoration: "none" }}>Pro</Link> es para quien quiere exprimirlo al
           máximo: predice todos los partidos que quieras, desbloquea los 8 tipos en todos los encuentros y activa los
-          multiplicadores. Pero el premio se decide por acierto, así que jugar gratis también compite por las Gift Cards.
+          multiplicadores. Pero la clasificación se decide por acierto, así que jugando gratis también compites por lo más alto del ranking.
         </p>
 
         {/* CTA medio */}
@@ -222,7 +216,7 @@ export default function PrediccionMundialPage() {
             ¿Sabes de fútbol? Demuéstralo y gana.
           </p>
           <p style={{ fontSize: 14, lineHeight: 1.6, margin: "0 0 14px" }}>
-            Crea tu cuenta gratis, empieza a predecir y entra en el ranking que reparte las Gift Cards.
+            Crea tu cuenta gratis, empieza a predecir y sube en el ranking global.
           </p>
           <Link href="/registro" style={{ display: "inline-block", background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#0a0906", fontWeight: 800, fontSize: 15, padding: "12px 26px", borderRadius: 12, textDecoration: "none" }}>
             Crear mi cuenta gratis →

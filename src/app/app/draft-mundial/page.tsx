@@ -39,7 +39,7 @@ const LEYENDAS: { sel: string; year: number; iso: string }[] = [
 ];
 
 const FICHA: { n: number | string; label: string }[] = [
-  { n: 52, label: "clubes" },
+  { n: 72, label: "clubes" },
   { n: 8, label: "ligas" },
   { n: "todas", label: "épocas" },
   { n: 8, label: "formaciones" },

@@ -83,16 +83,23 @@ function posicionColor(p: DraftPosicion): string {
   return "#ef4444";
 }
 
-function KitAvatar({ seleccion, size = 40 }: { seleccion: string; size?: number }) {
-  const src = draftKitUrl(seleccion);
+function KitAvatar({ seleccion, size = 40, logo }: { seleccion: string; size?: number; logo?: string | null }) {
+  // Draft de Ligas: si el club trae escudo (crest), se muestra; si la carga falla,
+  // cae al kit de selección (Mundial) y, en último término, a la insignia de color
+  // (iniciales). Cadena de respaldo por `onError`, reiniciada al cambiar de club.
+  const kit = draftKitUrl(seleccion);
+  const chain = useMemo(() => [logo, kit].filter(Boolean) as string[], [logo, kit]);
+  const [step, setStep] = useState(0);
+  useEffect(() => { setStep(0); }, [logo, seleccion]);
   const fb = KIT_FALLBACK[seleccion];
+  const src = chain[step];
   return (
     <div style={{ width: size, height: size, borderRadius: "50%", overflow: "hidden", flexShrink: 0,
       background: fb?.bg ?? "#e2e8f0", border: `2px solid ${GOLD}55`,
       boxShadow: "0 2px 8px rgba(0,0,0,0.35)" }}>
       {src ? (
         <img src={src} alt={seleccion} style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+          onError={() => setStep((s) => s + 1)} />
       ) : (
         <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center",
           justifyContent: "center", fontSize: size * 0.28, fontWeight: 700, color: fb?.text ?? "#fff" }}>
@@ -443,7 +450,7 @@ function SetupScreen({
 function TiradaPanel({
   plantilla, onTirar,
 }: {
-  plantilla: { seleccion: string; year: number; bandera: string } | null;
+  plantilla: { seleccion: string; year: number; bandera: string; logo?: string | null } | null;
   onTirar: () => void;
 }) {
   const [rolling, setRolling] = useState(false);
@@ -465,7 +472,7 @@ function TiradaPanel({
           <>
             <div className="text-sm mb-3" style={{ color: TXT_MUT }}>Te tocó</div>
             <div className="flex justify-center items-center gap-3 mb-3 animate-bounce">
-              <KitAvatar seleccion={plantilla.seleccion} size={72} />
+              <KitAvatar seleccion={plantilla.seleccion} size={72} logo={plantilla.logo} />
               <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={40} className="rounded-lg shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
             </div>
             <div className="text-xl font-bold mb-1" style={{ color: TXT }}>{plantilla.seleccion} {plantilla.year}</div>
@@ -501,7 +508,7 @@ function SeleccionPanel({
   plantilla, jugadores, modo, tiempoRestante, onSeleccionar, posicionesOcupadas,
   rerollsRestantes, onOtraSeleccion, onOtroMundial, coherenciaHint,
 }: {
-  plantilla: { seleccion: string; year: number };
+  plantilla: { seleccion: string; year: number; logo?: string | null };
   jugadores: JugadorSeleccionado[];
   modo: Modo;
   tiempoRestante: number | null;
@@ -521,7 +528,7 @@ function SeleccionPanel({
       {/* Cabecera: qué selección salió + re-tiradas */}
       <div className="rounded-xl p-4 mb-3" style={{ background: CARD, border: `1px solid ${GOLD}33` }}>
         <div className="flex items-center gap-3">
-          <KitAvatar seleccion={plantilla.seleccion} size={48} />
+          <KitAvatar seleccion={plantilla.seleccion} size={48} logo={plantilla.logo} />
           <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={28} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 2).toUpperCase()} />
           <div className="min-w-0">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>Salió</div>
@@ -798,7 +805,7 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
               if (!jug) return null;
               return (
                 <div key={slotId} className="flex items-center gap-2 py-1.5 px-2 rounded-lg" style={{ background: `${posicionColor(jug.posicion)}11` }}>
-                  <KitAvatar seleccion={jug.seleccion} size={22} />
+                  <KitAvatar seleccion={jug.seleccion} size={22} logo={jug.logo} />
                   <span className="text-xs font-bold w-8" style={{ color: posicionColor(jug.posicion) }}>{posicionLabel(jug.posicion)}</span>
                   <span className="text-sm flex-1 truncate" style={{ color: TXT }}>{jug.nombre}</span>
                   <span className="text-xs flex items-center gap-1" style={{ color: TXT_MUT }}>
@@ -1420,7 +1427,7 @@ export default function DraftMundialJugarPage() {
                 <TiradaPanel
                   plantilla={
                     game.tiradaActual
-                      ? { seleccion: game.tiradaActual.seleccion, year: game.tiradaActual.year, bandera: game.tiradaActual.bandera }
+                      ? { seleccion: game.tiradaActual.seleccion, year: game.tiradaActual.year, bandera: game.tiradaActual.bandera, logo: game.tiradaActual.logo }
                       : null
                   }
                   onTirar={game.tirar}
@@ -1428,7 +1435,7 @@ export default function DraftMundialJugarPage() {
               )}
               {game.phase === "seleccion" && game.tiradaActual && (
                 <SeleccionPanel
-                  plantilla={{ seleccion: game.tiradaActual.seleccion, year: game.tiradaActual.year }}
+                  plantilla={{ seleccion: game.tiradaActual.seleccion, year: game.tiradaActual.year, logo: game.tiradaActual.logo }}
                   jugadores={game.jugadoresDisponibles}
                   modo={game.modo}
                   tiempoRestante={game.tiempoRestante}

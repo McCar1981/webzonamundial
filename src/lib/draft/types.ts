@@ -33,6 +33,9 @@ export interface DraftPlantilla {
   /** Slug de la liga a la que pertenece el club (Draft de Ligas). Vacío en las
    *  plantillas históricas de selecciones. Sesga el draft a la liga del usuario. */
   liga?: string | null;
+  /** Escudo del club (URL). Draft de Ligas: crest de api-football (CDN, sin
+   *  cuota). Ausente = se dibuja la insignia de respaldo (inicial + bandera). */
+  logo?: string | null;
 }
 
 export type FormacionKey =
@@ -61,6 +64,7 @@ export interface JugadorSeleccionado extends DraftJugador {
   seleccion: string;
   year: number;
   bandera: string;
+  logo?: string | null;
 }
 
 export type GamePhase =

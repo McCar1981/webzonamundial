@@ -275,6 +275,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
         seleccion: tiradaActual.seleccion,
         year: tiradaActual.year,
         bandera: tiradaActual.bandera,
+        logo: tiradaActual.logo ?? null,
       };
 
       const nuevoEquipo: Equipo = { ...equipo, [slotId]: seleccionado };
@@ -375,6 +376,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
         seleccion: tiradaActual.seleccion,
         year: tiradaActual.year,
         bandera: tiradaActual.bandera,
+        logo: tiradaActual.logo ?? null,
       }));
   }, [tiradaActual, equipo, slots]);
 

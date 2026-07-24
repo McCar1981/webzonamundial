@@ -115,12 +115,15 @@ function barajar<T>(arr: T[]): T[] {
   return a;
 }
 
-function elegirRivales(n: number, usados: Set<string>): DraftPlantilla[] {
-  const disponibles = barajar(PLANTILLAS.filter((p) => !usados.has(p.id)));
+function elegirRivales(n: number, usados: Set<string>, pool: DraftPlantilla[]): DraftPlantilla[] {
+  const disponibles = barajar(pool.filter((p) => !usados.has(p.id)));
   return disponibles.slice(0, n);
 }
 
-export function generarCampana(jugadores: JugadorSimple[]): Campana {
+// Los rivales de la campaña salen del POOL de la liga elegida (clubes), NO de las
+// selecciones del Mundial. Por defecto (sin pool) cae a las selecciones históricas.
+export function generarCampana(jugadores: JugadorSimple[], rivalPool: DraftPlantilla[] = PLANTILLAS): Campana {
+  const pool = rivalPool.length > 0 ? rivalPool : PLANTILLAS;
   const mias = calcularStats(jugadores);
   const usados = new Set<string>();
   const partidos: CampanaPartido[] = [];
@@ -131,7 +134,7 @@ export function generarCampana(jugadores: JugadorSimple[]): Campana {
   let gc = 0;
 
   // ---------- Fase de grupos: tú + 3 rivales, todos contra todos ----------
-  const rivales = elegirRivales(3, usados);
+  const rivales = elegirRivales(3, usados, pool);
   rivales.forEach((r) => usados.add(r.id));
   const rivalStats = rivales.map((r) => calcularStats(r.jugadores));
 
@@ -189,7 +192,7 @@ export function generarCampana(jugadores: JugadorSimple[]): Campana {
   } else {
     for (let r = 0; r < FASES_KO.length; r++) {
       const fase = FASES_KO[r];
-      const rival = elegirRivales(1, usados)[0] ?? PLANTILLAS[Math.floor(Math.random() * PLANTILLAS.length)];
+      const rival = elegirRivales(1, usados, pool)[0] ?? pool[Math.floor(Math.random() * pool.length)];
       usados.add(rival.id);
 
       // Los rivales se hacen más duros según avanza el cuadro.
@@ -235,7 +238,7 @@ export function generarCampana(jugadores: JugadorSimple[]): Campana {
       }
       if (fase === "Final") {
         campeon = true;
-        outcome = "¡Campeón del Mundo!";
+        outcome = "¡Campeón del torneo!";
       }
     }
   }

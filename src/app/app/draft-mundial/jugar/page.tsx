@@ -938,19 +938,21 @@ function ResumenStat({ n, label, color = TXT }: { n: number; label: string; colo
   );
 }
 
-function CampanaScreen({ equipo, onTerminar }: {
+function CampanaScreen({ equipo, onTerminar, rivalPool }: {
   equipo: Record<number, JugadorSeleccionado>;
   onTerminar: (campana: Campana) => void;
+  rivalPool: DraftPlantilla[];
 }) {
   const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
-  const [campana, setCampana] = useState<Campana>(() => generarCampana(jugadores));
+  // Los rivales de la campaña son clubes de la MISMA liga elegida (no selecciones del Mundial).
+  const [campana, setCampana] = useState<Campana>(() => generarCampana(jugadores, rivalPool));
   const [revelados, setRevelados] = useState(0);
   const [modoCampana, setModoCampana] = useState<"manual" | "auto">("auto");
   const total = campana.partidos.length;
   const completo = revelados >= total;
   const jugCount = jugadores.length;
 
-  const repetir = () => { setCampana(generarCampana(jugadores)); setRevelados(0); };
+  const repetir = () => { setCampana(generarCampana(jugadores, rivalPool)); setRevelados(0); };
   const iniciar = () => setRevelados(modoCampana === "auto" ? total : 1);
 
   const MODOS_CAMP: { key: "manual" | "auto"; icon: typeof IconBolt; title: string; desc: string; badge: string }[] = [
@@ -1444,7 +1446,7 @@ export default function DraftMundialJugarPage() {
         )}
 
         {game.phase === "campana" && (
-          <CampanaScreen equipo={game.equipo} onTerminar={game.finalizarConCampana} />
+          <CampanaScreen equipo={game.equipo} onTerminar={game.finalizarConCampana} rivalPool={pool} />
         )}
 
         {game.phase === "resultado" && game.resultado && (

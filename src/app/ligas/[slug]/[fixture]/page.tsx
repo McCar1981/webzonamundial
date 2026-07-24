@@ -18,6 +18,7 @@ import { getFixtureDetailCached, type FixtureDetail, type FixtureEvent } from "@
 import MatchPoll from "./MatchPoll";
 import PredictMercados from "./PredictMercados";
 import MatchSummary from "./MatchSummary";
+import LigaCoach from "./LigaCoach";
 import LiveScore from "./LiveScore";
 import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
@@ -268,6 +269,11 @@ export default async function CentroPartido({ params }: { params: Params }) {
             del saque y en ligas de Ola 1. El server revalida ambas condiciones. */}
         {(f.status === "NS" || f.status === "TBD") && isOla1(comp.slug) && (
           <PredictMercados fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} />
+        )}
+
+        {/* IA Coach del partido (bajo demanda). Pre-partido: es cuando aporta. */}
+        {!finished && (
+          <LigaCoach fixtureId={f.fixtureId} slug={comp.slug} homeId={f.home.id} homeName={f.home.name} awayId={f.away.id} awayName={f.away.name} kickoff={f.kickoff} />
         )}
 
         <Link href={finished ? `/ligas/${comp.slug}` : "/registro"} style={{ display: "block", marginTop: 22, padding: 16, borderRadius: 14, background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.45)", textDecoration: "none", textAlign: "center" }}>

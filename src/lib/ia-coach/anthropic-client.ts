@@ -35,6 +35,9 @@ function getClient(): Anthropic {
  *  respuesta no es JSON válido o no cumple el shape mínimo. */
 export async function generateAnalysis(
   contextMarkdown: string,
+  /** Prompt de sistema a usar. Por defecto el del Mundial; el IA Coach de ligas
+   *  pasa LEAGUE_SYSTEM_PROMPT (mismo contrato JSON, encuadre de clubes). */
+  systemPrompt: string = SYSTEM_PROMPT,
 ): Promise<IACoachAnalysis> {
   const client = getClient();
 
@@ -57,7 +60,7 @@ export async function generateAnalysis(
       type: "enabled",
       budget_tokens: THINKING_BUDGET,
     },
-    system: SYSTEM_PROMPT,
+    system: systemPrompt,
     messages: [{ role: "user", content: contextMarkdown }],
   });
 

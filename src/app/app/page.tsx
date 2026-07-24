@@ -136,12 +136,17 @@ const CATS: Cat[] = [
     mods: [
       { icon: "matchcenter", title: "Zona de Ligas", desc: "Ligas y copas del mundo en vivo. Predice cada partido y gana Fútcoins.", href: "/ligas", cta: "Explorar", estado: "Nuevo", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones/jugar", cta: "Predecir", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
-      { icon: "bracket", title: "Cruces", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
+      // PIVOTE LIGAS (jul-2026): desactivado. "Cruces" era el bracket del Mundial;
+      // se reactiva/reutiliza para copas (Libertadores/Champions) cuando toque.
+      // { icon: "bracket", title: "Cruces", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
-      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
+      // PIVOTE LIGAS (jul-2026): desactivado. "Modo Carrera" dirige una SELECCIÓN;
+      // se reutiliza para dirigir un CLUB cuando se adapte. Código intacto y dormido.
+      // { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
       { icon: "draft", title: "Draft Mundial", desc: "Armá tu once ideal con leyendas de todas las Copas del Mundo.", href: "/app/draft-mundial", cta: "Jugar", estado: "Nuevo", accent: "#8b7bd8", accent2: "#b3a6f0" },
-      { icon: "album", art: "/img/album/album-hero.webp", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Ver", estado: "Nuevo", accent: "#34b9c4", accent2: "#6fdce5" },
+      // PIVOTE LIGAS (jul-2026): quitado del lobby (álbum de cromos del Mundial).
+      // { icon: "album", art: "/img/album/album-hero.webp", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Ver", estado: "Nuevo", accent: "#34b9c4", accent2: "#6fdce5" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
       // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },
@@ -162,8 +167,8 @@ const CATS: Cat[] = [
     mods: [
       { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible", accent: "#ff6b5a", accent2: "#ff9a4a" },
       { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo", accent: "#ff8a3c", accent2: "#ffb46a" },
-      // Sin href → card "Próximamente" no navegable (no mandamos al usuario logueado a una maqueta con CTA de registro). Reactivar con href cuando exista el módulo real.
-      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", cta: "Avisarme", estado: "Próximamente", accent: "#7c5cff", accent2: "#a98fff" },
+      // PIVOTE LIGAS (jul-2026): quitado del lobby (streaming con creadores del Mundial).
+      // { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", cta: "Avisarme", estado: "Próximamente", accent: "#7c5cff", accent2: "#a98fff" },
     ],
   },
   {
@@ -186,6 +191,10 @@ const CATS: Cat[] = [
       { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo", accent: "#36c98f", accent2: "#7ce0b3" },
     ],
   },
+  // PIVOTE LIGAS (jul-2026): categoría "Explora" quitada del lobby — era 100%
+  // contenido del Mundial (calendario, grupos, reglas de puntos, guías). Las
+  // rutas siguen intactas y dormidas; se restaura descomentando este bloque.
+  /*
   {
     key: "explora",
     label: "Explora",
@@ -205,6 +214,7 @@ const CATS: Cat[] = [
       { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.webp", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
     ],
   },
+  */
 ];
 
 /* ─────────── Tipos de datos remotos ─────────── */
@@ -1673,7 +1683,7 @@ export default function AppHubPage() {
                   sub="Puedes jugar sin cuenta"
                   href="/trivia"
                 />
-                <MissionRow dark done={false} label="Explora los modos de juego" sub="Predicciones, Fantasy, Modo Carrera…" href="#modulos" />
+                <MissionRow dark done={false} label="Explora los modos de juego" sub="Zona de Ligas, Predicciones, Fantasy…" href="#modulos" />
                 <MissionRow dark done={false} label="Crea tu cuenta gratis" sub="Guarda rachas, Fútcoins y compite en el ranking" href="/registro" />
               </>
             )}
@@ -1852,10 +1862,9 @@ export default function AppHubPage() {
           />
         </section>
 
-        {/* ═══ 6b. EL MUNDIAL EN TU CALENDARIO — mismo CTA que el home web,
-               aquí en versión compacta para el móvil. El botón abre el modal
-               con Apple / Google / .ics (suscripción webcal que se actualiza
-               sola cuando cambian fechas). ═══ */}
+        {/* PIVOTE LIGAS (jul-2026): sección "Llévate el Mundial a tu calendario"
+            quitada del lobby (era del Mundial). Se restaura descomentando. */}
+        {/*
         <section
           data-reveal
           style={{
@@ -1872,7 +1881,7 @@ export default function AppHubPage() {
         >
           <div style={{ flex: "1 1 220px", minWidth: 0 }}>
             <h2 style={{ fontSize: 16, fontWeight: 900, color: TXT, marginBottom: 3 }}>
-              📅 Llévate el Mundial a tu calendario
+              Llévate el Mundial a tu calendario
             </h2>
             <p style={{ fontSize: 12.5, color: TXT_MUT, lineHeight: 1.5 }}>
               Los 104 partidos en tu móvil con recordatorios antes de cada kickoff.
@@ -1881,6 +1890,7 @@ export default function AppHubPage() {
           </div>
           <CalendarExportButton variant="hero" label="Añadir a mi calendario" />
         </section>
+        */}
 
         {/* ═══ 7. RANKING GLOBAL (card clara, top 5) ═══ */}
         <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(20,17,10,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>

@@ -19,6 +19,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import PushPromptCard from "@/components/app/PushPromptCard";
 import MiFutbolSection from "@/components/app/MiFutbolSection";
 import MisNoticias from "@/app/ligas/MisNoticias";
+import LigaRankingCard from "@/components/app/LigaRankingCard";
 import { usePostMundial } from "@/app/_home/hooks/usePostMundial";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
@@ -1892,7 +1893,11 @@ export default function AppHubPage() {
         </section>
         */}
 
-        {/* ═══ 7. RANKING GLOBAL (card clara, top 5) ═══ */}
+        {/* ═══ 7. RANKING DE TU LIGA (card clara) — sustituye al ranking global
+               del Mundial en el pivote a Ligas. Componente autocontenido que lee
+               las ligas seguidas + /api/ligas/leaderboard. ═══ */}
+        <LigaRankingCard authed={authed} />
+        {false && (
         <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(20,17,10,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Ranking global</h2>
@@ -1955,6 +1960,7 @@ export default function AppHubPage() {
             </p>
           )}
         </section>
+        )}
 
         {/* ═══ Banner de casa Sprintmarkt en el lobby (petición de Carlos):
                su agencia, al final del lobby, zona de extras. ═══ */}

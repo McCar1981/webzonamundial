@@ -4,7 +4,7 @@
 // src/app/app/draft-mundial/jugar/page.tsx
 // Juego Draft de Ligas — Nueva mecánica: elegí cualquier jugador de la selección
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { FREE_LIMITS, PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
 import {
@@ -16,7 +16,7 @@ import {
   DraftResultado,
   JugadorSeleccionado,
 } from "@/lib/draft/types";
-import { poolForLeagues } from "@/lib/draft/plantillas-ligas";
+import { poolForLeague, availableDraftLeagues, DRAFT_LEAGUES, type DraftLeagueOption } from "@/lib/draft/plantillas-ligas";
 import { FORMACIONES } from "@/lib/draft/formaciones";
 import { SlotLayout } from "@/lib/draft/layout";
 import {
@@ -545,12 +545,12 @@ function SeleccionPanel({
               <button onClick={onOtraSeleccion} disabled={rerollBloqueado}
                 className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold border transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:hover:scale-100"
                 style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: rerollBloqueado ? "not-allowed" : "pointer" }}>
-                <IconRefresh size={15} color={GOLD} />Otra selección
+                <IconRefresh size={15} color={GOLD} />Otro club
               </button>
               <button onClick={onOtroMundial} disabled={rerollBloqueado}
                 className="flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold border transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:hover:scale-100"
                 style={{ borderColor: `${GOLD}55`, color: GOLD, background: `${GOLD}11`, cursor: rerollBloqueado ? "not-allowed" : "pointer" }}>
-                <IconGlobe size={15} color={GOLD} />Otro mundial
+                <IconGlobe size={15} color={GOLD} />Otra temporada
               </button>
             </div>
           </div>
@@ -1253,20 +1253,26 @@ function CupoBanner({ restantes }: { restantes: number }) {
 
 /* ─────────── Página Principal ─────────── */
 export default function DraftMundialJugarPage() {
-  // Pool de clubes según las ligas que sigue el usuario (Draft de Ligas). Arranca
-  // con todos los clubes (nunca vacío) y se acota al cargar las ligas seguidas.
-  const [pool, setPool] = useState<DraftPlantilla[]>(() => poolForLeagues([]));
+  // Draft de Ligas: el usuario elige UNA liga; el pool son SOLO clubes de esa
+  // liga (nunca mezcla otras ni selecciones del Mundial). Las ligas elegibles son
+  // las que sigue (con clubes); si no sigue ninguna, todas las disponibles.
+  const [availableLeagues, setAvailableLeagues] = useState<DraftLeagueOption[]>(DRAFT_LEAGUES);
+  const [selectedLeague, setSelectedLeague] = useState<string>(DRAFT_LEAGUES[0]?.slug ?? "");
   useEffect(() => {
     let on = true;
     fetch("/api/ligas/mis-ligas")
       .then((r) => (r.ok ? r.json() : null))
       .then((d: { ligas?: string[] } | null) => {
-        if (on && d && Array.isArray(d.ligas)) setPool(poolForLeagues(d.ligas));
+        if (!on) return;
+        const avail = availableDraftLeagues(Array.isArray(d?.ligas) ? d!.ligas! : []);
+        setAvailableLeagues(avail);
+        setSelectedLeague((s) => (avail.some((o) => o.slug === s) ? s : avail[0]?.slug ?? s));
       })
-      .catch(() => { /* sin ligas: pool completo */ });
+      .catch(() => { /* sin ligas: todas las disponibles */ });
     return () => { on = false; };
   }, []);
 
+  const pool = useMemo(() => poolForLeague(selectedLeague), [selectedLeague]);
   const game = useDraftGame(pool);
 
   // ── Gating del tope diario ───────────────────────────────────────────
@@ -1364,6 +1370,21 @@ export default function DraftMundialJugarPage() {
             {!gate.isPro && !gate.loading && Number.isFinite(gate.restantes) && (
               <CupoBanner restantes={gate.restantes} />
             )}
+            {availableLeagues.length > 1 ? (
+              <div style={{ margin: "0 0 16px" }}>
+                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: TXT_MUT, marginBottom: 8 }}>Elige tu liga</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {availableLeagues.map((o) => {
+                    const active = o.slug === selectedLeague;
+                    return (
+                      <button key={o.slug} onClick={() => setSelectedLeague(o.slug)} style={{ padding: "8px 14px", borderRadius: 999, fontSize: 13, fontWeight: 800, cursor: "pointer", border: active ? "1px solid transparent" : "1px solid rgba(255,255,255,0.14)", color: active ? "#0a0906" : TXT, background: active ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(255,255,255,0.04)" }}>{o.short}</button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : availableLeagues.length === 1 ? (
+              <div style={{ margin: "0 0 14px", fontSize: 13, color: TXT_MUT }}>Liga: <b style={{ color: GOLD2 }}>{availableLeagues[0].short}</b></div>
+            ) : null}
             <SetupScreen
               formacion={game.formacion} setFormacion={game.setFormacion}
               estilo={game.estilo} setEstilo={game.setEstilo}

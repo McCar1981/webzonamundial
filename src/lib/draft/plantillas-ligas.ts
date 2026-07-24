@@ -9,6 +9,7 @@
 
 import { DraftPlantilla } from "./types";
 import { PLANTILLAS } from "./plantillas";
+import { getCompetition } from "@/data/competitions";
 
 export const CLUB_PLANTILLAS: DraftPlantilla[] = [
   {"id":"ldu-quito-2008","seleccion":"LDU de Quito","seleccionSlug":"ldu-quito","year":2008,"torneo":"Campeón Copa Libertadores 2008","bandera":"🇪🇨","liga":"ligapro-ecuador","jugadores":[{"id":"ldu08-1","nombre":"José Francisco Cevallos","posicion":"GOL","fuerza":87,"perfil":"portero"},{"id":"ldu08-2","nombre":"Neicer Reasco","posicion":"LD","fuerza":80,"perfil":"lateral"},{"id":"ldu08-3","nombre":"Norberto Araujo","posicion":"ZAG","fuerza":84,"perfil":"central"},{"id":"ldu08-4","nombre":"Jorge Guagua","posicion":"ZAG","fuerza":78,"perfil":"central"},{"id":"ldu08-5","nombre":"Paúl Ambrosi","posicion":"LE","fuerza":76,"perfil":"lateral"},{"id":"ldu08-6","nombre":"Patricio Urrutia","posicion":"MCD","fuerza":83,"perfil":"volante"},{"id":"ldu08-7","nombre":"William Araujo","posicion":"VOL","fuerza":77,"perfil":"volante"},{"id":"ldu08-8","nombre":"Enrique Vera","posicion":"MEI","fuerza":82,"perfil":"mediapunta"},{"id":"ldu08-9","nombre":"Joffre Guerrón","posicion":"PD","fuerza":84,"perfil":"extremo"},{"id":"ldu08-10","nombre":"Luis Bolaños","posicion":"PI","fuerza":81,"perfil":"extremo"},{"id":"ldu08-11","nombre":"Claudio Bieler","posicion":"CA","fuerza":89,"perfil":"goleador"}]},
@@ -61,4 +62,51 @@ export function poolForLeagues(slugs: string[]): DraftPlantilla[] {
   }
   const filtered = CLUB_PLANTILLAS.filter((p) => p.liga && wanted.has(p.liga));
   return filtered.length >= 2 ? filtered : CLUB_PLANTILLAS;
+}
+
+/** Slugs de liga que aporta un slug (él mismo + su expansión continental). */
+function expand(slug: string): Set<string> {
+  return new Set<string>([slug, ...(CONTINENTAL_MAP[slug] ?? [])]);
+}
+
+/** ¿Esa liga (o copa continental) tiene al menos un club en el catálogo? */
+export function leagueHasClubs(slug: string): boolean {
+  const wanted = expand(slug);
+  return CLUB_PLANTILLAS.some((p) => !!p.liga && wanted.has(p.liga));
+}
+
+/**
+ * Pool de UNA sola liga (la elegida por el usuario en el Draft): solo clubes de
+ * esa liga/copa. NUNCA mezcla otras ligas ni cae a selecciones históricas si hay
+ * clubes cargados (si la liga no tuviera clubes, cae a todos los clubes, jamás al
+ * Mundial). Así "elijo España → solo España".
+ */
+export function poolForLeague(slug: string): DraftPlantilla[] {
+  if (CLUB_PLANTILLAS.length === 0) return PLANTILLAS;
+  const wanted = expand(slug);
+  const filtered = CLUB_PLANTILLAS.filter((p) => !!p.liga && wanted.has(p.liga));
+  return filtered.length >= 2 ? filtered : CLUB_PLANTILLAS;
+}
+
+export interface DraftLeagueOption { slug: string; short: string; }
+
+/** Ligas del catálogo que tienen clubes drafteables (para el selector). */
+export const DRAFT_LEAGUES: DraftLeagueOption[] = Array.from(
+  new Set(CLUB_PLANTILLAS.map((p) => p.liga).filter((s): s is string => !!s)),
+).map((slug) => ({ slug, short: getCompetition(slug)?.short ?? slug }));
+
+/**
+ * Ligas ENTRE LAS QUE PUEDE ELEGIR el usuario en el Draft: las que sigue y que
+ * tienen clubes (directas o vía copa continental). Si no sigue ninguna con
+ * clubes, ofrecemos todas las disponibles (para que el Draft siga jugable).
+ */
+export function availableDraftLeagues(followed: string[]): DraftLeagueOption[] {
+  const opts: DraftLeagueOption[] = [];
+  const seen = new Set<string>();
+  for (const slug of followed ?? []) {
+    if (seen.has(slug) || !leagueHasClubs(slug)) continue;
+    seen.add(slug);
+    opts.push({ slug, short: getCompetition(slug)?.short ?? slug });
+  }
+  return opts.length > 0 ? opts : DRAFT_LEAGUES;
 }

@@ -924,7 +924,11 @@ function PartidoRow({ p, delay }: { p: CampanaPartido; delay: number }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-xl animate-fade-in" style={{ background: CARD, borderLeft: `3px solid ${col}`, animationDelay: `${delay}s`, animationFillMode: "both" }}>
       <span className="text-[10px] font-bold uppercase tracking-wider w-16 flex-shrink-0" style={{ color: TXT_MUT }}>{p.fase}</span>
-      <FlagImage code={seleccionISO(p.rivalSeleccion)} alt={p.rivalSeleccion} width={22} className="rounded-sm flex-shrink-0" fallback={p.rivalSeleccion.slice(0, 3).toUpperCase()} />
+      {p.rivalLogo ? (
+        <KitAvatar seleccion={p.rivalSeleccion} size={24} logo={p.rivalLogo} />
+      ) : (
+        <FlagImage code={seleccionISO(p.rivalSeleccion)} alt={p.rivalSeleccion} width={22} className="rounded-sm flex-shrink-0" fallback={p.rivalSeleccion.slice(0, 3).toUpperCase()} />
+      )}
       <span className="text-sm font-bold flex-1 truncate" style={{ color: TXT }}>
         {p.rivalSeleccion} <span className="font-normal" style={{ color: TXT_MUT }}>{p.rivalYear}</span>
       </span>

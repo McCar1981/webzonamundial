@@ -89,6 +89,8 @@ export interface CampanaPartido {
   rivalSeleccion: string;
   rivalYear: number;
   rivalBandera: string;
+  /** Escudo del club rival (Draft de Ligas). Ausente en selecciones históricas. */
+  rivalLogo?: string | null;
   gf: number;
   gc: number;
   penalesGf?: number;
@@ -164,6 +166,7 @@ export function generarCampana(jugadores: JugadorSimple[], rivalPool: DraftPlant
           rivalSeleccion: r.seleccion,
           rivalYear: r.year,
           rivalBandera: r.bandera,
+          rivalLogo: r.logo ?? null,
           gf: gi,
           gc: gj,
           resultado: gi > gj ? "G" : gi < gj ? "P" : "E",
@@ -221,6 +224,7 @@ export function generarCampana(jugadores: JugadorSimple[], rivalPool: DraftPlant
         rivalSeleccion: rival.seleccion,
         rivalYear: rival.year,
         rivalBandera: rival.bandera,
+        rivalLogo: rival.logo ?? null,
         gf: mioG,
         gc: rivG,
         penalesGf: pen?.f,

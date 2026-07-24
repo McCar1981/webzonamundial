@@ -20,7 +20,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
-import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
 const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552";
 
@@ -262,7 +261,6 @@ export default function PrediccionMundialPage() {
       </div>
 
       <StickyCta />
-      <PremiosPopup />
     </main>
   );
 }

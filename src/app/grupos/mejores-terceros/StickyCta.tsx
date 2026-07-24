@@ -41,7 +41,7 @@ export default function StickyCta() {
       <span style={{ color: "#fff", fontSize: 13.5, fontWeight: 600, display: "flex", alignItems: "center", gap: 7 }}>
         <Trophy size={15} color={GOLD} aria-hidden style={{ flexShrink: 0 }} />
         <span>
-          Gana <b style={{ color: GOLD2 }}>Gift Cards 300/200/100&nbsp;€</b> · gratis
+          Predice, compite y <b style={{ color: GOLD2 }}>gana Fútcoins</b> · gratis
         </span>
       </span>
       <Link

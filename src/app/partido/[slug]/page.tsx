@@ -21,7 +21,6 @@ import { FINISHED_STATUSES, IN_PLAY_STATUSES } from "@/lib/calendario/live";
 import { heroImageForSlug } from "@/data/hero-match-images";
 import type { LiveSnapshot, LiveStats } from "@/lib/match-center/types";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
-import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
 const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e", RED = "#ef6a6a";
 
@@ -340,7 +339,6 @@ export default async function PartidoPage({ params }: { params: Promise<{ slug: 
       </div>
 
       <StickyCta />
-      <PremiosPopup />
     </main>
   );
 }

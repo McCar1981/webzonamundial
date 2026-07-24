@@ -122,62 +122,6 @@ export async function aggregateMatchPodium(matchId: string, limit: number): Prom
     .slice(0, Math.max(0, limit));
 }
 
-// ─── RANKING PAY-NEUTRAL del Gran Premio: TASA DE ACIERTO ─────────────────────
-// El premio (Gift Cards al Top 3) NO puede colgar del saldo de Fútcoins ni de los
-// puntos: el Pase deja predecir TODOS los partidos (el Free solo 3/jornada) y
-// aplica multiplicadores (racha ×1.5, early-bird ×1.2) → el que paga acumula más.
-// Eso sería "pagar → ventaja → premio en metálico" = juego de azar regulado.
-//
-// Esta métrica es un PORCENTAJE de acierto: predecir más partidos NO sube tu %
-// (sube numerador y denominador igual), e `is_correct` es un booleano idéntico
-// para Free y Pro (los multiplicadores afectan a los PUNTOS, no a si acertaste).
-// Así pagar no compra ni una opción más al premio → concurso de HABILIDAD.
-//
-// Solo cuentan predicciones con `is_correct` NO null: las pendientes y las
-// ANULADAS (void) quedan fuera y no penalizan. Exige un mínimo de intentos
-// (`minN`) para que 3/3 no bata a 180/200. Agrega en TS paginando (sin migración).
-
-export interface AccuracyAgg {
-  user_id: string;
-  total: number;     // predicciones resueltas y calificadas (acierto/fallo)
-  correct: number;   // aciertos
-  pct: number;       // correct / total
-  lastAt: string;    // MAX(resolved_at): para desempatar por "quién lo logró antes"
-}
-
-export async function aggregateAccuracy(minN: number, limit: number): Promise<AccuracyAgg[]> {
-  const admin = adminClient();
-  const agg = new Map<string, { total: number; correct: number; lastAt: string }>();
-
-  for (let page = 0; page < MAX_PAGES; page++) {
-    const { data, error } = await admin
-      .from("predictions")
-      .select("user_id,is_correct,resolved_at")
-      .not("is_correct", "is", null) // resueltas y calificadas; excluye pendientes y anuladas
-      .order("id", { ascending: true })
-      .range(page * PAGE, page * PAGE + PAGE - 1);
-    if (error) {
-      console.error("[predicciones] aggregateAccuracy falló en página", page, error.message);
-      break;
-    }
-    const rows = (data ?? []) as { user_id: string; is_correct: boolean | null; resolved_at: string | null }[];
-    for (const r of rows) {
-      if (isRankingExcluded(r.user_id)) continue; // el staff no compite
-      const a = agg.get(r.user_id) ?? { total: 0, correct: 0, lastAt: "" };
-      a.total++;
-      if (r.is_correct) a.correct++;
-      const ra = r.resolved_at ?? "";
-      if (ra > a.lastAt) a.lastAt = ra;
-      agg.set(r.user_id, a);
-    }
-    if (rows.length < PAGE) break;
-    if (page === MAX_PAGES - 1) console.error("[predicciones] aggregateAccuracy alcanzó MAX_PAGES; posiblemente incompleto");
-  }
-
-  return [...agg.entries()]
-    .map(([user_id, a]) => ({ user_id, total: a.total, correct: a.correct, pct: a.correct / a.total, lastAt: a.lastAt }))
-    .filter((a) => a.total >= Math.max(1, minN))
-    // Mejor % de acierto; desempate por más intentos (consistencia) y por quién lo logró antes.
-    .sort((x, y) => y.pct - x.pct || y.total - x.total || (x.lastAt < y.lastAt ? -1 : 1))
-    .slice(0, Math.max(0, limit));
-}
+// PIVOTE LIGAS (jul-2026): `aggregateAccuracy`/`AccuracyAgg` (ranking por tasa de
+// acierto del Gran Premio) eliminados con el sorteo del Mundial. Los agregadores
+// de puntos/podio de arriba siguen en uso para el ranking normal.

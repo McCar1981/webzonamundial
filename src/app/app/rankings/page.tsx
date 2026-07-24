@@ -8,7 +8,6 @@ import { SvgIcon } from "@/components/icons";
 import { getCountryName } from "@/lib/countries";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
-import { SPONSORED_PRIZE, type SponsoredPrize } from "@/data/sponsored-prize";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -315,8 +314,7 @@ export default function RankingsPage() {
             </div>
           )}
 
-          {/* ─── Gran Premio del Mundial (Top 3 global) + Campeón de la semana ─── */}
-          {view === "global" && !tab && <GrandPrizeBanner />}
+          {/* ─── Campeón de la semana ─── */}
           {view === "global" && !tab && <WeeklyChampions entries={champions} />}
 
           {/* ─── Banner "tu posición" según la vista ─── */}
@@ -498,78 +496,9 @@ function WeeklyChampions({ entries }: { entries: RankEntry[] | null }) {
   );
 }
 
-// ─── Gran Premio del Mundial (premio patrocinado PAY-NEUTRAL, al Top 3 por MÉRITO)
-// El premio (Gift Cards) NO cuelga del saldo de Fútcoins (eso lo infla el Pase),
-// sino del ranking por TASA DE ACIERTO (/api/ranking/merit): pagar no da ventaja
-// → concurso de habilidad, no juego de azar. Solo si hay patrocinador activo.
-interface MeritEntry { rank: number; userId: string; name: string | null; avatarUrl: string | null; country: string | null; pct: number; total: number; correct: number; }
-
-function GrandPrizeBanner() {
-  const [merit, setMerit] = useState<MeritEntry[] | null>(null);
-  useEffect(() => {
-    if (!SPONSORED_PRIZE.active) return;
-    let on = true;
-    fetch("/api/ranking/merit?limit=3")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d: { entries?: MeritEntry[] } | null) => { if (on) setMerit(d?.entries ?? []); })
-      .catch(() => { if (on) setMerit([]); });
-    return () => { on = false; };
-  }, []);
-  if (!SPONSORED_PRIZE.active || SPONSORED_PRIZE.prizes.length === 0) return null;
-  const p = SPONSORED_PRIZE;
-  const places = ["1º", "2º", "3º"];
-  const placeColor = [GOLD, "#d1d5db", "#d97706"];
-  return (
-    <div style={{
-      maxWidth: 800, margin: "0 auto 18px", padding: "16px 18px", borderRadius: 18,
-      background: "rgba(201,168,76,0.13)",
-      border: "1px solid rgba(201,168,76,0.5)", boxShadow: "0 8px 32px rgba(201,168,76,0.14)",
-    }}>
-      <div style={{ color: GOLD, fontWeight: 900, fontSize: 14, letterSpacing: 0.5, textTransform: "uppercase" }}>Gran Premio del Mundial</div>
-      <div style={{ color: "#fff", fontSize: 13.5, marginTop: 8, lineHeight: 1.5 }}>
-        Por <b style={{ color: GOLD2 }}>puntería, no por jugar más</b>: gana el Top 3 con mejor tasa de acierto. El Pase te da más partidos y diversión, pero aquí solo cuenta acertar.
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
-        {p.prizes.slice(0, 3).map((prize, i) => {
-          const m = merit?.[i];
-          return (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "9px 12px" }}>
-              <span style={{ color: placeColor[i], fontWeight: 900, fontSize: 14, width: 24, flexShrink: 0 }}>{places[i]}</span>
-              <span style={{ color: GOLD2, fontWeight: 800, fontSize: 13.5, flexShrink: 0 }}>{prize}</span>
-              <span style={{ flex: 1, minWidth: 0, textAlign: "right", fontSize: 12.5, color: MID, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                {merit === null ? "" : m ? `${m.name || "Jugador"} · ${Math.round(m.pct * 100)}%` : "Sin clasificado"}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-      <div style={{ marginTop: 12 }}><SponsorTag prize={p} /></div>
-      <div style={{ color: DIM, fontSize: 11, marginTop: 8 }}>Clasificación por tasa de acierto (mín. 20 predicciones resueltas). Premios al finalizar el Mundial. Participación gratuita.</div>
-    </div>
-  );
-}
-
-// Tira "Premio patrocinado por [Marca]" — logo (o nombre) + enlace a bases.
-// Solo se renderiza cuando hay patrocinador activo (src/data/sponsored-prize.ts).
-function SponsorTag({ prize }: { prize: SponsoredPrize }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, padding: "8px 12px", borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", fontSize: 12 }}>
-      <span style={{ color: DIM }}>Patrocinado por</span>
-      {prize.sponsorUrl ? (
-        <a href={prize.sponsorUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", color: "#fff" }}>
-          {prize.sponsorLogoUrl
-            ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 28, maxWidth: 140, objectFit: "contain" }} />
-            : <b>{prize.sponsorName}</b>}
-        </a>
-      ) : (
-        prize.sponsorLogoUrl
-          ? <img src={prize.sponsorLogoUrl} alt={prize.sponsorName} style={{ height: 28, maxWidth: 140, objectFit: "contain" }} />
-          : <b style={{ color: "#fff" }}>{prize.sponsorName}</b>
-      )}
-      {prize.termsUrl && <a href={prize.termsUrl} target="_blank" rel="noopener noreferrer" style={{ color: DIM, fontSize: 10.5, textDecoration: "underline" }}>bases</a>}
-    </div>
-  );
-}
+// PIVOTE LIGAS (jul-2026): "Gran Premio del Mundial" retirado — el sorteo/premio
+// patrocinado y su ranking por mérito (GrandPrizeBanner, SponsorTag, MeritEntry,
+// /api/ranking/merit, data/sponsored-prize.ts) se eliminaron con el torneo.
 
 // ─── Lista de jugadores (global / por módulo / por país / por creador) ──────
 function PlayersList({ entries, meId, emptyKind = "global" }: { entries: RankEntry[] | null; meId: string | null; emptyKind?: "global" | "country" | "creator" }) {

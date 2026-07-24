@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import BarContextBanner from "@/components/bars/BarContextBanner";
 import { BarContextProvider } from "@/components/bars/BarContextProvider";
 import { getBarContext, barThemeCssVars } from "@/lib/bars/context";
-import GranPremioOffer from "@/components/pro/GranPremioOffer";
 import HomeInstallBanner from "@/components/HomeInstallBanner";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getGateStatus } from "@/lib/ligas/football-prefs";
@@ -57,7 +56,7 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
   const ctx = await getBarContext();
 
   // Sin contexto de bar: experiencia ZM intacta para el resto de usuarios.
-  if (!ctx) return <><HomeInstallBanner />{children}<GranPremioOffer /></>;
+  if (!ctx) return <><HomeInstallBanner />{children}</>;
 
   // Con contexto de bar: banner de marca + paleta del bar inyectada como
   // variables CSS, que los módulos de /app adoptan (fondos, acentos y CTAs).
@@ -69,7 +68,6 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
         <BarContextBanner bar={ctx.bar} theme={ctx.theme} />
         <HomeInstallBanner />
         {children}
-        <GranPremioOffer />
       </div>
     </BarContextProvider>
   );

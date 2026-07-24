@@ -21,7 +21,6 @@ import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import { resolveKnockoutTeams } from "@/lib/grupos/bracket";
 import { matchSlug } from "@/lib/match-center/slug";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
-import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
 const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e";
 
@@ -324,7 +323,6 @@ export default async function DieciseisavosPage() {
       </div>
 
       <StickyCta />
-      <PremiosPopup />
     </main>
   );
 }

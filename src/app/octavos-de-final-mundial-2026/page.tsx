@@ -18,7 +18,6 @@ import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import { resolveKnockoutSlots, applyResolution, type KoResult, type ResolvedTeam } from "@/lib/match-center/knockout-resolve";
 import { matchInstant } from "@/lib/calendario/time";
 import StickyCta from "@/app/grupos/mejores-terceros/StickyCta";
-import PremiosPopup from "@/app/grupos/mejores-terceros/PremiosPopup";
 
 const BG = "#000000", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#a69a82", DIM = "#6e6552", GREEN = "#22c55e";
 
@@ -357,7 +356,6 @@ export default async function OctavosPage() {
       </div>
 
       <StickyCta />
-      <PremiosPopup />
     </main>
   );
 }

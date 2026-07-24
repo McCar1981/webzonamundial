@@ -15,7 +15,6 @@ import { WC_MATCHES } from "@/lib/calendario/time";
 import { FINISHED_STATUSES } from "@/lib/calendario/live";
 import { getLastSnapshotsBulk } from "@/lib/match-center/store";
 import StickyCta from "./StickyCta";
-import PremiosPopup from "./PremiosPopup";
 import TercerosPicker from "./TercerosPicker";
 import TercerosAccountSync from "./TercerosAccountSync";
 import AvisameTerceros from "./AvisameTerceros";
@@ -478,7 +477,6 @@ export default async function MejoresTercerosPage() {
       </div>
 
       <StickyCta />
-      <PremiosPopup />
     </main>
   );
 }

@@ -18,6 +18,7 @@ import {
   todayUTC,
 } from "@/lib/trivia/store";
 import { resolveIdentity } from "@/lib/trivia/identity";
+import { getMisLigas } from "@/lib/ligas/mis-ligas";
 import { newSessionId, pickQuestions, toClientQuestion } from "@/lib/trivia/play";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
 import type { ServerSession, TriviaMode, TriviaQuestion } from "@/lib/trivia/types";
@@ -109,6 +110,21 @@ export async function POST(req: Request) {
   if (pool.length < target) {
     await resetSeen(userId);
     pool = bank;
+  }
+
+  // Sesgo por LIGA (trivia "de tu fútbol"): si el usuario sigue ligas, la partida
+  // prioriza preguntas de SUS ligas + las generales (sin liga: Mundiales,
+  // leyendas, reglas). Solo si quedan suficientes; si no, cae al banco completo.
+  if (authUserId) {
+    try {
+      const mine = new Set(await getMisLigas(authUserId));
+      if (mine.size > 0) {
+        const preferred = pool.filter((q) => !q.league || mine.has(q.league));
+        if (preferred.length >= target) pool = preferred;
+      }
+    } catch {
+      /* sin preferencia de ligas: se juega con el banco completo */
+    }
   }
 
   let questions = pickQuestions(pool, mode);

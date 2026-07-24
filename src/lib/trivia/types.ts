@@ -10,7 +10,9 @@ export type TriviaCategory =
   | "sedes"
   | "datos"
   | "reglas"
-  | "actualidad";
+  | "actualidad"
+  | "ligas"      // ligas de clubes (LaLiga, Liga MX, LigaPro, Libertadores…)
+  | "clubes";    // clubes: palmarés, leyendas, historia, escudos
 
 export type TriviaDifficulty = "facil" | "media" | "dificil" | "experta";
 
@@ -27,6 +29,10 @@ export interface TriviaQuestion {
   difficulty: TriviaDifficulty;
   /** Explicación breve que se muestra tras responder (didáctico + retención). */
   explanation?: string;
+  /** Slug de la competición si la pregunta es ESPECÍFICA de una liga/copa
+   *  (p.ej. "laliga", "liga-mx", "libertadores"). Vacío = fútbol general
+   *  (Mundiales, reglas, leyendas). Sesga la trivia a la liga del usuario. */
+  league?: string | null;
 }
 
 /** Conjunto de preguntas generado para un día concreto (YYYY-MM-DD). */

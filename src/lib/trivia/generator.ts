@@ -36,6 +36,8 @@ const VALID_CATEGORIES: TriviaCategory[] = [
   "datos",
   "reglas",
   "actualidad",
+  "ligas",
+  "clubes",
 ];
 const VALID_DIFFICULTIES: TriviaDifficulty[] = [
   "facil",
@@ -44,30 +46,36 @@ const VALID_DIFFICULTIES: TriviaDifficulty[] = [
   "experta",
 ];
 
-const SYSTEM_PROMPT = `Eres el generador de trivia de ZonaMundial, plataforma sobre el Mundial de fútbol 2026 (sede: EEUU, México y Canadá; 48 selecciones; arranca el 11 de junio de 2026).
+const SYSTEM_PROMPT = `Eres el generador de trivia de ZonaMundial, plataforma de fútbol (Zona de Ligas): fútbol de clubes de las grandes ligas todo el año + historia de los Mundiales.
 
-Tu trabajo: crear preguntas de trivia de fútbol/Mundiales en español, de calidad, con UNA sola respuesta inequívocamente correcta.
+Tu trabajo: crear preguntas de trivia de fútbol en español, de calidad, con UNA sola respuesta inequívocamente correcta.
+
+ÁMBITO (equilibra entre estos temas atemporales y verificables):
+- LIGAS DE CLUBES: LaLiga (España), Liga MX (México), LigaPro (Ecuador), CONMEBOL Libertadores y Sudamericana, Liga FUTVE (Venezuela), Primera A (Colombia), Liga Argentina, Brasileirão, Premier League, Serie A, Bundesliga, Ligue 1, Champions League. Campeones históricos, clubes récord, máximos goleadores históricos, estadios míticos, apodos y escudos.
+- CLUBES: palmarés, leyendas e ídolos históricos, fundaciones, clásicos y rivalidades.
+- MUNDIALES: historia (1930-2022), palmarés, récords consolidados.
+- REGLAS del fútbol y datos históricos de selecciones.
 
 REGLAS INVIOLABLES:
-1. SOLO hechos verificables y atemporales: historia de los Mundiales (1930-2022), palmarés, récords consolidados, sedes y estadios del Mundial 2026, formato del torneo (48 equipos, 12 grupos de 4, 104 partidos), reglas del fútbol, datos históricos de selecciones.
+1. SOLO hechos verificables y ATEMPORALES (consolidados por la historia). PROHIBIDO todo lo que cambie con el tiempo: resultados recientes, tabla actual, plantilla o fichajes de esta temporada, lesiones, quién juega hoy. Eso lo cubre otra capa (noticias). Un dato válido sigue siendo cierto dentro de 5 años.
 2. PROHIBIDO inventar datos. Si tienes la MÁS MÍNIMA duda sobre un dato, NO hagas esa pregunta. Verifica mentalmente cada hecho antes de escribirlo. Más vale generar menos preguntas que una sola incorrecta.
-3. PROHIBIDO preguntar por resultados recientes, lesiones actuales, convocatorias de 2026 o cualquier cosa que cambie con el tiempo (eso lo cubre otra capa).
+3. Sé especialmente CAUTO con récords de clubes que podrían haber cambiado (máximo goleador, más títulos): usa solo los consolidados e indiscutibles, o formula la pregunta sobre una fecha/época cerrada.
 4. Cada pregunta tiene EXACTAMENTE 4 opciones. Solo UNA es correcta. Las otras 3 deben ser plausibles pero claramente incorrectas (sin trampas ambiguas).
 5. PROHIBIDO opciones tipo "Ninguna", "Todas las anteriores", "Aún no está confirmado", "No se sabe" o similares. Las 4 opciones deben ser respuestas concretas y distintas. El dato correcto SIEMPRE existe y es conocido (si no lo sabes con certeza, descarta la pregunta).
-6. La pregunta NO puede partir de una premisa falsa. Ejemplos PROHIBIDOS: "¿En qué ciudad mexicana es la final de 2026?" (la final es en EEUU), "¿Qué selección jugó todos los Mundiales?" cuando la respuesta sería "ninguna". Si la premisa no es cierta, NO hagas la pregunta.
+6. La pregunta NO puede partir de una premisa falsa. Si la premisa no es cierta, NO hagas la pregunta.
 7. La "explanation" DEBE afirmar y respaldar exactamente la opción correcta (cítala literalmente) y ser coherente con ella. PROHIBIDO que la explicación contenga dudas, correcciones, la palabra "error", "no estoy seguro", "creo que", "posiblemente", ni un dato distinto al de la opción correcta.
 8. Explicación breve (1 frase, máx 140 caracteres) que enseñe algo, en "explanation".
 9. Devuelve SOLO un JSON válido, sin markdown ni texto extra.
 
 DATOS DE REFERENCIA (úsalos exactos, son correctos):
-- Final Mundial 2026: MetLife Stadium, Nueva Jersey (EEUU). NO es en México.
 - Brasil es la ÚNICA selección que ha disputado todos los Mundiales (1930-2022).
-- Primera final decidida por tanda de penaltis: 1994 (Brasil 0-0 Italia, 3-2 en penales). La final de 1990 (Alemania 1-0 Argentina) se decidió por un penalti EN JUEGO, no por tanda.
-- Mayor goleada en una final: ninguna superó los 5 goles totales; finales históricas como 1958 (Brasil 5-2 Suecia) o 1970 (Brasil 4-1 Italia).
-- Mayor goleada en fase de grupos: Hungría 10-1 El Salvador (1982), 11 goles.
+- Real Madrid es el máximo ganador de la Copa de Europa/Champions League (récord histórico consolidado).
+- Independiente (Argentina) es el club con más Copas Libertadores (7), récord histórico.
+- América es el club más laureado de la Liga MX por títulos de liga.
+- Barcelona SC (Guayaquil) es el club con más títulos de la LigaPro/Serie A de Ecuador.
 
-CATEGORÍAS (campo "category"): "historia" | "selecciones" | "sedes" | "datos" | "reglas" | "actualidad".
-(Usa "actualidad" solo para datos del formato/sedes 2026 que ya son oficiales y fijos.)
+CATEGORÍAS (campo "category"): "ligas" (competiciones de clubes) | "clubes" (equipos, leyendas) | "historia" (Mundiales) | "selecciones" | "reglas" | "datos" | "sedes".
+Prioriza "ligas" y "clubes": la plataforma es de fútbol de clubes.
 
 DIFICULTAD (campo "difficulty"): "facil" | "media" | "dificil" | "experta".
 Reparte: ~30% facil, ~35% media, ~25% dificil, ~10% experta.
@@ -103,6 +111,10 @@ interface RawQuestion {
 export async function generateQuestions(
   count = 18,
   avoid: string[] = [],
+  /** Si se pasa, TODAS las preguntas se centran en esa liga/copa y se etiquetan
+   *  con su slug (para sesgar la trivia a la liga del usuario). Sin esto, fútbol
+   *  general (Mundiales, leyendas, reglas) y sin etiqueta de liga. */
+  leagueContext?: { slug: string; name: string } | null,
 ): Promise<TriviaQuestion[]> {
   const model = process.env.ANTHROPIC_MODEL_TRIVIA || DEFAULT_MODEL;
 
@@ -114,7 +126,11 @@ export async function generateQuestions(
           .join("\n")}`
       : "";
 
-  const userMessage = `Genera ${count} preguntas de trivia nuevas y variadas para hoy. Mezcla categorías y dificultades según las proporciones indicadas. Cada pregunta debe ser distinta de las demás (sin enunciados repetidos). Verifica cada dato antes de incluirlo.${avoidBlock}\n\nDevuelve SOLO el JSON.`;
+  const focusBlock = leagueContext
+    ? `\n\nTEMA DE HOY: TODAS las preguntas deben tratar sobre ${leagueContext.name} (sus clubes, campeones históricos, leyendas, récords consolidados, estadios y clásicos). Nada de otras ligas. Usa category "ligas" o "clubes".`
+    : "";
+
+  const userMessage = `Genera ${count} preguntas de trivia nuevas y variadas para hoy. Mezcla categorías y dificultades según las proporciones indicadas. Cada pregunta debe ser distinta de las demás (sin enunciados repetidos). Verifica cada dato antes de incluirlo.${focusBlock}${avoidBlock}\n\nDevuelve SOLO el JSON.`;
 
   const avoidSet = new Set(avoid.map(normalizeText));
 
@@ -167,7 +183,9 @@ export async function generateQuestions(
   // las que el verificador coincide con seguridad. Atrapa errores factuales
   // que ninguna regex puede ver (p.ej. "árbitro brasileño Jack Taylor" → inglés).
   const verdicts = await Promise.all(candidates.map((q) => verifyQuestion(q, model)));
-  return candidates.filter((_, i) => verdicts[i]);
+  const survivors = candidates.filter((_, i) => verdicts[i]);
+  // Etiqueta con la liga si la tanda tenía foco → el /start puede sesgar por liga.
+  return leagueContext ? survivors.map((q) => ({ ...q, league: leagueContext.slug })) : survivors;
 }
 
 /** Normaliza un enunciado para comparar repeticiones (sin tildes/símbolos/espacios). */

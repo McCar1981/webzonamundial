@@ -140,7 +140,7 @@ const CATS: Cat[] = [
       // PIVOTE LIGAS (jul-2026): desactivado. "Cruces" era el bracket del Mundial;
       // se reactiva/reutiliza para copas (Libertadores/Champions) cuando toque.
       // { icon: "bracket", title: "Cruces", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
-      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
+      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Preguntas de tu liga y del fútbol.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
       { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
       // PIVOTE LIGAS (jul-2026): desactivado. "Modo Carrera" dirige una SELECCIÓN;
       // se reutiliza para dirigir un CLUB cuando se adapte. Código intacto y dormido.

@@ -18,6 +18,23 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
+// Ligas para el foco rotativo de la trivia (slugs válidos del catálogo, seguibles
+// por el usuario → el sesgo por-liga del /start las casa con fav_ligas). Orden
+// pan-LATAM.
+const LEAGUE_FOCUS: { slug: string; name: string }[] = [
+  { slug: "ligapro-ecuador", name: "la LigaPro / Serie A de Ecuador" },
+  { slug: "libertadores", name: "la CONMEBOL Libertadores" },
+  { slug: "liga-mx", name: "la Liga MX de México" },
+  { slug: "laliga", name: "LaLiga de España" },
+  { slug: "sudamericana", name: "la CONMEBOL Sudamericana" },
+  { slug: "liga-futve", name: "la Liga FUTVE de Venezuela" },
+  { slug: "primera-a-colombia", name: "la Primera A de Colombia" },
+  { slug: "liga-argentina", name: "la Liga Profesional Argentina" },
+  { slug: "brasileirao", name: "el Brasileirão de Brasil" },
+  { slug: "premier-league", name: "la Premier League de Inglaterra" },
+  { slug: "champions-league", name: "la UEFA Champions League" },
+];
+
 export async function GET(req: Request) {
   const denied = requireCron(req);
   if (denied) return denied;
@@ -35,9 +52,22 @@ export async function GET(req: Request) {
     bank = await getQuestionBank();
   }
 
+  // Foco de la tanda de hoy: un día GENERAL (Mundiales/leyendas/reglas), el
+  // siguiente enfocado en una LIGA concreta (rotando por la lista). Así el banco
+  // acumula preguntas etiquetadas de cada liga para el sesgo por-liga del /start,
+  // manteniendo UNA sola tanda por run (respeta maxDuration 120s). ?league=slug
+  // fuerza una liga (para sembrar una concreta a mano).
+  const dayNum = Math.floor(Date.now() / 86_400_000);
+  const leagueParam = url.searchParams.get("league");
+  const focus = leagueParam
+    ? LEAGUE_FOCUS.find((l) => l.slug === leagueParam) ?? null
+    : dayNum % 2 === 0
+      ? null
+      : LEAGUE_FOCUS[Math.floor(dayNum / 2) % LEAGUE_FOCUS.length];
+
   // Genera preguntas nuevas evitando todo lo que ya hay en el banco.
   const avoid = bank.map((q) => q.question);
-  const questions = await generateQuestions(count, avoid);
+  const questions = await generateQuestions(count, avoid, focus);
   const added = await addToBank(questions);
   const bankSize = (await getQuestionBank()).length;
 
@@ -69,6 +99,7 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     ok: healthy,
+    focus: focus?.slug ?? "general", // liga enfocada esta tanda (o general)
     generated: questions.length, // pasaron generación + verificación
     added, // nuevas (no duplicadas) que entraron al banco
     bankSize, // tamaño real del banco tras añadir

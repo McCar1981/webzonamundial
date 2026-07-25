@@ -107,6 +107,8 @@ export interface UseDraftGameReturn {
   logrosNuevos: DraftLogro[];
   posicionesOcupadas: DraftPosicion[];
   rerollsRestantes: number;
+  comprarReroll: () => Promise<{ ok: boolean; error?: string }>;
+  comprandoReroll: boolean;
   campanaBonus: number;
   recompensa: RecompensaDraft | null;
   puntajeParcial: number | null;
@@ -143,6 +145,30 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
   const [logrosEstado, setLogrosEstado] = useState<Record<string, boolean>>(() => loadLogros());
   const [logrosNuevos, setLogrosNuevos] = useState<DraftLogro[]>([]);
   const [rerollsRestantes, setRerollsRestantes] = useState(REROLLS_INICIALES);
+  const [comprandoReroll, setComprandoReroll] = useState(false);
+
+  /** Compra una re-tirada extra con Fútcoins. El precio y el cobro los decide
+   *  el servidor (catálogo único + spendCoins): aquí solo se refleja el éxito. */
+  const comprarReroll = useCallback(async (): Promise<{ ok: boolean; error?: string }> => {
+    setComprandoReroll(true);
+    try {
+      const r = await fetch("/api/draft/comprar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ item: "reroll" }),
+      });
+      const data = await r.json().catch(() => null);
+      if (r.ok && data?.ok) {
+        setRerollsRestantes((n) => n + 1);
+        return { ok: true };
+      }
+      return { ok: false, error: data?.error || "error" };
+    } catch {
+      return { ok: false, error: "red" };
+    } finally {
+      setComprandoReroll(false);
+    }
+  }, []);
   const [campanaBonus, setCampanaBonus] = useState(0);
   const [recompensa, setRecompensa] = useState<RecompensaDraft | null>(null);
 
@@ -469,6 +495,8 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
     logrosNuevos,
     posicionesOcupadas,
     rerollsRestantes,
+    comprarReroll,
+    comprandoReroll,
     campanaBonus,
     recompensa,
     puntajeParcial,

@@ -23,7 +23,7 @@ import { BOOST_CATALOG } from "@/lib/predictions/gamification";
 import { COSMETICS } from "@/lib/predictions/cosmetics";
 
 /** Módulo del universo al que pertenece un sumidero (para agrupar/analítica). */
-export type SinkModule = "predicciones" | "trivia" | "fantasy" | "modo-carrera";
+export type SinkModule = "predicciones" | "trivia" | "fantasy" | "modo-carrera" | "draft";
 
 export interface SinkDef {
   /** Identificador estable del sumidero (único en toda la app). */
@@ -43,6 +43,18 @@ export const TRIVIA_HINT_FIFTY = 30;       // descarta dos opciones erróneas
 export const TRIVIA_HINT_SKIP = 20;        // salta la pregunta sin penalizar
 export const CAREER_NARRATIVE_REFILL = 50; // recarga una generación de narrativa IA
 
+// ─── Sumideros del DRAFT ───────────────────────────────────────────────────────
+// El Draft era el ÚNICO módulo del universo que solo imprimía Fútcoins y nunca
+// las retiraba: se ganaban monedas partida tras partida sin un solo sitio donde
+// gastarlas dentro del propio juego, así que la moneda no significaba nada ahí.
+// Los tres precios atacan momentos de máxima intención:
+//   · la re-tirada extra, cuando se agotan los 3 cambios a mitad de partida;
+//   · el ojeador, para convertir una tirada a ciegas en una decisión;
+//   · la partida extra, el escalón que faltaba entre el tope Free y pagar el año.
+export const DRAFT_REROLL_EXTRA = 15;  // una re-tirada más cuando se agotan
+export const DRAFT_OJEADOR = 30;       // ves DOS clubes y eliges con cuál sigues
+export const DRAFT_PARTIDA_EXTRA = 60; // una partida más al chocar con el tope diario
+
 // ─── Vista UNIFICADA de todos los sumideros ────────────────────────────────────
 // Une los catálogos de módulo (predicciones) con los transversales. Es solo una
 // proyección de lectura: el precio de boosts/cosméticos sigue siendo el de su
@@ -58,6 +70,9 @@ export function allSinks(): SinkDef[] {
     { id: "trivia_hint_fifty", module: "trivia", label: "Pista 50/50", cost: TRIVIA_HINT_FIFTY },
     { id: "trivia_hint_skip", module: "trivia", label: "Saltar pregunta", cost: TRIVIA_HINT_SKIP },
     { id: "career_narrative_refill", module: "modo-carrera", label: "Recarga de narrativa IA", cost: CAREER_NARRATIVE_REFILL },
+    { id: "draft_reroll_extra", module: "draft", label: "Re-tirada extra", cost: DRAFT_REROLL_EXTRA },
+    { id: "draft_ojeador", module: "draft", label: "Ojeador (ves dos clubes)", cost: DRAFT_OJEADOR },
+    { id: "draft_partida_extra", module: "draft", label: "Partida extra", cost: DRAFT_PARTIDA_EXTRA },
   ];
   return [...boosts, ...cosmetics, ...cross];
 }

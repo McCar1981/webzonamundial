@@ -7,6 +7,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Link from "next/link";
 import { FREE_LIMITS, PRO_PRICE_DISPLAY } from "@/lib/pro/limits";
+import { DRAFT_REROLL_EXTRA } from "@/lib/economy/spend";
 import {
   DraftPosicion,
   DraftPlantilla,
@@ -545,9 +546,12 @@ function TiradaPanel({
 function SeleccionPanel({
   plantilla, jugadores, modo, tiempoRestante, onSeleccionar, posicionesOcupadas,
   rerollsRestantes, onOtraSeleccion, onOtroMundial, coherenciaHint,
+  onComprarReroll, comprandoReroll,
 }: {
   plantilla: { seleccion: string; year: number; logo?: string | null };
   jugadores: JugadorSeleccionado[];
+  onComprarReroll: () => Promise<{ ok: boolean; error?: string }>;
+  comprandoReroll: boolean;
   modo: Modo;
   tiempoRestante: number | null;
   onSeleccionar: (id: string) => void;
@@ -557,6 +561,19 @@ function SeleccionPanel({
   onOtroMundial: () => void;
   coherenciaHint?: string | null;
 }) {
+  const [errorCompra, setErrorCompra] = useState<string | null>(null);
+  const onComprarRerollClick = async () => {
+    setErrorCompra(null);
+    const r = await onComprarReroll();
+    if (!r.ok) {
+      setErrorCompra(
+        r.error === "saldo_insuficiente" ? "No te alcanzan las Fútcoins."
+        : r.error === "not_authenticated" ? "Crea tu cuenta para comprar re-tiradas."
+        : "No se pudo completar la compra."
+      );
+    }
+  };
+
   const vacio = jugadores.length === 0;
   // Cuando la selección no aporta NINGÚN jugador fichable, la re-tirada es
   // gratis (el hook no descuenta cambios), así nunca se bloquea la partida.
@@ -598,6 +615,22 @@ function SeleccionPanel({
                 <IconGlobe size={15} color={GOLD} />Otra temporada
               </button>
             </div>
+            {/* Sin cambios: se ofrece comprar uno más. Es el punto de máxima
+                intención de la partida, y hasta ahora las Fútcoins ganadas en
+                el Draft no se podían gastar en ninguna parte del propio juego. */}
+            {rerollBloqueado && (
+              <div className="mt-2">
+                <button onClick={onComprarRerollClick} disabled={comprandoReroll}
+                  className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-60"
+                  style={{ background: `${GOLD}22`, border: `1px dashed ${GOLD}77`, color: GOLD, cursor: comprandoReroll ? "wait" : "pointer" }}>
+                  <IconRefresh size={14} color={GOLD} />
+                  {comprandoReroll ? "Comprando…" : `Una re-tirada más · ${DRAFT_REROLL_EXTRA} Fútcoins`}
+                </button>
+                {errorCompra && (
+                  <div className="text-[11px] mt-1.5 text-center" style={{ color: RED }}>{errorCompra}</div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -816,10 +849,38 @@ function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar }:
   const penalXp = recompensa?.penalXp ?? 0;
   const eliminado = recompensa?.eliminado ?? false;
 
-  const compartir = useCallback(() => {
-    const nombres = Object.values(equipo).filter(Boolean).map((j) => j!.nombre).slice(0, 3).join(", ");
-    const texto = `Armé un equipo ${resultado.calificacion} (${resultado.puntaje}/100) en Draft de Ligas de @ZonaMundial\n\n${nombres}...\n\n¿Puedes superarme? → webzonamundial.com/app/draft-mundial`;
-    navigator.clipboard.writeText(texto).then(() => alert("¡Texto copiado al portapapeles!"));
+  const [copiado, setCopiado] = useState(false);
+
+  // Compartir de verdad: hoja nativa en móvil (WhatsApp es EL canal en LATAM) y
+  // copia al portapapeles en escritorio. Antes era clipboard + alert(), sin hoja
+  // nativa, y el texto no mencionaba ni el club ni la liga.
+  const compartir = useCallback(async () => {
+    const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
+    // Bloque más repetido: es lo que da orgullo contar ("7 del Caracas").
+    const porClub = new Map<string, number>();
+    for (const j of jugadores) porClub.set(j.seleccion, (porClub.get(j.seleccion) || 0) + 1);
+    const [clubTop, nClub] = [...porClub.entries()].sort((a, b) => b[1] - a[1])[0] ?? ["", 0];
+    const bloque = nClub >= 3 ? ` con ${nClub} del ${clubTop}` : "";
+    const cracks = [...jugadores].sort((a, b) => b.fuerza - a.fuerza).slice(0, 3).map((j) => j.nombre).join(", ");
+
+    const url = `${window.location.origin}/app/draft-mundial`;
+    const texto = `Mi once ${resultado.calificacion} (${resultado.puntaje}/100) en el Draft de Ligas${bloque}: ${cracks}. ¿Lo superas?`;
+
+    try {
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({ title: "Draft de Ligas", text: texto, url });
+        return;
+      }
+    } catch {
+      return; // el usuario canceló la hoja nativa: no es un error
+    }
+    try {
+      await navigator.clipboard.writeText(`${texto}\n${url}`);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2500);
+    } catch {
+      window.prompt("Copia tu once para compartir:", `${texto}\n${url}`);
+    }
   }, [resultado, equipo]);
 
   return (
@@ -963,7 +1024,7 @@ function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar }:
           <button onClick={compartir}
             className="w-full py-3 rounded-xl text-base font-bold transition-all hover:scale-[1.02] active:scale-[0.98] border flex items-center justify-center gap-2"
             style={{ borderColor: `${GOLD}66`, color: GOLD, background: `${GOLD}11` }}>
-            <IconShare size={18} color={GOLD} />Compartir resultado
+            <IconShare size={18} color={GOLD} />{copiado ? "¡Copiado!" : "Compartir mi once"}
           </button>
           <button onClick={onReiniciar}
             className="w-full py-3.5 rounded-xl text-base font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
@@ -1618,6 +1679,8 @@ export default function DraftMundialJugarPage() {
                   onOtraSeleccion={game.otraSeleccion}
                   onOtroMundial={game.otroMundial}
                   coherenciaHint={game.coherenciaHint}
+                  onComprarReroll={game.comprarReroll}
+                  comprandoReroll={game.comprandoReroll}
                 />
               )}
               {game.phase === "simulacion" && <SimulacionScreen />}

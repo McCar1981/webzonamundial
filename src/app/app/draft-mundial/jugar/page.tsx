@@ -956,15 +956,44 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
 }) {
   const jugadores = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   // Los rivales de la campaña son clubes de la MISMA liga elegida (no selecciones del Mundial).
-  const [campana, setCampana] = useState<Campana>(() => generarCampana(jugadores, rivalPool));
+  // La campaña se simula una sola vez y es definitiva (sin setter: no se repite).
+  const [campana] = useState<Campana>(() => generarCampana(jugadores, rivalPool));
   const [revelados, setRevelados] = useState(0);
   const [modoCampana, setModoCampana] = useState<"manual" | "auto">("auto");
   const total = campana.partidos.length;
   const completo = revelados >= total;
   const jugCount = jugadores.length;
 
-  const repetir = () => { setCampana(generarCampana(jugadores, rivalPool)); setRevelados(0); };
-  const iniciar = () => setRevelados(modoCampana === "auto" ? total : 1);
+  // El clímax se trae a la vista: antes el banner de desenlace y el confeti
+  // nacían debajo del pliegue y había que scrollear para saber si ganaste.
+  const desenlaceRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!completo || revelados === 0) return;
+    desenlaceRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [completo, revelados]);
+
+  // En automático los partidos se revelan de uno en uno (~450 ms) en vez de
+  // aparecer los 8 de golpe: esos segundos de tensión son la parte más barata
+  // de hacer emocionante del juego. En "partido a partido" manda el jugador.
+  const iniciar = () => setRevelados(1);
+  useEffect(() => {
+    if (modoCampana !== "auto" || revelados === 0 || revelados >= total) return;
+    const t = setTimeout(() => setRevelados((r) => Math.min(total, r + 1)), 450);
+    return () => clearTimeout(t);
+  }, [modoCampana, revelados, total]);
+
+  // Cierre de partida a prueba de doble toque: en 3G el segundo tap llegaba a
+  // insertar DOS resultados (monedas acreditadas dos veces y cupo diario
+  // consumido dos veces). El ref corta la reentrada aunque React aún no haya
+  // repintado el botón deshabilitado.
+  const [terminando, setTerminando] = useState(false);
+  const terminadoRef = useRef(false);
+  const terminar = () => {
+    if (terminadoRef.current) return;
+    terminadoRef.current = true;
+    setTerminando(true);
+    onTerminar(campana);
+  };
 
   const MODOS_CAMP: { key: "manual" | "auto"; icon: typeof IconBolt; title: string; desc: string; badge: string }[] = [
     { key: "manual", icon: IconBall, title: "Partido a partido", desc: "Juega cada duelo, toma decisiones y vive la campaña completa.", badge: "Recomendado" },
@@ -1122,14 +1151,17 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
       {/* Controles */}
       {!completo ? (
         <FadeIn>
-          <div className="grid grid-cols-2 gap-3">
-            <button onClick={() => setRevelados((r) => Math.min(total, r + 1))}
-              className="py-3 rounded-xl text-sm font-bold border transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ borderColor: "rgba(255,255,255,0.15)", color: TXT, background: CARD }}>
-              {`Siguiente (${revelados}/${total})`}
-            </button>
+          {/* En automático los partidos caen solos: solo se ofrece saltar. */}
+          <div className={modoCampana === "auto" ? "" : "grid grid-cols-2 gap-3"}>
+            {modoCampana !== "auto" && (
+              <button onClick={() => setRevelados((r) => Math.min(total, r + 1))}
+                className="w-full py-3 rounded-xl text-sm font-bold border transition-all hover:scale-[1.02] active:scale-[0.98]"
+                style={{ borderColor: "rgba(255,255,255,0.15)", color: TXT, background: CARD }}>
+                {`Siguiente (${revelados}/${total})`}
+              </button>
+            )}
             <button onClick={() => setRevelados(total)}
-              className="flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
               style={{ background: GOLD, color: NAVY }}>
               <IconBolt size={16} color={NAVY} />Saltar al final
             </button>
@@ -1137,8 +1169,9 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
         </FadeIn>
       ) : (
         <FadeIn>
-          {/* Banner resumen */}
-          <div className="rounded-2xl p-5 mb-4 text-center"
+          {/* Banner resumen — el clímax se trae a la vista, antes aparecía
+              debajo del pliegue y había que scrollear para saber si ganaste. */}
+          <div ref={desenlaceRef} className="rounded-2xl p-5 mb-4 text-center scroll-mt-4"
             style={{ background: campana.campeon ? `${GOLD}18` : CARD, border: `1px solid ${campana.campeon ? `${GOLD}66` : "rgba(255,255,255,0.08)"}` }}>
             {campana.campeon && <div className="flex justify-center mb-2"><IconTrophy size={34} color={GOLD} /></div>}
             <div className="text-2xl font-black mb-1" style={{ color: campana.campeon ? GOLD2 : TXT }}>{campana.outcome}</div>
@@ -1156,18 +1189,15 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <button onClick={repetir}
-              className="flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold border transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ borderColor: "rgba(255,255,255,0.15)", color: TXT, background: CARD }}>
-              <IconRefresh size={16} color={TXT} />Repetir
-            </button>
-            <button onClick={() => onTerminar(campana)}
-              className="flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: GOLD, color: NAVY }}>
-              <IconTrophy size={16} color={NAVY} />Ver mi carta
-            </button>
-          </div>
+          {/* Un solo camino de salida: la campaña es definitiva. Antes había un
+              botón "Repetir" que re-simulaba gratis e infinitas veces, así que
+              quien lo descubría salía campeón siempre y quien no, comía la
+              penalización: eran dos juegos distintos. */}
+          <button onClick={terminar} disabled={terminando}
+            className="w-full flex items-center justify-center gap-1.5 py-3 rounded-xl text-sm font-bold transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60"
+            style={{ background: GOLD, color: NAVY, cursor: terminando ? "wait" : "pointer" }}>
+            <IconTrophy size={16} color={NAVY} />{terminando ? "Guardando…" : "Ver mi carta"}
+          </button>
         </FadeIn>
       )}
       </>

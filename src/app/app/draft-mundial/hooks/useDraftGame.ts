@@ -77,6 +77,17 @@ function jugadorElegible(
   return slotExactoLibre(slots, equipo, jug.posicion) !== null;
 }
 
+/** Resultado real del guardado en servidor (lo que de verdad se acreditó). */
+export interface EstadoGuardado {
+  invitado?: boolean;
+  limiteAgotado?: boolean;
+  coinsAcreditadas?: number;
+  xpAcreditado?: number;
+  /** Monedas que el invitado cobrará si crea la cuenta. */
+  coinsPendientes?: number;
+  error?: boolean;
+}
+
 export interface UseDraftGameReturn {
   phase: GamePhase;
   formacion: FormacionKey;
@@ -91,6 +102,7 @@ export interface UseDraftGameReturn {
   jugadoresDisponibles: JugadorSeleccionado[];
   progreso: number;
   guardando: boolean;
+  estadoGuardado: EstadoGuardado | null;
   logrosDesbloqueados: DraftLogro[];
   logrosNuevos: DraftLogro[];
   posicionesOcupadas: DraftPosicion[];
@@ -124,6 +136,10 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
   const [resultado, setResultado] = useState<DraftResultado | null>(null);
   const [tiempoRestante, setTiempoRestante] = useState<number | null>(null);
   const [guardando, setGuardando] = useState(false);
+  // Qué contestó el servidor al guardar: si acreditó monedas, si el cupo diario
+  // estaba agotado o si el jugador es invitado (y por tanto tiene monedas
+  // pendientes de cobrar al crear cuenta).
+  const [estadoGuardado, setEstadoGuardado] = useState<EstadoGuardado | null>(null);
   const [logrosEstado, setLogrosEstado] = useState<Record<string, boolean>>(() => loadLogros());
   const [logrosNuevos, setLogrosNuevos] = useState<DraftLogro[]>([]);
   const [rerollsRestantes, setRerollsRestantes] = useState(REROLLS_INICIALES);
@@ -224,7 +240,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
         fuerza: j.fuerza,
       }));
 
-      await fetch("/api/draft/guardar", {
+      const r = await fetch("/api/draft/guardar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -242,8 +258,24 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
           xp: rec.xp,
         }),
       });
+      // La respuesta SÍ se lee: antes se descartaba y la pantalla cantaba
+      // "+12 Fútcoins" aunque el servidor no hubiera acreditado nada (invitado
+      // o cupo diario agotado). Ahora se muestra lo que de verdad pasó.
+      const data = await r.json().catch(() => null);
+      if (data?.ok) {
+        setEstadoGuardado({
+          invitado: !!data.invitado,
+          limiteAgotado: !!data.limiteAgotado,
+          coinsAcreditadas: data.grant?.coins ?? 0,
+          xpAcreditado: data.grant?.xp ?? 0,
+          coinsPendientes: data.coinsPendientes ?? 0,
+        });
+      } else {
+        setEstadoGuardado({ error: true });
+      }
     } catch (e) {
       console.error("[draft] error guardando resultado:", e);
+      setEstadoGuardado({ error: true });
     } finally {
       setGuardando(false);
     }
@@ -432,6 +464,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
     jugadoresDisponibles,
     progreso,
     guardando,
+    estadoGuardado,
     logrosDesbloqueados,
     logrosNuevos,
     posicionesOcupadas,

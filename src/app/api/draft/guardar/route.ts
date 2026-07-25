@@ -68,15 +68,35 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "campos_requeridos" }, { status: 400 });
   }
 
+  // ── 0) Invitado: no se guarda nada, pero la partida NO se pierde ────────
+  // Antes se intentaba insertar con user_id NULL contra una columna NOT NULL:
+  // la fila fallaba, la ruta devolvía 500 y el invitado perdía la partida justo
+  // después de invertir cuatro minutos. Ahora se responde en claro cuántas
+  // monedas tendría, para que la UI le proponga crear la cuenta y cobrarlas.
+  if (!user) {
+    const potenciales = Math.min(
+      Math.max(0, Math.floor(Number(coins) || 0)),
+      monedasPorCalificacion(calificacion) + MAX_BONUS_CAMPANA_COINS
+    );
+    return NextResponse.json({
+      ok: true,
+      resultId: null,
+      invitado: true,
+      guardado: false,
+      limiteAgotado: false,
+      grant: null,
+      coinsPendientes: potenciales,
+      xpPendiente: Math.min(Math.max(0, Math.floor(Number(xp) || 0)), puntosPorCalificacion(calificacion)),
+    });
+  }
+
   const admin = adminClient();
 
   // ── 1) Guardar resultado ────────────────────────────────────────────────
-  // Si NO hay usuario autenticado, guardamos como anónimo (NULL user_id)
-  // para tener estadísticas globales, pero NO se acreditan monedas.
   const { data: resultRow, error: resultErr } = await admin
     .from("draft_results")
     .insert({
-      user_id: user?.id ?? null,
+      user_id: user.id,
       formacion,
       estilo,
       modo,
@@ -104,12 +124,10 @@ export async function POST(req: Request) {
   // monedas. La UI ya debería haber bloqueado el inicio; esto es la red de
   // seguridad server-side.
   let limiteAgotado = false;
-  if (user) {
-    const pro = await isPro(user.id, user.email);
-    if (!pro) {
-      const q = await consumeDailyQuota(user.id, "draft", FREE_LIMITS.draft.dailyGames);
-      limiteAgotado = !q.allowed;
-    }
+  const pro = await isPro(user.id, user.email);
+  if (!pro) {
+    const q = await consumeDailyQuota(user.id, "draft", FREE_LIMITS.draft.dailyGames);
+    limiteAgotado = !q.allowed;
   }
 
   // ── 2) Acreditar monedas (solo usuarios autenticados y dentro del tope) ─
@@ -122,7 +140,7 @@ export async function POST(req: Request) {
 
   let grant: { coinsAwarded: number; xpAwarded: number } | null = null;
 
-  if (user && !limiteAgotado && safeCoins > 0) {
+  if (!limiteAgotado && safeCoins > 0) {
     // Idempotencia: un solo claim por resultado
     const { data: existingClaim } = await admin
       .from("draft_claims")
@@ -151,7 +169,8 @@ export async function POST(req: Request) {
   return NextResponse.json({
     ok: true,
     resultId,
-    anónimo: !user,
+    invitado: false,
+    guardado: true,
     limiteAgotado,
     grant: grant
       ? { coins: grant.coinsAwarded, xp: grant.xpAwarded }

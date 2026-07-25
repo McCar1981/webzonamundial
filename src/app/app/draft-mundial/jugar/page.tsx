@@ -27,7 +27,7 @@ import { DraftLogro } from "@/lib/draft/logros";
 import { generarCampana, Campana, CampanaPartido, calcularBonusCampana } from "@/lib/draft/campana";
 import { RecompensaDraft } from "@/lib/draft/recompensa";
 import { draftKitUrl, KIT_FALLBACK } from "@/lib/draft/kit";
-import { useDraftGame } from "../hooks/useDraftGame";
+import { useDraftGame, type EstadoGuardado } from "../hooks/useDraftGame";
 import SoccerField from "../components/SoccerField";
 import {
   IconTrophy, IconDice, IconShield, IconScale, IconSwords,
@@ -742,7 +742,69 @@ function RankingMini() {
 }
 
 /* ─────────── ResultadoScreen ─────────── */
-function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resultado: DraftResultado; equipo: Record<number, JugadorSeleccionado>; recompensa: RecompensaDraft | null; onReiniciar: () => void }) {
+/** Tu posición y tu récord, del endpoint /api/draft/me. Silencioso si no hay
+ *  sesión o el endpoint falla: es un extra, nunca debe romper el resultado. */
+function MiPuestoBanner({ puntaje, listo }: { puntaje: number; listo: boolean }) {
+  const [me, setMe] = useState<{ rank: number | null; best: number | null; total: number | null } | null>(null);
+
+  useEffect(() => {
+    // Se espera a que la partida esté guardada: si se consultara antes, el
+    // récord recién batido todavía no estaría en la tabla y el banner diría
+    // "te faltan N" justo cuando el jugador acaba de superarse.
+    if (!listo) return;
+    let vivo = true;
+    fetch("/api/draft/me?limit=1")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!vivo || !d) return;
+        // draft_user_rank devuelve { rank, best_score, games_played }.
+        setMe({
+          rank: d.rank?.rank ?? null,
+          best: d.best?.puntaje ?? d.rank?.best_score ?? null,
+          total: d.totalGames ?? null,
+        });
+      })
+      .catch(() => {});
+    return () => { vivo = false; };
+  }, [listo]);
+
+  if (!me || (me.rank == null && me.best == null)) return null;
+
+  const esRecord = me.best != null && puntaje >= me.best;
+  const faltan = me.best != null && !esRecord ? me.best - puntaje : 0;
+
+  return (
+    <FadeIn delay={0.2}>
+      <div className="rounded-xl p-3 mb-4 flex items-center justify-center gap-4 text-center"
+        style={{ background: CARD, border: `1px solid ${esRecord ? GOLD : "rgba(255,255,255,0.08)"}` }}>
+        {esRecord ? (
+          <div className="text-sm font-bold" style={{ color: GOLD }}>
+            ¡Récord personal! Tu mejor marca ahora es {puntaje}
+          </div>
+        ) : (
+          <>
+            {me.rank != null && (
+              <div>
+                <div className="text-lg font-black tabular-nums" style={{ color: GOLD }}>#{me.rank}</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: TXT_MUT }}>tu puesto</div>
+              </div>
+            )}
+            {me.best != null && (
+              <div>
+                <div className="text-lg font-black tabular-nums" style={{ color: TXT }}>{me.best}</div>
+                <div className="text-[10px] uppercase tracking-wider" style={{ color: TXT_MUT }}>
+                  {faltan > 0 ? `te faltan ${faltan}` : "tu récord"}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </FadeIn>
+  );
+}
+
+function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar }: { resultado: DraftResultado; equipo: Record<number, JugadorSeleccionado>; recompensa: RecompensaDraft | null; estado: EstadoGuardado | null; onReiniciar: () => void }) {
   const color = getColorCalificacion(resultado.calificacion);
   const nearMiss = getNearMiss(resultado.puntaje);
   // Recompensa NETA ya calculada por el hook (base ÷2 + bonus campaña − castigo
@@ -778,6 +840,10 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
           )}
         </div>
       </FadeIn>
+
+      {/* Tu puesto y tu récord: el endpoint existía y no lo llamaba nadie, así
+          que el jugador terminaba sin saber si había quedado #12 o #4.000. */}
+      <MiPuestoBanner puntaje={resultado.puntaje} listo={estado !== null} />
 
       <FadeIn delay={0.15}>
         <div className="rounded-xl p-4 mb-6 space-y-3" style={{ background: CARD }}>
@@ -834,7 +900,34 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
           </div>
           {eliminado && (
             <div className="text-[11px] mt-2 animate-fade-in" style={{ color: TXT_MUT }}>
-              Tu once cayó: ganás menos. Llegá a la final para no perder puntos.
+              Tu once cayó: ganas menos. Llega a la final para no perder puntos.
+            </div>
+          )}
+          {/* La verdad sobre lo que se acreditó. Antes la pantalla cantaba
+              "+12 Fútcoins" aunque el servidor no hubiera dado ninguna. */}
+          {estado?.invitado && (
+            <div className="mt-3 pt-3 animate-fade-in" style={{ borderTop: `1px solid ${GOLD}33` }}>
+              <div className="text-sm font-bold mb-2" style={{ color: GOLD }}>
+                Tus {estado.coinsPendientes || monedas} Fútcoins te esperan
+              </div>
+              <div className="text-[11px] mb-3" style={{ color: TXT_MUT }}>
+                Crea tu cuenta gratis para cobrarlas y guardar este once.
+              </div>
+              <Link href="/registro"
+                className="inline-block px-5 py-2.5 rounded-xl text-sm font-bold"
+                style={{ background: GOLD, color: NAVY }}>
+                Crear cuenta gratis
+              </Link>
+            </div>
+          )}
+          {estado?.limiteAgotado && !estado.invitado && (
+            <div className="text-[11px] mt-2 animate-fade-in" style={{ color: TXT_MUT }}>
+              Agotaste tus partidas de hoy: esta no suma Fútcoins, pero sí cuenta para el ranking.
+            </div>
+          )}
+          {estado?.error && (
+            <div className="text-[11px] mt-2 animate-fade-in" style={{ color: RED }}>
+              No pudimos guardar la partida. Revisa tu conexión y vuelve a intentarlo.
             </div>
           )}
         </div>
@@ -1537,7 +1630,7 @@ export default function DraftMundialJugarPage() {
         )}
 
         {game.phase === "resultado" && game.resultado && (
-          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} recompensa={game.recompensa} onReiniciar={game.reiniciar} />
+          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} recompensa={game.recompensa} estado={game.estadoGuardado} onReiniciar={game.reiniciar} />
         )}
       </div>
     </div>

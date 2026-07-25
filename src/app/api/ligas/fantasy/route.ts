@@ -14,11 +14,11 @@ import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
 import { getCompetitionFixtures } from "@/lib/competitions/api";
 import { saveFantasyPick, getUserFantasyPick, type SquadPick } from "@/lib/ligas/fantasy-store";
+import { SQUAD_SIZE } from "@/lib/ligas/fantasy-config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export const SQUAD_SIZE = 5;
 const NOT_STARTED = new Set(["NS", "TBD"]);
 
 export async function GET(request: Request) {

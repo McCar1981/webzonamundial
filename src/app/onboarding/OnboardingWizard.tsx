@@ -4,8 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { completeOnboardingAction, skipOnboardingAction } from "./actions";
 import { subscribeToPush, claimPushReward } from "@/lib/push-client";
-
-const PUSH_REWARD_COINS = 25;
+import { PUSH_REWARD_COINS } from "@/lib/notifications/push-rewards";
 
 interface CountryOption {
   code: string;

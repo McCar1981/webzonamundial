@@ -9,12 +9,10 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
+import { PUSH_REWARD_COINS, PUSH_REWARD_XP } from "@/lib/notifications/push-rewards";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-export const PUSH_REWARD_COINS = 25;
-export const PUSH_REWARD_XP = 10;
 
 export async function POST() {
   const user = await getCurrentUser();

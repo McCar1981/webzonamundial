@@ -67,85 +67,170 @@ export function calcularCoherencia(equipo: JugadorSeleccionado[]): number {
     years.set(j.year, (years.get(j.year) || 0) + 1);
   }
 
+  // Química por bloque del mismo club: recompensas SUBIDAS. Antes juntar tres
+  // jugadores del mismo club daba +5 de coherencia = +1,25 puntos sobre 100,
+  // así que la regla que más decide la nota era invisible y no compensaba
+  // perseguirla. Ahora un bloque grande del mismo club se nota de verdad.
   for (const [, count] of selecciones) {
-    if (count >= 3) coherencia += 5;
+    if (count >= 5) coherencia += 15;
+    else if (count >= 4) coherencia += 11;
+    else if (count >= 3) coherencia += 8;
+    else if (count >= 2) coherencia += 3;
   }
 
   for (const [, count] of years) {
-    if (count >= 2) coherencia += 3;
+    if (count >= 3) coherencia += 5;
+    else if (count >= 2) coherencia += 3;
   }
 
-  // Bonus por portero + defensa de misma selección
+  // Bonus por portero + defensa del mismo club
   const portero = equipo.find((j) => j.posicion === "GOL");
   if (portero) {
     const defensasMisma = equipo.filter(
       (j) => ["LD", "ZAG", "LE"].includes(j.posicion) && j.seleccion === portero.seleccion
     ).length;
-    if (defensasMisma >= 2) coherencia += 2;
+    if (defensasMisma >= 2) coherencia += 6;
   }
 
-  // Bonus por delantera completa de misma selección
+  // Bonus por delantera completa del mismo club
   const delantera = equipo.filter((j) => ["CA", "PD", "PI", "EXT"].includes(j.posicion));
   if (delantera.length >= 2) {
     const primeraSel = delantera[0]?.seleccion;
     if (primeraSel && delantera.every((j) => j.seleccion === primeraSel)) {
-      coherencia += 4;
+      coherencia += 10;
     }
   }
 
   return Math.max(0, Math.min(100, coherencia));
 }
 
+// ─── Referencias de la liga ──────────────────────────────────────────────────
+// La fuerza bruta no es comparable entre ligas: el mejor once de la FUTVE ronda
+// 80 y el del catálogo europeo 93. Puntuar en bruto condenaba a las ligas
+// pequeñas —justo donde está la mayoría de la audiencia— a no poder aspirar a
+// las calificaciones altas. Se normaliza contra el techo y el suelo de TU liga,
+// así "Leyenda" significa "armaste un once excelente para tu liga".
+export interface ReferenciasLiga {
+  /** Media de los 11 mejores del pool: el once soñado de esa liga. */
+  techo: number;
+  /** Mediana del pool: un once del montón. */
+  suelo: number;
+}
+
+const REF_POR_DEFECTO: ReferenciasLiga = { suelo: 76, techo: 88 };
+
+export function referenciasLiga(
+  pool: { jugadores: { fuerza: number }[] }[]
+): ReferenciasLiga {
+  const fuerzas = pool.flatMap((p) => p.jugadores.map((j) => j.fuerza));
+  if (fuerzas.length < 22) return REF_POR_DEFECTO;
+  const orden = [...fuerzas].sort((a, b) => b - a);
+  const sonado = orden.slice(0, 11).reduce((s, f) => s + f, 0) / 11;
+  const suelo = orden[Math.floor(orden.length / 2)];
+  // El once soñado exacto (los 11 mejores de la liga, cada uno en su posición)
+  // es inalcanzable tirando el dado: exigirlo dejaba el techo real en ~80/100.
+  // Se marca el 100 un poco antes, en el 82% del camino hacia ese ideal, para
+  // que un draft excelente SÍ llegue arriba. Calibrado por simulación.
+  const techo = suelo + (sonado - suelo) * 0.82;
+  // Un margen mínimo evita divisiones absurdas en pools muy planos.
+  return { suelo, techo: Math.max(techo, suelo + 6) };
+}
+
+function normalizar(v: number, ref: ReferenciasLiga): number {
+  const rango = ref.techo - ref.suelo;
+  if (rango <= 0) return 50;
+  return Math.max(0, Math.min(100, ((v - ref.suelo) / rango) * 100));
+}
+
+const POS_DEF: DraftPosicion[] = ["GOL", "LD", "ZAG", "LE"];
+const POS_ATA: DraftPosicion[] = ["CA", "PD", "PI", "EXT"];
+const POS_MED: DraftPosicion[] = ["VOL", "MEI", "MCD"];
+
+function mediaLinea(jugadores: JugadorSimple[], pos: DraftPosicion[]): number {
+  const l = jugadores.filter((j) => pos.includes(j.posicion));
+  if (l.length === 0) return 0;
+  return l.reduce((s, j) => s + j.fuerza, 0) / l.length;
+}
+
+// El estilo ahora depende de A QUIÉN fichas, no de cuántos huecos tiene la
+// formación. Antes se calculaba con el número de jugadores por línea, que la
+// formación fija de antemano: era una nota decidida en el menú de inicio, no
+// en la partida. Ahora premia reforzar la línea que dice tu estilo.
 export function aplicarBonusEstilo(
   jugadores: JugadorSimple[],
-  estilo: Estilo
+  estilo: Estilo,
+  ref: ReferenciasLiga = REF_POR_DEFECTO
 ): number {
-  const { def, med, ata } = contarPorLinea(jugadores);
+  const def = mediaLinea(jugadores, POS_DEF);
+  const med = mediaLinea(jugadores, POS_MED);
+  const ata = mediaLinea(jugadores, POS_ATA);
 
   switch (estilo) {
     case "defensivo":
-      return Math.min(20, def * 3);
+      return Math.round(normalizar(def, ref));
     case "ofensivo":
-      return Math.min(20, ata * 4);
-    case "equilibrado":
-      const ideal = Math.abs(def - 4) + Math.abs(med - 3) + Math.abs(ata - 3);
-      return Math.max(0, 15 - ideal * 2);
+      return Math.round(normalizar(ata, ref));
+    case "equilibrado": {
+      // Premia que las tres líneas estén parejas (sin puntos débiles).
+      const lineas = [def, med, ata].filter((v) => v > 0);
+      if (lineas.length === 0) return 0;
+      const m = lineas.reduce((s, v) => s + v, 0) / lineas.length;
+      const dispersion = Math.max(...lineas) - Math.min(...lineas);
+      // Base por nivel medio, menos castigo por desequilibrio entre líneas.
+      return Math.round(Math.max(0, normalizar(m, ref) - dispersion * 4));
+    }
     default:
       return 0;
   }
 }
 
+// Umbrales de calificación. Con la fórmula anterior el máximo ALCANZABLE era
+// ~82 (balance valía siempre 100 y el estilo aportaba 2 puntos), así que
+// Platino (85) era casi imposible y Leyenda (95) directamente inalcanzable:
+// cada partida cerraba prometiendo un nivel que no existía. Ahora la escala se
+// recorre entera y está calibrada por simulación (ver scripts de calibración).
+const UMBRALES = { leyenda: 78, platino: 66, oro: 52, plata: 34 } as const;
+
 export function calcularResultado(
   equipo: JugadorSeleccionado[],
-  estilo: Estilo
+  estilo: Estilo,
+  pool?: { jugadores: { fuerza: number }[] }[]
 ): DraftResultado {
   const jugadores = equipo.map((j) => ({
     posicion: j.posicion,
     fuerza: j.fuerza,
   }));
 
+  const ref = pool && pool.length > 0 ? referenciasLiga(pool) : REF_POR_DEFECTO;
+
   const fuerza = promedioStats(equipo);
+  const fuerzaNorm = Math.round(normalizar(fuerza, ref));
   const balance = calcularBalance(jugadores);
   const coherencia = calcularCoherencia(equipo);
-  const bonusEstilo = aplicarBonusEstilo(jugadores, estilo);
+  const bonusEstilo = aplicarBonusEstilo(jugadores, estilo, ref);
 
+  // `balance` YA NO puntúa: con el once completo la formación se fuerza exacta,
+  // así que valía 100 siempre y regalaba 30 puntos fijos a todo el mundo. Con
+  // eso fuera, la nota depende de las once decisiones del jugador: a quién
+  // fichas (fuerza relativa a tu liga), qué bloques armas (química) y si
+  // refuerzas la línea que pide tu estilo.
   const puntaje = Math.min(
     100,
-    Math.round(fuerza * 0.35 + balance * 0.30 + coherencia * 0.25 + bonusEstilo * 0.10)
+    Math.round(fuerzaNorm * 0.55 + coherencia * 0.35 + bonusEstilo * 0.10)
   );
 
   const calificacion =
-    puntaje >= 95
+    puntaje >= UMBRALES.leyenda
       ? "Leyenda"
-      : puntaje >= 85
+      : puntaje >= UMBRALES.platino
       ? "Platino"
-      : puntaje >= 75
+      : puntaje >= UMBRALES.oro
       ? "Oro"
-      : puntaje >= 60
+      : puntaje >= UMBRALES.plata
       ? "Plata"
       : "Bronce";
 
-  return { puntaje, calificacion, fuerza, balance, coherencia, bonusEstilo };
+  return { puntaje, calificacion, fuerza, fuerzaNorm, balance, coherencia, bonusEstilo };
 }
 
 export function getColorCalificacion(cal: DraftResultado["calificacion"]): string {

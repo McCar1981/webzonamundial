@@ -285,7 +285,9 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
         setPhase("simulacion");
         setTimeout(() => {
           const eq = Object.values(nuevoEquipo).filter(Boolean) as JugadorSeleccionado[];
-          const res = calcularResultado(eq, estilo);
+          // El pool va como tercer argumento para puntuar la fuerza RELATIVA a
+          // la liga elegida: así un gran once de la FUTVE vale como uno de LaLiga.
+          const res = calcularResultado(eq, estilo, pool);
           setResultado(res);
 
           const nuevos = checkLogros(res, eq, modo, logrosEstado);
@@ -305,7 +307,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
         setTiradaActual(null);
       }
     },
-    [tiradaActual, phase, estilo, equipo, slots, modo, logrosEstado]
+    [tiradaActual, phase, estilo, equipo, slots, modo, logrosEstado, pool]
   );
 
   // Llamado desde CampanaScreen cuando el usuario termina de ver la campaña.

@@ -66,11 +66,18 @@ export const LOGROS: DraftLogro[] = [
     condicion: (r, __, modo) => modo === "almanaque" && ["Oro", "Platino", "Leyenda"].includes(r.calificacion),
   },
   {
+    // Antes pedía "95+ en Balance", que con el once completo valía 100 siempre:
+    // se regalaba en la primera partida. Ahora pide un bloque real del mismo
+    // club, que es una decisión de verdad durante el draft.
     id: "equilibrista",
     icon: "⚖️",
-    nombre: "Equilibrista",
-    descripcion: "Alcanza 95+ en Balance",
-    condicion: (r) => r.balance >= 95,
+    nombre: "Bloque de Club",
+    descripcion: "Junta 4 jugadores del mismo club",
+    condicion: (_, eq) => {
+      const porClub = new Map<string, number>();
+      for (const j of eq) porClub.set(j.seleccion, (porClub.get(j.seleccion) || 0) + 1);
+      return [...porClub.values()].some((n) => n >= 4);
+    },
   },
   {
     id: "historiador",

@@ -17,7 +17,7 @@ import {
   JugadorSeleccionado,
 } from "@/lib/draft/types";
 import { poolForLeague, availableDraftLeagues, DRAFT_LEAGUES, type DraftLeagueOption } from "@/lib/draft/plantillas-ligas";
-import { FORMACIONES } from "@/lib/draft/formaciones";
+import { FORMACIONES, formacionPosible, type ViabilidadFormacion } from "@/lib/draft/formaciones";
 import { SlotLayout } from "@/lib/draft/layout";
 import {
   getColorCalificacion,
@@ -263,15 +263,40 @@ function SectionLabel({ children, paso }: { children: React.ReactNode; paso?: nu
   );
 }
 
+/** Motivo por el que una formación no se puede completar, o null si sí se puede. */
+function motivoBloqueo(v: ViabilidadFormacion | undefined): string | null {
+  if (!v || v.posible) return null;
+  return v.motivo ?? "No disponible en tu liga";
+}
+
 function SetupScreen({
-  formacion, setFormacion, estilo, setEstilo, modo, setModo, onStart,
+  formacion, setFormacion, estilo, setEstilo, modo, setModo, onStart, pool,
 }: {
   formacion: FormacionKey; setFormacion: (f: FormacionKey) => void;
   estilo: Estilo; setEstilo: (e: Estilo) => void;
   modo: Modo; setModo: (m: Modo) => void;
   onStart: () => void;
+  pool: DraftPlantilla[];
 }) {
   const resumen = `Formación ${formacion} · ${ESTILO_LABEL[estilo]} · ${MODO_LABEL[modo]}`;
+
+  // Qué formaciones puede completar la liga elegida (ver formacionPosible).
+  const viabilidad = useMemo(() => {
+    const out = {} as Record<FormacionKey, ViabilidadFormacion>;
+    for (const f of FORMACIONES) out[f.key] = formacionPosible(pool, f.key);
+    return out;
+  }, [pool]);
+
+  // Si la formación elegida deja de ser posible (p. ej. al cambiar de liga),
+  // se salta sola a la primera válida en vez de dejar la partida sin salida.
+  useEffect(() => {
+    if (viabilidad[formacion]?.posible === false) {
+      const alternativa = FORMACIONES.find((f) => viabilidad[f.key]?.posible);
+      if (alternativa) setFormacion(alternativa.key);
+    }
+  }, [viabilidad, formacion, setFormacion]);
+
+  const bloqueadas = FORMACIONES.filter((f) => viabilidad[f.key]?.posible === false);
 
   return (
     <div className="relative max-w-lg mx-auto px-4 pt-4">
@@ -325,12 +350,20 @@ function SetupScreen({
           <div className="grid grid-cols-4 gap-2">
             {FORMACIONES.map((f) => {
               const sel = formacion === f.key;
+              // Las formaciones que esta liga no puede completar se deshabilitan
+              // con el motivo: antes se podían elegir y la partida no terminaba nunca.
+              const motivo = motivoBloqueo(viabilidad[f.key]);
+              const bloqueada = motivo !== null;
               return (
-                <button key={f.key} onClick={() => setFormacion(f.key)}
-                  className="relative rounded-xl px-1.5 py-2.5 transition-all duration-150 active:scale-[0.96] hover:-translate-y-0.5 border text-center"
+                <button key={f.key} onClick={() => !bloqueada && setFormacion(f.key)}
+                  disabled={bloqueada}
+                  title={motivo ?? undefined}
+                  className="relative rounded-xl px-1.5 py-2.5 transition-all duration-150 active:scale-[0.96] hover:-translate-y-0.5 border text-center disabled:hover:translate-y-0 disabled:active:scale-100"
                   style={{
                     background: sel ? `linear-gradient(150deg, ${GOLD2}, ${GOLD})` : SETUP_CARD,
                     borderColor: sel ? GOLD2 : "rgba(255,255,255,0.09)",
+                    opacity: bloqueada ? 0.35 : 1,
+                    cursor: bloqueada ? "not-allowed" : "pointer",
                     boxShadow: sel
                       ? `0 6px 18px ${GOLD}55, inset 0 1px 0 rgba(255,255,255,0.35)`
                       : "0 2px 8px rgba(0,0,0,0.3)",
@@ -338,12 +371,17 @@ function SetupScreen({
                   {sel && <CheckBadge />}
                   <div className="text-[15px] font-black leading-none tabular-nums" style={{ color: sel ? NAVY : TXT }}>{f.label}</div>
                   <div className="text-[8.5px] font-bold mt-1 leading-tight" style={{ color: sel ? "rgba(10,9,6,0.7)" : TXT_MUT }}>
-                    {FORM_MICRO[f.key]}
+                    {bloqueada ? "no disponible" : FORM_MICRO[f.key]}
                   </div>
                 </button>
               );
             })}
           </div>
+          {bloqueadas.length > 0 && (
+            <div className="mt-2 text-[11px] leading-snug" style={{ color: TXT_MUT }}>
+              {`${bloqueadas.map((b) => b.label).join(" y ")}: ${(motivoBloqueo(viabilidad[bloqueadas[0].key]) ?? "").toLowerCase()}.`}
+            </div>
+          )}
         </div>
       </FadeIn>
 
@@ -673,7 +711,10 @@ function RankingMini() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/draft/ranking?limit=5").then((r) => r.json()).then((data) => {
+    // Ranking SEMANAL, no histórico. El histórico congelaba el top con récords
+    // de hace meses y un jugador nuevo veía una tabla imposible sin fecha de
+    // reinicio; además así los puntajes de la fórmula anterior caducan solos.
+    fetch("/api/draft/ranking?limit=5&period=week").then((r) => r.json()).then((data) => {
       setEntries(data.entries || []); setLoading(false);
     }).catch(() => setLoading(false));
   }, []);
@@ -684,7 +725,7 @@ function RankingMini() {
   return (
     <div className="rounded-xl p-4 mb-4" style={{ background: CARD }}>
       <div className="text-xs font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5" style={{ color: GOLD }}>
-        <IconTrophy size={14} />Top 5 Global
+        <IconTrophy size={14} />Top 5 de la semana
       </div>
       <div className="space-y-1.5">
         {entries.map((e, i) => (
@@ -741,10 +782,14 @@ function ResultadoScreen({ resultado, equipo, recompensa, onReiniciar }: { resul
       <FadeIn delay={0.15}>
         <div className="rounded-xl p-4 mb-6 space-y-3" style={{ background: CARD }}>
           {[
+            // "Balance" se cayó de la lista: con el once completo valía 100
+            // siempre, así que la barra estaba llena en todas las partidas y no
+            // informaba de nada. La sustituye la fuerza medida contra tu liga,
+            // que es la que puntúa.
             { label: "Fuerza", icon: IconSwords, value: resultado.fuerza, color: "#3b82f6" },
-            { label: "Balance", icon: IconScale, value: resultado.balance, color: "#22c55e" },
-            { label: "Coherencia", icon: IconLink, value: resultado.coherencia, color: "#f59e0b" },
-            { label: "Bonus estilo", icon: IconTarget, value: resultado.bonusEstilo, color: GOLD },
+            { label: "Nivel en tu liga", icon: IconScale, value: resultado.fuerzaNorm ?? resultado.fuerza, color: "#22c55e" },
+            { label: "Química", icon: IconLink, value: resultado.coherencia, color: "#f59e0b" },
+            { label: "Estilo", icon: IconTarget, value: resultado.bonusEstilo, color: GOLD },
           ].map((stat) => (
             <div key={stat.label} className="flex items-center gap-3">
               <span className="text-sm w-28 flex items-center gap-1.5" style={{ color: TXT }}>
@@ -1433,6 +1478,7 @@ export default function DraftMundialJugarPage() {
               estilo={game.estilo} setEstilo={game.setEstilo}
               modo={game.modo} setModo={game.setModo}
               onStart={game.iniciarJuego}
+              pool={pool}
             />
           </>
         )}

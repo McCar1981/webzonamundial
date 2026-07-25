@@ -54,7 +54,13 @@ export type Modo = "clasico" | "almanaque" | "contrarreloj";
 export interface DraftResultado {
   puntaje: number;
   calificacion: "Bronce" | "Plata" | "Oro" | "Platino" | "Leyenda";
+  /** Media de fuerza bruta del once (0-100). Se muestra, pero no puntúa. */
   fuerza: number;
+  /** Fuerza relativa al techo y al suelo de TU liga (0-100). Es la que puntúa:
+   *  hace que un gran once de la FUTVE valga tanto como uno de LaLiga. */
+  fuerzaNorm?: number;
+  /** Se conserva por compatibilidad con las partidas ya guardadas, pero ya NO
+   *  entra en el puntaje: con el once completo valía 100 siempre. */
   balance: number;
   coherencia: number;
   bonusEstilo: number;

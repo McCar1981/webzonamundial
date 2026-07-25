@@ -485,7 +485,7 @@ function TiradaPanel({
             </div>
             <div className="text-lg font-bold mb-2" style={{ color: TXT }}>¡Tira el dado!</div>
             <div className="text-sm mb-5" style={{ color: TXT_MUT }}>
-              {rolling ? "Sorteando selección…" : "Se sorteará una selección histórica con sus jugadores"}
+              {rolling ? "Sorteando club…" : "Se sorteará un club histórico con sus jugadores"}
             </div>
             <button
               onClick={handleClick}
@@ -525,7 +525,7 @@ function SeleccionPanel({
   const rerollBloqueado = rerollsRestantes <= 0 && !vacio;
   return (
     <FadeIn>
-      {/* Cabecera: qué selección salió + re-tiradas */}
+      {/* Cabecera: qué club salió + re-tiradas */}
       <div className="rounded-xl p-4 mb-3" style={{ background: CARD, border: `1px solid ${GOLD}33` }}>
         <div className="flex items-center gap-3">
           <KitAvatar seleccion={plantilla.seleccion} size={48} logo={plantilla.logo} />
@@ -533,7 +533,7 @@ function SeleccionPanel({
           <div className="min-w-0">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>Salió</div>
             <div className="text-xl font-black leading-tight truncate" style={{ color: TXT }}>{plantilla.seleccion}</div>
-            <div className="text-sm font-bold" style={{ color: GOLD }}>Mundial {plantilla.year}</div>
+            <div className="text-sm font-bold" style={{ color: GOLD }}>Temporada {plantilla.year}</div>
           </div>
         </div>
 
@@ -587,8 +587,8 @@ function SeleccionPanel({
             <div className="text-sm font-bold" style={{ color: TXT }}>Ningún jugador encaja</div>
             <div className="text-xs mt-1">
               {modo === "contrarreloj"
-                ? "Redibujando otra selección…"
-                : "Esta selección no tiene jugadores para tus huecos libres. Probá otra selección u otro mundial (gratis)."}
+                ? "Redibujando otro club…"
+                : "Este club no tiene jugadores para tus huecos libres. Prueba con otro club u otra temporada (gratis)."}
             </div>
           </div>
         )}

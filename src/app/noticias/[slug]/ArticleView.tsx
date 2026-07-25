@@ -227,7 +227,15 @@ export function ArticleView({
         {(noticia.imageCaption || noticia.imageSource) && (
           <figcaption>
             {noticia.imageCaption}
-            {noticia.imageSource && <span> · {noticia.imageSource}</span>}
+            {/* Crédito explícito: "Foto: <medio>". Antes se anexaba el medio
+                tras un punto medio y se leía como parte del pie, no como
+                autoría de la imagen — y acreditar es justo la condición para
+                poder usar fotos de prensa. */}
+            {noticia.imageSource && (
+              <span>
+                {noticia.imageCaption ? " — " : ""}Foto: {noticia.imageSource}
+              </span>
+            )}
           </figcaption>
         )}
       </figure>

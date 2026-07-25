@@ -158,12 +158,14 @@ export function buildDraftFromGNews(
     flags,
     tags: tags ?? [],
     featured: false,
-    // Política de copyright: la imagen del medio (article.image) es material
-    // con derechos servido desde su CDN — no se almacena. Solo pasaría una
-    // URL de fuente licenciada (ver noticias-image-policy), que GNews no da.
-    realImage: allowedNoticiaImageOrUndefined(article.image),
-    imageCaption: allowedNoticiaImageOrUndefined(article.image) ? article.title : undefined,
-    imageSource: allowedNoticiaImageOrUndefined(article.image) ? article.source.name : undefined,
+    // Foto del medio CON CRÉDITO (decisión 25-07-2026, ver noticias-image-policy).
+    // La condición es acreditar la fuente, así que la imagen solo se guarda si
+    // sabemos a quién atribuirla: sin nombre de medio se descarta y la pieza
+    // sale sin foto. Así el crédito no depende de que alguien se acuerde de
+    // pintarlo en la plantilla — si hay foto, hay fuente.
+    realImage: article.source?.name ? allowedNoticiaImageOrUndefined(article.image) : undefined,
+    imageCaption: article.source?.name && allowedNoticiaImageOrUndefined(article.image) ? article.title : undefined,
+    imageSource: article.source?.name && allowedNoticiaImageOrUndefined(article.image) ? article.source.name : undefined,
     authorId: author.id,
     body,
     sourceUrl: article.url,

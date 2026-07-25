@@ -241,16 +241,6 @@ export default async function TeamPage({ params }: { params: Params }) {
   }
   const statById = new Map<number, PlayerSeasonStats>((stats?.players ?? []).map((p) => [p.playerId, p]));
 
-  // Noticias del club por la MISMA vía que el feed personal del lobby: alias de
-  // prensa curados (no el nombre literal) y, si no hay artículo publicado, los
-  // breves de los drafts frescos — que es donde vive el 90% de lo que se publica
-  // de clubes, porque el pipeline editorial va del Mundial.
-  const personales = await getPersonalNoticias([team.name], [], 4).catch(
-    () => ({ club: [], league: [], breves: [] })
-  );
-  const noticiasClub = personales.club.slice(0, 4);
-  const brevesClub = personales.breves.slice(0, 5);
-
   // Liga "de casa" del club: la competición DOMÉSTICA de ZM que más aparece en
   // sus partidos (así un club que juega Libertadores no acaba clasificado por
   // la copa continental, donde no hay tabla propia comparable).
@@ -260,6 +250,17 @@ export default async function TeamPage({ params }: { params: Params }) {
     if (c && c.scope === "domestic") conteo.set(c.slug, (conteo.get(c.slug) ?? 0) + 1);
   }
   const ligaSlug = [...conteo.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+
+  // Noticias por la MISMA vía que el feed personal del lobby: alias de prensa
+  // curados y breves de drafts frescos. Se pasa TAMBIÉN la liga del club: si no
+  // hay nada del club en concreto, al menos se ve lo de su competición, en vez
+  // de dejar la sección vacía (antes se llamaba con la lista de ligas vacía).
+  const personales = await getPersonalNoticias([team.name], ligaSlug ? [ligaSlug] : [], 4).catch(
+    () => ({ club: [], league: [], breves: [] })
+  );
+  const noticiasClub = personales.club.slice(0, 4);
+  const noticiasLiga = personales.league.slice(0, 3);
+  const brevesClub = personales.breves.slice(0, 5);
 
   // Su sitio en la tabla: contexto que la racha E-P-E-P-E no da.
   let posicion: { rank: number; points: number; played: number; total: number } | null = null;
@@ -348,10 +349,10 @@ export default async function TeamPage({ params }: { params: Params }) {
 
         {/* Noticias del club: lo que pasa alrededor del equipo, no solo sus
             partidos. Mismo emparejado por nombre que usa el lobby. */}
-        {(noticiasClub.length > 0 || brevesClub.length > 0) && (
+        {(noticiasClub.length > 0 || brevesClub.length > 0 || noticiasLiga.length > 0) && (
           <section style={{ marginTop: 30 }}>
             <h2 className="zl-h2">Noticias de {team.name}</h2>
-            {noticiasClub.map((n) => (
+            {[...noticiasClub, ...noticiasLiga].map((n) => (
               <Link key={n.slug} href={`/noticias/${n.slug}`}
                 style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
                 <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>

@@ -97,7 +97,17 @@ export function clubQueriesForTick(names: string[], hourSeed: number, perTick: n
     const name = names[(hourSeed * perTick + i) % names.length];
     const terms = clubMatchTerms(name);
     const t = terms[terms.length - 1] ?? name; // core si existe; si no, completo
-    out.push({ label: `club:${name}`, q: `"${t}" AND fútbol`, tags: [name] });
+    // Antes se exigía el token literal `fútbol` CON tilde. Un titular de club
+    // casi nunca lo dice ("El Barcelona SC gana 2-1 y es líder de la LigaPro"),
+    // y la prensa ecuatoriana, mexicana y venezolana escribe "futbol" sin
+    // tilde: eso estrangulaba justo la vía rápida del feed personal. Ahora
+    // basta con que aparezca alguna palabra del contexto futbolístico, que
+    // sigue descartando homónimos de otros ámbitos.
+    out.push({
+      label: `club:${name}`,
+      q: `"${t}" AND (fútbol OR futbol OR partido OR liga OR gol OR fichaje OR entrenador OR plantilla)`,
+      tags: [name],
+    });
   }
   return out;
 }

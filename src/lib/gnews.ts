@@ -195,10 +195,17 @@ export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;
  * que el crítico rechaza. Se cubren solo de vez en cuando para no inundar el
  * feed de paja.
  */
-export const HOT_QUERY_KEYS: WorldCupQueryKey[] = [
-  // Ligas de clubes — beats primarios tras el Mundial 2026 (pivote todo el año).
-  // Van al frente para que el feed personalizado "Noticias de tu fútbol"
-  // (club + liga) tenga material desde el primer día. Orden pan-LATAM.
+/**
+ * Beats de LIGAS DE CLUBES. Lista propia, no un tramo de HOT_QUERY_KEYS.
+ *
+ * Estaban al principio de HOT_QUERY_KEYS confiando en que la rotación los
+ * alcanzara, pero el cron toma una ventana deslizante de 4 claves sobre 22
+ * según la hora UTC: de las 7:00 a las 18:00 la ventana caía entera en el
+ * tramo del Mundial, así que había DOCE HORAS AL DÍA sin pedir una sola
+ * noticia de clubes. Con lista aparte, cada tick garantiza cobertura de club.
+ * Orden pan-LATAM (Ecuador es ~la mitad de la audiencia).
+ */
+export const CLUB_QUERY_KEYS: WorldCupQueryKey[] = [
   "fichajes",
   "ligapro_ecuador",
   "conmebol_clubes",
@@ -206,6 +213,11 @@ export const HOT_QUERY_KEYS: WorldCupQueryKey[] = [
   "laliga_clubes",
   "ligas_top",
   "futve_venezuela",
+];
+
+export const HOT_QUERY_KEYS: WorldCupQueryKey[] = [
+  // Ligas de clubes — beats primarios tras el Mundial 2026 (pivote todo el año).
+  ...CLUB_QUERY_KEYS,
   // Mundial 2026 — cobertura residual post-torneo (cracks, lesiones, análisis).
   "squad",
   "injuries",
@@ -288,11 +300,32 @@ const NON_FOOTBALL_BLOCK_LIST = [
   "videojuegos",
 ];
 
+// Emparejado por PALABRA COMPLETA, no por subcadena.
+//
+// Antes era `haystack.includes(term)` y los términos cortos de la lista
+// arrasaban el castellano futbolístico: "uci" es subcadena de Luciano, lució,
+// crucial, destitución, solucionó…; "ski" de cualquier apellido polaco
+// (Lewandowski). Medido con titulares reales de club, 6 de cada 8 se
+// descartaban — y se contaban como duplicados, así que la fuga era invisible
+// en la respuesta del cron. Ese filtro, y no la falta de noticias, es lo que
+// dejaba el feed de clubes vacío.
+//
+// La lista de términos se conserva intacta: lo que cambia es que "uci" solo
+// casa ya con la palabra suelta (la Unión Ciclista), no con cualquier palabra
+// que la contenga. Los términos con espacios siguen actuando como frase.
+const NON_FOOTBALL_RE: RegExp[] = NON_FOOTBALL_BLOCK_LIST.map(
+  (t) =>
+    new RegExp(
+      `(^|[^\\p{L}\\p{N}])${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^\\p{L}\\p{N}]|$)`,
+      "iu",
+    ),
+);
+
 /**
  * Returns true if the article is clearly NOT about football.
  * Used to filter GNews results before feeding them to the LLM.
  */
 export function isNonFootballArticle(article: { title: string; description?: string }): boolean {
   const haystack = `${article.title} ${article.description || ""}`.toLowerCase();
-  return NON_FOOTBALL_BLOCK_LIST.some((term) => haystack.includes(term));
+  return NON_FOOTBALL_RE.some((re) => re.test(haystack));
 }

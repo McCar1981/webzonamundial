@@ -18,7 +18,7 @@ import { ingestNews, titleFingerprint, type IngestResult, type ExtraQuery } from
 import { getFollowedClubNames, clubQueriesForTick } from "@/lib/noticias-club-targets";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { enrichMany, enrichEnabled } from "@/lib/noticias-enrich";
-import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
+import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, CLUB_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
 import {
   readIngestStore,
   writeIngestStore,
@@ -120,8 +120,20 @@ export async function GET(req: Request) {
   }
   // Si no hubo override válido, rotación normal sesgada a beats calientes.
   if (queries.length === 0) {
-    // Beats calientes: rotan por hora a lo largo de HOT_QUERY_KEYS.
-    for (let i = 0; i < hotPerTick; i++) {
+    // CLUBES PRIMERO, en TODOS los ticks. La app pivotó a ligas de clubes todo
+    // el año, pero la rotación plana sobre HOT_QUERY_KEYS dejaba doce horas
+    // diarias (7:00-18:00 UTC) sin pedir una sola noticia de clubes: la ventana
+    // deslizante de 4 claves sobre 22 caía entera en el tramo del Mundial.
+    // Ahora la mayoría de cada tick sale de CLUB_QUERY_KEYS.
+    const clubPerTick = Math.min(
+      hotPerTick,
+      Math.max(1, parseInt(process.env.NEWS_CLUB_PER_TICK || "3", 10)),
+    );
+    for (let i = 0; i < clubPerTick; i++) {
+      pushQuery(CLUB_QUERY_KEYS[(hourSeed * clubPerTick + i) % CLUB_QUERY_KEYS.length]);
+    }
+    // Resto de beats calientes (Mundial residual), rotando por hora.
+    for (let i = queries.length; i < hotPerTick; i++) {
       pushQuery(HOT_QUERY_KEYS[(hourSeed + i) % HOT_QUERY_KEYS.length]);
     }
     // Beats fríos: cobertura residual, rotando por hora.

@@ -106,8 +106,10 @@ export default function SoccerField({ slots, equipo, highlightSlot }: SoccerFiel
           );
         }
 
-        // Casilla cubierta → camiseta del jugador.
-        const kitSrc = draftKitUrl(jug.seleccion);
+        // Casilla cubierta → escudo del club (Draft de Ligas). Si el club no
+        // trae escudo, cae a la camiseta de selección (Mundial) y, en último
+        // término, a las iniciales.
+        const kitSrc = jug.logo || draftKitUrl(jug.seleccion);
         const fb = KIT_FALLBACK[jug.seleccion];
 
         return (
@@ -121,7 +123,9 @@ export default function SoccerField({ slots, equipo, highlightSlot }: SoccerFiel
                 <div
                   className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2"
                   style={{
-                    background: fb?.bg ?? "#e2e8f0",
+                    // Sin escudo ni camiseta se ven las iniciales: fondo oscuro
+                    // y texto dorado (el gris claro con texto blanco no se leía).
+                    background: fb?.bg ?? "#14110a",
                     borderColor: "#fff",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.4)",
                   }}
@@ -135,8 +139,8 @@ export default function SoccerField({ slots, equipo, highlightSlot }: SoccerFiel
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-[8px] font-bold"
-                      style={{ color: fb?.text ?? "#fff" }}>
-                      {jug.seleccion.slice(0, 2).toUpperCase()}
+                      style={{ color: fb?.text ?? GOLD }}>
+                      {jug.seleccion.slice(0, 3).toUpperCase()}
                     </div>
                   )}
                 </div>

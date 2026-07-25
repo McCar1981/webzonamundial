@@ -11,6 +11,8 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, getTeamInfo, type TeamFixture } from "@/lib/competitions/api";
+import { getCompetitionByApiId } from "@/data/competitions";
+import { getAllPublicNoticias } from "@/lib/noticias-store";
 import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
@@ -90,22 +92,51 @@ function Row({ f, teamId }: { f: TeamFixture; teamId: number }) {
   } else {
     mid = <span style={{ fontSize: 13, color: DIM }}><LocalTime iso={f.kickoff} mode="time" fallback={f.kickoff.slice(11, 16)} /></span>;
   }
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 13.5 }}>
+  // Si la competición del partido existe en ZM, la fila LLEVA al Match Center
+  // (marcador en vivo, alineaciones, predicciones y IA Coach). Antes era un div
+  // muerto: desde tu club no había forma de llegar al partido.
+  const comp = getCompetitionByApiId(f.leagueId);
+  const contenido = (
+    <>
       <span style={{ width: 26, fontSize: 11, color: DIM, textAlign: "center", flexShrink: 0 }}>{isHome ? "L" : "V"}</span>
       {opp.logo ? <img src={opp.logo} alt="" width={20} height={20} loading="lazy" style={{ width: 20, height: 20, objectFit: "contain", flexShrink: 0 }} /> : null}
       <span style={{ flex: 1, minWidth: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", color: "#fff" }}>{opp.name}</span>
+      {live && <span style={{ fontSize: 10, fontWeight: 700, color: "#d85a30", flexShrink: 0 }}>EN VIVO</span>}
       <span style={{ fontSize: 10.5, color: DIM, maxWidth: 90, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", textAlign: "right" }}>{f.leagueName}</span>
       <span style={{ width: 46, textAlign: "right", flexShrink: 0 }}>{mid}</span>
-    </div>
+    </>
   );
+  const estilo = { display: "flex", alignItems: "center", gap: 10, padding: "10px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 13.5 } as const;
+
+  if (!comp) return <div style={estilo}>{contenido}</div>;
+  return (
+    <Link href={`/ligas/${comp.slug}/${f.fixtureId}`} style={{ ...estilo, textDecoration: "none", color: "inherit" }}>
+      {contenido}
+    </Link>
+  );
+}
+
+// Coincidencia de noticia por nombre de club: palabra completa, sin acentos y
+// sin distinguir mayúsculas. Mismo criterio que usa el widget del lobby, para
+// que "las noticias de mi club" signifiquen lo mismo en toda la app.
+function normTxt(s: string): string {
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+function mencionaClub(texto: string, club: string): boolean {
+  const t = ` ${normTxt(texto)} `;
+  const c = normTxt(club).trim();
+  return c.length >= 4 && t.includes(` ${c} `);
 }
 
 export default async function TeamPage({ params }: { params: Params }) {
   const id = Number(params.teamId);
   if (!Number.isFinite(id) || id <= 0) notFound();
 
-  const [[last, next], [squad, stats]] = await Promise.all([load(id), loadPlantilla(id)]);
+  const [[last, next], [squad, stats], todasNoticias] = await Promise.all([
+    load(id),
+    loadPlantilla(id),
+    getAllPublicNoticias().catch(() => []),
+  ]);
   // Identidad del club: primero de los fixtures; si no hay (parón, club recién
   // ascendido o api-football caída), se resuelve con /teams?id=. Así un club que
   // SÍ existe nunca cae en 404 por una falta puntual de partidos/datos.
@@ -138,6 +169,10 @@ export default async function TeamPage({ params }: { params: Params }) {
     );
   }
   const statById = new Map<number, PlayerSeasonStats>((stats?.players ?? []).map((p) => [p.playerId, p]));
+
+  const noticiasClub = (todasNoticias ?? [])
+    .filter((n) => mencionaClub(`${n.title} ${n.excerpt ?? ""}`, team!.name))
+    .slice(0, 4);
 
   // Forma: últimos resultados terminados (más reciente primero).
   const form = last
@@ -178,6 +213,24 @@ export default async function TeamPage({ params }: { params: Params }) {
           <section style={{ marginTop: 28 }}>
             <h2 className="zl-h2">Próximos partidos</h2>
             {next.map((f) => <Row key={f.fixtureId} f={f} teamId={id} />)}
+            <p style={{ fontSize: 11.5, color: DIM, marginTop: 8 }}>
+              Toca un partido para abrir su Match Center: marcador en vivo, alineaciones, predicciones y análisis.
+            </p>
+          </section>
+        )}
+
+        {/* Noticias del club: lo que pasa alrededor del equipo, no solo sus
+            partidos. Mismo emparejado por nombre que usa el lobby. */}
+        {noticiasClub.length > 0 && (
+          <section style={{ marginTop: 30 }}>
+            <h2 className="zl-h2">Noticias de {team.name}</h2>
+            {noticiasClub.map((n) => (
+              <Link key={n.slug} href={`/noticias/${n.slug}`}
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
+                <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>
+                <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{String(n.date ?? "").slice(0, 10)}</span>
+              </Link>
+            ))}
           </section>
         )}
 

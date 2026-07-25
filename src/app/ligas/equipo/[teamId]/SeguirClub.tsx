@@ -21,7 +21,12 @@ export default function SeguirClub({ teamId, teamName, teamLogo }: { teamId: num
       .then((j) => {
         if (!j) { setAuthed(false); return; }
         setAuthed(!!j.authed);
-        setEsMiClub(!!j.club && j.club.clubId === teamId);
+        // OJO: la API devuelve `clubs` (ARRAY) desde que se admiten varios
+        // clubes. Antes se leía `j.club` (singular), que ya no existe: el
+        // resultado era siempre undefined y "Hacer mi club" aparecía incluso
+        // en los clubes que el usuario ya seguía.
+        const lista: { clubId?: number }[] = Array.isArray(j.clubs) ? j.clubs : [];
+        setEsMiClub(lista.some((c) => Number(c.clubId) === teamId));
       })
       .catch(() => setAuthed(false));
   }, [teamId]);

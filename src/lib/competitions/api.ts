@@ -436,6 +436,9 @@ export interface TeamFixture {
   status: string;
   elapsed: number | null;
   leagueName: string;
+  /** id de liga en api-football. Permite resolver el slug de ZM (getCompetitionByApiId)
+   *  y por tanto enlazar el partido a su Match Center desde la ficha del club. */
+  leagueId: number;
   home: CompetitionTeam;
   away: CompetitionTeam;
   score: { home: number | null; away: number | null };
@@ -459,6 +462,7 @@ export async function getTeamFixtures(
     status: r.fixture.status.short,
     elapsed: r.fixture.status.elapsed,
     leagueName: r.league.name,
+    leagueId: r.league.id,
     home: r.teams.home,
     away: r.teams.away,
     score: { home: r.goals.home, away: r.goals.away },

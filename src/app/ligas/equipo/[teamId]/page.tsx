@@ -11,7 +11,8 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, getTeamInfo, type TeamFixture } from "@/lib/competitions/api";
-import { getCompetitionByApiId } from "@/data/competitions";
+import { getCompetitionByApiId, getCompetition } from "@/data/competitions";
+import { getCompetitionStandings } from "@/lib/competitions/api";
 import { getPersonalNoticias } from "@/lib/ligas/noticias-personal";
 import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
@@ -116,6 +117,91 @@ function Row({ f, teamId }: { f: TeamFixture; teamId: number }) {
   );
 }
 
+/** El próximo partido, en grande y con acción. Antes el partido más importante
+ *  del club —el que viene— era una fila más de una lista, sin nada que hacer
+ *  con él. Ahora es lo primero que ves y lleva a su Match Center. */
+function ProximoPartido({ f, oficial, teamId }: { f: TeamFixture; oficial: TeamFixture | null; teamId: number }) {
+  const isHome = f.home.id === teamId;
+  const rival = isHome ? f.away : f.home;
+  const comp = getCompetitionByApiId(f.leagueId);
+  const live = LIVE.has(f.status);
+  // En pretemporada el próximo partido suele ser un amistoso, que no tiene
+  // Match Center. En ese caso se ofrece además el primer partido OFICIAL, que
+  // es el que se puede predecir y analizar.
+  const compOficial = oficial ? getCompetitionByApiId(oficial.leagueId) : null;
+  const rivalOficial = oficial ? (oficial.home.id === teamId ? oficial.away : oficial.home) : null;
+
+  const cuerpo = (
+    <>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 12 }}>
+        <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: live ? "#ff6b3d" : GOLD }}>
+          {live ? "Jugando ahora" : "Próximo partido"}
+        </span>
+        <span style={{ fontSize: 11, color: DIM, maxWidth: 130, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{f.leagueName}</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        {rival.logo ? <img src={rival.logo} alt="" width={44} height={44} loading="lazy" style={{ width: 44, height: 44, objectFit: "contain", flexShrink: 0 }} /> : null}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 11.5, color: DIM }}>{isHome ? "En casa contra" : "Visita a"}</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{rival.name}</div>
+          <div style={{ fontSize: 12.5, color: GOLD, marginTop: 2 }}>
+            <LocalTime iso={f.kickoff} mode="date" fallback={f.kickoff.slice(0, 10)} />
+            {" · "}
+            <LocalTime iso={f.kickoff} mode="time" fallback={f.kickoff.slice(11, 16)} />
+          </div>
+        </div>
+      </div>
+      {comp && (
+        <div style={{ marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px 0", borderRadius: 10, background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`, color: "#0a0906", fontWeight: 700, fontSize: 13 }}>
+          {live ? "Ver en directo" : "Predecir y ver análisis"} &rarr;
+        </div>
+      )}
+    </>
+  );
+
+  const caja = { display: "block", marginTop: 20, padding: 16, borderRadius: 16, background: "linear-gradient(160deg, #16130a 0%, #0a0906 65%)", border: `1px solid ${GOLD}44`, textDecoration: "none" } as const;
+  if (comp) return <Link href={`/ligas/${comp.slug}/${f.fixtureId}`} style={caja}>{cuerpo}</Link>;
+
+  // Amistoso u otra competición fuera de ZM: la tarjeta informa, y debajo se
+  // enlaza el primer partido oficial (el que sí se puede predecir).
+  return (
+    <div style={caja}>
+      {cuerpo}
+      {compOficial && rivalOficial && oficial && (
+        <Link href={`/ligas/${compOficial.slug}/${oficial.fixtureId}`}
+          style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 14, paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.08)", textDecoration: "none" }}>
+          <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "#fff" }}>
+            <span style={{ color: DIM }}>Primer partido oficial: </span>{rivalOficial.name}
+          </span>
+          <span style={{ fontSize: 12.5, fontWeight: 700, color: GOLD, flexShrink: 0 }}>Predecir &rarr;</span>
+        </Link>
+      )}
+    </div>
+  );
+}
+
+/** Accesos a lo que se puede HACER con este club, no solo leer. */
+function Acciones({ ligaSlug }: { ligaSlug: string | null }) {
+  if (!ligaSlug) return null;
+  // Solo rutas que EXISTEN: la liga (clasificación y partidos) y su fantasy.
+  // Predecir se hace dentro del Match Center de cada partido, no en una ruta
+  // propia, así que su puerta es el hero del próximo partido.
+  const items = [
+    { href: `/ligas/${ligaSlug}`, label: "Clasificación y partidos" },
+    { href: `/ligas/${ligaSlug}/fantasy`, label: "Fantasy de la liga" },
+  ];
+  return (
+    <div style={{ display: "flex", gap: 8, marginTop: 14, flexWrap: "wrap" }}>
+      {items.map((i) => (
+        <Link key={i.href} href={i.href}
+          style={{ flex: "1 1 30%", textAlign: "center", padding: "9px 6px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.03)", color: "#fff", fontSize: 12.5, fontWeight: 600, textDecoration: "none" }}>
+          {i.label}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export default async function TeamPage({ params }: { params: Params }) {
   const id = Number(params.teamId);
   if (!Number.isFinite(id) || id <= 0) notFound();
@@ -164,6 +250,29 @@ export default async function TeamPage({ params }: { params: Params }) {
   const noticiasClub = personales.club.slice(0, 4);
   const brevesClub = personales.breves.slice(0, 5);
 
+  // Liga "de casa" del club: la competición DOMÉSTICA de ZM que más aparece en
+  // sus partidos (así un club que juega Libertadores no acaba clasificado por
+  // la copa continental, donde no hay tabla propia comparable).
+  const conteo = new Map<string, number>();
+  for (const f of [...next, ...last]) {
+    const c = getCompetitionByApiId(f.leagueId);
+    if (c && c.scope === "domestic") conteo.set(c.slug, (conteo.get(c.slug) ?? 0) + 1);
+  }
+  const ligaSlug = [...conteo.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+
+  // Su sitio en la tabla: contexto que la racha E-P-E-P-E no da.
+  let posicion: { rank: number; points: number; played: number; total: number } | null = null;
+  if (ligaSlug) {
+    const comp = getCompetition(ligaSlug);
+    if (comp) {
+      const grupos = await getCompetitionStandings(comp.apiFootballId).catch(() => []);
+      for (const g of grupos) {
+        const fila = g.rows.find((r) => r.team.id === id);
+        if (fila) { posicion = { rank: fila.rank, points: fila.points, played: fila.played, total: g.rows.length }; break; }
+      }
+    }
+  }
+
   // Forma: últimos resultados terminados (más reciente primero).
   const form = last
     .filter((f) => FINISHED.has(f.status))
@@ -198,6 +307,27 @@ export default async function TeamPage({ params }: { params: Params }) {
           </div>
           <SeguirClub teamId={id} teamName={team.name} teamLogo={team.logo ?? null} />
         </div>
+
+        {/* Su sitio en la tabla: contexto real, no solo la racha. */}
+        {posicion && (
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 12, padding: "10px 14px", borderRadius: 12, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <span style={{ fontSize: 22, fontWeight: 800, color: GOLD, fontVariantNumeric: "tabular-nums" }}>{posicion.rank}º</span>
+            <span style={{ fontSize: 12.5, color: DIM, lineHeight: 1.4 }}>
+              de {posicion.total} · <strong style={{ color: "#fff" }}>{posicion.points} pts</strong> en {posicion.played} partidos
+            </span>
+          </div>
+        )}
+
+        {/* Lo primero: el partido que viene, con acción. */}
+        {next[0] && (
+          <ProximoPartido
+            f={next[0]}
+            oficial={next.find((x) => x.fixtureId !== next[0].fixtureId && !!getCompetitionByApiId(x.leagueId)) ?? null}
+            teamId={id}
+          />
+        )}
+
+        <Acciones ligaSlug={ligaSlug} />
 
         {next.length > 0 && (
           <section style={{ marginTop: 28 }}>

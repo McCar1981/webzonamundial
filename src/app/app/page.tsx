@@ -553,6 +553,8 @@ export default function AppHubPage() {
   const [iosHelpOpen, setIosHelpOpen] = useState(false);
   // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
+  // ¿Ya armó su once en el Draft HOY? null = sin saber (invitado o sin datos).
+  const [draftPlayedToday, setDraftPlayedToday] = useState<boolean | null>(null);
   // Preview manual del hero: /app?hero=live|match|reto|base (solo para diseño).
   const [heroOverride, setHeroOverride] = useState<"live" | "match" | "reto" | "base" | null>(null);
   // Carrusel del hero: índice de la pantalla visible (rota sola entre estados).
@@ -807,6 +809,17 @@ export default function AppHubPage() {
         setTriviaPlayedToday(!!last && last.slice(0, 10) === today);
       })
       .catch(() => { if (on) setTriviaPlayedToday(null); });
+    return () => { on = false; };
+  }, []);
+
+  // Misión diaria del Draft: /api/draft/me dice si ya armó un once hoy.
+  // Requiere sesión; para invitados queda en null y la misión no cuenta.
+  useEffect(() => {
+    let on = true;
+    fetch("/api/draft/me?limit=1", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (on) setDraftPlayedToday(d ? !!d.jugadoHoy : null); })
+      .catch(() => { if (on) setDraftPlayedToday(null); });
     return () => { on = false; };
   }, []);
 
@@ -1587,9 +1600,9 @@ export default function AppHubPage() {
           // completado (no inventamos), pero suma al total como reto extra.
           const dailyDone = claimedToday || !(gam?.daily?.can_claim);
           const missionsDone = authed
-            ? [dailyDone, predictedFeatured === true, triviaPlayedToday === true].filter(Boolean).length
+            ? [dailyDone, predictedFeatured === true, triviaPlayedToday === true, draftPlayedToday === true].filter(Boolean).length
             : 0;
-          const missionsTotal = authed ? 3 : 0;
+          const missionsTotal = authed ? 4 : 0;
           return (
         <section data-reveal style={{ marginBottom: 16, borderRadius: 18, padding: "16px 16px 13px", background: "linear-gradient(160deg,#1b160d 0%,#0a0906 60%)", border: `1px solid ${GOLD}33`, boxShadow: "0 16px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
@@ -1631,7 +1644,7 @@ export default function AppHubPage() {
                 <div style={{ fontSize: 15.5, fontWeight: 900, color: TXT }}>¡Misiones completadas!</div>
                 <div style={{ fontSize: 12.5, color: TXT_MUT, maxWidth: 300, lineHeight: 1.45 }}>Completaste todo por hoy. Vuelve mañana para mantener tu racha.</div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 14, marginTop: 4 }}>
-                  {["Recompensa", "Predicción", "Trivia"].map((t) => (
+                  {["Recompensa", "Predicción", "Trivia", "Draft"].map((t) => (
                     <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11.5, fontWeight: 700, color: TXT_MUT }}>
                       <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(22,163,74,0.18)", border: "1px solid rgba(95,227,168,0.5)", color: "#5fe3a8", fontSize: 10, fontWeight: 900 }}>✓</span>
                       {t}
@@ -1673,6 +1686,16 @@ export default function AppHubPage() {
                   label="Responde la trivia diaria"
                   sub="Puntos extra para el ranking"
                   href="/trivia"
+                />
+                {/* El Draft es el módulo más rejugable y era el único que no
+                    estaba en el bucle diario: lo suyo era un TOPE de partidas,
+                    nunca un motivo para volver. */}
+                <MissionRow
+                  dark
+                  done={draftPlayedToday === true}
+                  label="Arma tu once del día"
+                  sub="Clubes históricos de tu liga"
+                  href="/app/draft-mundial"
                 />
               </>
             )) : (

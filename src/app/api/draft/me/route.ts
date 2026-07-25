@@ -56,10 +56,23 @@ export async function GET(req: Request) {
     .select("id", { count: "exact", head: true })
     .eq("user_id", user.id);
 
+  // ── 5) ¿Ya armó su once HOY? ───────────────────────────────────────────
+  // Alimenta la misión diaria del lobby: el Draft es el módulo más rejugable y
+  // era el único que no estaba enchufado al motor de rachas que ya funciona.
+  // Se compara en UTC, igual que el resto de cortes diarios de la app.
+  const hoy = new Date().toISOString().slice(0, 10);
+  const { count: partidasHoy } = await admin
+    .from("draft_results")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", user.id)
+    .gte("created_at", `${hoy}T00:00:00Z`);
+
   return NextResponse.json({
     results: results ?? [],
     best: best ?? null,
     rank: rank ?? null,
     totalGames: totalGames ?? 0,
+    partidasHoy: partidasHoy ?? 0,
+    jugadoHoy: (partidasHoy ?? 0) > 0,
   }, { headers: { "Cache-Control": "no-store" } });
 }

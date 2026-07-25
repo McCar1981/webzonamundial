@@ -19,6 +19,7 @@ import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
 import LocalTime from "../../[slug]/LocalTime";
 import SeguirClub from "./SeguirClub";
+import MiHistorialClub from "./MiHistorialClub";
 
 export const revalidate = 300;
 
@@ -326,6 +327,12 @@ export default async function TeamPage({ params }: { params: Params }) {
             teamId={id}
           />
         )}
+
+        {/* Tu relación con el club (cliente: la página es ISR y esto es personal). */}
+        <MiHistorialClub
+          clubName={team.name}
+          fixtureIds={[...next, ...last].map((f) => f.fixtureId)}
+        />
 
         <Acciones ligaSlug={ligaSlug} />
 

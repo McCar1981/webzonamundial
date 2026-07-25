@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTeamFixtures, getTeamInfo, type TeamFixture } from "@/lib/competitions/api";
 import { getCompetitionByApiId } from "@/data/competitions";
-import { getAllPublicNoticias } from "@/lib/noticias-store";
+import { getPersonalNoticias } from "@/lib/ligas/noticias-personal";
 import { getTeamSquad, type FantasyPlayer, type Position } from "@/lib/ligas/fantasy";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
 import { getTeamSeasonStats, type PlayerSeasonStats } from "@/lib/ligas/plantilla";
@@ -116,27 +116,11 @@ function Row({ f, teamId }: { f: TeamFixture; teamId: number }) {
   );
 }
 
-// Coincidencia de noticia por nombre de club: palabra completa, sin acentos y
-// sin distinguir mayúsculas. Mismo criterio que usa el widget del lobby, para
-// que "las noticias de mi club" signifiquen lo mismo en toda la app.
-function normTxt(s: string): string {
-  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-}
-function mencionaClub(texto: string, club: string): boolean {
-  const t = ` ${normTxt(texto)} `;
-  const c = normTxt(club).trim();
-  return c.length >= 4 && t.includes(` ${c} `);
-}
-
 export default async function TeamPage({ params }: { params: Params }) {
   const id = Number(params.teamId);
   if (!Number.isFinite(id) || id <= 0) notFound();
 
-  const [[last, next], [squad, stats], todasNoticias] = await Promise.all([
-    load(id),
-    loadPlantilla(id),
-    getAllPublicNoticias().catch(() => []),
-  ]);
+  const [[last, next], [squad, stats]] = await Promise.all([load(id), loadPlantilla(id)]);
   // Identidad del club: primero de los fixtures; si no hay (parón, club recién
   // ascendido o api-football caída), se resuelve con /teams?id=. Así un club que
   // SÍ existe nunca cae en 404 por una falta puntual de partidos/datos.
@@ -170,9 +154,15 @@ export default async function TeamPage({ params }: { params: Params }) {
   }
   const statById = new Map<number, PlayerSeasonStats>((stats?.players ?? []).map((p) => [p.playerId, p]));
 
-  const noticiasClub = (todasNoticias ?? [])
-    .filter((n) => mencionaClub(`${n.title} ${n.excerpt ?? ""}`, team!.name))
-    .slice(0, 4);
+  // Noticias del club por la MISMA vía que el feed personal del lobby: alias de
+  // prensa curados (no el nombre literal) y, si no hay artículo publicado, los
+  // breves de los drafts frescos — que es donde vive el 90% de lo que se publica
+  // de clubes, porque el pipeline editorial va del Mundial.
+  const personales = await getPersonalNoticias([team.name], [], 4).catch(
+    () => ({ club: [], league: [], breves: [] })
+  );
+  const noticiasClub = personales.club.slice(0, 4);
+  const brevesClub = personales.breves.slice(0, 5);
 
   // Forma: últimos resultados terminados (más reciente primero).
   const form = last
@@ -221,7 +211,7 @@ export default async function TeamPage({ params }: { params: Params }) {
 
         {/* Noticias del club: lo que pasa alrededor del equipo, no solo sus
             partidos. Mismo emparejado por nombre que usa el lobby. */}
-        {noticiasClub.length > 0 && (
+        {(noticiasClub.length > 0 || brevesClub.length > 0) && (
           <section style={{ marginTop: 30 }}>
             <h2 className="zl-h2">Noticias de {team.name}</h2>
             {noticiasClub.map((n) => (
@@ -230,6 +220,16 @@ export default async function TeamPage({ params }: { params: Params }) {
                 <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>
                 <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{String(n.date ?? "").slice(0, 10)}</span>
               </Link>
+            ))}
+            {/* Breves: titulares frescos que aún no son artículo. Enlazan a la
+                fuente original, igual que en el feed personal del lobby. */}
+            {brevesClub.map((b, i) => (
+              <a key={`b${i}`} href={b.url ?? "#"} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
+                <span style={{ fontSize: 9.5, fontWeight: 700, color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 4, padding: "1px 5px", flexShrink: 0 }}>BREVE</span>
+                <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{b.title}</span>
+                {b.source && <span style={{ fontSize: 11, color: DIM, flexShrink: 0, maxWidth: 90, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{b.source}</span>}
+              </a>
             ))}
           </section>
         )}

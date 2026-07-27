@@ -339,17 +339,16 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         transition: "background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 28px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
-          {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none", flexShrink: 0 }} onClick={closeMobile}>
+          {/* Logo — lockup horizontal (icono + "ZONA DE LIGAS" integrados en
+              la propia imagen); antes era el icono suelto + el texto "ZONA
+              MUNDIAL" escrito aparte en HTML. Se conserva el aspect ratio
+              3:1 del archivo (480x160) para que no se deforme. */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", cursor: "pointer", textDecoration: "none", flexShrink: 0 }} onClick={closeMobile}>
             <img
-              src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
-              alt="ZonaMundial Logo"
-              style={{ width: 36, height: 36, objectFit: "contain" }}
+              src="/img/brand/logo-horizontal-zl.png"
+              alt="Zona de Ligas"
+              style={{ height: 38, width: "auto", objectFit: "contain" }}
             />
-            <div style={{ display: "flex", alignItems: "center", gap: 3 }}>
-              <span style={{ fontWeight: 900, fontSize: 20, color: "#fff", letterSpacing: -0.5 }}>ZONA</span>
-              <span style={{ fontWeight: 900, fontSize: 20, color: GOLD, letterSpacing: -0.5 }}>MUNDIAL</span>
-            </div>
           </Link>
 
           {/* Desktop nav */}

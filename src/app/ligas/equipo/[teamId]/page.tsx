@@ -348,11 +348,16 @@ export default async function TeamPage({ params }: { params: Params }) {
         )}
 
         {/* Noticias del club: lo que pasa alrededor del equipo, no solo sus
-            partidos. Mismo emparejado por nombre que usa el lobby. */}
-        {(noticiasClub.length > 0 || brevesClub.length > 0 || noticiasLiga.length > 0) && (
+            partidos. Mismo emparejado por nombre que usa el lobby.
+            OJO: antes esta sección mezclaba noticias de la LIGA bajo el título
+            "Noticias de {team.name}", así que se veían artículos que no eran
+            del club aunque el encabezado prometiera que sí. Ahora "Noticias
+            de {team.name}" muestra SOLO lo que de verdad es del club (o nada);
+            lo de la liga va aparte, con su propio rótulo. */}
+        {(noticiasClub.length > 0 || brevesClub.length > 0) && (
           <section style={{ marginTop: 30 }}>
             <h2 className="zl-h2">Noticias de {team.name}</h2>
-            {[...noticiasClub, ...noticiasLiga].map((n) => (
+            {noticiasClub.map((n) => (
               <Link key={n.slug} href={`/noticias/${n.slug}`}
                 style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
                 <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>
@@ -368,6 +373,22 @@ export default async function TeamPage({ params }: { params: Params }) {
                 <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{b.title}</span>
                 {b.source && <span style={{ fontSize: 11, color: DIM, flexShrink: 0, maxWidth: 90, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{b.source}</span>}
               </a>
+            ))}
+          </section>
+        )}
+
+        {/* De la liga: aparte y rotulado como tal, nunca mezclado con lo de
+            arriba. Solo aparece si hay algo — no rellena un hueco vacío del
+            club con contenido que no es del club. */}
+        {noticiasLiga.length > 0 && (
+          <section style={{ marginTop: 30 }}>
+            <h2 className="zl-h2">De su liga</h2>
+            {noticiasLiga.map((n) => (
+              <Link key={n.slug} href={`/noticias/${n.slug}`}
+                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
+                <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>
+                <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{String(n.date ?? "").slice(0, 10)}</span>
+              </Link>
             ))}
           </section>
         )}

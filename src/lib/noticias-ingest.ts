@@ -47,16 +47,18 @@ export function hashUrl(url: string): string {
   return createHash("sha1").update(url).digest("hex").slice(0, 16);
 }
 
-/** Heuristic category mapping from headline + content. */
+/** Heurística de categoría a partir del titular + contenido. Reorientada a
+ *  fútbol de CLUBES (Zona de Ligas): fichajes/partidos/liga primero. Es solo una
+ *  SUGERENCIA para el reescritor, que decide la categoría final. */
 export function classifyCategory(article: GNewsArticle): NoticiaCategory {
   const haystack = `${article.title} ${article.description}`.toLowerCase();
-  if (/lesi[oó]n|baja|operad|recuperaci[oó]n|rotura/.test(haystack)) return "selecciones";
-  if (/seleccion|convocator|llamado|nómina|nomina/.test(haystack)) return "selecciones";
-  if (/sede|estadio|venue|ciudad/.test(haystack)) return "sedes";
-  if (/análisis|analiza|tactica|t[áa]ctico|estrategia/.test(haystack)) return "analisis";
-  if (/dato|estad[íi]stica|stats|n[úu]mero|r[eé]cord|history|historia/.test(haystack)) return "datos";
-  if (/historia|hist[óo]rico|1986|1994|2002|2010|leyenda/.test(haystack)) return "historia";
-  return "selecciones"; // safe default
+  if (/fichaj|fich[oa]|traspaso|refuerzo|contrat|renov|cesi[óo]n|prestamo|prést|mercado|acuerdo con el|firma (por|con)|llega al/.test(haystack)) return "fichajes";
+  if (/gol|resultado|derrota|victoria|empat|previa|cr[óo]nica|alineaci[óo]n|jornada|remont|goleada|vence|cae ante|gana (a|al|el)/.test(haystack)) return "partidos";
+  if (/clasificaci[óo]n|l[íi]der|tabla|calendario|descens|ascens|t[íi]tulo|campe[óo]n|liga|libertadores|sudamericana|champions/.test(haystack)) return "liga";
+  if (/an[áa]lisis|analiza|t[áa]ctic|estrategia|clave del|las claves/.test(haystack)) return "analisis";
+  if (/dato|estad[íi]stica|stats|n[úu]mero|r[eé]cord/.test(haystack)) return "datos";
+  if (/hist[óo]ric|leyenda|efem[ée]ride|aniversario/.test(haystack)) return "historia";
+  return "partidos"; // por defecto: lo más común en fútbol de clubes
 }
 
 /** Detect ISO country flags from headline (very rough mapping). */

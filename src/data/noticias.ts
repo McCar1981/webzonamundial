@@ -13,9 +13,14 @@
 import { AUTHORS, getAuthor, type AuthorId, type NoticiaAuthor as RegAuthor } from "./noticias-authors";
 
 export type NoticiaCategory =
+  // Categorías de fútbol de clubes (Zona de Ligas).
+  | "fichajes"
+  | "partidos"
+  | "liga"
   | "analisis"
   | "datos"
   | "historia"
+  // Legado del Mundial: se conservan para las noticias ya publicadas.
   | "sedes"
   | "selecciones"
   | "plataforma";

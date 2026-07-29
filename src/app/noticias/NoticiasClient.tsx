@@ -27,15 +27,22 @@ import styles from "./NoticiasIndex.module.css";
 
 const CAT_LABELS: Record<string, string> = {
   all: "Todo",
+  fichajes: "Fichajes",
+  partidos: "Partidos",
+  liga: "Liga",
   analisis: "Análisis",
   datos: "Datos",
   historia: "Historia",
+  // Legado del Mundial (noticias ya publicadas).
   sedes: "Sedes",
   selecciones: "Selecciones",
   plataforma: "Plataforma",
 };
 const CAT_COLORS: Record<string, string> = {
   all: "#c9a84c",
+  fichajes: "#10b981",
+  partidos: "#f43f5e",
+  liga: "#8b5cf6",
   analisis: "#3b82f6",
   datos: "#22c55e",
   historia: "#f59e0b",
@@ -318,7 +325,7 @@ export default function NoticiasClient({
       {/* Category + Search bar */}
       <nav className={styles.catBar} aria-label="Filtros y búsqueda">
         <div className={styles.catBarInner}>
-          {(["all","selecciones","analisis","datos","sedes","historia","plataforma"] as const).map((id) => {
+          {(["all","fichajes","partidos","liga","analisis","datos","historia"] as const).map((id) => {
             const active = cat === id;
             const color = CAT_COLORS[id];
             return (

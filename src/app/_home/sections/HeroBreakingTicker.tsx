@@ -74,10 +74,9 @@ export default function HeroBreakingTicker() {
   const items = useMemo<Item[]>(() => {
     if (!data || !data.authed) return [];
     const out: Item[] = [];
-    // 1º breves (lo más fresco). 2º artículos de club. 3º de liga.
-    for (const b of data.breves) {
-      out.push({ title: b.title, href: b.url ?? "/ligas", external: !!b.url, club: b.club, isTransfer: b.isTransfer });
-    }
+    // Solo artículos PROPIOS (enlace interno). Los breves —titulares de terceros
+    // que enlazaban a la fuente— se retiraron: el modelo es reescribir y publicar
+    // como propio, acreditando solo la foto. 1º club, 2º liga.
     for (const n of data.club) out.push({ title: n.title, href: `/noticias/${n.slug}`, external: false, club: n.club, isTransfer: n.isTransfer });
     for (const n of data.league) out.push({ title: n.title, href: `/noticias/${n.slug}`, external: false, club: n.club, isTransfer: n.isTransfer });
     return out.slice(0, 6);

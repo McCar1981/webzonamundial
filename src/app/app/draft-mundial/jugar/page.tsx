@@ -739,18 +739,34 @@ function LogrosPopup({ logros, onClose }: { logros: DraftLogro[]; onClose: () =>
 }
 
 /* ─────────── RankingMini ─────────── */
-function RankingMini() {
+function RankingMini({ liga, ligaLabel }: { liga?: string | null; ligaLabel?: string | null }) {
   const [entries, setEntries] = useState<Array<{ user_id: string; best_score: number; best_calificacion: string; username: string | null }>>([]);
   const [loading, setLoading] = useState(true);
+  const [esLiga, setEsLiga] = useState(false);
 
   useEffect(() => {
-    // Ranking SEMANAL, no histórico. El histórico congelaba el top con récords
-    // de hace meses y un jugador nuevo veía una tabla imposible sin fecha de
-    // reinicio; además así los puntajes de la fórmula anterior caducan solos.
-    fetch("/api/draft/ranking?limit=5&period=week").then((r) => r.json()).then((data) => {
-      setEntries(data.entries || []); setLoading(false);
-    }).catch(() => setLoading(false));
-  }, []);
+    // Ranking SEMANAL, no histórico. Y POR LIGA si el usuario eligió una
+    // (migración 2026-55): así un hincha del Caracas compite en la tabla de la
+    // FUTVE, no contra el Madrid del 60. Si su liga aún no tiene partidas, se
+    // muestra el global como respaldo para no dejar el hueco vacío.
+    let vivo = true;
+    const url = liga ? `?liga=${encodeURIComponent(liga)}&limit=5&period=week` : "?limit=5&period=week";
+    fetch("/api/draft/ranking" + url)
+      .then((r) => r.json())
+      .then(async (data) => {
+        const e = data.entries || [];
+        if (!vivo) return;
+        if (e.length > 0 || !liga) {
+          setEntries(e); setEsLiga(!!liga && e.length > 0); setLoading(false); return;
+        }
+        // Liga sin datos todavía → caemos al global.
+        const g = await fetch("/api/draft/ranking?limit=5&period=week").then((r) => r.json()).catch(() => ({ entries: [] }));
+        if (!vivo) return;
+        setEntries(g.entries || []); setEsLiga(false); setLoading(false);
+      })
+      .catch(() => { if (vivo) setLoading(false); });
+    return () => { vivo = false; };
+  }, [liga]);
 
   if (loading) return <div className="text-center py-4 text-sm" style={{ color: TXT_MUT }}>Cargando ranking...</div>;
   if (entries.length === 0) return null;
@@ -758,7 +774,7 @@ function RankingMini() {
   return (
     <div className="rounded-xl p-4 mb-4" style={{ background: CARD }}>
       <div className="text-xs font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5" style={{ color: GOLD }}>
-        <IconTrophy size={14} />Top 5 de la semana
+        <IconTrophy size={14} />{esLiga ? `Top de ${ligaLabel || "tu liga"} · esta semana` : "Top 5 de la semana"}
       </div>
       <div className="space-y-1.5">
         {entries.map((e, i) => (
@@ -837,7 +853,7 @@ function MiPuestoBanner({ puntaje, listo }: { puntaje: number; listo: boolean })
   );
 }
 
-function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar }: { resultado: DraftResultado; equipo: Record<number, JugadorSeleccionado>; recompensa: RecompensaDraft | null; estado: EstadoGuardado | null; onReiniciar: () => void }) {
+function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar, liga, ligaLabel }: { resultado: DraftResultado; equipo: Record<number, JugadorSeleccionado>; recompensa: RecompensaDraft | null; estado: EstadoGuardado | null; onReiniciar: () => void; liga?: string | null; ligaLabel?: string | null }) {
   const color = getColorCalificacion(resultado.calificacion);
   const nearMiss = getNearMiss(resultado.puntaje);
   // Recompensa NETA ya calculada por el hook (base ÷2 + bonus campaña − castigo
@@ -994,7 +1010,7 @@ function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar }:
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.35}><RankingMini /></FadeIn>
+      <FadeIn delay={0.35}><RankingMini liga={liga} ligaLabel={ligaLabel} /></FadeIn>
 
       <FadeIn delay={0.4}>
         <div className="rounded-xl p-4 mb-6" style={{ background: CARD }}>
@@ -1550,6 +1566,10 @@ export default function DraftMundialJugarPage() {
 
   const pool = useMemo(() => poolForLeague(selectedLeague), [selectedLeague]);
   const game = useDraftGame(pool, selectedLeague);
+  const selectedLeagueLabel = useMemo(
+    () => availableLeagues.find((l) => l.slug === selectedLeague)?.short ?? "tu liga",
+    [availableLeagues, selectedLeague],
+  );
 
   // ── Gating del tope diario ───────────────────────────────────────────
   const [gate, setGate] = useState<GateState>({
@@ -1727,7 +1747,7 @@ export default function DraftMundialJugarPage() {
         )}
 
         {game.phase === "resultado" && game.resultado && (
-          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} recompensa={game.recompensa} estado={game.estadoGuardado} onReiniciar={game.reiniciar} />
+          <ResultadoScreen resultado={game.resultado} equipo={game.equipo} recompensa={game.recompensa} estado={game.estadoGuardado} onReiniciar={game.reiniciar} liga={selectedLeague} ligaLabel={selectedLeagueLabel} />
         )}
       </div>
     </div>

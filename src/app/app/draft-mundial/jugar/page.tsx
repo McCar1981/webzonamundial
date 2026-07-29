@@ -1057,12 +1057,30 @@ function BarraMarcador({ value, color }: { value: number; color: string }) {
   );
 }
 
+// Bloque más grande del mismo club (y del mismo año) ya colocado. La química es
+// el 35% de la nota pero durante la partida era invisible (solo un pill que
+// aparecía a veces): esto la hace explícita para que el jugador entienda que
+// repetir club/año sube su puntaje.
+function mayorBloque(colocados: JugadorSeleccionado[]): { club: string; nClub: number; nYear: number } | null {
+  if (colocados.length === 0) return null;
+  const porClub = new Map<string, number>();
+  const porYear = new Map<number, number>();
+  for (const j of colocados) {
+    porClub.set(j.seleccion, (porClub.get(j.seleccion) || 0) + 1);
+    porYear.set(j.year, (porYear.get(j.year) || 0) + 1);
+  }
+  const [club, nClub] = [...porClub.entries()].sort((a, b) => b[1] - a[1])[0];
+  const nYear = Math.max(...porYear.values());
+  return { club, nClub, nYear };
+}
+
 function Marcador({ slots, equipo, puntajeParcial }: { slots: SlotLayout[]; equipo: Record<number, JugadorSeleccionado>; puntajeParcial?: number | null }) {
   const colocados = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   const overall = promedioFuerza(colocados);
   const ataque = promedioFuerza(colocados.filter((j) => ATA_POS.includes(j.posicion)));
   const defensa = promedioFuerza(colocados.filter((j) => DEF_POS.includes(j.posicion)));
   const overallColor = overall >= 90 ? GREEN : overall >= 80 ? GOLD : TXT;
+  const bloque = mayorBloque(colocados);
 
   return (
     <div className="rounded-xl p-4" style={{ background: CARD }}>
@@ -1098,6 +1116,18 @@ function Marcador({ slots, equipo, puntajeParcial }: { slots: SlotLayout[]; equi
           </div>
           <BarraMarcador value={defensa} color={GREEN} />
         </div>
+      </div>
+
+      {/* Química: la regla que decide el 35% de la nota, siempre visible. */}
+      <div className="mt-3 flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style={{ background: `${GOLD}0f`, border: `1px solid ${GOLD}22` }}>
+        <IconLink size={13} color={GOLD} />
+        <span className="text-[11px] font-semibold" style={{ color: TXT_MUT }}>
+          {bloque && (bloque.nClub >= 2 || bloque.nYear >= 2) ? (
+            <>Química: <span style={{ color: GOLD }}>{bloque.nClub} del {bloque.club}</span>{bloque.nYear >= 2 ? <> · {bloque.nYear} del mismo año</> : null}</>
+          ) : (
+            <>Química: repite <span style={{ color: GOLD }}>club o año</span> para subirla</>
+          )}
+        </span>
       </div>
 
       {/* Once por casilla (respeta la formación: dos centrales salen dos veces) */}
@@ -1194,9 +1224,13 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
     onTerminar(campana);
   };
 
+  // La campaña se simula ENTERA al inicializarse (no hay decisiones tácticas
+  // todavía). El copy no debe prometer lo contrario: "partido a partido" revela
+  // resultados ya escritos, no permite dirigir. Antes decía "toma decisiones" +
+  // badge "Recomendado", lo cual era falso.
   const MODOS_CAMP: { key: "manual" | "auto"; icon: typeof IconBolt; title: string; desc: string; badge: string }[] = [
-    { key: "manual", icon: IconBall, title: "Partido a partido", desc: "Juega cada duelo, toma decisiones y vive la campaña completa.", badge: "Recomendado" },
-    { key: "auto", icon: IconBolt, title: "Automático", desc: "Simula la campaña y descubre hasta dónde llega tu once.", badge: "Rápido" },
+    { key: "manual", icon: IconBall, title: "Uno a uno", desc: "Revela los partidos de a poco y vive el desenlace con tensión.", badge: "Con emoción" },
+    { key: "auto", icon: IconBolt, title: "Automático", desc: "Simula la campaña entera y ve hasta dónde llega tu once.", badge: "Rápido" },
   ];
 
   return (

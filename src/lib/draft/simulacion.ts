@@ -297,17 +297,24 @@ export function puntosPorCalificacion(cal: DraftResultado["calificacion"]): numb
 }
 
 export function monedasPorCalificacion(cal: DraftResultado["calificacion"]): number {
+  // Recalibrado (auditoría del Draft, jul-2026). Antes la partida MEDIANA
+  // —Plata, ~60% de las partidas con la escala nueva— pagaba 5 monedas por
+  // 4-5 minutos y ~30 toques, menos que un check-in de un solo toque (10-40).
+  // El jugador hacía esa cuenta en dos días y dejaba de jugar. Ahora la mediana
+  // ronda 20-30 (con el bonus de campaña), en línea con el resto de módulos.
+  // Se sostiene por el tope de 5 partidas/día y por los sumideros del Draft
+  // (re-tirada/ojeador/partida extra), que ahora sí drenan Fútcoins.
   switch (cal) {
     case "Leyenda":
-      return 25;
+      return 60;
     case "Platino":
-      return 18;
+      return 45;
     case "Oro":
-      return 10;
+      return 32;
     case "Plata":
-      return 5;
+      return 20;
     case "Bronce":
-      return 3;
+      return 10;
     default:
       return 0;
   }

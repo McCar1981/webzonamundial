@@ -1,86 +1,126 @@
-# ZonaMundial 🏆
+# Zona de Ligas
 
-**Plataforma de predicciones, fantasy y engagement para la Copa del Mundo 2026.**
+**El sistema operativo personal del aficionado al fútbol.**
 
-48 selecciones · 104 partidos · 39 días · 16 sedes · 3 países
+Zona de Ligas conecta partidos, clubes, contenido, predicciones, fantasy,
+trivia, IA, progresión y recompensas en una experiencia permanente.
+
+El producto evoluciona desde **ZonaMundial**, la plataforma creada para el
+Mundial 2026. El contenido histórico y las experiencias del torneo permanecen
+como parte del producto; las nuevas superficies por liga, club y temporada
+construyen su continuidad durante todo el año.
+
+## Dirección de producto
+
+La experiencia se organiza alrededor de dos bucles:
+
+- **Jornada:** previa → participación → directo → resultado → progreso.
+- **Temporada:** identidad → historial → competición → colección → retorno.
+
+La home autenticada debe responder: **¿qué tengo hoy en mi fútbol?**
+
+Consulta la documentación estratégica:
+
+- [Current Platform Assessment](docs/strategy/CURRENT-PLATFORM-ASSESSMENT.md)
+- [Product Evolution Blueprint](docs/strategy/PRODUCT-EVOLUTION-BLUEPRINT.md)
+- [Growth Investment Case](docs/strategy/GROWTH-INVESTMENT-CASE.md)
+- [Execution Roadmap](docs/strategy/EXECUTION-ROADMAP.md)
+
+## Capacidades existentes
+
+- Ligas, clubes, jugadores, fixtures y seguimiento personalizado.
+- Match Center con previa, eventos, datos en vivo y participación.
+- Predicciones, micro-predicciones, fantasy, Draft, trivia y Modo Carrera.
+- Fútcoins, XP, rachas, logros, power-ups y rankings.
+- IA Coach, generación editorial y personalización.
+- Notificaciones push/email y calendario personal.
+- Plan Pro, Founders, Stripe, publicidad, afiliación y patrocinios.
+- Experiencias y herramientas para bares, creadores y ligas privadas.
 
 ## Stack
 
-- **Framework:** Next.js 14 (App Router)
-- **Estilos:** Tailwind CSS
+- **Framework:** Next.js 14, App Router
 - **Lenguaje:** TypeScript
+- **UI:** React 18, Tailwind CSS, Framer Motion y GSAP
+- **Datos/Auth:** Supabase
+- **Caché/operación live:** Vercel KV
 - **Deploy:** Vercel
-- **Font:** Outfit (Google Fonts)
+- **Pagos:** Stripe
+- **IA:** Anthropic
+- **Contenido:** Sanity y pipeline editorial propio
+- **Datos deportivos:** API-Football
 
 ## Setup local
 
 ```bash
-# Instalar dependencias
-npm install
-
-# Servidor de desarrollo
+npm ci
 npm run dev
+```
 
-# Build de producción
+Abre [http://localhost:3000](http://localhost:3000).
+
+Comprobaciones disponibles:
+
+```bash
+npm run validate-content
+npm run test-gate
+npm run lint
 npm run build
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+> El roadmap técnico incluye restaurar barreras de TypeScript/ESLint y ampliar
+> las pruebas de economía, scoring, live y permisos antes de escalar adquisición.
 
-## Estructura del proyecto
+## Estructura principal
 
-```
+```text
 src/
-├── app/              # Páginas (Next.js App Router)
-│   ├── layout.tsx    # Layout global (header + footer)
-│   ├── page.tsx      # Home
-│   ├── selecciones/  # 48 selecciones
-│   ├── sedes/        # 16 estadios
-│   ├── grupos/       # 12 grupos + simulador
-│   ├── calendario/   # 104 partidos
-│   ├── historia/     # Historia mundiales
-│   ├── noticias/     # Blog
-│   ├── creadores/    # Landings por creador
-│   └── registro/     # Pre-registro
-├── components/       # Componentes reutilizables
-│   ├── layout/       # Header, Footer, Nav
-│   ├── ui/           # Cards, Tablas, CTAs
-│   └── seo/          # JSON-LD, Meta tags
-├── lib/
-│   ├── data/         # Datos estáticos (equipos, sedes, grupos)
-│   └── constants.ts  # Config, colores, URLs
-└── styles/
-    └── globals.css   # Estilos globales + Tailwind
+├── app/
+│   ├── app/              # Experiencias autenticadas
+│   ├── ligas/            # Competiciones, clubes, jugadores y partidos
+│   ├── api/              # Route handlers y automatizaciones
+│   └── ...               # Contenido, adquisición, cuenta y operaciones
+├── components/           # Componentes compartidos
+└── lib/
+    ├── competitions/     # Configuración de competiciones
+    ├── ligas/            # Dominio de Zona de Ligas
+    ├── match-center/     # Datos y experiencia de jornada
+    ├── predictions/      # Predicciones y liquidación
+    ├── fantasy/          # Fantasy y scoring
+    ├── economy/          # Fútcoins y ledger
+    ├── ia-coach/         # Inteligencia contextual
+    └── ...               # Trivia, Draft, cromos, notificaciones, pagos
 ```
 
-## Colores de marca
+## Arquitectura de evolución
 
-| Color | Hex | Uso |
-|-------|-----|-----|
-| Background | `#060B14` | Fondo principal |
-| Surface | `#0F1D32` | Fondo secundario |
-| Surface 2 | `#0B1825` | Fondo terciario |
-| Gold | `#c9a84c` | Acento (textos, bordes, CTAs) |
+| Capa | Responsabilidad |
+|---|---|
+| Zona de Ligas | Producto B2C permanente |
+| Fan Identity Engine | Preferencias, historial, reputación y memoria |
+| Event Backbone | Competiciones, temporadas, partidos y estados |
+| Experience Engine | Predicciones, retos, misiones y recompensas |
+| Economy & Progression | Fútcoins, XP, logros y entitlements |
+| Sponsor Intelligence | Activaciones B2B y reporting futuro |
 
-## Restricciones legales
+La arquitectura es **football-first, sport-ready**: fútbol se resuelve como
+producto antes de incorporar otro deporte.
 
-- ❌ NUNCA usar marcas protegidas (FIFA™, World Cup™)
-- ✅ Usar: "Copa del Mundo 2026", "Mundial 2026"
-- ❌ NUNCA usar la palabra "quinielas"
-- ✅ Usar: "predicciones", "pronósticos"
-- ✅ Banderas nacionales = dominio público
-- ❌ Escudos de federaciones = requieren licencia
-- ✅ Nombres de jugadores en contexto editorial
+## Restricciones legales y de confianza
 
-## Documentación
+- No utilizar marcas protegidas sin licencia.
+- Usar «Mundial 2026» o «Copa del Mundo 2026», no marcas oficiales ajenas.
+- Banderas nacionales pueden utilizarse; escudos y activos oficiales requieren
+  revisión de derechos.
+- Distinguir claramente dato real, simulación, predicción y opinión.
+- No publicar cifras, autores, testimonios o social proof sin una fuente
+  verificable.
+- No basar la experiencia en apuestas.
+- Acreditar fuentes editoriales y respetar privacidad, consentimiento y bajas.
 
-- `/docs/web-reference/` — Referencia visual de todas las páginas
-- `/docs/blog/` — Artículos del blog en Markdown
+## Propiedad
 
-## Equipo
+Creado y desarrollado por [SprintMarkt](https://sprintmarkt.com), Valencia,
+España.
 
-Desarrollado por [Sprintmarkt](https://sprintmarkt.com) · Valencia, España
-
----
-
-© 2026 Sprintmarkt. Todos los derechos reservados.
+© 2026 SprintMarkt. Todos los derechos reservados.

@@ -128,7 +128,10 @@ export interface UseDraftGameReturn {
   marcarLogrosVistos: () => void;
 }
 
-export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameReturn {
+export function useDraftGame(
+  pool: DraftPlantilla[] = PLANTILLAS,
+  ligaSlug: string | null = null,
+): UseDraftGameReturn {
   const [phase, setPhase] = useState<GamePhase>("setup");
   const [formacion, setFormacion] = useState<FormacionKey>("4-3-3");
   const [estilo, setEstilo] = useState<Estilo>("equilibrado");
@@ -280,6 +283,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
           coherencia: res.coherencia,
           bonusEstilo: res.bonusEstilo,
           equipo: equipoJson,
+          liga: ligaSlug,
           coins: rec.coins,
           xp: rec.xp,
         }),
@@ -305,7 +309,7 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
     } finally {
       setGuardando(false);
     }
-  }, [formacion, estilo, modo]);
+  }, [formacion, estilo, modo, ligaSlug]);
 
   const seleccionarJugador = useCallback(
     (jugadorId: string) => {
@@ -353,8 +357,16 @@ export function useDraftGame(pool: DraftPlantilla[] = PLANTILLAS): UseDraftGameR
             const updated = { ...logrosEstado };
             nuevos.forEach((l) => { updated[l.id] = true; });
             setLogrosEstado(updated);
-            saveLogros(updated);
+            saveLogros(updated); // caché local (respaldo offline)
             setLogrosNuevos(nuevos);
+            // Persistir en servidor + cobrar (migración 2026-56). El importe lo
+            // decide el servidor; aquí solo se avisa qué se desbloqueó. Fail-soft:
+            // si la tabla no existe todavía, el servidor responde sin romper nada.
+            fetch("/api/draft/logros", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ ids: nuevos.map((l) => l.id) }),
+            }).catch(() => { /* la caché local ya guardó el logro */ });
           }
 
           // guardarResultado se llama en finalizarConCampana (incluye bonus campaña).

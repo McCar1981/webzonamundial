@@ -59,6 +59,7 @@ export async function POST(req: Request) {
     coherencia,
     bonusEstilo,
     equipo,
+    liga = null,
     coins = 0,
     xp = 0,
   } = body;
@@ -93,23 +94,37 @@ export async function POST(req: Request) {
   const admin = adminClient();
 
   // ── 1) Guardar resultado ────────────────────────────────────────────────
-  const { data: resultRow, error: resultErr } = await admin
-    .from("draft_results")
-    .insert({
-      user_id: user.id,
-      formacion,
-      estilo,
-      modo,
-      puntaje,
-      calificacion,
-      fuerza: fuerza ?? 0,
-      balance: balance ?? 0,
-      coherencia: coherencia ?? 0,
-      bonus_estilo: bonusEstilo ?? 0,
-      equipo: Array.isArray(equipo) ? equipo : [],
-    })
-    .select("id")
-    .single();
+  // La `liga` alimenta el ranking POR liga (migración 2026-55). Es fail-soft:
+  // si la columna todavía no existe (migración sin aplicar), se reintenta sin
+  // ella para que la partida NUNCA se pierda por eso.
+  const ligaSlug = typeof liga === "string" && liga.length > 0 && liga.length < 40 ? liga : null;
+  const baseRow = {
+    user_id: user.id,
+    formacion,
+    estilo,
+    modo,
+    puntaje,
+    calificacion,
+    fuerza: fuerza ?? 0,
+    balance: balance ?? 0,
+    coherencia: coherencia ?? 0,
+    bonus_estilo: bonusEstilo ?? 0,
+    equipo: Array.isArray(equipo) ? equipo : [],
+  };
+
+  let resultRow: { id: string } | null = null;
+  let resultErr: unknown = null;
+  {
+    const r = await admin.from("draft_results").insert({ ...baseRow, liga: ligaSlug }).select("id").single();
+    resultRow = r.data;
+    resultErr = r.error;
+    // 42703 = undefined_column → la migración de `liga` aún no está aplicada.
+    if (r.error && (r.error.code === "42703" || /liga/.test(r.error.message || ""))) {
+      const retry = await admin.from("draft_results").insert(baseRow).select("id").single();
+      resultRow = retry.data;
+      resultErr = retry.error;
+    }
+  }
 
   if (resultErr || !resultRow) {
     console.error("[draft/guardar] error insertando resultado:", resultErr);

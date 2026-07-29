@@ -1549,7 +1549,7 @@ export default function DraftMundialJugarPage() {
   }, []);
 
   const pool = useMemo(() => poolForLeague(selectedLeague), [selectedLeague]);
-  const game = useDraftGame(pool);
+  const game = useDraftGame(pool, selectedLeague);
 
   // ── Gating del tope diario ───────────────────────────────────────────
   const [gate, setGate] = useState<GateState>({

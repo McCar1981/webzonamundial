@@ -258,14 +258,11 @@ export default async function TeamPage({ params }: { params: Params }) {
   const personales = await getPersonalNoticias([team.name], ligaSlug ? [ligaSlug] : [], 4).catch(
     () => ({ club: [], league: [], breves: [] })
   );
+  // Solo artículos PROPIOS (reescritos y publicados, con enlace interno). Los
+  // breves (titulares de terceros que enlazaban a la fuente) se retiraron: el
+  // modelo es reescribir y publicar como propio, acreditando solo la foto.
   const noticiasClub = personales.club.slice(0, 4);
   const noticiasLiga = personales.league.slice(0, 3);
-  // Los breves traen `club` con el nombre si mencionan al club, o null si solo
-  // matchean la liga. La sección "Noticias de <club>" debe llevar SOLO los del
-  // club; los de liga (fichajes de otros equipos, calendarios…) van a "De su
-  // liga". Antes se mezclaban todos bajo el nombre del club.
-  const brevesClub = personales.breves.filter((b) => b.club != null).slice(0, 5);
-  const brevesLiga = personales.breves.filter((b) => b.club == null).slice(0, 5);
 
   // Su sitio en la tabla: contexto que la racha E-P-E-P-E no da.
   let posicion: { rank: number; points: number; played: number; total: number } | null = null;
@@ -359,7 +356,7 @@ export default async function TeamPage({ params }: { params: Params }) {
             del club aunque el encabezado prometiera que sí. Ahora "Noticias
             de {team.name}" muestra SOLO lo que de verdad es del club (o nada);
             lo de la liga va aparte, con su propio rótulo. */}
-        {(noticiasClub.length > 0 || brevesClub.length > 0) && (
+        {noticiasClub.length > 0 && (
           <section style={{ marginTop: 30 }}>
             <h2 className="zl-h2">Noticias de {team.name}</h2>
             {noticiasClub.map((n) => (
@@ -369,23 +366,14 @@ export default async function TeamPage({ params }: { params: Params }) {
                 <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{String(n.date ?? "").slice(0, 10)}</span>
               </Link>
             ))}
-            {/* Breves: titulares frescos que aún no son artículo. Enlazan a la
-                fuente original, igual que en el feed personal del lobby. */}
-            {brevesClub.map((b, i) => (
-              <a key={`b${i}`} href={b.url ?? "#"} target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
-                <span style={{ fontSize: 9.5, fontWeight: 700, color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 4, padding: "1px 5px", flexShrink: 0 }}>BREVE</span>
-                <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{b.title}</span>
-                {b.source && <span style={{ fontSize: 11, color: DIM, flexShrink: 0, maxWidth: 90, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{b.source}</span>}
-              </a>
-            ))}
           </section>
         )}
 
-        {/* De la liga: aparte y rotulado como tal, nunca mezclado con lo de
-            arriba. Solo aparece si hay algo — no rellena un hueco vacío del
-            club con contenido que no es del club. */}
-        {(noticiasLiga.length > 0 || brevesLiga.length > 0) && (
+        {/* De la liga: solo artículos PROPIOS (reescritos, enlace interno). Los
+            breves (titulares de terceros que enlazaban a la fuente) se retiraron:
+            el modelo es reescribir y publicar como propio, acreditando solo la
+            foto — no surtir titulares de otros medios. */}
+        {noticiasLiga.length > 0 && (
           <section style={{ marginTop: 30 }}>
             <h2 className="zl-h2">De su liga</h2>
             {noticiasLiga.map((n) => (
@@ -394,14 +382,6 @@ export default async function TeamPage({ params }: { params: Params }) {
                 <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{n.title}</span>
                 <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>{String(n.date ?? "").slice(0, 10)}</span>
               </Link>
-            ))}
-            {brevesLiga.map((b, i) => (
-              <a key={`bl${i}`} href={b.url ?? "#"} target="_blank" rel="noopener noreferrer"
-                style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 4px", borderTop: "1px solid rgba(255,255,255,0.06)", textDecoration: "none" }}>
-                <span style={{ fontSize: 9.5, fontWeight: 700, color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 4, padding: "1px 5px", flexShrink: 0 }}>BREVE</span>
-                <span style={{ flex: 1, minWidth: 0, fontSize: 13.5, color: "#fff", lineHeight: 1.35 }}>{b.title}</span>
-                {b.source && <span style={{ fontSize: 11, color: DIM, flexShrink: 0, maxWidth: 90, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>{b.source}</span>}
-              </a>
             ))}
           </section>
         )}

@@ -147,15 +147,19 @@ export default function MisNoticias() {
     };
   }, [fetchData]);
 
-  if (!data || (data.club.length === 0 && data.league.length === 0 && data.breves.length === 0)) return null;
+  // Solo artículos PROPIOS (reescritos y publicados). Los breves (titulares de
+  // terceros que enlazaban a la fuente) se retiraron: el modelo acordado es
+  // reescribir y publicar como propio, acreditando solo la foto — no surtir
+  // titulares de otros medios.
+  if (!data || (data.club.length === 0 && data.league.length === 0)) return null;
 
   const logoOf = (club: string | null): string | null =>
     club ? (data.clubs.find((c) => c.name === club)?.logo ?? null) : null;
 
-  const hasClubData = data.club.length > 0 || data.breves.some((b) => b.club != null);
-  const hasLigaData = data.league.length > 0 || data.breves.some((b) => b.club == null);
-  const transferCount = data.breves.filter((b) => b.isTransfer).length + data.club.filter((n) => n.isTransfer).length + data.league.filter((n) => n.isTransfer).length;
-  const totalItems = data.breves.length + data.club.length + data.league.length;
+  const hasClubData = data.club.length > 0;
+  const hasLigaData = data.league.length > 0;
+  const transferCount = data.club.filter((n) => n.isTransfer).length + data.league.filter((n) => n.isTransfer).length;
+  const totalItems = data.club.length + data.league.length;
   // Un chip solo se muestra si PARTICIONA de verdad (subconjunto propio de
   // "Todo"). Si solo hay noticias de liga, "Tus ligas" == "Todo" → no aporta y
   // confunde; el split club/ligas solo tiene sentido si hay de AMBOS. Igual con
@@ -176,12 +180,6 @@ export default function MisNoticias() {
   const filtro = visibleChips.some((c) => c.id === filtroRaw) ? filtroRaw : "todo";
 
   // Filtro activo → qué se muestra en cada capa.
-  const breves = data.breves.filter((b) => {
-    if (filtro === "fichajes") return b.isTransfer;
-    if (filtro === "club") return b.club != null;
-    if (filtro === "ligas") return b.club == null;
-    return true;
-  });
   const clubArts = filtro === "todo" || filtro === "club" ? data.club : filtro === "fichajes" ? data.club.filter((n) => n.isTransfer) : [];
   const leagueArts = filtro === "todo" || filtro === "ligas" ? data.league : filtro === "fichajes" ? data.league.filter((n) => n.isTransfer) : [];
 
@@ -223,38 +221,6 @@ export default function MisNoticias() {
       </div>
       )}
 
-      {/* BREVES: titulares flash de tu club/liga, con fuente y enlace */}
-      {breves.length > 0 && (
-        <div className="zmn-card" style={{ marginTop: 12, padding: "4px 12px", background: "#17120b", border: "1px solid rgba(201,168,76,0.22)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 0 2px" }}>
-            <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Breves</span>
-            <span style={{ fontSize: 10.5, color: DIM }}>· al minuto, de tu fútbol</span>
-          </div>
-          {breves.map((b, i) => {
-            const inner = (
-              <span style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "9px 0", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                <Crest logo={logoOf(b.club)} />
-                <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 3 }}>
-                  <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    {isNew(b.ts) ? <NewDot /> : null}
-                    {b.isTransfer ? <TransferBadge /> : null}
-                    <span style={{ fontSize: 10.5, color: DIM }}>{fmtAgo(b.ts)}{b.source ? ` · ${b.source}` : ""}</span>
-                  </span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: TEXT, lineHeight: 1.3, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{b.title}</span>
-                </span>
-                {b.url ? <span aria-hidden style={{ color: DIM, fontSize: 14, flexShrink: 0, marginTop: 2 }}>&#8599;</span> : null}
-              </span>
-            );
-            return b.url ? (
-              <a key={`${b.ts}-${i}`} href={b.url} target="_blank" rel="nofollow noopener noreferrer" style={{ display: "block", textDecoration: "none" }} className="zmn-tap">
-                {inner}
-              </a>
-            ) : (
-              <div key={`${b.ts}-${i}`}>{inner}</div>
-            );
-          })}
-        </div>
-      )}
 
       {/* Artículos completos: tu club primero, luego tus ligas */}
       {clubArts.length > 0 && (

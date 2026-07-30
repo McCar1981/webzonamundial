@@ -17,6 +17,8 @@ import Link from "next/link";
 import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
 import { trackProductEvent } from "@/lib/analytics/track-event";
 import MisNoticias from "./MisNoticias";
+import LiveStrip from "./LiveStrip";
+import PersonalMatchday from "./PersonalMatchday";
 
 const GOLD = "#c9a84c";
 
@@ -234,14 +236,18 @@ export default function LigasDirectory() {
   if (authed && ligas.length > 0 && !editing) {
     return (
       <>
+        {feed === null ? (
+          <div aria-hidden style={{ marginTop: 26, height: 220, borderRadius: 18, background: "rgba(255,255,255,0.02)" }} />
+        ) : (
+          <PersonalMatchday feeds={feed} />
+        )}
+
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, marginTop: 28 }}>
           <h2 className="zl-h2" style={{ marginBottom: 0 }}>Mis ligas</h2>
           <button onClick={() => setEditing(true)} style={{ border: "none", background: "none", color: GOLD, fontSize: 12.5, cursor: "pointer", padding: 0 }}>Editar</button>
         </div>
 
-        {feed === null ? (
-          <div aria-hidden style={{ marginTop: 14, height: 120, borderRadius: 14, background: "rgba(255,255,255,0.02)" }} />
-        ) : (
+        {feed !== null ? (
           feed.map((l) => (
             <section key={l.slug} className="zl-card" style={{ marginTop: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 4 }}>
@@ -260,7 +266,7 @@ export default function LigasDirectory() {
                 : l.live.length === 0 && <p style={{ margin: "6px 0 0", fontSize: 12.5, color: "var(--zl-muted)" }}>Sin partidos próximos anunciados. Vuelve cuando se publique la jornada.</p>}
             </section>
           ))
-        )}
+        ) : null}
 
         <MisNoticias />
 
@@ -294,6 +300,7 @@ export default function LigasDirectory() {
     ];
     return (
       <>
+        <LiveStrip />
         <section className="zl-card--raised" style={{ marginTop: 16 }}>
           <h2 className="zl-h3">¿Cómo vives el fútbol de clubes?</h2>
           <p style={{ margin: "4px 0 12px", fontSize: 12.5, color: "var(--zl-muted)" }}>Una pregunta y dejamos este espacio a tu gusto. Podrás cambiarlo cuando quieras.</p>
@@ -317,12 +324,13 @@ export default function LigasDirectory() {
 
   // Logueado que omitió el gate y no tiene selección: catálogo completo.
   if (authed) {
-    return <Catalogo />;
+    return <><LiveStrip /><Catalogo /></>;
   }
 
   // SSR / cargando / anónimo: catálogo completo (SEO intacto) + gancho si anónimo.
   return (
     <>
+      {authed === false ? <LiveStrip /> : null}
       {authed === false && (
         <a href="/registro?next=/ligas" className="zl-card--raised zl-tap" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 16, textDecoration: "none" }}>
           <span style={{ minWidth: 0 }}>

@@ -64,6 +64,19 @@ export interface ProductEventParams {
     removed_count: number;
     surface: "ligas_hub";
   };
+  personal_matchday_viewed: {
+    competition_count: number;
+    fixture_count: number;
+    live_count: number;
+    today_count: number;
+    mode: "live" | "today" | "upcoming";
+    surface: "ligas_hub";
+  };
+  personal_match_selected: MatchEventContext & {
+    surface: "personal_matchday";
+    mode: "live" | "today" | "upcoming";
+    position: number;
+  };
 }
 
 export type ProductEventName = keyof ProductEventParams;

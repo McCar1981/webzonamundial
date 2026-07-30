@@ -259,7 +259,7 @@ export interface UseCreditResult {
  * Orden: débito atómico → fila de uso (amount 0) → aplicar efecto → applied.
  * Si el efecto no puede aplicarse, el crédito se devuelve (compensación).
  */
-export async function useCredit(userId: string, ctx: {
+export async function consumeCredit(userId: string, ctx: {
   sku: PowerupSku;
   matchId?: string | null;
   predictionId?: string | null;
@@ -329,7 +329,7 @@ export async function applyPack(
   const intent = purchase.payload as PackIntentPayload | null;
   if (intent?.intent_sku) {
     try {
-      const used = await useCredit(purchase.user_id, {
+      const used = await consumeCredit(purchase.user_id, {
         sku: intent.intent_sku,
         matchId: purchase.match_id,
         predictionId: purchase.prediction_id,

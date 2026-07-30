@@ -10,7 +10,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { validatePowerupUse, type UseRequestBody } from "@/lib/powerups/eligibility";
-import { useCredit } from "@/lib/powerups/store";
+import { consumeCredit } from "@/lib/powerups/store";
 import { getSession } from "@/lib/trivia/store";
 
 export const runtime = "nodejs";
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: v.error, message: v.message }, { status: v.httpStatus ?? 400 });
   }
 
-  const result = await useCredit(user.id, {
+  const result = await consumeCredit(user.id, {
     sku: v.sku!,
     matchId: v.matchId,
     predictionId: v.predictionId,

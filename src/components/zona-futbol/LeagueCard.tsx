@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ShimmerCard } from "../ShimmerCard";
 import SectionCard from "../biblia/SectionCard";
-import { BallIcon, CalendarIcon } from "../icons";
+import { BallIcon, CalendarIcon } from "../biblia/icons";
 
 interface LeagueCardProps {
   id: string;

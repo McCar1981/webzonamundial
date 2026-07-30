@@ -48,8 +48,13 @@ const CASES: Case[] = [
     expected: true,
   },
   {
-    name: "Pieza solida en el limite (todo 4)",
+    name: "Pieza solida por encima del limite (todo 4)",
     verdict: v(4, 4, 4, 4, 4),
+    expected: true,
+  },
+  {
+    name: "Pieza en el limite actual (todo 3)",
+    verdict: v(3, 3, 3, 3, 3),
     expected: true,
   },
   {
@@ -58,14 +63,24 @@ const CASES: Case[] = [
     expected: false, // originalidad 2 < MIN_CRITICA
   },
   {
-    name: "Relleno: criticas OK pero profundidad 1 hunde la media",
+    name: "Profundidad baja compensada por el resto de dimensiones",
     verdict: v(4, 4, 1, 4, 4),
-    expected: false, // media 3.4 < MIN_MEDIA
+    expected: true, // media 3.4 >= MIN_MEDIA actual
   },
   {
-    name: "Datos sin respaldo en la fuente (precision baja)",
+    name: "Precision factual justo en el limite permitido",
     verdict: v(5, 5, 5, 3, 5),
-    expected: false, // precision_factual 3 < MIN_CRITICA (gate factual)
+    expected: true, // precision_factual 3 >= MIN_CRITICA actual
+  },
+  {
+    name: "Profundidad extrema hunde la media global",
+    verdict: v(3, 3, 0, 3, 3),
+    expected: false, // media 2.4 < MIN_MEDIA
+  },
+  {
+    name: "Precision factual por debajo del gate",
+    verdict: v(5, 5, 5, 2, 5),
+    expected: false, // precision_factual 2 < MIN_CRITICA
   },
   {
     name: "Off-topic / clickbait (relevancia baja)",

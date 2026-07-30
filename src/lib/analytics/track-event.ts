@@ -1,4 +1,10 @@
 "use client";
+
+import {
+  buildProductEvent,
+  type ProductEventName,
+  type ProductEventParams,
+} from "./product-events";
 // src/lib/analytics/track-event.ts
 //
 // Helper mínimo para emitir eventos de GA4 (gtag) desde componentes cliente.
@@ -48,4 +54,13 @@ export function trackEvent(name: string, params: Record<string, unknown> = {}): 
   } catch {
     /* la analítica nunca debe romper el flujo de pago */
   }
+}
+
+/** Emite un evento de producto con nombre, payload común y versión tipados. */
+export function trackProductEvent<Name extends ProductEventName>(
+  name: Name,
+  params: ProductEventParams[Name],
+): void {
+  const event = buildProductEvent(name, params);
+  trackEvent(event.name, event.params);
 }

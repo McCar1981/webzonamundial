@@ -8,6 +8,8 @@
 // 1 interacción por partido (localStorage + unique en BD). Sin emojis.
 
 import { useCallback, useEffect, useState } from "react";
+import { trackProductEvent } from "@/lib/analytics/track-event";
+import { matchStateFromApiStatus } from "@/lib/analytics/product-events";
 
 type Pick = "home" | "draw" | "away";
 type Counts = { home: number; draw: number; away: number; total: number };
@@ -22,12 +24,14 @@ export default function MatchPoll({
   slug,
   homeName,
   awayName,
+  fixtureStatus,
   notStarted = false,
 }: {
   fixtureId: number;
   slug: string;
   homeName: string;
   awayName: string;
+  fixtureStatus: string;
   notStarted?: boolean;
 }) {
   const storeKey = `zl-voted-${fixtureId}`;
@@ -91,6 +95,15 @@ export default function MatchPoll({
           });
           const pj = await pr.json().catch(() => ({}));
           if (pr.ok || pj?.error === "already_predicted") setRewarded(true);
+          if (pr.ok) {
+            trackProductEvent("prediction_submitted", {
+              fixture_id: fixtureId,
+              competition_slug: slug,
+              match_state: matchStateFromApiStatus(fixtureStatus),
+              surface: "match_poll",
+              market: "1x2",
+            });
+          }
           // si el partido ya empezó / no disponible, seguimos solo con la encuesta
         }
         // Voto de comunidad (para la barra; cuenta anónimos y logueados).
@@ -99,7 +112,16 @@ export default function MatchPoll({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ fixtureId, pick }),
         });
-        if (vr.ok) setCounts(await vr.json());
+        if (vr.ok) {
+          setCounts(await vr.json());
+          trackProductEvent("community_vote_submitted", {
+            fixture_id: fixtureId,
+            competition_slug: slug,
+            match_state: matchStateFromApiStatus(fixtureStatus),
+            surface: "match_poll",
+            authenticated: Boolean(authed),
+          });
+        }
         setMyPick(pick);
         try { localStorage.setItem(storeKey, pick); } catch { /* ignore */ }
       } catch {
@@ -108,7 +130,7 @@ export default function MatchPoll({
         setBusy(false);
       }
     },
-    [busy, myPick, authed, fixtureId, slug, storeKey],
+    [busy, myPick, authed, fixtureId, slug, fixtureStatus, storeKey],
   );
 
   const doBoost = useCallback(async () => {
@@ -151,6 +173,15 @@ export default function MatchPoll({
       const j = await r.json().catch(() => ({}));
       if (r.ok || j?.error === "already_predicted") {
         setExact({ home: eh, away: ea });
+        if (r.ok) {
+          trackProductEvent("prediction_submitted", {
+            fixture_id: fixtureId,
+            competition_slug: slug,
+            match_state: matchStateFromApiStatus(fixtureStatus),
+            surface: "match_poll",
+            market: "exact",
+          });
+        }
       } else if (j?.error === "match_started") {
         setExactError("El partido ya empezó: el marcador cierra al saque.");
       } else if (j?.error === "not_available") {
@@ -163,7 +194,7 @@ export default function MatchPoll({
     } finally {
       setExactBusy(false);
     }
-  }, [exactBusy, exact, fixtureId, slug, eh, ea]);
+  }, [exactBusy, exact, fixtureId, slug, fixtureStatus, eh, ea]);
 
   const options: { key: Pick; label: string }[] = [
     { key: "home", label: homeName },

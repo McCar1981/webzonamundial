@@ -22,6 +22,7 @@ import LigaCoach from "./LigaCoach";
 import LiveScore from "./LiveScore";
 import FutcoinsBadge from "@/components/ligas/FutcoinsBadge";
 import PlayerAvatar from "@/components/ligas/PlayerAvatar";
+import MatchdayTracker from "@/components/analytics/MatchdayTracker";
 import MicroLive from "@/app/app/matchcenter/MicroLive";
 import { isOla1 } from "@/lib/ligas/predict-markets";
 
@@ -238,6 +239,13 @@ export default async function CentroPartido({ params }: { params: Params }) {
 
   return (
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "20px 16px 64px" }}>
+      <MatchdayTracker
+        fixtureId={f.fixtureId}
+        competitionSlug={comp.slug}
+        fixtureStatus={f.status}
+        homeTeamId={f.home.id}
+        awayTeamId={f.away.id}
+      />
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
           <Link href={`/ligas/${comp.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, color: GOLD, textDecoration: "none" }}>
@@ -263,7 +271,7 @@ export default async function CentroPartido({ params }: { params: Params }) {
           </div>
         )}
 
-        {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} notStarted={f.status === "NS" || f.status === "TBD"} />}
+        {!finished && <MatchPoll fixtureId={f.fixtureId} slug={comp.slug} homeName={f.home.name} awayName={f.away.name} fixtureStatus={f.status} notStarted={f.status === "NS" || f.status === "TBD"} />}
 
         {/* Mercados avanzados (over/under, primer gol, ambos marcan): solo antes
             del saque y en ligas de Ola 1. El server revalida ambas condiciones. */}

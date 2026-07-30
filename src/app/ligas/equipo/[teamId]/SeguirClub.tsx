@@ -5,6 +5,7 @@
 // registro conservando la intención de volver a este equipo.
 
 import { useCallback, useEffect, useState } from "react";
+import { trackProductEvent } from "@/lib/analytics/track-event";
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
@@ -42,7 +43,13 @@ export default function SeguirClub({ teamId, teamName, teamLogo }: { teamId: num
         body: JSON.stringify({ teamId, teamName, teamLogo }),
       });
       const j = await r.json().catch(() => ({}));
-      if (r.ok) setEsMiClub(true);
+      if (r.ok) {
+        setEsMiClub(true);
+        trackProductEvent("club_followed", {
+          club_id: teamId,
+          surface: "club_page",
+        });
+      }
       else if (j?.error === "not_available") setError("Disponible en breve.");
       else setError("No se pudo guardar.");
     } catch {

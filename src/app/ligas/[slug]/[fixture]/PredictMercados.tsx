@@ -10,6 +10,7 @@
 // Complementa a MatchPoll (1X2 + marcador exacto); no lo reemplaza. Sin emojis.
 
 import { useCallback, useEffect, useState, type CSSProperties } from "react";
+import { trackProductEvent } from "@/lib/analytics/track-event";
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
@@ -107,6 +108,15 @@ export default function PredictMercados({
         const j = await r.json().catch(() => ({}));
         if (r.ok || j?.error === "already_predicted") {
           setSaved((s) => ({ ...s, [market]: data }));
+          if (r.ok) {
+            trackProductEvent("prediction_submitted", {
+              fixture_id: fixtureId,
+              competition_slug: slug,
+              match_state: "scheduled",
+              surface: "advanced_markets",
+              market,
+            });
+          }
         } else if (j?.error === "match_started") {
           setError("El partido ya empezó: las predicciones cierran al saque.");
         } else if (j?.error === "not_available" || j?.error === "market_not_available") {

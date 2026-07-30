@@ -12,6 +12,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { COMPETITIONS } from "@/data/competitions";
+import { trackProductEvent } from "@/lib/analytics/track-event";
 
 const GOLD = "#c9a84c";
 const DIM = "#a69a82";
@@ -113,6 +114,11 @@ export default function MiClubCard() {
       });
       const j = await r.json().catch(() => ({}));
       if (r.ok) {
+        trackProductEvent("club_followed", {
+          club_id: t.id,
+          competition_slug: pickLiga,
+          surface: "ligas_hub",
+        });
         setPicking(false);
         setPickLiga(null);
         setTeams(null);
@@ -129,12 +135,20 @@ export default function MiClubCard() {
     }
   }, [busy, pickLiga, load]);
 
-  const removeClub = useCallback(async (clubId: number) => {
+  const removeClub = useCallback(async (clubId: number, competitionSlug?: string) => {
     // Optimista: quita al instante; si falla, recarga.
     setClubs((prev) => prev.filter((c) => c.clubId !== clubId));
     try {
       const r = await fetch(`/api/ligas/mi-club?teamId=${clubId}`, { method: "DELETE" });
-      if (!r.ok) load();
+      if (r.ok) {
+        trackProductEvent("club_unfollowed", {
+          club_id: clubId,
+          competition_slug: competitionSlug,
+          surface: "ligas_hub",
+        });
+      } else {
+        load();
+      }
     } catch {
       load();
     }
@@ -237,7 +251,7 @@ export default function MiClubCard() {
                   )}
                 </span>
               </a>
-              <button onClick={() => removeClub(c.clubId)} aria-label={`Quitar ${c.clubName}`} title="Quitar club"
+              <button onClick={() => removeClub(c.clubId, c.ligaSlug ?? undefined)} aria-label={`Quitar ${c.clubName}`} title="Quitar club"
                 style={{ border: "none", background: "none", color: DIM, fontSize: 18, lineHeight: 1, cursor: "pointer", flexShrink: 0, padding: "0 2px" }}>
                 ×
               </button>

@@ -15,6 +15,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { COMPETITIONS, type Competition, type CompetitionRegion } from "@/data/competitions";
+import { trackProductEvent } from "@/lib/analytics/track-event";
 import MisNoticias from "./MisNoticias";
 
 const GOLD = "#c9a84c";
@@ -164,7 +165,21 @@ export default function LigasDirectory() {
       });
       const j = await r.json().catch(() => ({}));
       if (r.ok) {
-        const l = Array.isArray(j.ligas) ? j.ligas : [...sel];
+        const l: string[] = Array.isArray(j.ligas)
+          ? j.ligas.filter((value: unknown): value is string => typeof value === "string")
+          : [...sel];
+        const previous = new Set(ligas);
+        const next = new Set(l);
+        const added = l.filter((slug: string) => !previous.has(slug)).length;
+        const removed = ligas.filter((slug) => !next.has(slug)).length;
+        if (added > 0 || removed > 0) {
+          trackProductEvent("competition_preferences_updated", {
+            selection_count: l.length,
+            added_count: added,
+            removed_count: removed,
+            surface: "ligas_hub",
+          });
+        }
         setLigas(l);
         setEditing(false);
         setFeed(null);
@@ -179,7 +194,7 @@ export default function LigasDirectory() {
     } finally {
       setBusy(false);
     }
-  }, [busy, sel, loadFeed]);
+  }, [busy, sel, ligas, loadFeed]);
 
   // Selector de ligas (chips multi-selección sobre el catálogo).
   const editor = (

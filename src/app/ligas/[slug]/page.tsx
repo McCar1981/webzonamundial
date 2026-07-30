@@ -229,6 +229,7 @@ export default async function LigaPage({ params }: { params: { slug: string } })
             slug={comp.slug}
             homeName={featured.home.name}
             awayName={featured.away.name}
+            fixtureStatus={featured.status}
             notStarted
           />
         )}

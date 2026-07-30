@@ -8,11 +8,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test-gate": "tsx scripts/test-gate.ts",
-    "test-product-analytics": "tsx scripts/test-product-analytics.ts",
-    "verify-team-photos": "tsx scripts/verify-team-photos.ts",
-    "validate-content": "tsx scripts/validate-content.ts",
-    "prebuild": "tsx scripts/validate-content.ts"
+    "lint:ci": "next lint --quiet",
+    "typecheck": "tsc --noEmit --pretty false --incremental false",
+    "test-gate": "node --import tsx scripts/test-gate.ts",
+    "test-product-analytics": "node --import tsx scripts/test-product-analytics.ts",
+    "test:ci": "npm run test-gate && npm run test-product-analytics && npm run validate-content",
+    "check:ci": "npm run lint:ci && npm run typecheck && npm run test:ci",
+    "verify-team-photos": "node --import tsx scripts/verify-team-photos.ts",
+    "validate-content": "node --import tsx scripts/validate-content.ts",
+    "prebuild": "node --import tsx scripts/validate-content.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

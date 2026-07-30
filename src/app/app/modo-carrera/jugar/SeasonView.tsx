@@ -417,6 +417,20 @@ export default function SeasonView({
   const nationSlug = career.identity.nationSlug ?? "";
   const nation = sel(nationSlug);
 
+  // Cierra el revelado del resultado y, si saltó una rueda de prensa, la abre a
+  // continuación (decisión que impacta moral y confianza de la federación).
+  const closeReveal = () => {
+    const p = reveal?.press ?? null;
+    setReveal(null);
+    if (p) setPressConf(p);
+  };
+
+  // Los hooks deben existir también antes de crear una temporada. Permanecen
+  // inactivos mientras no haya diálogo abierto y conservan un orden estable
+  // cuando la vista pasa del selector de modalidad a la temporada.
+  const revealRef = useModalA11y<HTMLDivElement>(closeReveal, !!(reveal && reveal.match));
+  const pressRef = useModalA11y<HTMLDivElement>(undefined, !!(pressConf && pressConf.choices));
+
   // Sin temporada activa → elige una de las DOS modalidades (Libre vs En Vivo).
   if (!season) {
     const liveAvailable = paseDT && canLive;
@@ -556,24 +570,11 @@ export default function SeasonView({
     if (res && res.match) setReveal(res);
   };
 
-  // Cierra el revelado del resultado y, si saltó una rueda de prensa, la abre a
-  // continuación (decisión que impacta moral y confianza de la federación).
-  const closeReveal = () => {
-    const p = reveal?.press ?? null;
-    setReveal(null);
-    if (p) setPressConf(p);
-  };
-
   // Resuelve la rueda de prensa: aplica el tono elegido y cierra el modal.
   const choosePress = (choiceId: string) => {
     if (pressConf) onChoose(pressConf.id, choiceId);
     setPressConf(null);
   };
-
-  // A11y de los diálogos de la vista: foco al abrirse y Escape donde hay cierre
-  // seguro. La rueda de prensa EXIGE decisión (no tiene cierre), solo recibe foco.
-  const revealRef = useModalA11y<HTMLDivElement>(closeReveal, !!(reveal && reveal.match));
-  const pressRef = useModalA11y<HTMLDivElement>(undefined, !!(pressConf && pressConf.choices));
 
   return (
     <div style={{ maxWidth: 820, margin: "0 auto" }}>

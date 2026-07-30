@@ -177,7 +177,7 @@ export async function GET(request: NextRequest) {
     const toMark = all.slice(0, markFirst).filter((e) => !sentSet.has(e));
     for (let i = 0; i < toMark.length; i += 200) {
       const batch = toMark.slice(i, i + 200);
-      if (batch.length) await kv.sadd(SENT_KEY, ...batch);
+      if (batch.length) await kv.sadd(SENT_KEY, batch[0], ...batch.slice(1));
     }
     return NextResponse.json({
       ok: true,

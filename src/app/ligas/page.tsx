@@ -6,7 +6,6 @@
 // catálogo es fijo. Indexable y en el sitemap.
 
 import type { Metadata } from "next";
-import LiveStrip from "./LiveStrip";
 import HabitStrip from "@/components/ligas/HabitStrip";
 import MiClubCard from "@/components/ligas/MiClubCard";
 import LigasDirectory from "./LigasDirectory";
@@ -23,8 +22,8 @@ export default function LigasHub() {
     <main style={{ minHeight: "100vh", background: "linear-gradient(180deg, #000000, #000000)", color: "#E2E8F0", padding: "28px 16px 64px" }}>
       <div style={{ maxWidth: 620, margin: "0 auto" }}>
         <p className="zl-eyebrow">Zona de Ligas</p>
-        <h1 className="zl-h1">Todas las ligas y copas</h1>
-        <p className="zl-sub">Calendario, resultados y clasificación en vivo. No leas el partido: juégalo.</p>
+        <h1 className="zl-h1">Tu fútbol, hoy</h1>
+        <p className="zl-sub">Sigue tus clubes, entra a los partidos y predice cada jornada. Todo lo importante, en un solo lugar.</p>
 
         {/* Mi club: el ancla de la temporada — su próximo partido, su último
             resultado y sus noticias, siempre arriba del todo. El id es el
@@ -37,9 +36,8 @@ export default function LigasHub() {
         {/* Hábito visible en la puerta: racha + cofre del día 7 + Fútcoins. */}
         <HabitStrip />
 
-        <LiveStrip />
-
-        {/* Directorio del catalogo que se vuelve feed personal ("Mis ligas"). */}
+        {/* Agenda de hoy para usuarios con preferencias; franja global para
+            anónimos; directorio completo como capa de exploración. */}
         <LigasDirectory />
       </div>
     </main>

@@ -48,7 +48,27 @@ function main() {
   });
   assert.equal("competition_slug" in optional.params, false);
 
-  console.log("Product analytics: 7 checks OK.");
+  const overview = buildProductEvent("personal_matchday_viewed", {
+    competition_count: 3,
+    fixture_count: 5,
+    live_count: 1,
+    today_count: 4,
+    mode: "live",
+    surface: "ligas_hub",
+  });
+  assert.equal(overview.params.mode, "live");
+
+  const selected = buildProductEvent("personal_match_selected", {
+    fixture_id: 789,
+    competition_slug: "laliga",
+    match_state: "scheduled",
+    surface: "personal_matchday",
+    mode: "today",
+    position: 2,
+  });
+  assert.equal(selected.params.position, 2);
+
+  console.log("Product analytics: 9 checks OK.");
 }
 
 main();

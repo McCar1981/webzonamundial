@@ -18,9 +18,9 @@ const SITE_URL = "https://zonamundial.app";
 const DOWNLOAD_URL = `${SITE_URL}/descarga`;
 
 export const metadata: Metadata = {
-  title: "Descarga ZonaMundial \u2014 La app del Mundial 2026",
+  title: "Descarga Zona de Ligas \u2014 tu f\u00fatbol de clubes todo el a\u00f1o",
   description:
-    "Lleva ZonaMundial a tu m\u00f3vil. Escanea el QR o env\u00edate el enlace al email o WhatsApp. Predicciones, fantasy, IA Coach y mucho m\u00e1s.",
+    "Lleva Zona de Ligas a tu m\u00f3vil. Escanea el QR o env\u00edate el enlace al email o WhatsApp. Predicciones, Fantasy, Draft e IA Coach de tu liga.",
   alternates: {
     canonical: DOWNLOAD_URL,
   },

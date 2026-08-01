@@ -233,15 +233,15 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
           {"/* PLAN PRO */"}
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3 text-center">
-          Juega el Mundial <span style={{ color: GOLD }}>sin límites</span>
+          Juega tu liga <span style={{ color: GOLD }}>sin límites</span>
         </h1>
         <p className="text-gray-400 text-center max-w-xl mx-auto mb-2">
-          Todos los tipos de predicción, IA Coach ilimitada, fantasy en vivo, Modo
-          Carrera infinito, ligas privadas y cero anuncios.
+          Todos los tipos de predicción, IA Coach ilimitada, Fantasy y Draft sin
+          tope, ligas privadas y cero anuncios.
         </p>
         <p className="text-center max-w-xl mx-auto mb-8 text-sm font-semibold" style={{ color: GOLD }}>
-          Y no acaba con el Mundial: tu Pro sigue todo el año con la Champions, la
-          Copa Libertadores y las grandes ligas del mundo.
+          Todo el año, jornada a jornada: LigaPro, Liga MX, Brasileirão, Liga
+          Argentina, LaLiga, Premier, Libertadores y Champions.
         </p>
 
         {purchaseSuccess && (
@@ -290,7 +290,7 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
                   <Clock size={15} /> Precio fundador — bloquéalo de por vida
                 </div>
                 <div className="mt-1 text-xs text-gray-400">
-                  Suscríbete antes del fin del Mundial y conservas este precio para siempre. Termina en{" "}
+                  Suscríbete ahora y conservas este precio para siempre. Termina en{" "}
                   <span className="font-mono font-bold text-white">{founderLeft}</span>
                 </div>
               </div>
@@ -398,10 +398,10 @@ export default function ProPanel({ authenticated, isPro, source, region }: Props
         {/* FAQ — mata objeciones */}
         <div className="mt-8 space-y-3">
           {[
-            { q: "¿Y después del Mundial?", a: "Tu Pro sigue todo el año: Champions, Copa Libertadores, Eurocopa y las grandes ligas del mundo. No es solo el Mundial." },
+            { q: "¿Qué ligas incluye?", a: "Todas las que cubre Zona de Ligas: LigaPro, Liga MX, Brasileirão, Liga Argentina, Primera A, FUTVE, LaLiga, Premier, Libertadores, Sudamericana y Champions. Se juega jornada a jornada, todo el año." },
             { q: "¿Cuándo tengo acceso?", a: "Al instante. En cuanto completas el pago, se te desbloquea todo el Pro de inmediato." },
             { q: "¿Puedo cancelar?", a: "Cuando quieras, en dos clics desde tu cuenta. Sin permanencia ni llamadas." },
-            { q: "¿El precio sube luego?", a: "Si te suscribes durante el Mundial, bloqueas el precio fundador de por vida. Más adelante subirá para las nuevas altas." },
+            { q: "¿El precio sube luego?", a: "Si te suscribes ahora, bloqueas el precio fundador de por vida. Más adelante subirá para las nuevas altas." },
           ].map((f) => (
             <details key={f.q} className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3">
               <summary className="cursor-pointer text-sm font-bold text-white">{f.q}</summary>

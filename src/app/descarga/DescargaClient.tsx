@@ -158,7 +158,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
   const waMessage = useMemo(
     () =>
       encodeURIComponent(
-        `¡Mira ZonaMundial! La app del Mundial 2026 con predicciones, fantasy y mucho más.\n\nDescarga: ${qrTarget}`,
+        `¡Mira Zona de Ligas! La app de tu fútbol todo el año: predicciones, Fantasy, Draft y las noticias de tu club.\n\nDescarga: ${qrTarget}`,
       ),
     [qrTarget],
   );
@@ -559,7 +559,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             Qué vas a tener en la app
           </h2>
           <p style={{ textAlign: "center", color: "#a69a82", margin: "0 0 36px" }}>
-            12 módulos integrados para vivir el Mundial 2026 al máximo.
+            Todo lo que necesitas para vivir tu liga, jornada a jornada.
           </p>
           <div
             style={{

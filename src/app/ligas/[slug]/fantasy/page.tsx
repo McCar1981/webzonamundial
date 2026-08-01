@@ -75,9 +75,29 @@ export default async function FantasyPage({ params }: { params: { slug: string }
     );
   }
 
+  // Resultado de la jornada. La página promete "se puntúa al terminar la jornada
+  // y ganas Fútcoins", pero el usuario volvía y NO veía nada: los puntos se
+  // calculaban, se pagaban y nunca se mostraban. Solo se pinta cuando ya hay
+  // veredicto (puntuada o anulada); mientras está pendiente no se dice nada.
+  const marcador =
+    existing && existing.status === "scored" ? (
+      <div style={{ margin: "0 0 14px", padding: "14px 16px", borderRadius: 14, background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(201,168,76,0.05))", border: "1px solid rgba(201,168,76,0.42)" }}>
+        <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD }}>Tu jornada</div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
+          <span style={{ fontSize: 30, fontWeight: 800, color: "#fff", fontVariantNumeric: "tabular-nums" }}>{existing.points ?? 0}</span>
+          <span style={{ fontSize: 14, color: DIM }}>{(existing.points ?? 0) === 1 ? "punto" : "puntos"}</span>
+        </div>
+      </div>
+    ) : existing && existing.status === "void" ? (
+      <div style={{ margin: "0 0 14px", padding: "12px 16px", borderRadius: 14, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)", fontSize: 13, color: DIM }}>
+        Esta jornada se anuló (partidos aplazados o cancelados). No se descontó nada.
+      </div>
+    ) : null;
+
   return shell(
     <>
       <p style={{ margin: "0 0 4px", fontSize: 13.5, color: DIM }}>{comp.name} · {round}</p>
+      {marcador}
       <FantasyPicker slug={comp.slug} round={round} pool={pool} existing={existing} />
     </>,
   );

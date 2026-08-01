@@ -20,6 +20,12 @@ export interface SquadPick {
 export interface UserFantasyPick {
   players: SquadPick[];
   captainId: number | null;
+  /** Estado de la jornada: pendiente de puntuar, puntuada o anulada. */
+  status?: "pending" | "scored" | "void" | null;
+  /** Puntos de la jornada. Los escribe el cron al cerrarla. */
+  points?: number | null;
+  /** Cuándo se puntuó (ISO). */
+  scoredAt?: string | null;
 }
 
 export type SaveFantasyResult = { ok: boolean; reason?: "exists" | "not_available" | "error" };
@@ -53,14 +59,36 @@ export async function getUserFantasyPick(
   round: string,
 ): Promise<UserFantasyPick | null> {
   const supa = createSupabaseServerClient();
-  const { data, error } = await supa
-    .from("liga_fantasy_picks")
-    .select("players,captain_id")
-    .eq("user_id", userId)
-    .eq("competition_slug", competitionSlug)
-    .eq("round", round)
-    .maybeSingle();
-  if (error || !data) return null;
-  const row = data as { players?: SquadPick[]; captain_id?: number | null };
-  return { players: row.players ?? [], captainId: row.captain_id ?? null };
+  // Se leen TAMBIÉN status/points/scored_at: el cron los escribe al cerrar la
+  // jornada, pero aquí solo se pedían players y captain_id, así que el usuario
+  // nunca llegaba a ver sus puntos pese a que la página se los promete. Es
+  // fail-soft: si las columnas aún no existen, se reintenta con el select
+  // mínimo y la pantalla se comporta como antes.
+  type PickRow = {
+    players?: SquadPick[];
+    captain_id?: number | null;
+    status?: UserFantasyPick["status"];
+    points?: number | null;
+    scored_at?: string | null;
+  };
+  const leer = (cols: string) =>
+    supa
+      .from("liga_fantasy_picks")
+      .select(cols)
+      .eq("user_id", userId)
+      .eq("competition_slug", competitionSlug)
+      .eq("round", round)
+      .maybeSingle();
+
+  let res = await leer("players,captain_id,status,points,scored_at");
+  if (res.error) res = await leer("players,captain_id");
+  if (res.error || !res.data) return null;
+  const row = res.data as unknown as PickRow;
+  return {
+    players: row.players ?? [],
+    captainId: row.captain_id ?? null,
+    status: row.status ?? null,
+    points: row.points ?? null,
+    scoredAt: row.scored_at ?? null,
+  };
 }

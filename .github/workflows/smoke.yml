@@ -1,0 +1,197 @@
+name: Smoke de producción (rutas vivas)
+
+# POR QUÉ EXISTE
+# El 24-jul un commit dejó la HOME devolviendo HTTP 500 y estuvo así OCHO DÍAS
+# sin que nadie se enterase. Causa: `ModulesGridSection` emparejaba por índice
+# la lista de textos del i18n con la de metadatos del componente; alguien
+# comentó dos entradas de una lista y no de la otra, y `meta[i].color` reventó
+# el render del server component.
+#
+# Lo importante no es ese bug concreto, es que NINGUNA barrera lo vio:
+#   - `tsc` pasa: los tipos son correctos, el desajuste es de LONGITUD.
+#   - `next build` pasa: dice "Compiled successfully" porque compila; el fallo
+#     ocurre al RENDERIZAR con datos reales.
+#   - Vercel da el deploy por bueno: para él un 500 en runtime no es un fallo
+#     de despliegue.
+#   - /api/health seguía en "healthy": mira Supabase, KV y env vars, no páginas.
+# Es decir: teníamos monitorización de DEPENDENCIAS pero no de PÁGINAS.
+#
+# Esto lo cierra por el único sitio por donde se podía cerrar: pidiendo las
+# páginas de verdad, como un usuario, contra producción.
+#
+# CUÁNDO CORRE
+#   - cada 30 min (red de seguridad; el scheduler de Actions se retrasa, da
+#     igual: aquí no hace falta puntualidad, hace falta que corra)
+#   - a mano, con workflow_dispatch
+#
+# QUÉ HACE SI FALLA
+# El job sale en rojo -> GitHub manda email al dueño del repo. No hay
+# integración de alertas más fina a propósito: un email que llega es mejor que
+# un webhook que nadie configuró.
+#
+# COSTE: repo público -> minutos de Actions gratis. ~25 peticiones cada media
+# hora contra el CDN de Vercel; casi todo sale de caché.
+#
+# Secret necesario: SITE_URL (ya lo usa mc-watchdog).
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      selftest:
+        description: "Probar el detector contra casos sintéticos y salir"
+        type: boolean
+        default: false
+
+concurrency:
+  group: smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Autotest del detector
+        if: ${{ inputs.selftest }}
+        run: |
+          set -euo pipefail
+          # El detector de "200 mentiroso" es la parte con lógica, así que se
+          # prueba sola. Sin esto un cambio en el patrón sería SILENCIOSO:
+          # dejaría de detectar y el smoke saldría verde para siempre.
+          bad() { printf '%s' "$1" | grep -qiE 'Application error|could not be found|Internal Server Error'; }
+          fail=0
+          bad '<h1>Application error: a client-side exception has occurred</h1>' || { echo "FALLO: no detecta el error de cliente"; fail=1; }
+          bad '<h2>This page could not be found.</h2>' || { echo "FALLO: no detecta el 404 blando"; fail=1; }
+          bad '<div>Internal Server Error</div>' || { echo "FALLO: no detecta el 500 blando"; fail=1; }
+          bad '<h1>Zona de Ligas — tu liga, todo el año</h1>' && { echo "FALLO: falso positivo en una página buena"; fail=1; }
+          [ "$fail" = 0 ] && echo "Autotest OK: el detector distingue los 4 casos."
+          exit $fail
+
+      - name: Pedir las rutas y comprobarlas
+        if: ${{ !inputs.selftest }}
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: |
+          set -uo pipefail
+
+          if [ -z "${SITE_URL:-}" ]; then
+            echo "::error::Falta el secret SITE_URL"; exit 1
+          fi
+          BASE="${SITE_URL%/}"
+
+          # Rutas que un usuario o Google piden de verdad. NO se listan las de
+          # /admin (llevan auth) ni las dinámicas (dependen del dato del día:
+          # un 404 legítimo ahí sería ruido y acabaríamos ignorando el smoke).
+          ROUTES="
+          /
+          /ligas
+          /ligas/predicciones
+          /noticias
+          /blog
+          /trivia
+          /app
+          /premium
+          /pro
+          /descarga
+          /la-app
+          /camisetas
+          /cromos
+          /registro
+          /login
+          /sobre
+          /contacto
+          /tutoriales
+          /press
+          /publicidad
+          /bares
+          /legal/privacidad
+          /legal/terminos
+          /selecciones
+          /calendario
+          /sitemap.xml
+          /robots.txt
+          /manifest.json
+          /api/health
+          "
+
+          fails=0
+          checked=0
+
+          echo "Smoke contra $BASE"
+          echo ""
+          printf '%-28s %-6s %-9s %s\n' RUTA HTTP BYTES VEREDICTO
+          printf '%.0s-' {1..70}; echo ""
+
+          for r in $ROUTES; do
+            checked=$((checked + 1))
+            body=$(mktemp)
+            # -L: seguimos redirecciones. Una ruta con auth (/app) contesta 307
+            # a /login y eso es CORRECTO; lo que buscamos es que al final del
+            # camino haya una página viva, no un error.
+            meta=$(curl -sS -L -m 25 -o "$body" -w '%{http_code} %{content_type}' \
+                     -H 'User-Agent: ZM-Smoke/1 (+github-actions)' \
+                     "$BASE$r" 2>/dev/null || echo "000 none")
+            code="${meta%% *}"
+            ctype="${meta#* }"
+            size=$(wc -c < "$body" | tr -d ' ')
+
+            verdict="ok"
+            if [ "$code" = "000" ]; then
+              verdict="SIN RESPUESTA (timeout o DNS)"
+            elif [ "$code" -ge 500 ] 2>/dev/null; then
+              verdict="ERROR $code — la página está CAÍDA"
+            elif [ "$code" -ge 400 ] 2>/dev/null; then
+              verdict="ERROR $code — ruta enlazada pero inexistente"
+            elif grep -qiE 'Application error|could not be found|Internal Server Error' "$body"; then
+              # El caso traicionero: HTTP 200 con una página de error dentro.
+              # Pasa cuando revienta un componente de cliente tras hidratar.
+              verdict="200 MENTIROSO — devuelve página de error"
+            elif [ "${ctype#text/html}" != "$ctype" ] && [ "$size" -lt 5000 ]; then
+              # Solo para HTML: la página más pequeña del sitio (/login) pesa
+              # 57 KB, así que por debajo de 5 KB es un cascarón — casi seguro
+              # un error boundary vacío. El umbral NO se aplica a JSON ni a
+              # robots.txt, que legítimamente pesan cientos de bytes (de hecho
+              # /api/health son 265 B y daba falso positivo).
+              verdict="CUERPO VACÍO ($size B de HTML)"
+            fi
+
+            printf '%-28s %-6s %-9s %s\n' "$r" "$code" "$size" "$verdict"
+            [ "$verdict" != "ok" ] && fails=$((fails + 1))
+            rm -f "$body"
+          done
+
+          echo ""
+          # El commit que se está sirviendo de verdad. Sirve para saber si un
+          # fallo es de código nuevo o si el push ni siquiera ha llegado.
+          HEALTH=$(curl -sS -m 15 "$BASE/api/health" 2>/dev/null || echo '{}')
+          COMMIT=$(printf '%s' "$HEALTH" | sed -n 's/.*"commit":"\([^"]*\)".*/\1/p')
+          HSTATUS=$(printf '%s' "$HEALTH" | sed -n 's/.*"status":"\([^"]*\)".*/\1/p')
+          echo "Commit servido en producción: ${COMMIT:-desconocido}"
+          echo "Estado de dependencias: ${HSTATUS:-desconocido}"
+
+          # "degraded" NO tumba el smoke: casi siempre es api-football agotando
+          # su cuota diaria, que se repone a las 00:00 UTC y no impide navegar.
+          # Pero sí se avisa, porque con la cuota agotada las páginas de club y
+          # jugador salen vacías aunque devuelvan 200.
+          if [ "$HSTATUS" = "degraded" ] || [ "$HSTATUS" = "unhealthy" ]; then
+            echo "::warning::Dependencias en estado '$HSTATUS' — revisa /api/health"
+          fi
+
+          echo "Rutas comprobadas: $checked · con fallo: $fails"
+
+          {
+            echo "### Smoke de producción"
+            echo ""
+            echo "- Base: \`$BASE\`"
+            echo "- Commit servido: \`${COMMIT:-desconocido}\`"
+            echo "- Dependencias: \`${HSTATUS:-desconocido}\`"
+            echo "- Rutas: **$checked** · fallos: **$fails**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$fails" -gt 0 ]; then
+            echo "::error::$fails ruta(s) rotas en producción. Mira la tabla de arriba."
+            exit 1
+          fi
+          echo "Todas las rutas responden."

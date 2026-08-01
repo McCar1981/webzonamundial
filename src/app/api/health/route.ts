@@ -197,6 +197,11 @@ export async function GET() {
     },
     timestamp: new Date().toISOString(),
     uptime_s: Math.round((Date.now() - PROCESS_START_MS) / 1000),
+    // Commit realmente servido. Existe porque más de una vez dimos por
+    // desplegado un push que seguía en cola en Vercel: sin esto la única
+    // forma de saberlo era adivinar por el contenido de la página. El repo
+    // es PÚBLICO, así que el SHA no revela nada.
+    commit: (process.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7),
     // H-001-26: no exponer región ni uptime (info disclosure mínima).
     // region: process.env.VERCEL_REGION ?? null,
   };

@@ -301,12 +301,12 @@ export default function NoticiasClient({
       {/* Hero header */}
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <span className={styles.eyebrow}>NOTICIAS · MUNDIAL 2026</span>
+          <span className={styles.eyebrow}>NOTICIAS · ZONA DE LIGAS</span>
           <h1 className={styles.h1}>
-            La actualidad del <em>Mundial</em>, sin filtros.
+            La actualidad de <em>tu fútbol</em>, sin filtros.
           </h1>
           <p className={styles.headerSub}>
-            Análisis, datos, historia y guías para vivir la Copa del Mundo 2026 como un experto. Cobertura editorial diaria de selecciones, sedes, jugadores y mercados.
+            Fichajes, jornadas, análisis y datos del fútbol de clubes. Cobertura editorial diaria de LigaPro, Liga MX, Brasileirão, Liga Argentina, LaLiga, Premier y las copas continentales.
           </p>
           <div className={styles.headerStats}>
             <span><strong>{totalCount}</strong> artículos</span>
@@ -611,8 +611,8 @@ export default function NoticiasClient({
 
                 <div className={`${styles.sideBlock} ${styles.sidePromo}`}>
                   <small>JUEGA GRATIS</small>
-                  <h3>Predicciones del Mundial 2026</h3>
-                  <p>Compite con creadores y amigos. Juega gratis ahora.</p>
+                  <h3>Predice tu liga, jornada a jornada</h3>
+                  <p>Compite con tus amigos en la tabla de tu liga. Juega gratis ahora.</p>
                   <Link href="/registro">Regístrate gratis →</Link>
                 </div>
 

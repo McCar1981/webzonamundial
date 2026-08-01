@@ -543,12 +543,12 @@ export default function TriviaGame() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 24 }}>
           <span style={{ color: GOLD, fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase" }}>
-            ZonaMundial · Mundial 2026
+            ZONA DE LIGAS · TRIVIA
           </span>
           <h1 style={{ fontSize: "clamp(26px,5vw,40px)", fontWeight: 900, marginTop: 6, lineHeight: 1.05 }}>
-            Trivia del{" "}
+            Trivia de{" "}
             <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Mundial
+              tu fútbol
             </span>
           </h1>
         </div>
@@ -665,7 +665,7 @@ function Menu({
   return (
     <>
       <p style={{ textAlign: "center", color: MID, fontSize: 15, marginBottom: 20 }}>
-        Demuestra cuánto sabes de fútbol y Mundiales. Mantén tu racha y sube en el ranking.
+        Demuestra cuánto sabes de tu liga y del fútbol de clubes. Mantén tu racha y sube en el ranking.
       </p>
 
       <div style={{ marginBottom: 22 }}>
@@ -998,10 +998,10 @@ const R = "/assets/trivia/results";
 
 /** Rango según puntos (solo visual; no cambia ninguna lógica de juego). */
 function rankFor(points: number): string {
-  if (points >= 121) return "Leyenda ZonaMundial";
-  if (points >= 81) return "Experto Mundialista";
+  if (points >= 121) return "Leyenda del fútbol";
+  if (points >= 81) return "Experto de liga";
   if (points >= 41) return "Buen Predictor";
-  return "Aprendiz Mundialista";
+  return "Aprendiz de grada";
 }
 
 function Result({
@@ -1033,12 +1033,12 @@ function Result({
   const share = async () => {
     const text =
       mode === "muerte-subita"
-        ? `He aguantado ${result.survival} preguntas seguidas en la Trivia del Mundial de ZonaMundial 🔥 ¿Puedes superarme?`
-        : `He sacado ${result.points} puntos (${result.correct}/${result.answered}) en la Trivia del Mundial de ZonaMundial ⚽ ¿Cuánto sabes tú?`;
+        ? `He aguantado ${result.survival} preguntas seguidas en la Trivia de Zona de Ligas 🔥 ¿Puedes superarme?`
+        : `He sacado ${result.points} puntos (${result.correct}/${result.answered}) en la Trivia de Zona de Ligas ⚽ ¿Cuánto sabes tú?`;
     const url = "https://zonamundial.app/trivia";
     if (navigator.share) {
       try {
-        await navigator.share({ title: "Trivia del Mundial", text, url });
+        await navigator.share({ title: "Trivia de Zona de Ligas", text, url });
         return;
       } catch {
         /* cancelado */

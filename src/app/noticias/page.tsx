@@ -8,9 +8,9 @@ const SITE_URL = "https://zonamundial.app";
 
 export const metadata: Metadata = {
   // Sin sufijo de marca: lo añade el template del layout raíz.
-  title: "Noticias del Mundial 2026",
+  title: "Noticias de fútbol",
   description:
-    "Última hora, análisis, datos y guías sobre el Mundial 2026. Cobertura editorial diaria de selecciones, sedes, jugadores y la actualidad de la Copa del Mundo.",
+    "Última hora, análisis y datos del fútbol de clubes: fichajes, jornadas y actualidad de LigaPro, Liga MX, Brasileirão, Liga Argentina, LaLiga, Premier y más.",
   alternates: {
     canonical: `${SITE_URL}/noticias`,
     types: { "application/rss+xml": `${SITE_URL}/noticias/rss.xml` },
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/noticias`,
-    title: "Noticias del Mundial 2026 | ZonaMundial",
+    title: "Noticias de fútbol | Zona de Ligas",
     description:
-      "Última hora, análisis y guías sobre la Copa del Mundo 2026. Cobertura editorial diaria.",
+      "Última hora, análisis y datos del fútbol de clubes. Cobertura editorial diaria de tus ligas.",
     siteName: "ZonaMundial",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Noticias del Mundial 2026 | ZonaMundial",
-    description: "Última hora y análisis del Mundial 2026.",
+    title: "Noticias de fútbol | Zona de Ligas",
+    description: "Última hora y análisis del fútbol de clubes.",
   },
 };
 
@@ -43,7 +43,7 @@ export default async function NoticiasPage() {
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Noticias del Mundial 2026",
+    name: "Noticias de fútbol",
     itemListElement: posts.slice(0, 10).map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,

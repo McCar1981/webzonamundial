@@ -1307,7 +1307,7 @@ function CampanaScreen({ equipo, onTerminar, rivalPool }: {
               </div>
               <div className="relative text-xl font-black" style={{ color: TXT }}>Tu once está listo</div>
               <p className="relative text-sm mt-1.5 leading-snug" style={{ color: TXT_MUT }}>
-                Elige cómo quieres disputar la campaña mundialista.
+                Elige cómo quieres disputar la campaña con tu once.
               </p>
               <div className="relative flex items-center justify-center gap-2 mt-3 text-[11px] font-bold flex-wrap" style={{ color: GOLD2 }}>
                 <span>{jugCount} jugadores</span>

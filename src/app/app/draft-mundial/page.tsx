@@ -1,7 +1,7 @@
 "use client";
 
 // src/app/app/draft-mundial/page.tsx
-// Portada del minijuego Draft Mundial.
+// Portada del minijuego Draft de Ligas.
 //
 // No es una landing de marketing: es la "tapa" del juego. La identidad la dan
 // las selecciones reales (banderas + año desde plantillas.ts) y el movimiento
@@ -21,21 +21,25 @@ import FlagImage from "@/components/FlagImage";
 const NAVY = "#0a0906", GOLD = "#c9a84c", GOLD2 = "#e8d48b";
 const TXT = "#eef2fb", TXT_MUT = "#a69a82", CARD = "#14110a", LINE = "rgba(255,255,255,0.08)";
 
+// CLUBES reales del catálogo del juego. Antes esta cinta mostraba SELECCIONES
+// del Mundial (Brasil 70, Alemania 74…) que ya nunca salen en el Draft de
+// Ligas: la portada prometía un juego distinto del que se juega. Orden
+// pan-LATAM (Ecuador ~la mitad de la audiencia).
 const LEYENDAS: { sel: string; year: number; iso: string }[] = [
-  { sel: "Brasil", year: 1970, iso: "br" },
-  { sel: "Argentina", year: 1986, iso: "ar" },
-  { sel: "Alemania", year: 1974, iso: "de" },
-  { sel: "Holanda", year: 1974, iso: "nl" },
-  { sel: "Hungría", year: 1954, iso: "hu" },
-  { sel: "Inglaterra", year: 1966, iso: "gb-eng" },
-  { sel: "Uruguay", year: 1950, iso: "uy" },
-  { sel: "Italia", year: 1982, iso: "it" },
-  { sel: "Francia", year: 1998, iso: "fr" },
-  { sel: "España", year: 2010, iso: "es" },
-  { sel: "Argentina", year: 2022, iso: "ar" },
-  { sel: "Croacia", year: 2018, iso: "hr" },
-  { sel: "Marruecos", year: 2022, iso: "ma" },
-  { sel: "Portugal", year: 1966, iso: "pt" },
+  { sel: "LDU de Quito", year: 2008, iso: "ec" },
+  { sel: "Boca Juniors", year: 2000, iso: "ar" },
+  { sel: "Santos", year: 1962, iso: "br" },
+  { sel: "Caracas FC", year: 2007, iso: "ve" },
+  { sel: "Club América", year: 1988, iso: "mx" },
+  { sel: "Atlético Nacional", year: 1989, iso: "co" },
+  { sel: "Barcelona SC", year: 1990, iso: "ec" },
+  { sel: "River Plate", year: 1996, iso: "ar" },
+  { sel: "Flamengo", year: 1981, iso: "br" },
+  { sel: "FC Barcelona", year: 1992, iso: "es" },
+  { sel: "Real Madrid", year: 1960, iso: "es" },
+  { sel: "Deportivo Táchira", year: 2015, iso: "ve" },
+  { sel: "Independiente", year: 1974, iso: "ar" },
+  { sel: "Liverpool", year: 2005, iso: "gb-eng" },
 ];
 
 const FICHA: { n: number | string; label: string }[] = [
@@ -48,12 +52,12 @@ const FICHA: { n: number | string; label: string }[] = [
 const MODOS: { icon: typeof IconChart; nombre: string; desc: string }[] = [
   { icon: IconChart, nombre: "Clásico", desc: "Ves la fuerza de cada jugador. Decidís con los números a la vista." },
   { icon: IconBook, nombre: "De Almanaque", desc: "Sin stats. Solo el nombre. Lo que sabés de memoria es lo único que te salva." },
-  { icon: IconTimer, nombre: "Contrarreloj", desc: "15 segundos por elección. Sin re-tiradas. El dedo más rápido manda." },
+  { icon: IconTimer, nombre: "Contrarreloj", desc: "10 segundos por elección. Sin re-tiradas. El dedo más rápido manda." },
 ];
 
 const LOGROS = [
   "Primer Draft", "Draft Experto", "Draft Maestro", "Leyenda Viva", "Arquitecto",
-  "Contra el Tiempo", "De Memoria", "Equilibrista", "Historiador", "La Muralla",
+  "Contra el Tiempo", "De Memoria", "Bloque de Club", "Historiador", "La Muralla",
 ];
 
 /* ─────────── Hooks de movimiento ─────────── */
@@ -188,7 +192,7 @@ export default function DraftMundialPage() {
 
         <div className="relative z-10 px-5 pt-14 pb-9 max-w-xl mx-auto">
           <div className="dm-hero-h text-[11px] font-bold uppercase tracking-[0.28em] mb-4" style={{ color: GOLD, animationDelay: "0s" }}>
-            Minijuego · Zona Mundial
+            Minijuego · Zona de Ligas
           </div>
           <h1 className="dm-hero-h text-[2.7rem] sm:text-6xl font-black leading-[0.95] tracking-tight" style={{ color: TXT, animationDelay: ".08s" }}>
             Draft<br /><span className="dm-shimmer">de Ligas</span>
@@ -228,10 +232,10 @@ export default function DraftMundialPage() {
         </Reveal>
         <ol className="space-y-5">
           {[
-            { k: "Tiras.", v: <>Sale <b style={{ color: TXT }}>Argentina 86</b>. Te muestra los once de esa plantilla.</> },
-            { k: "Eliges uno.", v: <>De todos ellos, te quedas con <b style={{ color: TXT }}>Maradona</b> para la mediapunta. El resto vuelve al sorteo.</> },
-            { k: "Repites.", v: <>Sale <b style={{ color: TXT }}>Alemania 74</b>, buscas un central y aparece <b style={{ color: TXT }}>Beckenbauer</b>. Y así hasta completar tu once.</> },
-            { k: "Se juega.", v: <>Se calcula la fuerza, el balance y la coherencia del equipo. Después disputa una campaña entera de torneo.</> },
+            { k: "Tiras.", v: <>Sale el <b style={{ color: TXT }}>LDU de Quito 2008</b>. Te muestra los once de esa plantilla.</> },
+            { k: "Eliges uno.", v: <>De todos ellos, te quedas con <b style={{ color: TXT }}>Patricio Urrutia</b> para la mediapunta. El resto vuelve al sorteo.</> },
+            { k: "Repites.", v: <>Sale el <b style={{ color: TXT }}>Boca 2000</b>, buscas un central y aparece <b style={{ color: TXT }}>Walter Samuel</b>. Y así hasta completar tu once.</> },
+            { k: "Se juega.", v: <>Se calcula la fuerza en tu liga, la química de tu once y tu estilo. Después disputa una campaña entera.</> },
           ].map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <li className="flex gap-4">

@@ -21,9 +21,6 @@ import { layoutFormacion, SlotLayout } from "@/lib/draft/layout";
 import { PLANTILLAS, getPlantillaAleatoria, getOtraSeleccion, getOtroMundial } from "@/lib/draft/plantillas";
 import {
   calcularResultado,
-  calcularBalance,
-  calcularCoherencia,
-  aplicarBonusEstilo,
 } from "@/lib/draft/simulacion";
 import { Campana, calcularBonusCampana } from "@/lib/draft/campana";
 import { calcularRecompensaDraft, RecompensaDraft } from "@/lib/draft/recompensa";
@@ -465,16 +462,17 @@ export function useDraftGame(
   const logrosDesbloqueados = LOGROS.filter((l) => logrosEstado[l.id]);
 
   // Puntaje proyectado: se activa solo con ≥ 5 jugadores colocados.
+  //
+  // Usa el MOTOR REAL (calcularResultado con el pool de la liga) en vez de
+  // reimplementar la fórmula. Antes repetía a mano la vieja —fuerza bruta 35% +
+  // balance 30% + coherencia 25% + estilo 10%— que ya no existe: no normalizaba
+  // la fuerza por liga y seguía contando `balance`, que hoy no puntúa. El
+  // "Proyectado ~N" del marcador contradecía al resultado final.
   const puntajeParcial = useMemo((): number | null => {
     const placed = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
     if (placed.length < 5) return null;
-    const jugadores = placed.map((j) => ({ posicion: j.posicion, fuerza: j.fuerza }));
-    const fuerza = Math.round(placed.reduce((s, j) => s + j.fuerza, 0) / placed.length);
-    const balance = calcularBalance(jugadores);
-    const coherencia = calcularCoherencia(placed);
-    const bonusEst = aplicarBonusEstilo(jugadores, estilo);
-    return Math.min(100, Math.round(fuerza * 0.35 + balance * 0.30 + coherencia * 0.25 + bonusEst * 0.10));
-  }, [equipo, estilo]);
+    return calcularResultado(placed, estilo, pool).puntaje;
+  }, [equipo, estilo, pool]);
 
   // Hint de coherencia: avisa cuando la selección activa un bonus por repetición.
   const coherenciaHint = useMemo((): string | null => {

@@ -105,14 +105,14 @@ export function HomeTriviaPlaySection() {
             background: "linear-gradient(135deg, rgba(20,17,10,0.95), rgba(10,9,6,0.85))",
           }}
         >
-          {/* ── Banner hero: leyendas del Mundial ── */}
+          {/* ── Banner hero: leyendas del fútbol ── */}
           <div className="relative">
             <picture>
               <source media="(min-width: 640px)" srcSet="/img/trivia/banner-desktop.webp" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/img/trivia/banner-mobile.webp"
-                alt="Leyendas del Mundial"
+                alt="Leyendas del fútbol"
                 className="block w-full h-[460px] sm:h-[280px] object-cover object-top sm:object-right"
               />
             </picture>
@@ -138,7 +138,7 @@ export function HomeTriviaPlaySection() {
                   className="font-black text-white mb-2 leading-tight"
                   style={{ fontSize: "clamp(22px, 3.6vw, 34px)", letterSpacing: "-0.02em" }}
                 >
-                  ¿Cuánto sabes del{" "}
+                  ¿Cuánto sabes de{" "}
                   <span
                     style={{
                       background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
@@ -146,7 +146,7 @@ export function HomeTriviaPlaySection() {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Mundial
+                    fútbol
                   </span>
                   ?
                 </h2>

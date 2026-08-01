@@ -14,15 +14,18 @@ export const homeSections = {
   es: {
     /* ============ StatsHowSection ============ */
     statsHow: {
-      title: "48 selecciones. 16 sedes. 104 partidos. 1 ganador:",
+      // Las cifras salen del catálogo real (src/data/competitions.ts): 21
+      // competiciones, 15 ligas domésticas, 6 copas continentales, 13 países.
+      // Antes eran las del Mundial (48 selecciones, 16 sedes, 104 partidos).
+      title: "21 competiciones. 13 países. 365 días de fútbol. 1 ganador:",
       titleGold: "tú.",
-      subtitle: "Todo lo que necesitas para vivir el Mundial 2026 como nunca antes.",
+      subtitle: "Todo lo que necesitas para vivir tu liga como nunca antes.",
       statLabels: {
-        selecciones: "Selecciones",
-        sedes: "Sedes",
-        partidos: "Partidos",
-        grupos: "Grupos",
+        competiciones: "Competiciones",
+        ligas: "Ligas",
+        copas: "Copas",
         paises: "Países",
+        continentes: "Continentes",
         modulos: "Módulos",
       },
       howPill: "ASÍ DE FÁCIL",
@@ -30,16 +33,16 @@ export const homeSections = {
       howSub: "Tres pasos y ya estás dentro. Sin complicaciones, sin letra pequeña.",
       steps: [
         {
-          title: "Selecciona a tu creador",
-          desc: "Eliges tu selección, descubre datos, fixture del Mundial 2026.",
+          title: "Elige tu liga y tu club",
+          desc: "Dinos qué sigues y la app entera se ajusta a ti: noticias, partidos y retos.",
         },
         {
           title: "Juega y predice",
-          desc: "Entra en predicciones, fantasy, trivia y ligas privadas con tus amigos.",
+          desc: "Entra en predicciones, fantasy, Draft, trivia y ligas privadas con tus amigos.",
         },
         {
           title: "Vive y compite",
-          desc: "Sigue los partidos en streaming con creadores y vive retos en directo con la comunidad.",
+          desc: "Sigue cada jornada minuto a minuto y escala en el ranking de tu liga.",
         },
       ],
       stepsA11y: "Pasos",
@@ -84,28 +87,30 @@ export const homeSections = {
 
     /* ============ ModulesGridSection ============ */
     modulesGrid: {
-      pill: "12 formas de ganar. Elige la tuya.",
+      pill: "10 formas de ganar. Elige la tuya.",
       title1: "Todo lo que necesitas para",
       title2: "no",
       titleGold: "quedarte fuera",
       sub:
-        "Doce módulos diseñados para dominar cada minuto del Mundial 2026. Desde predicciones en tiempo real hasta tu propio fantasy, pasando por trivias históricas y un coach de inteligencia artificial.",
+        "Diez módulos para exprimir cada jornada de tu liga. Desde predicciones en directo hasta tu propio fantasy, pasando por el Draft y un coach de inteligencia artificial.",
       subAccent: "Todo en un solo lugar. Todo gratis. Todo para ganar.",
       divider: "Módulos",
       ctaExplore: "Explorar todos los módulos",
+      // ORDEN CRÍTICO: se parea POR ÍNDICE con buildModulesMeta en
+      // ModulesGridSection.tsx. Si tocas uno, toca el otro — cuando se
+      // retiraron Streaming y Modo Carrera del meta y no de aquí, los dos
+      // últimos items se quedaron sin meta y tumbaban el render de la home.
       items: [
-        { title: "Match Center", desc: "104 partidos en vivo con stats, alineaciones y eventos minuto a minuto." },
-        { title: "Predicciones", desc: "8 tipos: resultado exacto, goleador, tarjetas, corners, MVP y más." },
-        { title: "Fantasy", desc: "Arma tu 11 ideal con presupuesto limitado. Puntos reales, ranking global." },
+        { title: "Match Center", desc: "Cada partido en vivo con stats, alineaciones y eventos minuto a minuto." },
+        { title: "Predicciones", desc: "Resultado, goleador, over/under, ambos marcan y más, jornada a jornada." },
+        { title: "Fantasy", desc: "Arma tu 11 ideal con presupuesto limitado. Puntos reales, ranking de tu liga." },
         { title: "IA Coach", desc: "Analista personal con inteligencia artificial: tácticas y recomendaciones." },
-        { title: "Zona Streaming", desc: "Directos con creadores durante los partidos. Reacciones en vivo." },
         { title: "Trivia Diaria", desc: "Preguntas diarias de fútbol — gana puntos extra y escala posiciones." },
-        { title: "Modo Carrera", desc: "Dirige una selección durante todo el torneo como DT virtual." },
         { title: "Ligas Privadas", desc: "Crea ligas con amigos, compañeros o tu comunidad favorita." },
-        { title: "Rankings", desc: "Global, por país, por creador — demuestra quién sabe más de fútbol." },
+        { title: "Rankings", desc: "De tu liga, de tu país y global — demuestra quién sabe más de fútbol." },
         { title: "Chat en Vivo", desc: "Chat en tiempo real con tu liga durante cada partido." },
         { title: "Micro-predicciones", desc: "Predicciones en directo: próximo gol, corner, tarjeta, cambio." },
-        { title: "Trivias Históricas", desc: "Revive y compite con las mejores preguntas de Mundiales pasados." },
+        { title: "Draft de Ligas", desc: "Monta el once con los clubes de tu liga y cobra según la calificación." },
       ],
     },
 
@@ -482,15 +487,15 @@ export const homeSections = {
 
   en: {
     statsHow: {
-      title: "48 teams. 16 venues. 104 matches. 1 winner:",
+      title: "21 competitions. 13 countries. 365 days of football. 1 winner:",
       titleGold: "you.",
-      subtitle: "Everything you need to live the 2026 World Cup like never before.",
+      subtitle: "Everything you need to live your league like never before.",
       statLabels: {
-        selecciones: "Teams",
-        sedes: "Venues",
-        partidos: "Matches",
-        grupos: "Groups",
+        competiciones: "Competitions",
+        ligas: "Leagues",
+        copas: "Cups",
         paises: "Countries",
+        continentes: "Continents",
         modulos: "Modules",
       },
       howPill: "IT'S THAT EASY",
@@ -498,16 +503,16 @@ export const homeSections = {
       howSub: "Three steps and you're in. No fine print, no strings attached.",
       steps: [
         {
-          title: "Choose your creator",
-          desc: "Pick your national team and unlock data and the 2026 World Cup fixture.",
+          title: "Pick your league and club",
+          desc: "Tell us what you follow and the whole app adapts: news, matches and challenges.",
         },
         {
           title: "Play and predict",
-          desc: "Enter predictions, fantasy, trivia and private leagues with your friends.",
+          desc: "Enter predictions, fantasy, the Draft, trivia and private leagues with your friends.",
         },
         {
           title: "Live it and compete",
-          desc: "Stream matches with creators and join live challenges with the community.",
+          desc: "Follow every matchday minute by minute and climb your league's ranking.",
         },
       ],
       stepsA11y: "Steps",
@@ -550,28 +555,28 @@ export const homeSections = {
     },
 
     modulesGrid: {
-      pill: "12 ways to win. Pick yours.",
+      pill: "10 ways to win. Pick yours.",
       title1: "Everything you need to",
       title2: "never",
       titleGold: "be left out",
       sub:
-        "Twelve modules designed to own every minute of the 2026 World Cup. From real-time predictions to your own fantasy, historical trivias and an AI coach.",
+        "Ten modules to squeeze every matchday of your league. From live predictions to your own fantasy, the Draft and an AI coach.",
       subAccent: "All in one place. All free. All to win.",
       divider: "Modules",
       ctaExplore: "Explore all modules",
+      // CRITICAL ORDER: paired BY INDEX with buildModulesMeta in
+      // ModulesGridSection.tsx. Change one, change the other.
       items: [
-        { title: "Match Center", desc: "104 live matches with stats, lineups and minute-by-minute events." },
-        { title: "Predictions", desc: "8 types: exact score, goalscorer, cards, corners, MVP and more." },
-        { title: "Fantasy", desc: "Build your ideal XI on a fixed budget. Real points, global ranking." },
+        { title: "Match Center", desc: "Every match live with stats, lineups and minute-by-minute events." },
+        { title: "Predictions", desc: "Score, goalscorer, over/under, both to score and more, every matchday." },
+        { title: "Fantasy", desc: "Build your ideal XI on a fixed budget. Real points, your league's ranking." },
         { title: "AI Coach", desc: "Your personal AI analyst: tactics and recommendations." },
-        { title: "Streaming Zone", desc: "Live shows with creators during matches. Real-time reactions." },
         { title: "Daily Trivia", desc: "Daily football questions — earn extra points and climb the ranks." },
-        { title: "Career Mode", desc: "Manage a national team through the entire tournament." },
         { title: "Private Leagues", desc: "Create leagues with friends, coworkers or your favorite community." },
-        { title: "Rankings", desc: "Global, by country, by creator — prove who knows football best." },
+        { title: "Rankings", desc: "Your league, your country and global — prove who knows football best." },
         { title: "Live Chat", desc: "Real-time chat with your league during every match." },
         { title: "Micro-predictions", desc: "Live predictions: next goal, corner, card, substitution." },
-        { title: "Historical Trivias", desc: "Relive and compete with the best questions from past World Cups." },
+        { title: "League Draft", desc: "Build an XI from your league's clubs and cash in on the grade." },
       ],
     },
 

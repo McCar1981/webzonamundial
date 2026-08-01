@@ -1,6 +1,6 @@
 "use client";
 
-// LatestNewsSection — "Últimas del Mundial" en la home.
+// LatestNewsSection — "Últimas del fútbol" en la home.
 //
 // page.tsx es "use client", así que NO puede importar getAllPublicNoticias
 // (server-only: lee KV). Esta sección hace fetch a /api/noticias/ultimas en
@@ -26,15 +26,25 @@ const MUTED = "#a69a82";
 const DIM = "#6e6552";
 
 // Espejo de CAT_LABELS/CAT_COLORS del hub /noticias (NoticiasClient.tsx).
+// Se había quedado atrás: el hub ya tenía fichajes/partidos/liga — las tres
+// categorías que produce el ingest de ligas — y aquí no estaban, así que en la
+// home esas noticias salían con el slug crudo y sin color de chip.
 const CAT_LABELS: Record<string, string> = {
+  fichajes: "Fichajes",
+  partidos: "Partidos",
+  liga: "Liga",
   analisis: "Análisis",
   datos: "Datos",
   historia: "Historia",
+  // Legado del Mundial (noticias ya publicadas).
   sedes: "Sedes",
   selecciones: "Selecciones",
   plataforma: "Plataforma",
 };
 const CAT_COLORS: Record<string, string> = {
+  fichajes: "#10b981",
+  partidos: "#f43f5e",
+  liga: "#8b5cf6",
   analisis: "#3b82f6",
   datos: "#22c55e",
   historia: "#f59e0b",
@@ -104,7 +114,7 @@ export function LatestNewsSection() {
 
   return (
     <section
-      aria-labelledby="ultimas-mundial"
+      aria-labelledby="ultimas-futbol"
       style={{
         background: BG,
         padding: "60px 20px 70px",
@@ -135,10 +145,10 @@ export function LatestNewsSection() {
                 marginBottom: 10,
               }}
             >
-              Últimas del Mundial
+              Últimas del fútbol
             </div>
             <h2
-              id="ultimas-mundial"
+              id="ultimas-futbol"
               style={{
                 color: GOLD2,
                 fontSize: "clamp(24px, 4vw, 36px)",

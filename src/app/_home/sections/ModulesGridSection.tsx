@@ -136,7 +136,9 @@ function buildModulesMeta(iconImgClass: string): ModuleMeta[] {
     { href: "/app/rankings", color: "#EAB308", bg: "/img/modules-grid/rankings.webp", icon: <IconBars /> },
     { href: "/app/chat", color: "#38BDF8", bg: "/img/modules-grid/chat-vivo.webp", icon: <IconChat /> },
     { href: "/app/micro", color: "#F43F5E", bg: "/img/modules-grid/micro.webp", icon: <IconTimer /> },
-    { href: "/app/stories", color: "#8B5CF6", bg: "/img/modules-grid/trivias-historicas.webp", icon: <IconStar /> },
+    // Antes: /app/stories, que se borró con la retirada de creadores y dejó un
+    // enlace a 404 en la home. El Draft ocupa el hueco (vivo y por liga).
+    { href: "/app/draft-mundial", color: "#8B5CF6", bg: "/img/modules-grid/trivias-historicas.webp", icon: <IconStar /> },
   ];
 }
 
@@ -172,7 +174,12 @@ export function ModulesGridSection() {
         </div>
 
         <div className={styles.grid}>
-          {t.items.map((item, i) => {
+          {/* El pareo es POR ÍNDICE con buildModulesMeta. Cuando se retiraron
+              Streaming y Modo Carrera del meta y no del i18n, los dos últimos
+              items quedaron sin meta y `m.color` reventaba el render de la home
+              entera. El filtro evita que un desajuste futuro vuelva a tumbarla:
+              se pierde una tarjeta, no la página. */}
+          {t.items.filter((_, i) => meta[i]).map((item, i) => {
             const m = meta[i];
             const style = {
               "--c": m.color,

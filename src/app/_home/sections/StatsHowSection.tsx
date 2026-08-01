@@ -19,13 +19,16 @@ import {
 /* =================== DATA =================== */
 
 /* Icon order matches translation labels/steps indices */
+// Cifras del catálogo real (src/data/competitions.ts), no del Mundial:
+// 21 competiciones = 15 ligas domésticas + 6 copas continentales, repartidas en
+// 13 países de 2 continentes. Módulos = los 10 del grid de la home.
 const STAT_ICONS = [
-  { Icon: IconStatBall, num: "48", key: "selecciones" as const },
-  { Icon: IconStatStadium, num: "16", key: "sedes" as const },
-  { Icon: IconStatWhistle, num: "104", key: "partidos" as const },
-  { Icon: IconStatGroup, num: "12", key: "grupos" as const },
-  { Icon: IconStatFlag, num: "3", key: "paises" as const },
-  { Icon: IconStatPuzzle, num: "12", key: "modulos" as const },
+  { Icon: IconStatBall, num: "21", key: "competiciones" as const },
+  { Icon: IconStatStadium, num: "15", key: "ligas" as const },
+  { Icon: IconStatWhistle, num: "6", key: "copas" as const },
+  { Icon: IconStatGroup, num: "13", key: "paises" as const },
+  { Icon: IconStatFlag, num: "2", key: "continentes" as const },
+  { Icon: IconStatPuzzle, num: "10", key: "modulos" as const },
 ];
 
 const STEP_ICONS = [IconStepChoose, IconStepPlay, IconStepWin] as const;

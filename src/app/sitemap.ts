@@ -39,29 +39,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Puente a la próxima temporada de ligas de clubes: capta búsqueda de marca
     // ("zona futbol") y da destino al tráfico del Mundial cuando acabe (waitlist).
     { url: `${BASE_URL}/zona-futbol-preview`, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/calendario`, lastModified, changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE_URL}/grupos`, lastModified, changeFrequency: "daily", priority: 0.9 },
-    // Tabla viva de mejores terceros: cambia con cada resultado de grupos.
-    { url: `${BASE_URL}/grupos/mejores-terceros`, lastModified, changeFrequency: "daily", priority: 0.85 },
-    // Cuadro de dieciseisavos: los 16 cruces, fechas y sedes (ronda de 32).
-    { url: `${BASE_URL}/dieciseisavos-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
-    // Cuadro de octavos (ronda de 16): se vuelca con los ganadores de dieciseisavos.
-    { url: `${BASE_URL}/octavos-de-final-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
-    // Escenarios de la última jornada: qué necesita cada selección + simulador.
-    // Cambia con cada resultado de grupos; capta "qué necesita X para clasificar".
-    { url: `${BASE_URL}/que-necesita-cada-seleccion-mundial-2026`, lastModified, changeFrequency: "daily", priority: 0.85 },
-    { url: `${BASE_URL}/selecciones`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/sedes`, changeFrequency: "weekly", priority: 0.8 },
-    // Landings de juego indexables (auditoría SEO 11-jun): quiniela = hueco
-    // transaccional con SERPs débiles; bracket ataca "simulador mundial 2026".
-    { url: `${BASE_URL}/quiniela-mundial-2026`, changeFrequency: "weekly", priority: 0.9 },
-    // Landing pública de Predicciones: capta "predicción/pronóstico mundial 2026"
-    // (~24k impr/sem que hoy caen al home, GSC 22-jun). Es la vía del Gran Premio.
-    { url: `${BASE_URL}/prediccion-mundial-2026`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/bracket`, changeFrequency: "weekly", priority: 0.85 },
-    // Landing pública del Fantasy: el juego vive en /app (noindex); esta capta
-    // "fantasy mundial 2026" (~7,5k impr/sem que hoy no capturamos, GSC 22-jun).
-    { url: `${BASE_URL}/fantasy-mundial-2026`, changeFrequency: "weekly", priority: 0.85 },
+    // Camisetas de clubes: afiliado evergreen, se regenera con el catálogo del
+    // Draft. Antes era del Mundial y estaba fuera del sitemap.
+    { url: `${BASE_URL}/camisetas`, changeFrequency: "weekly", priority: 0.7 },
+    // ── ARCHIVO DEL MUNDIAL 2026 (terminó el 19-jul-2026) ──────────────────
+    // Estas páginas siguen indexadas porque tienen enlaces e historial, pero
+    // BAJAN de prioridad y dejan de declararse "daily": un torneo acabado no
+    // cambia a diario, y mantenerlas al 0.9 le robaba presupuesto de rastreo a
+    // /ligas, que es el producto vivo. Tampoco llevan ya lastModified: un
+    // lastmod "siempre hoy" sobre contenido congelado es una señal falsa.
+    { url: `${BASE_URL}/calendario`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${BASE_URL}/grupos`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${BASE_URL}/grupos/mejores-terceros`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/dieciseisavos-mundial-2026`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/octavos-de-final-mundial-2026`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/que-necesita-cada-seleccion-mundial-2026`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/selecciones`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/sedes`, changeFrequency: "yearly", priority: 0.4 },
+    // Landings de juego del Mundial: siguen captando búsqueda residual de marca
+    // ("quiniela mundial 2026"), pero ya no compiten con las de ligas.
+    { url: `${BASE_URL}/quiniela-mundial-2026`, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${BASE_URL}/prediccion-mundial-2026`, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${BASE_URL}/bracket`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/fantasy-mundial-2026`, changeFrequency: "monthly", priority: 0.4 },
     // Hub /historia + 36 subpáginas temáticas (base de datos del Mundial)
     { url: `${BASE_URL}/historia`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/historia/2026`, changeFrequency: "weekly", priority: 0.85 },
@@ -205,12 +205,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Zona de Ligas: pantalla pública por competición (activo SEO programático del
   // pivote — "liga mx calendario", "brasileirão resultados"…). Datos del catálogo.
+  // Ya es el producto principal: sube a 0.9 (solo por debajo del home) y las
+  // competiciones a 0.8. Antes iba por detrás de las landings del Mundial.
   const ligaRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/ligas`, changeFrequency: "daily", priority: 0.85 },
+    { url: `${BASE_URL}/ligas`, lastModified, changeFrequency: "daily", priority: 0.9 },
     ...COMPETITIONS.map((c) => ({
       url: `${BASE_URL}/ligas/${c.slug}`,
+      lastModified,
       changeFrequency: "daily" as const,
-      priority: 0.7,
+      priority: 0.8,
     })),
   ];
 

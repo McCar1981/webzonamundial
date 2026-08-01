@@ -552,6 +552,11 @@ export const IMAGE_TO_ICON: Record<string, React.ReactNode> = {
   'streaming': ICON_V3.streaming,
   'trivia': ICON_V3.trivia,
   'modo carrera': ICON_V3.carrera,
+  // El Draft no tenía clave aquí (el lobby dibuja sus iconos con su propio mapa
+  // PATHS), así que cualquier SvgIcon name="draft" salía vacío: SvgIcon devuelve
+  // null ante una clave desconocida. Reutiliza el icono de DT — Modo Carrera
+  // está dormido tras el pivote y el Draft es justo eso: elegir plantilla.
+  'draft': ICON_V3.carrera,
   'ligas privadas': ICON_V3.ligas,
   'ranking': ICON_V3.rankings,
   'chat en vivo': ICON_V3.chat,

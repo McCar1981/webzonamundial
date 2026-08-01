@@ -58,9 +58,11 @@ const MODULE_TABS: { value: string | null; label: string }[] = [
   { value: "predicciones", label: "Predicciones" },
   { value: "trivia", label: "Trivia" },
   { value: "fantasy", label: "Fantasy" },
-  { value: "modo-carrera", label: "Modo Carrera" },
   { value: "draft-mundial", label: "Draft" },
   { value: "micro", label: "Micro" },
+  // Modo Carrera está dormido tras el pivote a ligas, pero sus Fútcoins
+  // históricas siguen contando: la pestaña se mantiene, al final.
+  { value: "modo-carrera", label: "Modo Carrera" },
 ];
 
 // Tarjetas "tipos de ranking": TODAS llevan a algo real (vista o ruta viva).
@@ -77,8 +79,10 @@ const RANK_TYPES: { icon: string; title: string; desc: string; view?: View; href
 const HOW_TO_CLIMB = [
   { icon: "predicciones", title: "Predice los partidos", desc: "Cada acierto suma Fútcoins. La racha multiplica.", href: "/app/predicciones" },
   { icon: "trivia", title: "Responde la trivia diaria", desc: "Un reto al día con puntos extra para el ranking.", href: "/trivia" },
-  { icon: "fantasy", title: "Monta tu Fantasy", desc: "Puntúa por jornada con tu once ideal del Mundial.", href: "/app/fantasy" },
-  { icon: "modo carrera", title: "Juega Modo Carrera", desc: "Dirige tu selección y gana reputación y monedas.", href: "/app/modo-carrera" },
+  { icon: "fantasy", title: "Monta tu Fantasy", desc: "Puntúa cada jornada con tu once ideal de la liga.", href: "/app/fantasy" },
+  // Antes: Modo Carrera ("dirige tu selección"), dormido desde el pivote. El
+  // Draft sí está vivo, es por liga y paga Fútcoins según la calificación.
+  { icon: "draft", title: "Arma tu Draft", desc: "Monta el once de tu liga y cobra según la calificación.", href: "/app/draft-mundial" },
 ];
 
 export default function RankingsPage() {
@@ -330,8 +334,8 @@ export default function RankingsPage() {
             </h2>
             <p style={{ color: MID, marginTop: 10, fontSize: 15.5 }}>
               {view === "naciones" && "Países ordenados por las Fútcoins que suma toda su afición"}
-              {view === "global" && (tab ? "Clasificación por Fútcoins ganadas en este módulo" : "Clasificación por Fútcoins acumuladas en toda ZonaMundial")}
-              {view === "country" && "El ranking nacional de tu selección. ¿Quién manda en casa?"}
+              {view === "global" && (tab ? "Clasificación por Fútcoins ganadas en este módulo" : "Clasificación por Fútcoins acumuladas en toda la app")}
+              {view === "country" && "El ranking de tu país. ¿Quién manda en casa?"}
               {view === "ligas" && (selectedLeague ? `Los mejores predictores de ${shortOf(selectedLeague)} por Fútcoins ganadas prediciendo.` : "Sigue una liga para ver su ranking de predictores.")}
             </p>
           </div>

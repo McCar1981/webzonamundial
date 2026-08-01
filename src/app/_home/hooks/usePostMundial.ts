@@ -11,24 +11,23 @@
 // QA/demo: `?zm-ligas=1` fuerza el modo Ligas en cualquier entorno y fecha
 // (para revisar la home del lunes antes del lunes, o enseñarla en reuniones).
 
-import { useEffect, useState } from "react";
 import { MUNDIAL_OVER_MS } from "@/lib/season-gate";
 
 // Re-export para consumidores que ya lo importaban desde aquí.
 export { MUNDIAL_OVER_MS };
 
+// La fecha del gate (20-jul-2026 06:00 UTC) YA PASÓ: se cablea a `true` fijo.
+//
+// Antes arrancaba en `false` y saltaba a `true` tras montar, así que TODAS las
+// visitas —el 100%— pintaban primero la variante Mundial (hero "Tu centro vivo
+// del Mundial", banners de calendario, bracket, guía y álbum) y la sustituían
+// un instante después: parpadeo garantizado y salto de maquetación, que en
+// Android de gama media (87% de la audiencia) se nota.
+//
+// Al devolver una constante, la variante Ligas queda horneada en el HTML
+// estático: sin parpadeo, sin salto y sin trabajo de hidratación. Se conserva
+// el hook —en vez de borrar las llamadas— para no tocar sus tres consumidores
+// y poder revertir desde un solo sitio si hiciera falta.
 export function usePostMundial(): boolean {
-  const [post, setPost] = useState(false);
-  useEffect(() => {
-    try {
-      if (new URLSearchParams(window.location.search).get("zm-ligas") === "1") {
-        setPost(true);
-        return;
-      }
-    } catch {
-      // sin URL válida: decide el reloj
-    }
-    if (Date.now() >= MUNDIAL_OVER_MS) setPost(true);
-  }, []);
-  return post;
+  return true;
 }

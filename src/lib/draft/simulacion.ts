@@ -267,13 +267,31 @@ export function getEmojiCalificacion(cal: DraftResultado["calificacion"]): strin
   }
 }
 
+/** Calificación que corresponde a un puntaje según la escala VIGENTE (UMBRALES).
+ *  Única fuente de verdad: la usan la simulación y el servidor al guardar (el
+ *  cliente nunca decide la calificación que entra al ranking). */
+export function calificacionPorPuntaje(puntaje: number): DraftResultado["calificacion"] {
+  if (puntaje >= UMBRALES.leyenda) return "Leyenda";
+  if (puntaje >= UMBRALES.platino) return "Platino";
+  if (puntaje >= UMBRALES.oro) return "Oro";
+  if (puntaje >= UMBRALES.plata) return "Plata";
+  return "Bronce";
+}
+
 // Devuelve cuántos puntos faltaron para subir de nivel (solo si ≤ 10).
+// Derivado de UMBRALES: antes usaba la escala vieja (95/85/75/60) hardcodeada y
+// el "te faltaron X para Platino" contradecía la calificación real mostrada.
 export function getNearMiss(puntaje: number): { faltaron: number; siguiente: string } | null {
-  if (puntaje >= 95) return null;
-  const siguiente = puntaje >= 85 ? "Leyenda" : puntaje >= 75 ? "Platino" : puntaje >= 60 ? "Oro" : "Plata";
-  const umbral = puntaje >= 85 ? 95 : puntaje >= 75 ? 85 : puntaje >= 60 ? 75 : 60;
-  const faltaron = umbral - puntaje;
-  return faltaron <= 10 ? { faltaron, siguiente } : null;
+  const escalera: { corte: number; nombre: string }[] = [
+    { corte: UMBRALES.plata, nombre: "Plata" },
+    { corte: UMBRALES.oro, nombre: "Oro" },
+    { corte: UMBRALES.platino, nombre: "Platino" },
+    { corte: UMBRALES.leyenda, nombre: "Leyenda" },
+  ];
+  const siguiente = escalera.find((e) => puntaje < e.corte);
+  if (!siguiente) return null; // ya es Leyenda
+  const faltaron = siguiente.corte - puntaje;
+  return faltaron <= 10 ? { faltaron, siguiente: siguiente.nombre } : null;
 }
 
 // Recompensas REDUCIDAS A LA MITAD respecto al lanzamiento (decisión de

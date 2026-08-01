@@ -48,13 +48,19 @@ function buildNav(t: Translations) {
 
 function buildFooterLinks(t: Translations) {
   return {
-    [t.footer.torneo]: [
-      { label: t.footer.selecciones, href: "/selecciones" },
-      { label: t.footer.grupos,      href: "/grupos" },
-      { label: t.footer.sedes,       href: "/sedes" },
-      { label: t.footer.calendario,  href: "/calendario" },
-      { label: "Camisetas",          href: "/camisetas" },
-      { label: t.footer.historia,    href: "/historia" },
+    // Enlazado interno SEO hacia el producto evergreen desde todas las páginas.
+    // Nombres propios de competición: válidos en ambos idiomas.
+    // Orden pan-LATAM: las ligas de casa primero, Europa después.
+    "Zona de Ligas": [
+      { label: "Todas las ligas",  href: "/ligas" },
+      { label: "LigaPro Ecuador",  href: "/ligas/ligapro-ecuador" },
+      { label: "Primera A",        href: "/ligas/primera-a-colombia" },
+      { label: "Liga Profesional", href: "/ligas/liga-argentina" },
+      { label: "Brasileirão",      href: "/ligas/brasileirao" },
+      { label: "Liga MX",          href: "/ligas/liga-mx" },
+      { label: "Libertadores",     href: "/ligas/libertadores" },
+      { label: "LaLiga",           href: "/ligas/laliga" },
+      { label: "Camisetas",        href: "/camisetas" },
     ],
     [t.footer.plataforma]: [
       { label: t.footer.predicciones, href: "/app/predicciones" },
@@ -65,16 +71,15 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.premium,       href: "/pro" },
       { label: t.footer.bares,         href: "/bares" },
     ],
-    // Enlazado interno SEO hacia el producto evergreen desde todas las páginas.
-    // Nombres propios de competición: válidos en ambos idiomas.
-    "Zona de Ligas": [
-      { label: "Todas las ligas",  href: "/ligas" },
-      { label: "Liga MX",          href: "/ligas/liga-mx" },
-      { label: "Liga MX Femenil",  href: "/ligas/liga-mx-femenil" },
-      { label: "LigaPro Ecuador",  href: "/ligas/ligapro-ecuador" },
-      { label: "Libertadores",     href: "/ligas/libertadores" },
-      { label: "LaLiga",           href: "/ligas/laliga" },
-      { label: "Champions League", href: "/ligas/champions-league" },
+    // El Mundial 2026 terminó el 19-jul-2026. Sus páginas siguen vivas como
+    // ARCHIVO (tienen tráfico y enlaces entrantes), pero etiquetadas como tal:
+    // ya no se venden como "el torneo" en el footer de todas las páginas.
+    "Mundial 2026 · archivo": [
+      { label: t.footer.selecciones, href: "/selecciones" },
+      { label: t.footer.grupos,      href: "/grupos" },
+      { label: t.footer.sedes,       href: "/sedes" },
+      { label: t.footer.calendario,  href: "/calendario" },
+      { label: t.footer.historia,    href: "/historia" },
     ],
     [t.footer.comunidad]: [
       { label: t.footer.noticias,   href: "/noticias" },

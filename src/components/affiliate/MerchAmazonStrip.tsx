@@ -1,6 +1,6 @@
 "use client";
 
-// CTA de afiliado Amazon (camisetas del Mundial). Reutiliza amazonGoUrl +
+// CTA de afiliado Amazon (camisetas de fútbol). Reutiliza amazonGoUrl +
 // AMAZON_DISCLOSURE + rel="sponsored" (mismo patron que /camisetas). CONTEXTUAL:
 // muestra la CAMISETA REAL (imagen propia de cada seleccion, de KIT_BY_ISO) de
 // los equipos del partido en scope; si no hay equipos, un CTA generico. Sin
@@ -33,7 +33,9 @@ interface MerchAmazonStripProps {
 
 // MISMA plantilla que /camisetas (sin tilde en "seleccion") para no fragmentar
 // los resultados de busqueda de Amazon.
-const teamQuery = (label: string) => `camiseta seleccion ${label} 2026`;
+// Sirve para clubes y selecciones: sin "seleccion" ni el año del torneo, que
+// devolvían inventario del Mundial ya caducado.
+const teamQuery = (label: string) => `camiseta ${label}`;
 
 // Boton con el amarillo reconocible de Amazon + texto oscuro (uso nominativo del
 // nombre, NO el logo). Da "seriedad" sin tocar el smile/trademark.
@@ -90,7 +92,7 @@ export default function MerchAmazonStrip({
         }}
       >
         <span style={{ fontSize: 14, fontWeight: 800, color: "#eef2fb" }}>
-          {title || "Camisetas del Mundial"}
+          {title || "La camiseta de tu equipo"}
         </span>
         <span
           style={{
@@ -109,7 +111,7 @@ export default function MerchAmazonStrip({
       {teams.length === 0 ? (
         /* Generico: un solo boton ancho. */
         <a
-          href={amazonGoUrl("camiseta mundial 2026")}
+          href={amazonGoUrl("camiseta futbol club")}
           target="_blank"
           rel="sponsored noopener noreferrer"
           onClick={() => trackClick("generico")}
@@ -124,7 +126,7 @@ export default function MerchAmazonStrip({
             fontSize: 14,
           }}
         >
-          Ver camisetas del Mundial en Amazon
+          Ver camisetas de fútbol en Amazon
         </a>
       ) : (
         /* Contextual: una tarjeta con la camiseta REAL de cada seleccion. */

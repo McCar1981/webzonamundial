@@ -44,9 +44,16 @@ const ITEMS: Item[] = [
     icon: stroke("M3 11.5L12 4l9 7.5M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"),
   },
   {
-    href: "/app/predicciones/jugar",
+    // Apuntaba a /app/predicciones/jugar: los 104 partidos del Mundial, TODOS
+    // jugados, así que el segundo botón más pulsado de la app abría un juego
+    // muerto donde no se podía predecir nada. Ahora lleva a las predicciones de
+    // las ligas del usuario, que es donde hay partidos de verdad.
+    href: "/ligas/predicciones",
     label: "Predice",
-    match: (p) => p.startsWith("/app/predicciones") || p.startsWith("/app/micro"),
+    match: (p) =>
+      p.startsWith("/ligas/predicciones") ||
+      p.startsWith("/app/predicciones") ||
+      p.startsWith("/app/micro"),
     icon: stroke("M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"),
   },
   {

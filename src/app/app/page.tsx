@@ -141,7 +141,11 @@ const CATS: Cat[] = [
       // se reactiva/reutiliza para copas (Libertadores/Champions) cuando toque.
       // { icon: "bracket", title: "Cruces", desc: "Cuadro real: 16avos hasta la final.", href: "/app/eliminatorias", cta: "Ver cuadro", estado: "Disponible", accent: "#a279f0", accent2: "#cdb2ff" },
       { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Preguntas de tu liga y del fútbol.", href: "/trivia", cta: "Responder", estado: "Disponible", accent: "#36c98f", accent2: "#7ce0b3" },
-      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy/jugar", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
+      // Apuntaba a /app/fantasy/jugar: el fantasy del MUNDIAL, con la jornada 8
+      // cerrada, que rechaza cualquier fichaje ("está eliminada del Mundial") y
+      // ni siquiera muestra una pantalla de fin de torneo. Ahora lleva al
+      // fantasy de ligas, que sí se juega cada jornada.
+      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu once de la jornada y compite en tu liga.", href: "/ligas", cta: "Ver Fantasy", estado: "Disponible", accent: "#3d8bff", accent2: "#7db4ff" },
       // PIVOTE LIGAS (jul-2026): desactivado. "Modo Carrera" dirige una SELECCIÓN;
       // se reutiliza para dirigir un CLUB cuando se adapte. Código intacto y dormido.
       // { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera/jugar", cta: "Entrar", estado: "Nuevo", accent: "#ff9a3c", accent2: "#ffc06a" },
@@ -166,7 +170,9 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(255,120,90,0.52), rgba(45,210,230,0.42))",
     ctaColor: "#22120c", ctaBorder: "rgba(255,120,90,0.5)", ctaShadow: "0 8px 18px rgba(255,110,90,0.4)",
     mods: [
-      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible", accent: "#ff6b5a", accent2: "#ff9a4a" },
+      // El Match Center de /app/matchcenter es el del Mundial (ids 1..104).
+      // El de ligas vive dentro de cada partido en /ligas.
+      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido de tu liga en vivo, con estadísticas.", href: "/ligas", cta: "Ver", estado: "Disponible", accent: "#ff6b5a", accent2: "#ff9a4a" },
       { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo", accent: "#ff8a3c", accent2: "#ffb46a" },
       // PIVOTE LIGAS (jul-2026): quitado del lobby (streaming con creadores del Mundial).
       // { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", cta: "Avisarme", estado: "Próximamente", accent: "#7c5cff", accent2: "#a98fff" },
@@ -185,7 +191,8 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
     ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
-      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings#tablero", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
+      // "por creador" ya no existe: los creadores se retiraron del producto.
+      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking", desc: "Compite en la tabla de tu liga y de tu país.", href: "/app/rankings#tablero", cta: "Ver ranking", estado: "Disponible", accent: "#c9a84c", accent2: "#e8d48b" },
       { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible", accent: "#34b9c4", accent2: "#6fdce5" },
       // Sin href → card "Próximamente" no navegable (el chat aún no tiene backend). Reactivar con href cuando exista el módulo real.
       { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", cta: "Avisarme", estado: "Próximamente", accent: "#5b8def", accent2: "#8db1ff" },

@@ -10,8 +10,8 @@ import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { sendOpsAlert } from "@/lib/ops/alert";
 import { generateQuestions } from "@/lib/trivia/generator";
-import { addToBank, getQuestionBank } from "@/lib/trivia/store";
-import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
+import { addToBank, removeFromBank, getQuestionBank } from "@/lib/trivia/store";
+import { FALLBACK_QUESTIONS, RETIRED_QUESTION_IDS } from "@/data/trivia-fallback";
 import { revalidatePath } from "next/cache";
 
 export const runtime = "nodejs";
@@ -45,12 +45,17 @@ export async function GET(req: Request) {
     Math.max(8, Number(url.searchParams.get("count")) || 30),
   );
 
-  // Siembra del banco con las preguntas verificadas a mano (la primera vez).
-  let bank = await getQuestionBank();
-  if (bank.length < FALLBACK_QUESTIONS.length) {
-    await addToBank(FALLBACK_QUESTIONS);
-    bank = await getQuestionBank();
-  }
+  // Retirada de preguntas caducadas ANTES de sembrar: addToBank deduplica por
+  // id, así que una pregunta que envejeció mal solo se arregla borrándola.
+  await removeFromBank(RETIRED_QUESTION_IDS);
+
+  // Siembra del banco con las preguntas verificadas a mano. Se ejecuta SIEMPRE:
+  // antes iba tras un `if (bank.length < FALLBACK_QUESTIONS.length)` que dejaba
+  // de cumplirse en cuanto la IA generaba unas pocas tandas, así que cualquier
+  // pregunta añadida a mano después de ese punto no entraba nunca al banco.
+  // addToBank es idempotente y deduplica por id: repetirlo no cuesta nada.
+  await addToBank(FALLBACK_QUESTIONS);
+  const bank = await getQuestionBank();
 
   // Foco de la tanda de hoy: un día GENERAL (Mundiales/leyendas/reglas), el
   // siguiente enfocado en una LIGA concreta (rotando por la lista). Así el banco

@@ -192,6 +192,33 @@ export async function addToBank(questions: TriviaQuestion[]): Promise<number> {
   return fresh.length;
 }
 
+/**
+ * Saca preguntas del banco por id. Devuelve cuántas había realmente.
+ *
+ * Contrapartida necesaria de addToBank: como el alta deduplica por id, una
+ * pregunta que envejeció mal (p. ej. escrita en futuro sobre un torneo ya
+ * jugado) NO se arregla editando el fichero fuente — la copia vieja sigue en
+ * KV. Esto la borra. Idempotente: borrar un id ausente no falla ni cuenta.
+ */
+export async function removeFromBank(ids: string[]): Promise<number> {
+  if (ids.length === 0) return 0;
+  if (isKvEnabled()) {
+    const existing = new Set(await kv.hkeys(BANK_KEY));
+    const presentes = ids.filter((id) => existing.has(id));
+    if (presentes.length === 0) return 0;
+    await kv.hdel(BANK_KEY, ...presentes);
+    return presentes.length;
+  }
+  const store = await readFs();
+  const fuera = new Set(ids);
+  const restantes = store.bank.filter((q) => !fuera.has(q.id));
+  const borradas = store.bank.length - restantes.length;
+  if (borradas === 0) return 0;
+  store.bank = restantes;
+  await writeFs(store);
+  return borradas;
+}
+
 // ───────────────────────── anti-repetición por usuario ─────────────────────────
 
 /** Ids de preguntas que el usuario ya ha visto. */

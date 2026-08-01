@@ -118,9 +118,13 @@ export const FALLBACK_QUESTIONS: TriviaQuestion[] = [
     difficulty: "experta",
     explanation: "El alemán Oliver Kahn fue el mejor jugador del Mundial 2002.",
   },
+  // fb-13 … fb-18 (las de arriba, en futuro) están RETIRADAS: preguntaban por
+  // el Mundial 2026 como si aún no hubiera pasado. Sus reemplazos llevan id
+  // nuevo (fbm-*) porque addToBank deduplica por id: reescribir el texto sin
+  // cambiar el id habría dejado la versión vieja congelada en el banco de KV.
   {
-    id: "fb-13",
-    question: "¿En qué tres países se celebra el Mundial 2026?",
+    id: "fbm-1",
+    question: "¿En qué tres países se celebró el Mundial 2026?",
     options: [
       "EEUU, México y Canadá",
       "EEUU y México",
@@ -128,40 +132,40 @@ export const FALLBACK_QUESTIONS: TriviaQuestion[] = [
       "EEUU, Canadá y Brasil",
     ],
     correctIndex: 0,
-    category: "sedes",
+    category: "historia",
     difficulty: "facil",
-    explanation: "Será el primer Mundial organizado por tres países anfitriones.",
+    explanation: "Fue el primer Mundial organizado por tres países anfitriones.",
   },
   {
-    id: "fb-14",
-    question: "¿Cuántas selecciones participan en el Mundial 2026?",
+    id: "fbm-2",
+    question: "¿Cuántas selecciones participaron en el Mundial 2026?",
     options: ["48", "32", "24", "64"],
     correctIndex: 0,
-    category: "actualidad",
+    category: "historia",
     difficulty: "facil",
-    explanation: "El torneo se amplía de 32 a 48 selecciones por primera vez.",
+    explanation: "El torneo se amplió de 32 a 48 selecciones por primera vez.",
   },
   {
-    id: "fb-15",
-    question: "¿Cuántos partidos se jugarán en el Mundial 2026?",
+    id: "fbm-3",
+    question: "¿Cuántos partidos se jugaron en el Mundial 2026?",
     options: ["104", "64", "80", "96"],
     correctIndex: 0,
-    category: "actualidad",
+    category: "historia",
     difficulty: "media",
-    explanation: "Con 48 equipos el torneo pasa a 104 partidos en total.",
+    explanation: "Con 48 equipos el torneo pasó a 104 partidos en total.",
   },
   {
-    id: "fb-16",
-    question: "¿En cuántos grupos se dividen las 48 selecciones del Mundial 2026?",
+    id: "fbm-4",
+    question: "¿En cuántos grupos se dividieron las 48 selecciones del Mundial 2026?",
     options: ["12", "8", "16", "6"],
     correctIndex: 0,
-    category: "actualidad",
+    category: "historia",
     difficulty: "media",
-    explanation: "Serán 12 grupos de 4 equipos en la fase de grupos.",
+    explanation: "Fueron 12 grupos de 4 equipos en la fase de grupos.",
   },
   {
-    id: "fb-17",
-    question: "¿En qué estadio se jugará el partido inaugural del Mundial 2026?",
+    id: "fbm-5",
+    question: "¿En qué estadio se jugó el partido inaugural del Mundial 2026?",
     options: [
       "Estadio Azteca (Ciudad de México)",
       "MetLife Stadium (Nueva Jersey)",
@@ -169,13 +173,13 @@ export const FALLBACK_QUESTIONS: TriviaQuestion[] = [
       "Estadio BBVA (Monterrey)",
     ],
     correctIndex: 0,
-    category: "sedes",
+    category: "historia",
     difficulty: "dificil",
-    explanation: "El Azteca acoge la inauguración el 11 de junio de 2026.",
+    explanation: "El Azteca acogió la inauguración el 11 de junio de 2026.",
   },
   {
-    id: "fb-18",
-    question: "¿En qué estadio se disputará la final del Mundial 2026?",
+    id: "fbm-6",
+    question: "¿En qué estadio se disputó la final del Mundial 2026?",
     options: [
       "MetLife Stadium (Nueva Jersey)",
       "Estadio Azteca (México)",
@@ -183,9 +187,9 @@ export const FALLBACK_QUESTIONS: TriviaQuestion[] = [
       "AT&T Stadium (Dallas)",
     ],
     correctIndex: 0,
-    category: "sedes",
+    category: "historia",
     difficulty: "experta",
-    explanation: "La final se jugará en el MetLife Stadium, cerca de Nueva York.",
+    explanation: "La final se jugó en el MetLife Stadium, cerca de Nueva York.",
   },
   {
     id: "fb-19",
@@ -241,4 +245,163 @@ export const FALLBACK_QUESTIONS: TriviaQuestion[] = [
     difficulty: "media",
     explanation: "Dos tiempos de 45 minutos, más el añadido por el árbitro.",
   },
+
+  /* ═══════════════════════════════════════════════════════════════════
+     CLUBES Y LIGAS — el banco no tenía ni una sola pregunta de clubes:
+     24 de 24 eran de selecciones. Si Claude no genera (sin API key, error
+     del modelo o cron caído), la trivia de un producto de ligas servía
+     únicamente preguntas de Mundiales. Todas son hechos consolidados, no
+     dependen de la temporada en curso, y el orden pan-LATAM va primero.
+     ═══════════════════════════════════════════════════════════════════ */
+  {
+    id: "fbc-1",
+    question: "¿Qué club ha ganado más Copas Libertadores?",
+    options: ["Independiente", "Boca Juniors", "Peñarol", "River Plate"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "media",
+    explanation: "Independiente de Avellaneda suma 7, más que ningún otro club.",
+  },
+  {
+    id: "fbc-2",
+    question: "¿Qué club ecuatoriano ganó la Copa Libertadores en 2008?",
+    options: ["LDU de Quito", "Barcelona SC", "Emelec", "Independiente del Valle"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "media",
+    explanation: "LDU de Quito venció a Fluminense en la final: el único título ecuatoriano.",
+  },
+  {
+    id: "fbc-3",
+    question: "¿Cuál es el club con más títulos de liga en Ecuador?",
+    options: ["Barcelona SC", "LDU de Quito", "Emelec", "El Nacional"],
+    correctIndex: 0,
+    category: "ligas",
+    difficulty: "media",
+    explanation: "Barcelona Sporting Club, de Guayaquil, encabeza el palmarés nacional.",
+  },
+  {
+    id: "fbc-4",
+    question: "¿Qué club colombiano ganó la Copa Libertadores en 1989 y 2016?",
+    options: ["Atlético Nacional", "Millonarios", "América de Cali", "Junior"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "media",
+    explanation: "Atlético Nacional de Medellín es el único bicampeón colombiano.",
+  },
+  {
+    id: "fbc-5",
+    question: "¿Cómo se llama el estadio de Boca Juniors?",
+    options: ["La Bombonera", "El Monumental", "El Cilindro", "El Gasómetro"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "facil",
+    explanation: "Alberto J. Armando, conocida como La Bombonera, en La Boca.",
+  },
+  {
+    id: "fbc-6",
+    question: "¿Qué dos clubes disputan el Superclásico argentino?",
+    options: [
+      "Boca Juniors y River Plate",
+      "Racing e Independiente",
+      "San Lorenzo y Huracán",
+      "Vélez y Estudiantes",
+    ],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "facil",
+    explanation: "Boca y River: el clásico más famoso del fútbol argentino.",
+  },
+  {
+    id: "fbc-7",
+    question: "¿En qué club brasileño se consagró Pelé antes de ir a Estados Unidos?",
+    options: ["Santos", "Flamengo", "Corinthians", "Palmeiras"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "facil",
+    explanation: "Pelé jugó casi toda su carrera en el Santos, de 1956 a 1974.",
+  },
+  {
+    id: "fbc-8",
+    question: "¿Qué club brasileño juega de local en el Maracaná junto al Fluminense?",
+    options: ["Flamengo", "Vasco da Gama", "Botafogo", "Palmeiras"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "media",
+    explanation: "Flamengo y Fluminense comparten el Maracaná como estadio.",
+  },
+  {
+    id: "fbc-9",
+    question: "¿Qué club tiene más títulos en la historia de la Liga MX?",
+    options: ["Club América", "Chivas de Guadalajara", "Cruz Azul", "Toluca"],
+    correctIndex: 0,
+    category: "ligas",
+    difficulty: "media",
+    explanation: "El América encabeza el palmarés del fútbol mexicano.",
+  },
+  {
+    id: "fbc-10",
+    question: "¿Cómo se apoda al Cruz Azul?",
+    options: ["La Máquina", "El Rebaño", "Las Águilas", "Los Diablos"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "media",
+    explanation: "La Máquina Celeste, apodo heredado de sus grandes equipos de los 70.",
+  },
+  {
+    id: "fbc-11",
+    question: "¿Qué club venezolano tiene más títulos de liga?",
+    options: ["Caracas FC", "Deportivo Táchira", "Zamora FC", "Deportivo Lara"],
+    correctIndex: 0,
+    category: "ligas",
+    difficulty: "dificil",
+    explanation: "El Caracas FC lidera el palmarés del fútbol venezolano.",
+  },
+  {
+    id: "fbc-12",
+    question: "¿Qué club ha ganado más veces la Copa de Europa / Champions League?",
+    options: ["Real Madrid", "Milan", "Liverpool", "Bayern Múnich"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "facil",
+    explanation: "El Real Madrid es, con mucha diferencia, el más laureado del torneo.",
+  },
+  {
+    id: "fbc-13",
+    question: "¿Cómo se llama el clásico entre Real Madrid y FC Barcelona?",
+    options: ["El Clásico", "El Derbi", "La Batalla", "El Superclásico"],
+    correctIndex: 0,
+    category: "ligas",
+    difficulty: "facil",
+    explanation: "El Clásico, el partido más visto del fútbol español.",
+  },
+  {
+    id: "fbc-14",
+    question: "¿Qué club inglés juega en Anfield?",
+    options: ["Liverpool", "Everton", "Manchester United", "Arsenal"],
+    correctIndex: 0,
+    category: "clubes",
+    difficulty: "facil",
+    explanation: "Anfield es la casa del Liverpool desde 1892.",
+  },
+];
+
+/**
+ * Ids retirados del banco: preguntas que ya no deben servirse nunca más.
+ *
+ * addToBank deduplica por id, así que una pregunta mal formulada que ya entró
+ * en KV se queda ahí para siempre por mucho que se corrija este fichero. El
+ * cron diario las borra con removeFromBank antes de sembrar las nuevas.
+ *
+ * fb-13 … fb-18: preguntaban por el Mundial 2026 en FUTURO ("¿en qué estadio
+ * se jugará la final?") doce días después de que el torneo terminara.
+ * Reemplazadas por fbm-1 … fbm-6, en pasado.
+ */
+export const RETIRED_QUESTION_IDS: string[] = [
+  "fb-13",
+  "fb-14",
+  "fb-15",
+  "fb-16",
+  "fb-17",
+  "fb-18",
 ];

@@ -33,6 +33,9 @@ const REWARD_COINS = 10;
 const EXACT_REWARD = 40; // el marcador exacto es mucho más difícil que el 1X2
 const REWARD_XP = 5;
 const FINISHED = new Set(["FT", "AET", "PEN"]);
+// Estados terminales que NO son "terminado": aplazado, cancelado, abandonado,
+// ganado por resolución e incomparecencia. Sus predicciones se anulan (void).
+const DEAD = new Set(["PST", "CANC", "ABD", "AWD", "WO"]);
 const SETTLE_AFTER_MIN = 150; // margen tras el saque antes de intentar resolver
 const MAX_FIXTURES_PER_RUN = 40; // tope de llamadas api-football por ejecución
 
@@ -80,10 +83,26 @@ export async function GET(req: Request) {
 
   const fixtureIds = [...new Set(pending.map((p) => p.fixture_id))].slice(0, MAX_FIXTURES_PER_RUN);
   let resolvedFixtures = 0;
+  let voidedFixtures = 0; // partidos que nunca se jugarán (aplazado/cancelado…)
   // Fixtures resueltos en ESTA pasada (para el push de payoff al final).
   const resolvedMeta = new Map<number, ResolvedLigaFixtureMeta>();
   for (const fid of fixtureIds) {
     const d = await getFixtureDetail(fid);
+    // Partido que NUNCA va a terminar (aplazado, cancelado, abandonado…): se
+    // ANULA en vez de dejarlo pendiente. Antes caía en el `continue` de abajo y
+    // sus predicciones quedaban colgadas para siempre, pidiendo ese fixture a
+    // api-football en cada pasada (hasta 96/día, cuota para nada) y ocupando
+    // hueco del tope por ejecución, desplazando a partidos reales. El cron
+    // hermano del fantasy ya trataba estos estados; aquí faltaba.
+    if (d && DEAD.has(d.fixture.status)) {
+      await admin
+        .from("liga_predictions")
+        .update({ status: "void", resolved_at: nowIso })
+        .eq("fixture_id", fid)
+        .eq("status", "pending");
+      voidedFixtures++;
+      continue;
+    }
     if (!d || !FINISHED.has(d.fixture.status)) continue; // aún no terminado (o feed caído): se reintenta
     const w = winnerOf(d.fixture.score.home, d.fixture.score.away);
     if (!w) continue;
@@ -193,5 +212,5 @@ export async function GET(req: Request) {
   } catch {
     // heartbeat best-effort
   }
-  return NextResponse.json({ ok: true, resolvedFixtures, paid, notify: notifyStats });
+  return NextResponse.json({ ok: true, resolvedFixtures, voidedFixtures, paid, notify: notifyStats });
 }

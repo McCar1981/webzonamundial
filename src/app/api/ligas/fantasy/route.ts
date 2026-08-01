@@ -62,11 +62,37 @@ export async function POST(request: Request) {
   }
   const captainId = body.captainId != null && seen.has(Number(body.captainId)) ? Number(body.captainId) : null;
 
-  // La jornada no debe haber empezado: al menos un partido de la ronda sin comenzar.
+  // ── Validación de la jornada ────────────────────────────────────────────
+  // Antes bastaba con que UN partido de la ronda no hubiera empezado para dar
+  // por abierta la jornada entera: se podía fichar a un jugador cuyo partido ya
+  // había terminado, sabiendo su resultado. Y si la ronda no existía —o
+  // api-football se quedaba sin cuota y devolvía vacío— la condición
+  // `fixtures.length > 0` dejaba pasar CUALQUIER cosa: esos onces se guardaban
+  // y no se puntuaban nunca, además de ocupar hueco en el cron que resuelve.
   const fixtures = await getCompetitionFixtures(comp.apiFootballId, { round });
-  const open = fixtures.some((f) => NOT_STARTED.has(f.status));
-  if (fixtures.length > 0 && !open) {
+  if (fixtures.length === 0) {
+    // Ronda inexistente o no verificable ahora mismo: mejor no guardar que
+    // guardar un once que jamás va a puntuar.
+    return NextResponse.json({ error: "round_unavailable" }, { status: 409 });
+  }
+
+  // Solo se pueden fichar jugadores de equipos cuyo partido de ESTA jornada
+  // todavía no ha empezado.
+  const equiposAbiertos = new Set<number>();
+  for (const f of fixtures) {
+    if (!NOT_STARTED.has(f.status)) continue;
+    if (f.home?.id) equiposAbiertos.add(f.home.id);
+    if (f.away?.id) equiposAbiertos.add(f.away.id);
+  }
+  if (equiposAbiertos.size === 0) {
     return NextResponse.json({ error: "round_closed" }, { status: 409 });
+  }
+  const bloqueado = players.find((p) => !equiposAbiertos.has(p.teamId));
+  if (bloqueado) {
+    return NextResponse.json(
+      { error: "player_locked", playerId: bloqueado.id },
+      { status: 409 },
+    );
   }
 
   const res = await saveFantasyPick(user.id, slug, round, players, captainId);

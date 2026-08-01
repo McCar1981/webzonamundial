@@ -76,6 +76,12 @@ export default function FantasyPicker({
       setError(
         j?.error === "already_picked" ? "Ya montaste tu once de esta jornada."
         : j?.error === "round_closed" ? "La jornada ya empezó."
+        // El partido de alguno de tus jugadores ya arrancó: hay que quitarlo.
+        : j?.error === "player_locked" ? "Uno de tus jugadores ya está jugando. Cámbialo por otro."
+        // No se pudo verificar la jornada (ronda desconocida o datos no
+        // disponibles ahora): no se guarda, para no dejar un once que nunca
+        // puntuaría.
+        : j?.error === "round_unavailable" ? "No podemos confirmar esta jornada ahora mismo. Vuelve a intentarlo en un rato."
         : j?.error === "not_available" ? "El fantasy se activa en breve."
         : "No se pudo guardar. Inténtalo de nuevo.",
       );

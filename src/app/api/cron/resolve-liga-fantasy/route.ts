@@ -97,12 +97,36 @@ export async function GET(req: Request) {
     const statsByPlayer = new Map<number, PlayerMatchStats>();
     const concededByTeam = new Map<number, number>();
     let statsMissing = false;
+    // Se ACUMULA por jugador y por equipo en vez de sobrescribir: en las
+    // eliminatorias a ida y vuelta (Libertadores, Sudamericana, Champions) una
+    // misma ronda tiene DOS partidos del mismo equipo, y el segundo pisaba al
+    // primero en el Map. Solo contaba un encuentro, así que los puntos —y las
+    // Fútcoins— salían por debajo de lo real.
     for (const f of played) {
-      concededByTeam.set(f.home.id, f.score.away ?? 0);
-      concededByTeam.set(f.away.id, f.score.home ?? 0);
+      concededByTeam.set(f.home.id, (concededByTeam.get(f.home.id) ?? 0) + (f.score.away ?? 0));
+      concededByTeam.set(f.away.id, (concededByTeam.get(f.away.id) ?? 0) + (f.score.home ?? 0));
       const rows = await getFixturePlayerStats(f.fixtureId);
       if (!rows.length) { statsMissing = true; break; }
-      for (const s of rows) statsByPlayer.set(s.playerId, s);
+      for (const s of rows) {
+        const prev = statsByPlayer.get(s.playerId);
+        if (!prev) {
+          statsByPlayer.set(s.playerId, { ...s });
+          continue;
+        }
+        statsByPlayer.set(s.playerId, {
+          ...prev,
+          minutes: prev.minutes + s.minutes,
+          goals: prev.goals + s.goals,
+          assists: prev.assists + s.assists,
+          yellow: prev.yellow + s.yellow,
+          red: prev.red + s.red,
+          // La nota se promedia entre los partidos que la traen (no se suma).
+          rating:
+            prev.rating != null && s.rating != null
+              ? (prev.rating + s.rating) / 2
+              : prev.rating ?? s.rating,
+        });
+      }
     }
     if (statsMissing) continue; // stats aún no publicadas: se reintenta
 

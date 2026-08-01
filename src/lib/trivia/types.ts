@@ -70,11 +70,22 @@ export function speedMultiplier(responseMs: number): number {
 /** Bonus por horario (sobre el total de la sesión). */
 export type DailyBonus = "early_bird" | "night_owl" | "perfect_day" | null;
 
-export function timeBonusMultiplier(date: Date): { mult: number; bonus: DailyBonus } {
-  const h = date.getHours();
+/** Bonus a partir de la hora LOCAL del jugador (0-23).
+ *
+ *  Recibe la hora ya resuelta —y no un Date— a propósito: `getHours()` depende
+ *  de la zona horaria del PROCESO, y el servidor (Vercel) va en UTC. Con un
+ *  Date se calculaba la hora de Londres, así que en Ecuador —la mitad de la
+ *  audiencia— el "madrugador" lo cobraba quien jugaba de 19:00 a 04:00 y jamás
+ *  quien jugaba por la mañana. */
+export function timeBonusForHour(hour: number): { mult: number; bonus: DailyBonus } {
+  const h = ((Math.trunc(hour) % 24) + 24) % 24;
   if (h < 9) return { mult: 1.5, bonus: "early_bird" };
   if (h >= 23) return { mult: 1.25, bonus: "night_owl" };
   return { mult: 1.0, bonus: null };
+}
+
+export function timeBonusMultiplier(date: Date): { mult: number; bonus: DailyBonus } {
+  return timeBonusForHour(date.getHours());
 }
 
 export type LeaderboardPeriod = "global" | "diaria";

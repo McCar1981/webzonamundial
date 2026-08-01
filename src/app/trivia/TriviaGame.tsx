@@ -473,6 +473,9 @@ export default function TriviaGame() {
           sessionId,
           name: name.trim() || undefined,
           anonId: anonRef.current,
+          // El bonus de madrugador/noctámbulo debe mirar la hora LOCAL del
+          // jugador, no la del servidor (Vercel va en UTC).
+          tzOffsetMin: new Date().getTimezoneOffset(),
         }),
       });
       if (!r.ok) {

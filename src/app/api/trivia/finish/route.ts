@@ -16,7 +16,7 @@ import {
   recordSession,
 } from "@/lib/trivia/store";
 import { resolveIdentity } from "@/lib/trivia/identity";
-import { timeBonusMultiplier } from "@/lib/trivia/types";
+import { timeBonusForHour } from "@/lib/trivia/types";
 import type { SessionResult } from "@/lib/trivia/types";
 import { grantCoins } from "@/lib/economy/wallet";
 import { triviaSessionReward } from "@/lib/economy/earn";
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
-  let body: { sessionId?: string; name?: string; anonId?: string };
+  let body: { sessionId?: string; name?: string; anonId?: string; tzOffsetMin?: number };
   try {
     body = await req.json();
   } catch {
@@ -122,8 +122,25 @@ export async function POST(req: Request) {
     });
   }
 
-  // Bonus de horario + día perfecto
-  const { mult, bonus } = timeBonusMultiplier(new Date());
+  // Bonus de horario + día perfecto.
+  // El bonus se calculaba con la hora del SERVIDOR (Vercel va en UTC), así que
+  // el "madrugador" (antes de las 9) lo cobraba en Ecuador —la mitad de la
+  // audiencia— quien jugaba de 19:00 a 04:00, y NUNCA quien jugaba por la
+  // mañana. El cliente manda su desfase horario y aquí se reconstruye su hora
+  // local; si no llega o viene fuera de rango (±14 h), se usa la del servidor
+  // como antes.
+  const tz = typeof body.tzOffsetMin === "number" && Math.abs(body.tzOffsetMin) <= 840
+    ? body.tzOffsetMin
+    : null;
+  // getTimezoneOffset() = UTC - local en minutos (Ecuador, UTC-5, manda +300).
+  // Se desplaza el instante y se lee en UTC para no depender de la zona del
+  // proceso. Sin dato válido, se cae a la hora del servidor (comportamiento
+  // anterior).
+  const horaLocal =
+    tz === null
+      ? new Date().getHours()
+      : new Date(Date.now() - tz * 60_000).getUTCHours();
+  const { mult, bonus } = timeBonusForHour(horaLocal);
   const answered = session.answered.length;
   // "Día Perfecto" exige un mínimo de respuestas: sin esto, una partida de 1 sola
   // pregunta acertada (p.ej. el último cupo Free del día, o un anónimo rotando id)

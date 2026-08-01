@@ -28,14 +28,14 @@ import { buildUnsubscribeToken } from "@/lib/email-subscriptions";
 import {
   REACTIVACION_HTML,
   REACTIVACION_SUBJECT,
-} from "@/lib/emails/reactivacion-mundial";
+} from "@/lib/emails/reactivacion-ligas";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 const SENT_KEY = "reactivacion:sent";
-const FROM = `ZonaMundial <${process.env.SMTP_FROM || "noreply@zonamundial.app"}>`;
+const FROM = `Zona de Ligas <${process.env.SMTP_FROM || "noreply@zonamundial.app"}>`;
 const REPLY_TO = "gol@zonamundial.app";
 const RESEND_KEY = process.env.SMTP_PASS || "";
 const CONCURRENCY = 5; // suave con el rate-limit de Resend

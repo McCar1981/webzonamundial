@@ -23,31 +23,22 @@ const BG="#000000",BG2="#14110a",BG3="#0a0906",GOLD="#c9a84c",GOLD2="#e8d48b",MI
 
 function buildNav(t: Translations) {
   return [
-    { id: "torneo", label: t.nav.torneo, items: [
-      { id: "selecciones", label: t.nav.selecciones, href: "/selecciones" },
-      { id: "grupos",      label: t.nav.grupos,      href: "/grupos" },
-      { id: "sedes",       label: t.nav.sedes,        href: "/sedes" },
-      { id: "calendario",  label: t.nav.calendario,   href: "/calendario" },
-      { id: "historia",    label: t.nav.historia,     href: "/historia" },
-      { id: "formato",     label: t.nav.formato,      href: "/formato" },
-    ]},
-    { id: "plataforma", label: t.nav.plataforma, items: [
-      { id: "predicciones", label: t.nav.predicciones, href: "/app/predicciones" },
-      { id: "fantasy",      label: t.nav.fantasy,      href: "/app/fantasy" },
-      { id: "iaCoach",      label: t.nav.iaCoach,      href: "/app/ia-coach" },
-      { id: "trivia",       label: t.nav.trivia,       href: "/app/trivia" },
-      { id: "modoCarrera",  label: t.nav.modoCarrera,  href: "/app/modo-carrera" },
-      { id: "ligas",        label: t.nav.ligas,        href: "/app/fantasy/jugar?tab=ligas" },
-      { id: "streaming",    label: t.nav.streaming,    href: "/app/streaming" },
-      { id: "album",        label: t.nav.album,        href: "/app/album" },
-    ]},
-    // Zona de Ligas: el producto de temporada completa (post 19-jul). Nombre
-    // propio, mismo precedente i18n que "Camisetas". La entrada "Ligas Privadas"
-    // del grupo plataforma es otra cosa (ligas de amigos del fantasy).
+    // Menú reordenado en el pivote: "Ligas" al frente, porque es el producto.
+    // FUERA el desplegable "Torneo" del Mundial (Selecciones, Grupos, Sedes,
+    // Formato, Calendario del torneo): llevaba a un campeonato terminado desde
+    // TODAS las páginas del sitio. Esas rutas siguen vivas para SEO, solo dejan
+    // de estar enlazadas. Fuera también los módulos dormidos (Modo Carrera,
+    // Streaming, Álbum) y Camisetas, cuyo catálogo es de selecciones.
     { id: "zonaLigas",  label: "Ligas",           href: "/ligas" },
+    { id: "plataforma", label: t.nav.plataforma, items: [
+      { id: "predicciones", label: t.nav.predicciones, href: "/ligas" },
+      { id: "fantasy",      label: t.nav.fantasy,      href: "/ligas" },
+      { id: "draft",        label: "Draft de Ligas",   href: "/app/draft-mundial" },
+      { id: "trivia",       label: t.nav.trivia,       href: "/trivia" },
+      { id: "iaCoach",      label: t.nav.iaCoach,      href: "/app/ia-coach" },
+    ]},
     { id: "noticias",   label: t.nav.noticias,   href: "/noticias" },
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
-    { id: "camisetas",  label: "Camisetas",       href: "/camisetas" },
     { id: "tutoriales", label: t.nav.tutoriales,  href: "/tutoriales" },
     { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
     { id: "premium",    label: t.nav.premium,     href: "/pro" },

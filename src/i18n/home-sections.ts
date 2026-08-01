@@ -273,32 +273,30 @@ export const homeSections = {
 
     /* ============ SiteFooter ============ */
     footer: {
-      tag: "Predicciones, fantasy y engagement en español para la Copa del Mundo 2026.",
+      tag: "Tu fútbol de clubes, todo el año: predicciones, Fantasy, Draft y las noticias de tu equipo.",
       poweredBy: "Powered by",
       columns: {
+        // La columna "Torneo" (48 Selecciones, Grupos, Sedes, Dieciseisavos,
+        // Quiniela, Bracket…) se sustituye por "Fútbol": enlazaba el Mundial ya
+        // terminado desde el pie de TODAS las páginas. Esas rutas siguen vivas
+        // para SEO, solo dejan de estar enlazadas. Igual con Creadores (retirados
+        // del producto) y Streaming/Modo Carrera (módulos dormidos).
         torneo: {
-          title: "Torneo",
+          title: "Fútbol",
           links: [
-            { label: "48 Selecciones", href: "/selecciones" },
-            { label: "12 Grupos", href: "/grupos" },
-            { label: "Mejores terceros", href: "/grupos/mejores-terceros" },
-            { label: "16 Sedes", href: "/sedes" },
-            { label: "Calendario", href: "/calendario" },
-            { label: "Dieciseisavos", href: "/dieciseisavos-mundial-2026" },
-            { label: "Octavos de final", href: "/octavos-de-final-mundial-2026" },
-            { label: "Quiniela 2026", href: "/quiniela-mundial-2026" },
-            { label: "Simulador (Bracket)", href: "/bracket" },
-            { label: "Historia", href: "/historia" },
+            { label: "Zona de Ligas", href: "/ligas" },
+            { label: "Noticias", href: "/noticias" },
+            { label: "Rankings", href: "/app/rankings" },
           ],
         },
         plataforma: {
-          title: "Plataforma",
+          title: "Juegos",
           links: [
-            { label: "Predicciones", href: "/app/predicciones" },
-            { label: "Fantasy", href: "/app/fantasy" },
+            { label: "Predicciones", href: "/ligas" },
+            { label: "Fantasy", href: "/ligas" },
+            { label: "Draft de Ligas", href: "/app/draft-mundial" },
+            { label: "Trivia", href: "/trivia" },
             { label: "IA Coach", href: "/app/ia-coach" },
-            { label: "Trivia", href: "/app/trivia" },
-            { label: "Modo Carrera", href: "/app/modo-carrera" },
             { label: "Premium", href: "/pro" },
             { label: "Porra Digital para Bares", href: "/bares" },
             { label: "Porra para Empresas", href: "/empresas" },
@@ -310,10 +308,8 @@ export const homeSections = {
             { label: "Noticias", href: "/noticias" },
             { label: "Blog", href: "/blog" },
             { label: "Tutoriales", href: "/tutoriales" },
-            { label: "Creadores", href: "/creadores" },
-            { label: "Ligas Privadas", href: "/app/ligas" },
             { label: "Rankings", href: "/app/rankings" },
-            { label: "Streaming", href: "/app/streaming" },
+            { label: "Descarga la app", href: "/descarga" },
           ],
         },
         legal: {

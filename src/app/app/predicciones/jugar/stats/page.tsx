@@ -54,11 +54,18 @@ export default function StatsPage() {
             <h2 style={{ fontSize: 16, fontWeight: 800, marginTop: 28, marginBottom: 12 }}>Por tipo de predicción</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {stats.by_type.map((t) => {
+                // Cinturón además del tirante: el agregado ya descarta los
+                // tipos que la app no conoce, pero si uno se colara aquí,
+                // `TypeIcon` sería undefined y React tumbaría la pantalla
+                // entera con "Element type is invalid". Preferimos saltarnos
+                // una fila a dejar al usuario sin sus estadísticas.
                 const TypeIcon = TYPE_ICON[t.type];
+                const meta = TYPE_META[t.type];
+                if (!TypeIcon || !meta) return null;
                 return (
                 <div key={t.type} style={{ display: "flex", alignItems: "center", gap: 12, background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "10px 14px" }}>
-                  <TypeIcon size={18} color={TYPE_META[t.type].color} />
-                  <span style={{ flex: 1, fontWeight: 700, fontSize: 14 }}>{TYPE_META[t.type].label}</span>
+                  <TypeIcon size={18} color={meta.color} />
+                  <span style={{ flex: 1, fontWeight: 700, fontSize: 14 }}>{meta.label}</span>
                   <span style={{ fontSize: 12, color: DIM }}>{t.correct}/{t.total} · {t.accuracy}%</span>
                   <span style={{ fontWeight: 800, color: GOLD, minWidth: 60, textAlign: "right" }}>{t.avg_points} pts/u</span>
                 </div>

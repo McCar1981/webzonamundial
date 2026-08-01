@@ -19,6 +19,7 @@ import {
   type OverUnderData,
   type MinuteDramaData,
   type DuelData,
+  PREDICTION_TYPES,
 } from "./types";
 import { scoreBase, applyBonuses } from "./scoring";
 import { isEarlyBird } from "./rules";
@@ -702,9 +703,20 @@ export async function getMyStats(userId: string): Promise<MyStats> {
 
   const byType = new Map<PredictionType, { total: number; correct: number; pts: number }>();
   let totalPoints = 0, correct = 0;
+  // `prediction_type` llega de la BD con un `as` que TypeScript NO puede
+  // comprobar: la columna es texto. Si una fila trae un tipo que la app ya no
+  // conoce (uno viejo, uno escrito a mano en SQL, o uno nuevo añadido en la
+  // migración antes que en el código), la pantalla de estadísticas hace
+  // `TYPE_ICON[t.type]` -> undefined -> React revienta con "Element type is
+  // invalid" y se lleva la página por delante. Se filtra AQUÍ y no en la UI
+  // porque este agregado lo consume más de un sitio.
+  const CONOCIDOS = new Set<string>(PREDICTION_TYPES);
   for (const r of rows) {
     totalPoints += r.points_earned ?? 0;
     if (r.is_correct) correct++;
+    // Los puntos y aciertos del total SÍ se cuentan aunque el tipo sea
+    // desconocido —son del usuario—; solo se queda fuera del desglose.
+    if (!CONOCIDOS.has(r.prediction_type)) continue;
     const t = byType.get(r.prediction_type) ?? { total: 0, correct: 0, pts: 0 };
     t.total++; t.pts += r.points_earned ?? 0; if (r.is_correct) t.correct++;
     byType.set(r.prediction_type, t);

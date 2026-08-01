@@ -142,7 +142,9 @@ export function AlbumSection({
             >
               {/* Large number watermark */}
               <span className="absolute top-3 right-4 text-7xl font-black text-[#C9A84C]/[0.04] leading-none select-none">
-                {CARDS[i].num}
+                {/* `?.` porque `texts` viene del i18n y `CARDS` de aquí: si
+                    divergen, esto tumba la home entera (ya pasó una vez). */}
+                {CARDS[i]?.num}
               </span>
 
               {/* Top accent line */}
@@ -150,7 +152,7 @@ export function AlbumSection({
 
               {/* Icon */}
               <div className="relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center border border-[#C9A84C]/25 bg-[#C9A84C]/10 mb-6 group-hover:scale-110 group-hover:border-[#C9A84C]/50 group-hover:shadow-[0_0_30px_rgba(201,168,76,0.2)] transition-all duration-300">
-                {CARDS[i].icon}
+                {CARDS[i]?.icon}
               </div>
 
               {/* Content */}

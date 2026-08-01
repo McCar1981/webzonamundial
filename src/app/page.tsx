@@ -41,11 +41,20 @@ export default function HomePage() {
   const { t } = useLanguage();
   const h = t.home;
 
-  const MODULES = MODULES_BASE.map((m) => ({
-    ...m,
-    title: h.modules[m.key].title,
-    desc: h.modules[m.key].desc,
-  }));
+  // `flatMap` y no `map` A PROPÓSITO: si una clave desaparece del i18n, el
+  // módulo se cae de la lista en vez de tumbar la home entera.
+  //
+  // Esto ya nos costó ocho días de home en 500: el grid emparejaba por índice
+  // los textos del i18n con sus metadatos, alguien comentó dos entradas de una
+  // lista y no de la otra, y `meta[i].color` reventó el render. Aquí el pareo
+  // es por CLAVE en vez de por índice, pero el fallo sería idéntico —y con
+  // `stories` y `streaming` todavía en MODULES_BASE siendo features retiradas,
+  // limpiarlas del i18n es cuestión de tiempo. Ni tsc ni el build lo verían.
+  const MODULES = MODULES_BASE.flatMap((m) => {
+    const copy = h.modules[m.key];
+    if (!copy) return [];
+    return [{ ...m, title: copy.title, desc: copy.desc }];
+  });
 
   const cd = useCountdown("2026-06-11T00:00:00-05:00");
   // Pivote post-Mundial: desde el lunes 20-jul (o con ?zm-ligas=1) la home

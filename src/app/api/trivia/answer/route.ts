@@ -55,15 +55,28 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "already_answered" }, { status: 409 });
   }
 
-  // Tiempo de respuesta efectivo. Solo Relámpago usa el multiplicador de rapidez,
-  // y ahí el valor del cliente se acota con el reloj del servidor: enviar
-  // responseMs=0 ya no basta para forzar el ×2 si de verdad se tardó más.
+  // Tiempo de respuesta efectivo. Solo Relámpago usa el multiplicador de rapidez.
+  //
+  // El reloj del servidor mide de RESPUESTA a RESPUESTA, así que incluye el rato
+  // que el jugador pasa leyendo la explicación de la anterior (el juego obliga a
+  // pulsar "Siguiente" a mano). Antes se tomaba el MAYOR entre ese hueco y el
+  // tiempo del cliente, restando solo 1,5 s: quien leía la explicación 20 s veía
+  // su respuesta de 2 s contabilizada como 18,5 s. Perdía el multiplicador por
+  // leer, y además le ensuciaba el tiempo medio y su mejor marca. Castigaba
+  // justo al jugador atento.
+  //
+  // El cliente SÍ mide bien (arranca el cronómetro al pintar la pregunta), así
+  // que se toma su valor y el reloj del servidor queda como TECHO: nadie puede
+  // declarar menos tiempo del que... —al revés— nadie puede contar como propio
+  // más tiempo del que de verdad ha pasado. Contra el cliente manipulado que
+  // enviaría 0 para forzar el ×2 queda un suelo humano: nadie lee la pregunta y
+  // responde en menos de 350 ms.
   let responseMs = clientMs;
   if (session.mode === "relampago") {
     const last = session.lastTickAt ?? Date.parse(session.startedAt);
-    const serverGap = Date.now() - last;
-    const FEEDBACK_OVERHEAD_MS = 1500; // margen por feedback previo + latencia de red
-    responseMs = Math.min(Math.max(0, Math.max(clientMs, serverGap - FEEDBACK_OVERHEAD_MS)), 60000);
+    const serverGap = Math.max(0, Date.now() - last);
+    const MIN_HUMANO_MS = 350;
+    responseMs = Math.min(Math.max(clientMs, MIN_HUMANO_MS), serverGap || 60000, 60000);
   }
 
   const correct = choice === q.correctIndex;

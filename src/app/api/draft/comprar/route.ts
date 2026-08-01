@@ -15,19 +15,17 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { spendCoins } from "@/lib/economy/wallet";
-import {
-  DRAFT_REROLL_EXTRA,
-  DRAFT_OJEADOR,
-  DRAFT_PARTIDA_EXTRA,
-} from "@/lib/economy/spend";
+import { DRAFT_REROLL_EXTRA } from "@/lib/economy/spend";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// SOLO ítems con efecto real entregable. "ojeador" y "partida" tienen precio en
+// el catálogo (spend.ts) pero AÚN no tienen mecánica: hasta que exista su UI y
+// su efecto, venderlos aquí sería cobrar Fútcoins a cambio de nada (hallazgo de
+// la auditoría). Se reactivan en PRECIOS cuando se cableen.
 const PRECIOS: Record<string, { cost: number; label: string }> = {
   reroll: { cost: DRAFT_REROLL_EXTRA, label: "Re-tirada extra" },
-  ojeador: { cost: DRAFT_OJEADOR, label: "Ojeador" },
-  partida: { cost: DRAFT_PARTIDA_EXTRA, label: "Partida extra" },
 };
 
 export async function POST(req: Request) {

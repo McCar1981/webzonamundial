@@ -123,18 +123,32 @@ jobs:
             exit 1
           fi
           END=$(( $(date -u +%s) + 330 * 60 )) # 5 h 30, deja margen al timeout
-          EPS="/api/cron/match-center-poll /api/cron/resolve-micro /api/cron/settle-live-picks /api/cron/stage-results /api/cron/match-reminders /api/cron/monitor"
+          # poll-ligas-live va PRIMERO: es el que EMITE las micro-predicciones de
+          # los partidos de liga. Antes no estaba y el bucle solo las resolvía
+          # (resolve-micro), así que la mecánica más diferencial del producto
+          # dependía del cron de 10 min, cuando el motor descarta eventos de más
+          # de 4 min: la mayoría de penaltis, rojas y goles no generaban nada.
+          EPS="/api/cron/poll-ligas-live /api/cron/match-center-poll /api/cron/resolve-micro /api/cron/settle-live-picks /api/cron/stage-results /api/cron/match-reminders /api/cron/monitor"
           active=0
 
           while [ "$(date -u +%s)" -lt "$END" ]; do
             NOW=$(date -u +%s)
+            # El gate miraba SOLO /api/match-center/today, que son los partidos
+            # del MUNDIAL (ids 1..104). Terminado el torneo devuelve vacío, así
+            # que el vigilante dormía siempre y no despertaba ni con la liga en
+            # vivo. Ahora despierta si hay partido del Mundial O de liga.
             TODAY=$(curl -sS -m 25 "$SITE_URL/api/match-center/today" 2>/dev/null || echo '')
             GATE=$(printf '%s' "$TODAY" | jq -r --argjson now "$NOW" "$GATE_JQ" 2>/dev/null || echo 0)
             [ -z "$GATE" ] && GATE=0
 
+            LIGAS=$(curl -sS -m 25 "$SITE_URL/api/ligas/live" 2>/dev/null || echo '')
+            GATE_L=$(printf '%s' "$LIGAS" | jq -r 'if (.mode == "live") then (.fixtures | length) else 0 end' 2>/dev/null || echo 0)
+            [ -z "$GATE_L" ] && GATE_L=0
+            GATE=$(( GATE + GATE_L ))
+
             if [ "$GATE" -gt 0 ]; then
               active=$((active + 1))
-              echo "--- $(date -u +%H:%M:%S) ventana ACTIVA ($GATE partido/s) — sondeando"
+              echo "--- $(date -u +%H:%M:%S) ventana ACTIVA ($GATE partido/s; liga: $GATE_L) — sondeando"
               for ep in $EPS; do
                 code=$(curl -sS -m 60 -o /dev/null -w "%{http_code}" \
                   -H "Authorization: Bearer $CRON_SECRET" "$SITE_URL$ep" 2>/dev/null || echo "000")

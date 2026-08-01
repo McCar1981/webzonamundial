@@ -31,9 +31,9 @@ const ADSENSE_ID =
 
 const SITE_URL = "https://zonamundial.app";
 const SITE_NAME = "ZonaMundial";
-const DEFAULT_TITLE = "ZonaMundial: Predicciones y Fantasy Mundial 2026";
+const DEFAULT_TITLE = "Zona de Ligas: predicciones, Fantasy y Draft de tu liga";
 const DEFAULT_DESCRIPTION =
-  "Juega gratis al Mundial 2026: predicciones, fantasy, IA Coach, trivia y streaming con 9 creators. 48 selecciones, 16 sedes, 104 partidos. ¡Regístrate ya!";
+  "Tu fútbol de clubes, todo el año: predicciones jornada a jornada, Fantasy, Draft de Ligas, trivia e IA Coach. LigaPro, Liga MX, Brasileirão, Liga Argentina, LaLiga, Premier y más. Gratis.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -149,7 +149,10 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
-// JSON-LD: WebSite + Organization + SportsEvent (Mundial 2026)
+// JSON-LD: WebSite + Organization.
+// Se retiró el bloque SportsEvent del Mundial 2026: declaraba en TODAS las
+// páginas un torneo ya terminado como "EventScheduled" (evento futuro), lo que
+// desinforma a Google y contradice el pivote a fútbol de clubes.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -190,79 +193,6 @@ const jsonLd = {
         email: "gol@zonamundial.app",
         availableLanguage: ["Spanish", "English"],
         url: `${SITE_URL}/contacto`,
-      },
-    },
-    {
-      "@type": "SportsEvent",
-      "@id": `${SITE_URL}/#mundial2026`,
-      name: "Copa Mundial de Fútbol 2026",
-      alternateName: ["Mundial 2026", "Copa del Mundo 2026"],
-      description:
-        "Vigesimoprimera edición de la Copa Mundial de Fútbol. 48 selecciones, 16 sedes en Estados Unidos, México y Canadá, 104 partidos.",
-      startDate: "2026-06-11",
-      endDate: "2026-07-19",
-      eventStatus: "https://schema.org/EventScheduled",
-      eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
-      sport: "Fútbol",
-      // Image — required by Google for Event rich result.
-      // El opengraph-image.tsx en root se sirve en /opengraph-image (Next
-      // resuelve el endpoint dinámico). Como fallback, el logo branded.
-      image: [
-        `${SITE_URL}/opengraph-image`,
-        `${SITE_URL}/img/email/logo-zonamundial.png`,
-      ],
-      // Location with full address per host country (Google requires address inside location)
-      location: [
-        {
-          "@type": "Place",
-          name: "Estados Unidos",
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: "US",
-            addressRegion: "Multiple host cities",
-          },
-        },
-        {
-          "@type": "Place",
-          name: "México",
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: "MX",
-            addressRegion: "Multiple host cities",
-          },
-        },
-        {
-          "@type": "Place",
-          name: "Canadá",
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: "CA",
-            addressRegion: "Multiple host cities",
-          },
-        },
-      ],
-      organizer: {
-        "@type": "Organization",
-        name: "FIFA",
-        url: "https://www.fifa.com",
-      },
-      // Performer — Google requires at least one for SportsEvent rich result.
-      // 48 teams play; we list the 3 host nations as referential performers.
-      performer: [
-        { "@type": "SportsTeam", name: "Selección de Estados Unidos" },
-        { "@type": "SportsTeam", name: "Selección de México" },
-        { "@type": "SportsTeam", name: "Selección de Canadá" },
-      ],
-      // Offers — required field. ZonaMundial doesn't sell tickets but documents
-      // free access to the prediction platform.
-      offers: {
-        "@type": "Offer",
-        url: `${SITE_URL}/registro`,
-        price: "0",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        validFrom: "2025-10-01",
-        category: "Free prediction platform access",
       },
     },
   ],

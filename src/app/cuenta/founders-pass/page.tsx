@@ -63,7 +63,7 @@ export default async function FoundersPassPage() {
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-white mb-1">Founders Pass</h2>
         <p className="text-gray-400 text-sm">
-          Apoya el proyecto y desbloquea ventajas durante todo el Mundial 2026.
+          Apoya el proyecto y desbloquea ventajas durante toda la temporada.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ function ActiveFounderCard({
       </div>
 
       <p className="text-sm text-gray-400 mb-4">
-        Tu Founders Pass está activo. Tienes acceso a todas las ventajas durante todo el Mundial 2026.
+        Tu Founders Pass está activo. Tienes acceso a todas las ventajas durante toda la temporada.
       </p>
 
       <div className="space-y-1 text-sm">
@@ -186,7 +186,7 @@ function BuyCard() {
         Conviértete en Founder
       </h3>
       <p className="text-sm text-gray-400 mb-5">
-        Apoya el proyecto y desbloquea ventajas durante todo el Mundial 2026.
+        Apoya el proyecto y desbloquea ventajas durante toda la temporada.
       </p>
 
       <ul className="space-y-2 text-sm text-gray-200 mb-6">

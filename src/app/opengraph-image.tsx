@@ -14,7 +14,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ZonaMundial — Predicciones y Fantasy del Mundial 2026";
+export const alt = "Zona de Ligas — Predicciones, Fantasy y Draft de tu liga";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -128,7 +128,7 @@ export default async function OGImage() {
                 display: "flex",
               }}
             >
-              48 selecciones · 16 sedes · 104 partidos
+              Tu fútbol de clubes, todo el año
             </div>
           </div>
         </div>

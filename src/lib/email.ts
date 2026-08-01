@@ -101,7 +101,7 @@ export async function sendWelcomeEmail(opts: {
     summaryRows.push({ label: 'País', value: opts.countryName });
   }
   if (opts.teamName) {
-    summaryRows.push({ label: 'Selección favorita', value: `★ ${opts.teamName}`, gold: true });
+    summaryRows.push({ label: 'Tu club', value: `★ ${opts.teamName}`, gold: true });
   }
   if (opts.creatorName) {
     summaryRows.push({ label: 'Creador que sigues', value: opts.creatorName, gold: true });
@@ -132,8 +132,8 @@ export async function sendWelcomeEmail(opts: {
     heading: `¡Bienvenido, @${escapeHtml(opts.username)}!`,
     bodyHtml: `
       <p style="line-height:1.7;margin:0 0 18px;font-size:16px;color:#241e12;">
-        Tu cuenta en <strong style="color:#14110a;">ZonaMundial</strong> ya está lista. 🎉
-        El <strong>Mundial 2026</strong> ya está en marcha: la fase de grupos rueda HOY y tú ya estás dentro para vivirla como nunca antes.
+        Tu cuenta en <strong style="color:#14110a;">Zona de Ligas</strong> ya está lista. 🎉
+        Elige tu club y tus ligas y vive cada jornada como nunca: predicciones, Fantasy, Draft y las noticias de tu equipo, todo el año.
       </p>
       ${creatorLine}
 
@@ -157,15 +157,15 @@ export async function sendWelcomeEmail(opts: {
           <td width="50%" valign="top" style="padding:0 0 12px 6px;">${featureCard('🏆', 'Fantasy League', 'Ficha a tus cracks y compite')}</td>
         </tr>
         <tr>
-          <td width="50%" valign="top" style="padding:0 6px 0 0;">${featureCard('📊', 'Rankings globales', 'Mide tu nivel cada jornada')}</td>
-          <td width="50%" valign="top" style="padding:0 0 0 6px;">${featureCard('🎬', 'Creadores', 'Contenido exclusivo y retos')}</td>
+          <td width="50%" valign="top" style="padding:0 6px 0 0;">${featureCard('📊', 'Ranking de tu liga', 'Mide tu nivel cada jornada')}</td>
+          <td width="50%" valign="top" style="padding:0 0 0 6px;">${featureCard('🎲', 'Draft de Ligas', 'Arma tu once histórico')}</td>
         </tr>
       </table>
 
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:26px 0 4px;">
         <tr><td style="background:linear-gradient(135deg,#14110a,#14110a);border-radius:12px;padding:18px 20px;text-align:center;">
           <p style="margin:0;color:#E7D9A8;font-size:14px;line-height:1.5;">
-            El Mundial ya está en juego y hay partidos hoy.<br>
+            Tu liga ya rueda y hay partidos esta jornada.<br>
             <strong style="color:#FDE68A;">Haz tu primera predicción antes del pitido inicial.</strong>
           </p>
         </td></tr>
@@ -272,7 +272,7 @@ ${preheader}
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#241e12;">
       <tr><td style="background:linear-gradient(135deg,#14110a,#0a0906 55%,#0E1A2B);padding:30px 32px 24px;text-align:center;border-radius:16px 16px 0 0;">
         <img src="${siteUrl}/img/email/logo-zonamundial.png" width="132" alt="ZonaMundial" style="display:inline-block;width:132px;max-width:132px;height:auto;border:0;outline:none;text-decoration:none;">
-        <p style="color:#C9A84C;margin:14px 0 0;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">Mundial 2026</p>
+        <p style="color:#C9A84C;margin:14px 0 0;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">Zona de Ligas</p>
         <p style="color:#7E94AD;margin:4px 0 0;font-size:12px;letter-spacing:0.08em;">USA · México · Canadá</p>
       </td></tr>
       <tr><td style="padding:32px;background:#ffffff;border-radius:0 0 16px 16px;">
@@ -498,11 +498,11 @@ export async function sendDailyDigest(opts: {
   const fxCount = fixtures.length;
   const fxWord = fxCount === 1 ? "partido" : "partidos";
   const subject = hasFixtures
-    ? `Tu día en el Mundial · ${fxCount} ${fxWord}${opts.fixturesAreToday === false ? "" : " hoy"}`
+    ? `Tu día de fútbol · ${fxCount} ${fxWord}${opts.fixturesAreToday === false ? "" : " hoy"}`
     : (articleCount === 1
-        ? "Tu resumen del Mundial 2026"
-        : `Tu resumen del Mundial 2026 · ${articleCount} novedades`);
-  const heading = hasFixtures ? "Tu día en el Mundial" : "Buenos días, esto es lo más importante de hoy";
+        ? "Tu resumen de hoy"
+        : `Tu resumen de hoy · ${articleCount} novedades`);
+  const heading = hasFixtures ? "Tu día de fútbol" : "Buenos días, esto es lo más importante de hoy";
   const preheader = hasFixtures
     ? `${fxCount} ${fxWord} para predecir + tu trivia diaria`
     : `${articleCount} ${articleCount === 1 ? "novedad hoy" : "novedades hoy"} en ZonaMundial`;

@@ -1,13 +1,13 @@
 {
-  "name": "ZonaMundial — Predicciones y Fantasy Mundial 2026",
-  "short_name": "ZonaMundial",
-  "description": "Juega gratis al Mundial 2026: predicciones, fantasy, IA Coach, trivia y streaming con creators.",
+  "name": "Zona de Ligas — Predicciones, Fantasy y Draft",
+  "short_name": "Zona de Ligas",
+  "description": "Tu fútbol de clubes todo el año: predicciones jornada a jornada, Fantasy, Draft de Ligas, trivia e IA Coach.",
   "start_url": "/app",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0b0b0f",
-  "theme_color": "#0b0b0f",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "lang": "es",
   "dir": "ltr",
   "categories": ["sports", "entertainment", "games"],
@@ -35,32 +35,26 @@
     {
       "name": "Abrir la app",
       "short_name": "La app",
-      "description": "Todos los módulos del Mundial 2026",
+      "description": "Tu fútbol: partidos, juegos y noticias de tu club",
       "url": "/app"
     },
     {
-      "name": "Match Center",
-      "short_name": "En vivo",
-      "description": "Sigue el partido del día en vivo",
-      "url": "/app/matchcenter"
+      "name": "Zona de Ligas",
+      "short_name": "Ligas",
+      "description": "Partidos, clasificación y Match Center de tus ligas",
+      "url": "/ligas"
     },
     {
-      "name": "Predicciones",
-      "short_name": "Predicciones",
-      "description": "Haz tus predicciones del Mundial 2026",
-      "url": "/app/predicciones"
+      "name": "Draft de Ligas",
+      "short_name": "Draft",
+      "description": "Arma tu once histórico con clubes de tu liga",
+      "url": "/app/draft-mundial"
     },
     {
-      "name": "Fantasy",
-      "short_name": "Fantasy",
-      "description": "Crea tu equipo Fantasy del Mundial 2026",
-      "url": "/app/fantasy"
-    },
-    {
-      "name": "Calendario",
-      "short_name": "Calendario",
-      "description": "Calendario completo del Mundial 2026",
-      "url": "/calendario"
+      "name": "Trivia",
+      "short_name": "Trivia",
+      "description": "Preguntas diarias de tu liga y del fútbol",
+      "url": "/trivia"
     }
   ]
 }

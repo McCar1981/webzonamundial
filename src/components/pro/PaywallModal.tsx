@@ -129,7 +129,7 @@ export default function PaywallModal() {
         </Link>
         <div style={{ marginTop: 8, fontSize: 11.5, color: MID, lineHeight: 1.45 }}>
           Luego {PRO_PRICE_DISPLAY.yearly} · cancela cuando quieras.{" "}
-          <strong style={{ color: GOLD2 }}>Precio fundador durante el Mundial.</strong>
+          <strong style={{ color: GOLD2 }}>Precio fundador por tiempo limitado.</strong>
         </div>
         <button
           onClick={close}

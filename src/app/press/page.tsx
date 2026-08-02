@@ -180,8 +180,12 @@ export default function PressPage() {
               gap: 12,
             }}
           >
-            <Resource label="Logo principal (PNG)" href="/img/logo.png" sub="Fondo oscuro · 512×512" />
-            <Resource label="Logo blanco (PNG)" href="/img/logo-512.png" sub="Para fondos claros" />
+            {/* Apuntaban a /img/logo.png y /img/logo-512.png, que no existen: el
+                kit de prensa servía dos 404 justo a quien venía a descargar la
+                marca. Los ficheros reales son los de la identidad nueva. */}
+            <Resource label="Logo horizontal (PNG)" href="/img/brand/logo-horizontal-zl.png" sub="Cabeceras · fondo oscuro" />
+            <Resource label="Logo vertical (PNG)" href="/img/brand/logo-vertical-zl.png" sub="Perfiles y formatos cuadrados" />
+            <Resource label="Icono de app (PNG)" href="/icons/icon-512.png" sub="512×512 · PWA" />
             <Resource label="OG image genérica" href="/og-image.jpg" sub="1200×630 · social cards" />
             <Resource label="Manifest del proyecto" href="/manifest.json" sub="PWA + iconos" />
           </div>

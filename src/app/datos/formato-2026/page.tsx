@@ -54,7 +54,9 @@ export default function Formato2026Page() {
         <ol className="flex flex-wrap gap-2">
           <li><Link href="/" className="hover:text-[#C9A84C]">{f.breadcrumbInicio}</Link></li>
           <li>/</li>
-          <li><Link href="/datos" className="hover:text-[#C9A84C]">{f.breadcrumbDatos}</Link></li>
+          {/* No es enlace: /datos nunca ha tenido página índice, así que el
+              breadcrumb mandaba a un 404. Se queda como rótulo del tramo. */}
+          <li>{f.breadcrumbDatos}</li>
           <li>/</li>
           <li className="text-[#C9A84C]">{f.breadcrumbCurrent}</li>
         </ol>

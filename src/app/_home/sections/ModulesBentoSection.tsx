@@ -141,7 +141,7 @@ function FantasyCard({ t }: { t: BentoT }) {
           <p className={styles.tagline} style={{ maxWidth: "85%" }}>
             {t.fantasy.tagline}
           </p>
-          <Link href="/app/fantasy" className={styles.cta} aria-label={t.tags.fantasy}>
+          <Link href="/ligas" className={styles.cta} aria-label={t.tags.fantasy}>
             <ArrowIcon size={18} />
           </Link>
         </div>

@@ -126,7 +126,7 @@ function buildModulesMeta(iconImgClass: string): ModuleMeta[] {
       ),
     },
     { href: "/app/predicciones", color: "#EF4444", bg: "/img/modules-grid/predicciones.webp", icon: <IconTarget /> },
-    { href: "/app/fantasy", color: "#3B82F6", bg: "/img/modules-grid/fantasy.webp", icon: <IconTrophy /> },
+    { href: "/ligas", color: "#3B82F6", bg: "/img/modules-grid/fantasy.webp", icon: <IconTrophy /> },
     { href: "/app/ia-coach", color: "#22C55E", bg: "/img/modules-grid/ia-coach.webp", icon: <IconBot /> },
     // PIVOTE LIGAS (jul-2026): Streaming y Modo Carrera quitados del grid (features del Mundial retiradas).
     // { href: "/app/streaming", color: "#F59E0B", bg: "/img/modules-grid/streaming.webp", icon: <IconVideo /> },

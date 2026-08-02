@@ -79,7 +79,7 @@ const RANK_TYPES: { icon: string; title: string; desc: string; view?: View; href
 const HOW_TO_CLIMB = [
   { icon: "predicciones", title: "Predice los partidos", desc: "Cada acierto suma Fútcoins. La racha multiplica.", href: "/app/predicciones" },
   { icon: "trivia", title: "Responde la trivia diaria", desc: "Un reto al día con puntos extra para el ranking.", href: "/trivia" },
-  { icon: "fantasy", title: "Monta tu Fantasy", desc: "Puntúa cada jornada con tu once ideal de la liga.", href: "/app/fantasy" },
+  { icon: "fantasy", title: "Monta tu Fantasy", desc: "Puntúa cada jornada con tu once ideal de la liga.", href: "/ligas" },
   // Antes: Modo Carrera ("dirige tu selección"), dormido desde el pivote. El
   // Draft sí está vivo, es por liga y paga Fútcoins según la calificación.
   { icon: "draft", title: "Arma tu Draft", desc: "Monta el once de tu liga y cobra según la calificación.", href: "/app/draft-mundial" },

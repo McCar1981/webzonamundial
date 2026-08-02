@@ -760,7 +760,7 @@ export const homeSections = {
           title: "Platform",
           links: [
             { label: "Predictions", href: "/app/predicciones" },
-            { label: "Fantasy", href: "/app/fantasy" },
+            { label: "Fantasy", href: "/ligas" },
             { label: "AI Coach", href: "/app/ia-coach" },
             { label: "Trivia", href: "/app/trivia" },
             { label: "Career Mode", href: "/app/modo-carrera" },

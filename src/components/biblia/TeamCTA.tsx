@@ -47,7 +47,7 @@ export default function TeamCTA({ team }: { team: NationalTeam }) {
           icon="⚽"
           title="Fantasy"
           desc="Arma tu equipo con sus estrellas"
-          href="/app/fantasy"
+          href="/ligas"
         />
       </div>
     </section>

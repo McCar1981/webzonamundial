@@ -64,7 +64,7 @@ function buildFooterLinks(t: Translations) {
     ],
     [t.footer.plataforma]: [
       { label: t.footer.predicciones, href: "/app/predicciones" },
-      { label: t.footer.fantasy,       href: "/app/fantasy" },
+      { label: t.footer.fantasy,       href: "/ligas" },
       { label: t.footer.iaCoach,       href: "/app/ia-coach" },
       { label: t.footer.trivia,        href: "/app/trivia" },
       { label: t.footer.modoCarrera,   href: "/app/modo-carrera" },

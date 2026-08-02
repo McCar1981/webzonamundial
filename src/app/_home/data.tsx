@@ -391,7 +391,7 @@ export const CREATORS = [
 export const MODULES_BASE = [
   { key: "matchCenter", icon: ICON_V3.matchCenter, color: "#c9a84c", href: "/la-app" },
   { key: "predicciones", icon: ICON_V3.predicciones, color: "#ef4444", href: "/app/predicciones" },
-  { key: "fantasy", icon: ICON_V3.fantasy, color: "#3b82f6", href: "/app/fantasy" },
+  { key: "fantasy", icon: ICON_V3.fantasy, color: "#3b82f6", href: "/ligas" },
   { key: "iaCoach", icon: ICON_V3.iaCoach, color: "#22c55e", href: "/app/ia-coach" },
   { key: "streaming", icon: ICON_V3.streaming, color: "#f97316", href: "/app/streaming" },
   { key: "trivia", icon: ICON_V3.trivia, color: "#a855f7", href: "/app/trivia" },

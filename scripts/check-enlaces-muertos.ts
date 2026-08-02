@@ -116,12 +116,37 @@ function ficheros(dir: string, acc: string[] = []): string[] {
   return acc;
 }
 
-// href="/x", href={"/x"}, href={`/x`}, router.push("/x"), redirect("/x")
+// href="/x", href={"/x"}, src="/x", router.push("/x"), redirect("/x") y las
+// URLs interpoladas tipo `${SITE}/img/x.png`.
+//
+// El `src=` y la interpolación se añadieron después: sin ellos se coló que el
+// JSON-LD del blog declaraba `${SITE}/img/logo-512.png` como logo del editor,
+// un 404 que Google leía en cada artículo.
 const PATRONES = [
-  /href=["'](\/[^"'{}\s]*)["']/g,
-  /href=\{["'`](\/[^"'`${}\s]*)["'`]\}/g,
+  /(?:href|src)=["'](\/[^"'{}\s]*)["']/g,
+  /(?:href|src)=\{["'`](\/[^"'`${}\s]*)["'`]\}/g,
   /(?:router\.(?:push|replace)|redirect|permanentRedirect)\(\s*["'`](\/[^"'`${}\s]*)["'`]/g,
+  // Interpolaciones tipo `${SITE}/img/logo.png`, PERO solo si la ruta termina
+  // en extensión de fichero. Dos filtros, cada uno por una razón concreta:
+  //   - la variable debe sonar a base de URL, o se cuelan `${score}/10`;
+  //   - la ruta debe ser un asset completo, o se cuelan las llamadas a APIs
+  //     EXTERNAS (`${SUPABASE_URL}/auth/v1/...`, `${API_FOOTBALL}/fixtures`),
+  //     que no se pueden distinguir de las internas mirando solo el sufijo.
+  // Un asset estático con extensión sí es comprobable contra public/ sin
+  // ambigüedad, y es justo el caso que se coló: el logo del JSON-LD del blog.
+  /\$\{[^}]*(?:SITE|URL|BASE|ORIGIN|HOST|DOMAIN|site|url|base|origin|host|domain)[^}]*\}(\/[A-Za-z0-9\-._~/]+\.[a-z0-9]{2,4})/g,
 ];
+
+// Destinos que el resolutor no puede verificar pero que sabemos buenos. Cada
+// entrada necesita una razón: si no se puede explicar por qué se perdona, es
+// que hay que arreglarlo, no perdonarlo.
+const PERDONADOS = new Map<string, string>([
+  [
+    "/draft-mundial/hero-bg.png",
+    "Fondo opcional del Draft: el <img> lleva onError que lo oculta si no existe. " +
+      "Está así a propósito (src/app/app/draft-mundial/page.tsx:170).",
+  ],
+]);
 
 type Uso = { url: string; fichero: string; linea: number };
 const usos: Uso[] = [];
@@ -177,6 +202,7 @@ function resuelve(url: string): boolean {
 const rotos = new Map<string, Uso[]>();
 for (const uso of usos) {
   if (uso.url.startsWith("//")) continue; // protocol-relative, es externo
+  if (PERDONADOS.has(uso.url)) continue;
   if (!resuelve(uso.url)) {
     const lista = rotos.get(uso.url) ?? [];
     lista.push(uso);
@@ -207,5 +233,6 @@ for (const [url, lista] of orden) {
   if (lista.length > 6) console.log(`      … y ${lista.length - 6} más`);
 }
 console.log("");
-console.log("Revisa uno a uno: puede haber falsos positivos (rutas generadas,");
-console.log("rewrites en middleware). Confirma antes de tocar nada.");
+console.log("Si alguno es un falso positivo (ruta generada, rewrite en middleware),");
+console.log("añádelo a PERDONADOS con su razón. Si no, es un 404 de verdad.");
+process.exit(1);

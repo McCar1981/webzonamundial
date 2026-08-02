@@ -17,16 +17,22 @@ export function buildArticleJsonLd(post: BlogPost) {
     author: [
       {
         "@type": "Organization",
-        name: "Editorial Zona Mundial",
+        name: "Editorial Zona de Ligas",
         url: SITE,
       },
     ],
     publisher: {
       "@type": "Organization",
-      name: "ZonaMundial",
+      name: "Zona de Ligas",
       logo: {
+        // Apuntaba a /img/logo-512.png, que no existe: Google leía un 404 como
+        // logo del editor en CADA artículo del blog. Este fichero sí existe y
+        // es el logo de la identidad nueva; las medidas van explícitas porque
+        // Google las pide para validar el ImageObject.
         "@type": "ImageObject",
-        url: `${SITE}/img/logo-512.png`,
+        url: `${SITE}/img/brand/logo-horizontal-zl.png`,
+        width: 480,
+        height: 160,
       },
     },
     mainEntityOfPage: {

@@ -1,0 +1,138 @@
+name: Smoke público (¿está viva la web?)
+
+# POR QUÉ EXISTE
+# La home devolvió HTTP 500 durante OCHO DÍAS y nadie se enteró. La causa fue
+# un desajuste de índices entre el i18n y el meta de un grid: `meta[i]` salía
+# undefined y `m.color` lanzaba TypeError al RENDERIZAR.
+#
+# Lo importante es que ni `tsc` ni el build de Vercel lo vieron: el build dijo
+# "Compiled successfully" y el deploy se dio por bueno. Un fallo de render solo
+# aparece cuando alguien PIDE la página. Este workflow es ese alguien.
+#
+# Qué hace: pide las rutas públicas críticas y falla si alguna responde >= 400.
+# Al fallar, GitHub manda email al dueño del repo — no hace falta más fontanería.
+#
+# NO sustituye a los tests: sustituye a "nadie miró la web en ocho días".
+#
+# Coste: repo público -> minutos de Actions gratis. Solo son peticiones GET a
+# páginas cacheadas en CDN, no gasta invocaciones de Vercel de forma apreciable.
+#
+# Secret necesario: SITE_URL (p. ej. https://zonamundial.app)
+
+on:
+  schedule:
+    # Cada 30 min. El scheduler de Actions se retrasa bastante en repos
+    # gratuitos, pero para "¿sigue viva la web?" un retraso de 1 h da igual:
+    # lo que queremos evitar son los OCHO DÍAS.
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  # También tras cada push a main: no espera al cron para cantar una regresión.
+  push:
+    branches: [main]
+
+concurrency:
+  group: smoke-publico
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pedir las rutas críticas
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: |
+          set -uo pipefail
+          BASE="${SITE_URL:-https://zonamundial.app}"
+          BASE="${BASE%/}"
+
+          # Rutas VIVAS que un usuario puede pedir hoy. No metemos aquí el
+          # archivo del Mundial (/grupos, /sedes...): si algún día se retira,
+          # este workflow no debe ponerse rojo por ello.
+          RUTAS="
+          /
+          /ligas
+          /trivia
+          /noticias
+          /blog
+          /pro
+          /premium
+          /descarga
+          /camisetas
+          /login
+          /registro
+          /contacto
+          /legal
+          /sitemap.xml
+          /manifest.json
+          /api/health
+          "
+
+          FALLOS=0
+          echo "Base: $BASE"
+          echo "----------------------------------------"
+
+          for RUTA in $RUTAS; do
+            # Sin -L a propósito: un 3xx es una respuesta legítima (login,
+            # gate de temporada, redirect de idioma). Lo que cazamos es 4xx/5xx.
+            CODE=$(curl -sS -o /tmp/body.html -w "%{http_code}" -m 25 \
+                     -A "zm-smoke/1.0 (+github-actions)" \
+                     "$BASE$RUTA" || echo "000")
+
+            if [ "$CODE" = "000" ]; then
+              echo "TIMEOUT  $RUTA"
+              FALLOS=$((FALLOS + 1))
+            elif [ "$CODE" -ge 400 ] 2>/dev/null; then
+              echo "HTTP $CODE  $RUTA"
+              echo "         primeras líneas de la respuesta:"
+              head -c 400 /tmp/body.html | sed 's/^/         /'
+              echo ""
+              FALLOS=$((FALLOS + 1))
+            else
+              echo "ok $CODE   $RUTA"
+            fi
+          done
+
+          echo "----------------------------------------"
+          if [ "$FALLOS" -gt 0 ]; then
+            echo "$FALLOS ruta(s) caídas. La web está rota para el usuario."
+            exit 1
+          fi
+          echo "Todas las rutas responden."
+
+      - name: Comprobar que la home trae contenido de verdad
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: |
+          set -uo pipefail
+          BASE="${SITE_URL:-https://zonamundial.app}"
+          BASE="${BASE%/}"
+
+          # Un 200 no basta: Next puede servir la página de error con status 200
+          # en algunos casos, o devolver un esqueleto vacío. Exigimos que la home
+          # traiga marcadores que solo existen si el render fue completo.
+          HTML=$(curl -sS -m 25 -A "zm-smoke/1.0 (+github-actions)" "$BASE/" || true)
+          BYTES=$(printf '%s' "$HTML" | wc -c)
+          echo "Home: $BYTES bytes"
+
+          FALLOS=0
+
+          # Umbral holgado: la home real pasa de 100 KB; una página de error de
+          # Next ronda los pocos KB.
+          if [ "$BYTES" -lt 20000 ]; then
+            echo "La home pesa $BYTES bytes: demasiado poco, huele a página de error."
+            FALLOS=$((FALLOS + 1))
+          fi
+
+          # Rastro inequívoco de que el error boundary de Next se ha activado.
+          for MARCA in "Application error" "client-side exception" "500: Internal"; do
+            if printf '%s' "$HTML" | grep -qiF "$MARCA"; then
+              echo "La home contiene el rastro de error: \"$MARCA\""
+              FALLOS=$((FALLOS + 1))
+            fi
+          done
+
+          if [ "$FALLOS" -gt 0 ]; then
+            exit 1
+          fi
+          echo "La home renderiza contenido real."

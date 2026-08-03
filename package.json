@@ -13,13 +13,14 @@
     "test-gate": "node --import tsx scripts/test-gate.ts",
     "test-product-analytics": "node --import tsx scripts/test-product-analytics.ts",
     "test-personal-matchday": "node --import tsx scripts/test-personal-matchday.ts",
-    "test:ci": "npm run test-gate && npm run test-product-analytics && npm run test-personal-matchday && npm run check-pareo-indices && npm run check-enlaces-muertos && npm run validate-content",
+    "test:ci": "npm run test-gate && npm run test-product-analytics && npm run test-personal-matchday && npm run test-draft-antifake && npm run check-pareo-indices && npm run check-enlaces-muertos && npm run validate-content",
     "check:ci": "npm run lint:ci && npm run typecheck && npm run test:ci",
     "verify-team-photos": "node --import tsx scripts/verify-team-photos.ts",
     "validate-content": "node --import tsx scripts/validate-content.ts",
     "prebuild": "node --import tsx scripts/validate-content.ts",
     "check-pareo-indices": "node --import tsx scripts/check-pareo-indices.ts",
-    "check-enlaces-muertos": "node --import tsx scripts/check-enlaces-muertos.ts"
+    "check-enlaces-muertos": "node --import tsx scripts/check-enlaces-muertos.ts",
+    "test-draft-antifake": "node --import tsx scripts/test-draft-antifake.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

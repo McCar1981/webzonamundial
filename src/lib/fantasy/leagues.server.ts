@@ -226,7 +226,7 @@ export async function leagueLeaderboard(leagueId: string, gameweek?: number): Pr
   }));
 
   return ids
-    .map((id) => ({ user_id: id, points: points.get(id) ?? 0, team_name: tname.get(id) ?? "Mi Selección" }))
+    .map((id) => ({ user_id: id, points: points.get(id) ?? 0, team_name: tname.get(id) ?? "Mi equipo" }))
     .sort((a, b) => b.points - a.points)
     .map((e, i) => ({
       position: i + 1,

@@ -50,39 +50,39 @@ export const homeSections = {
 
     /* ============ PlatformShowcaseSection ============ */
     platform: {
-      eyebrow: "¿POR QUÉ ZONAMUNDIAL? PORQUE EL RESTO SE QUEDA CORTO.",
+      eyebrow: "¿POR QUÉ ZONA DE LIGAS? PORQUE EL RESTO SE QUEDA CORTO.",
       title1: "La plataforma que",
-      title2: "el Mundial 2026",
+      title2: "tu liga",
       title3a: "merece,",
       title3b: "no la que",
       title4: "necesita.",
       para:
-        "En ZonaMundial no hacemos lo mínimo. Hacemos lo máximo. Predicciones, fantasy, trivia, streaming, IA coach y una comunidad que vive el fútbol. Todo en un solo lugar. Todo gratis.",
+        "En Zona de Ligas no hacemos lo mínimo. Hacemos lo máximo. Predicciones, Fantasy, Draft, trivia, IA Coach y una comunidad que vive el fútbol. Todo en un solo lugar. Todo el año.",
       highlight1: "Sin anuncios intrusivos.",
       highlight2: "Sin letra pequeña.",
       highlight3: "Solo fútbol puro.",
       cards: {
         selecciones: {
-          label: "Selecciones",
-          desc: "Datos, plantillas y estadísticas de todos los equipos clasificados al Mundial.",
+          label: "Clubes",
+          desc: "Datos, plantillas y estadísticas de los clubes de tus ligas.",
         },
         futbolPuro: {
           label: "Fútbol puro",
-          desc: "Sin ruido, sin distracciones. Solo el Mundial y todo lo que lo rodea.",
+          desc: "Sin ruido, sin distracciones. Solo tu fútbol y todo lo que lo rodea.",
         },
         todoEn1: {
           label: "Una sola plataforma",
-          desc: "Fantasy, predicciones, trivia, streaming, IA y mucho más, siempre a mano.",
+          desc: "Fantasy, predicciones, Draft, trivia, IA y mucho más, siempre a mano.",
           num: "Todo en 1",
         },
       },
       barLabels: {
-        usuarios: "Usuarios registrados",
-        partidos: "Partidos",
-        sedes: "Sedes",
-        paises: "Países anfitriones",
+        competiciones: "Competiciones",
+        paises: "Países",
+        clubes: "Clubes",
+        modos: "Modos de juego",
       },
-      phoneAlt: "App ZonaMundial",
+      phoneAlt: "App Zona de Ligas",
     },
 
     /* ============ ModulesGridSection ============ */
@@ -120,22 +120,22 @@ export const homeSections = {
       title1: "Todo lo que necesitas,",
       titleGold: "en un solo lugar",
       sub:
-        "Predicciones, fantasy, IA Coach, trivia y streaming — diseñado para el fanático que no se pierde nada.",
+        "Predicciones, Fantasy, Draft, IA Coach y trivia — diseñado para el fanático que no se pierde nada de su liga.",
       ctaExplore: "Explorar todos los módulos",
       tags: {
-        wc: "Copa del Mundo 2026 · EE.UU. · México · Canadá",
+        wc: "Tu liga · Champions · Libertadores",
         fantasy: "Fantasy",
         trivia: "Trivia",
         ai: "IA Coach",
-        aiBadge: "Ventaja anfitrión",
+        aiBadge: "Análisis del partido",
         liveTag: "En vivo",
       },
       predictions: {
-        title1: "El Mundial 2026",
-        title2: "te necesita,",
-        title3: "no dejes que otro lo viva por ti",
+        title1: "Tu jornada",
+        title2: "te espera,",
+        title3: "no dejes que otro la viva por ti",
         label: "Predicciones",
-        tagline: "Predice cada resultado y compite con tu creador favorito",
+        tagline: "Predice cada partido de tu liga y compite en el ranking",
       },
       fantasy: {
         formation: "4-3-3",
@@ -262,11 +262,11 @@ export const homeSections = {
 
     /* ============ FinalCTASection ============ */
     finalCta: {
-      title1: "¿Quién ganará el",
-      titleGold1: "Mundial 2026?",
-      title2: "Spoiler: da igual.",
-      title3: "Gana quien lo viva en",
-      titleGold2: "ZonaMundial.",
+      title1: "¿Quién manda en",
+      titleGold1: "tu liga?",
+      title2: "Spoiler: se decide cada jornada.",
+      title3: "Gana quien la viva en",
+      titleGold2: "Zona de Ligas.",
       desc: "Entra gratis. Si no te gusta, te devolvemos el silencio.",
       cta: "Registrarme gratis",
       assurance: {
@@ -519,39 +519,39 @@ export const homeSections = {
     },
 
     platform: {
-      eyebrow: "WHY ZONAMUNDIAL? BECAUSE EVERYTHING ELSE FALLS SHORT.",
-      title1: "The platform the",
-      title2: "2026 World Cup",
+      eyebrow: "WHY ZONA DE LIGAS? BECAUSE EVERYTHING ELSE FALLS SHORT.",
+      title1: "The platform your",
+      title2: "league",
       title3a: "deserves,",
       title3b: "not the one",
       title4: "it needs.",
       para:
-        "At ZonaMundial we don't do the bare minimum. We do the maximum. Predictions, fantasy, trivia, streaming, an AI coach and a community that lives football. All in one place. All free.",
+        "At Zona de Ligas we don't do the bare minimum. We do the maximum. Predictions, Fantasy, Draft, trivia, an AI Coach and a community that lives football. All in one place. All year round.",
       highlight1: "No intrusive ads.",
       highlight2: "No fine print.",
       highlight3: "Just pure football.",
       cards: {
         selecciones: {
-          label: "Teams",
-          desc: "Data, rosters and stats for every team qualified for the World Cup.",
+          label: "Clubs",
+          desc: "Data, rosters and stats for the clubs in your leagues.",
         },
         futbolPuro: {
           label: "Pure football",
-          desc: "No noise, no distractions. Just the World Cup and everything around it.",
+          desc: "No noise, no distractions. Just your football and everything around it.",
         },
         todoEn1: {
           label: "One single platform",
-          desc: "Fantasy, predictions, trivia, streaming, AI and much more, always at hand.",
+          desc: "Fantasy, predictions, Draft, trivia, AI and much more, always at hand.",
           num: "All in 1",
         },
       },
       barLabels: {
-        usuarios: "Registered users",
-        partidos: "Matches",
-        sedes: "Venues",
-        paises: "Host countries",
+        competiciones: "Competitions",
+        paises: "Countries",
+        clubes: "Clubs",
+        modos: "Game modes",
       },
-      phoneAlt: "ZonaMundial app",
+      phoneAlt: "Zona de Ligas app",
     },
 
     modulesGrid: {
@@ -585,22 +585,22 @@ export const homeSections = {
       title1: "Everything you need,",
       titleGold: "in one place",
       sub:
-        "Predictions, fantasy, AI Coach, trivia and streaming — designed for the fan who doesn't miss a thing.",
+        "Predictions, Fantasy, Draft, AI Coach and trivia — designed for the fan who doesn't miss a thing in their league.",
       ctaExplore: "Explore all modules",
       tags: {
-        wc: "FIFA World Cup 2026 · USA · Mexico · Canada",
+        wc: "Your league · Champions · Libertadores",
         fantasy: "Fantasy",
         trivia: "Trivia",
         ai: "AI Coach",
-        aiBadge: "Home advantage",
+        aiBadge: "Match analysis",
         liveTag: "Live",
       },
       predictions: {
-        title1: "The 2026 World Cup",
-        title2: "needs you,",
+        title1: "Your matchday",
+        title2: "is waiting,",
         title3: "don't let someone else live it for you",
         label: "Predictions",
-        tagline: "Predict every result and compete with your favorite creator",
+        tagline: "Predict every match in your league and climb the ranking",
       },
       fantasy: {
         formation: "4-3-3",
@@ -723,11 +723,11 @@ export const homeSections = {
     },
 
     finalCta: {
-      title1: "Who will win the",
-      titleGold1: "2026 World Cup?",
-      title2: "Spoiler: it doesn't matter.",
+      title1: "Who runs",
+      titleGold1: "your league?",
+      title2: "Spoiler: it's settled every matchday.",
       title3: "Whoever lives it on",
-      titleGold2: "ZonaMundial wins.",
+      titleGold2: "Zona de Ligas wins.",
       desc: "Join for free. If you don't like it, we'll give you back the silence.",
       cta: "Sign up free",
       assurance: {

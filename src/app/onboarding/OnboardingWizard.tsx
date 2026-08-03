@@ -225,9 +225,9 @@ function Step1({
           Paso 1 de 3
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-white mb-3 leading-tight">
-          ¡Bienvenido al{" "}
+          ¡Bienvenido a{" "}
           <span className="bg-gradient-to-r from-[#C9A84C] via-[#FDE68A] to-[#C9A84C] bg-clip-text text-transparent">
-            Mundial
+            Zona de Ligas
           </span>
           !
         </h1>
@@ -458,9 +458,13 @@ function Step3({
             className="w-full px-4 py-3 rounded-xl bg-[#0a0906] border border-[#241e12] text-white text-sm focus:border-[#C9A84C] focus:outline-none"
           >
             <option value="">— Sin selección favorita —</option>
+            {/* Antes cada opción llevaba "(Grupo X)" — la letra del grupo del
+                Mundial. Fuera: la selección se conserva como color del hincha,
+                pero sin la nomenclatura del torneo. El club y las ligas se
+                eligen en /elige-tu-futbol. */}
             {selecciones.map((s) => (
               <option key={s.slug} value={s.slug}>
-                {s.nombre} (Grupo {s.grupo})
+                {s.nombre}
               </option>
             ))}
           </select>

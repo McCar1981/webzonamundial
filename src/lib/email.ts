@@ -36,7 +36,7 @@ export async function sendResendBatch(
   if (items.length === 0) return { sent: 0, failed: 0 };
   const apiKey = SMTP_PASS;
   if (!apiKey) return { sent: 0, failed: items.length, error: 'no_api_key' };
-  const from = SMTP_FROM.includes('<') ? SMTP_FROM : `ZonaMundial <${SMTP_FROM}>`;
+  const from = SMTP_FROM.includes('<') ? SMTP_FROM : `Zona de Ligas <${SMTP_FROM}>`;
 
   const payload = items.slice(0, 100).map((it) => ({
     from,
@@ -83,7 +83,6 @@ export async function sendWelcomeEmail(opts: {
   username: string;
   countryName?: string | null;
   teamName?: string | null;
-  creatorName?: string | null;
 }): Promise<void> {
   if (!transporter) {
     console.log('[Email] Skip welcome email: SMTP not configured');
@@ -101,10 +100,10 @@ export async function sendWelcomeEmail(opts: {
     summaryRows.push({ label: 'País', value: opts.countryName });
   }
   if (opts.teamName) {
-    summaryRows.push({ label: 'Tu club', value: `★ ${opts.teamName}`, gold: true });
-  }
-  if (opts.creatorName) {
-    summaryRows.push({ label: 'Creador que sigues', value: opts.creatorName, gold: true });
+    // El valor viene de getSeleccionBySlug: es una SELECCIÓN, no un club (salía
+    // "Tu club: ★ Ecuador"). La etiqueta se corrige mientras la fuente siga
+    // siendo la selección del onboarding.
+    summaryRows.push({ label: 'Tu selección', value: `★ ${opts.teamName}`, gold: true });
   }
 
   const summaryHtml = summaryRows
@@ -119,14 +118,7 @@ export async function sendWelcomeEmail(opts: {
     })
     .join('');
 
-  // Mensaje extra si sigue a un creador.
-  const creatorLine = opts.creatorName
-    ? `<p style="line-height:1.6;margin:0 0 16px;">Te has unido a la comunidad de
-         <strong style="color:#8C7437;">${escapeHtml(opts.creatorName)}</strong>.
-         Recibirás su contenido exclusivo y novedades dentro de la plataforma.</p>`
-    : '';
-
-  const subject = `¡Bienvenido a ZonaMundial, @${opts.username}!`;
+  const subject = `¡Bienvenido a Zona de Ligas, @${opts.username}!`;
   const html = brandedEmail({
     preheader: 'Tu cuenta está lista. Aquí tienes el resumen de tu registro.',
     heading: `¡Bienvenido, @${escapeHtml(opts.username)}!`,
@@ -135,7 +127,6 @@ export async function sendWelcomeEmail(opts: {
         Tu cuenta en <strong style="color:#14110a;">Zona de Ligas</strong> ya está lista. 🎉
         Elige tu club y tus ligas y vive cada jornada como nunca: predicciones, Fantasy, Draft y las noticias de tu equipo, todo el año.
       </p>
-      ${creatorLine}
 
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;background:#f9fafb;border:1px solid #eef0f3;border-radius:12px;overflow:hidden;margin:8px 0 4px;">
         <tr><td style="background:linear-gradient(135deg,#C9A84C,#FDE68A);padding:10px 16px;">
@@ -176,7 +167,7 @@ export async function sendWelcomeEmail(opts: {
       </p>
     `,
     ctaLabel: 'Haz tu predicción de hoy',
-    ctaHref: `${siteUrl}/app/predicciones`,
+    ctaHref: `${siteUrl}/ligas/predicciones`,
   });
 
   try {

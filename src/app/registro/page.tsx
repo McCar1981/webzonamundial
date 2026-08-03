@@ -152,8 +152,8 @@ export default function RegistroPage() {
             {/* Stats mini */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { value: '104', label: rT.stats.partidos, icon: ICON_V3.matchCenter },
-                { value: '8', label: rT.stats.modos, icon: ICON_V3.fantasy },
+                { value: '21', label: rT.stats.partidos, icon: ICON_V3.matchCenter },
+                { value: '7', label: rT.stats.modos, icon: ICON_V3.fantasy },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-[#241e12]/50"
                   style={{ background: 'rgba(20,17,10,0.4)' }}>

@@ -29,24 +29,7 @@ function ArrowIcon({ size = 18 }: { size?: number }) {
     </svg>
   );
 }
-function EyeIcon() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-}
+/* EyeIcon se usaba solo en la StreamingCard (retirada). Eliminado con ella. */
 
 /* ---------- 3D tilt hook ---------- */
 function useTilt(max = 5) {
@@ -206,47 +189,11 @@ function AICoachCard({ t }: { t: BentoT }) {
   );
 }
 
-/* ---------- STREAMING ---------- */
-function StreamingCard({ t }: { t: BentoT }) {
-  return (
-    <TiltArticle className={styles.cardStreaming}>
-      <div className={styles.cardImageWrap}>
-        <img className={styles.cardImage} src="/img/modules/streaming-live.webp" alt="" loading="lazy" decoding="async" />
-      </div>
-      <div className={styles.body}>
-        <div className={styles.headRow}>
-          <span className={`${styles.tag} ${styles.tagLive}`}>{t.tags.liveTag}</span>
-          <span className={styles.viewers}>
-            <EyeIcon /> {t.streaming.viewers}
-          </span>
-        </div>
-        <h3 className={styles.cardTitle}>{t.streaming.title}</h3>
-        <div className={styles.chat}>
-          {t.streaming.chat.map((c, i) => (
-            <div key={i} className={styles.chatMsg}>
-              <b>{c.user}</b> {c.msg}
-            </div>
-          ))}
-        </div>
-        <div className={styles.bottom} style={{ paddingTop: 8 }}>
-          <span
-            style={{
-              fontSize: 11,
-              color: "rgba(255,255,255,0.5)",
-              fontFamily: "var(--zm-font-mono, ui-monospace, SFMono-Regular, monospace)",
-              letterSpacing: "0.1em",
-            }}
-          >
-            {t.streaming.footer}
-          </span>
-          <Link href="/app/streaming" className={styles.cta} aria-label={t.streaming.title}>
-            <ArrowIcon size={18} />
-          </Link>
-        </div>
-      </div>
-    </TiltArticle>
-  );
-}
+/* ---------- STREAMING ----------
+   La StreamingCard se retiró del render en el pivote a Ligas (jul-2026): el
+   streaming con creadores era una feature del Mundial. Se elimina también la
+   función (era código muerto que aún apuntaba a /app/streaming y a
+   /img/modules/streaming-live.webp) para que nadie la vuelva a cablear. */
 
 /* ---------- SECTION EXPORT ---------- */
 const BENTO_SPARKS = [

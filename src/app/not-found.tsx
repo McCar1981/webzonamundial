@@ -5,13 +5,17 @@ import { useState, useEffect } from "react";
 
 const BG="#000000",BG2="#14110a",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#a69a82",DIM="#6e6552",DARK="#a69a82";
 
+// Rutas VIVAS del producto de ligas. Antes eran 5 del archivo del Mundial
+// (/calendario, /selecciones, /sedes, /bracket) + Founders: una página 404
+// que solo sabía ofrecer un torneo terminado. El archivo del Mundial queda
+// como una sola entrada al final.
 const QUICK_LINKS = [
-  { href: "/calendario", label: "Calendario" },
-  { href: "/selecciones", label: "Selecciones" },
-  { href: "/sedes", label: "Sedes" },
-  { href: "/bracket", label: "Bracket" },
-  { href: "/blog", label: "Blog editorial" },
-  { href: "/founders", label: "Founders Pass" },
+  { href: "/ligas", label: "Zona de Ligas" },
+  { href: "/noticias", label: "Noticias" },
+  { href: "/trivia", label: "Trivia" },
+  { href: "/blog", label: "Blog" },
+  { href: "/app", label: "Tu app" },
+  { href: "/historia", label: "Historia del Mundial" },
 ];
 
 export default function NotFoundPreview(){
@@ -107,13 +111,13 @@ export default function NotFoundPreview(){
             color:BG,fontWeight:700,fontSize:15,fontFamily:"inherit",
             transition:"all .3s",boxShadow:"0 4px 20px rgba(201,168,76,0.2)",
           }}>Volver al inicio</Link>
-          <Link href="/calendario" style={{
+          <Link href="/ligas" style={{
             display:"inline-block",textDecoration:"none",
             padding:"13px 24px",borderRadius:12,cursor:"pointer",
             border:"1px solid rgba(201,168,76,0.3)",background:"transparent",
             color:GOLD,fontWeight:600,fontSize:14,fontFamily:"inherit",
             transition:"all .3s",
-          }}>Ver partidos →</Link>
+          }}>Ver partidos de hoy →</Link>
         </div>
 
         {/* Quick links a páginas populares */}

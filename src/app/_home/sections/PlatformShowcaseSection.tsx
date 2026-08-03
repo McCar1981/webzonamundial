@@ -557,15 +557,14 @@ export function PlatformShowcaseSection() {
 
         {/* Slim bar */}
         <div className={styles.bar}>
-          <BarStat
-            icon={<IconUsers />}
-            target={2500000}
-            label={t.barLabels.usuarios}
-            displayFormatter={(v) => `+${(v / 1000000).toFixed(1)}M`}
-          />
-          <BarStat icon={<IconCalendar />} target={104} label={t.barLabels.partidos} />
-          <BarStat icon={<IconStadium />} target={16} label={t.barLabels.sedes} />
-          <BarStat icon={<IconGlobe />} target={3} label={t.barLabels.paises} />
+          {/* Stats VERIFICABLES del producto de ligas. Antes: +2.5M usuarios
+              (cifra inventada), 104 partidos, 16 sedes y 3 anfitriones (todo
+              del Mundial). Ahora números reales — 21 competiciones y 16 países
+              del catálogo COMPETITIONS, 72 clubes del pool del Draft. */}
+          <BarStat icon={<IconCalendar />} target={21} label={t.barLabels.competiciones} />
+          <BarStat icon={<IconGlobe />} target={16} label={t.barLabels.paises} />
+          <BarStat icon={<IconStadium />} target={72} label={t.barLabels.clubes} />
+          <BarStat icon={<IconUsers />} target={7} label={t.barLabels.modos} />
         </div>
       </div>
     </section>

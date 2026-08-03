@@ -133,7 +133,7 @@ export default function MatchCenterPage() {
               background: BG2, border: "1px solid rgba(255,255,255,0.1)",
               color: MID, fontWeight: 600, fontSize: 14
             }}>
-              104 partidos
+              Cada partido, en vivo
             </span>
           </div>
         </div>
@@ -146,10 +146,14 @@ export default function MatchCenterPage() {
       <section style={{ padding: "20px 20px 60px", background: BG }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <h2 style={{ fontSize: "clamp(22px,4vw,32px)", fontWeight: 800, marginBottom: 6, textAlign: "center" }}>
-            Entra a un <span style={{ color: "#10b981" }}>partido</span>
+            Prueba el <span style={{ color: "#10b981" }}>Match Center</span>
           </h2>
           <p style={{ color: MID, textAlign: "center", fontSize: 14, marginBottom: 28 }}>
-            Jornada 1 · toca un partido para abrir el Match Center en vivo.
+            {/* Los partidos de HOY salen arriba en TodayLiveBoard, con su estado
+                real. Esta rejilla es una demostración del Match Center completo
+                sobre partidos históricos (antes se anunciaba como "en vivo", con
+                partidos del Mundial ya jugados). */}
+            Revive partidos legendarios con el Match Center completo.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 12 }}>
             {J1.map((m) => (
@@ -273,7 +277,7 @@ export default function MatchCenterPage() {
             Vive cada partido al <span style={{ color: "#10b981" }}>máximo</span>
           </h2>
           <p data-cta-content style={{ color: MID, marginBottom: 40, fontSize: 18, maxWidth: 500, margin: "0 auto 40px", lineHeight: 1.6 }}>
-            El Match Center es tu compañero indispensable durante los 104 partidos del Mundial. No te pierdas ni un dato.
+            El Match Center es tu compañero indispensable en cada partido de tus ligas. No te pierdas ni un dato.
           </p>
           <Link href="/registro" data-cta-content data-hover-btn style={{
             padding: "18px 44px", borderRadius: 14,

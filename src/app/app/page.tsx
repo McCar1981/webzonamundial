@@ -1072,8 +1072,10 @@ export default function AppHubPage() {
   const heroPrimaryCta = (() => {
     if (live) return { label: "Seguir en vivo", href: matchHref };
     if (finished) return { label: "Ver puntos ganados", href: matchHref };
-    if (predictedFeatured === true) return { label: "Ver predicción", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones" };
-    return { label: "Predecir ahora", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones/jugar" };
+    // Fallback sin `match` (post-Mundial): al hub de predicción de ligas, no
+    // al del Mundial (/app/predicciones, torneo terminado).
+    if (predictedFeatured === true) return { label: "Ver predicción", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/ligas/predicciones" };
+    return { label: "Predecir ahora", href: match ? `/app/predicciones/jugar?match=${match.matchId}` : "/ligas/predicciones" };
   })();
   const heroStatusColor = heroStatus.tone === "live" ? CORAL : heroStatus.tone === "done" ? GREEN : heroStatus.tone === "todo" ? GOLD2 : "#fff";
 
@@ -1335,11 +1337,14 @@ export default function AppHubPage() {
           const pendingToday = (todayMatches ?? []).filter((m) => !m.finished && (predictedCounts[String(m.matchId)] ?? 0) === 0).length;
           // Fusión "Predicción rápida": si el partido del día está sin predecir,
           // el deep-link va a ese partido concreto (no al lobby de predicciones).
-          const featuredHref = match && predictedFeatured === false ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones";
+          // Post-Mundial (sin `match`) las predicciones son por liga: los
+          // fallbacks van a /ligas/predicciones, no al hub del Mundial.
+          const predHub = post ? "/ligas/predicciones" : "/app/predicciones/jugar";
+          const featuredHref = match && predictedFeatured === false ? `/app/predicciones/jugar?match=${match.matchId}` : predHub;
           let act: { icon: string; label: string; cta: string; href: string; urgent?: boolean } | null = null;
-          if (streakRisk) act = { icon: "🔥", label: `Tu racha de ${gam!.streak.current} días expira en ${Math.max(1, Math.floor(hl as number))}h`, cta: "Sálvala", href: "/app/predicciones/jugar", urgent: true };
+          if (streakRisk) act = { icon: "🔥", label: `Tu racha de ${gam!.streak.current} días expira en ${Math.max(1, Math.floor(hl as number))}h`, cta: "Sálvala", href: predHub, urgent: true };
           else if (match && predictedFeatured === false) act = { icon: "🎯", label: `Predice ${match.meta.home.name} vs ${match.meta.away.name}`, cta: "Predecir", href: featuredHref };
-          else if (pendingToday > 0) act = { icon: "🎯", label: `Te ${pendingToday === 1 ? "falta" : "faltan"} ${pendingToday} ${pendingToday === 1 ? "predicción" : "predicciones"} de hoy`, cta: "Jugar", href: "/app/predicciones" };
+          else if (pendingToday > 0) act = { icon: "🎯", label: `Te ${pendingToday === 1 ? "falta" : "faltan"} ${pendingToday} ${pendingToday === 1 ? "predicción" : "predicciones"} de hoy`, cta: "Jugar", href: predHub };
           else if (triviaPlayedToday === false) act = { icon: "🧠", label: "Juega la trivia diaria y suma Fútcoins", cta: "Jugar", href: "/trivia" };
           if (!act) return null;
           const u = act.urgent;
@@ -1683,9 +1688,24 @@ export default function AppHubPage() {
                 <MissionRow
                   dark
                   done={predictedFeatured === true}
-                  label={match?.meta ? `Predice ${match.meta.home.name} vs ${match.meta.away.name}` : "Predice el partido del día"}
-                  sub="Suma puntos si aciertas el resultado"
-                  href={match ? `/app/predicciones/jugar?match=${match.matchId}` : "/app/predicciones/jugar"}
+                  label={
+                    post
+                      ? "Predice tu jornada"
+                      : match?.meta
+                        ? `Predice ${match.meta.home.name} vs ${match.meta.away.name}`
+                        : "Predice el partido del día"
+                  }
+                  sub="Suma Fútcoins si aciertas"
+                  // Post-Mundial la predicción es POR LIGA: el fallback ya no
+                  // puede ir a /app/predicciones/jugar (hub del Mundial, 104
+                  // partidos jugados). Va al hub de predicción de ligas.
+                  href={
+                    post
+                      ? "/ligas/predicciones"
+                      : match
+                        ? `/app/predicciones/jugar?match=${match.matchId}`
+                        : "/ligas/predicciones"
+                  }
                 />
                 <MissionRow
                   dark

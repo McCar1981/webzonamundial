@@ -5,15 +5,17 @@
 // POST { slug, round, players:[{id,pos,teamId,name}], captainId } -> guarda tu once
 //
 // Solo se puede montar el once ANTES de que empiece la jornada (se verifica contra
-// api-football, no se confía en el cliente). El cron de puntuación re-deriva la
-// posición real de cada jugador desde la plantilla, así que un `pos` manipulado no
-// infla puntos.
+// api-football, no se confía en el cliente). Cada jugador se valida contra la
+// plantilla REAL de su equipo (getTeamSquad): un jugador que no esté en un equipo
+// con el partido aún por empezar se rechaza, y su teamId/posición se derivan de la
+// plantilla, no del cliente. El cron de puntuación vuelve a re-derivar la posición.
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
 import { getCompetitionFixtures } from "@/lib/competitions/api";
 import { saveFantasyPick, getUserFantasyPick, type SquadPick } from "@/lib/ligas/fantasy-store";
+import { getTeamSquad } from "@/lib/ligas/fantasy";
 import { SQUAD_SIZE } from "@/lib/ligas/fantasy-config";
 
 export const runtime = "nodejs";
@@ -87,12 +89,50 @@ export async function POST(request: Request) {
   if (equiposAbiertos.size === 0) {
     return NextResponse.json({ error: "round_closed" }, { status: 409 });
   }
-  const bloqueado = players.find((p) => !equiposAbiertos.has(p.teamId));
-  if (bloqueado) {
-    return NextResponse.json(
-      { error: "player_locked", playerId: bloqueado.id },
-      { status: 409 },
-    );
+
+  // Anti-retrovisor REAL: antes solo se comprobaba que el `teamId` DECLARADO por
+  // el cliente estuviera abierto, pero ese campo lo pone el propio cliente. Un
+  // POST forjado podía etiquetar a un jugador cuyo partido ya había terminado
+  // con el teamId de un equipo abierto y fichar sabiendo el resultado.
+  //
+  // Ahora se resuelve la plantilla REAL (getTeamSquad, cacheada 7 días en KV) de
+  // cada equipo abierto y se deriva el teamId y la posición del jugador desde
+  // ahí, ignorando lo que mande el cliente. Un jugador que no esté en ninguna
+  // plantilla abierta se rechaza.
+  const squadByPlayer = new Map<number, { teamId: number; pos: SquadPick["pos"] }>();
+  const equiposSinPlantilla = new Set<number>();
+  await Promise.all(
+    [...equiposAbiertos].map(async (teamId) => {
+      const squad = await getTeamSquad(teamId);
+      if (!squad.length) {
+        // No se pudo resolver (cuota de api-football agotada, equipo nuevo…):
+        // se marca para degradar con tolerancia y no bloquear a un usuario
+        // legítimo por un fallo de infraestructura.
+        equiposSinPlantilla.add(teamId);
+        return;
+      }
+      for (const pl of squad) squadByPlayer.set(pl.id, { teamId: pl.teamId, pos: pl.position });
+    }),
+  );
+
+  for (const p of players) {
+    const real = squadByPlayer.get(p.id);
+    if (real) {
+      // Plantilla resuelta: el equipo y la posición mandan sobre el cliente.
+      p.teamId = real.teamId;
+      p.pos = real.pos;
+      continue;
+    }
+    // Sin plantilla resuelta para su equipo declarado → se tolera (degradación),
+    // pero solo si ese equipo declarado está de verdad abierto. En cualquier
+    // otro caso, el jugador no pertenece a un equipo abierto: bloqueado.
+    const tolerable = equiposSinPlantilla.has(p.teamId) && equiposAbiertos.has(p.teamId);
+    if (!tolerable) {
+      return NextResponse.json(
+        { error: "player_locked", playerId: p.id },
+        { status: 409 },
+      );
+    }
   }
 
   const res = await saveFantasyPick(user.id, slug, round, players, captainId);

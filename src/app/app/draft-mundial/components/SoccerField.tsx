@@ -20,9 +20,12 @@ interface SoccerFieldProps {
   equipo: Record<number, JugadorSeleccionado>;
   /** Casilla resaltada (la siguiente a cubrir). */
   highlightSlot?: number | null;
+  /** Modo Almanaque ("de memoria"): oculta el badge de fuerza en el campo para
+   *  que el reto sea de verdad. Se revela todo en la pantalla de resultado. */
+  ocultarFuerza?: boolean;
 }
 
-export default function SoccerField({ slots, equipo, highlightSlot }: SoccerFieldProps) {
+export default function SoccerField({ slots, equipo, highlightSlot, ocultarFuerza = false }: SoccerFieldProps) {
   return (
     <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden border"
       style={{ background: FIELD, borderColor: "rgba(255,255,255,0.1)" }}
@@ -144,13 +147,15 @@ export default function SoccerField({ slots, equipo, highlightSlot }: SoccerFiel
                     </div>
                   )}
                 </div>
-                {/* Badge fuerza */}
-                <div
-                  className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black border"
-                  style={{ background: NAVY, color: "#fff", borderColor: "rgba(255,255,255,0.3)" }}
-                >
-                  {jug.fuerza}
-                </div>
+                {/* Badge fuerza (oculto en Almanaque: es el reto "de memoria") */}
+                {!ocultarFuerza && (
+                  <div
+                    className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black border"
+                    style={{ background: NAVY, color: "#fff", borderColor: "rgba(255,255,255,0.3)" }}
+                  >
+                    {jug.fuerza}
+                  </div>
+                )}
               </div>
               {/* Nombre */}
               <div

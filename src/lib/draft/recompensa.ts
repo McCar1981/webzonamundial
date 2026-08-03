@@ -8,9 +8,17 @@
 // El neto se acota a 0: una mala campaña recorta lo ganado, pero nunca resta
 // del saldo que el usuario ya tenía.
 
-import { DraftResultado } from "./types";
+import { DraftResultado, Modo } from "./types";
 import { puntosPorCalificacion, monedasPorCalificacion } from "./simulacion";
 import { Campana, calcularBonusCampana, penalizacionCampana, quedoEliminado } from "./campana";
+
+// Multiplicador de recompensa por MODO. Almanaque se juega "de memoria" (sin
+// ver la fuerza): es el modo más difícil y antes pagaba EXACTAMENTE lo mismo
+// que Clásico. Se define aquí, compartido por el cliente (que muestra/acredita)
+// y el servidor (que acota las monedas), para que nunca discrepen.
+export function multiplicadorModo(modo?: Modo | string | null): number {
+  return modo === "almanaque" ? 1.4 : 1;
+}
 
 export interface RecompensaDraft {
   /** Puntos XP netos acreditados. */
@@ -31,9 +39,11 @@ export interface RecompensaDraft {
 export function calcularRecompensaDraft(
   cal: DraftResultado["calificacion"],
   campana: Campana | null,
+  modo?: Modo | string | null,
 ): RecompensaDraft {
-  const baseXp = puntosPorCalificacion(cal);
-  const baseCoins = monedasPorCalificacion(cal);
+  const mult = multiplicadorModo(modo);
+  const baseXp = Math.round(puntosPorCalificacion(cal) * mult);
+  const baseCoins = Math.round(monedasPorCalificacion(cal) * mult);
   const bonusCoins = campana ? calcularBonusCampana(campana) : 0;
   const penal = campana ? penalizacionCampana(campana) : { coins: 0, xp: 0 };
 

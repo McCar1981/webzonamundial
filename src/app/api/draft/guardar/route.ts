@@ -27,6 +27,7 @@ import { isPro } from "@/lib/pro/entitlement";
 import { consumeDailyQuota } from "@/lib/pro/quota";
 import { FREE_LIMITS } from "@/lib/pro/limits";
 import { monedasPorCalificacion, puntosPorCalificacion, calificacionPorPuntaje, calcularResultado } from "@/lib/draft/simulacion";
+import { multiplicadorModo } from "@/lib/draft/recompensa";
 import { poolForLeague } from "@/lib/draft/plantillas-ligas";
 import type { JugadorSeleccionado, Estilo, DraftResultado } from "@/lib/draft/types";
 
@@ -166,10 +167,11 @@ export async function POST(req: Request) {
   // la fila fallaba, la ruta devolvía 500 y el invitado perdía la partida justo
   // después de invertir cuatro minutos. Ahora se responde en claro cuántas
   // monedas tendría, para que la UI le proponga crear la cuenta y cobrarlas.
+  const modoMult = multiplicadorModo(typeof modo === "string" ? modo : null);
   if (!user) {
     const potenciales = Math.min(
       Math.max(0, Math.floor(Number(coins) || 0)),
-      monedasPorCalificacion(safeCalificacion) + MAX_BONUS_CAMPANA_COINS
+      Math.round(monedasPorCalificacion(safeCalificacion) * modoMult) + MAX_BONUS_CAMPANA_COINS
     );
     return NextResponse.json({
       ok: true,
@@ -179,7 +181,7 @@ export async function POST(req: Request) {
       limiteAgotado: false,
       grant: null,
       coinsPendientes: potenciales,
-      xpPendiente: Math.min(Math.max(0, Math.floor(Number(xp) || 0)), puntosPorCalificacion(safeCalificacion)),
+      xpPendiente: Math.min(Math.max(0, Math.floor(Number(xp) || 0)), Math.round(puntosPorCalificacion(safeCalificacion) * modoMult)),
     });
   }
 
@@ -239,8 +241,11 @@ export async function POST(req: Request) {
   // ── 2) Acreditar monedas (solo usuarios autenticados y dentro del tope) ─
   // Anti-exploit: se acotan las monedas/XP entrantes al máximo legítimo de la
   // calificación server-side. Nunca se confía en el `coins`/`xp` del cliente.
-  const maxCoins = monedasPorCalificacion(safeCalificacion) + MAX_BONUS_CAMPANA_COINS;
-  const maxXp = puntosPorCalificacion(safeCalificacion);
+  // El multiplicador de modo (Almanaque paga ×1.4 por ser "de memoria"), ya
+  // calculado arriba, entra en el tope: si no, el servidor recortaría el bonus
+  // que el cliente sí acredita.
+  const maxCoins = Math.round(monedasPorCalificacion(safeCalificacion) * modoMult) + MAX_BONUS_CAMPANA_COINS;
+  const maxXp = Math.round(puntosPorCalificacion(safeCalificacion) * modoMult);
   const safeCoins = Math.min(Math.max(0, Math.floor(Number(coins) || 0)), maxCoins);
   const safeXp = Math.min(Math.max(0, Math.floor(Number(xp) || 0)), maxXp);
 

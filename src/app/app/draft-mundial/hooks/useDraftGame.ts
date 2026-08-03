@@ -384,7 +384,7 @@ export function useDraftGame(
     setCampanaBonus(bonus);
 
     if (resultado) {
-      const rec = calcularRecompensaDraft(resultado.calificacion, campana);
+      const rec = calcularRecompensaDraft(resultado.calificacion, campana, modo);
       setRecompensa(rec);
       const eq = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
       await guardarResultado(resultado, eq, rec);

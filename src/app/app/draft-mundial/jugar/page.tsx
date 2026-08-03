@@ -1090,7 +1090,7 @@ function mayorBloque(colocados: JugadorSeleccionado[]): { club: string; nClub: n
   return { club, nClub, nYear };
 }
 
-function Marcador({ slots, equipo, puntajeParcial }: { slots: SlotLayout[]; equipo: Record<number, JugadorSeleccionado>; puntajeParcial?: number | null }) {
+function Marcador({ slots, equipo, puntajeParcial, ocultarFuerza = false }: { slots: SlotLayout[]; equipo: Record<number, JugadorSeleccionado>; puntajeParcial?: number | null; ocultarFuerza?: boolean }) {
   const colocados = Object.values(equipo).filter(Boolean) as JugadorSeleccionado[];
   const overall = promedioFuerza(colocados);
   const ataque = promedioFuerza(colocados.filter((j) => ATA_POS.includes(j.posicion)));
@@ -1100,39 +1100,47 @@ function Marcador({ slots, equipo, puntajeParcial }: { slots: SlotLayout[]; equi
 
   return (
     <div className="rounded-xl p-4" style={{ background: CARD }}>
-      {/* Cabecera + valoración global */}
+      {/* Cabecera + valoración global. En Almanaque ("de memoria") se OCULTA la
+          fuerza (overall, Ataque/Defensa y el proyectado): enseñarla convertía
+          el reto en el Clásico. Se revela todo en la pantalla de resultado. */}
       <div className="flex items-center justify-between mb-2">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>
             Marcador · {colocados.length}/{slots.length}
           </span>
-          {puntajeParcial !== null && puntajeParcial !== undefined && (
+          {ocultarFuerza ? (
+            <div className="text-[10px] font-bold mt-0.5" style={{ color: GOLD }}>
+              Modo memoria · fuerza oculta
+            </div>
+          ) : puntajeParcial !== null && puntajeParcial !== undefined ? (
             <div className="text-[10px] font-bold mt-0.5 animate-fade-in" style={{ color: puntajeParcial >= 85 ? GOLD : puntajeParcial >= 75 ? "#22c55e" : TXT_MUT }}>
               Proyectado ~{puntajeParcial}
             </div>
-          )}
+          ) : null}
         </div>
-        <span className="text-4xl font-black leading-none" style={{ color: overallColor }}>
-          {colocados.length ? overall : "—"}
+        <span className="text-4xl font-black leading-none" style={{ color: ocultarFuerza ? TXT_MUT : overallColor }}>
+          {ocultarFuerza ? "?" : colocados.length ? overall : "—"}
         </span>
       </div>
-      <BarraMarcador value={overall} color={GOLD} />
+      {!ocultarFuerza && <BarraMarcador value={overall} color={GOLD} />}
 
-      {/* Ataque / Defensa */}
-      <div className="mt-3 space-y-2">
-        <div>
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: TXT_MUT }}>Ataque {ataque ? <span style={{ color: RED }}>{ataque}</span> : ""}</span>
+      {/* Ataque / Defensa — ocultos en Almanaque. */}
+      {!ocultarFuerza && (
+        <div className="mt-3 space-y-2">
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: TXT_MUT }}>Ataque {ataque ? <span style={{ color: RED }}>{ataque}</span> : ""}</span>
+            </div>
+            <BarraMarcador value={ataque} color={RED} />
           </div>
-          <BarraMarcador value={ataque} color={RED} />
-        </div>
-        <div>
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: TXT_MUT }}>Defensa {defensa ? <span style={{ color: GREEN }}>{defensa}</span> : ""}</span>
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: TXT_MUT }}>Defensa {defensa ? <span style={{ color: GREEN }}>{defensa}</span> : ""}</span>
+            </div>
+            <BarraMarcador value={defensa} color={GREEN} />
           </div>
-          <BarraMarcador value={defensa} color={GREEN} />
         </div>
-      </div>
+      )}
 
       {/* Química: la regla que decide el 35% de la nota, siempre visible. */}
       <div className="mt-3 flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style={{ background: `${GOLD}0f`, border: `1px solid ${GOLD}22` }}>
@@ -1700,11 +1708,12 @@ export default function DraftMundialJugarPage() {
                   slots={game.slots}
                   equipo={game.equipo}
                   highlightSlot={game.slotActivo}
+                  ocultarFuerza={game.modo === "almanaque"}
                 />
               </FadeIn>
               <FadeIn delay={0.1}>
                 <div className="mt-3">
-                  <Marcador slots={game.slots} equipo={game.equipo} puntajeParcial={game.puntajeParcial} />
+                  <Marcador slots={game.slots} equipo={game.equipo} puntajeParcial={game.puntajeParcial} ocultarFuerza={game.modo === "almanaque"} />
                 </div>
               </FadeIn>
             </div>

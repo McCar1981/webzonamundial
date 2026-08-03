@@ -33,7 +33,7 @@ export const dynamic = "force-dynamic";
 const MODES: TriviaMode[] = ["diaria", "relampago", "muerte-subita"];
 
 export async function POST(req: Request) {
-  let body: { mode?: string; anonId?: string; name?: string };
+  let body: { mode?: string; anonId?: string; name?: string; sample?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -42,6 +42,14 @@ export async function POST(req: Request) {
   const mode: TriviaMode = MODES.includes(body.mode as TriviaMode)
     ? (body.mode as TriviaMode)
     : "diaria";
+
+  // `sample`: la pregunta de MUESTRA de la home. Sirve UNA sola pregunta y
+  // descuenta UNA unidad del cupo global de invitados (antes servía 1 pero
+  // descontaba 10 —la partida entera— así que 500/10 = 50 demos/día apagaban la
+  // demo para todo visitante anónimo). Además NUNCA toca el cupo personal del
+  // usuario: un free logueado que veía la demo se gastaba sus 5 preguntas del
+  // día para mirar 1, y luego /trivia le daba 403 sin haber jugado.
+  const sample = body.sample === true;
 
   const { userId, authUserId, authEmail } = await resolveIdentity(body.name, body.anonId);
 
@@ -53,8 +61,10 @@ export async function POST(req: Request) {
   // cupo GLOBAL compartido y generoso — protege el gasto sin romper la demo
   // (mismo criterio que el cupo de invitados de la narrativa del Modo Carrera).
   const pro = authUserId ? await isPro(authUserId, authEmail) : false;
-  const isGuestGlobal = !userId;
-  const quotaId = userId || "guest-global";
+  // La muestra siempre cae al cupo global de invitados, aunque haya usuario:
+  // es marketing, no una partida suya, y no debe gastarle preguntas del día.
+  const isGuestGlobal = sample || !userId;
+  const quotaId = isGuestGlobal ? "guest-global" : userId;
   const dailyQuestionsLimit = isGuestGlobal ? 500 : FREE_LIMITS.trivia.dailyQuestions;
   const runsLimit = isGuestGlobal ? 300 : FREE_LIMITS.trivia.dailyRunsOtherModes;
   let diariaRemaining: number | null = null;
@@ -128,6 +138,9 @@ export async function POST(req: Request) {
   }
 
   let questions = pickQuestions(pool, mode);
+  // La muestra de la home solo enseña la primera pregunta: se sirve UNA y se
+  // descuenta UNA, no la partida entera.
+  if (sample) questions = questions.slice(0, 1);
   // Free + diaria: la partida se recorta a las preguntas que le quedan hoy y
   // se descuentan del cupo al servirlas.
   if (diariaRemaining !== null) {

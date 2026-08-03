@@ -21,6 +21,10 @@ const HISTORY_MAX = 500; // ~ últimos 1-2 días a 1 sample / 3 min
 
 export const opsKey = {
   heartbeat: (job: string) => `${NS}heartbeat:${job}`,
+  // Centinela SIN TTL: se escribe la primera vez que un job late y no expira
+  // jamás. Deja distinguir "este job nunca ha latido" (arranque) de "latía y
+  // dejó de hacerlo" (caída real), que es justo lo que el monitor necesita.
+  seen: (job: string) => `${NS}seen:${job}`,
   incident: (key: string) => `${NS}incident:${key}`,
   throttle: (key: string) => `${NS}throttle:${key}`,
   remediation: (job: string) => `${NS}remediation:${job}`,
@@ -73,19 +77,32 @@ function parse<T>(raw: unknown): T | null {
 }
 
 // ── Heartbeats ─────────────────────────────────────────────────────────────
+// El TTL por defecto DEBE superar con holgura el mayor maxAgeMinutes de
+// CRON_WATCHES (hoy 26h, los crons diarios con gracia). Antes era 1h: los 8
+// jobs con umbral > 60min tenían su key EXPIRADA antes de poder considerarse
+// obsoletos, así que el monitor los leía como "sin datos" = OK y no alertaban
+// jamás. Y para los crons de minutos, una caída de >1h auto-cerraba el
+// incidente con un falso "recuperado". La antigüedad se mide por `hb.at` dentro
+// del valor, no por el TTL: el TTL solo recoge la basura de un job muerto de
+// verdad, mucho después de que el monitor ya haya cantado la caída.
+export const HEARTBEAT_TTL_S = 8 * 24 * 3600; // 8 días
+
 /**
  * Registra un latido de un job. Llamar desde cada cron crítico al terminar.
- * ttlSeconds: tras ese tiempo sin latido, la key expira (señal de "muerto").
+ * También deja un centinela permanente (opsKey.seen) para que el monitor
+ * distinga "nunca latió" de "dejó de latir".
  */
 export async function recordHeartbeat(
   job: string,
   ok = true,
   meta?: Record<string, unknown>,
-  ttlSeconds = 3600,
+  ttlSeconds = HEARTBEAT_TTL_S,
 ): Promise<void> {
   try {
     const hb: Heartbeat = { at: new Date().toISOString(), ok, meta };
     await kv.set(opsKey.heartbeat(job), JSON.stringify(hb), { ex: ttlSeconds });
+    // Centinela sin TTL: marca que este job existe y ha latido alguna vez.
+    await kv.set(opsKey.seen(job), "1");
   } catch {
     // Silencioso: un latido perdido no debe romper el cron de negocio.
   }
@@ -96,6 +113,15 @@ export async function getHeartbeat(job: string): Promise<Heartbeat | null> {
     return parse<Heartbeat>(await kv.get(opsKey.heartbeat(job)));
   } catch {
     return null;
+  }
+}
+
+/** ¿Este job ha latido alguna vez? (centinela permanente sin TTL). */
+export async function hasEverBeaten(job: string): Promise<boolean> {
+  try {
+    return (await kv.get(opsKey.seen(job))) != null;
+  } catch {
+    return false;
   }
 }
 

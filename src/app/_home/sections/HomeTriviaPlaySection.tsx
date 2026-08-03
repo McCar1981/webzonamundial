@@ -51,7 +51,10 @@ export function HomeTriviaPlaySection() {
       const r = await fetch("/api/trivia/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: "diaria" }),
+        // `sample`: es la pregunta de muestra de la home. Sirve 1 pregunta y
+        // gasta 1 unidad del cupo global de invitados, no la partida entera ni
+        // el cupo personal del usuario. Ver /api/trivia/start.
+        body: JSON.stringify({ mode: "diaria", sample: true }),
       });
       if (!r.ok) {
         setPhase("error");

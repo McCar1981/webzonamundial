@@ -43,10 +43,15 @@ export const ENDPOINT_PROBES: EndpointProbe[] = [
 // emails/push (no auto-reenviar) o no son idempotentes — esos sólo alertan.
 const DAY = 24 * 60;
 export const CRON_WATCHES: CronWatch[] = [
-  // ── Cada minuto: si dejan de latir >5 min, el feed EN VIVO está roto ──
-  { job: "poll-friendlies", path: "/api/cron/poll-friendlies", maxAgeMinutes: 5, severity: "critical", safeRetrigger: true },
-  { job: "match-center-poll", path: "/api/cron/match-center-poll", maxAgeMinutes: 5, severity: "critical", safeRetrigger: true },
-  { job: "resolve-micro", path: "/api/cron/resolve-micro", maxAgeMinutes: 5, severity: "warning", safeRetrigger: true },
+  // ── Pollers EN VIVO. cron-live.yml los dispara cada 10 min (antes 5); en
+  //    ventana de partido el mc-watchdog los relanza cada 60 s. El umbral es 20
+  //    min = 2 ticks perdidos: antes era 5 min contra una cadencia de 10, así
+  //    que saltaban criticals FALSOS constantemente. `poll-ligas-live` es el
+  //    poller REAL del producto actual (ligas de clubes); sustituye a
+  //    `poll-friendlies`, cuya ruta ni siquiera existe (residuo del Mundial). ──
+  { job: "poll-ligas-live", path: "/api/cron/poll-ligas-live", maxAgeMinutes: 20, severity: "critical", safeRetrigger: true },
+  { job: "match-center-poll", path: "/api/cron/match-center-poll", maxAgeMinutes: 20, severity: "critical", safeRetrigger: true },
+  { job: "resolve-micro", path: "/api/cron/resolve-micro", maxAgeMinutes: 20, severity: "warning", safeRetrigger: true },
   // ── Alta frecuencia ──
   { job: "match-reminders", path: "/api/cron/match-reminders", maxAgeMinutes: 25, severity: "warning", safeRetrigger: true },
   { job: "resolve-predictions", path: "/api/cron/resolve-predictions", maxAgeMinutes: 75, severity: "warning", safeRetrigger: true },

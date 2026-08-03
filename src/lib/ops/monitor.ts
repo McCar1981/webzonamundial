@@ -18,6 +18,7 @@ import {
 import {
   recordHeartbeat,
   getHeartbeat,
+  hasEverBeaten,
   openIncident,
   closeIncident,
   getIncident,
@@ -94,9 +95,22 @@ async function probeEndpoint(p: EndpointProbe): Promise<CheckOutcome> {
 // ── Sonda de frescura de cron (heartbeat) ───────────────────────────────────
 async function probeCron(w: CronWatch): Promise<CheckOutcome & { stale: boolean }> {
   const hb = await getHeartbeat(w.job);
-  // Sin latido aún: lo reportamos como "info" (no alarma) hasta que el cron
-  // adopte recordHeartbeat y empecemos a tener datos.
   if (!hb) {
+    // Hay que distinguir dos casos que antes se trataban igual (ambos "OK"):
+    //   - el job NUNCA ha latido → arranque, info, sin alarma.
+    //   - el job latía y su latido ha desaparecido → caída real. Con el TTL de
+    //     8 días esto solo pasa tras >8 días muerto (el monitor ya habrá
+    //     alertado por antigüedad mucho antes), pero se cubre igual.
+    const everBeaten = await hasEverBeaten(w.job);
+    if (everBeaten) {
+      return {
+        name: `cron:${w.job}`,
+        ok: false,
+        severity: w.severity,
+        detail: "latía y dejó de latir (latido caducado)",
+        stale: true,
+      };
+    }
     return { name: `cron:${w.job}`, ok: true, severity: "info", detail: "sin datos de latido aún", stale: false };
   }
   const ageMin = (Date.now() - new Date(hb.at).getTime()) / 60000;

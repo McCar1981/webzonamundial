@@ -64,8 +64,30 @@ const SELECCION_ISO: Record<string, string> = {
   "Manchester United": "gb-eng", "Liverpool FC": "gb-eng", "Arsenal FC": "gb-eng",
 };
 
-function seleccionISO(seleccion: string): string {
-  return SELECCION_ISO[seleccion] || "";
+// Deriva el ISO alpha-2 de un emoji de bandera (dos "regional indicators":
+// 🇻🇪 -> "ve"). Cubre de golpe los ~52 clubes que no estaban en SELECCION_ISO,
+// porque cada plantilla ya trae su `bandera`. No aplica a banderas de subpaís
+// (Inglaterra 🏴, que son tag sequences): esas ya están en el mapa por nombre.
+// Banderas de subpaís (Inglaterra/Escocia/Gales), que son "tag sequences" y no
+// dos regional indicators: se mapean aparte. Cubre los clubes ingleses (🏴...).
+const EMOJI_SUBPAIS: Record<string, string> = {
+  "🏴󠁧󠁢󠁥󠁮󠁧󠁿": "gb-eng",
+  "🏴󠁧󠁢󠁳󠁣󠁴󠁿": "gb-sct",
+  "🏴󠁧󠁢󠁷󠁬󠁳󠁿": "gb-wls",
+};
+
+function isoDeEmoji(bandera?: string): string {
+  if (!bandera) return "";
+  if (EMOJI_SUBPAIS[bandera]) return EMOJI_SUBPAIS[bandera];
+  const cps = Array.from(bandera).map((c) => c.codePointAt(0) ?? 0);
+  const RI_BASE = 0x1f1e6; // 🇦
+  const RI_TOP = 0x1f1ff; // 🇿
+  if (cps.length !== 2 || cps.some((cp) => cp < RI_BASE || cp > RI_TOP)) return "";
+  return cps.map((cp) => String.fromCharCode(cp - RI_BASE + 97)).join("");
+}
+
+function seleccionISO(seleccion: string, bandera?: string): string {
+  return SELECCION_ISO[seleccion] || isoDeEmoji(bandera) || "";
 }
 
 function posicionLabel(p: DraftPosicion): string {
@@ -512,7 +534,7 @@ function TiradaPanel({
             <div className="text-sm mb-3" style={{ color: TXT_MUT }}>Te tocó</div>
             <div className="flex justify-center items-center gap-3 mb-3 animate-bounce">
               <KitAvatar seleccion={plantilla.seleccion} size={72} logo={plantilla.logo} />
-              <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={40} className="rounded-lg shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
+              <FlagImage code={seleccionISO(plantilla.seleccion, plantilla.bandera)} alt={plantilla.seleccion} width={40} className="rounded-lg shadow-md" fallback={plantilla.seleccion.slice(0, 3).toUpperCase()} />
             </div>
             <div className="text-xl font-bold mb-1" style={{ color: TXT }}>{plantilla.seleccion} {plantilla.year}</div>
             <div className="text-sm mb-4" style={{ color: GOLD }}>Elige un jugador para tu equipo</div>
@@ -548,7 +570,7 @@ function SeleccionPanel({
   rerollsRestantes, onOtraSeleccion, onOtroMundial, coherenciaHint,
   onComprarReroll, comprandoReroll,
 }: {
-  plantilla: { seleccion: string; year: number; logo?: string | null };
+  plantilla: { seleccion: string; year: number; bandera?: string; logo?: string | null };
   jugadores: JugadorSeleccionado[];
   onComprarReroll: () => Promise<{ ok: boolean; error?: string }>;
   comprandoReroll: boolean;
@@ -584,7 +606,7 @@ function SeleccionPanel({
       <div className="rounded-xl p-4 mb-3" style={{ background: CARD, border: `1px solid ${GOLD}33` }}>
         <div className="flex items-center gap-3">
           <KitAvatar seleccion={plantilla.seleccion} size={48} logo={plantilla.logo} />
-          <FlagImage code={seleccionISO(plantilla.seleccion)} alt={plantilla.seleccion} width={28} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 2).toUpperCase()} />
+          <FlagImage code={seleccionISO(plantilla.seleccion, plantilla.bandera)} alt={plantilla.seleccion} width={28} className="rounded shadow-md flex-shrink-0" fallback={plantilla.seleccion.slice(0, 2).toUpperCase()} />
           <div className="min-w-0">
             <div className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: TXT_MUT }}>Salió</div>
             <div className="text-xl font-black leading-tight truncate" style={{ color: TXT }}>{plantilla.seleccion}</div>
@@ -1024,7 +1046,7 @@ function ResultadoScreen({ resultado, equipo, recompensa, estado, onReiniciar, l
                   <span className="text-xs font-bold w-8" style={{ color: posicionColor(jug.posicion) }}>{posicionLabel(jug.posicion)}</span>
                   <span className="text-sm flex-1 truncate" style={{ color: TXT }}>{jug.nombre}</span>
                   <span className="text-xs flex items-center gap-1" style={{ color: TXT_MUT }}>
-                    <FlagImage code={seleccionISO(jug.seleccion)} alt={jug.seleccion} width={14} className="rounded-sm" fallback={jug.seleccion.slice(0, 2).toUpperCase()} />
+                    <FlagImage code={seleccionISO(jug.seleccion, jug.bandera)} alt={jug.seleccion} width={14} className="rounded-sm" fallback={jug.seleccion.slice(0, 2).toUpperCase()} />
                     {jug.seleccion} {jug.year}
                   </span>
                   <span className="text-xs font-bold w-6 text-right" style={{ color: jug.fuerza >= 90 ? GREEN : TXT }}>{jug.fuerza}</span>

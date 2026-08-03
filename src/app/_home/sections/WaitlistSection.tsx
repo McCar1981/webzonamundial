@@ -158,8 +158,10 @@ export function WaitlistSection() {
   const { locale } = useLanguage();
   const t = homeSections[locale].waitlist;
 
-  // Counter state (fetched from /api/waitlist on mount + after signup)
-  const [targetCount, setTargetCount] = useState(1247);
+  // Counter state (fetched from /api/waitlist on mount + after signup).
+  // Arranca en 0, no en un 1247 inventado: ese número no coincidía con el real
+  // (que devuelve la API) y se veía durante un instante antes del fetch.
+  const [targetCount, setTargetCount] = useState(0);
   const displayedCount = useAnimatedCounter(targetCount);
   const [counterReady, setCounterReady] = useState(false);
 

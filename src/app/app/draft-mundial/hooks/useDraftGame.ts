@@ -349,7 +349,7 @@ export function useDraftGame(
           const res = calcularResultado(eq, estilo, pool);
           setResultado(res);
 
-          const nuevos = checkLogros(res, eq, modo, logrosEstado);
+          const nuevos = checkLogros(res, eq, modo, logrosEstado, pool);
           if (nuevos.length > 0) {
             const updated = { ...logrosEstado };
             nuevos.forEach((l) => { updated[l.id] = true; });

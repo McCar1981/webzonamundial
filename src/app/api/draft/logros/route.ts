@@ -29,6 +29,13 @@ const REWARDS: Record<string, { coins: number; xp: number }> = {
   "leyenda-viva": { coins: 60, xp: 50 },
   "arquitecto": { coins: 25, xp: 15 },
   "contra-el-tiempo": { coins: 25, xp: 15 },
+  // Estos 4 estaban en LOGROS (logros.ts) pero NO en REWARDS: el filtro
+  // `x in REWARDS` los descartaba, así que se desbloqueaban en el cliente pero
+  // nunca se persistían ni pagaban. Importes acordes a su dificultad.
+  "de-memoria": { coins: 40, xp: 30 },
+  "equilibrista": { coins: 30, xp: 20 },
+  "historiador": { coins: 30, xp: 20 },
+  "muralla": { coins: 50, xp: 40 },
 };
 
 export async function POST(req: Request) {

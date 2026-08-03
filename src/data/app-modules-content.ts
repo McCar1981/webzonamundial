@@ -188,12 +188,14 @@ export const MODULE_CONTENT: Record<string, ModuleContent> = {
     slug: "ligas",
     label: "Ligas Privadas",
     shortPitch:
-      "Compite contra tus amigos, oficina o familia. Crea una liga, comparte código de invitación y mide quién la pega más en predicciones, fantasy y trivia.",
+      "Compite contra tus amigos, oficina o familia. Únete con un código y mide quién la pega más en la clasificación de tu liga.",
     compare: [
-      { feature: "Crear liga privada", free: "Hasta 1 liga", founders: "Hasta 10 ligas" },
-      { feature: "Miembros por liga", free: "20", founders: "Ilimitado" },
-      { feature: "Mezclar puntos de Predicciones + Fantasy + Trivia", free: true, founders: true },
-      { feature: "Retos personalizables", free: false, founders: true },
+      // Regla real (limits.ts + api/fantasy/leagues + MAX_MEMBERS_PER_LEAGUE):
+      // unirse es gratis; CREAR es de Pro (hasta 20 ligas); el tope de 100
+      // miembros por liga es el mismo para todos.
+      { feature: "Unirte a una liga con código", free: true, founders: true },
+      { feature: "Crear liga privada", free: false, founders: "Hasta 20 ligas" },
+      { feature: "Miembros por liga", free: "Hasta 100", founders: "Hasta 100" },
       { feature: "Compartir progreso por WhatsApp", free: true, founders: true },
     ],
     faq: [
@@ -203,7 +205,7 @@ export const MODULE_CONTENT: Record<string, ModuleContent> = {
       },
       {
         q: "¿Cómo se calcula la puntuación de una liga?",
-        a: "Suma de puntos de cada miembro en Predicciones + Fantasy + Trivia. La tabla se actualiza en tiempo real conforme se juegan los partidos.",
+        a: "La clasificación ordena a los miembros por sus puntos en la liga elegida (aciertos de predicciones o puntos de Fantasy, según el tipo). Se actualiza conforme se juegan y resuelven los partidos.",
       },
       {
         q: "¿Puedo expulsar a alguien de mi liga?",

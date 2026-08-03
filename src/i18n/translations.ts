@@ -660,7 +660,7 @@ const translations = {
       comparison: [
         { feature: "Predicciones básicas", free: "Sí", premium: "Sí", highlight: false },
         { feature: "Fantasy", free: "Básico", premium: "Funciones exclusivas Premium", highlight: true },
-        { feature: "Trivia", free: "Modo Clásico", premium: "Todos los modos de juego", highlight: true },
+        { feature: "Trivia", free: "5 preguntas/día + 1 partida de cada modo", premium: "Sin límite diario", highlight: true },
         { feature: "IA Coach", free: "Básico", premium: "Pro completo", highlight: true },
         { feature: "Ligas privadas", free: "Unirse", premium: "Crear ilimitadas", highlight: true },
         { feature: "Predicciones avanzadas (8 tipos)", free: "No", premium: "Ilimitadas", highlight: true },
@@ -1529,19 +1529,22 @@ const translations = {
       modesSectionDesc: "Los modos de juego disponibles en la app",
       modesIntroText: "Elige tu modo de juego favorito y pon a prueba tus conocimientos footballísticos contra jugadores de todo el mundo.",
       mode1Title: "Trivia Diaria",
-      mode1Desc: "10 preguntas nuevas cada día, mantén tu racha y sube en el ranking",
+      mode1Desc: "5 preguntas nuevas al día gratis, sin límite con Pro. Mantén tu racha y sube en el ranking",
       mode1Highlight: "Racha diaria",
       mode2Title: "Modo Relámpago",
-      mode2Desc: "10 preguntas a contrarreloj: responde en pocos segundos para el bonus ×2 de velocidad",
+      mode2Desc: "Preguntas a contrarreloj: responde en pocos segundos para el bonus ×2 de velocidad",
       mode2Highlight: "Bonus velocidad",
-      mode3Title: "Battle Royale",
-      mode3Desc: "100 jugadores, 1 ganador, rondas eliminatorias cada 10 preguntas",
-      mode3Highlight: "Próximamente",
-      mode4Title: "Muerte Súbita",
-      mode4Desc: "Sin límite de preguntas: falla una y quedas eliminado. ¿Hasta dónde aguantas?",
-      mode4Highlight: "Supervivencia",
-      mode5Title: "Pre-partido",
-      mode5Desc: "Trivia especial antes de cada partido importante del Mundial 2026",
+      mode3Title: "Muerte Súbita",
+      mode3Desc: "Sin límite de preguntas: falla una y quedas eliminado. ¿Hasta dónde aguantas?",
+      mode3Highlight: "Supervivencia",
+      // Battle Royale y Pre-partido NO existen (el juego solo tiene diaria,
+      // relámpago y muerte-súbita). Se dejan como próximamente reales, sin las
+      // mecánicas inventadas ni la referencia al Mundial.
+      mode4Title: "Trivia de tu liga",
+      mode4Desc: "Preguntas priorizadas de las ligas y clubes que sigues",
+      mode4Highlight: "Próximamente",
+      mode5Title: "Battle Royale",
+      mode5Desc: "Duelos por eliminación con otros jugadores",
       mode5Highlight: "Próximamente",
       // Categories section
       catSectionBadge: "Contenido",
@@ -1550,16 +1553,16 @@ const translations = {
       catColCategoria: "Categoría",
       catColDesc: "Descripción",
       catColPreguntas: "Preguntas",
-      cat1Name: "Historia",
-      cat1Desc: "Mundiales pasados, campeones históricos, momentos icónicos",
-      cat2Name: "Actualidad",
-      cat2Desc: "Plantillas, transferencias, formación actual de selecciones",
-      cat3Name: "Visual",
-      cat3Desc: "Siluetas de jugadores, estadios, equipaciones históricas",
-      cat4Name: "Curiosidades",
-      cat4Desc: "Datos locos, anécdotas, records insólitos del Mundial",
-      cat5Name: "Pre-partido",
-      cat5Desc: "Trivia sobre próximos enfrentamientos del torneo",
+      cat1Name: "Ligas",
+      cat1Desc: "Competiciones de clubes: LigaPro, Primera A, Liga MX, LaLiga, Premier…",
+      cat2Name: "Clubes",
+      cat2Desc: "Palmarés, leyendas, clásicos e historia de los grandes clubes",
+      cat3Name: "Historia",
+      cat3Desc: "Mundiales, campeones históricos y momentos icónicos del fútbol",
+      cat4Name: "Reglas",
+      cat4Desc: "Reglamento, arbitraje y situaciones del juego",
+      cat5Name: "Datos y récords",
+      cat5Desc: "Cifras, rachas y récords insólitos del fútbol",
       // Example question section
       exampleTitle: "Así es una",
       exampleTitleHighlight: "Pregunta",
@@ -1570,7 +1573,7 @@ const translations = {
       exFeat3Text: "Progreso de la partida",
       exFeat4Text: "Feedback instantáneo al responder",
       exFeat5Text: "Racha de respuestas correctas",
-      exTimerNote: "Cada pregunta tiene 10 segundos de límite. Responde rápido para ganar bonus.",
+      exTimerNote: "La Diaria va sin prisa; en Relámpago tienes unos segundos por pregunta y en Muerte Súbita el tiempo aprieta. Responde rápido para el bonus.",
       // Points section
       pointsSectionBadge: "Puntuación",
       pointsSectionTitle: "Sistema de",
@@ -1589,10 +1592,12 @@ const translations = {
       bonus3Desc: "10 respuestas correctas seguidas",
       bonus4Name: "Racha 20",
       bonus4Desc: "20 respuestas correctas seguidas",
-      // Badges section
-      badgesSectionBadge: "Recompensas",
+      // Badges section. El sistema de logros/badges/títulos de trivia NO existe
+      // todavía (ningún código los otorga): se marca como próximamente para no
+      // prometer recompensas que no se pueden ganar.
+      badgesSectionBadge: "Próximamente",
       badgesSectionTitle: "Logros y",
-      badgesSectionTitleHighlight: "Badges",
+      badgesSectionTitleHighlight: "Badges (pronto)",
       badge1Name: "Historiador",
       badge1Desc: "Completa 100 preguntas de historia",
       badge1Rarity: "Común",
@@ -1608,9 +1613,9 @@ const translations = {
       badge5Name: "Campeón",
       badge5Desc: "Gana un torneo Battle Royale",
       badge5Rarity: "Legendario",
-      // Titles section
+      // Titles section (también parte del sistema de logros aún inexistente).
       titlesSectionTitle: "Títulos de",
-      titlesSectionTitleHighlight: "Ranking",
+      titlesSectionTitleHighlight: "Ranking (pronto)",
       title1Rank: "Top 100",
       title1Title: "Sabio",
       title1Desc: "Entra al top 100 del ranking global",
@@ -1623,7 +1628,7 @@ const translations = {
       // CTA
       ctaFinalTitle1: "¿Listo para demostrar tu",
       ctaFinalTitle2: "conocimiento?",
-      ctaFinalDesc: "Únete a miles de fanáticos del fútbol y compite por ser el experto mundialista definitivo. +10,000 preguntas te esperan.",
+      ctaFinalDesc: "Preguntas nuevas cada día, verificadas por doble pase de IA. Tu liga, tus clubes, tus leyendas.",
     },
 
     ligasPage: {
@@ -1631,23 +1636,27 @@ const translations = {
       title1: "Juega con tus amigos, gana el",
       title2: "respeto",
       subtitle: "El fútbol se disfruta más en compañía. Crea tu liga privada y compite con amigos, familia, compañeros. Que gane el mejor... y que el peor pague las cervezas.",
-      // League types section
-      leagueTypesSectionTitle: "3 Tipos de",
-      leagueTypesSectionTitleHighlight: "Ligas",
+      // League types section. Solo la liga de predicciones existe hoy: es una
+      // tabla privada por código, clasificada por aciertos de la competición
+      // elegida. Fantasy y Trivia de liga (mercado P2P, trades, playoffs,
+      // Battle Royale) NO existen: se marcan como próximamente en vez de
+      // venderse como funciones activas.
+      leagueTypesSectionTitle: "Tu liga",
+      leagueTypesSectionTitleHighlight: "privada",
       lt1Title: "Liga de Predicciones",
-      lt1Feat1: "Todos predicen los mismos partidos",
-      lt1Feat2: "Ranking privado con puntos acumulados",
-      lt1Feat3: "Chat integrado para burlarse (con cariño)",
-      lt1Feat4: "Retos y piques simbólicos entre amigos",
-      lt2Title: "Liga Fantasy",
-      lt2Feat1: "Draft exclusivo de la liga",
-      lt2Feat2: "Mercado de fichajes P2P (tradea jugadores)",
-      lt2Feat3: "Sistema de trades entre managers",
-      lt2Feat4: "Playoffs al final del mundial",
-      lt3Title: "Liga de Trivia",
-      lt3Feat1: "Battle Royale privado",
-      lt3Feat2: "Torneos personalizados",
-      lt3Feat3: "Temas específicos (ej: solo historia del Real Madrid)",
+      lt1Feat1: "Todos predicen los partidos de tu competición",
+      lt1Feat2: "Clasificación privada por aciertos",
+      lt1Feat3: "Entras con un código de 6 caracteres",
+      lt1Feat4: "El dueño gestiona nombre y miembros",
+      lt2Title: "Liga Fantasy · próximamente",
+      lt2Feat1: "Once por jornada dentro de tu liga",
+      lt2Feat2: "Clasificación de Fantasy del grupo",
+      lt2Feat3: "En desarrollo",
+      lt2Feat4: "En desarrollo",
+      lt3Title: "Liga de Trivia · próximamente",
+      lt3Feat1: "Duelos de trivia dentro de tu liga",
+      lt3Feat2: "En desarrollo",
+      lt3Feat3: "En desarrollo",
       // Features section
       featuresSectionTitle: "Características",
       feat1Title: "100% Privadas",
@@ -1688,8 +1697,11 @@ const translations = {
       step4Desc: "Que comience la batalla por el honor (y las cervezas)",
       ctaTitle: "Crea tu liga",
       ctaTitle2: "ahora",
-      ctaDesc: "Gratis e ilimitado. Crea tantas ligas como quieras y compite por la gloria.",
-      ctaBtn: "Crea tu liga ahora → Regístrate gratis",
+      // Regla REAL (limits.ts + api/fantasy/leagues): unirse con código es
+      // gratis para todos; CREAR una liga privada es de Pro (hasta 20). El copy
+      // decía "Gratis e ilimitado", que es falso: un Free recibe 403 al crear.
+      ctaDesc: "Unirte con un código es gratis. Crear tu propia liga privada es parte de Pro (hasta 20 ligas).",
+      ctaBtn: "Únete a una liga con tu código",
     },
 
     streamingPage: {
@@ -2597,7 +2609,7 @@ const translations = {
       comparison: [
         { feature: "Basic predictions", free: "Yes", premium: "Yes", highlight: false },
         { feature: "Fantasy", free: "Basic", premium: "Exclusive Premium features", highlight: true },
-        { feature: "Trivia", free: "Classic mode", premium: "All game modes", highlight: true },
+        { feature: "Trivia", free: "5 questions/day + 1 run of each mode", premium: "No daily limit", highlight: true },
         { feature: "AI Coach", free: "Basic", premium: "Full Pro", highlight: true },
         { feature: "Private leagues", free: "Join", premium: "Create unlimited", highlight: true },
         { feature: "Advanced predictions (8 types)", free: "No", premium: "Unlimited", highlight: true },
@@ -3466,19 +3478,22 @@ const translations = {
       modesSectionDesc: "The game modes available in the app",
       modesIntroText: "Choose your favorite game mode and test your football knowledge against players from around the world.",
       mode1Title: "Daily Trivia",
-      mode1Desc: "10 new questions every day, keep your streak and climb the ranking",
+      mode1Desc: "5 new questions a day for free, unlimited with Pro. Keep your streak and climb the ranking",
       mode1Highlight: "Daily streak",
       mode2Title: "Lightning Mode",
-      mode2Desc: "10 questions against the clock: answer in a few seconds for the ×2 speed bonus",
+      mode2Desc: "Questions against the clock: answer in a few seconds for the ×2 speed bonus",
       mode2Highlight: "Speed bonus",
-      mode3Title: "Battle Royale",
-      mode3Desc: "100 players, 1 winner, elimination rounds every 10 questions",
-      mode3Highlight: "Coming soon",
-      mode4Title: "Sudden Death",
-      mode4Desc: "No question limit: miss one and you're eliminated. How far can you go?",
-      mode4Highlight: "Survival",
-      mode5Title: "Pre-match",
-      mode5Desc: "Special trivia before each important World Cup 2026 match",
+      mode3Title: "Sudden Death",
+      mode3Desc: "No question limit: miss one and you're eliminated. How far can you go?",
+      mode3Highlight: "Survival",
+      // Battle Royale and Pre-match do NOT exist (only daily, lightning and
+      // sudden-death). Kept as real "coming soon", without the invented
+      // mechanics or the World Cup reference.
+      mode4Title: "Your league's trivia",
+      mode4Desc: "Questions prioritized from the leagues and clubs you follow",
+      mode4Highlight: "Coming soon",
+      mode5Title: "Battle Royale",
+      mode5Desc: "Elimination duels against other players",
       mode5Highlight: "Coming soon",
       // Categories section
       catSectionBadge: "Content",
@@ -3487,16 +3502,16 @@ const translations = {
       catColCategoria: "Category",
       catColDesc: "Description",
       catColPreguntas: "Questions",
-      cat1Name: "History",
-      cat1Desc: "Past World Cups, historic champions, iconic moments",
-      cat2Name: "Current",
-      cat2Desc: "Squads, transfers, current team formations",
-      cat3Name: "Visual",
-      cat3Desc: "Player silhouettes, stadiums, historic kits",
-      cat4Name: "Trivia",
-      cat4Desc: "Crazy facts, anecdotes, unusual World Cup records",
-      cat5Name: "Pre-match",
-      cat5Desc: "Trivia about upcoming tournament fixtures",
+      cat1Name: "Leagues",
+      cat1Desc: "Club competitions: LigaPro, Primera A, Liga MX, LaLiga, Premier…",
+      cat2Name: "Clubs",
+      cat2Desc: "Honours, legends, classics and history of the big clubs",
+      cat3Name: "History",
+      cat3Desc: "World Cups, historic champions and iconic football moments",
+      cat4Name: "Rules",
+      cat4Desc: "Laws of the game, refereeing and match situations",
+      cat5Name: "Facts & records",
+      cat5Desc: "Numbers, streaks and unusual football records",
       // Example question section
       exampleTitle: "This is what a",
       exampleTitleHighlight: "Question looks like",
@@ -3507,7 +3522,7 @@ const translations = {
       exFeat3Text: "Match progress",
       exFeat4Text: "Instant feedback when you answer",
       exFeat5Text: "Correct answer streak",
-      exTimerNote: "Each question has a 10-second time limit. Answer fast to earn bonuses.",
+      exTimerNote: "Daily takes its time; Lightning gives you a few seconds per question and Sudden Death tightens up. Answer fast for the bonus.",
       // Points section
       pointsSectionBadge: "Scoring",
       pointsSectionTitle: "Points",
@@ -3526,10 +3541,12 @@ const translations = {
       bonus3Desc: "10 correct answers in a row",
       bonus4Name: "Streak 20",
       bonus4Desc: "20 correct answers in a row",
-      // Badges section
-      badgesSectionBadge: "Rewards",
+      // Badges section. The trivia achievements/badges/titles system does NOT
+      // exist yet (no code grants them): marked as coming soon so it doesn't
+      // promise unearnable rewards.
+      badgesSectionBadge: "Coming soon",
       badgesSectionTitle: "Achievements and",
-      badgesSectionTitleHighlight: "Badges",
+      badgesSectionTitleHighlight: "Badges (soon)",
       badge1Name: "Historian",
       badge1Desc: "Complete 100 history questions",
       badge1Rarity: "Common",
@@ -3545,9 +3562,9 @@ const translations = {
       badge5Name: "Champion",
       badge5Desc: "Win a Battle Royale tournament",
       badge5Rarity: "Legendary",
-      // Titles section
+      // Titles section (also part of the not-yet-existing achievements system).
       titlesSectionTitle: "Ranking",
-      titlesSectionTitleHighlight: "Titles",
+      titlesSectionTitleHighlight: "Titles (soon)",
       title1Rank: "Top 100",
       title1Title: "Wise",
       title1Desc: "Enter the top 100 of the global ranking",
@@ -3560,7 +3577,7 @@ const translations = {
       // CTA
       ctaFinalTitle1: "Ready to prove your",
       ctaFinalTitle2: "knowledge?",
-      ctaFinalDesc: "Join thousands of football fans and compete to be the ultimate World Cup expert. +10,000 questions await you.",
+      ctaFinalDesc: "New questions every day, verified by a double AI pass. Your league, your clubs, your legends.",
     },
 
     ligasPage: {
@@ -3568,23 +3585,26 @@ const translations = {
       title1: "Play with your friends, earn the",
       title2: "respect",
       subtitle: "Football is better together. Create your private league and compete with friends, family, colleagues. May the best win... and the loser buys the drinks.",
-      // League types section
-      leagueTypesSectionTitle: "3 Types of",
-      leagueTypesSectionTitleHighlight: "Leagues",
+      // League types section. Only the predictions league exists today (private
+      // table by code, ranked by hits in the chosen competition). Fantasy and
+      // Trivia leagues (P2P market, trades, playoffs, Battle Royale) do NOT
+      // exist: marked as coming soon instead of sold as live features.
+      leagueTypesSectionTitle: "Your private",
+      leagueTypesSectionTitleHighlight: "league",
       lt1Title: "Predictions League",
-      lt1Feat1: "Everyone predicts the same matches",
-      lt1Feat2: "Private ranking with accumulated points",
-      lt1Feat3: "Integrated chat to trash-talk (with love)",
-      lt1Feat4: "Symbolic bets between friends",
-      lt2Title: "Fantasy League",
-      lt2Feat1: "Exclusive league draft",
-      lt2Feat2: "P2P transfer market (trade players)",
-      lt2Feat3: "Trade system between managers",
-      lt2Feat4: "Playoffs at the end of the tournament",
-      lt3Title: "Trivia League",
-      lt3Feat1: "Private Battle Royale",
-      lt3Feat2: "Custom tournaments",
-      lt3Feat3: "Specific topics (e.g.: Real Madrid history only)",
+      lt1Feat1: "Everyone predicts your competition's matches",
+      lt1Feat2: "Private standings by correct picks",
+      lt1Feat3: "Join with a 6-character code",
+      lt1Feat4: "The owner manages the name and members",
+      lt2Title: "Fantasy League · coming soon",
+      lt2Feat1: "A lineup per matchday within your league",
+      lt2Feat2: "Your group's Fantasy standings",
+      lt2Feat3: "In development",
+      lt2Feat4: "In development",
+      lt3Title: "Trivia League · coming soon",
+      lt3Feat1: "Trivia duels within your league",
+      lt3Feat2: "In development",
+      lt3Feat3: "In development",
       // Features section
       featuresSectionTitle: "Features",
       feat1Title: "100% Private",
@@ -3625,8 +3645,8 @@ const translations = {
       step4Desc: "Let the battle for honor (and the beers) begin",
       ctaTitle: "Create your league",
       ctaTitle2: "now",
-      ctaDesc: "Free and unlimited. Create as many leagues as you want and compete for glory.",
-      ctaBtn: "Create your league now → Register free",
+      ctaDesc: "Joining with a code is free. Creating your own private league is part of Pro (up to 20 leagues).",
+      ctaBtn: "Join a league with your code",
     },
 
     streamingPage: {

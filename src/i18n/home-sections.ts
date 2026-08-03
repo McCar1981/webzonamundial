@@ -738,32 +738,29 @@ export const homeSections = {
     },
 
     footer: {
-      tag: "Predictions, fantasy and engagement in Spanish for the 2026 World Cup.",
+      tag: "Your club football, all year round: predictions, Fantasy, Draft and your team's news.",
       poweredBy: "Powered by",
       columns: {
+        // Migrado al mismo estado que el bloque `es`: la columna "Tournament"
+        // (World Cup) y los enlaces a Creators / Streaming / Career Mode se
+        // retiraron del pie. Las rutas del Mundial siguen vivas para SEO, solo
+        // dejan de estar enlazadas.
         torneo: {
-          title: "Tournament",
+          title: "Football",
           links: [
-            { label: "48 Teams", href: "/selecciones" },
-            { label: "12 Groups", href: "/grupos" },
-            { label: "Best third places", href: "/grupos/mejores-terceros" },
-            { label: "16 Venues", href: "/sedes" },
-            { label: "Schedule", href: "/calendario" },
-            { label: "Round of 32", href: "/dieciseisavos-mundial-2026" },
-            { label: "Round of 16", href: "/octavos-de-final-mundial-2026" },
-            { label: "World Cup Pool", href: "/quiniela-mundial-2026" },
-            { label: "Bracket Simulator", href: "/bracket" },
-            { label: "History", href: "/historia" },
+            { label: "Zona de Ligas", href: "/ligas" },
+            { label: "News", href: "/noticias" },
+            { label: "Rankings", href: "/app/rankings" },
           ],
         },
         plataforma: {
-          title: "Platform",
+          title: "Games",
           links: [
-            { label: "Predictions", href: "/app/predicciones" },
+            { label: "Predictions", href: "/ligas" },
             { label: "Fantasy", href: "/ligas" },
+            { label: "League Draft", href: "/app/draft-mundial" },
+            { label: "Trivia", href: "/trivia" },
             { label: "AI Coach", href: "/app/ia-coach" },
-            { label: "Trivia", href: "/app/trivia" },
-            { label: "Career Mode", href: "/app/modo-carrera" },
             { label: "Premium", href: "/pro" },
             { label: "Digital Pool for Bars", href: "/bares" },
             { label: "Pool for Companies", href: "/empresas" },
@@ -775,10 +772,8 @@ export const homeSections = {
             { label: "News", href: "/noticias" },
             { label: "Blog", href: "/blog" },
             { label: "Tutorials", href: "/tutoriales" },
-            { label: "Creators", href: "/creadores" },
-            { label: "Private Leagues", href: "/app/ligas" },
             { label: "Rankings", href: "/app/rankings" },
-            { label: "Streaming", href: "/app/streaming" },
+            { label: "Download the app", href: "/descarga" },
           ],
         },
         legal: {

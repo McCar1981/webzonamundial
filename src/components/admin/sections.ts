@@ -12,7 +12,8 @@ export interface AdminSection {
 export const ADMIN_HOME = "/admin/panel";
 
 export const ADMIN_SECTIONS: AdminSection[] = [
-  { href: "/admin/creadores", label: "Creadores", emoji: "🎬", desc: "Programa de monetización: registros, bonos y pagos por creador." },
+  // "Creadores" retirado: /admin/creadores no existe (404). Era la primera
+  // pestaña del panel y el programa de creadores está descontinuado.
   { href: "/admin/registros", label: "Registros", emoji: "📝", desc: "Altas de usuarios y su fuente de captación." },
   { href: "/admin/codigos", label: "Códigos", emoji: "🎟️", desc: "Códigos de captación: reparte, recompensa y mide canales." },
   { href: "/admin/founders", label: "Founders", emoji: "👑", desc: "Compradores del Founders Pass e ingresos." },

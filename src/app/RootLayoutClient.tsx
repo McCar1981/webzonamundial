@@ -46,59 +46,12 @@ function buildNav(t: Translations) {
   ];
 }
 
-function buildFooterLinks(t: Translations) {
-  return {
-    // Enlazado interno SEO hacia el producto evergreen desde todas las páginas.
-    // Nombres propios de competición: válidos en ambos idiomas.
-    // Orden pan-LATAM: las ligas de casa primero, Europa después.
-    "Zona de Ligas": [
-      { label: "Todas las ligas",  href: "/ligas" },
-      { label: "LigaPro Ecuador",  href: "/ligas/ligapro-ecuador" },
-      { label: "Primera A",        href: "/ligas/primera-a-colombia" },
-      { label: "Liga Profesional", href: "/ligas/liga-argentina" },
-      { label: "Brasileirão",      href: "/ligas/brasileirao" },
-      { label: "Liga MX",          href: "/ligas/liga-mx" },
-      { label: "Libertadores",     href: "/ligas/libertadores" },
-      { label: "LaLiga",           href: "/ligas/laliga" },
-      { label: "Camisetas",        href: "/camisetas" },
-    ],
-    [t.footer.plataforma]: [
-      { label: t.footer.predicciones, href: "/app/predicciones" },
-      { label: t.footer.fantasy,       href: "/ligas" },
-      { label: t.footer.iaCoach,       href: "/app/ia-coach" },
-      { label: t.footer.trivia,        href: "/app/trivia" },
-      { label: t.footer.modoCarrera,   href: "/app/modo-carrera" },
-      { label: t.footer.premium,       href: "/pro" },
-      { label: t.footer.bares,         href: "/bares" },
-    ],
-    // El Mundial 2026 terminó el 19-jul-2026. Sus páginas siguen vivas como
-    // ARCHIVO (tienen tráfico y enlaces entrantes), pero etiquetadas como tal:
-    // ya no se venden como "el torneo" en el footer de todas las páginas.
-    "Mundial 2026 · archivo": [
-      { label: t.footer.selecciones, href: "/selecciones" },
-      { label: t.footer.grupos,      href: "/grupos" },
-      { label: t.footer.sedes,       href: "/sedes" },
-      { label: t.footer.calendario,  href: "/calendario" },
-      { label: t.footer.historia,    href: "/historia" },
-    ],
-    [t.footer.comunidad]: [
-      { label: t.footer.noticias,   href: "/noticias" },
-      { label: t.footer.blog,        href: "/blog" },
-      { label: t.footer.tutoriales,  href: "/tutoriales" },
-      { label: t.footer.ligas,       href: "/app/fantasy/jugar?tab=ligas" },
-      { label: t.footer.rankings,    href: "/app/rankings" },
-      { label: t.footer.streaming,   href: "/app/streaming" },
-    ],
-    [t.footer.legal]: [
-      { label: t.footer.avisoLegal,  href: "/legal/aviso-legal" },
-      { label: t.footer.terminos,    href: "/legal/terminos" },
-      { label: t.footer.privacidad,  href: "/legal/privacidad" },
-      { label: t.footer.cookies,     href: "/legal/cookies" },
-      { label: t.footer.eula,        href: "/legal/eula" },
-      { label: t.footer.contacto,    href: "/contacto" },
-    ],
-  };
-}
+// buildFooterLinks se eliminó: calculaba un segundo juego de enlaces de pie que
+// NO se pintaba en ninguna parte (el footer real sale de t.footer.columns, en
+// src/i18n/home-sections.ts). Era una trampa —tenía enlaces rancios a Streaming,
+// Modo Carrera y /app/fantasy/jugar?tab=ligas— para quien fuera a arreglar el
+// footer y editara aquí sin efecto. Si vuelve a hacer falta, el footer vive en
+// el i18n, no aquí.
 
 function HamburgerIcon({ open }: { open: boolean }) {
   const bar = (top: number, rot?: string | null, op: number = 1) => ({
@@ -261,7 +214,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   const containerRef = useRef<HTMLDivElement>(null);
 
   const NAV = buildNav(t);
-  const FOOTER_LINKS = buildFooterLinks(t);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);

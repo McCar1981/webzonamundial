@@ -368,7 +368,14 @@ export function GuiaMundial2026Section() {
         </details>
       </article>
 
-      <style>{`
+      {/*
+        dangerouslySetInnerHTML obligatorio: como texto JSX, el SSR escapa
+        ">" y '"' (&gt;/&quot;), el HTML del servidor no coincide al hidratar
+        y React re-renderiza toda la home en cliente.
+      */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .zm-guia-more > summary {
           list-style: none;
           cursor: pointer;
@@ -389,7 +396,9 @@ export function GuiaMundial2026Section() {
           opacity: 0.8;
         }
         .zm-guia-more[open] > summary::after { content: "−"; }
-      `}</style>
+      `,
+        }}
+      />
     </section>
   );
 }

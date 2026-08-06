@@ -18,7 +18,7 @@
 import { NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
 import { adminClient } from "@/lib/predictions/admin";
-import { getFixtureDetail } from "@/lib/competitions/api";
+import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { grantCoins } from "@/lib/economy/wallet";
 import { consumeBoost, BOOST_REWARD } from "@/lib/ligas/boost";
 import { resolveTypedMarket, resolveDuel, MARKET_REWARD, TYPED_MARKETS, type TypedMarket, type MarketData, type DuelData, type ChainData } from "@/lib/ligas/predict-markets";
@@ -84,10 +84,29 @@ export async function GET(req: Request) {
   const fixtureIds = [...new Set(pending.map((p) => p.fixture_id))].slice(0, MAX_FIXTURES_PER_RUN);
   let resolvedFixtures = 0;
   let voidedFixtures = 0; // partidos que nunca se jugarán (aplazado/cancelado…)
+  // Cortacircuitos: si api-football está sin cuota o caída, getFixtureDetailCached
+  // devuelve null seguido. En vez de agotar los 40 intentos de la pasada (y
+  // repetirlo cada 15 min, hundiendo más la cuota), se aborta tras unos cuantos
+  // null consecutivos. Un null aislado (fixture puntual sin datos) no dispara esto.
+  let nullSeguidos = 0;
+  const MAX_NULL_SEGUIDOS = 6;
   // Fixtures resueltos en ESTA pasada (para el push de payoff al final).
   const resolvedMeta = new Map<number, ResolvedLigaFixtureMeta>();
   for (const fid of fixtureIds) {
-    const d = await getFixtureDetail(fid);
+    // CACHEADO a propósito: un fixture TERMINADO es inmutable y se cachea 3
+    // días. Antes se usaba getFixtureDetail (sin caché), así que cada fixture
+    // que quedaba "pending" —terminado pero sin resolver, o durante una caída
+    // de cuota— se re-bajaba de api-football CADA 15 min para siempre: 40
+    // fixtures × 96 pasadas/día = hasta 3.840 llamadas diarias, la ráfaga que
+    // vaciaba la cuota. Con caché, un fixture atascado cuesta 1 llamada cada 3
+    // días en vez de 96 al día.
+    const d = await getFixtureDetailCached(fid);
+    if (d == null) {
+      // La API no devolvió datos: cuenta hacia el cortacircuitos y sigue.
+      if (++nullSeguidos >= MAX_NULL_SEGUIDOS) break; // API caída/sin cuota: no insistir
+      continue;
+    }
+    nullSeguidos = 0;
     // Partido que NUNCA va a terminar (aplazado, cancelado, abandonado…): se
     // ANULA en vez de dejarlo pendiente. Antes caía en el `continue` de abajo y
     // sus predicciones quedaban colgadas para siempre, pidiendo ese fixture a

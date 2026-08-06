@@ -61,8 +61,10 @@ export const CRON_WATCHES: CronWatch[] = [
   // ── Diarios: gracia de 2h sobre 24h. Email/push → safeRetrigger=false ──
   { job: "daily-stats", path: "/api/cron/daily-stats", maxAgeMinutes: DAY + 120, severity: "info", safeRetrigger: true },
   { job: "send-daily-digest", path: "/api/cron/send-daily-digest", maxAgeMinutes: DAY + 120, severity: "warning", safeRetrigger: false },
-  { job: "update-team-form", path: "/api/cron/update-team-form", maxAgeMinutes: DAY + 120, severity: "info", safeRetrigger: true },
-  { job: "update-team-injuries", path: "/api/cron/update-team-injuries", maxAgeMinutes: DAY + 120, severity: "info", safeRetrigger: true },
+  // update-team-form / update-team-injuries: DESAGENDADOS. Recorrían los 49
+  // equipos del bracket del Mundial (≈54 llamadas/día a api-football) para
+  // refrescar forma y lesiones de SELECCIONES de un torneo terminado; solo los
+  // leía el IA Coach del Mundial (dormido). Quitados de vercel.json y de aquí.
   { job: "generate-trivia", path: "/api/cron/generate-trivia", maxAgeMinutes: DAY + 120, severity: "info", safeRetrigger: true },
   { job: "predictions-engagement", path: "/api/cron/predictions-engagement", maxAgeMinutes: DAY + 120, severity: "warning", safeRetrigger: false },
 ];

@@ -11,25 +11,43 @@
 //  · Los anuncios siguen igual (los pinta el estado real) → no afecta a la
 //    revisión de AdSense y deja un motivo más para pasarse a Pro.
 //
-// Server/client-safe: solo constantes y helpers puros (sin process.env).
-//
-// Para mover o cerrar la campaña, cambia solo estas dos fechas (hora de España,
-// CEST = UTC+2 en junio).
+// Helpers puros de fechas. Los dos gates de SERVIDOR (freeWeekendEnd /
+// isFreeWeekendActive) además leen dos env-vars OPCIONALES para control en
+// runtime sin redeploy: FREE_WEEKEND_UNTIL (mueve la hora de cierre) y
+// FREE_WEEKEND_OVERRIDE=off (kill-switch instantáneo). En el bundle de cliente
+// esas env-vars son undefined → se usa la fecha por defecto (comportamiento
+// estable para la UI).
 
 /** Inicio: viernes 12-jun-2026, 00:00 España. */
 export const FREE_WEEKEND_START_ISO = "2026-06-12T00:00:00+02:00";
-/** Fin: lunes 15-jun-2026, 12:00 (mediodía) España. */
-export const FREE_WEEKEND_END_ISO = "2026-06-15T12:00:00+02:00";
+/**
+ * Fin: lunes 15-jun-2026, 12:00 (mediodía) de MÉXICO (CDMX, UTC-6) = 20:00 CEST.
+ * Se cierra a mediodía de México (no de España) para que la ventana acabe con la
+ * audiencia mexicana DESPIERTA y poder empujar la conversión; antes cerraba a las
+ * 04:00 CDMX. Override en runtime con la env-var FREE_WEEKEND_UNTIL.
+ */
+export const FREE_WEEKEND_END_ISO = "2026-06-15T12:00:00-06:00";
 
 export function freeWeekendStart(): Date {
   return new Date(FREE_WEEKEND_START_ISO);
 }
 export function freeWeekendEnd(): Date {
+  // Si FREE_WEEKEND_UNTIL (ISO) está definida y es válida, MANDA sobre la fecha
+  // hardcodeada → permite extender/recortar el cierre desde Vercel sin redeploy.
+  const until = process.env.FREE_WEEKEND_UNTIL;
+  if (until) {
+    const t = Date.parse(until);
+    if (Number.isFinite(t)) return new Date(t);
+  }
   return new Date(FREE_WEEKEND_END_ISO);
 }
 
 /** ¿Está abierta la ventana de fin de semana gratis ahora mismo? */
 export function isFreeWeekendActive(now: number = Date.now()): boolean {
+  // Kill-switch de emergencia: FREE_WEEKEND_OVERRIDE=off cierra la campaña al
+  // instante, sin esperar a la fecha ni redeployar. Cualquier otro valor (o
+  // ausencia) deja decidir a la ventana de fechas.
+  if ((process.env.FREE_WEEKEND_OVERRIDE ?? "").toLowerCase() === "off") return false;
   return now >= freeWeekendStart().getTime() && now < freeWeekendEnd().getTime();
 }
 

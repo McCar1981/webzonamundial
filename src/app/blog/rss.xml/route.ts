@@ -28,7 +28,7 @@ export async function GET() {
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
       <pubDate>${date}</pubDate>
-      <author>editorial@zonamundial.app (Editorial Zona Mundial)</author>
+      <author>editorial@zonamundial.app (Editorial Zona de Ligas)</author>
       <category>${escapeXml(p.category)}</category>
       <description>${escapeXml(p.description)}</description>
     </item>`;
@@ -38,10 +38,10 @@ export async function GET() {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog Editorial ZonaMundial</title>
+    <title>Blog Editorial Zona de Ligas</title>
     <link>${SITE}/blog</link>
     <atom:link href="${SITE}/blog/rss.xml" rel="self" type="application/rss+xml"/>
-    <description>Análisis y datos editoriales del Mundial 2026 — firmado por Editorial Zona Mundial.</description>
+    <description>Análisis y datos editoriales del fútbol de clubes — firmado por Editorial Zona de Ligas.</description>
     <language>es</language>
     <lastBuildDate>${lastBuild.toUTCString()}</lastBuildDate>
 ${items}

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const n = await getNoticiaBySlugPublic(params.slug);
   if (!n) {
     return {
-      title: "Noticia no encontrada | ZonaMundial",
+      title: "Noticia no encontrada | Zona de Ligas",
       robots: { index: false, follow: false },
     };
   }
@@ -40,8 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = n.seoDescription || n.excerpt;
 
   return {
-    // Sin sufijo de marca: el template del layout raíz ("%s | ZonaMundial")
-    // ya lo añade — con el sufijo manual salía "… | ZonaMundial | ZonaMundial".
+    // Sin sufijo de marca: el template del layout raíz ("%s | Zona de Ligas")
+    // ya lo añade — con el sufijo manual salía "… | Zona de Ligas | Zona de Ligas".
     title: n.title,
     description,
     keywords: n.tags,
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: n.title,
       description,
-      siteName: "ZonaMundial",
+      siteName: "Zona de Ligas",
       locale: "es_ES",
       publishedTime: `${n.date}T08:00:00.000Z`,
       modifiedTime: `${n.updatedAt || n.date}T08:00:00.000Z`,
@@ -105,7 +105,7 @@ export default async function NoticiaPage({ params }: Props) {
           },
     publisher: {
       "@type": "Organization",
-      name: "ZonaMundial",
+      name: "Zona de Ligas",
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp`,

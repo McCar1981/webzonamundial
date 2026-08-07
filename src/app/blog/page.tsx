@@ -1,5 +1,5 @@
 // src/app/blog/page.tsx
-// Blog editorial ZonaMundial — hub con featured + grid + filtros.
+// Blog editorial Zona de Ligas — hub con featured + grid + filtros.
 // Server component que pasa los posts publicados a BlogHub (client).
 
 import { getAllPosts } from "@/lib/blog";
@@ -15,7 +15,7 @@ export default async function BlogPage() {
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Blog Editorial ZonaMundial",
+    name: "Blog Editorial Zona de Ligas",
     itemListElement: posts.slice(0, 20).map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,

@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const url = `/blog/${post.slug}`;
   // Si el post define un seoTitle, se usa tal cual (absolute) para controlar
   // exactamente el <title>. Si no, se devuelve SOLO post.title y el template
-  // del layout raíz ("%s | ZonaMundial") añade el sufijo de marca una única
-  // vez. Devolver aquí el sufijo lo duplicaba ("… | ZonaMundial | ZonaMundial").
+  // del layout raíz ("%s | Zona de Ligas") añade el sufijo de marca una única
+  // vez. Devolver aquí el sufijo lo duplicaba ("… | Zona de Ligas | Zona de Ligas").
   const titleMeta: Metadata["title"] = post.seoTitle
     ? { absolute: post.seoTitle }
     : post.title;
@@ -64,8 +64,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       images: [{ url: post.ogImage, width: 1200, height: 630, alt: post.title }],
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt || post.publishedAt,
-      authors: ["Editorial Zona Mundial"],
-      siteName: "ZonaMundial",
+      authors: ["Editorial Zona de Ligas"],
+      siteName: "Zona de Ligas",
     },
     twitter: {
       card: "summary_large_image",
@@ -259,7 +259,7 @@ function EditorialFooter() {
             marginBottom: 4,
           }}
         >
-          Editorial Zona Mundial
+          Editorial Zona de Ligas
         </div>
         <p
           style={{
@@ -270,8 +270,8 @@ function EditorialFooter() {
             fontFamily: "var(--b-font-serif)",
           }}
         >
-          El equipo editorial de ZonaMundial firma análisis, datos y guías del
-          Mundial 2026 con un único compromiso: rigor y pasión por el fútbol.
+          El equipo editorial de Zona de Ligas firma análisis, datos y guías del
+          fútbol de clubes con un único compromiso: rigor y pasión por el fútbol.
           Sin algoritmos, sin clickbait, sin prisas.
         </p>
       </div>

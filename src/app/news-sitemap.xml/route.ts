@@ -10,7 +10,7 @@
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 
 const BASE_URL = "https://zonamundial.app";
-const PUBLICATION_NAME = "ZonaMundial";
+const PUBLICATION_NAME = "Zona de Ligas";
 const PUBLICATION_LANG = "es";
 
 function escapeXml(s: string): string {

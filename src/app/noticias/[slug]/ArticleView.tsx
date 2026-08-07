@@ -125,7 +125,7 @@ export function ArticleView({
 
   const catColor = CAT_COLORS[noticia.cat] || "#c9a84c";
   const catLabel = CAT_LABELS[noticia.cat] || noticia.cat;
-  const shareText = encodeURIComponent(`${noticia.title} — ZonaMundial`);
+  const shareText = encodeURIComponent(`${noticia.title} — Zona de Ligas`);
   const shareUrl = encodeURIComponent(url);
   const author = getAuthor(noticia.authorId);
 
@@ -200,7 +200,7 @@ export function ArticleView({
           <p className={styles.aiNote}>
             {noticia.sourceUrl ? (
               <>
-                Elaborado por la redacción de ZonaMundial con apoyo de IA a
+                Elaborado por la redacción de Zona de Ligas con apoyo de IA a
                 partir de información de{" "}
                 <a href={noticia.sourceUrl} target="_blank" rel="noopener noreferrer nofollow">
                   {noticia.sourceName || "la fuente original"}
@@ -211,7 +211,7 @@ export function ArticleView({
               <>
                 Pieza elaborada automáticamente con los datos oficiales del
                 torneo (calendario, marcadores, eventos y estadísticas) y
-                revisada por la redacción de ZonaMundial.
+                revisada por la redacción de Zona de Ligas.
               </>
             )}
           </p>
@@ -380,7 +380,7 @@ export function ArticleView({
           <aside className={styles.appCta}>
             <div>
               <small>NO TE PIERDAS NADA</small>
-              <h3>Vive el Mundial 2026 desde la app de ZonaMundial</h3>
+              <h3>Vive tu liga desde la app de Zona de Ligas</h3>
               <p>Predicciones, fantasy, IA coach y streaming con creadores. Todo gratis.</p>
             </div>
             <Link href="/registro" className={styles.appCtaBtn}>Regístrate gratis</Link>
@@ -411,7 +411,7 @@ export function ArticleView({
 
           <div className={`${styles.sidebarBlock} ${styles.sidebarPromo}`}>
             <small>JUEGA GRATIS</small>
-            <h3>Predicciones del Mundial</h3>
+            <h3>Predicciones de tu liga</h3>
             <p>Desafía a tus amigos y compite con creadores. Juega gratis ahora.</p>
             <Link href="/registro">Entrar y jugar →</Link>
           </div>

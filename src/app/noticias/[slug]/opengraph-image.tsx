@@ -18,7 +18,7 @@ import { getAuthor } from "@/data/noticias-authors";
 // just slightly slower cold start than edge. Acceptable for OG images
 // which are also cached aggressively by Twitter/Facebook/WhatsApp.
 export const runtime = "nodejs";
-export const alt = "ZonaMundial — Noticia del Mundial 2026";
+export const alt = "Zona de Ligas — Noticias de fútbol";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,7 +49,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
   } catch (err) {
     console.warn(`[og noticia] lookup falló para ${params.slug}:`, (err as Error).message);
   }
-  const title = noticia?.title || "Mundial 2026";
+  const title = noticia?.title || "Zona de Ligas";
   const cat = noticia?.cat || "selecciones";
   const author = noticia ? getAuthor(noticia.authorId) : null;
   const catLabel = CAT_LABELS[cat] || cat;
@@ -105,7 +105,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
               display: "flex",
             }}
           >
-            ZONA<span style={{ color: "#c9a84c", marginLeft: 4 }}>MUNDIAL</span>
+            ZONA DE <span style={{ color: "#c9a84c", marginLeft: 4 }}>LIGAS</span>
           </div>
         </div>
 

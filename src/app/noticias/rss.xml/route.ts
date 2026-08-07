@@ -35,7 +35,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ZonaMundial — Noticias del Mundial 2026</title>
+    <title>Zona de Ligas — Noticias de fútbol de clubes</title>
     <link>${SITE_URL}/noticias</link>
     <description>Última hora, análisis y guías sobre la Copa del Mundo 2026.</description>
     <language>es-ES</language>

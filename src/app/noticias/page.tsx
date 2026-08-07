@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Noticias de fútbol | Zona de Ligas",
     description:
       "Última hora, análisis y datos del fútbol de clubes. Cobertura editorial diaria de tus ligas.",
-    siteName: "ZonaMundial",
+    siteName: "Zona de Ligas",
   },
   twitter: {
     card: "summary_large_image",

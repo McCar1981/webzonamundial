@@ -9,7 +9,7 @@
 
 import { NextResponse } from "next/server";
 import { kv } from "@/lib/kv";
-import { getCatalogLiveFixtures, getCatalogFixturesOnDate, type CatalogFixture } from "@/lib/competitions/api";
+import { getCatalogLiveFixtures, getCatalogFixturesOnDate, fixtureEnVentanaViva, type CatalogFixture } from "@/lib/competitions/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,13 +30,20 @@ export async function GET() {
 
   let payload: Payload;
   try {
-    const live = await getCatalogLiveFixtures();
+    // Horario del día (1 llamada cacheada 5 min). Sirve para DOS cosas: saber si
+    // hay ventana de juego, y —si no la hay— alimentar el modo "today" sin pedir
+    // nada más. Solo si hay un partido en ventana se hace la llamada cara
+    // `live=all`; fuera de esas horas no se sondea en vivo (antes se preguntaba
+    // cada 30 s las 24 h, gastando cuota de madrugada sin un solo partido).
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+    const fixturesHoy = await getCatalogFixturesOnDate(today);
+    const enVentana = fixturesHoy.some((f) => fixtureEnVentanaViva(f));
+
+    const live = enVentana ? await getCatalogLiveFixtures() : [];
     if (live.length > 0) {
       payload = { mode: "live", fixtures: live.slice(0, MAX) };
     } else {
-      const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
-      const fixtures = await getCatalogFixturesOnDate(today);
-      payload = fixtures.length ? { mode: "today", fixtures: fixtures.slice(0, MAX) } : { mode: "none", fixtures: [] };
+      payload = fixturesHoy.length ? { mode: "today", fixtures: fixturesHoy.slice(0, MAX) } : { mode: "none", fixtures: [] };
     }
   } catch {
     payload = { mode: "none", fixtures: [] };

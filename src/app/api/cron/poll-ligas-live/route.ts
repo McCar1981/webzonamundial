@@ -18,6 +18,7 @@ import { NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
 import { processMicroGeneration } from "@/lib/micro/engine";
 import { fetchOla1LiveSnapshots, markLigasLive, ligasMicroEnabled } from "@/lib/ligas/micro-live";
+import { hayVentanaEnVivo } from "@/lib/competitions/api";
 import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
@@ -30,6 +31,14 @@ export async function GET(req: Request) {
 
   if (!ligasMicroEnabled()) {
     return NextResponse.json({ ok: true, skipped: "disabled" });
+  }
+
+  // Demanda: si NINGÚN partido del catálogo está en ventana de juego (según el
+  // horario del día, barato y cacheado), no se hace la llamada cara `live=all`
+  // ni las de snapshots. Fuera de las horas de partido, el poller no gasta cuota.
+  if (!(await hayVentanaEnVivo())) {
+    try { await recordHeartbeat("poll-ligas-live"); } catch { /* best-effort */ }
+    return NextResponse.json({ ok: true, live: 0, created: 0, skipped: "sin_ventana" });
   }
 
   const snaps = await fetchOla1LiveSnapshots();

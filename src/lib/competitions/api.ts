@@ -266,6 +266,39 @@ export async function getCatalogFixturesOnDate(dateIso: string): Promise<Catalog
   return catalogFixturesFrom(`date=${dateIso}`);
 }
 
+// ── Gate "hay partido ahora" para NO sondear en vivo las 24 h ────────────────
+// El descubrimiento en vivo (`/fixtures?live=all`) se pedía cada 30 s las 24 h,
+// aunque no jugara nada (de madrugada, entre semana…): puro goteo de cuota. Con
+// esto, la llamada cara solo se hace cuando el HORARIO del día (barato, 1 sola
+// llamada cacheada) dice que hay un partido en curso o a punto de empezar.
+const ESTADOS_EN_VIVO = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
+const VENTANA_PREVIA_MS = 10 * 60_000; //  10 min antes del saque (previa)
+const VENTANA_POSTERIOR_MS = 150 * 60_000; // 150 min tras el saque (partido + descuento/prórroga)
+
+/** ¿Este fixture está (o está a punto de estar) en juego según su horario? */
+export function fixtureEnVentanaViva(f: { status: string; kickoff: string }, now = Date.now()): boolean {
+  if (ESTADOS_EN_VIVO.has(f.status)) return true;
+  const ko = Date.parse(f.kickoff);
+  return Number.isFinite(ko) && now >= ko - VENTANA_PREVIA_MS && now <= ko + VENTANA_POSTERIOR_MS;
+}
+
+/**
+ * ¿Hay algún partido del catálogo en ventana de juego AHORA? Se calcula desde el
+ * horario del día (getCatalogFixturesOnDate: 1 llamada cacheada 5 min), NO desde
+ * `live=all`. Fuera de las ventanas devuelve false y quien llama se ahorra la
+ * llamada en vivo. Fail-open: ante un error de datos, true (mejor sondear de más
+ * que perderse un partido).
+ */
+export async function hayVentanaEnVivo(now = Date.now()): Promise<boolean> {
+  try {
+    const hoy = new Date(now).toISOString().slice(0, 10);
+    const fixtures = await getCatalogFixturesOnDate(hoy);
+    return fixtures.some((f) => fixtureEnVentanaViva(f, now));
+  } catch {
+    return true;
+  }
+}
+
 // ─── Clasificación por competición ───────────────────────────────────────────
 // api-football devuelve `standings` como array de GRUPOS (cada uno un array de
 // filas): las ligas de tabla única traen 1 grupo ("Serie A"), MLS 2 conferencias,

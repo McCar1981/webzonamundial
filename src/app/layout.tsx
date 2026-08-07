@@ -30,7 +30,7 @@ const ADSENSE_ID =
   process.env.NEXT_PUBLIC_ADSENSE_ID ?? "ca-pub-1977548438117778";
 
 const SITE_URL = "https://zonamundial.app";
-const SITE_NAME = "ZonaMundial";
+const SITE_NAME = "Zona de Ligas";
 const DEFAULT_TITLE = "Zona de Ligas: predicciones, Fantasy y Draft de tu liga";
 const DEFAULT_DESCRIPTION =
   "Tu fútbol de clubes, todo el año: predicciones jornada a jornada, Fantasy, Draft de Ligas, trivia e IA Coach. LigaPro, Liga MX, Brasileirão, Liga Argentina, LaLiga, Premier y más. Gratis.";
@@ -39,28 +39,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: DEFAULT_TITLE,
-    template: "%s | ZonaMundial",
+    template: "%s | Zona de Ligas",
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   generator: "Next.js",
   keywords: [
-    "mundial 2026",
-    "predicciones mundial 2026",
-    "fantasy mundial 2026",
-    "quiniela mundial",
-    "copa del mundo 2026",
-    "calendario mundial 2026",
-    "grupos mundial 2026",
-    "selecciones mundial 2026",
-    "sedes mundial 2026",
-    "app mundial 2026",
-    "fantasy fútbol",
     "predicciones fútbol",
-    "trivia mundial",
+    "fantasy fútbol",
+    "draft fútbol",
+    "trivia fútbol",
     "ia coach fútbol",
+    "ligapro ecuador",
+    "liga mx",
+    "brasileirão",
+    "liga argentina",
+    "laliga",
+    "premier league",
+    "libertadores",
+    "predicciones liga",
+    "fantasy por liga",
   ],
-  authors: [{ name: "ZonaMundial by SprintMarkt", url: SITE_URL }],
+  authors: [{ name: "Zona de Ligas by SprintMarkt", url: SITE_URL }],
   creator: "SprintMarkt",
   publisher: "SprintMarkt",
   category: "Sports",
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: "ZonaMundial",
+    title: "Zona de Ligas",
     statusBarStyle: "black-translucent",
   },
   formatDetection: {

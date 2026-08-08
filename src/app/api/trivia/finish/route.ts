@@ -21,6 +21,7 @@ import type { SessionResult } from "@/lib/trivia/types";
 import { grantCoins } from "@/lib/economy/wallet";
 import { triviaSessionReward } from "@/lib/economy/earn";
 import { utcDayKey } from "@/lib/predictions/gamification";
+import { touchDaysStreak } from "@/lib/predictions/gamification-store";
 
 /** Quita el sufijo "-rN" que añade repeatToLength para volver al id base. */
 function baseId(id: string): string {
@@ -173,6 +174,8 @@ export async function POST(req: Request) {
   let rewardClaimed = false;
   if (authUserId) {
     const dayKey = utcDayKey();
+    // Jugar la trivia mantiene VIVA la racha de días (idempotente por día).
+    await touchDaysStreak(authUserId).catch(() => {});
     const firstToday = await claimDailyTriviaReward(authUserId, dayKey, session.mode);
     if (firstToday) {
       const reward = triviaSessionReward(finalPoints, session.correct, answered);

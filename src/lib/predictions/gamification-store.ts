@@ -573,6 +573,48 @@ export async function extendStreakWindow(uid: string): Promise<void> {
   }).eq("id", uid);
 }
 
+// Guard "racha de días ya avanzada hoy": la racha sube COMO MUCHO una vez al día.
+const dayStreakTouchKey = (uid: string, day: string) => `daily:streaktouch:${uid}:${day}`;
+
+/**
+ * Racha de DÍAS ACTIVOS. La sube como mucho una vez al día CUALQUIER acción
+ * central del producto (check-in, predecir tu liga, trivia). Antes la racha que
+ * ve el usuario ("Racha de N días") se calculaba como aciertos consecutivos de
+ * predicciones del MUNDIAL —muertas—, así que para un usuario de ligas estaba
+ * congelada y expiraba por inactividad aunque jugara a diario. Esto la hace
+ * real: si hoy hiciste algo, tu racha vive y crece.
+ *
+ * Idempotente por día: guard KV (primario) + `last_checkin` por columna
+ * (fallback si KV cae). Consecutiva: +1 si ayer estuviste activo, reset a 1 si
+ * hubo hueco. Best-effort: si la columna no está migrada, no rompe nada.
+ */
+export async function touchDaysStreak(uid: string): Promise<void> {
+  const today = utcDayKey();
+  const yesterday = utcDayKey(new Date(Date.now() - 86_400_000));
+  try {
+    const first = await kv.set(dayStreakTouchKey(uid, today), 1, { nx: true, ex: DAILY_CLAIM_TTL });
+    if (!first) return; // ya avanzada hoy
+  } catch {
+    // sin KV: seguimos con el guard por columna de abajo
+  }
+  try {
+    const admin = adminClient();
+    const prof = await readProfile(uid);
+    if (prof.last_checkin === today) return; // fallback de idempotencia (KV caído)
+    const activaAyer = prof.last_checkin === yesterday;
+    const current = activaAyer ? (prof.current_streak ?? 0) + 1 : 1;
+    await admin.from("profiles").update({
+      current_streak: current,
+      best_streak: Math.max(current, prof.best_streak ?? 0),
+      last_checkin: today,
+      // Estuviste activo hoy → la racha vive hasta now + ventana.
+      streak_expires_at: new Date(Date.now() + STREAK_WINDOW_MS).toISOString(),
+    }).eq("id", uid);
+  } catch {
+    // best-effort: una racha no cobrada no debe tumbar la acción del usuario
+  }
+}
+
 // ─── Bucle diario: check-in ──────────────────────────────────────────────────
 export interface CheckinResult {
   already: boolean;
@@ -584,6 +626,11 @@ export interface CheckinResult {
 export async function claimDaily(uid: string): Promise<CheckinResult> {
   const admin = adminClient();
   const today = utcDayKey();
+
+  // El check-in también cuenta como día activo de la racha de días. Va ANTES de
+  // que claimDaily toque last_checkin, para que touchDaysStreak lo lea aún como
+  // "ayer/más viejo" y avance bien (idempotente si ya lo avanzó una actividad).
+  await touchDaysStreak(uid).catch(() => {});
   const yesterday = utcDayKey(new Date(Date.now() - 86_400_000));
 
   // Guard ATÓMICO de idempotencia en KV: SET con NX crea la marca de HOY solo

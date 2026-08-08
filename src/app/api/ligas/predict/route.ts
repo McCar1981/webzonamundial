@@ -18,6 +18,7 @@ import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCompetition } from "@/data/competitions";
 import { getFixtureDetailCached } from "@/lib/competitions/api";
 import { savePick, getUserPick, saveScorePick, getUserScorePick, saveTypedPick, getUserTypedPicks, type LigaPick } from "@/lib/ligas/predictions";
+import { touchDaysStreak } from "@/lib/predictions/gamification-store";
 import { isBoosted } from "@/lib/ligas/boost";
 import { isTypedMarket, validateMarketData, isOla1 } from "@/lib/ligas/predict-markets";
 
@@ -105,6 +106,10 @@ export async function POST(request: Request) {
     if (res.reason === "not_available") return NextResponse.json({ error: "not_available" }, { status: 503 });
     return NextResponse.json({ error: "internal" }, { status: 500 });
   }
+  // Predecir tu liga mantiene VIVA la racha de días (antes solo la alimentaban
+  // las predicciones del Mundial, muertas). Se AWAITa —no fire-and-forget— para
+  // que en serverless no se congele antes de correr; es 1 KV + 1 update, rápido.
+  await touchDaysStreak(user.id).catch(() => {});
   if (typedMarket) return NextResponse.json({ ok: true, market: typedMarket, data: typedData });
   return isExact
     ? NextResponse.json({ ok: true, exact: { home: scoreHome, away: scoreAway } })
